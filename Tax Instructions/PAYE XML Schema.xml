@@ -1,0 +1,74 @@
+<PayeReturn>
+	<PayeReturnHeader>
+		<TaxpayerNumber>60000003V</TaxpayerNumber>																		<!--TIN: Empoyer -->
+		<Year>2023</Year>																								<!--Return Period: Year of the return (YYYY)-->
+		<Period>Feb</Period>																							<!--Return Period: Must be 3 letter Month code (Jan, Feb, Mar)-->
+	</PayeReturnHeader>
+	<PayeReturnBody>
+		<PayeEmployerType>Private Sector</PayeEmployerType>																<!--MANDATORY - Employer Type (Broader Public Service / Private Sector)-->
+		<PayeEmployees>
+			<PayeEmployee>
+				<TaxpayerNumber>60000001T</TaxpayerNumber>																	<!--q1 TIN: Empoyee - MANDATORY -->
+				<Name>Employee 1</Name>																						<!--q2a Name(XML)- MANDATORY -->
+				<EmployeeStartDate>2023-02-01</EmployeeStartDate>															<!--q3 New Employee Start Date (YYYY-MM-DD)-->
+				<EmploymentEndDate>2024-01-31</EmploymentEndDate>															<!--q4 Employment End Date (YYYY-MM-DD)-->
+				<Emoluments>1000,00</Emoluments>																			<!--q5 Emoluments -->
+				<Pensions>1000,00</Pensions>																				<!--q6 Pensions -->
+				<SocialInsurancePensions>100,00</SocialInsurancePensions>													<!--q7 Social Insurance Pensions taken into account -->
+				<GrossEmoluments>2000,00</GrossEmoluments>																	<!--q8 Gross Emoluments -->
+				<BenefitFromRelatedParties>100,00</BenefitFromRelatedParties>												<!--q9 Financial benefits of directors or shareholders or related parties thereof-->
+				<TaxWithheldGrossEmoluments>100,00</TaxWithheldGrossEmoluments>												<!--q10 Tax Withheld from gross emoluments - MANDATORY (>=35%*(q7+q8))-->
+				<TaxDeductedFinancialBenefitsRelatedParties>100,00</TaxDeductedFinancialBenefitsRelatedParties>				<!--q10b Tax deducted for financial benefits of directors or shareholders or related parties thereof -->
+				<GhsWithheldPensioners>100,00</GhsWithheldPensioners>														<!--q11 GHS Withheld from pensioners -->
+				<GhsWithheldEmployee>100,00</GhsWithheldEmployee>															<!--q12 GHS Withheld from employees -->
+				<IsEmployeeOfficer>1</IsEmployeeOfficer>																	<!--q13 Is the employee an Officer? (0/1)- MANDATORY -->
+				<GhsWithheldOfficer>100,00</GhsWithheldOfficer>																<!--q14 GHS Withheld from officers - MANDATORY if q13 = 1 -->
+				<GhsEmployersContribution>100,00</GhsEmployersContribution>													<!--q15 GHS Employer's Contribution - MANDATORY if q13 = 1 -->
+				<IsBonusReceivedThisMonthForPreviousYear>1</IsBonusReceivedThisMonthForPreviousYear>						<!--q16 Has the employee received a bonus this month for the previous year? (0/1)- MANDATORY -->
+				<PriorYearBonusPaid>1000,00</PriorYearBonusPaid>															<!--q17 Prior Year Bonus Paid -->
+				<PriorBonusYear>2022</PriorBonusYear>																		<!--q18 Year for which bonus was paid -->
+				<WasEmployeeAnOfficerAtEndOfBonusYear>1</WasEmployeeAnOfficerAtEndOfBonusYear>								<!--q19 Was the employee an officer at the end of the year of the bonus? (0/1)-->
+				<TaxWithheldFrBonus>100,00</TaxWithheldFrBonus>																<!--q20 Tax Withheld from Prior Year Bonus -->
+				<BonusGhsWithheldOfficers>100,00</BonusGhsWithheldOfficers>													<!--q21 GHS Withheld from Officers (Bonus) -->
+				<GhsWithheldFromEmployeeBonus>100,00</GhsWithheldFromEmployeeBonus>											<!--q22 GHS Withheld from Employee (Bonus) -->
+				<BonusGhsEmployersContribution>100,00</BonusGhsEmployersContribution>										<!--q23 GHS Employer's Contribution (Bonus of officers) -->
+				<PensionableBenefitsContribution>100,00</PensionableBenefitsContribution>									<!--q24 Contribution towards pensionable benefits (3%) - MANDATORY -->
+			</PayeEmployee>
+			<PayeEmployee>
+				<TaxpayerNumber>60000002U</TaxpayerNumber>																	<!--q1 -->
+				<Name>Employee 2</Name>																						<!--q2a -->
+				<Emoluments>1000,00</Emoluments>																			<!--q5 -->
+				<Pensions>1000,00</Pensions>																				<!--q6 -->
+				<SocialInsurancePensions>100,00</SocialInsurancePensions>													<!--q7 -->
+				<GrossEmoluments>2000,00</GrossEmoluments>																	<!--q8 -->
+				<BenefitFromRelatedParties>100,00</BenefitFromRelatedParties>												<!--q9 -->
+				<TaxWithheldGrossEmoluments>100,00</TaxWithheldGrossEmoluments>												<!--q10 -->
+				<TaxDeductedFinancialBenefitsRelatedParties>100,00</TaxDeductedFinancialBenefitsRelatedParties>				<!--q10b -->
+				<GhsWithheldPensioners>100,00</GhsWithheldPensioners>														<!--q11 -->
+				<GhsWithheldEmployee>100,00</GhsWithheldEmployee>															<!--q12 -->
+				<IsEmployeeOfficer>0</IsEmployeeOfficer>																	<!--q13 -->
+				<GhsWithheldOfficer>0,00</GhsWithheldOfficer>																<!--q14 -->
+				<GhsEmployersContribution>0,00</GhsEmployersContribution>													<!--q15 -->
+				<IsBonusReceivedThisMonthForPreviousYear>0</IsBonusReceivedThisMonthForPreviousYear>						<!--q16 -->
+				<PriorYearBonusPaid>0,00</PriorYearBonusPaid>																<!--q17 -->
+				<PriorBonusYear>0</PriorBonusYear>																			<!--q18 -->
+				<WasEmployeeAnOfficerAtEndOfBonusYear>0</WasEmployeeAnOfficerAtEndOfBonusYear>								<!--q19 -->
+				<TaxWithheldFrBonus>0,00</TaxWithheldFrBonus>																<!--q20 -->
+				<BonusGhsWithheldOfficers>0,00</BonusGhsWithheldOfficers>													<!--q21 -->
+				<GhsWithheldFromEmployeeBonus>0,00</GhsWithheldFromEmployeeBonus>											<!--q22 -->
+				<BonusGhsEmployersContribution>0,00</BonusGhsEmployersContribution>											<!--q23 -->
+				<PensionableBenefitsContribution>0,00</PensionableBenefitsContribution>										<!--q24 -->
+			</PayeEmployee>
+		</PayeEmployees>
+		<TotalGrossEmoluments>4000,00</TotalGrossEmoluments>															<!--Q1 Total Gross Emoluments (Sum of all q8)-->															
+		<TaxWithheld>200,00</TaxWithheld>																				<!--Q2 Tax Withheld (Sum of all q10)-->	
+		<TaxWithheldFromBonus>100,00</TaxWithheldFromBonus>																<!--Q3 Tax Withheld from Prior Year Bonus (Sum of all q20)-->	
+		<TotalTaxWithheld>300,00</TotalTaxWithheld>																		<!--Q4 Total Tax Withheld (Q2 + Q3)-->	
+		<TotalTaxdeducted>200,00</TotalTaxdeducted>																		<!--Q4a Tax deducted for financial benefits of directors or shareholders or related parties thereof (Sum of all q10b)-->	
+		<GHSWithheldPensioners>200,00</GHSWithheldPensioners>															<!--Q5 GHS Withheld from pensioners (Sum of all q11)-->	
+		<GHSWithheldOfficers>200,00</GHSWithheldOfficers>																<!--Q6 GHS Withheld from officers (Sum of all q14 + q21)-->	
+		<GHSWithheldEmployees>300,00</GHSWithheldEmployees>     														<!--Q7 GHS Withheld from Employee (Sum of all q12 + q22)-->
+		<GHSEmployerContribution>200,00</GHSEmployerContribution>														<!--Q8 GHS Employer's Contribution (Sum of all q15 + q23)-->	
+		<ContributionPensionableBenefits>100,00</ContributionPensionableBenefits>										<!--Q9 Contribution towards pensionable benefits (3%) (Sum of all q24)-->	
+	</PayeReturnBody>
+</PayeReturn>

@@ -1,0 +1,807 @@
+'Public Class cPrRtTrxns
+
+'    '
+'    Inherits cPrTxTrxnHeaderDbTier
+'    '
+'    Private mId As Integer
+'    Private mEmp_Code As String
+'    Private mPrdGrp_Code As String
+'    Private mPrdCod_Code As String
+'    Private mPayCat_Code As String
+'    Private mDate As Date
+'    Private mStatus As String
+'    Private mTotalErnPeriod As Double
+'    Private mTotalErnYTD As Double
+'    Private mTotalDedPeriod As Double
+'    Private mTotalDedYTD As Double
+'    Private mTotalConPeriod As Double
+'    Private mTotalConYTD As Double
+'    Private mSIIncome As Double
+'    Private mTaxableIncome As Double
+'    Private mPaymentMethod As String
+'    Private mPaymentRef As String
+'    Private mPeriodUnits As Double
+'    Private mAnnualUnits As Double
+'    Private mAnnualLeave As Double
+'    Private mLifeInsurance As Double
+'    Private mDiscounts As Double
+'    Private mInterfaceStatus As String
+'    Private mOvertime1 As Double
+'    Private mOvertime2 As Double
+'    Private mSIUnits As Double
+'    Private mMonthlySalary As Double
+'    Private mNetSalary As Double
+'    Private mPeriodInsurable As Double
+'    Private mTemGrpCode As String
+'    Private mChequeNo As String
+'    Private mTaxableFromOther As String
+'    Private mCurrency As String
+'    Private mcurRate As Double
+'    Private mNormalDays As Double
+'    Private mSalary1 As Double
+'    Private mSalary2 As Double
+'    Private mOvertime3 As Double
+
+'    Private mSectors As Double
+'    Private mDutyHours As Double
+'    Private mFlightHours As Double
+'    Private mCommission As Double
+'    Private mPBAmount As Double
+'    Private mPBRate As Double
+
+'    Private mOverLay As Double
+'    Private mPeriodSplit As Double
+'    Private mPeriodSplitSI As Double
+
+'    Private mA1 As String
+'    Private mA2 As String
+'    Private mA3 As String
+'    Private mA4 As String
+'    Private mA5 As String
+'    Private mUnion As String
+'    Private mPosition As String
+
+'    Private mCOLA As Double
+'    Private mRate As Decimal
+'    Private mFE As Double
+'    Private mNetYTD As Double
+
+'    Private mPfOnAgreedSalary As Double
+'    Private mBasisOnSalary As Double
+
+'    Private mGesiD As Double
+'    Private mGesiC As Double
+'    Private mMedical As Double
+'    Private mCompany As String
+'    Private mYear As String
+'    Private mGESIableAmount As Double
+'    Private mBIK_GESID As Double
+'    Private mBIK_GESIC As Double
+'    Private mBIK_GESIable As Double
+'    Private mAnalgen1 As String
+
+'    Public Property Id() As Integer
+'        Get
+'            Return mId
+'        End Get
+'        Set(ByVal Value As Integer)
+'            mId = Value
+'        End Set
+'    End Property
+'    Public Property Emp_Code() As String
+'        Get
+'            Return mEmp_Code
+'        End Get
+'        Set(ByVal Value As String)
+'            mEmp_Code = Value
+'        End Set
+'    End Property
+'    Public Property PrdGrp_Code() As String
+'        Get
+'            Return mPrdGrp_Code
+'        End Get
+'        Set(ByVal Value As String)
+'            mPrdGrp_Code = Value
+'        End Set
+'    End Property
+'    Public Property PrdCod_Code() As String
+'        Get
+'            Return mPrdCod_Code
+'        End Get
+'        Set(ByVal Value As String)
+'            mPrdCod_Code = Value
+'        End Set
+'    End Property
+'    Public Property PayCat_Code() As String
+'        Get
+'            Return mPayCat_Code
+'        End Get
+'        Set(ByVal Value As String)
+'            mPayCat_Code = Value
+'        End Set
+'    End Property
+'    Public Property MyDate() As Date
+'        Get
+'            Return mDate
+'        End Get
+'        Set(ByVal Value As Date)
+'            mDate = Value
+'        End Set
+'    End Property
+'    Public Property Status() As String
+'        Get
+'            Return mStatus
+'        End Get
+'        Set(ByVal Value As String)
+'            mStatus = Value
+'        End Set
+'    End Property
+'    Public Property TotalErnPeriod() As Double
+'        Get
+'            Return mTotalErnPeriod
+'        End Get
+'        Set(ByVal Value As Double)
+'            mTotalErnPeriod = Value
+'        End Set
+'    End Property
+'    Public Property TotalErnYTD() As Double
+'        Get
+'            Return mTotalErnYTD
+'        End Get
+'        Set(ByVal Value As Double)
+'            mTotalErnYTD = Value
+'        End Set
+'    End Property
+'    Public Property TotalDedPeriod() As Double
+'        Get
+'            Return mTotalDedPeriod
+'        End Get
+'        Set(ByVal Value As Double)
+'            mTotalDedPeriod = Value
+'        End Set
+'    End Property
+'    Public Property TotalDedYTD() As Double
+'        Get
+'            Return mTotalDedYTD
+'        End Get
+'        Set(ByVal Value As Double)
+'            mTotalDedYTD = Value
+'        End Set
+'    End Property
+'    Public Property TotalConPeriod() As Double
+'        Get
+'            Return mTotalConPeriod
+'        End Get
+'        Set(ByVal Value As Double)
+'            mTotalConPeriod = Value
+'        End Set
+'    End Property
+'    Public Property TotalConYTD() As Double
+'        Get
+'            Return mTotalConYTD
+'        End Get
+'        Set(ByVal Value As Double)
+'            mTotalConYTD = Value
+'        End Set
+'    End Property
+'    Public Property SIIncome() As Double
+'        Get
+'            Return mSIIncome
+'        End Get
+'        Set(ByVal Value As Double)
+'            mSIIncome = Value
+'        End Set
+'    End Property
+'    Public Property TaxableIncome() As Double
+'        Get
+'            Return mTaxableIncome
+'        End Get
+'        Set(ByVal Value As Double)
+'            mTaxableIncome = Value
+'        End Set
+'    End Property
+'    Public Property PaymentMethod() As String
+'        Get
+'            Return mPaymentMethod
+'        End Get
+'        Set(ByVal Value As String)
+'            mPaymentMethod = Value
+'        End Set
+'    End Property
+'    Public Property PaymentRef() As String
+'        Get
+'            Return mPaymentRef
+'        End Get
+'        Set(ByVal Value As String)
+'            mPaymentRef = Value
+'        End Set
+'    End Property
+'    Public Property PeriodUnits() As Double
+'        Get
+'            Return mPeriodUnits
+'        End Get
+'        Set(ByVal Value As Double)
+'            mPeriodUnits = Value
+'        End Set
+'    End Property
+'    Public Property AnnualUnits() As Double
+'        Get
+'            Return mAnnualUnits
+'        End Get
+'        Set(ByVal Value As Double)
+'            mAnnualUnits = Value
+'        End Set
+'    End Property
+'    Public Property AnnualLeave() As Double
+'        Get
+'            Return mAnnualLeave
+'        End Get
+'        Set(ByVal Value As Double)
+'            mAnnualLeave = Value
+'        End Set
+'    End Property
+'    Public Property LifeInsurance() As Double
+'        Get
+'            Return mLifeInsurance
+'        End Get
+'        Set(ByVal Value As Double)
+'            mLifeInsurance = Value
+'        End Set
+'    End Property
+'    Public Property Discounts() As Double
+'        Get
+'            Return mDiscounts
+'        End Get
+'        Set(ByVal Value As Double)
+'            mDiscounts = Value
+'        End Set
+'    End Property
+'    Public Property InterfaceStatus() As String
+'        Get
+'            Return mInterfaceStatus
+'        End Get
+'        Set(ByVal Value As String)
+'            mInterfaceStatus = Value
+'        End Set
+'    End Property
+'    Public Property Overtime1() As Double
+'        Get
+'            Return mOvertime1
+'        End Get
+'        Set(ByVal value As Double)
+'            mOvertime1 = value
+'        End Set
+'    End Property
+'    Public Property Overtime2() As Double
+'        Get
+'            Return mOvertime2
+'        End Get
+'        Set(ByVal value As Double)
+'            mOvertime2 = value
+'        End Set
+'    End Property
+'    Public Property SIUnits() As Double
+'        Get
+'            Return mSIUnits
+'        End Get
+'        Set(ByVal value As Double)
+'            mSIUnits = value
+'        End Set
+'    End Property
+'    Public Property MonthlySalary() As Double
+'        Get
+'            Return mMonthlySalary
+'        End Get
+'        Set(ByVal value As Double)
+'            mMonthlySalary = value
+'        End Set
+'    End Property
+
+'    Public Property NetSalary() As Double
+'        Get
+'            Return mNetSalary
+'        End Get
+'        Set(ByVal value As Double)
+'            mNetSalary = value
+'        End Set
+'    End Property
+'    Public Property PeriodInsurable() As Double
+'        Get
+'            Return mPeriodInsurable
+'        End Get
+'        Set(ByVal value As Double)
+'            mPeriodInsurable = value
+'        End Set
+'    End Property
+'    Public Property TemGrpCode() As String
+'        Get
+'            Return mTemGrpCode
+'        End Get
+'        Set(ByVal value As String)
+'            mTemGrpCode = value
+'        End Set
+'    End Property
+'    Public Property ChequeNo() As String
+'        Get
+'            Return mChequeNo
+'        End Get
+'        Set(ByVal value As String)
+'            mChequeNo = value
+'        End Set
+'    End Property
+'    Public Property TaxableFromOther() As Double
+'        Get
+'            Return mTaxableFromOther
+'        End Get
+'        Set(ByVal value As Double)
+'            mTaxableFromOther = value
+'        End Set
+'    End Property
+'    Public Property Currency() As String
+'        Get
+'            Return mCurrency
+'        End Get
+'        Set(ByVal value As String)
+'            mCurrency = value
+'        End Set
+'    End Property
+'    Public Property CurRate() As Double
+'        Get
+'            Return mcurRate
+'        End Get
+'        Set(ByVal value As Double)
+'            mcurRate = value
+'        End Set
+'    End Property
+'    Public Property NormalDays() As Double
+'        Get
+'            Return mNormalDays
+'        End Get
+'        Set(ByVal value As Double)
+'            mNormalDays = value
+'        End Set
+'    End Property
+'    Public Property Salary1() As Double
+'        Get
+'            Return mSalary1
+'        End Get
+'        Set(ByVal value As Double)
+'            mSalary1 = value
+'        End Set
+'    End Property
+'    Public Property Salary2() As Double
+'        Get
+'            Return mSalary2
+'        End Get
+'        Set(ByVal value As Double)
+'            mSalary2 = value
+'        End Set
+'    End Property
+'    Public Property Overtime3() As Double
+'        Get
+'            Return mOvertime3
+'        End Get
+'        Set(ByVal value As Double)
+'            mOvertime3 = value
+'        End Set
+'    End Property
+'    Public Property Sectors() As Double
+'        Get
+'            Return mSectors
+'        End Get
+'        Set(ByVal value As Double)
+'            mSectors = value
+'        End Set
+'    End Property
+'    Public Property DutyHours() As Double
+'        Get
+'            Return mDutyHours
+'        End Get
+'        Set(ByVal value As Double)
+'            mDutyHours = value
+'        End Set
+'    End Property
+'    Public Property FlightHours() As Double
+'        Get
+'            Return mFlightHours
+'        End Get
+'        Set(ByVal value As Double)
+'            mFlightHours = value
+'        End Set
+'    End Property
+
+'    Public Property Commission() As Double
+'        Get
+'            Return mCommission
+'        End Get
+'        Set(ByVal value As Double)
+'            mCommission = value
+'        End Set
+'    End Property
+
+
+'    Public Property PBAmount() As Double
+'        Get
+'            Return mPBAmount
+'        End Get
+'        Set(ByVal value As Double)
+'            mPBAmount = value
+'        End Set
+'    End Property
+
+'    Public Property PBRate() As Double
+'        Get
+'            Return mPBRate
+'        End Get
+'        Set(ByVal value As Double)
+'            mPBRate = value
+'        End Set
+'    End Property
+'    Public Property OverLay() As Double
+'        Get
+'            Return mOverLay
+'        End Get
+'        Set(ByVal value As Double)
+'            mOverLay = value
+'        End Set
+'    End Property
+'    Public Property PeriodSplit() As Double
+'        Get
+'            Return mPeriodSplit
+'        End Get
+'        Set(ByVal value As Double)
+'            mPeriodSplit = value
+'        End Set
+'    End Property
+'    Public Property PeriodSplitSI() As Double
+'        Get
+'            Return mPeriodSplitSI
+'        End Get
+'        Set(ByVal value As Double)
+'            mPeriodSplitSI = value
+'        End Set
+'    End Property
+'    'Savvas RND
+'    Public Property A1() As String
+'        Get
+'            Return mA1
+'        End Get
+'        Set(ByVal value As String)
+'            mA1 = value
+'        End Set
+'    End Property
+'    Public Property A2() As String
+'        Get
+'            Return mA2
+'        End Get
+'        Set(ByVal value As String)
+'            mA2 = value
+'        End Set
+'    End Property
+'    Public Property A3() As String
+'        Get
+'            Return mA3
+'        End Get
+'        Set(ByVal value As String)
+'            mA3 = value
+'        End Set
+'    End Property
+'    Public Property A4() As String
+'        Get
+'            Return mA4
+'        End Get
+'        Set(ByVal value As String)
+'            mA4 = value
+'        End Set
+'    End Property
+'    Public Property A5() As String
+'        Get
+'            Return mA5
+'        End Get
+'        Set(ByVal value As String)
+'            mA5 = value
+'        End Set
+'    End Property
+'    Public Property Union() As String
+'        Get
+'            Return mUnion
+'        End Get
+'        Set(ByVal value As String)
+'            mUnion = value
+'        End Set
+'    End Property
+'    Public Property Position() As String
+'        Get
+'            Return mPosition
+'        End Get
+'        Set(ByVal value As String)
+'            mPosition = value
+'        End Set
+'    End Property
+
+'    Public Property COLA() As Double
+'        Get
+'            Return mCOLA
+'        End Get
+'        Set(ByVal value As Double)
+'            mCOLA = value
+'        End Set
+'    End Property
+'    Public Property MyRate() As Decimal
+'        Get
+'            Return mRate
+'        End Get
+'        Set(ByVal value As Decimal)
+'            mRate = value
+'        End Set
+'    End Property
+'    Public Property MyFE() As Double
+'        Get
+'            Return mFE
+'        End Get
+'        Set(ByVal value As Double)
+'            mFE = value
+'        End Set
+'    End Property
+
+'    Public Property NetYTD() As Double
+'        Get
+'            Return mNetYTD
+'        End Get
+'        Set(ByVal value As Double)
+'            mNetYTD = value
+'        End Set
+'    End Property
+'    Public Property PfOnAgreedSalary() As Double
+'        Get
+'            Return mPfOnAgreedSalary
+'        End Get
+'        Set(ByVal value As Double)
+'            mPfOnAgreedSalary = value
+'        End Set
+'    End Property
+'    Public Property BasisOnSalary() As Double
+'        Get
+'            Return mBasisOnSalary
+'        End Get
+'        Set(ByVal value As Double)
+'            mBasisOnSalary = value
+'        End Set
+'    End Property
+'    Public Property GesiD() As Double
+'        Get
+'            Return mGesiD
+'        End Get
+'        Set(ByVal value As Double)
+'            mGesiD = value
+'        End Set
+'    End Property
+'    Public Property GesiC() As Double
+'        Get
+'            Return mGesiC
+'        End Get
+'        Set(ByVal value As Double)
+'            mGesiC = value
+'        End Set
+'    End Property
+'    Public Property Medical() As Double
+'        Get
+'            Return mMedical
+'        End Get
+'        Set(ByVal value As Double)
+'            mMedical = value
+'        End Set
+'    End Property
+
+'    Public Property Company() As String
+'        Get
+'            Return mCompany
+'        End Get
+'        Set(ByVal value As String)
+'            mCompany = value
+'        End Set
+'    End Property
+
+'    Public Property Year() As Double
+'        Get
+'            Return mYear
+'        End Get
+'        Set(ByVal value As Double)
+'            mYear = value
+'        End Set
+'    End Property
+'    Public Property GESIAbleAmount() As Double
+'        Get
+'            Return mGESIableAmount
+'        End Get
+'        Set(ByVal value As Double)
+'            mGESIableAmount = value
+'        End Set
+'    End Property
+'    Public Property BIK_GESID() As Double
+'        Get
+'            Return mBIK_GESID
+'        End Get
+'        Set(ByVal value As Double)
+'            mBIK_GESID = value
+'        End Set
+'    End Property
+'    Public Property BIK_GESIC() As Double
+'        Get
+'            Return mBIK_GESIC
+'        End Get
+'        Set(ByVal value As Double)
+'            mBIK_GESIC = value
+'        End Set
+'    End Property
+'    Public Property BIK_GESIAble() As Double
+'        Get
+'            Return mBIK_GESIable
+'        End Get
+'        Set(ByVal value As Double)
+'            mBIK_GESIable = value
+'        End Set
+'    End Property
+'    Public Property AnalGen1() As String
+'        Get
+'            Return mAnalgen1
+'        End Get
+'        Set(ByVal value As String)
+'            mAnalgen1 = value
+'        End Set
+'    End Property
+
+'    'end Savvas RND
+'    Public Sub New()
+
+'    End Sub
+'    Public Sub New(ByVal Dr As DataRow)
+'        If Not Dr Is Nothing Then
+'            LoadDataRow(Dr)
+'        End If
+'    End Sub
+'    Public Sub New(ByVal tId As Integer)
+'        If tId <> 0 Then
+'            Init(tId)
+'        End If
+'    End Sub
+'    Public Sub New(ByVal tEmpCode As String, ByVal tPeriodCode As String)
+'        Dim ds As DataSet
+'        ds = MyBase.GetByEmployeeCodeAndPeriod(tEmpCode, tPeriodCode)
+'        If CheckDataSet(ds) Then
+'            LoadDataRow(ds.Tables(0).Rows(0))
+'        End If
+'    End Sub
+'    Private Sub Init(ByVal tId As Integer)
+'        Try
+'            Dim ds As DataSet
+'            ds = MyBase.GetByPK(tId)
+'            If CheckDataSet(ds) Then
+'                LoadDataRow(ds.Tables(0).Rows(0))
+'            End If
+'        Catch ex As System.Exception
+'        End Try
+'    End Sub
+'    Private Sub LoadDataRow(ByVal dr As DataRow)
+'        mId = DbNullToInt(dr.Item(0))
+'        mEmp_Code = DbNullToString(dr.Item(1))
+'        mPrdGrp_Code = DbNullToString(dr.Item(2))
+'        mPrdCod_Code = DbNullToString(dr.Item(3))
+'        mPayCat_Code = DbNullToString(dr.Item(4))
+'        mDate = DbNullToDate(dr.Item(5))
+'        mStatus = DbNullToString(dr.Item(6))
+'        mTotalErnPeriod = DbNullToDouble(dr.Item(7))
+'        mTotalErnYTD = DbNullToDouble(dr.Item(8))
+'        mTotalDedPeriod = DbNullToDouble(dr.Item(9))
+'        mTotalDedYTD = DbNullToDouble(dr.Item(10))
+'        mTotalConPeriod = DbNullToDouble(dr.Item(11))
+'        mTotalConYTD = DbNullToDouble(dr.Item(12))
+'        mSIIncome = DbNullToDouble(dr.Item(13))
+'        mTaxableIncome = DbNullToDouble(dr.Item(14))
+'        mPaymentMethod = DbNullToString(dr.Item(15))
+'        mPaymentRef = DbNullToString(dr.Item(16))
+'        mPeriodUnits = DbNullToDouble(dr.Item(17))
+'        mAnnualUnits = DbNullToDouble(dr.Item(18))
+'        mAnnualLeave = DbNullToDouble(dr.Item(19))
+'        mLifeInsurance = DbNullToDouble(dr.Item(20))
+'        mDiscounts = DbNullToDouble(dr.Item(21))
+'        mInterfaceStatus = DbNullToString(dr.Item(22))
+'        mOvertime1 = DbNullToDouble(dr.Item(23))
+'        mOvertime2 = DbNullToDouble(dr.Item(24))
+'        mSIUnits = DbNullToDouble(dr.Item(25))
+'        mMonthlySalary = DbNullToDouble(dr.Item(26))
+'        mNetSalary = DbNullToDouble(dr.Item(27))
+'        mPeriodInsurable = DbNullToDouble(dr.Item(28))
+'        mTemGrpCode = DbNullToString(dr.Item(29))
+'        mChequeNo = DbNullToString(dr.Item(30))
+'        mTaxableFromOther = DbNullToDouble(dr.Item(31))
+'        mCurrency = DbNullToString(dr.Item(32))
+'        mcurRate = DbNullToDouble(dr.Item(33))
+
+'        mNormalDays = DbNullToDouble(dr.Item(34))
+'        mSalary1 = DbNullToDouble(dr.Item(35))
+'        mSalary2 = DbNullToDouble(dr.Item(36))
+'        mOvertime3 = DbNullToDouble(dr.Item(37))
+
+'        mSectors = DbNullToDouble(dr.Item(38))
+'        mDutyHours = DbNullToDouble(dr.Item(39))
+'        mFlightHours = DbNullToDouble(dr.Item(40))
+'        mCommission = DbNullToDouble(dr.Item(41))
+'        mPBAmount = DbNullToDouble(dr.Item(42))
+'        mPBRate = DbNullToDouble(dr.Item(43))
+
+'        mOverLay = DbNullToDouble(dr.Item(44))
+'        mPeriodSplit = DbNullToDouble(dr.Item(45))
+'        mPeriodSplitSI = DbNullToDouble(dr.Item(46))
+
+'        mA1 = DbNullToString(dr.Item(47))
+'        mA2 = DbNullToString(dr.Item(48))
+'        mA3 = DbNullToString(dr.Item(49))
+'        mA4 = DbNullToString(dr.Item(50))
+'        mA5 = DbNullToString(dr.Item(51))
+'        mUnion = DbNullToString(dr.Item(52))
+'        mPosition = DbNullToString(dr.Item(53))
+
+'        mCOLA = DbNullToDouble(dr.Item(54))
+'        mRate = DbNullToDecimal(dr.Item(55))
+'        mFE = DbNullToDecimal(dr.Item(56))
+'        mNetYTD = DbNullToDouble(dr.Item(57))
+'        mPfOnAgreedSalary = DbNullToDouble(dr.Item(58))
+'        mBasisOnSalary = DbNullToDouble(dr.Item(59))
+
+'        mGesiD = DbNullToDouble(dr.Item(60))
+'        mGesiC = DbNullToDouble(dr.Item(61))
+'        mMedical = DbNullToDouble(dr.Item(62))
+'        mCompany = DbNullToString(dr.Item(63))
+'        mYear = DbNullToString(dr.Item(64))
+'        mGESIableAmount = DbNullToDouble(dr.Item(65))
+
+'        mBIK_GESID = DbNullToDouble(dr.Item(66))
+'        mBIK_GESIC = DbNullToDouble(dr.Item(67))
+'        mBIK_GESIable = DbNullToDouble(dr.Item(68))
+
+'        mAnalgen1 = DbNullToString(dr.Item(69))
+
+
+
+
+'    End Sub
+'    Public Shadows Function Delete(ByVal tId As Integer) As Boolean
+'        Try
+'            Dim Counter As Integer
+'            Dim TableCount As Integer
+'            Dim RecordCount As Integer
+'            Dim TransStr As String = ""
+'            Dim ds As DataSet
+'            ds = MyBase.CheckDeleteRecords(tId)
+'            If CheckDataSet(ds) Then
+'                For Counter = 0 To ds.Tables.Count - 1
+'                    TableCount = TableCount + 1
+'                    RecordCount = RecordCount + DbNullToInt(ds.Tables(Counter).Rows(0).Item(0))
+'                    TransStr = TransStr & vbCrLf & "Table " & TableCount & "  Records " & RecordCount
+'                Next Counter
+'                If RecordCount = 0 Then
+'                    Return MyBase.Delete(tId)
+'                Else
+'                    MsgBox("Transactions Exist For This item - Can not Delete" & TransStr, MsgBoxStyle.Critical)
+'                End If
+'            Else
+'                MsgBox("Failed to confirm that no records exist for this item - Can not Delete")
+'                Return False
+'            End If
+'        Catch ex As System.Exception
+'        End Try
+'    End Function
+'    '
+'    Public Shadows Function Save() As Boolean
+'        Try
+'            Return MyBase.Save(Me)
+'        Catch ex As System.Exception
+'            Return False
+'        End Try
+'    End Function
+'End Class
+
+
+
+

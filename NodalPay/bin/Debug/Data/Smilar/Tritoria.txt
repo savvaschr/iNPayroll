@@ -1,0 +1,86 @@
+Company Code	Template Code	Year	Period Group	Period	Employee Code	First Name	Last Name	Discount	LifeInsurance	Taxable From Other	SALARY	OVERTIME	BONUS	OTHER EARNING	ANNUAL LEAVE	13 SALARY	TRAVELING	SI LEAVE	SOCIAL INS.	INCOME TAX	PROV. FUND	ADVANCES	OTHER DEDUCTIONS	PROV. F. LOAN	SPECIAL TAX	Medical Deduction	SOCIAL INS.	INDUSTRIAL	PROV. FUND	SOC. COHESION	UNEMPLOYMENT	SPECIAL TAX	Medical Contri	Insurable	Monthly Units	
+COMP	TEMPGRP	YEAR	PERGRP	PER	EMP	FIRSTNAME	LASTNAME	DIS	LI	TFO	E1	E3	E11	E14	E13	E6	E10	E5	D7	D3	D5	D1	D12	D6	D13	D4	C4	C1	C3	C5	C6	C9	C2	INSU	UNITS	
+02	2001	2015	201502	201501	02001	Varvara	Luleme				1500	0,00	0	0,00	0,00	0,00	0,00	120,00	126,36	0,00	5,54	0,00	0,00	0,00	0,00	0,00	126,36	8,10	97,20	32,40	19,44	0,00	0,00	1620,00	173,33	
+02	2001	2015	201502	201502	02001	Varvara	Luleme				1500	0,00	0	0,00	0,00	0,00	0,00	120,00	126,36	0,00	5,54	0,00	0,00	0,00	0,00	0,00	126,36	8,10	97,20	32,40	19,44	0,00	0,00	1620,00	173,33	
+02	2001	2015	201502	201503	02001	Varvara	Luleme				1500	0,00	0	0,00	0,00	0,00	0,00	120,00	126,36	0,00	5,54	0,00	0,00	0,00	0,00	0,00	126,36	8,10	97,20	32,40	19,44	0,00	0,00	1620,00	173,33	
+02	2001	2015	201502	201504	02001	Varvara	Luleme				1500	0,00	0	0,00	0,00	0,00	0,00	120,00	126,36	0,00	5,54	0,00	0,00	0,00	0,00	0,00	126,36	8,10	97,20	32,40	19,44	0,00	0,00	1620,00	173,33	
+02	2001	2015	201502	201505	02001	Varvara	Luleme				1500	0,00	0	0,00	0,00	0,00	0,00	120,00	126,36	0,00	5,54	0,00	0,00	0,00	0,00	0,00	126,36	8,10	97,20	32,40	19,44	0,00	0,00	1620,00	173,33	
+02	2001	2015	201502	201506	02001	Varvara	Luleme				2000	0,00	0	0,00	0,00	0,00	0,00	160,00	168,48	0,00	19,00	0,00	0,00	0,00	8,25	0,00	168,48	10,80	129,60	43,20	25,92	8,25	0,00	2160,00	173,33	
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				
+																																				

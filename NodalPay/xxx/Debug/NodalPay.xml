@@ -1,0 +1,39 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+NodalPay
+</name>
+</assembly>
+<members>
+<member name="F:NodalPay.frmPrTxCalc1.RateForOvertimeCalc">
+ '''''''''''''''''''''''''''
+
+</member><member name="F:NodalPay.frmPrTxCalc1.Ern">
+ '''''''''''''''''''''''''''
+
+</member><member name="F:NodalPay.FrmFiTrxnHeader.Col_LineNo">
+ '''''''''''''''''''''''''''''''''
+
+</member><member name="F:NodalPay.FrmPrTxCalculatePayroll.RateForOvertimeCalc">
+ '''''''''''''''''''''''''''
+
+</member><member name="F:NodalPay.FrmPrTxCalculatePayroll.Ern">
+ '''''''''''''''''''''''''''
+
+</member><member name="P:NodalPay.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:NodalPay.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:NodalPay.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+</members>
+</doc>

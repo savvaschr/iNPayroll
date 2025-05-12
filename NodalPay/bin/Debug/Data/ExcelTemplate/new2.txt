@@ -1,0 +1,43 @@
+	J0001	Michalis		Loizou	Male	31/07/1981		1/2/2018	0										648086	822515				Cypriot		Administation			BOC							
+	J0002	Andreas		Zinonos	male	17/12/1988		6/1/2019	0										1047513	1022160				Cypriot		Administation			BOC							
+	J0003	Galatia		Christofi	Female	15/06/1985		9/1/2020	0										1076711	858501				Cypriot		Administation			BOC							
+	J0004	Nektarios		Kyriakou	male	13/04/1997		17/08/2018	0										1357019	915279				Cypriot		Cineplex			BOC							
+	J0005	Neophytos		Demetriou	male	10/02/1982		2/5/2019	0										757211	817961				Cypriot		Cremoso Lab			BOC							
+	J0006	Constantinos		Loizou	male	25/05/1987		7/29/2018	0										99150078	1340027				Cypriot		Cremoso Lab			BOC							
+	J0007	Stefanos		Theocharous	male	27/04/1996		6/6/2016	0										1403903	922191				Cypriot		Makariou			BOC							
+	J0008	Lavrentis 		Fantomas 	male	14/07/1998		4/5/2021	0										1613078	908979				Cypriot		Makariou			BOC							
+	J0009	Giorgos		Poupos 	male	12/03/2001		26/04/2021	0										1541314	1031910				Cypriot		Makariou			BOC							
+	J0010	Ivanova		Gergana	Female	12/05/2003		30/08/2021	0										1626311	650998987				Cypriot		Makariou			BOC							
+	J0011	Nicholas		Meliniotis	male	17/05/1999		24/03/2022	0										1515090	904259				Cypriot		Makariou			BOC							
+	J0012	Antoniou		Katerina	Female	25/02/2003		29/06/2022	0										1588082	1069117				Cypriot		Makariou			BOC							
+	J0013	Khubashvil		Mariami	Female	21/05/2002		17/05/2022	0										1667990	500654610				Cypriot		Makariou			BOC							
+	J0014	Sharavan		Kumar	Female	02/06/1989		29/03/2022	0										1428371	5743800				Cypriot		Makariou			BOC							
+	J0015	Atchaiah		Maddula	Female	01/01/2022		29/06/2022	0										1606326	5806890				Cypriot		Makariou			BOC							
+	J0016	Gurdeep		Kaur	Female	01/01/2022		15/03/2022	0										1527586	5792872				Cypriot		Makariou			BOC							
+	J0017	Georgiana 		Bogdanova	Female	20/06/74		29/05/2021	0										1167970	645776178				Cypriot		Makariou			BOC							
+	J0018	Samir		Agisilaou	male	19/11/86		19/09/2017	0										1353926	1253493				Cypriot		Makariou			BOC							
+	J0019	Despoina		Chrysostomou	Female	22/06/2000	5/1/2018	5/1/2018	0										1489788	1017468				Cypriot		Kolonakiou			BOC							
+	J0020	Eirini		Nikolaou	Female	13/02/1994		8/1/2019	0										1414877	993083				Cypriot		Kolonakiou			BOC							
+	J0021	Evangelos		Limnaios	male	22/07/2005		21/07/2022	0										1686351	AN 271444				Cypriot		Kolonakiou			BOC							
+	J0022	Amalia		Ipermachou	Female	06/09/2002		22/6/2022	0										1061459	1589519				Cypriot		Kolonakiou			BOC							
+	J0023	Alexandros		Modestou	male	28/01/2002		21/07/2022	0										1685359	1050661				Cypriot		Kolonakiou			BOC							
+	J0024	Elena		Onisiforou	Female	20/12/2005		21/07/2022	0										1685253	1156603				Cypriot		Kolonakiou			BOC							
+	J0025	Elisavet		Zinonos	Female	20/12/2001		29/06/2022	0										1561366	1051121				Cypriot		Kolonakiou			BOC							
+	J0026	Aimme		Mageuteu	Female	15/03/1991		22/06/2022	0										1641826	581837201				Cypriot		Kolonakiou			BOC							
+	J0027	Hannah		Murphy	Female	01/01/2022		22/06/2022	0										1678140	581872228				Cypriot		Kolonakiou			BOC							
+	J0028	Amit		Patel	male	07/04/1997		12/16/2019	0										1571480	L8732847				Cypriot		Kolonakiou			BOC							
+	J0029	Christina		Evaggelou	Female	03/12/1978	2/16/2017	2/16/2017	0										1035598	5427851				Cypriot		Sandwich			BOC							
+	J0030	Stylianos		Vasiliou 	male	01/01/2022	15/11/2021	15/11/2021	0										1626308	1147112				Cypriot		Kolonakiou			BOC							
+	J0031	Kolyo Dimitrov		Georgiev	male	31/10/1993	12/10/2021	12/10/2021	0										1201771	646944236				Cypriot		Cremoso Limassol			BOC							
+	J0032	Tanya		Georgieva	Female	23/04/1996	2/3/2020	2/3/2020	0										1321409	55012470				Cypriot		Cremoso Limassol			BOC							
+	J0033	Andrea 		Constantinou	male	09/11/1988	8/2/2021	8/2/2021	0										1063298	1015572				Cypriot		Cremoso Engomi			BOC							
+	J0034	Evgenia Avigaia 		Constantinou	Female	07/01/1999	8/2/2021	8/2/2021	0										1487807	904502				Cypriot		Cremoso Engomi			BOC							
+	J0035	Marios		Antonioy	male	30/11/2002	7/21/2022	7/21/2022	0										1522491	1065546				Cypriot		Cremoso Engomi			BOC							
+	J0036	Ioannis		Xynaris	male	14/04/2006	7/21/2022	7/21/2022	0										1685190	1161555				Cypriot		Cremoso Engomi			BOC							
+	J0037	Ritik		Ritik	Female	01/01/2022	01/01/2022	01/01/2022	0															Cypriot		Kolonakiou			BOC							
+	J0038	Mihai		Alex	male	01/01/2022	01/01/2022	01/01/2022	0															Cypriot		Kolonakiou			BOC							
+	J0039	Constantinos		Raftopoulos 	male	01/01/2022	01/01/2022	01/01/2022	0															Cypriot		Kolonakiou			BOC							
+	J0040	Dimitrova		Angelina	Female	01/01/2022	01/01/2022	01/01/2022	0															Cypriot		Cremoso Limassol			BOC							
+	J0041	Sofia		Kyriakou 	Female	01/01/2022	01/01/2022	01/01/2022	0															Cypriot		Cremoso Limassol			BOC							
+	J0042	Constantin		Panteleimon	male	01/01/2022	01/01/2022	01/01/2022	0															Cypriot		Makariou			BOC							
+	J0043	Andrea		Lambe 	Female	01/01/2022	01/01/2022	01/01/2022	0															Cypriot		Kolonakiou			BOC							

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+iNPayroll
+</name>
+</assembly>
+<members>
+<member name="M:NodalPay.cBusinessDBTier.REPORT_IR61_Gesy_DEDUCTION(NodalPay.cPrMsPeriodGroups,NodalPay.cPrSsSocialInsPeriods)">
+ ''''''
+
+</member><member name="M:NodalPay.cBusinessDBTier.GetSumsOfEmployeeDeductions_IR7(System.String,System.String,System.String)">
+</member><member name="F:NodalPay.FrmFiTrxnHeader.Col_LineNo">
+ '''''''''''''''''''''''''''''''''
+
+</member><member name="M:NodalPay.Encryption.Boring(System.String)">
+	<summary>
+ moving all characters in string insert then into new index
+ </summary>
+	<param name="st">string to moving characters</param>
+	<returns>moved characters string</returns>
+</member><member name="F:NodalPay.FrmPrTxCalculatePayroll.RateForOvertimeCalc">
+ '''''''''''''''''''''''''''
+
+</member><member name="F:NodalPay.FrmPrTxCalculatePayroll.Ern">
+ '''''''''''''''''''''''''''
+
+</member><member name="F:NodalPay.frmPrTxCalc1.RateForOvertimeCalc">
+ '''''''''''''''''''''''''''
+
+</member><member name="F:NodalPay.frmPrTxCalc1.Ern">
+ '''''''''''''''''''''''''''
+
+</member><member name="M:NodalPay.FrmMain.LoadDatabases">
+</member><member name="M:NodalPay.FrmMain.Create13AverageParameterToolStripMenuItem_Click(System.Object,System.EventArgs)">
+</member><member name="P:NodalPay.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:NodalPay.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="T:NodalPay.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+</members>
+</doc>

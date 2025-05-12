@@ -1,0 +1,566 @@
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+Partial Class FrmPrMsPeriods
+    Inherits System.Windows.Forms.Form
+
+    'Form overrides dispose to clean up the component list.
+    <System.Diagnostics.DebuggerNonUserCode()> _
+    Protected Overrides Sub Dispose(ByVal disposing As Boolean)
+        If disposing AndAlso components IsNot Nothing Then
+            components.Dispose()
+        End If
+        MyBase.Dispose(disposing)
+    End Sub
+
+    'Required by the Windows Form Designer
+    Private components As System.ComponentModel.IContainer
+
+    'NOTE: The following procedure is required by the Windows Form Designer
+    'It can be modified using the Windows Form Designer.  
+    'Do not modify it using the code editor.
+    <System.Diagnostics.DebuggerStepThrough()> _
+    Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmPrMsPeriods))
+        Me.TS1 = New System.Windows.Forms.ToolStrip
+        Me.TSBNew = New System.Windows.Forms.ToolStripButton
+        Me.TSBSave = New System.Windows.Forms.ToolStripButton
+        Me.TSBDelete = New System.Windows.Forms.ToolStripButton
+        Me.TSBExcel = New System.Windows.Forms.ToolStripButton
+        Me.TSBEditSequence = New System.Windows.Forms.ToolStripButton
+        Me.btnUpdate = New System.Windows.Forms.ToolStripButton
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton
+        Me.ToolStripButton2 = New System.Windows.Forms.ToolStripButton
+        Me.Label6 = New System.Windows.Forms.Label
+        Me.txtNOfDays = New System.Windows.Forms.TextBox
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox
+        Me.CBShowAllYears = New System.Windows.Forms.CheckBox
+        Me.Label12 = New System.Windows.Forms.Label
+        Me.ComboPeriodGroup = New System.Windows.Forms.ComboBox
+        Me.ComboNumberOfPeriods = New System.Windows.Forms.ComboBox
+        Me.btnCreateControls = New System.Windows.Forms.Button
+        Me.ComboYears = New System.Windows.Forms.ComboBox
+        Me.FiscalYearTo = New System.Windows.Forms.MaskedTextBox
+        Me.FiscalYearFROM = New System.Windows.Forms.MaskedTextBox
+        Me.Label5 = New System.Windows.Forms.Label
+        Me.Label4 = New System.Windows.Forms.Label
+        Me.Label3 = New System.Windows.Forms.Label
+        Me.Label2 = New System.Windows.Forms.Label
+        Me.Label1 = New System.Windows.Forms.Label
+        Me.txtP1 = New System.Windows.Forms.TextBox
+        Me.ComboStatus1 = New System.Windows.Forms.ComboBox
+        Me.EndDate1 = New System.Windows.Forms.MaskedTextBox
+        Me.StartDate1 = New System.Windows.Forms.MaskedTextBox
+        Me.txtSequense = New System.Windows.Forms.TextBox
+        Me.txtDescL = New System.Windows.Forms.TextBox
+        Me.txtDescS = New System.Windows.Forms.TextBox
+        Me.ComboSIN = New System.Windows.Forms.ComboBox
+        Me.txtUnits = New System.Windows.Forms.TextBox
+        Me.Label7 = New System.Windows.Forms.Label
+        Me.Label8 = New System.Windows.Forms.Label
+        Me.Label9 = New System.Windows.Forms.Label
+        Me.Label10 = New System.Windows.Forms.Label
+        Me.ComboType = New System.Windows.Forms.ComboBox
+        Me.Label11 = New System.Windows.Forms.Label
+        Me.btnEDC = New System.Windows.Forms.Button
+        Me.Label13 = New System.Windows.Forms.Label
+        Me.txtUnits2 = New System.Windows.Forms.TextBox
+        Me.btnPeriodGroupSearch = New System.Windows.Forms.Button
+        Me.TS1.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
+        Me.SuspendLayout()
+        '
+        'TS1
+        '
+        Me.TS1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBNew, Me.TSBSave, Me.TSBDelete, Me.TSBExcel, Me.TSBEditSequence, Me.btnUpdate, Me.ToolStripButton1, Me.ToolStripButton2})
+        Me.TS1.Location = New System.Drawing.Point(0, 0)
+        Me.TS1.Name = "TS1"
+        Me.TS1.Size = New System.Drawing.Size(1050, 25)
+        Me.TS1.TabIndex = 1
+        '
+        'TSBNew
+        '
+        Me.TSBNew.AutoSize = False
+        Me.TSBNew.Image = CType(resources.GetObject("TSBNew.Image"), System.Drawing.Image)
+        Me.TSBNew.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSBNew.Name = "TSBNew"
+        Me.TSBNew.Size = New System.Drawing.Size(60, 22)
+        Me.TSBNew.Text = "New"
+        Me.TSBNew.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'TSBSave
+        '
+        Me.TSBSave.AutoSize = False
+        Me.TSBSave.Image = CType(resources.GetObject("TSBSave.Image"), System.Drawing.Image)
+        Me.TSBSave.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSBSave.Name = "TSBSave"
+        Me.TSBSave.Size = New System.Drawing.Size(60, 22)
+        Me.TSBSave.Text = "Save"
+        Me.TSBSave.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'TSBDelete
+        '
+        Me.TSBDelete.AutoSize = False
+        Me.TSBDelete.Image = CType(resources.GetObject("TSBDelete.Image"), System.Drawing.Image)
+        Me.TSBDelete.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSBDelete.Name = "TSBDelete"
+        Me.TSBDelete.Size = New System.Drawing.Size(60, 22)
+        Me.TSBDelete.Text = "Delete"
+        Me.TSBDelete.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'TSBExcel
+        '
+        Me.TSBExcel.AutoSize = False
+        Me.TSBExcel.Image = Global.NodalPay.My.Resources.Resources.excel
+        Me.TSBExcel.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSBExcel.Name = "TSBExcel"
+        Me.TSBExcel.Size = New System.Drawing.Size(60, 22)
+        Me.TSBExcel.Text = "Excel"
+        Me.TSBExcel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'TSBEditSequence
+        '
+        Me.TSBEditSequence.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSBEditSequence.Name = "TSBEditSequence"
+        Me.TSBEditSequence.Size = New System.Drawing.Size(85, 22)
+        Me.TSBEditSequence.Text = "Edit Sequence"
+        '
+        'btnUpdate
+        '
+        Me.btnUpdate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.btnUpdate.Image = CType(resources.GetObject("btnUpdate.Image"), System.Drawing.Image)
+        Me.btnUpdate.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnUpdate.Name = "btnUpdate"
+        Me.btnUpdate.Size = New System.Drawing.Size(49, 22)
+        Me.btnUpdate.Text = "Update"
+        '
+        'ToolStripButton1
+        '
+        Me.ToolStripButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripButton1.Image = CType(resources.GetObject("ToolStripButton1.Image"), System.Drawing.Image)
+        Me.ToolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton1.Name = "ToolStripButton1"
+        Me.ToolStripButton1.Size = New System.Drawing.Size(39, 22)
+        Me.ToolStripButton1.Text = "Copy"
+        '
+        'ToolStripButton2
+        '
+        Me.ToolStripButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripButton2.Image = CType(resources.GetObject("ToolStripButton2.Image"), System.Drawing.Image)
+        Me.ToolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripButton2.Name = "ToolStripButton2"
+        Me.ToolStripButton2.Size = New System.Drawing.Size(81, 22)
+        Me.ToolStripButton2.Text = "Delete Period"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(349, 115)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(31, 13)
+        Me.Label6.TabIndex = 27
+        Me.Label6.Text = "Days"
+        '
+        'txtNOfDays
+        '
+        Me.txtNOfDays.Location = New System.Drawing.Point(349, 143)
+        Me.txtNOfDays.Name = "txtNOfDays"
+        Me.txtNOfDays.Size = New System.Drawing.Size(34, 20)
+        Me.txtNOfDays.TabIndex = 20
+        Me.txtNOfDays.Visible = False
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.btnPeriodGroupSearch)
+        Me.GroupBox1.Controls.Add(Me.CBShowAllYears)
+        Me.GroupBox1.Controls.Add(Me.Label12)
+        Me.GroupBox1.Controls.Add(Me.ComboPeriodGroup)
+        Me.GroupBox1.Controls.Add(Me.ComboNumberOfPeriods)
+        Me.GroupBox1.Controls.Add(Me.btnCreateControls)
+        Me.GroupBox1.Controls.Add(Me.ComboYears)
+        Me.GroupBox1.Controls.Add(Me.FiscalYearTo)
+        Me.GroupBox1.Controls.Add(Me.FiscalYearFROM)
+        Me.GroupBox1.Controls.Add(Me.Label5)
+        Me.GroupBox1.Location = New System.Drawing.Point(10, 28)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(772, 63)
+        Me.GroupBox1.TabIndex = 26
+        Me.GroupBox1.TabStop = False
+        '
+        'CBShowAllYears
+        '
+        Me.CBShowAllYears.AutoSize = True
+        Me.CBShowAllYears.Location = New System.Drawing.Point(642, 13)
+        Me.CBShowAllYears.Name = "CBShowAllYears"
+        Me.CBShowAllYears.Size = New System.Drawing.Size(97, 17)
+        Me.CBShowAllYears.TabIndex = 21
+        Me.CBShowAllYears.Text = "Show All Years"
+        Me.CBShowAllYears.UseVisualStyleBackColor = True
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(9, 12)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(69, 13)
+        Me.Label12.TabIndex = 20
+        Me.Label12.Text = "Period Group"
+        '
+        'ComboPeriodGroup
+        '
+        Me.ComboPeriodGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboPeriodGroup.FormattingEnabled = True
+        Me.ComboPeriodGroup.Location = New System.Drawing.Point(84, 9)
+        Me.ComboPeriodGroup.Name = "ComboPeriodGroup"
+        Me.ComboPeriodGroup.Size = New System.Drawing.Size(442, 21)
+        Me.ComboPeriodGroup.TabIndex = 19
+        Me.ComboPeriodGroup.Tag = "1"
+        '
+        'ComboNumberOfPeriods
+        '
+        Me.ComboNumberOfPeriods.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboNumberOfPeriods.FormattingEnabled = True
+        Me.ComboNumberOfPeriods.Location = New System.Drawing.Point(406, 36)
+        Me.ComboNumberOfPeriods.Name = "ComboNumberOfPeriods"
+        Me.ComboNumberOfPeriods.Size = New System.Drawing.Size(57, 21)
+        Me.ComboNumberOfPeriods.TabIndex = 18
+        '
+        'btnCreateControls
+        '
+        Me.btnCreateControls.Location = New System.Drawing.Point(474, 37)
+        Me.btnCreateControls.Name = "btnCreateControls"
+        Me.btnCreateControls.Size = New System.Drawing.Size(106, 20)
+        Me.btnCreateControls.TabIndex = 17
+        Me.btnCreateControls.Text = "Create Periods"
+        Me.btnCreateControls.UseVisualStyleBackColor = True
+        '
+        'ComboYears
+        '
+        Me.ComboYears.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboYears.FormattingEnabled = True
+        Me.ComboYears.Location = New System.Drawing.Point(84, 36)
+        Me.ComboYears.Name = "ComboYears"
+        Me.ComboYears.Size = New System.Drawing.Size(97, 21)
+        Me.ComboYears.TabIndex = 14
+        Me.ComboYears.Tag = "1"
+        '
+        'FiscalYearTo
+        '
+        Me.FiscalYearTo.Location = New System.Drawing.Point(300, 37)
+        Me.FiscalYearTo.Mask = "00/00/0000"
+        Me.FiscalYearTo.Name = "FiscalYearTo"
+        Me.FiscalYearTo.Size = New System.Drawing.Size(100, 20)
+        Me.FiscalYearTo.TabIndex = 1
+        Me.FiscalYearTo.Tag = "3"
+        '
+        'FiscalYearFROM
+        '
+        Me.FiscalYearFROM.Location = New System.Drawing.Point(187, 37)
+        Me.FiscalYearFROM.Mask = "00/00/0000"
+        Me.FiscalYearFROM.Name = "FiscalYearFROM"
+        Me.FiscalYearFROM.Size = New System.Drawing.Size(100, 20)
+        Me.FiscalYearFROM.TabIndex = 0
+        Me.FiscalYearFROM.Tag = "2"
+        Me.FiscalYearFROM.ValidatingType = GetType(Date)
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(9, 40)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(62, 13)
+        Me.Label5.TabIndex = 0
+        Me.Label5.Text = "Period Year"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(388, 115)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(37, 13)
+        Me.Label4.TabIndex = 25
+        Me.Label4.Text = "Status"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(269, 115)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(52, 13)
+        Me.Label3.TabIndex = 24
+        Me.Label3.Text = "End Date"
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(189, 115)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(55, 13)
+        Me.Label2.TabIndex = 23
+        Me.Label2.Text = "Start Date"
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(120, 115)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(37, 13)
+        Me.Label1.TabIndex = 22
+        Me.Label1.Text = "Period"
+        '
+        'txtP1
+        '
+        Me.txtP1.Location = New System.Drawing.Point(123, 143)
+        Me.txtP1.Name = "txtP1"
+        Me.txtP1.Size = New System.Drawing.Size(64, 20)
+        Me.txtP1.TabIndex = 17
+        Me.txtP1.Visible = False
+        '
+        'ComboStatus1
+        '
+        Me.ComboStatus1.FormattingEnabled = True
+        Me.ComboStatus1.Location = New System.Drawing.Point(387, 143)
+        Me.ComboStatus1.Name = "ComboStatus1"
+        Me.ComboStatus1.Size = New System.Drawing.Size(83, 21)
+        Me.ComboStatus1.TabIndex = 21
+        Me.ComboStatus1.Visible = False
+        '
+        'EndDate1
+        '
+        Me.EndDate1.Location = New System.Drawing.Point(270, 143)
+        Me.EndDate1.Mask = "00/00/0000"
+        Me.EndDate1.Name = "EndDate1"
+        Me.EndDate1.Size = New System.Drawing.Size(75, 20)
+        Me.EndDate1.TabIndex = 19
+        Me.EndDate1.ValidatingType = GetType(Date)
+        Me.EndDate1.Visible = False
+        '
+        'StartDate1
+        '
+        Me.StartDate1.Location = New System.Drawing.Point(191, 143)
+        Me.StartDate1.Mask = "00/00/0000"
+        Me.StartDate1.Name = "StartDate1"
+        Me.StartDate1.Size = New System.Drawing.Size(75, 20)
+        Me.StartDate1.TabIndex = 18
+        Me.StartDate1.ValidatingType = GetType(Date)
+        Me.StartDate1.Visible = False
+        '
+        'txtSequense
+        '
+        Me.txtSequense.Location = New System.Drawing.Point(1, 143)
+        Me.txtSequense.Name = "txtSequense"
+        Me.txtSequense.Size = New System.Drawing.Size(30, 20)
+        Me.txtSequense.TabIndex = 28
+        Me.txtSequense.Visible = False
+        '
+        'txtDescL
+        '
+        Me.txtDescL.Location = New System.Drawing.Point(474, 143)
+        Me.txtDescL.Name = "txtDescL"
+        Me.txtDescL.Size = New System.Drawing.Size(138, 20)
+        Me.txtDescL.TabIndex = 29
+        Me.txtDescL.Visible = False
+        '
+        'txtDescS
+        '
+        Me.txtDescS.Location = New System.Drawing.Point(616, 143)
+        Me.txtDescS.Name = "txtDescS"
+        Me.txtDescS.Size = New System.Drawing.Size(108, 20)
+        Me.txtDescS.TabIndex = 30
+        Me.txtDescS.Visible = False
+        '
+        'ComboSIN
+        '
+        Me.ComboSIN.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboSIN.FormattingEnabled = True
+        Me.ComboSIN.Location = New System.Drawing.Point(733, 142)
+        Me.ComboSIN.Name = "ComboSIN"
+        Me.ComboSIN.Size = New System.Drawing.Size(103, 21)
+        Me.ComboSIN.TabIndex = 31
+        Me.ComboSIN.Visible = False
+        '
+        'txtUnits
+        '
+        Me.txtUnits.Location = New System.Drawing.Point(840, 142)
+        Me.txtUnits.Name = "txtUnits"
+        Me.txtUnits.Size = New System.Drawing.Size(44, 20)
+        Me.txtUnits.TabIndex = 32
+        Me.txtUnits.Visible = False
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(476, 115)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(60, 13)
+        Me.Label7.TabIndex = 33
+        Me.Label7.Text = "Description"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(844, 114)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(31, 13)
+        Me.Label8.TabIndex = 34
+        Me.Label8.Text = "Units"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(618, 115)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(88, 13)
+        Me.Label9.TabIndex = 35
+        Me.Label9.Text = "Short Description"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(736, 114)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(63, 13)
+        Me.Label10.TabIndex = 36
+        Me.Label10.Text = "SIN Periods"
+        '
+        'ComboType
+        '
+        Me.ComboType.DropDownWidth = 120
+        Me.ComboType.FormattingEnabled = True
+        Me.ComboType.Location = New System.Drawing.Point(34, 143)
+        Me.ComboType.Name = "ComboType"
+        Me.ComboType.Size = New System.Drawing.Size(85, 21)
+        Me.ComboType.TabIndex = 37
+        Me.ComboType.Visible = False
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(40, 115)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(49, 13)
+        Me.Label11.TabIndex = 38
+        Me.Label11.Text = "Category"
+        '
+        'btnEDC
+        '
+        Me.btnEDC.BackColor = System.Drawing.SystemColors.ButtonFace
+        Me.btnEDC.Location = New System.Drawing.Point(1000, 139)
+        Me.btnEDC.Name = "btnEDC"
+        Me.btnEDC.Size = New System.Drawing.Size(38, 23)
+        Me.btnEDC.TabIndex = 39
+        Me.btnEDC.Text = "EDC"
+        Me.btnEDC.UseVisualStyleBackColor = False
+        Me.btnEDC.Visible = False
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(896, 115)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(76, 13)
+        Me.Label13.TabIndex = 41
+        Me.Label13.Text = "Calendar Units"
+        '
+        'txtUnits2
+        '
+        Me.txtUnits2.Location = New System.Drawing.Point(913, 142)
+        Me.txtUnits2.Name = "txtUnits2"
+        Me.txtUnits2.Size = New System.Drawing.Size(44, 20)
+        Me.txtUnits2.TabIndex = 40
+        Me.txtUnits2.Visible = False
+        '
+        'btnPeriodGroupSearch
+        '
+        Me.btnPeriodGroupSearch.Location = New System.Drawing.Point(532, 9)
+        Me.btnPeriodGroupSearch.Name = "btnPeriodGroupSearch"
+        Me.btnPeriodGroupSearch.Size = New System.Drawing.Size(27, 20)
+        Me.btnPeriodGroupSearch.TabIndex = 114
+        Me.btnPeriodGroupSearch.Text = "..."
+        Me.btnPeriodGroupSearch.UseVisualStyleBackColor = True
+        '
+        'FrmPrMsPeriods
+        '
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.GradientActiveCaption
+        Me.ClientSize = New System.Drawing.Size(1050, 666)
+        Me.Controls.Add(Me.Label13)
+        Me.Controls.Add(Me.txtUnits2)
+        Me.Controls.Add(Me.btnEDC)
+        Me.Controls.Add(Me.Label11)
+        Me.Controls.Add(Me.ComboType)
+        Me.Controls.Add(Me.Label10)
+        Me.Controls.Add(Me.Label9)
+        Me.Controls.Add(Me.Label8)
+        Me.Controls.Add(Me.Label7)
+        Me.Controls.Add(Me.txtUnits)
+        Me.Controls.Add(Me.ComboSIN)
+        Me.Controls.Add(Me.txtDescS)
+        Me.Controls.Add(Me.txtDescL)
+        Me.Controls.Add(Me.txtSequense)
+        Me.Controls.Add(Me.Label6)
+        Me.Controls.Add(Me.txtNOfDays)
+        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.txtP1)
+        Me.Controls.Add(Me.ComboStatus1)
+        Me.Controls.Add(Me.EndDate1)
+        Me.Controls.Add(Me.StartDate1)
+        Me.Controls.Add(Me.TS1)
+        Me.Name = "FrmPrMsPeriods"
+        Me.Text = "Periods Maintenance Screen"
+        Me.TS1.ResumeLayout(False)
+        Me.TS1.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
+        Me.ResumeLayout(False)
+        Me.PerformLayout()
+
+    End Sub
+    Friend WithEvents TS1 As System.Windows.Forms.ToolStrip
+    Friend WithEvents TSBNew As System.Windows.Forms.ToolStripButton
+    Friend WithEvents TSBSave As System.Windows.Forms.ToolStripButton
+    Friend WithEvents TSBDelete As System.Windows.Forms.ToolStripButton
+    Friend WithEvents TSBExcel As System.Windows.Forms.ToolStripButton
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents txtNOfDays As System.Windows.Forms.TextBox
+    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents ComboYears As System.Windows.Forms.ComboBox
+    Friend WithEvents FiscalYearTo As System.Windows.Forms.MaskedTextBox
+    Friend WithEvents FiscalYearFROM As System.Windows.Forms.MaskedTextBox
+    Friend WithEvents Label5 As System.Windows.Forms.Label
+    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents txtP1 As System.Windows.Forms.TextBox
+    Friend WithEvents ComboStatus1 As System.Windows.Forms.ComboBox
+    Friend WithEvents EndDate1 As System.Windows.Forms.MaskedTextBox
+    Friend WithEvents StartDate1 As System.Windows.Forms.MaskedTextBox
+    Friend WithEvents txtSequense As System.Windows.Forms.TextBox
+    Friend WithEvents txtDescL As System.Windows.Forms.TextBox
+    Friend WithEvents txtDescS As System.Windows.Forms.TextBox
+    Friend WithEvents ComboSIN As System.Windows.Forms.ComboBox
+    Friend WithEvents txtUnits As System.Windows.Forms.TextBox
+    Friend WithEvents Label7 As System.Windows.Forms.Label
+    Friend WithEvents Label8 As System.Windows.Forms.Label
+    Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents btnCreateControls As System.Windows.Forms.Button
+    Friend WithEvents ComboNumberOfPeriods As System.Windows.Forms.ComboBox
+    Friend WithEvents ComboType As System.Windows.Forms.ComboBox
+    Friend WithEvents Label11 As System.Windows.Forms.Label
+    Friend WithEvents Label12 As System.Windows.Forms.Label
+    Friend WithEvents ComboPeriodGroup As System.Windows.Forms.ComboBox
+    Friend WithEvents btnEDC As System.Windows.Forms.Button
+    Friend WithEvents TSBEditSequence As System.Windows.Forms.ToolStripButton
+    Friend WithEvents Label13 As System.Windows.Forms.Label
+    Friend WithEvents txtUnits2 As System.Windows.Forms.TextBox
+    Friend WithEvents btnUpdate As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripButton1 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents ToolStripButton2 As System.Windows.Forms.ToolStripButton
+    Friend WithEvents CBShowAllYears As System.Windows.Forms.CheckBox
+    Friend WithEvents btnPeriodGroupSearch As System.Windows.Forms.Button
+End Class

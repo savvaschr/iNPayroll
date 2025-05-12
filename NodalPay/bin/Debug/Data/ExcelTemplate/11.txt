@@ -1,0 +1,70 @@
+	1001	KIRILL		OSIPOV	Male	30/04/1973	02/05/2017	11000	17.5	Trion Ierarhon 8A	Parekklisia	Limassol	4520	99633953	kosipov73@yahoo.com          	kirill.osipov@sova-am.com		1064705	1260772	K00096771	01260772O		Cypriot	CYPRUS	CUSTOMER RELATIONS MANAGEMENT	Director	OSIPOV KIRILL	RCB BANK LTD	CY59126000000000000019109002	RCBLCY2I			173.33		
+	1002	LYUDMYLA		MICHAIL	Female	03/06/1976	26/06/2017	2000	36	"Pythias 1 , Nymfodora Residence, Flat 103"	Germasogeia	Limassol	4044	99950494	lmichel08@gmail.com        	lyudmila.michail@sova-am.com		718114	895509	K000319345	00895509F		CYPRIOT	CYPRUS	GENERAL ADMINISTRATION	TEAM ASSISTANT	MICHAIL LYUDMILA	RCB BANK LTD	CY72126000000000000015024001	RCBLCY2I			173.33		
+	1003	YULIA		KALASHNIKOVA	Female	28/08/1983	10/10/2017	5500	33	"Kyriacou Matsi street, 14, Vashiotis Hills, BLOCK B, APT 01"	Agios Tychonas	Limassol	4521	99061609	yuliamk28@gmail.com              	yulia.kalashnikova@sova-am.com		01241120		71 5587547	5685605C	500685605	RUSSIAN	CYPRUS	BACK OFFICE	HEAD OF BACK OFFICE	KALASHNIKOVA YULIA	RCB BANK LTD	CY46126000000000000016168002	RCBLCY2I			173.33		
+	1004	DENIS		AGAPONOV	Male	28/02/1980	17/10/2017	9500	43.5	"301, 3, Pamplo Nerounta"	Agios Athanasios	Limassol	3101	95110985		denis.agaponov@sova-am.com		1371205		75 3901881	05738045H	500738045	RUSSIAN	CYPRUS	COLLECTIVE PORTFOLIO MANAGEMENT	HEAD OF COLLECTIVE PORTFOLIO MANAGEMENT	AGAPONOV DENIS	RCB BANK LTD	CY69126000000000000034193001	RCBLCY2I			173.33		
+	1005	YULIA		TOKAREVA	Female	31/01/1981	08/11/2017	6500	38	"Vasileiou,11, 1"	Paramali	Limassol	4604	96636652	julia.tokareva@gmail.com     	julia.tokareva@sova-am.com		1203547		53 0756934	05611968C	500611968	RUSSIAN	CYPRUS	FINANCE AND ACCOUNTING	ACCOUNTANT	TOKAREVA YULIA	RCB BANK LTD	CY11126000000000000017117001	RCBLCY2I			173.33		
+	1006	KATERINA		EFTHYMIADOU	Female	26/03/1992	16/07/2018	4000	7	"3 RIGA FEREOU, FEREOS COURT, FL.302"	AGIOS NICOLAOS	Limassol	3095	96914154	katerina1s1s@hotmail.com       	katerina.efthymiadou@sova-am.com		133106	937136	K00117935	00937136E		CYPRIOT	CYPRUS	COMPLIANCE	DEPUTY HEAD OF COMPLIANCE	EFTHYMIADOU KATERINA	HELLENIC BANK PUBLIC COMPANY LTD	CY62005002430002431070792701	HEBACY2N			173.33		
+	1007	DEMETRIS		CONSTANTINOU	Male	11/05/1988	03/12/2018	4200	11	Elpinikis 23	Agios Athanassios	Limassol	4100	99530130	d.constantinou0@gmail.com            	demetris.constantinou@sova-am.com		1305573	1065728	K00427192	01065728Q		CYPRIOT	CYPRUS	RISK MANAGEMENT	HEAD OF RISK MANAGEMENT	CONSTANTINOU DEMETRIS	RCB BANK LTD	CY83126000000000000005104001	RCBLCY2I			173.33		
+	1008	SVETLANA		KOZLOVSKAYA	Female	16/07/1975	04/02/2020	3855	16	20 ACYRONOS LIOPETRIOU STR.	 AGIOS ATHANASIOS	Limassol	4102	99 473518	svetacypr@hotmail.com             	svetlana.kozlovskaya@sova-am.com		995744	1346017	K00397019	01346017J		CYPRIOT	CYPRUS	BACK OFFICE	BACK OFFICE SPECIALIST	SVETLANA KOZLOVSKAYA	ALPHA BANK CYPRUS LTD	CY65009004830004831060519693	ABKLCY2N			173.33		
+	1009	VIKTOR		MEDVEDCHUK	Male	10/06/1995	15/06/2020	2000	8	"Kapsalion 4, maisonette 3"	Germasogeia	Limassol	4044	95909059		viktor.medvedchuk@sova-am.com		1585997		PU161612	05716742F	500716742	UKRANIAN	CYPRUS	COLLECTIVE PORTFOLIO MANAGEMENT 	JUNIOR ANALYST	MEDVEDCHUK VIKTOR	RCB BANK LTD	CY71126000000000000041137001	RCBLCY2I			173.33		
+	1010	MARIOS		NICOLAOU	Male	04/02/1969	01/12/2020	5000	15	Ellados 50	Zanatzia	Limassol	4713	99611024	mariosn920@gmail.com       	marios.nicolaou@sova-am.com		00523275	680234	K00205120	00680234M		CYPRIOT	CYPRUS	INFORMATION TECHNOLOGY	HEAD OF ASSET MANAGEMENT TECHNOLOGY	NICOLAOU MARIOS AND VERONIKA	HELLENIC BANK PUBLIC COMPANY LTD	CY94005002590002590142055701 	HEBACY2N			173.33		
+	1011	ALEXANDER		BESPALOV	Male	27/10/1985	21/12/2020	11500	22	"Pablo Neruda, Christodoulou Court 2, flat 106, Dicomou Str."	Limassol	Limassol	3101	96917830		alexander.bespalov@sova-am.com		1448809		75 5118497	05762967N	50076296	RUSSIAN	CYPRUS	PORTFOLIO MANAGEMENT	CHIEF INVESTMENT OFFICER	BESPALOV ALEXANDER	RCB BANK LTD	CY25126000000000000014800001	RCBLCY2I			173.33		
+	1012	VALERIIA		EVSEEVA	Female	25/05/1987	09/02/2021	7300	1.5	"8 Sirou Street, Tatiana Court, flat 102,"	Germasogeia	Limassol	4045	96463877		valeria.evseeva@sova-am.com		1193352		55 0280110	05659034G	50065903	RUSSIAN	CYPRUS	COMPLIANCE	HEAD OF COMPLIANCE	EVSEEVA VALERIYA	HELLENIC BANK PUBLIC COMPANY LTD	CY78005002530002531054333701	HEBACY2N			173.33		
+	1013	SVETLANA		LEONOVA	Female	06/09/1994	04/02/2021	2850	2	"HYDRIA RESIDENCES, YDRA STR., 6, DOOR A103,"	Germasogeia	Limassol	4046	94204740		svetlana.leonova@sova-am.com		1606871		73 2828953	81267170	581831053	RUSSIAN	CYPRUS	CUSTOMER RELATIONS MANAGEMENT	CLIENT AND INVESTOR RELATIONSHIP MANAGER	LEONOVA SVETLANA	RCB BANK LTD	CY75126000000000000042706001	RCBLCY2I			173.33		
+	1014	DMITRY		LEONOV	Male	04/10/1983	22/06/2021	5000	6	"FLAT 502, 14 CHYTRON STREET"	Nicosia	Nicosia	1075	96376321	DIMALEONOV@GMAIL.COM              	dmitry.leonov@sova-am.com		01163384		73 1391105	05630769E	500630769	RUSSIAN	CYPRUS	BACK OFFICE	DEPUTY HEAD OF BACK OFFICE	LEONOV DMITRY	BANK OF CYPRUS PUBLIC COMPANY LTD	CY71002001550000000112477700	BCYPCY2N			173.33		
+	1015	ANDRII		ORLENKO	Male	08/10/1983	18/10/2021	10000	0	Meteoron 3	KITI	LARNAKA	7550	96862480		andrii.orlenko@sova-am.com		1076049	1342304	K00384614	05637358N		CYPRIOT	CYPRUS	FINANCE AND ACCOUNTING	FINANCE DIRECTOR	ORLENKO ANDRII	RCB BANK LTD	CY86126000000000000044329001	RCBLCY2I			173.33		
+	1016	ARTEM		KONTSEVYENKO	Male	09/04/1991	13/12/2021	4500	1	"GEORGIOU KARAISKAKI 19, APT 3C, ROUSSOS BLDG"	Limassol	Limassol	3032	96073472		artem.kontsevyenko@sova-am.com		1415352		PU531517	05749956Y	500749956	UKRANIAN	CYPRUS	INDIVIDUAL PORTFOLIO MANAGEMENT	INDIVIDUAL PORTFOLIO MANAGER							173.33		
+	1017	ALLA		BENIAMINOVA	Female	10/09/1981	13/12/2021	5850	1	ZINONOS 108	SOUNI-ZANATZIA	Limassol	4717	96775779		beniaminova@sova-am.com       		1474776		73 2605309	05762455E	500762455	RUSSIAN	CYPRUS	LEGAL	SENIOR LAWYER	BENIAMINOVA ALLA	BANK OF CYPRUS PUBLIC COMPANY LTD	CY92002001950000357026074504	BCYPCY2N			173.33		
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			
+																																			

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="NodalPay">
+</Property><Property Name="Solution File" Value="C:\Users\Admin\Documents\Visual Studio 2005\NodalPay - 2019\NodalPay\NodalPay.sln">
+</Property><Property Name="Date" Value="01 December 2023">
+</Property><Property Name="Time" Value="15:41">
+</Property></Properties><Event ErrorLevel="0" Project="NodalPay" Source="NodalPay.vbproj" Description="Project converted successfully">
+</Event><Event ErrorLevel="3" Project="NodalPay" Source="NodalPay.vbproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="NodalPay.sln" Description="Solution converted successfully">
+</Event><Event ErrorLevel="3" Project="" Source="NodalPay.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="NodalPay" Source="NodalPay.vbproj" Description="Scan complete: Upgrade not required for project files.">
+</Event></UpgradeLog>

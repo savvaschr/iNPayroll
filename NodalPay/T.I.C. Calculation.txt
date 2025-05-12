@@ -1,0 +1,81 @@
+TIC CALCUALATION
+----------------
+
+Tic Code is a 9 character alphanumeric field
+
+First 8 is the id Number with leading zeros
+ 
+For examble my id is 459386 so for this purpose
+ 
+should become  00459386
+
+It is broken into odd and even positions within above string
+
+    12345678 
+    00459386
+So the odd numbers are 0 4 9 8
+and even               0 5 3 6
+
+First you get the sum of even position contents
+e.g 
+
+even_sum = 0 + 5 + 3 + 6 = 14
+
+For each odd number postion you get a return Value as per routine
+
+              GET_CHARACTER_VALUE  below
+
+for above examlpe the values of the four numbers are as follows
+
+ODD 1 = 0  then return value od_1=01
+
+ODD 2 = 4  then return value od_2=09
+
+ODD 3 = 9  then return value od_3=21
+
+ODD 4 = 8  then return value od_4=19
+
+
+then you add them 
+
+odd_sum=od_1 + od_2 + od_3 + od_4
+
+odd_sum = 01 + 09 + 21 + 19 = 50
+
+	total_sum=even_sum + odd_sum
+
+e.g
+	total_sum=14 + 50 = 64
+
+	integer=total_sum / 26
+
+e.g
+	integer=(64 / 26) = 2
+
+	remainder=total_sum - (integer * 26) + 1
+
+e.g
+	remainder=(64 - 52) + 1 = 13
+
+The character is the position within English Alpabet
+
+        ABCD .... XVZ
+
+e.g in above example is M
+
+._______________________________________________________________________________
+
+GET_CHARACTER_VALUE \
+	if odd_number = 0 then return_value=01 : return
+	if odd_number = 1 then return_value=00 : return
+	if odd_number = 2 then return_value=05 : return
+	if odd_number = 3 then return_value=07 : return
+	if odd_number = 4 then return_value=09 : return
+	if odd_number = 5 then return_value=13 : return
+	if odd_number = 6 then return_value=15 : return
+	if odd_number = 7 then return_value=17 : return
+	if odd_number = 8 then return_value=19 : return
+	if odd_number = 9 then return_value=21 : return
+
+	return
+._______________________________________________________________________________
