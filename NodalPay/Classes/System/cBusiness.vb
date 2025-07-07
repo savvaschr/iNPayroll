@@ -1460,6 +1460,9 @@ Public Class cBusiness
     Public Shadows Function FindEmployeeCode(ByVal EmployeeMappCode As String, ByVal GLnumber As Integer) As String
         Return MyBase.FindEmployeeCode(EmployeeMappCode, GLnumber)
     End Function
+    Public Shadows Function FindEmployeeCodeFromTACode(ByVal EmployeeMappCode As String) As String
+        Return MyBase.FindEmployeeCodeFromTACode(EmployeeMappCode)
+    End Function
     Public Shadows Function CalculateEmployeeAdvancesFromTable(ByVal EmpCode As String) As Double
         Return MyBase.CalculateEmployeeAdvancesFromTable(EmpCode)
     End Function

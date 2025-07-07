@@ -43,10 +43,13 @@ Module Email
 
         Try
 
-
-
             Dim oApp As Microsoft.Office.Interop.Outlook.Application
-            oApp = New Microsoft.Office.Interop.Outlook.Application()
+            Try
+                oApp = New Microsoft.Office.Interop.Outlook.Application()
+            Catch exx As system.Exception
+                MsgBox("Error at creating outlook application")
+
+            End Try
 
             ' Create a new MailItem.
             Dim oMsg As Microsoft.Office.Interop.Outlook._MailItem
@@ -72,10 +75,89 @@ Module Email
 
             ' Send
             If Scheduled Then
-                oMsg.DeferredDeliveryTime = SendDateTime
+                If SendDateTime >= DateTime.Now Then
+                    oMsg.DeferredDeliveryTime = SendDateTime
+                    ' System.Threading.Thread.Sleep(1000) ' 1 second delay to allow Outlook to process
+                    'oMsg.Save()
+                    'System.Threading.Thread.Sleep(500)
+                    oMsg.Send()
+                Else
+                    oMsg.Send()
+                End If
+            Else
+                oMsg.Send()
             End If
 
-            oMsg.Send()
+
+
+            ' Clean up
+            oApp = Nothing
+            oMsg = Nothing
+            'oAttach = Nothing
+            'oAttachs = Nothing
+        Catch ex As System.Exception
+            Utils.ShowException(ex)
+        End Try
+
+    End Sub
+    Friend Sub SendEmailTEST(ByVal MailTO As String, ByVal Subject As String, ByVal Message As String, ByVal AttachmentFile As String, ByVal AttachmentName As String, ByVal AttachmentFile2 As String, SendDateTime As Date, Scheduled As Boolean) ' Create an Outlook application.
+
+        Try
+
+
+            Dim oApp As Object = Nothing
+            Try
+                oApp = Runtime.InteropServices.Marshal.GetActiveObject("Outlook.Application")
+            Catch ex As system.Exception
+                oApp = CreateObject("Outlook.Application")
+            End Try
+
+            'Dim oApp As Microsoft.Office.Interop.Outlook.Application
+            'Try
+            '    oApp = New Microsoft.Office.Interop.Outlook.Application()
+            'Catch exx As System.Exception
+            '    MsgBox("Error at creating outlook application")
+
+            'End Try
+
+            ' Create a new MailItem.
+            Dim oMsg As Microsoft.Office.Interop.Outlook._MailItem
+            oMsg = oApp.CreateItem(Microsoft.Office.Interop.Outlook.OlItemType.olMailItem)
+
+
+            oMsg.Subject = Subject
+            oMsg.Body = Message
+            oMsg.To = MailTO
+
+            'Dim sAttaSource As String = "C:\Temp\Hello.txt"
+            ' TODO: Replace with attachment name
+            'Dim sDisplayName As String = "Hello.txt"
+            If AttachmentFile <> "" Then
+                Dim sBodyLen As String = oMsg.Body.Length
+                Dim oAttachs As Microsoft.Office.Interop.Outlook.Attachments = oMsg.Attachments
+                Dim oAttach As Microsoft.Office.Interop.Outlook.Attachment
+                oAttach = oAttachs.Add(AttachmentFile, , sBodyLen + 1, AttachmentName)
+                If AttachmentFile2 <> "" Then
+                    oAttach = oAttachs.Add(AttachmentFile2, , sBodyLen + 1, AttachmentName)
+                End If
+            End If
+
+            ' Send
+            If Scheduled Then
+                If SendDateTime >= DateTime.Now Then
+                    oMsg.DeferredDeliveryTime = SendDateTime
+                    ' System.Threading.Thread.Sleep(1000) ' 1 second delay to allow Outlook to process
+                    'oMsg.Save()
+                    'System.Threading.Thread.Sleep(500)
+                    oMsg.Send()
+                Else
+                    oMsg.Send()
+                End If
+            Else
+                oMsg.Send()
+            End If
+
+
 
             ' Clean up
             oApp = Nothing

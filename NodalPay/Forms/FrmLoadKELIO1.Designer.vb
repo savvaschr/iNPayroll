@@ -22,27 +22,27 @@ Partial Class FrmLoadKELIO1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Label6 = New System.Windows.Forms.Label
-        Me.Label4 = New System.Windows.Forms.Label
-        Me.txtOverTime1Column = New System.Windows.Forms.TextBox
-        Me.Label3 = New System.Windows.Forms.Label
-        Me.txtKelioPrefix = New System.Windows.Forms.TextBox
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.txtFirstLineToRead = New System.Windows.Forms.TextBox
-        Me.btnProceed = New System.Windows.Forms.Button
-        Me.btnOpen = New System.Windows.Forms.Button
-        Me.txtToFile = New System.Windows.Forms.TextBox
-        Me.Label5 = New System.Windows.Forms.Label
-        Me.OpenFile = New System.Windows.Forms.OpenFileDialog
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.txtOvertime2Column = New System.Windows.Forms.TextBox
-        Me.Label7 = New System.Windows.Forms.Label
-        Me.txtPMOver1Column = New System.Windows.Forms.TextBox
-        Me.txtEmpCodeinExcel = New System.Windows.Forms.TextBox
-        Me.txtErnCode = New System.Windows.Forms.TextBox
-        Me.Label8 = New System.Windows.Forms.Label
-        Me.Label9 = New System.Windows.Forms.Label
-        Me.txtErnCodeInExcel = New System.Windows.Forms.TextBox
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.txtOverTime1Column = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.txtKelioPrefix = New System.Windows.Forms.TextBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.txtFirstLineToRead = New System.Windows.Forms.TextBox()
+        Me.btnProceed = New System.Windows.Forms.Button()
+        Me.btnOpen = New System.Windows.Forms.Button()
+        Me.txtToFile = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.OpenFile = New System.Windows.Forms.OpenFileDialog()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.txtOvertime2Column = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.txtPMOver1Column = New System.Windows.Forms.TextBox()
+        Me.txtEmpCodeinExcel = New System.Windows.Forms.TextBox()
+        Me.txtErnCode = New System.Windows.Forms.TextBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.txtErnCodeInExcel = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'Label6
@@ -212,6 +212,7 @@ Partial Class FrmLoadKELIO1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.Window
         Me.ClientSize = New System.Drawing.Size(1011, 313)
         Me.Controls.Add(Me.txtErnCode)
         Me.Controls.Add(Me.Label8)

@@ -283,8 +283,12 @@ Public Class FrmLociiExport
                     Line = Line & DbNullToString(Ds.Tables(0).Rows(i).Item(25)) & SEP
                     Line = Line & DbNullToString(Ds.Tables(0).Rows(i).Item(26)) & SEP
                     Line = Line & DbNullToString(Ds.Tables(0).Rows(i).Item(27)) & SEP
-                    Line = Line & DbNullToString(Ds.Tables(0).Rows(i).Item(28))
-
+                    Line = Line & DbNullToString(Ds.Tables(0).Rows(i).Item(28)) & SEP
+                    Line = Line & DbNullToString(Ds.Tables(0).Rows(i).Item(29)) & SEP
+                    Line = Line & DbNullToString(Ds.Tables(0).Rows(i).Item(30)) & SEP
+                    Line = Line & DbNullToString(Ds.Tables(0).Rows(i).Item(31)) & SEP
+                    Line = Line & DbNullToString(Ds.Tables(0).Rows(i).Item(32)) & SEP
+                    Line = Line & DbNullToString(Ds.Tables(0).Rows(i).Item(33))
 
                     Me.WriteToExportFile(Line, Filename)
                     Counter = Counter + 1
@@ -359,7 +363,9 @@ Public Class FrmLociiExport
                     Line = Line & DbNullToString(Ds.Tables(0).Rows(i).Item(18)) & SEP
                     Line = Line & DbNullToString(Ds.Tables(0).Rows(i).Item(19)) & SEP
                     Line = Line & DbNullToString(Ds.Tables(0).Rows(i).Item(20)) & SEP
-                    Line = Line & DbNullToString(Ds.Tables(0).Rows(i).Item(21))
+                    Line = Line & DbNullToString(Ds.Tables(0).Rows(i).Item(21)) & SEP
+                    Line = Line & DbNullToString(Ds.Tables(0).Rows(i).Item(22))
+
                     Me.WriteToExportFile(Line, Filename)
                     Counter = Counter + 1
                 Next

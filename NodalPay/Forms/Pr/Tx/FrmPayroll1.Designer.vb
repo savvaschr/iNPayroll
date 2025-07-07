@@ -241,6 +241,7 @@ Partial Class FrmPayroll1
         Me.GemailToEmployeepdfToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToEmployee365 = New System.Windows.Forms.ToolStripMenuItem()
         Me.EmailToEmployeepdfUsingSMTPToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EmailToEmployeepdfSheduledToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator11 = New System.Windows.Forms.ToolStripSeparator()
         Me.TsbPrintWithCheques = New System.Windows.Forms.ToolStripMenuItem()
         Me.UpdateChequeNumbersToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -287,6 +288,8 @@ Partial Class FrmPayroll1
         Me.ImportOvertimeFile2ExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator13 = New System.Windows.Forms.ToolStripSeparator()
         Me.ImportValuesFromToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImportCCFile1ExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImportCCFile1TextToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSplitButton2 = New System.Windows.Forms.ToolStripSplitButton()
         Me.mnuPayrollAnalysis = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuSIReports = New System.Windows.Forms.ToolStripMenuItem()
@@ -299,6 +302,7 @@ Partial Class FrmPayroll1
         Me.ComboStatus = New System.Windows.Forms.ComboBox()
         Me.PanelLoading = New System.Windows.Forms.Panel()
         Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label12 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.ComboAnal = New System.Windows.Forms.ComboBox()
@@ -341,7 +345,7 @@ Partial Class FrmPayroll1
         Me.btnTemplateSearch = New System.Windows.Forms.Button()
         Me.BtnNext1 = New System.Windows.Forms.Button()
         Me.BtnPrevius1 = New System.Windows.Forms.Button()
-        Me.Label12 = New System.Windows.Forms.Label()
+        Me.TestOutlookToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DG1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.PanelLoading.SuspendLayout()
@@ -1699,7 +1703,7 @@ Partial Class FrmPayroll1
         'mnuPrintPayslips
         '
         Me.mnuPrintPayslips.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.mnuPrintPayslips.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuPayslipOnScreen, Me.MnuPayslipToPrinter, Me.ToolStripSeparator10, Me.TSBEmailPayslipToEmployee, Me.GemailToEmployeepdfToolStripMenuItem, Me.ToEmployee365, Me.EmailToEmployeepdfUsingSMTPToolStripMenuItem, Me.ToolStripSeparator11, Me.TsbPrintWithCheques, Me.UpdateChequeNumbersToolStripMenuItem, Me.ToolStripSeparator12, Me.ExportInpdfToolStripMenuItem, Me.ToolStripSeparatorYTD, Me.mnuYTDInExcel, Me.mnuExportYearlyPayslipInExcelTotals, Me.mnuYTDInPDF, Me.mnuYTDInPDFandEMAIL, Me.ToolStripSeparator17, Me.mnuUploadToExelsys, Me.ToolStripSeparator9, Me.LabelsPrintingToolStripMenuItem})
+        Me.mnuPrintPayslips.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuPayslipOnScreen, Me.MnuPayslipToPrinter, Me.ToolStripSeparator10, Me.TSBEmailPayslipToEmployee, Me.GemailToEmployeepdfToolStripMenuItem, Me.ToEmployee365, Me.EmailToEmployeepdfUsingSMTPToolStripMenuItem, Me.EmailToEmployeepdfSheduledToolStripMenuItem, Me.ToolStripSeparator11, Me.TsbPrintWithCheques, Me.UpdateChequeNumbersToolStripMenuItem, Me.ToolStripSeparator12, Me.ExportInpdfToolStripMenuItem, Me.ToolStripSeparatorYTD, Me.mnuYTDInExcel, Me.mnuExportYearlyPayslipInExcelTotals, Me.mnuYTDInPDF, Me.mnuYTDInPDFandEMAIL, Me.ToolStripSeparator17, Me.mnuUploadToExelsys, Me.ToolStripSeparator9, Me.LabelsPrintingToolStripMenuItem, Me.TestOutlookToolStripMenuItem})
         Me.mnuPrintPayslips.Image = CType(resources.GetObject("mnuPrintPayslips.Image"), System.Drawing.Image)
         Me.mnuPrintPayslips.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.mnuPrintPayslips.Name = "mnuPrintPayslips"
@@ -1746,6 +1750,12 @@ Partial Class FrmPayroll1
         Me.EmailToEmployeepdfUsingSMTPToolStripMenuItem.Name = "EmailToEmployeepdfUsingSMTPToolStripMenuItem"
         Me.EmailToEmployeepdfUsingSMTPToolStripMenuItem.Size = New System.Drawing.Size(347, 22)
         Me.EmailToEmployeepdfUsingSMTPToolStripMenuItem.Text = "Email to Employee (.pdf) Using SMTP"
+        '
+        'EmailToEmployeepdfSheduledToolStripMenuItem
+        '
+        Me.EmailToEmployeepdfSheduledToolStripMenuItem.Name = "EmailToEmployeepdfSheduledToolStripMenuItem"
+        Me.EmailToEmployeepdfSheduledToolStripMenuItem.Size = New System.Drawing.Size(347, 22)
+        Me.EmailToEmployeepdfSheduledToolStripMenuItem.Text = "Email To Employee (.pdf Sheduled)"
         '
         'ToolStripSeparator11
         '
@@ -2001,7 +2011,7 @@ Partial Class FrmPayroll1
         'TSImportEDCValuesFromExcel
         '
         Me.TSImportEDCValuesFromExcel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.TSImportEDCValuesFromExcel.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBSelectEDCtoImportExcel, Me.TSBImportOvertimeFileExcel, Me.ImportOvertimeFile2ExcelToolStripMenuItem, Me.ToolStripSeparator13, Me.ImportValuesFromToolStripMenuItem})
+        Me.TSImportEDCValuesFromExcel.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBSelectEDCtoImportExcel, Me.TSBImportOvertimeFileExcel, Me.ImportOvertimeFile2ExcelToolStripMenuItem, Me.ToolStripSeparator13, Me.ImportValuesFromToolStripMenuItem, Me.ImportCCFile1ExcelToolStripMenuItem, Me.ImportCCFile1TextToolStripMenuItem})
         Me.TSImportEDCValuesFromExcel.Image = CType(resources.GetObject("TSImportEDCValuesFromExcel.Image"), System.Drawing.Image)
         Me.TSImportEDCValuesFromExcel.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.TSImportEDCValuesFromExcel.Name = "TSImportEDCValuesFromExcel"
@@ -2037,6 +2047,18 @@ Partial Class FrmPayroll1
         Me.ImportValuesFromToolStripMenuItem.Name = "ImportValuesFromToolStripMenuItem"
         Me.ImportValuesFromToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
         Me.ImportValuesFromToolStripMenuItem.Text = "Import KELIO - 1 (Excel)"
+        '
+        'ImportCCFile1ExcelToolStripMenuItem
+        '
+        Me.ImportCCFile1ExcelToolStripMenuItem.Name = "ImportCCFile1ExcelToolStripMenuItem"
+        Me.ImportCCFile1ExcelToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
+        Me.ImportCCFile1ExcelToolStripMenuItem.Text = "Import CC File - 1 (Excel)"
+        '
+        'ImportCCFile1TextToolStripMenuItem
+        '
+        Me.ImportCCFile1TextToolStripMenuItem.Name = "ImportCCFile1TextToolStripMenuItem"
+        Me.ImportCCFile1TextToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
+        Me.ImportCCFile1TextToolStripMenuItem.Text = "Import CC File - 1 (Text)"
         '
         'ToolStripSplitButton2
         '
@@ -2082,7 +2104,7 @@ Partial Class FrmPayroll1
         Me.btnMyReminders.Image = CType(resources.GetObject("btnMyReminders.Image"), System.Drawing.Image)
         Me.btnMyReminders.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnMyReminders.Name = "btnMyReminders"
-        Me.btnMyReminders.Size = New System.Drawing.Size(99, 22)
+        Me.btnMyReminders.Size = New System.Drawing.Size(99, 19)
         Me.btnMyReminders.Text = "My Reminders"
         '
         'BtnOpenExportFiles
@@ -2091,7 +2113,7 @@ Partial Class FrmPayroll1
         Me.BtnOpenExportFiles.Image = CType(resources.GetObject("BtnOpenExportFiles.Image"), System.Drawing.Image)
         Me.BtnOpenExportFiles.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnOpenExportFiles.Name = "BtnOpenExportFiles"
-        Me.BtnOpenExportFiles.Size = New System.Drawing.Size(102, 22)
+        Me.BtnOpenExportFiles.Size = New System.Drawing.Size(102, 19)
         Me.BtnOpenExportFiles.Text = "Open Export Files"
         '
         'Label5
@@ -2132,6 +2154,14 @@ Partial Class FrmPayroll1
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(383, 79)
         Me.Panel1.TabIndex = 0
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(53, 58)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(0, 13)
+        Me.Label12.TabIndex = 3
         '
         'Label6
         '
@@ -2531,13 +2561,11 @@ Partial Class FrmPayroll1
         Me.BtnPrevius1.Tag = "Works Only when From To Employee are empty"
         Me.BtnPrevius1.UseVisualStyleBackColor = True
         '
-        'Label12
+        'TestOutlookToolStripMenuItem
         '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(53, 58)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(0, 13)
-        Me.Label12.TabIndex = 3
+        Me.TestOutlookToolStripMenuItem.Name = "TestOutlookToolStripMenuItem"
+        Me.TestOutlookToolStripMenuItem.Size = New System.Drawing.Size(347, 22)
+        Me.TestOutlookToolStripMenuItem.Text = "Test Outlook"
         '
         'FrmPayroll1
         '
@@ -2877,4 +2905,8 @@ Partial Class FrmPayroll1
     Friend WithEvents ToolStripSeparator9 As ToolStripSeparator
     Friend WithEvents mnuExportYearlyPayslipInExcelTotals As ToolStripMenuItem
     Friend WithEvents Label12 As Label
+    Friend WithEvents ImportCCFile1ExcelToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EmailToEmployeepdfSheduledToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ImportCCFile1TextToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TestOutlookToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -1,4 +1,5 @@
 ﻿Public Class FrmSelectEmailMethod
+    Public CalledBy As Integer = 0
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Me.Close()
     End Sub
@@ -13,16 +14,27 @@
         If Me.RadioButton3.Checked Then
             emailMethod = 3
         End If
-
-        CType(Me.Owner, FrmPayroll1).YTDEmailmethod = emailMethod
-        If Me.CBSchedule.CheckState <> CheckState.Checked Then
-            CType(Me.Owner, FrmPayroll1).YTDScheduled = False
-            CType(Me.Owner, FrmPayroll1).YTDscheduledDatetime = Now
+        If CalledBy = 0 Then
+            CType(Me.Owner, FrmPayroll1).YTDEmailmethod = emailMethod
+            If Me.CBSchedule.CheckState <> CheckState.Checked Then
+                CType(Me.Owner, FrmPayroll1).YTDScheduled = False
+                CType(Me.Owner, FrmPayroll1).YTDscheduledDatetime = Now
+            Else
+                CType(Me.Owner, FrmPayroll1).YTDScheduled = True
+                Dim SCDate As Date
+                SCDate = Me.Date1.Value.Date & " " & Me.Time1.Value.Hour & ":" & Me.Time1.Value.Minute & ":" & Me.Time1.Value.Second
+                CType(Me.Owner, FrmPayroll1).YTDscheduledDatetime = SCDate
+            End If
         Else
-            CType(Me.Owner, FrmPayroll1).YTDScheduled = True
-            Dim SCDate As Date
-            SCDate = Me.Date1.Value.Date & " " & Me.Time1.Value.Hour & ":" & Me.Time1.Value.Minute & ":" & Me.Time1.Value.Second
-            CType(Me.Owner, FrmPayroll1).YTDscheduledDatetime = SCDate
+            If Me.CBSchedule.CheckState <> CheckState.Checked Then
+                CType(Me.Owner, FrmPayroll1).EMAILScheduled = False
+                CType(Me.Owner, FrmPayroll1).EMAILscheduledDatetime = Now
+            Else
+                CType(Me.Owner, FrmPayroll1).EMAILScheduled = True
+                Dim SCDate As Date
+                SCDate = Me.Date1.Value.Date & " " & Me.Time1.Value.Hour & ":" & Me.Time1.Value.Minute & ":" & Me.Time1.Value.Second
+                CType(Me.Owner, FrmPayroll1).EMAILscheduledDatetime = SCDate
+            End If
         End If
     End Sub
 
@@ -37,6 +49,11 @@
     End Sub
 
     Private Sub FrmSelectEmailMethod_Load(sender As Object, e As EventArgs) Handles Me.Load
+        If CalledBy = 1 Then
+            RadioButton2.Visible = False
+            RadioButton3.Visible = False
+            RadioButton1.Checked = True
+        End If
         Me.CBSchedule.Checked = False
         Me.Date1.Value = Now.Date
         Me.Date1.MinDate = Now.Date

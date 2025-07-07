@@ -282,6 +282,9 @@ Module Utils
                 r.PrintOptions.PaperOrientation = PaperOrientation.Landscape
             End If
 
+            '  r.PrintOptions.PrinterName = ""
+            ' r.PrintOptions.NoPrinter = True
+
             Flag = True
             If PrinterName <> "" Then
                 'Make sure the specified printer is valid

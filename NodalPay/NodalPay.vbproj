@@ -769,6 +769,12 @@
     <Compile Include="Forms\FrmImportLeaversDateAndEmail.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\FrmLoadCOSTA.Designer.vb">
+      <DependentUpon>FrmLoadCOSTA.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmLoadCOSTA.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\FrmLoadEDCFromExcel.Designer.vb">
       <DependentUpon>FrmLoadEDCFromExcel.vb</DependentUpon>
     </Compile>
@@ -3001,6 +3007,9 @@
     <EmbeddedResource Include="Forms\FrmImportLeaversDateAndEmail.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FrmImportLeaversDateAndEmail.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmLoadCOSTA.resx">
+      <DependentUpon>FrmLoadCOSTA.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmLoadEDCFromExcel.resx">
       <SubType>Designer</SubType>

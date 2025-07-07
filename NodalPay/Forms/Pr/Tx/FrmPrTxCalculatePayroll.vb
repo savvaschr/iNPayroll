@@ -50,6 +50,9 @@ Public Class FrmPrTxCalculatePayroll
     Public GlbSILeavePerc As Double = 0
     Public GLBWording As String = ""
 
+    Public EMAILscheduledDatetime As Date
+    Public EMAILscheduled As Boolean = False
+
 
     Public GLBYTDScheduled As Boolean
     Public GLBYTDScheduledDateTime As Date
@@ -11194,7 +11197,7 @@ Public Class FrmPrTxCalculatePayroll
                                         '  Me.Send_SMTP_EmailFile_NoAthentication(ExportFile, GLBEmployee, CompanyDescription, StrYear, ExportFileTS, Global1.PARAM_SMTPEmailHost, GLBWording)
                                     Else
 
-                                        EmailFile(ExportFile, GLBEmployee, CompanyDescription, ExportFileTS, GLBWording, Useemail2, Now, False, False)
+                                        EmailFile(ExportFile, GLBEmployee, CompanyDescription, ExportFileTS, GLBWording, Useemail2, EMAILscheduledDatetime, EMAILscheduled, False)
                                     End If
                                     Try
                                         System.IO.File.Delete(ExportFile)
@@ -12276,9 +12279,13 @@ Public Class FrmPrTxCalculatePayroll
                      "Best Regards" & Chr(10) &
                      CompanyDescription
             End If
-            Email.SendEmail(EmployeeEmail, EmailSubject, Msg, ExportFile, "Payslip", Exportfile2, SendDateAndTime, ScheduleSend)
+            If Not TESTOUTLOOK Then
+                Email.SendEmail(EmployeeEmail, EmailSubject, Msg, ExportFile, "Payslip", Exportfile2, SendDateAndTime, ScheduleSend)
+            Else
+                Email.SendEmailTEST(EmployeeEmail, EmailSubject, Msg, ExportFile, "Payslip", Exportfile2, SendDateAndTime, ScheduleSend)
+            End If
         Else
-            MsgBox("Please Define Email Address For Employee " & GLBEmployee.Code & " - " & GLBEmployee.FullName, MsgBoxStyle.Exclamation)
+                MsgBox("Please Define Email Address For Employee " & GLBEmployee.Code & " - " & GLBEmployee.FullName, MsgBoxStyle.Exclamation)
         End If
 
     End Sub

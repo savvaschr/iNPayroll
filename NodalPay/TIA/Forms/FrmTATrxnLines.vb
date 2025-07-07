@@ -1683,6 +1683,7 @@ Public Class FrmTATrxnLines
 
         ' Exit Sub
         Dim F As New FrmPayroll1
+        F.MdiParent = Me.MdiParent
         If ValidateStatus(DateF, DateT) Then
             'xxxxx()
             Global1.Business.BeginTransaction()

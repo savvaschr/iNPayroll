@@ -23253,6 +23253,22 @@ todo:   ' check for status in trxnheader
         Return EmpCode
 
     End Function
+    Public Shadows Function FindEmployeeCodeFromTACode(ByVal EmployeeMappCode As String) As String
+        Dim str As String
+        Dim Str2 As String = ""
+        Dim Ds As DataSet
+        Dim EmpCode As String = ""
+        str = "Select Emp_Code from PrMsEmployees where Emp_TACode=" & enQuoteString(EmployeeMappCode)
+
+
+
+        Ds = GetData(str)
+        If CheckDataSet(Ds) Then
+            EmpCode = DbNullToString(Ds.Tables(0).Rows(0).Item(0))
+        End If
+        Return EmpCode
+
+    End Function
     Protected Function CalculateEmployeeAdvancesFromTable(ByVal EmpCode As String) As Double
         Dim Str As String
         Dim Ds As DataSet
@@ -34134,6 +34150,7 @@ todo:   ' check for status in trxnheader
         Dim Str15 As String
         Dim Str16 As String
         Dim Str17 As String
+        Dim Str18 As String
 
         Dim StrG As String
 
@@ -34155,13 +34172,15 @@ todo:   ' check for status in trxnheader
         Str14 = "Update PrSsEmployeeSplit " & StrG
         Str15 = "Update PrMsReminders " & StrG
         Str16 = "Update PrTxLoanComments " & StrG
+        Str17 = "Update PrMsEmployeePhoto " & StrG
 
 
 
 
 
 
-        Str17 = "delete from PrMsemployees Where emp_Code=" & enQuoteString(OldCode)
+
+        Str18 = "delete from PrMsemployees Where emp_Code=" & enQuoteString(OldCode)
         Try
 
 
@@ -34181,8 +34200,9 @@ todo:   ' check for status in trxnheader
             MyBase.ExecuteNonQuery(Str14)
             MyBase.ExecuteNonQuery(Str15)
             MyBase.ExecuteNonQuery(Str16)
-
             MyBase.ExecuteNonQuery(Str17)
+
+            MyBase.ExecuteNonQuery(Str18)
 
         Catch ex As Exception
             Flag = False
@@ -48749,6 +48769,11 @@ todo:   ' check for status in trxnheader
     ",Emp_AnalGen1 " &
     ",Emp_TermReason  " &
     ",Emp_HireReason  " &
+    ",Emp_Maternity  " &
+    ",Emp_FirstEmployment " &
+    ",Emp_FEControlAmount " &
+    ",Emp_Force50Percent " &
+    ",Emp_50PerOff " &
     " FROM  " &
     " PrMsEmployees " &
     " Where TemGrp_Code=" & Utils.enQuoteString(TemGrpCode)
@@ -48829,9 +48854,9 @@ todo:   ' check for status in trxnheader
     " PrTxTrxnHeader " &
     " WHERE " &
     " TemGrp_Code=" & Utils.enQuoteString(TemGrpCode) &
-    " AND PrdGrp_Code=" & Utils.enQuoteString(PrdGrpCode) &
-    " AND PrdCod_Code >= " & Utils.enQuoteString(PrdCode) &
-    " AND (Trxhdr_Status='CALC' OR Trxhdr_Status='POST')"
+    " And PrdGrp_Code=" & Utils.enQuoteString(PrdGrpCode) &
+    " And PrdCod_Code >= " & Utils.enQuoteString(PrdCode) &
+    " And (Trxhdr_Status='CALC' OR Trxhdr_Status='POST')"
 
         Return GetData(Str)
 

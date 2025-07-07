@@ -260,6 +260,18 @@ Public Class FrmPayroll1
     Public KELIO_File As String
     Public KELIO_Proceed As Boolean = False
 
+
+    Public COSTA_FirstLine As Integer
+    Public COSTA_EmpMapCodes_COLNo As Integer
+    Public COSTA_Units_COLNo As Integer
+    Public COSTA_Overtime1_COLNo As Integer
+    Public COSTA_Overtime3_COLNo As Integer
+    Public COSTA_E14_COLNo As Integer
+    Public COSTA_E36_COLNo As Integer
+    Public COSTA_E35_COLNo As Integer
+    Public COSTA_File As String
+    Public COSTA_Proceed As Boolean = False
+
     Public GLBRunNext As Boolean
     Public GLBRunPrevious As Boolean
     Public GLBGridIndex As Integer
@@ -271,6 +283,10 @@ Public Class FrmPayroll1
     Public YTDEmailmethod As Integer = 0
     Public YTDScheduled As Boolean = False
     Public YTDscheduledDatetime As Date = Now
+
+    Public EMAILEmailmethod As Integer = 0
+    Public EMAILScheduled As Boolean = False
+    Public EMAILscheduledDatetime As Date = Now
 
     Dim glbCurrentEmployeeSIRate_contribution As Double = 0
     Dim glbCurrentEmployeeSIRate_deduction As Double = 0
@@ -297,8 +313,8 @@ Public Class FrmPayroll1
 
         Me.mnuIOCFile.Visible = False
         ' Me.mnuROBFile.Visible = False
-        Me.Width = CType(Me.MdiParent, FrmMain).Width - 30
-        Me.Height = CType(Me.MdiParent, FrmMain).Height - 150
+        ' Me.Width = CType(Me.MdiParent, FrmMain).Width - 30
+        ' Me.Height = CType(Me.MdiParent, FrmMain).Height - 150
         LoadForm()
         CheckPermition()
         If UCase(Global1.UserName) = "SA" Or UCase(Global1.UserName) = "NODAL" Or UCase(Global1.UserName) = "INSOFT" Or Global1.PARAM_AllowMarkAsInterface Then
@@ -6488,6 +6504,7 @@ Public Class FrmPayroll1
                 End If
             End If
             PrepareInterface_NEW(Header, MinId, MaxId, FromHistory, FName, Batch, InterfaceType, LastFile, Times, IncludeEmployees, firstFile, Reverse)
+
 
             If Global1.GLBDedtorsInterface Then
                 If Global1.GLBTemplateforDCInterface = GLBTempGroup.Code Then
@@ -15286,6 +15303,8 @@ Public Class FrmPayroll1
                                 CType(Me.ArCalculations(i), FrmPrTxCalculatePayroll).GLBChequeDate = GLBChequeDate
                                 CType(Me.ArCalculations(i), FrmPrTxCalculatePayroll).PayslipFoldeDirectory = PayslipDir
                                 CType(Me.ArCalculations(i), FrmPrTxCalculatePayroll).GLBWording = Wording
+                                CType(Me.ArCalculations(i), FrmPrTxCalculatePayroll).EMAILScheduled = EMAILScheduled
+                                CType(Me.ArCalculations(i), FrmPrTxCalculatePayroll).EMAILscheduledDatetime = EMAILscheduledDatetime
                                 CType(Me.ArCalculations(i), FrmPrTxCalculatePayroll).PrintPayslip(SendToPrinter, SendToEmail, PrintCheques, Gmail, Office365:=Office365, StrYear:=strYear, SMTP:=SMTP, Useemail2:=UseEmail2, UploadToExelsys:=UploadToExelsys)
 
                                 'If TimesheetsReport Then
@@ -15405,7 +15424,10 @@ Public Class FrmPayroll1
     End Function
 
     Private Sub TSBEmailPayslipToEmployee_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TSBEmailPayslipToEmployee.Click
+        EMAILScheduled = False
+        EMAILscheduledDatetime = Now
         PrintPayslips(False, True, False)
+
     End Sub
 
     Private Sub GemailToEmployeepdfToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles GemailToEmployeepdfToolStripMenuItem.Click
@@ -15419,6 +15441,13 @@ Public Class FrmPayroll1
     Private Sub EmailToEmployeepdfUsingSMTPToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EmailToEmployeepdfUsingSMTPToolStripMenuItem.Click
         PrintPayslips(False, True, False, False, False, True)
         GC.Collect()
+    End Sub
+    Private Sub EmailToEmployeepdfSheduledToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EmailToEmployeepdfSheduledToolStripMenuItem.Click
+        Dim F As New FrmSelectEmailMethod
+        F.CalledBy = 1
+        F.Owner = Me
+        F.ShowDialog()
+        PrintPayslips(False, True, False)
     End Sub
 
 
@@ -17767,7 +17796,7 @@ Public Class FrmPayroll1
                                                 If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = "E29" Then
                                                     MyDs.Tables(0).Rows(k).Item(Me.Column_EV1 + C1) = DBL_RecBonus
                                                 End If
-                                                If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = "E49" Then
+                                                If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = "E43" Then
                                                     MyDs.Tables(0).Rows(k).Item(Me.Column_EV1 + C1) = DBL_BenInKind1
                                                 End If
 
@@ -19828,5 +19857,446 @@ Public Class FrmPayroll1
 
     End Sub
 
+    Private Sub ImportCCFile1ExcelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportCCFile1ExcelToolStripMenuItem.Click
+        If CheckDataSet(MyDs) Then
+            Dim F As New FrmLoadCOSTA
+            F.Owner = Me
 
+            Me.COSTA_Proceed = False
+            F.GLBTextFile = False
+            F.ShowDialog()
+            If COSTA_Proceed Then
+                SelectCOSTAToImportFromExcel()
+            End If
+        Else
+            MsgBox("Please select Employees first for this action", MsgBoxStyle.Information)
+        End If
+    End Sub
+    Private Sub ImportCCFile1TextToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportCCFile1TextToolStripMenuItem.Click
+        If CheckDataSet(MyDs) Then
+            Dim F As New FrmLoadCOSTA
+            F.Owner = Me
+
+            Me.COSTA_Proceed = False
+            F.GLBTextFile = True
+            F.ShowDialog()
+            If COSTA_Proceed Then
+                SelectCOSTAToImportFromTEXT()
+            End If
+        Else
+            MsgBox("Please select Employees first for this action", MsgBoxStyle.Information)
+        End If
+    End Sub
+
+    Private Sub SelectCOSTAToImportFromExcel()
+        Cursor.Current = Cursors.WaitCursor
+        If CheckDataSet(MyDs) Then
+            If COSTA_File <> "" Then
+                '''''''''''''
+                Dim xlApp As Excel.Application
+                Dim xlWorkBook As Excel.Workbook
+                Dim xlWorkSheet As Excel.Worksheet
+
+                xlApp = New Excel.ApplicationClass
+
+                Try
+
+
+                    'on form load instantiate the connection object
+                    Dim FileDir As String
+                    Dim Exx As New Exception
+                    'param_file = IO.File.OpenText("Data\Excel\Employees.txt")
+                    'xlWorkBook = xlApp.Workbooks.Open("c:\NodalWin\Payroll\Data\Excel\Excel1.xlsx")
+
+                    xlWorkBook = xlApp.Workbooks.Open(COSTA_File)
+                    xlWorkSheet = xlWorkBook.Worksheets(1)
+
+                    Dim Line As String
+                    Dim Ar() As String
+                    'Do While param_file.Peek <> -1
+                    Dim Counter As Integer
+                    Counter = 0
+                    Dim StopInput As Boolean = False
+                    Counter = Me.LFE_FirstLine
+                    Dim ErrorM As String = ""
+
+
+
+
+
+                    Dim EmpCode As String
+                    Dim EmpMapCode As String
+
+
+                    Dim UnitsValue As Double
+                    Dim Over1Value As Double
+                    Dim Over3Value As Double
+                    Dim E14Value As Double
+                    Dim E35Value As Double
+                    Dim E36Value As Double
+
+                    Dim sUnitsValue As String
+                    Dim sOver1Value As String
+                    Dim sOver3Value As String
+                    Dim sE14Value As String
+                    Dim sE35Value As String
+                    Dim sE36Value As String
+
+
+
+                    Counter = Me.COSTA_FirstLine
+
+                    Dim ErnCodeIndex_Over1 As Integer = -1
+                    Dim ErnCodeIndex_Over3 As Integer = -1
+                    Dim ErnCodeIndex_E14 As Integer = -1
+                    Dim ErnCodeIndex_E35 As Integer = -1
+                    Dim ErnCodeIndex_E36 As Integer = -1
+
+                    Dim ErnCode4_Over1 As String = "E24"
+                    Dim ErnCode4_Over3 As String = "E26"
+                    Dim ErnCode4_E14 As String = "E14"
+                    Dim ErnCode4_E36 As String = "E36"
+                    Dim ErnCode4_E35 As String = "E35"
+
+                    Do While StopInput = False
+
+                        Application.DoEvents()
+
+                        EmpMapCode = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.COSTA_EmpMapCodes_COLNo).value)
+                        If EmpMapCode = "" Then
+                            Exit Do
+                        End If
+
+                        EmpCode = Global1.Business.FindEmployeeCodeFromTACode(EmpMapCode)
+                        If EmpCode = "" Then
+                            MsgBox("Cannot Find Employee with Time Attendance code: " & EmpMapCode)
+                        End If
+
+                        sUnitsValue = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.COSTA_Units_COLNo).value)
+                        If IsNumeric(sUnitsValue) Then
+                            UnitsValue = CDbl(sUnitsValue)
+                        Else
+                            UnitsValue = 0
+                        End If
+
+                        sOver1Value = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.COSTA_Overtime1_COLNo).value)
+                        If IsNumeric(sOver1Value) Then
+                            Over1Value = CDbl(sOver1Value)
+                        Else
+                            Over1Value = 0
+                        End If
+
+                        sOver3Value = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.COSTA_Overtime3_COLNo).value)
+                        If IsNumeric(sOver3Value) Then
+                            Over3Value = CDbl(sOver3Value)
+                        Else
+                            Over3Value = 0
+                        End If
+
+                        sE14Value = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.COSTA_E14_COLNo).value)
+                        If IsNumeric(sE14Value) Then
+                            E14Value = CDbl(sE14Value)
+                        Else
+                            E14Value = 0
+                        End If
+
+                        sE35Value = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.COSTA_E35_COLNo).value)
+                        If IsNumeric(sE35Value) Then
+                            E35Value = CDbl(sE35Value)
+                        Else
+                            E35Value = 0
+                        End If
+
+                        sE36Value = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.COSTA_E36_COLNo).value)
+                        If IsNumeric(sE36Value) Then
+                            E36Value = CDbl(sE36Value)
+                        Else
+                            E36Value = 0
+                        End If
+
+
+
+
+                        Dim k As Integer
+                        Dim j As Integer = 0
+                        Dim C1 As Integer = 0
+                        Dim C2 As Integer = 0
+
+                        For k = 0 To MyDs.Tables(0).Rows.Count - 1
+                            If MyDs.Tables(0).Rows(k).Item(2) = EmpCode Then
+                                If MyDs.Tables(0).Rows(k).Item(0) <> "CALC" And MyDs.Tables(0).Rows(k).Item(0) <> "POST" Then
+                                    If ErnCodeIndex_Over1 = -1 Then
+                                        'If Me.LFE_EDCType = "E" Then
+                                        For j = 0 To 14
+                                            If DbNullToString(MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1)) = "" Then
+                                                Exit For
+                                            End If
+                                            'If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = ErnCode4_Over1 Then
+                                            '    ErnCodeIndex_Over1 = Me.Column_EV1 + C1
+                                            'End If
+                                            'If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = ErnCode4_Over3 Then
+                                            '    ErnCodeIndex_Over3 = Me.Column_EV1 + C1
+                                            'End If
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = ErnCode4_E14 Then
+                                                ErnCodeIndex_E14 = Me.Column_EV1 + C1
+                                            End If
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = ErnCode4_E35 Then
+                                                ErnCodeIndex_E35 = Me.Column_EV1 + C1
+                                            End If
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = ErnCode4_E36 Then
+                                                ErnCodeIndex_E36 = Me.Column_EV1 + C1
+                                            End If
+                                            C1 = C1 + 2
+                                        Next
+                                        'End If
+                                    End If
+
+                                    MyDs.Tables(0).Rows(k).Item(Me.Column_ActualUnits) = UnitsValue
+                                    MyDs.Tables(0).Rows(k).Item(Me.Column_Overtime1) = Over1Value
+                                    MyDs.Tables(0).Rows(k).Item(Me.Column_Overtime3) = Over3Value
+                                    MyDs.Tables(0).Rows(k).Item(ErnCodeIndex_E14) = E14Value
+                                    MyDs.Tables(0).Rows(k).Item(ErnCodeIndex_E35) = E35Value
+                                    MyDs.Tables(0).Rows(k).Item(ErnCodeIndex_E36) = E36Value
+
+                                End If
+                            End If
+
+                        Next
+                        Counter = Counter + 1
+
+
+                    Loop
+
+                    MsgBox("File is uploaded", MsgBoxStyle.Information)
+
+                    xlWorkBook.Close()
+                    xlApp.Quit()
+                    releaseObject(xlApp)
+                    releaseObject(xlWorkBook)
+                    releaseObject(xlWorkSheet)
+
+
+                Catch ex As Exception
+                    Utils.ShowException(ex)
+                    MsgBox("Unable to Load File", MsgBoxStyle.Critical)
+                    xlWorkBook.Close()
+                    xlApp.Quit()
+                    releaseObject(xlApp)
+                    releaseObject(xlWorkBook)
+                    releaseObject(xlWorkSheet)
+                End Try
+            End If
+        End If
+
+        Cursor.Current = Cursors.Default
+
+    End Sub
+    Private Sub SelectCOSTAToImportFromTEXT()
+
+        Cursor.Current = Cursors.WaitCursor
+        If CheckDataSet(MyDs) Then
+            If COSTA_File <> "" Then
+                '''''''''''''
+
+                Dim i As Integer
+                Dim Line As String = String.Empty
+                Dim HeaderLine As String = String.Empty
+                Dim counter As Integer = 0
+                Dim LoadedOK As Boolean = False
+                Dim param_file As IO.StreamReader
+                Dim FileDir As String
+
+                Me.Refresh()
+
+                counter = 0
+                '''
+
+                Me.Refresh()
+
+                FileName = COSTA_File
+                Dim Exx As New Exception
+                param_file = IO.File.OpenText(FileName)
+                LoadedOK = False
+                Try
+                    Do While param_file.Peek <> -1
+                        Me.Refresh()
+                        counter = counter + 1
+                        Line = param_file.ReadLine()
+
+
+                        ''''''''''''''''''''''''''''''''
+
+
+                        Dim Ar() As String
+                        'Do While param_file.Peek <> -1
+                        Ar = Line.Split("	")
+                        counter = 0
+                        Dim StopInput As Boolean = False
+
+                        Dim ErrorM As String = ""
+
+                        Dim EmpCode As String
+                        Dim EmpMapCode As String
+
+
+                        Dim UnitsValue As Double
+                        Dim Over1Value As Double
+                        Dim Over3Value As Double
+                        Dim E14Value As Double
+                        Dim E35Value As Double
+                        Dim E36Value As Double
+
+                        Dim sUnitsValue As String
+                        Dim sOver1Value As String
+                        Dim sOver3Value As String
+                        Dim sE14Value As String
+                        Dim sE35Value As String
+                        Dim sE36Value As String
+
+
+
+                        counter = Me.COSTA_FirstLine
+
+                        Dim ErnCodeIndex_Over1 As Integer = -1
+                        Dim ErnCodeIndex_Over3 As Integer = -1
+                        Dim ErnCodeIndex_E14 As Integer = -1
+                        Dim ErnCodeIndex_E35 As Integer = -1
+                        Dim ErnCodeIndex_E36 As Integer = -1
+
+                        Dim ErnCode4_Over1 As String = "E24"
+                        Dim ErnCode4_Over3 As String = "E26"
+                        Dim ErnCode4_E14 As String = "E14"
+                        Dim ErnCode4_E36 As String = "E36"
+                        Dim ErnCode4_E35 As String = "E35"
+
+                        Application.DoEvents()
+
+                        EmpMapCode = NothingToEmpty(Ar(Me.COSTA_EmpMapCodes_COLNo))
+                        If EmpMapCode = "" Then
+                            Exit Do
+                        End If
+
+                        EmpCode = Global1.Business.FindEmployeeCodeFromTACode(EmpMapCode)
+                        If EmpCode = "" Then
+                            '     MsgBox("Cannot Find Employee with Time Attendance code: " & EmpMapCode)
+                        End If
+
+                        sUnitsValue = NothingToEmpty(Ar(Me.COSTA_Units_COLNo))
+                        If IsNumeric(sUnitsValue) Then
+                            UnitsValue = CDbl(sUnitsValue)
+                        Else
+                            UnitsValue = 0
+                        End If
+
+                        sOver1Value = NothingToEmpty(Ar(Me.COSTA_Overtime1_COLNo))
+                        If IsNumeric(sOver1Value) Then
+                            Over1Value = CDbl(sOver1Value)
+                        Else
+                            Over1Value = 0
+                        End If
+
+                        sOver3Value = NothingToEmpty(Ar(Me.COSTA_Overtime3_COLNo))
+                        If IsNumeric(sOver3Value) Then
+                            Over3Value = CDbl(sOver3Value)
+                        Else
+                            Over3Value = 0
+                        End If
+
+                        sE14Value = NothingToEmpty(Ar(Me.COSTA_E14_COLNo))
+                        If IsNumeric(sE14Value) Then
+                            E14Value = CDbl(sE14Value)
+                        Else
+                            E14Value = 0
+                        End If
+
+                        sE35Value = NothingToEmpty(Ar(Me.COSTA_E35_COLNo))
+                        If IsNumeric(sE35Value) Then
+                            E35Value = CDbl(sE35Value)
+                        Else
+                            E35Value = 0
+                        End If
+
+                        sE36Value = NothingToEmpty(Ar(Me.COSTA_E36_COLNo))
+                        If IsNumeric(sE36Value) Then
+                            E36Value = CDbl(sE36Value)
+                        Else
+                            E36Value = 0
+                        End If
+
+
+
+
+                        Dim k As Integer
+                        Dim j As Integer = 0
+                        Dim C1 As Integer = 0
+                        Dim C2 As Integer = 0
+
+                        For k = 0 To MyDs.Tables(0).Rows.Count - 1
+                            If MyDs.Tables(0).Rows(k).Item(2) = EmpCode Then
+                                If MyDs.Tables(0).Rows(k).Item(0) <> "CALC" And MyDs.Tables(0).Rows(k).Item(0) <> "POST" Then
+                                    If ErnCodeIndex_Over1 = -1 Then
+                                        'If Me.LFE_EDCType = "E" Then
+                                        For j = 0 To 14
+                                            If DbNullToString(MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1)) = "" Then
+                                                Exit For
+                                            End If
+                                            'If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = ErnCode4_Over1 Then
+                                            '    ErnCodeIndex_Over1 = Me.Column_EV1 + C1
+                                            'End If
+                                            'If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = ErnCode4_Over3 Then
+                                            '    ErnCodeIndex_Over3 = Me.Column_EV1 + C1
+                                            'End If
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = ErnCode4_E14 Then
+                                                ErnCodeIndex_E14 = Me.Column_EV1 + C1
+                                            End If
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = ErnCode4_E35 Then
+                                                ErnCodeIndex_E35 = Me.Column_EV1 + C1
+                                            End If
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = ErnCode4_E36 Then
+                                                ErnCodeIndex_E36 = Me.Column_EV1 + C1
+                                            End If
+                                            C1 = C1 + 2
+                                        Next
+                                        'End If
+                                    End If
+
+                                    MyDs.Tables(0).Rows(k).Item(Me.Column_ActualUnits) = UnitsValue
+                                    MyDs.Tables(0).Rows(k).Item(Me.Column_Overtime1) = Over1Value
+                                    MyDs.Tables(0).Rows(k).Item(Me.Column_Overtime3) = Over3Value
+                                    MyDs.Tables(0).Rows(k).Item(ErnCodeIndex_E14) = E14Value
+                                    MyDs.Tables(0).Rows(k).Item(ErnCodeIndex_E35) = E35Value
+                                    MyDs.Tables(0).Rows(k).Item(ErnCodeIndex_E36) = E36Value
+
+                                End If
+                            End If
+                        Next
+                        counter = counter + 1
+                    Loop
+
+                    MsgBox("File is uploaded", MsgBoxStyle.Information)
+
+                    param_file.Close()
+                    param_file.Dispose()
+
+
+                Catch ex As Exception
+                    Utils.ShowException(ex)
+                    MsgBox("Unable to Load File", MsgBoxStyle.Critical)
+                        MsgBox("Unable to Load Interface Line", MsgBoxStyle.Critical)
+                        param_file.Close()
+                        param_file.Dispose()
+                    End Try
+            End If
+        End If
+
+        Cursor.Current = Cursors.Default
+    End Sub
+
+    Private Sub TestOutlookToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TestOutlookToolStripMenuItem.Click
+        Global1.TESTOUTLOOK = True
+        EMAILScheduled = False
+        EMAILscheduledDatetime = Now
+        PrintPayslips(False, True, False)
+        Global1.TESTOUTLOOK = False
+    End Sub
 End Class

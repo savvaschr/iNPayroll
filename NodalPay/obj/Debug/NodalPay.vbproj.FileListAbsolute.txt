@@ -759,3 +759,4 @@ C:\Users\Admin\Documents\Visual Studio 2015\Projects\NodalPay - 2019\NodalPay\ob
 C:\Users\Admin\Documents\Visual Studio 2015\Projects\NodalPay - 2019\NodalPay\obj\Debug\NodalPay.frmPrAnScales3.resources
 C:\Users\Admin\Documents\Visual Studio 2015\Projects\NodalPay - 2019\NodalPay\obj\Debug\NodalPay.vbprojResolveAssemblyReference.cache
 C:\Users\Admin\Documents\Visual Studio 2015\Projects\NodalPay - 2019\NodalPay\obj\Debug\NodalPay.FrmSelectEmailMethod.resources
+C:\Users\Admin\Documents\Visual Studio 2015\Projects\NodalPay - 2019\NodalPay\obj\Debug\NodalPay.FrmLoadCOSTA.resources
