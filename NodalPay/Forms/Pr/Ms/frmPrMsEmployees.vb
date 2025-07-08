@@ -6729,5 +6729,11 @@ Public Class frmPrMsEmployees
         End If
     End Sub
 
+    Private Sub EmployeePositionsReportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EmployeePositionsReportToolStripMenuItem.Click
+        Dim ds As DataSet
+        Dim TemplateCode As String
+        TemplateCode = CType(cmbTemGrp_Code.SelectedItem, cPrMsTemplateGroup).Code
+        ds = Global1.Business.GetEmployeePositionHistoryFromTrxnHeader(TemplateCode)
 
+    End Sub
 End Class

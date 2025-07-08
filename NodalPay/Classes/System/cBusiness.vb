@@ -2218,7 +2218,9 @@ Public Class cBusiness
     Public Shadows Function RemoveFirstEmploymentFromAllActiveEmployees(TempGrpCode As String) As Boolean
         Return MyBase.RemoveFirstEmploymentFromAllActiveEmployees(TempGrpCode)
     End Function
-
+    Public Shadows Function GetEmployeePositionHistoryFromTrxnHeader(TemplateCode As String) As DataSet
+        Return MyBase.GetEmployeePositionHistoryFromTrxnHeader(TemplateCode)
+    End Function
 #End Region
 End Class
 

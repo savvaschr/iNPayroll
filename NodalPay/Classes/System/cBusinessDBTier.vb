@@ -19037,6 +19037,40 @@ todo:   ' check for status in trxnheader
         End If
         Return F
     End Function
+    Protected Function GetEmployeePositionHistoryFromTrxnHeader(TemplateCode As String) As DataSet
+        Dim Str As String
+        Str = " SELECT " &
+        "    changes.Emp_Code, " &
+        "    emp.Emp_Fullname, " &
+        "	emp.Emp_Status, " &
+        "    changes.TrxHdr_Date, " &
+        "    changes.TrxHdr_Position, " &
+        "    pos.EmpPos_DescriptionL " &
+        " FROM ( " &
+        "    SELECT  " &
+        "        Emp_Code, " &
+        "        TrxHdr_Date,  " &
+        "        TrxHdr_Position, " &
+        "        LAG(TrxHdr_Position) OVER ( " &
+        "            PARTITION BY Emp_Code  " &
+        "            ORDER BY TrxHdr_Date " &
+        "        ) AS prev_position " &
+        "    FROM PrTxTrxnHeader " &
+        " ) AS changes " &
+        " LEFT JOIN PrMsEmployees emp  " &
+        "    ON changes.Emp_Code COLLATE SQL_Latin1_General_CP1_CI_AI = emp.Emp_Code COLLATE SQL_Latin1_General_CP1_CI_AI " &
+        " LEFT JOIN PrAnEmployeePositions pos  " &
+        "    ON changes.TrxHdr_Position COLLATE SQL_Latin1_General_CP1_CI_AI = pos.EmpPos_Code COLLATE SQL_Latin1_General_CP1_CI_AI " &
+        " WHERE changes.TrxHdr_Position <> changes.prev_position " &
+        " and TemGrp_Code =" & enQuoteString(TemplateCode) &
+        "   Or changes.prev_position Is NULL " &
+        " ORDER BY changes.Emp_Code, changes.TrxHdr_Date "
+
+        Dim Ds As DataSet
+        Ds = GetData(Str)
+        Return Ds
+
+    End Function
     Private Sub AddPreviousHireOnRow(ByRef Ds As DataSet, ByVal r As DataRow, ByVal RehireCode As String)
         Dim Found As Boolean = False
         Dim Msg As String
@@ -19148,7 +19182,7 @@ todo:   ' check for status in trxnheader
 
             End With
         Else
-            MsgBox("Cannot find employee with rehire code " & msg)
+            MsgBox("Cannot find employee With rehire code " & msg)
         End If
 
 
@@ -19163,7 +19197,7 @@ todo:   ' check for status in trxnheader
         Dim Loader As New cExcelLoader
 
 
-        Loader.PrintFooter = " Printed At:" & Format(Now, "yyyy-MM-dd hh:mm:ss")
+        Loader.PrintFooter = " Printed At" & Format(Now, "yyyy-MM-dd hh:mm : ss")
         Loader.LoadIntoExcel(DsX, HeaderStr, HeaderSize)
 
     End Sub
@@ -19304,24 +19338,24 @@ todo:   ' check for status in trxnheader
         '''''''''''''''''
         Dim TempGroup As New cPrMsTemplateGroup(PerGrp.TemGrpCode)
 
-        Str = " SELECT Emp_Code," & _
-        " Emp_FullName," & _
-        " Emp_Address1," & _
-        " Emp_Address2," & _
-        " Emp_Address3," & _
-        " Emp_PostCode," & _
-        " Emp_TaxID," & _
+        Str = " Select Emp_Code, " & _
+        " Emp_FullName, " & _
+        " Emp_Address1, " & _
+        " Emp_Address2, " & _
+        " Emp_Address3, " & _
+        " Emp_PostCode, " & _
+        " Emp_TaxID, " & _
         " Emp_TerminateDate, " & _
-        " Emp_StartDate," & _
-        " Emp_LastName," & _
-        " Emp_FirstName," & _
-        " Emp_PassportNumber," & _
-        " Emp_IdentificationCard," & _
-        " Emp_AlienNumber," & _
-        " Emp_SocialInsNumber," & _
-        " TicTyp_Code," & _
+        " Emp_StartDate, " & _
+        " Emp_LastName, " & _
+        " Emp_FirstName, " & _
+        " Emp_PassportNumber, " & _
+        " Emp_IdentificationCard, " & _
+        " Emp_AlienNumber, " & _
+        " Emp_SocialInsNumber, " & _
+        " TicTyp_Code, " & _
         " Emp_DrivingLicense, " & _
-        " Emp_PensionNo," & _
+        " Emp_PensionNo, " & _
         " Emp_PensionType, " & _
         " Emp_socialinsnumber, " & _
         " Emp_OtherIncome1 " & _
@@ -19332,10 +19366,10 @@ todo:   ' check for status in trxnheader
         " AdMsCompany ON " & _
         " PrMsTemplateGroup.Com_Code = AdMsCompany.Com_Code" & _
         " WHERE (AdMsCompany.Com_Code = " & enQuoteString(TempGroup.CompanyCode) & ")" & _
-        " AND (emp_startdate < " & enQuoteString(SYear) & ")"
+        " And (emp_startdate < " & enQuoteString(SYear) & ")"
         If FromCode <> "" Or ToCode <> "" Then
-            Str2 = " AND (Emp_Code >= " & enQuoteString(FromCode) & _
-                 " AND Emp_Code <= " & enQuoteString(ToCode) & ")"
+            Str2 = " And (Emp_Code >= " & enQuoteString(FromCode) & _
+                 " And Emp_Code <= " & enQuoteString(ToCode) & ")"
         End If
         Str = Str & Str2
 
@@ -19368,7 +19402,7 @@ todo:   ' check for status in trxnheader
                         R(C_LeaveDate) = Format(CDate(T), "dd/MM/yyyy")
 
                     Catch ex As Exception
-                        MsgBox("Error on Employee with Code " & EmpCode & " Leave date is invalid", MsgBoxStyle.Critical)
+                        MsgBox("Error on Employee with Code " & EmpCode & " Leave date Is invalid", MsgBoxStyle.Critical)
                         Ds.Tables.Clear()
                         Exit Function
 
@@ -19423,7 +19457,7 @@ todo:   ' check for status in trxnheader
                 End If
                 If Not Found Then
                     If ShowMessages Then
-                        MsgBox("Employee with Code " & EmpCode & " Does not have a Valid Tax Identification Type, Valid types are 1,3,4 and 7")
+                        MsgBox("Employee with Code " & EmpCode & " Does Not have a Valid Tax Identification Type, Valid types are 1,3,4 And 7")
                         Ds.Tables.Clear()
                         Exit Function
                     End If
@@ -19442,7 +19476,7 @@ todo:   ' check for status in trxnheader
                 " INNER JOIN " & _
                 " AdMsCompany ON PrMsTemplateGroup.Com_Code = AdMsCompany.Com_Code " & _
                 " WHERE (PrMsTemplateGroup.Com_Code = " & enQuoteString(TempGroup.CompanyCode) & ")  " & _
-                " AND (PrMsPeriodGroups.PrdGpr_Year = " & PerGrp.Year & ") "
+                " And (PrMsPeriodGroups.PrdGpr_Year = " & PerGrp.Year & ") "
                 DsPerPerCom = GetData(StrX)
 
                 Dim f As Integer
@@ -19453,11 +19487,11 @@ todo:   ' check for status in trxnheader
                     For f = 0 To DsPerPerCom.Tables(0).Rows.Count - 1
                         TempPer = DsPerPerCom.Tables(0).Rows(f).Item(0)
                         If f = 0 Then
-                            StrPeriodGroupCodes = " AND ((PrdGrp_Code =  " & enQuoteString(TempPer) & ")"
-                            StrPeriodGroupCodes2 = " AND ((PrTxTrxnHeader.PrdGrp_Code =  " & enQuoteString(TempPer) & ")"
+                            StrPeriodGroupCodes = " And ((PrdGrp_Code =  " & enQuoteString(TempPer) & ")"
+                            StrPeriodGroupCodes2 = " And ((PrTxTrxnHeader.PrdGrp_Code =  " & enQuoteString(TempPer) & ")"
                         Else
-                            StrPeriodGroupCodes = StrPeriodGroupCodes & " OR (PrdGrp_Code =  " & enQuoteString(TempPer) & ")"
-                            StrPeriodGroupCodes2 = StrPeriodGroupCodes2 & " OR (PrTxTrxnHeader.PrdGrp_Code =  " & enQuoteString(TempPer) & ")"
+                            StrPeriodGroupCodes = StrPeriodGroupCodes & " Or (PrdGrp_Code =  " & enQuoteString(TempPer) & ")"
+                            StrPeriodGroupCodes2 = StrPeriodGroupCodes2 & " Or (PrTxTrxnHeader.PrdGrp_Code =  " & enQuoteString(TempPer) & ")"
                         End If
                     Next
                     StrPeriodGroupCodes = StrPeriodGroupCodes & ")"
@@ -19480,238 +19514,238 @@ todo:   ' check for status in trxnheader
                     " PrSsDeductionTypes ON" & _
                     " PrMsDeductionCodes.DedTyp_Code = PrSsDeductionTypes.DedTyp_Code" & _
                     " WHERE (PrTxTrxnHeader.Emp_Code = " & enQuoteString(EmpCode) & ")" & _
-                    " AND (PrSsDeductionTypes.DedTyp_Code = 'EX')"
+                    " And (PrSsDeductionTypes.DedTyp_Code = 'EX')"
 
                 StrSP1 = StrSP1 + StrPeriodGroupCodes2
 
-                StrSP2 = " SELECT SUM(PrTxTrxnLines.TrxLin_PeriodValue)" & _
-                    " FROM PrTxTrxnHeader INNER JOIN" & _
-                    " PrTxTrxnLines ON" & _
-                    " PrTxTrxnHeader.TrxHdr_Id = PrTxTrxnLines.TrxHdr_Id INNER JOIN" & _
-                    " PrMsContributionCodes ON" & _
-                    " PrTxTrxnLines.ConCod_Code = PrMsContributionCodes.ConCod_Code INNER JOIN" & _
-                    " PrSsContributionTypes ON" & _
-                    " PrMsContributionCodes.ConTyp_Code = PrSsContributionTypes.ConTyp_Code" & _
-                    " WHERE (PrTxTrxnHeader.Emp_Code = " & enQuoteString(EmpCode) & ")" & _
+        StrSP2 = " SELECT SUM(PrTxTrxnLines.TrxLin_PeriodValue)" &
+                    " FROM PrTxTrxnHeader INNER JOIN" &
+                    " PrTxTrxnLines ON" &
+                    " PrTxTrxnHeader.TrxHdr_Id = PrTxTrxnLines.TrxHdr_Id INNER JOIN" &
+                    " PrMsContributionCodes ON" &
+                    " PrTxTrxnLines.ConCod_Code = PrMsContributionCodes.ConCod_Code INNER JOIN" &
+                    " PrSsContributionTypes ON" &
+                    " PrMsContributionCodes.ConTyp_Code = PrSsContributionTypes.ConTyp_Code" &
+                    " WHERE (PrTxTrxnHeader.Emp_Code = " & enQuoteString(EmpCode) & ")" &
                     " AND (PrSsContributionTypes.ConTyp_Code = 'EX')"
 
-                StrSP2 = StrSP2 + StrPeriodGroupCodes2
+        StrSP2 = StrSP2 + StrPeriodGroupCodes2
 
-                DsSpecialTaxDed = GetData(StrSP1)
-                DsSpecialTaxCon = GetData(StrSP2)
-                Dim SPTaxDed As Double = 0
-                Dim SPTaxCon As Double = 0
+        DsSpecialTaxDed = GetData(StrSP1)
+        DsSpecialTaxCon = GetData(StrSP2)
+        Dim SPTaxDed As Double = 0
+        Dim SPTaxCon As Double = 0
 
-                If CheckDataSet(DsSpecialTaxDed) Then
-                    SPTaxDed = DbNullToDouble(DsSpecialTaxDed.Tables(0).Rows(0).Item(0))
-                End If
-                If CheckDataSet(DsSpecialTaxCon) Then
-                    SPTaxCon = DbNullToDouble(DsSpecialTaxCon.Tables(0).Rows(0).Item(0))
-                End If
+        If CheckDataSet(DsSpecialTaxDed) Then
+            SPTaxDed = DbNullToDouble(DsSpecialTaxDed.Tables(0).Rows(0).Item(0))
+        End If
+        If CheckDataSet(DsSpecialTaxCon) Then
+            SPTaxCon = DbNullToDouble(DsSpecialTaxCon.Tables(0).Rows(0).Item(0))
+        End If
 
-                R(C_STDeduction) = SPTaxDed
-                R(C_STContribution) = SPTaxCon
-
-
-                Dim DsGrossEarnings As DataSet
-                Dim DsTaxableEarnings As DataSet
+        R(C_STDeduction) = SPTaxDed
+        R(C_STContribution) = SPTaxCon
 
 
-                Str = " SELECT SUM(TrxHdr_TotalErnPeriod)" & _
-                      " FROM  PrTxTrxnHeader" & _
+        Dim DsGrossEarnings As DataSet
+        Dim DsTaxableEarnings As DataSet
+
+
+        Str = " SELECT SUM(TrxHdr_TotalErnPeriod)" &
+                      " FROM  PrTxTrxnHeader" &
                       " WHERE (Emp_Code = " & enQuoteString(EmpCode) & ")"
-                Str = Str & StrPeriodGroupCodes
-                DsGrossEarnings = GetData(Str)
+        Str = Str & StrPeriodGroupCodes
+        DsGrossEarnings = GetData(Str)
 
-                Str = " SELECT SUM(TrxHdr_TaxableIncome)" & _
-                      " FROM  PrTxTrxnHeader" & _
+        Str = " SELECT SUM(TrxHdr_TaxableIncome)" &
+                      " FROM  PrTxTrxnHeader" &
                       " WHERE (Emp_Code = " & enQuoteString(EmpCode) & ")"
-                Str = Str & StrPeriodGroupCodes
-                DsTaxableEarnings = GetData(Str)
+        Str = Str & StrPeriodGroupCodes
+        DsTaxableEarnings = GetData(Str)
 
-                Dim NonTaxable As Double
-                NonTaxable = FindNonTaxableTotalForTemplateGroupForEmployee(TempGroup.Code, PerGrp.Code, EmpCode)
+        Dim NonTaxable As Double
+        NonTaxable = FindNonTaxableTotalForTemplateGroupForEmployee(TempGroup.Code, PerGrp.Code, EmpCode)
 
-                Dim DsSILeave As DataSet
-                'DsSILeave = Me.FindSILeaveTotalIR632(PerGrp.TemGrpCode, PerGrp.Code, EmpCode)
-                DsSILeave = Me.FindSILeaveTotalIR63_2Groups(PerGrp.TemGrpCode, StrPeriodGroupCodes, EmpCode)
-                Dim SILeaveValue As Double = 0
-                If CheckDataSet(DsSILeave) Then
-                    SILeaveValue = DbNullToDouble(DsSILeave.Tables(0).Rows(0).Item(0))
-                    If SILeaveValue <> 0 Then
-                        ' MsgBox(1)
-                    End If
-                End If
+        Dim DsSILeave As DataSet
+        'DsSILeave = Me.FindSILeaveTotalIR632(PerGrp.TemGrpCode, PerGrp.Code, EmpCode)
+        DsSILeave = Me.FindSILeaveTotalIR63_2Groups(PerGrp.TemGrpCode, StrPeriodGroupCodes, EmpCode)
+        Dim SILeaveValue As Double = 0
+        If CheckDataSet(DsSILeave) Then
+            SILeaveValue = DbNullToDouble(DsSILeave.Tables(0).Rows(0).Item(0))
+            If SILeaveValue <> 0 Then
+                ' MsgBox(1)
+            End If
+        End If
 
-                Dim DsBenefitsInKind As DataSet
-                DsBenefitsInKind = Me.FindBenefitsInKindTotalIR63_2Groups(PerGrp.TemGrpCode, StrPeriodGroupCodes, EmpCode)
-                Dim BenefitsInKind As Double = 0
-                If CheckDataSet(DsBenefitsInKind) Then
-                    BenefitsInKind = DbNullToDouble(DsBenefitsInKind.Tables(0).Rows(0).Item(0))
-                    If BenefitsInKind <> 0 Then
-                        ' MsgBox(1)
-                    End If
-                End If
-
-
-
-                LocalErn = DbNullToDouble(DsGrossEarnings.Tables(0).Rows(0).Item(0)) - NonTaxable + SILeaveValue + BenefitsInKind
-
-                'LocalErn = RoundMe3(LocalErn, 0)
-
-                R(C_Local) = LocalErn
+        Dim DsBenefitsInKind As DataSet
+        DsBenefitsInKind = Me.FindBenefitsInKindTotalIR63_2Groups(PerGrp.TemGrpCode, StrPeriodGroupCodes, EmpCode)
+        Dim BenefitsInKind As Double = 0
+        If CheckDataSet(DsBenefitsInKind) Then
+            BenefitsInKind = DbNullToDouble(DsBenefitsInKind.Tables(0).Rows(0).Item(0))
+            If BenefitsInKind <> 0 Then
+                ' MsgBox(1)
+            End If
+        End If
 
 
 
+        LocalErn = DbNullToDouble(DsGrossEarnings.Tables(0).Rows(0).Item(0)) - NonTaxable + SILeaveValue + BenefitsInKind
 
-                AbroadErn = "0.00"
-                R(C_Abroad) = AbroadErn
-                Allowances = RoundMe3(DbNullToDouble(DsEmp.Tables(0).Rows(i).Item(20)), 2)
+        'LocalErn = RoundMe3(LocalErn, 0)
 
-                R(C_Allowances) = Allowances
-
-                TotalErn = LocalErn + AbroadErn + Allowances
-                R(C_Total456) = TotalErn
+        R(C_Local) = LocalErn
 
 
 
-                Dim DsSI As DataSet = GetSumsOfEmployeeDeductions_IR7("SI", EmpCode, StrPeriodGroupCodes)
-                SI = RoundMe3(DbNullToDouble(DsSI.Tables(0).Rows(0).Item(0)), 0)
-                R(C_SI) = SI
 
-                Dim DsPF As DataSet = GetSumsOfEmployeeDeductions_IR7("PF", EmpCode, StrPeriodGroupCodes)
-                PF = RoundMe3(DbNullToDouble(DsPF.Tables(0).Rows(0).Item(0)), 0)
-                R(C_PF) = PF
+        AbroadErn = "0.00"
+        R(C_Abroad) = AbroadErn
+        Allowances = RoundMe3(DbNullToDouble(DsEmp.Tables(0).Rows(i).Item(20)), 2)
 
-                Dim DsMF As DataSet = GetSumsOfEmployeeDeductions_IR7("MF", EmpCode, StrPeriodGroupCodes)
-                MF = RoundMe3(DbNullToDouble(DsMF.Tables(0).Rows(0).Item(0)), 0)
-                R(C_MF) = MF
+        R(C_Allowances) = Allowances
+
+        TotalErn = LocalErn + AbroadErn + Allowances
+        R(C_Total456) = TotalErn
 
 
-                Dim DsU2 As DataSet = GetSumsOfEmployeeDeductions_IR7("U2", EmpCode, StrPeriodGroupCodes)
-                Dim DsU3 As DataSet = GetSumsOfEmployeeDeductions_IR7("U3", EmpCode, StrPeriodGroupCodes)
-                Dim DsUS As DataSet = GetSumsOfEmployeeDeductions_IR7("US", EmpCode, StrPeriodGroupCodes)
-                Dim U As Double = 0
-                U = U + DbNullToDouble(DsU2.Tables(0).Rows(0).Item(0))
-                U = U + DbNullToDouble(DsU3.Tables(0).Rows(0).Item(0))
-                U = U + DbNullToDouble(DsUS.Tables(0).Rows(0).Item(0))
-                Union = 0
-                Union = RoundMe3(U, 2)
 
-                R(C_UNION) = Union
+        Dim DsSI As DataSet = GetSumsOfEmployeeDeductions_IR7("SI", EmpCode, StrPeriodGroupCodes)
+        SI = RoundMe3(DbNullToDouble(DsSI.Tables(0).Rows(0).Item(0)), 0)
+        R(C_SI) = SI
 
-                'FindEmployeeSalaryPeriods
-                Dim NoOfSalary As Integer
-                NoOfSalary = Global1.Business.GetNumberOfTotalPeriodsFOREmployee(EmpCode, PerGrp.Year)
-                R(C_salaryPeriods) = NoOfSalary
+        Dim DsPF As DataSet = GetSumsOfEmployeeDeductions_IR7("PF", EmpCode, StrPeriodGroupCodes)
+        PF = RoundMe3(DbNullToDouble(DsPF.Tables(0).Rows(0).Item(0)), 0)
+        R(C_PF) = PF
 
-                '
-                Life_Other = 0
-                OtherDisc = 0
+        Dim DsMF As DataSet = GetSumsOfEmployeeDeductions_IR7("MF", EmpCode, StrPeriodGroupCodes)
+        MF = RoundMe3(DbNullToDouble(DsMF.Tables(0).Rows(0).Item(0)), 0)
+        R(C_MF) = MF
 
-                If Global1.GLB_IR7Discounts = 0 Then
-                    '------------------------------------
-                    ''''''Discounts from Header''''''''''
-                    '------------------------------------
-                    Dim DsDiscounts As DataSet
-                    Str = " Select SUM(TrxHdr_LifeInsurance)," & _
-                          " SUM(TrxHdr_Discounts+TrxHdr_FE)" & _
-                          " FROM  PrTxTrxnHeader" & _
+
+        Dim DsU2 As DataSet = GetSumsOfEmployeeDeductions_IR7("U2", EmpCode, StrPeriodGroupCodes)
+        Dim DsU3 As DataSet = GetSumsOfEmployeeDeductions_IR7("U3", EmpCode, StrPeriodGroupCodes)
+        Dim DsUS As DataSet = GetSumsOfEmployeeDeductions_IR7("US", EmpCode, StrPeriodGroupCodes)
+        Dim U As Double = 0
+        U = U + DbNullToDouble(DsU2.Tables(0).Rows(0).Item(0))
+        U = U + DbNullToDouble(DsU3.Tables(0).Rows(0).Item(0))
+        U = U + DbNullToDouble(DsUS.Tables(0).Rows(0).Item(0))
+        Union = 0
+        Union = RoundMe3(U, 2)
+
+        R(C_UNION) = Union
+
+        'FindEmployeeSalaryPeriods
+        Dim NoOfSalary As Integer
+        NoOfSalary = Global1.Business.GetNumberOfTotalPeriodsFOREmployee(EmpCode, PerGrp.Year)
+        R(C_salaryPeriods) = NoOfSalary
+
+        '
+        Life_Other = 0
+        OtherDisc = 0
+
+        If Global1.GLB_IR7Discounts = 0 Then
+            '------------------------------------
+            ''''''Discounts from Header''''''''''
+            '------------------------------------
+            Dim DsDiscounts As DataSet
+            Str = " Select SUM(TrxHdr_LifeInsurance)," &
+                          " SUM(TrxHdr_Discounts+TrxHdr_FE)" &
+                          " FROM  PrTxTrxnHeader" &
                           " WHERE (Emp_Code = " & enQuoteString(EmpCode) & ")"
-                    Str = Str & StrPeriodGroupCodes
+            Str = Str & StrPeriodGroupCodes
 
-                    DsDiscounts = GetData(Str)
-                    LifeInsurance = DbNullToDouble(DsDiscounts.Tables(0).Rows(0).Item(0))
-                    OtherDisc = DbNullToDouble(DsDiscounts.Tables(0).Rows(0).Item(1))
+            DsDiscounts = GetData(Str)
+            LifeInsurance = DbNullToDouble(DsDiscounts.Tables(0).Rows(0).Item(0))
+            OtherDisc = DbNullToDouble(DsDiscounts.Tables(0).Rows(0).Item(1))
 
-                    'Life_Other = RoundMe3(LifeInsurance + OtherDisc, 2)
-                    Life_Other = RoundMe3(OtherDisc, 2)
-                Else
-                    '------------------------------------
-                    ''''''Discounts from Header''''''''''
-                    '------------------------------------
-                    Dim DsDiscounts
-                    DsDiscounts = GetSumsOfEmployeeDiscounts_IR7(EmpCode, StrPeriodGroupCodes)
-                    If CheckDataSet(DsDiscounts) Then
-                        OtherDisc = DbNullToDouble(DsDiscounts.Tables(0).Rows(0).Item(0))
-                    End If
+            'Life_Other = RoundMe3(LifeInsurance + OtherDisc, 2)
+            Life_Other = RoundMe3(OtherDisc, 2)
+        Else
+            '------------------------------------
+            ''''''Discounts from Header''''''''''
+            '------------------------------------
+            Dim DsDiscounts
+            DsDiscounts = GetSumsOfEmployeeDiscounts_IR7(EmpCode, StrPeriodGroupCodes)
+            If CheckDataSet(DsDiscounts) Then
+                OtherDisc = DbNullToDouble(DsDiscounts.Tables(0).Rows(0).Item(0))
+            End If
 
-                    Life_Other = RoundMe3(OtherDisc, 2)
+            Life_Other = RoundMe3(OtherDisc, 2)
 
-                End If
-                LifeIns = RoundMe3(LifeInsurance, 2)
+        End If
+        LifeIns = RoundMe3(LifeInsurance, 2)
 
-                '''''''''''''''''''''''''''''''''''''
-                '------------------------------------
-                '''''''''''''''''''''''''''''''''''''
-                Life_Other = Life_Other + SPTaxDed
+        '''''''''''''''''''''''''''''''''''''
+        '------------------------------------
+        '''''''''''''''''''''''''''''''''''''
+        Life_Other = Life_Other + SPTaxDed
 
-                R(C_OtherDisc) = Life_Other
-
-
-                'TotalDisc = SI + PF + MF + Union + Life_Other 
-                TotalDisc = SI + PF + MF + Union + Life_Other + LifeIns
-
-                R(C_TotalDisc) = TotalDisc
-                R(C_LifeInsurance) = LifeIns
-
-                Dim Taxable As Double
-                Taxable = RoundMe3(DbNullToDouble(DsTaxableEarnings.Tables(0).Rows(0).Item(0)), 0)
-                'R(C_Taxable) = TotalErn - TotalDisc
-                Taxable = Taxable - TotalDisc + Allowances
-                ''''''''''''''''''''''''''''''''''''''''''
-                'Change Action Pension
-                ''''''''''''''''''''''''''''''''''''''''''
-                If Taxable <> TotalErn - TotalDisc Then
-                    Taxable = TotalErn - TotalDisc
-                End If
-                ''''''''''''''''''''''''''''''''''''''''''
-
-                R(C_Taxable) = Taxable
+        R(C_OtherDisc) = Life_Other
 
 
-                Dim DsIT As DataSet = GetSumsOfEmployeeDeductions_IR7("IT", EmpCode, StrPeriodGroupCodes)
-                R(C_IT) = DbNullToDouble(DsIT.Tables(0).Rows(0).Item(0))
+        'TotalDisc = SI + PF + MF + Union + Life_Other 
+        TotalDisc = SI + PF + MF + Union + Life_Other + LifeIns
 
-                Str = " SELECT count(*)" & _
-                      " FROM  PrTxTrxnHeader" & _
+        R(C_TotalDisc) = TotalDisc
+        R(C_LifeInsurance) = LifeIns
+
+        Dim Taxable As Double
+        Taxable = RoundMe3(DbNullToDouble(DsTaxableEarnings.Tables(0).Rows(0).Item(0)), 0)
+        'R(C_Taxable) = TotalErn - TotalDisc
+        Taxable = Taxable - TotalDisc + Allowances
+        ''''''''''''''''''''''''''''''''''''''''''
+        'Change Action Pension
+        ''''''''''''''''''''''''''''''''''''''''''
+        If Taxable <> TotalErn - TotalDisc Then
+            Taxable = TotalErn - TotalDisc
+        End If
+        ''''''''''''''''''''''''''''''''''''''''''
+
+        R(C_Taxable) = Taxable
+
+
+        Dim DsIT As DataSet = GetSumsOfEmployeeDeductions_IR7("IT", EmpCode, StrPeriodGroupCodes)
+        R(C_IT) = DbNullToDouble(DsIT.Tables(0).Rows(0).Item(0))
+
+        Str = " SELECT count(*)" &
+                      " FROM  PrTxTrxnHeader" &
                       " WHERE (Emp_Code = " & enQuoteString(EmpCode) & ")"
-                Str = Str & StrPeriodGroupCodes
-                Dim DsCount As DataSet
-                DsCount = GetData(Str)
-                If CheckDataSet(DsCount) Then
-                    If DbNullToInt(DsCount.Tables(0).Rows(0).Item(0)) <> 0 Then
-                        dt.Rows.Add(R)
-                    End If
-                End If
-            Next
+        Str = Str & StrPeriodGroupCodes
+        Dim DsCount As DataSet
+        DsCount = GetData(Str)
+        If CheckDataSet(DsCount) Then
+            If DbNullToInt(DsCount.Tables(0).Rows(0).Item(0)) <> 0 Then
+                dt.Rows.Add(R)
+            End If
+        End If
+        Next
 
-            Dim DsComp As DataSet
-            Str = " SELECT AdMsCompany.Com_Name," & _
-                " AdMsCompany.Com_TIC," & _
-                " AdMsCompany.Com_Address1," & _
-                " AdMsCompany.Com_Address2, " & _
-                " AdMsCompany.Com_Address3," & _
-                " AdMsCompany.Com_Address4," & _
-                " AdMsCompany.Com_AccountantTitle," & _
-                " PrMsTemplateGroup.TemGrp_Code" & _
-                " FROM AdMsCompany INNER JOIN" & _
-                " PrMsTemplateGroup ON " & _
-                " AdMsCompany.Com_Code = PrMsTemplateGroup.Com_Code" & _
+        Dim DsComp As DataSet
+        Str = " SELECT AdMsCompany.Com_Name," &
+                " AdMsCompany.Com_TIC," &
+                " AdMsCompany.Com_Address1," &
+                " AdMsCompany.Com_Address2, " &
+                " AdMsCompany.Com_Address3," &
+                " AdMsCompany.Com_Address4," &
+                " AdMsCompany.Com_AccountantTitle," &
+                " PrMsTemplateGroup.TemGrp_Code" &
+                " FROM AdMsCompany INNER JOIN" &
+                " PrMsTemplateGroup ON " &
+                " AdMsCompany.Com_Code = PrMsTemplateGroup.Com_Code" &
                 " WHERE (PrMsTemplateGroup.TemGrp_Code = " & enQuoteString(PerGrp.TemGrpCode) & ")"
 
-            DsComp = GetData(Str)
-            Ds.Tables.Add(DsComp.Tables(0).Copy)
-            Ds.Tables(1).TableName = "CompanyDetails"
+        DsComp = GetData(Str)
+        Ds.Tables.Add(DsComp.Tables(0).Copy)
+        Ds.Tables(1).TableName = "CompanyDetails"
 
-            Dim DsYear As DataSet
-            Str = " SELECT PrdGpr_Year" & _
-                  " FROM PrMsPeriodGroups" & _
+        Dim DsYear As DataSet
+        Str = " SELECT PrdGpr_Year" &
+                  " FROM PrMsPeriodGroups" &
                   " where PrdGrp_Code=" & enQuoteString(PerGrp.Code)
 
-            DsYear = GetData(Str)
-            Ds.Tables.Add(DsYear.Tables(0).Copy)
-            Ds.Tables(2).TableName = "Year"
+        DsYear = GetData(Str)
+        Ds.Tables.Add(DsYear.Tables(0).Copy)
+        Ds.Tables(2).TableName = "Year"
 
         End If
 
