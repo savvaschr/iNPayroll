@@ -6734,6 +6734,28 @@ Public Class frmPrMsEmployees
         Dim TemplateCode As String
         TemplateCode = CType(cmbTemGrp_Code.SelectedItem, cPrMsTemplateGroup).Code
         ds = Global1.Business.GetEmployeePositionHistoryFromTrxnHeader(TemplateCode)
+        If CheckDataSet(ds) Then
+            Dim HeaderStr As New ArrayList
+            Dim HeaderSize As New ArrayList
+            Dim Loader As New cExcelLoader
+
+
+
+            HeaderStr.Add("Employee Code")
+            HeaderStr.Add("Employee Name")
+            HeaderStr.Add("Status")
+            HeaderStr.Add("Date")
+            HeaderStr.Add("Position Code")
+            HeaderStr.Add("Position")
+
+            HeaderSize.Add(16)
+            HeaderSize.Add(50)
+            HeaderSize.Add(10)
+            HeaderSize.Add(20)
+            HeaderSize.Add(50)
+
+            Loader.LoadIntoExcel(ds, HeaderStr, HeaderSize)
+        End If
 
     End Sub
 End Class
