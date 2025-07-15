@@ -1,4 +1,4 @@
-cd "C:\NodalWin"
-del atestdb.bak
-cd "C:\Program Files\Microsoft SQL Server\110\Tools\Binn"
-SqlCmd -S DESKTOP-TS1J7BD -Q "Backup Database insoft To Disk='C:\nodalwin\atestdb.bak'"
+cd "C:\NodalWin\DB"
+del NodPrLax.bak
+cd "C:\Program Files\Microsoft SQL Server\150\Tools\Binn"
+SqlCmd -S FILESERVER -Q "Backup Database NodPrLax To Disk='C:\nodalwin\DB\NodPrLax.bak'"

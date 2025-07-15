@@ -49,160 +49,180 @@ Partial Class FrmExcelsysWebServices
         Me.Label11 = New System.Windows.Forms.Label()
         Me.txtEmployeeCode = New System.Windows.Forms.TextBox()
         Me.btnSendPayslip = New System.Windows.Forms.Button()
+        Me.SyncFromDate = New System.Windows.Forms.DateTimePicker()
+        Me.Label12 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'ToolStrip1
         '
+        Me.ToolStrip1.ImageScalingSize = New System.Drawing.Size(20, 20)
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
-        Me.ToolStrip1.Size = New System.Drawing.Size(524, 25)
+        Me.ToolStrip1.Size = New System.Drawing.Size(699, 25)
         Me.ToolStrip1.TabIndex = 69
         Me.ToolStrip1.Text = "ToolStrip1"
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(350, 446)
+        Me.Button1.Location = New System.Drawing.Point(467, 549)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(143, 47)
+        Me.Button1.Size = New System.Drawing.Size(191, 58)
         Me.Button1.TabIndex = 70
         Me.Button1.Text = "Get Data From Exelsys"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'txtEXLLogin
         '
-        Me.txtEXLLogin.Location = New System.Drawing.Point(164, 47)
+        Me.txtEXLLogin.Location = New System.Drawing.Point(219, 58)
+        Me.txtEXLLogin.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtEXLLogin.Name = "txtEXLLogin"
         Me.txtEXLLogin.ReadOnly = True
-        Me.txtEXLLogin.Size = New System.Drawing.Size(329, 20)
+        Me.txtEXLLogin.Size = New System.Drawing.Size(437, 22)
         Me.txtEXLLogin.TabIndex = 71
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(22, 50)
+        Me.Label1.Location = New System.Drawing.Point(29, 62)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(71, 13)
+        Me.Label1.Size = New System.Drawing.Size(94, 17)
         Me.Label1.TabIndex = 72
         Me.Label1.Text = "Exelsys Login"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(22, 76)
+        Me.Label2.Location = New System.Drawing.Point(29, 94)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(91, 13)
+        Me.Label2.Size = New System.Drawing.Size(120, 17)
         Me.Label2.TabIndex = 74
         Me.Label2.Text = "Exelsys Password"
         '
         'txtEXLPass
         '
-        Me.txtEXLPass.Location = New System.Drawing.Point(164, 73)
+        Me.txtEXLPass.Location = New System.Drawing.Point(219, 90)
+        Me.txtEXLPass.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtEXLPass.Name = "txtEXLPass"
         Me.txtEXLPass.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtEXLPass.ReadOnly = True
-        Me.txtEXLPass.Size = New System.Drawing.Size(329, 20)
+        Me.txtEXLPass.Size = New System.Drawing.Size(437, 22)
         Me.txtEXLPass.TabIndex = 73
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(22, 102)
+        Me.Label3.Location = New System.Drawing.Point(29, 126)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(89, 13)
+        Me.Label3.Size = New System.Drawing.Size(118, 17)
         Me.Label3.TabIndex = 76
         Me.Label3.Text = "Exelsys Company"
         '
         'txtEXLCompany
         '
-        Me.txtEXLCompany.Location = New System.Drawing.Point(164, 99)
+        Me.txtEXLCompany.Location = New System.Drawing.Point(219, 122)
+        Me.txtEXLCompany.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtEXLCompany.Name = "txtEXLCompany"
         Me.txtEXLCompany.ReadOnly = True
-        Me.txtEXLCompany.Size = New System.Drawing.Size(329, 20)
+        Me.txtEXLCompany.Size = New System.Drawing.Size(437, 22)
         Me.txtEXLCompany.TabIndex = 75
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(22, 128)
+        Me.Label4.Location = New System.Drawing.Point(29, 158)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(133, 13)
+        Me.Label4.Size = New System.Drawing.Size(178, 17)
         Me.Label4.TabIndex = 78
         Me.Label4.Text = "Exelsys Employee Fill Type"
         '
         'txtEXLFillType
         '
-        Me.txtEXLFillType.Location = New System.Drawing.Point(164, 125)
+        Me.txtEXLFillType.Location = New System.Drawing.Point(219, 154)
+        Me.txtEXLFillType.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtEXLFillType.Name = "txtEXLFillType"
         Me.txtEXLFillType.ReadOnly = True
-        Me.txtEXLFillType.Size = New System.Drawing.Size(329, 20)
+        Me.txtEXLFillType.Size = New System.Drawing.Size(437, 22)
         Me.txtEXLFillType.TabIndex = 77
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(12, 283)
+        Me.Label6.Location = New System.Drawing.Point(16, 348)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(112, 13)
+        Me.Label6.Size = New System.Drawing.Size(146, 17)
         Me.Label6.TabIndex = 92
         Me.Label6.Text = "Social Insurance Rate"
         '
         'ComboSI
         '
         Me.ComboSI.FormattingEnabled = True
-        Me.ComboSI.Location = New System.Drawing.Point(164, 280)
+        Me.ComboSI.Location = New System.Drawing.Point(219, 345)
+        Me.ComboSI.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboSI.Name = "ComboSI"
-        Me.ComboSI.Size = New System.Drawing.Size(329, 21)
+        Me.ComboSI.Size = New System.Drawing.Size(437, 24)
         Me.ComboSI.TabIndex = 86
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(12, 256)
+        Me.Label7.Location = New System.Drawing.Point(16, 315)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(75, 13)
+        Me.Label7.Size = New System.Drawing.Size(100, 17)
         Me.Label7.TabIndex = 89
         Me.Label7.Text = "Payslip Report"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(12, 229)
+        Me.Label8.Location = New System.Drawing.Point(16, 282)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(79, 13)
+        Me.Label8.Size = New System.Drawing.Size(102, 17)
         Me.Label8.TabIndex = 88
         Me.Label8.Text = "Company IBAN"
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(12, 202)
+        Me.Label9.Location = New System.Drawing.Point(16, 249)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(107, 13)
+        Me.Label9.Size = New System.Drawing.Size(140, 17)
         Me.Label9.TabIndex = 85
         Me.Label9.Text = "Company Bank Code"
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(12, 175)
+        Me.Label10.Location = New System.Drawing.Point(16, 215)
+        Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(123, 13)
+        Me.Label10.Size = New System.Drawing.Size(162, 17)
         Me.Label10.TabIndex = 79
         Me.Label10.Text = "Select Company to Load"
         '
         'ComboTempGroups
         '
         Me.ComboTempGroups.FormattingEnabled = True
-        Me.ComboTempGroups.Location = New System.Drawing.Point(164, 172)
+        Me.ComboTempGroups.Location = New System.Drawing.Point(219, 212)
+        Me.ComboTempGroups.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboTempGroups.Name = "ComboTempGroups"
-        Me.ComboTempGroups.Size = New System.Drawing.Size(329, 21)
+        Me.ComboTempGroups.Size = New System.Drawing.Size(437, 24)
         Me.ComboTempGroups.TabIndex = 80
         '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(164, 446)
+        Me.Button2.Location = New System.Drawing.Point(219, 549)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(143, 47)
+        Me.Button2.Size = New System.Drawing.Size(191, 58)
         Me.Button2.TabIndex = 93
         Me.Button2.Text = "Get Data From Exelsys DEMO"
         Me.Button2.UseVisualStyleBackColor = True
@@ -210,23 +230,26 @@ Partial Class FrmExcelsysWebServices
         '
         'txtCompanyBank
         '
-        Me.txtCompanyBank.Location = New System.Drawing.Point(164, 202)
+        Me.txtCompanyBank.Location = New System.Drawing.Point(219, 249)
+        Me.txtCompanyBank.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtCompanyBank.Name = "txtCompanyBank"
-        Me.txtCompanyBank.Size = New System.Drawing.Size(329, 20)
+        Me.txtCompanyBank.Size = New System.Drawing.Size(437, 22)
         Me.txtCompanyBank.TabIndex = 94
         '
         'txtCompanyIBAN
         '
-        Me.txtCompanyIBAN.Location = New System.Drawing.Point(164, 229)
+        Me.txtCompanyIBAN.Location = New System.Drawing.Point(219, 282)
+        Me.txtCompanyIBAN.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtCompanyIBAN.Name = "txtCompanyIBAN"
-        Me.txtCompanyIBAN.Size = New System.Drawing.Size(329, 20)
+        Me.txtCompanyIBAN.Size = New System.Drawing.Size(437, 22)
         Me.txtCompanyIBAN.TabIndex = 95
         '
         'txtPayslip
         '
-        Me.txtPayslip.Location = New System.Drawing.Point(164, 256)
+        Me.txtPayslip.Location = New System.Drawing.Point(219, 315)
+        Me.txtPayslip.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtPayslip.Name = "txtPayslip"
-        Me.txtPayslip.Size = New System.Drawing.Size(329, 20)
+        Me.txtPayslip.Size = New System.Drawing.Size(437, 22)
         Me.txtPayslip.TabIndex = 96
         '
         'lblLoading
@@ -234,9 +257,10 @@ Partial Class FrmExcelsysWebServices
         Me.lblLoading.AutoSize = True
         Me.lblLoading.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
         Me.lblLoading.ForeColor = System.Drawing.SystemColors.HotTrack
-        Me.lblLoading.Location = New System.Drawing.Point(161, 412)
+        Me.lblLoading.Location = New System.Drawing.Point(215, 507)
+        Me.lblLoading.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.lblLoading.Name = "lblLoading"
-        Me.lblLoading.Size = New System.Drawing.Size(214, 16)
+        Me.lblLoading.Size = New System.Drawing.Size(270, 20)
         Me.lblLoading.TabIndex = 97
         Me.lblLoading.Text = "Please wait , Loading from Exelsys"
         Me.lblLoading.Visible = False
@@ -244,52 +268,79 @@ Partial Class FrmExcelsysWebServices
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(12, 312)
+        Me.Label5.Location = New System.Drawing.Point(16, 384)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(89, 13)
+        Me.Label5.Size = New System.Drawing.Size(117, 17)
         Me.Label5.TabIndex = 98
         Me.Label5.Text = "Last Update date"
         '
         'DateLastUpdate
         '
+        Me.DateLastUpdate.Enabled = False
         Me.DateLastUpdate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateLastUpdate.Location = New System.Drawing.Point(164, 307)
+        Me.DateLastUpdate.Location = New System.Drawing.Point(219, 378)
+        Me.DateLastUpdate.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DateLastUpdate.Name = "DateLastUpdate"
-        Me.DateLastUpdate.Size = New System.Drawing.Size(117, 20)
+        Me.DateLastUpdate.Size = New System.Drawing.Size(155, 22)
         Me.DateLastUpdate.TabIndex = 99
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(12, 341)
+        Me.Label11.Location = New System.Drawing.Point(10, 447)
+        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(81, 13)
+        Me.Label11.Size = New System.Drawing.Size(107, 17)
         Me.Label11.TabIndex = 100
         Me.Label11.Text = "Employee Code"
         '
         'txtEmployeeCode
         '
-        Me.txtEmployeeCode.Location = New System.Drawing.Point(164, 338)
+        Me.txtEmployeeCode.Location = New System.Drawing.Point(213, 443)
+        Me.txtEmployeeCode.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.txtEmployeeCode.Name = "txtEmployeeCode"
-        Me.txtEmployeeCode.Size = New System.Drawing.Size(122, 20)
+        Me.txtEmployeeCode.Size = New System.Drawing.Size(161, 22)
         Me.txtEmployeeCode.TabIndex = 101
         '
         'btnSendPayslip
         '
-        Me.btnSendPayslip.Location = New System.Drawing.Point(0, 446)
+        Me.btnSendPayslip.Location = New System.Drawing.Point(0, 549)
+        Me.btnSendPayslip.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.btnSendPayslip.Name = "btnSendPayslip"
-        Me.btnSendPayslip.Size = New System.Drawing.Size(101, 47)
+        Me.btnSendPayslip.Size = New System.Drawing.Size(135, 58)
         Me.btnSendPayslip.TabIndex = 102
         Me.btnSendPayslip.Text = "Send Payslip Demo"
         Me.btnSendPayslip.UseVisualStyleBackColor = True
         Me.btnSendPayslip.Visible = False
         '
+        'SyncFromDate
+        '
+        Me.SyncFromDate.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.SyncFromDate.Location = New System.Drawing.Point(219, 408)
+        Me.SyncFromDate.Margin = New System.Windows.Forms.Padding(4)
+        Me.SyncFromDate.Name = "SyncFromDate"
+        Me.SyncFromDate.Size = New System.Drawing.Size(155, 22)
+        Me.SyncFromDate.TabIndex = 104
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(16, 414)
+        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(107, 17)
+        Me.Label12.TabIndex = 103
+        Me.Label12.Text = "Sync From date"
+        '
         'FrmExcelsysWebServices
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        Me.ClientSize = New System.Drawing.Size(524, 528)
+        Me.ClientSize = New System.Drawing.Size(699, 650)
+        Me.Controls.Add(Me.SyncFromDate)
+        Me.Controls.Add(Me.Label12)
         Me.Controls.Add(Me.btnSendPayslip)
         Me.Controls.Add(Me.txtEmployeeCode)
         Me.Controls.Add(Me.Label11)
@@ -317,6 +368,7 @@ Partial Class FrmExcelsysWebServices
         Me.Controls.Add(Me.txtEXLLogin)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.ToolStrip1)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "FrmExcelsysWebServices"
         Me.Text = "Interface with Excelsys"
         Me.ResumeLayout(False)
@@ -351,4 +403,6 @@ Partial Class FrmExcelsysWebServices
     Friend WithEvents Label11 As Label
     Friend WithEvents txtEmployeeCode As TextBox
     Friend WithEvents btnSendPayslip As Button
+    Friend WithEvents SyncFromDate As DateTimePicker
+    Friend WithEvents Label12 As Label
 End Class

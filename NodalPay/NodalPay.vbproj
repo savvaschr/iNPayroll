@@ -763,6 +763,12 @@
     <Compile Include="Forms\FrmImportBetaBiz1.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\FrmImportExcelFasouri.Designer.vb">
+      <DependentUpon>FrmImportExcelFasouri.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmImportExcelFasouri.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\FrmImportLeaversDateAndEmail.Designer.vb">
       <DependentUpon>FrmImportLeaversDateAndEmail.vb</DependentUpon>
     </Compile>
@@ -3003,6 +3009,9 @@
     <EmbeddedResource Include="Forms\FrmImportBetaBiz1.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FrmImportBetaBiz1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmImportExcelFasouri.resx">
+      <DependentUpon>FrmImportExcelFasouri.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmImportLeaversDateAndEmail.resx">
       <SubType>Designer</SubType>

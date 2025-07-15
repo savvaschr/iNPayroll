@@ -186,6 +186,13 @@ Public Class FrmExcelsysWebServices
             DateLastUpdate.Value = D
 
 
+            Dim DD As Date = Me.DateLastUpdate.Value.Date
+            DD = DateAdd(DateInterval.Day, -1, DD)
+            SyncFromDate.Value = Format(DD, "yyyy-MM-dd")
+
+
+            Dim firstDayOfMonth As New Date(DD.Year, DD.Month, 1)
+            SyncFromDate.Value = firstDayOfMonth
 
 
             Me.txtEXLLogin.Text = WSLogin
@@ -395,10 +402,9 @@ Public Class FrmExcelsysWebServices
         Dim PageSize As Integer = 30
         Dim EmployeeCodeX As String = Trim(Me.txtEmployeeCode.Text)
         Dim DepartmentCodeX As String = ""
-        Dim FromDate As String = "2024-01-01"
-        Dim DD As Date = Me.DateLastUpdate.Value.Date
-        DD = DateAdd(DateInterval.Day, -1, DD)
-        FromDate = Format(DD, "yyyy-MM-dd")
+
+        Dim FromDate As Date = SyncFromDate.Value
+
 
         '   Dim WebServ As wsExcelsysLive.ExelsysWSI
 
