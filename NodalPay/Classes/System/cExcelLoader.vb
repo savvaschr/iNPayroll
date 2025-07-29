@@ -99,6 +99,7 @@ Public Class cExcelLoader
         Catch ex As Exception
             Return False
         End Try
+
     End Function
 
     Public Sub LoadIntoExcel(ByVal ds As DataSet, Optional ByVal HeaderStr As ArrayList = Nothing, Optional ByVal HeaderSize As ArrayList = Nothing)

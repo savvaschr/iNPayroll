@@ -184,7 +184,7 @@ Partial Class FrmImportExcelFasouri
         Me.txtFirstLineInExcel.Name = "txtFirstLineInExcel"
         Me.txtFirstLineInExcel.Size = New System.Drawing.Size(160, 22)
         Me.txtFirstLineInExcel.TabIndex = 56
-        Me.txtFirstLineInExcel.Text = "2"
+        Me.txtFirstLineInExcel.Text = "3"
         '
         'Label2
         '

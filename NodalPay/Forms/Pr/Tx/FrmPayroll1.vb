@@ -20402,6 +20402,15 @@ Public Class FrmPayroll1
                     Dim OverTime1Index As Integer = -1
 
 
+                    Dim codeE10 As String = "E10"
+                    Dim codeE13 As String = "E13"
+                    Dim codeE14 As String = "E14"
+                    Dim codeE23 As String = "E23"
+                    Dim codeE25 As String = "E25"
+                    Dim codeE6 As String = "E6"
+                    Dim codeD1 As String = "D1"
+                    Dim codeD12 As String = "D12"
+
                     Do While StopInput = False
 
                         Application.DoEvents()
@@ -20499,22 +20508,22 @@ Public Class FrmPayroll1
                                             If DbNullToString(MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1)) = "" Then
                                                 Exit For
                                             End If
-                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = Me.ET2_E10 Then
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = codeE10 Then
                                                 E10Index = Me.Column_EV1 + C1
                                             End If
-                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = Me.ET2_E13 Then
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = codeE13 Then
                                                 E13Index = Me.Column_EV1 + C1
                                             End If
-                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = Me.ET2_E14 Then
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = codeE14 Then
                                                 E14Index = Me.Column_EV1 + C1
                                             End If
-                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = Me.ET2_E23 Then
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = codeE23 Then
                                                 E23Index = Me.Column_EV1 + C1
                                             End If
-                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = Me.ET2_E25 Then
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = codeE25 Then
                                                 E25Index = Me.Column_EV1 + C1
                                             End If
-                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = Me.ET2_E6 Then
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = codeE6 Then
                                                 E6Index = Me.Column_EV1 + C1
                                             End If
 
@@ -20530,11 +20539,11 @@ Public Class FrmPayroll1
                                             If DbNullToString(MyDs.Tables(0).Rows(k).Item(Me.Column_D1 + C1)) = "" Then
                                                 Exit For
                                             End If
-                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_D1 + C1) = Me.ET2_D1 Then
-                                                D1Index = Me.Column_EV1 + C1
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_D1 + C1) = codeD1 Then
+                                                D1Index = Me.Column_DV1 + C1
                                             End If
-                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_D1 + C1) = Me.ET2_D12 Then
-                                                D12Index = Me.Column_EV1 + C1
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_D1 + C1) = codeD12 Then
+                                                D12Index = Me.Column_DV1 + C1
                                             End If
                                             C1 = C1 + 2
                                         Next

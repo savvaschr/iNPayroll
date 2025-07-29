@@ -12,6 +12,7 @@ Public Class cDataTier
     Shared Sub New()
         Cnx = New SqlConnection
         Cmd = New SqlCommand
+        Cmd.CommandTimeout = Global1.ConnectionTimeoutValue
         Cmd.Connection = Cnx
     End Sub
     Protected Friend Sub BeginTransaction()
@@ -95,6 +96,7 @@ Public Class cDataTier
             End If
             Adapter.SelectCommand = Cmd
             Cmd.Connection = Cnx
+            Cmd.CommandTimeout = Global1.ConnectionTimeoutValue
             Cmd.CommandText = Query
             Cmd.CommandType = CommandType.Text
             Adapter.Fill(ds)
@@ -243,6 +245,7 @@ Public Class cDataTier
                 End If
             End If
             Cmd.CommandText = Query
+            Cmd.CommandTimeout = Global1.ConnectionTimeoutValue
             Cmd.CommandType = CommandType.Text
             i = Cmd.ExecuteNonQuery()
             If i = -1 Then i = 0

@@ -1,4 +1,4 @@
-Public Class cLogin
+﻿Public Class cLogin
 
     Inherits cDataTier
     Public ReadOnly Property IsConnected() As Boolean
@@ -16,6 +16,7 @@ Public Class cLogin
         Try
             Dim thisCnx As New SqlClient.SqlConnection
             Debug.WriteLine(thisConnectionString)
+            ' thisConnectionString &= "Connection Timeout=120;"
             thisCnx.ConnectionString = thisConnectionString
             thisCnx.Open()
 
@@ -48,6 +49,7 @@ Public Class cLogin
 
         Return Success
     End Function
+
 
 
     Friend Function Logout() As Boolean

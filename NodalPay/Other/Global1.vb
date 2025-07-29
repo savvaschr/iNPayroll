@@ -7,6 +7,8 @@ Module Global1
     Public VersionDate As String = "21/05/2025"
     '14th Salary
     'Payslip directory
+
+    Public ConnectionTimeoutValue As Integer = 180
     Public IsConnected As Boolean
     Public IsConnectedText As Boolean
     Public BeginTransactionFlag As Boolean
