@@ -59,6 +59,9 @@ Partial Class FrmIR61_2019
         Me.Label10 = New System.Windows.Forms.Label()
         Me.PanelLoading = New System.Windows.Forms.Panel()
         Me.Label12 = New System.Windows.Forms.Label()
+        Me.txtVATRegNo = New System.Windows.Forms.TextBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.btnFindTaxable = New System.Windows.Forms.Button()
         Me.ToolStrip1.SuspendLayout()
         Me.PanelLoading.SuspendLayout()
         Me.SuspendLayout()
@@ -66,7 +69,7 @@ Partial Class FrmIR61_2019
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(12, 329)
+        Me.Label11.Location = New System.Drawing.Point(14, 351)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(70, 13)
         Me.Label11.TabIndex = 140
@@ -75,7 +78,7 @@ Partial Class FrmIR61_2019
         'txtTotal
         '
         Me.txtTotal.BackColor = System.Drawing.Color.Aqua
-        Me.txtTotal.Location = New System.Drawing.Point(152, 323)
+        Me.txtTotal.Location = New System.Drawing.Point(152, 348)
         Me.txtTotal.Name = "txtTotal"
         Me.txtTotal.ReadOnly = True
         Me.txtTotal.Size = New System.Drawing.Size(141, 20)
@@ -84,7 +87,7 @@ Partial Class FrmIR61_2019
         'txtAIW2
         '
         Me.txtAIW2.BackColor = System.Drawing.Color.Aqua
-        Me.txtAIW2.Location = New System.Drawing.Point(152, 375)
+        Me.txtAIW2.Location = New System.Drawing.Point(152, 400)
         Me.txtAIW2.MaxLength = 40
         Me.txtAIW2.Name = "txtAIW2"
         Me.txtAIW2.Size = New System.Drawing.Size(374, 20)
@@ -93,7 +96,7 @@ Partial Class FrmIR61_2019
         'txtTaxMonth
         '
         Me.txtTaxMonth.BackColor = System.Drawing.SystemColors.Info
-        Me.txtTaxMonth.Location = New System.Drawing.Point(152, 193)
+        Me.txtTaxMonth.Location = New System.Drawing.Point(152, 218)
         Me.txtTaxMonth.Name = "txtTaxMonth"
         Me.txtTaxMonth.ReadOnly = True
         Me.txtTaxMonth.Size = New System.Drawing.Size(141, 20)
@@ -102,7 +105,7 @@ Partial Class FrmIR61_2019
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(12, 199)
+        Me.Label9.Location = New System.Drawing.Point(14, 221)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(58, 13)
         Me.Label9.TabIndex = 135
@@ -111,7 +114,7 @@ Partial Class FrmIR61_2019
         'txtTaxYear
         '
         Me.txtTaxYear.BackColor = System.Drawing.SystemColors.Info
-        Me.txtTaxYear.Location = New System.Drawing.Point(152, 167)
+        Me.txtTaxYear.Location = New System.Drawing.Point(152, 192)
         Me.txtTaxYear.Name = "txtTaxYear"
         Me.txtTaxYear.ReadOnly = True
         Me.txtTaxYear.Size = New System.Drawing.Size(141, 20)
@@ -120,7 +123,7 @@ Partial Class FrmIR61_2019
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(12, 173)
+        Me.Label8.Location = New System.Drawing.Point(14, 195)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(50, 13)
         Me.Label8.TabIndex = 133
@@ -129,7 +132,7 @@ Partial Class FrmIR61_2019
         'txtAdr2
         '
         Me.txtAdr2.BackColor = System.Drawing.SystemColors.Info
-        Me.txtAdr2.Location = New System.Drawing.Point(152, 141)
+        Me.txtAdr2.Location = New System.Drawing.Point(152, 166)
         Me.txtAdr2.Name = "txtAdr2"
         Me.txtAdr2.ReadOnly = True
         Me.txtAdr2.Size = New System.Drawing.Size(374, 20)
@@ -137,7 +140,7 @@ Partial Class FrmIR61_2019
         '
         'txtChequeNo
         '
-        Me.txtChequeNo.Location = New System.Drawing.Point(152, 417)
+        Me.txtChequeNo.Location = New System.Drawing.Point(152, 426)
         Me.txtChequeNo.Name = "txtChequeNo"
         Me.txtChequeNo.Size = New System.Drawing.Size(141, 20)
         Me.txtChequeNo.TabIndex = 120
@@ -145,7 +148,7 @@ Partial Class FrmIR61_2019
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(12, 423)
+        Me.Label7.Location = New System.Drawing.Point(14, 429)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(120, 13)
         Me.Label7.TabIndex = 131
@@ -154,7 +157,7 @@ Partial Class FrmIR61_2019
         'txtAIW1
         '
         Me.txtAIW1.BackColor = System.Drawing.Color.Aqua
-        Me.txtAIW1.Location = New System.Drawing.Point(152, 349)
+        Me.txtAIW1.Location = New System.Drawing.Point(152, 374)
         Me.txtAIW1.MaxLength = 40
         Me.txtAIW1.Name = "txtAIW1"
         Me.txtAIW1.Size = New System.Drawing.Size(374, 20)
@@ -163,7 +166,7 @@ Partial Class FrmIR61_2019
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(12, 355)
+        Me.Label6.Location = New System.Drawing.Point(14, 377)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(88, 13)
         Me.Label6.TabIndex = 130
@@ -172,7 +175,7 @@ Partial Class FrmIR61_2019
         'txtITAmount
         '
         Me.txtITAmount.BackColor = System.Drawing.SystemColors.Info
-        Me.txtITAmount.Location = New System.Drawing.Point(152, 245)
+        Me.txtITAmount.Location = New System.Drawing.Point(152, 270)
         Me.txtITAmount.Name = "txtITAmount"
         Me.txtITAmount.ReadOnly = True
         Me.txtITAmount.Size = New System.Drawing.Size(141, 20)
@@ -181,7 +184,7 @@ Partial Class FrmIR61_2019
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(12, 251)
+        Me.Label5.Location = New System.Drawing.Point(14, 273)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(59, 13)
         Me.Label5.TabIndex = 128
@@ -190,7 +193,7 @@ Partial Class FrmIR61_2019
         'txtAdr1
         '
         Me.txtAdr1.BackColor = System.Drawing.SystemColors.Info
-        Me.txtAdr1.Location = New System.Drawing.Point(152, 115)
+        Me.txtAdr1.Location = New System.Drawing.Point(152, 140)
         Me.txtAdr1.Name = "txtAdr1"
         Me.txtAdr1.ReadOnly = True
         Me.txtAdr1.Size = New System.Drawing.Size(374, 20)
@@ -199,7 +202,7 @@ Partial Class FrmIR61_2019
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(12, 121)
+        Me.Label4.Location = New System.Drawing.Point(14, 143)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(92, 13)
         Me.Label4.TabIndex = 126
@@ -208,7 +211,7 @@ Partial Class FrmIR61_2019
         'txtCompName
         '
         Me.txtCompName.BackColor = System.Drawing.SystemColors.Info
-        Me.txtCompName.Location = New System.Drawing.Point(152, 89)
+        Me.txtCompName.Location = New System.Drawing.Point(152, 114)
         Me.txtCompName.Name = "txtCompName"
         Me.txtCompName.ReadOnly = True
         Me.txtCompName.Size = New System.Drawing.Size(374, 20)
@@ -225,7 +228,7 @@ Partial Class FrmIR61_2019
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(12, 95)
+        Me.Label3.Location = New System.Drawing.Point(14, 117)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(82, 13)
         Me.Label3.TabIndex = 124
@@ -241,7 +244,7 @@ Partial Class FrmIR61_2019
         'txtTAXId
         '
         Me.txtTAXId.BackColor = System.Drawing.SystemColors.Info
-        Me.txtTAXId.Location = New System.Drawing.Point(152, 63)
+        Me.txtTAXId.Location = New System.Drawing.Point(152, 62)
         Me.txtTAXId.Name = "txtTAXId"
         Me.txtTAXId.ReadOnly = True
         Me.txtTAXId.Size = New System.Drawing.Size(141, 20)
@@ -250,16 +253,16 @@ Partial Class FrmIR61_2019
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 69)
+        Me.Label1.Location = New System.Drawing.Point(14, 65)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(86, 13)
+        Me.Label1.Size = New System.Drawing.Size(81, 13)
         Me.Label1.TabIndex = 122
-        Me.Label1.Text = "Company Tax ID"
+        Me.Label1.Text = "Company T.I.N."
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(12, 38)
+        Me.Label2.Location = New System.Drawing.Point(14, 38)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(119, 13)
         Me.Label2.TabIndex = 121
@@ -308,7 +311,7 @@ Partial Class FrmIR61_2019
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(13, 303)
+        Me.Label14.Location = New System.Drawing.Point(14, 325)
         Me.Label14.Name = "Label14"
         Me.Label14.Size = New System.Drawing.Size(131, 13)
         Me.Label14.TabIndex = 148
@@ -317,7 +320,7 @@ Partial Class FrmIR61_2019
         'txtGesyCon
         '
         Me.txtGesyCon.BackColor = System.Drawing.SystemColors.Info
-        Me.txtGesyCon.Location = New System.Drawing.Point(152, 271)
+        Me.txtGesyCon.Location = New System.Drawing.Point(152, 296)
         Me.txtGesyCon.Name = "txtGesyCon"
         Me.txtGesyCon.ReadOnly = True
         Me.txtGesyCon.Size = New System.Drawing.Size(141, 20)
@@ -326,7 +329,7 @@ Partial Class FrmIR61_2019
         'txtGesyDed
         '
         Me.txtGesyDed.BackColor = System.Drawing.SystemColors.Info
-        Me.txtGesyDed.Location = New System.Drawing.Point(152, 297)
+        Me.txtGesyDed.Location = New System.Drawing.Point(152, 322)
         Me.txtGesyDed.Name = "txtGesyDed"
         Me.txtGesyDed.ReadOnly = True
         Me.txtGesyDed.Size = New System.Drawing.Size(141, 20)
@@ -335,7 +338,7 @@ Partial Class FrmIR61_2019
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(12, 277)
+        Me.Label15.Location = New System.Drawing.Point(14, 299)
         Me.Label15.Name = "Label15"
         Me.Label15.Size = New System.Drawing.Size(124, 13)
         Me.Label15.TabIndex = 145
@@ -344,7 +347,7 @@ Partial Class FrmIR61_2019
         'txtTaxableIncome
         '
         Me.txtTaxableIncome.BackColor = System.Drawing.SystemColors.Info
-        Me.txtTaxableIncome.Location = New System.Drawing.Point(152, 219)
+        Me.txtTaxableIncome.Location = New System.Drawing.Point(152, 244)
         Me.txtTaxableIncome.Name = "txtTaxableIncome"
         Me.txtTaxableIncome.ReadOnly = True
         Me.txtTaxableIncome.Size = New System.Drawing.Size(141, 20)
@@ -353,7 +356,7 @@ Partial Class FrmIR61_2019
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(13, 225)
+        Me.Label10.Location = New System.Drawing.Point(14, 247)
         Me.Label10.Name = "Label10"
         Me.Label10.Size = New System.Drawing.Size(83, 13)
         Me.Label10.TabIndex = 150
@@ -363,7 +366,7 @@ Partial Class FrmIR61_2019
         '
         Me.PanelLoading.BackColor = System.Drawing.SystemColors.Window
         Me.PanelLoading.Controls.Add(Me.Label12)
-        Me.PanelLoading.Location = New System.Drawing.Point(76, 154)
+        Me.PanelLoading.Location = New System.Drawing.Point(31, 133)
         Me.PanelLoading.Name = "PanelLoading"
         Me.PanelLoading.Size = New System.Drawing.Size(477, 100)
         Me.PanelLoading.TabIndex = 151
@@ -379,6 +382,33 @@ Partial Class FrmIR61_2019
         Me.Label12.TabIndex = 0
         Me.Label12.Text = "Loading Values , Please wait ..."
         '
+        'txtVATRegNo
+        '
+        Me.txtVATRegNo.BackColor = System.Drawing.SystemColors.Info
+        Me.txtVATRegNo.Location = New System.Drawing.Point(152, 88)
+        Me.txtVATRegNo.Name = "txtVATRegNo"
+        Me.txtVATRegNo.ReadOnly = True
+        Me.txtVATRegNo.Size = New System.Drawing.Size(141, 20)
+        Me.txtVATRegNo.TabIndex = 153
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(14, 91)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(127, 13)
+        Me.Label13.TabIndex = 152
+        Me.Label13.Text = "TFA T.I.N. (VAT Reg.No)"
+        '
+        'btnFindTaxable
+        '
+        Me.btnFindTaxable.Location = New System.Drawing.Point(309, 242)
+        Me.btnFindTaxable.Name = "btnFindTaxable"
+        Me.btnFindTaxable.Size = New System.Drawing.Size(141, 23)
+        Me.btnFindTaxable.TabIndex = 154
+        Me.btnFindTaxable.Text = "Calculate Taxable Income"
+        Me.btnFindTaxable.UseVisualStyleBackColor = True
+        '
         'FrmIR61_2019
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -386,6 +416,9 @@ Partial Class FrmIR61_2019
         Me.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.ClientSize = New System.Drawing.Size(615, 566)
         Me.Controls.Add(Me.PanelLoading)
+        Me.Controls.Add(Me.btnFindTaxable)
+        Me.Controls.Add(Me.txtVATRegNo)
+        Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.txtTaxableIncome)
         Me.Controls.Add(Me.Label14)
@@ -461,4 +494,7 @@ Partial Class FrmIR61_2019
     Friend WithEvents ToolStripDropDownButton1 As ToolStripDropDownButton
     Friend WithEvents CreateMonthlyFileToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CreateMonthlyFileWithExcelReportToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents txtVATRegNo As TextBox
+    Friend WithEvents Label13 As Label
+    Friend WithEvents btnFindTaxable As Button
 End Class

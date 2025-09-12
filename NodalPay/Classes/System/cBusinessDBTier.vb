@@ -8669,6 +8669,7 @@ todo:   ' check for status in trxnheader
         " 0.00 as D18," &
         " 0.00 as Widow," &
         " 0.00 as C10," &
+        " 0.00 as E2," &
         " PrMsEmployees.emp_identificationcard,  " &
         " PrMsEmployees.emp_CNP  " &
         " FROM PrTxTrxnHeader INNER JOIN" &
@@ -14209,22 +14210,22 @@ todo:   ' check for status in trxnheader
 
 
         Dim DsComp As DataSet
-        Str = " SELECT AdMsCompany.Com_Name," & _
-            " AdMsCompany.Com_TIC," & _
-            " AdMsCompany.Com_Address1," & _
-            " AdMsCompany.Com_Address2, " & _
-            " AdMsCompany.Com_Address3," & _
-            " AdMsCompany.Com_Address4," & _
-            " AdMsCompany.Com_AccountantTitle," & _
-            " PrMsTemplateGroup.TemGrp_Code," & _
-            " AdMsCompany.Com_AccIdentity," & _
-            " '' as Identity1, " & _
-            " AdMsCompany.Com_GLAnal4, " & _
-            " AdMsCompany.Com_Stamp, " & _
-            " '' as PrintDate " & _
-            " FROM AdMsCompany INNER JOIN" & _
-            " PrMsTemplateGroup ON " & _
-            " AdMsCompany.Com_Code = PrMsTemplateGroup.Com_Code" & _
+        Str = " SELECT AdMsCompany.Com_Name," &
+            " AdMsCompany.Com_TIC," &
+            " AdMsCompany.Com_Address1," &
+            " AdMsCompany.Com_Address2, " &
+            " AdMsCompany.Com_Address3," &
+            " AdMsCompany.Com_Address4," &
+            " AdMsCompany.Com_AccountantTitle," &
+            " PrMsTemplateGroup.TemGrp_Code," &
+            " AdMsCompany.Com_AccIdentity," &
+            " '' as Identity1, " &
+            " AdMsCompany.Com_GLAnal4, " &
+            " AdMsCompany.Com_Stamp, " &
+            " '' as PrintDate " &
+            " FROM AdMsCompany INNER JOIN" &
+            " PrMsTemplateGroup ON " &
+            " AdMsCompany.Com_Code = PrMsTemplateGroup.Com_Code" &
             " WHERE (PrMsTemplateGroup.TemGrp_Code = " & enQuoteString(PerGrp.TemGrpCode) & ")"
 
         DsComp = GetData(Str)
@@ -14832,24 +14833,24 @@ todo:   ' check for status in trxnheader
         'added at the end
 
         Dim DsComp As DataSet
-        Str = " SELECT AdMsCompany.Com_Name," & _
-            " AdMsCompany.Com_TIC," & _
-            " AdMsCompany.Com_Address1," & _
-            " AdMsCompany.Com_Address2, " & _
-            " AdMsCompany.Com_Address3," & _
-            " AdMsCompany.Com_Address4," & _
-            " AdMsCompany.Com_AccountantTitle," & _
-            " PrMsTemplateGroup.TemGrp_Code," & _
-            " AdMsCompany.Com_AccIdentity," & _
-            " '' as Identity1, " & _
-            " AdMsCompany.Com_GLAnal4, " & _
-            " '' as FromP1," & _
-            " '' as FromP2, " & _
-            " AdMsCompany.Com_Stamp, " & _
-            " '' as PrintDate " & _
-            " FROM AdMsCompany INNER JOIN" & _
-            " PrMsTemplateGroup ON " & _
-            " AdMsCompany.Com_Code = PrMsTemplateGroup.Com_Code" & _
+        Str = " SELECT AdMsCompany.Com_Name," &
+            " AdMsCompany.Com_TIC," &
+            " AdMsCompany.Com_Address1," &
+            " AdMsCompany.Com_Address2, " &
+            " AdMsCompany.Com_Address3," &
+            " AdMsCompany.Com_Address4," &
+            " AdMsCompany.Com_AccountantTitle," &
+            " PrMsTemplateGroup.TemGrp_Code," &
+            " AdMsCompany.Com_AccIdentity," &
+            " '' as Identity1, " &
+            " AdMsCompany.Com_GLAnal4, " &
+            " '' as FromP1," &
+            " '' as FromP2, " &
+            " AdMsCompany.Com_Stamp, " &
+            " '' as PrintDate " &
+            " FROM AdMsCompany INNER JOIN" &
+            " PrMsTemplateGroup ON " &
+            " AdMsCompany.Com_Code = PrMsTemplateGroup.Com_Code" &
             " WHERE (PrMsTemplateGroup.TemGrp_Code = " & enQuoteString(PerGrp.TemGrpCode) & ")"
 
         DsComp = GetData(Str)
@@ -15488,24 +15489,24 @@ todo:   ' check for status in trxnheader
         'added at the end
 
         Dim DsComp As DataSet
-        Str = " SELECT AdMsCompany.Com_Name," & _
-            " AdMsCompany.Com_TIC," & _
-            " AdMsCompany.Com_Address1," & _
-            " AdMsCompany.Com_Address2, " & _
-            " AdMsCompany.Com_Address3," & _
-            " AdMsCompany.Com_Address4," & _
-            " AdMsCompany.Com_AccountantTitle," & _
-            " PrMsTemplateGroup.TemGrp_Code," & _
-            " AdMsCompany.Com_AccIdentity," & _
-            " '' as Identity1, " & _
-            " AdMsCompany.Com_GLAnal4, " & _
-            " '' as FromP1," & _
-            " '' as FromP2, " & _
-            " AdMsCompany.Com_Stamp, " & _
-            " '' as PrintDate " & _
-            " FROM AdMsCompany INNER JOIN" & _
-            " PrMsTemplateGroup ON " & _
-            " AdMsCompany.Com_Code = PrMsTemplateGroup.Com_Code" & _
+        Str = " SELECT AdMsCompany.Com_Name," &
+            " AdMsCompany.Com_TIC," &
+            " AdMsCompany.Com_Address1," &
+            " AdMsCompany.Com_Address2, " &
+            " AdMsCompany.Com_Address3," &
+            " AdMsCompany.Com_Address4," &
+            " AdMsCompany.Com_AccountantTitle," &
+            " PrMsTemplateGroup.TemGrp_Code," &
+            " AdMsCompany.Com_AccIdentity," &
+            " '' as Identity1, " &
+            " AdMsCompany.Com_GLAnal4, " &
+            " '' as FromP1," &
+            " '' as FromP2, " &
+            " AdMsCompany.Com_Stamp, " &
+            " '' as PrintDate " &
+            " FROM AdMsCompany INNER JOIN" &
+            " PrMsTemplateGroup ON " &
+            " AdMsCompany.Com_Code = PrMsTemplateGroup.Com_Code" &
             " WHERE (PrMsTemplateGroup.TemGrp_Code = " & enQuoteString(PerGrp.TemGrpCode) & ")"
 
         DsComp = GetData(Str)
@@ -15921,19 +15922,19 @@ todo:   ' check for status in trxnheader
 
 
             Dim DsComp As DataSet
-            Str = " SELECT AdMsCompany.Com_Name," & _
-                " AdMsCompany.Com_TIC," & _
-                " AdMsCompany.Com_Address1," & _
-                " AdMsCompany.Com_Address2, " & _
-                " AdMsCompany.Com_Address3," & _
-                " AdMsCompany.Com_Address4," & _
-                " AdMsCompany.Com_AccountantTitle," & _
-                " PrMsTemplateGroup.TemGrp_Code," & _
-                " AdMsCompany.Com_AccIdentity," & _
-                " '' as Identity1 " & _
-                " FROM AdMsCompany INNER JOIN" & _
-                " PrMsTemplateGroup ON " & _
-                " AdMsCompany.Com_Code = PrMsTemplateGroup.Com_Code" & _
+            Str = " SELECT AdMsCompany.Com_Name," &
+                " AdMsCompany.Com_TIC," &
+                " AdMsCompany.Com_Address1," &
+                " AdMsCompany.Com_Address2, " &
+                " AdMsCompany.Com_Address3," &
+                " AdMsCompany.Com_Address4," &
+                " AdMsCompany.Com_AccountantTitle," &
+                " PrMsTemplateGroup.TemGrp_Code," &
+                " AdMsCompany.Com_AccIdentity," &
+                " '' as Identity1 " &
+                " FROM AdMsCompany INNER JOIN" &
+                " PrMsTemplateGroup ON " &
+                " AdMsCompany.Com_Code = PrMsTemplateGroup.Com_Code" &
                 " WHERE (PrMsTemplateGroup.TemGrp_Code = " & enQuoteString(PerGrp.TemGrpCode) & ")"
 
             DsComp = GetData(Str)
@@ -16773,17 +16774,17 @@ todo:   ' check for status in trxnheader
             Next
 
             Dim DsComp As DataSet
-            Str = " SELECT AdMsCompany.Com_Name," & _
-                " AdMsCompany.Com_TIC," & _
-                " AdMsCompany.Com_Address1," & _
-                " AdMsCompany.Com_Address2, " & _
-                " AdMsCompany.Com_Address3," & _
-                " AdMsCompany.Com_Address4," & _
-                " AdMsCompany.Com_AccountantTitle," & _
-                " PrMsTemplateGroup.TemGrp_Code" & _
-                " FROM AdMsCompany INNER JOIN" & _
-                " PrMsTemplateGroup ON " & _
-                " AdMsCompany.Com_Code = PrMsTemplateGroup.Com_Code" & _
+            Str = " SELECT AdMsCompany.Com_Name," &
+                " AdMsCompany.Com_TIC," &
+                " AdMsCompany.Com_Address1," &
+                " AdMsCompany.Com_Address2, " &
+                " AdMsCompany.Com_Address3," &
+                " AdMsCompany.Com_Address4," &
+                " AdMsCompany.Com_AccountantTitle," &
+                " PrMsTemplateGroup.TemGrp_Code" &
+                " FROM AdMsCompany INNER JOIN" &
+                " PrMsTemplateGroup ON " &
+                " AdMsCompany.Com_Code = PrMsTemplateGroup.Com_Code" &
                 " WHERE (PrMsTemplateGroup.TemGrp_Code = " & enQuoteString(PerGrp.TemGrpCode) & ")"
 
             DsComp = GetData(Str)
@@ -17319,17 +17320,17 @@ todo:   ' check for status in trxnheader
             Next
 
             Dim DsComp As DataSet
-            Str = " SELECT AdMsCompany.Com_Name," & _
-                " AdMsCompany.Com_TIC," & _
-                " AdMsCompany.Com_Address1," & _
-                " AdMsCompany.Com_Address2, " & _
-                " AdMsCompany.Com_Address3," & _
-                " AdMsCompany.Com_Address4," & _
-                " AdMsCompany.Com_AccountantTitle," & _
-                " PrMsTemplateGroup.TemGrp_Code" & _
-                " FROM AdMsCompany INNER JOIN" & _
-                " PrMsTemplateGroup ON " & _
-                " AdMsCompany.Com_Code = PrMsTemplateGroup.Com_Code" & _
+            Str = " SELECT AdMsCompany.Com_Name," &
+                " AdMsCompany.Com_TIC," &
+                " AdMsCompany.Com_Address1," &
+                " AdMsCompany.Com_Address2, " &
+                " AdMsCompany.Com_Address3," &
+                " AdMsCompany.Com_Address4," &
+                " AdMsCompany.Com_AccountantTitle," &
+                " PrMsTemplateGroup.TemGrp_Code" &
+                " FROM AdMsCompany INNER JOIN" &
+                " PrMsTemplateGroup ON " &
+                " AdMsCompany.Com_Code = PrMsTemplateGroup.Com_Code" &
                 " WHERE (PrMsTemplateGroup.TemGrp_Code = " & enQuoteString(PerGrp.TemGrpCode) & ")"
 
             DsComp = GetData(Str)
@@ -17941,17 +17942,17 @@ todo:   ' check for status in trxnheader
             Next
 
             Dim DsComp As DataSet
-            Str = " SELECT AdMsCompany.Com_Name," & _
-                " AdMsCompany.Com_TIC," & _
-                " AdMsCompany.Com_Address1," & _
-                " AdMsCompany.Com_Address2, " & _
-                " AdMsCompany.Com_Address3," & _
-                " AdMsCompany.Com_Address4," & _
-                " AdMsCompany.Com_AccountantTitle," & _
-                " PrMsTemplateGroup.TemGrp_Code" & _
-                " FROM AdMsCompany INNER JOIN" & _
-                " PrMsTemplateGroup ON " & _
-                " AdMsCompany.Com_Code = PrMsTemplateGroup.Com_Code" & _
+            Str = " SELECT AdMsCompany.Com_Name," &
+                " AdMsCompany.Com_TIC," &
+                " AdMsCompany.Com_Address1," &
+                " AdMsCompany.Com_Address2, " &
+                " AdMsCompany.Com_Address3," &
+                " AdMsCompany.Com_Address4," &
+                " AdMsCompany.Com_AccountantTitle," &
+                " PrMsTemplateGroup.TemGrp_Code" &
+                " FROM AdMsCompany INNER JOIN" &
+                " PrMsTemplateGroup ON " &
+                " AdMsCompany.Com_Code = PrMsTemplateGroup.Com_Code" &
                 " WHERE (PrMsTemplateGroup.TemGrp_Code = " & enQuoteString(PerGrp.TemGrpCode) & ")"
 
             DsComp = GetData(Str)
@@ -18953,7 +18954,7 @@ todo:   ' check for status in trxnheader
 
         Return Ds
     End Function
-    Protected Function REPORT_IR7_5(ByVal PerGrp As cPrMsPeriodGroups, ByVal FromCode As String, ByVal ToCode As String, ByVal YearDate As Date, ByVal ShowMessages As Boolean, ByVal ShowinExcel As Boolean, ByVal BIKonSI As Boolean, ByVal DissableRehire As Boolean) As DataSet
+    Protected Function REPORT_IR7_2024(ByVal PerGrp As cPrMsPeriodGroups, ByVal FromCode As String, ByVal ToCode As String, ByVal YearDate As Date, ByVal ShowMessages As Boolean, ByVal ShowinExcel As Boolean, ByVal BIKonSI As Boolean, ByVal DissableRehire As Boolean) As DataSet
         Dim Ds As New DataSet
         Dim Str As String
         Dim str1_1 As String = ""
@@ -19029,8 +19030,19 @@ todo:   ' check for status in trxnheader
 
         Dim C_DirectorFees As Integer = 46
 
+        Dim C_PrivatePensionFund As Integer = 47
+        Dim C_PrivateMedicalFund As Integer = 48
 
 
+        Dim C_PREV_GrossEarnings As Integer = 49
+        Dim C_PREV_SIDed As Integer = 50
+        Dim C_PREV_PFFund As Integer = 51
+        Dim C_PREV_LifeIns As Integer = 52
+        Dim C_PREV_Discounts As Integer = 53
+        Dim C_PREV_Medical As Integer = 54
+        Dim C_PREV_PensionFund As Integer = 55
+        Dim C_PREV_UnionDed As Integer = 56
+        Dim C_PREV_GESY As Integer = 57
 
 
         Dim LocalErn As Integer = 0
@@ -19159,6 +19171,28 @@ todo:   ' check for status in trxnheader
         dt.Columns.Add(New DataColumn("Rehire", System.Type.GetType("System.String")))
         '46
         dt.Columns.Add(New DataColumn("DirectorFees", System.Type.GetType("System.Double")))
+        '47
+        dt.Columns.Add(New DataColumn("PrivatePensionFund", System.Type.GetType("System.Double")))
+        '48
+        dt.Columns.Add(New DataColumn("PrivateMedicalFund", System.Type.GetType("System.Double")))
+        '49
+        dt.Columns.Add(New DataColumn("PrevGrossEarnings", System.Type.GetType("System.Double")))
+        '50
+        dt.Columns.Add(New DataColumn("PrevSIDeduct", System.Type.GetType("System.Double")))
+        '51
+        dt.Columns.Add(New DataColumn("PrevPFDeduct", System.Type.GetType("System.Double")))
+        '52
+        dt.Columns.Add(New DataColumn("PrevLifeIns", System.Type.GetType("System.Double")))
+        '53
+        dt.Columns.Add(New DataColumn("PrevDis", System.Type.GetType("System.Double")))
+        '54
+        dt.Columns.Add(New DataColumn("PrevMF", System.Type.GetType("System.Double")))
+        '55
+        dt.Columns.Add(New DataColumn("PrevPenFund", System.Type.GetType("System.Double")))
+        '56
+        dt.Columns.Add(New DataColumn("PrevUnion", System.Type.GetType("System.Double")))
+        '57
+        dt.Columns.Add(New DataColumn("PrevGesy", System.Type.GetType("System.Double")))
 
 
 
@@ -19190,15 +19224,24 @@ todo:   ' check for status in trxnheader
         " Emp_OtherIncome1, " &
         " Emp_LWBPen, " &
         " Emp_Rehire, " &
-        " Emp_IsDirector " &
+        " Emp_IsDirector, " &
+        " Emp_PreviousEarnings, " &
+        " Emp_PrevSIDeduct, " &
+        " Emp_PrevPFDeduct, " &
+        " Emp_PreviousLifeIns," &
+        " EMp_PreviousDis," &
+        " Emp_PrevMF," &
+        " Emp_PrevPenF," &
+        " Emp_PrevUnion, " &
+        " Emp_PrevGesiD " &
         " FROM PrMsEmployees " &
-        " WHERE Emp_Code in " &
-        " (SELECT Emp_Code FROM PrTxTrxnHeader WHERE " &
+        " WHERE Emp_Code In " &
+        " (Select Emp_Code FROM PrTxTrxnHeader WHERE " &
         " (PrTxTrxnHeader.Com_Code = " & enQuoteString(TempGroup.CompanyCode) & " ) " &
-        " AND (PrTxTrxnHeader.TrxHdr_Year = " & enQuoteString(PerGrp.Year) & "))"
+        " And (PrTxTrxnHeader.TrxHdr_Year = " & enQuoteString(PerGrp.Year) & "))"
 
         If Global1.PARAM_HideEmpWithBlanksSIR Then
-            str1_1 = " AND (ComSin_EmpSocialInsNo <>'')"
+            str1_1 = " And (ComSin_EmpSocialInsNo <>'')"
         End If
 
 
@@ -19627,14 +19670,15 @@ todo:   ' check for status in trxnheader
                     MF2 = DbNullToDouble(DsMF2.Tables(0).Rows(0).Item(0))
                     MFLimit = DbNullToDouble(DsMF2.Tables(0).Rows(0).Item(1))
                 End If
-                MF = MF + MF2
-                If MFLimit <> 0 Then
-                    If MF > MFLimit Then
-                        MF = MFLimit
-                    End If
-                End If
+                '  MF = MF + MF2
+                ' If MFLimit <> 0 Then
+                'If MF > MFLimit Then
+                'MF = MFLimit
+                'End If
+                'End If
 
                 R(C_MF) = MF
+                R(C_PrivateMedicalFund) = MF2
 
                 '2022 MEIWSI round to 2 Decimals
                 Dim DSMeiosiApolavon As DataSet = GetSumsOfEmployeeDeductions_IR7("DN", EmpCode, StrPeriodGroupCodes)
@@ -19811,10 +19855,11 @@ todo:   ' check for status in trxnheader
                 R(C_GESYtoBIKDed) = GesyToBIKDed
                 R(C_GESYtoBIKCon) = GesyToBIKCon
                 ''''''''''''''''''''''''''''''''''''''''''''''
-                Life_Other = Life_Other + SPTaxDed
+
+                'Life_Other = Life_Other + SPTaxDed
                 '*Change 15/12/2020 for Lamber
                 'Life_Other = Life_Other + GesyToSIValue + GesyToBIKCon
-                Life_Other = Life_Other + GesyToSIValue + GesyToBIKDed
+                'Life_Other = Life_Other + GesyToSIValue + GesyToBIKDed
 
                 R(C_OtherDisc) = Life_Other
 
@@ -19855,6 +19900,29 @@ todo:   ' check for status in trxnheader
                 R(C_BIK_withoutSI) = BenefitsInKind
                 R(C_DirectorFees) = DirFees
 
+                Dim StartDate As Date
+                StartDate = DbNullToDate(DsEmp.Tables(0).Rows(i).Item(8))
+                If StartDate.Year = PerGrp.Year Then
+                    R(C_PREV_GrossEarnings) = RoundMe3(DbNullToDouble(DsEmp.Tables(0).Rows(i).Item(28)), 2)
+                    R(C_PREV_SIDed) = RoundMe3(DbNullToDouble(DsEmp.Tables(0).Rows(i).Item(29)), 2)
+                    R(C_PREV_PFFund) = RoundMe3(DbNullToDouble(DsEmp.Tables(0).Rows(i).Item(30)), 2)
+                    R(C_PREV_LifeIns) = RoundMe3(DbNullToDouble(DsEmp.Tables(0).Rows(i).Item(31)), 2)
+                    R(C_PREV_Discounts) = RoundMe3(DbNullToDouble(DsEmp.Tables(0).Rows(i).Item(32)), 2)
+                    R(C_PREV_Medical) = RoundMe3(DbNullToDouble(DsEmp.Tables(0).Rows(i).Item(33)), 2)
+                    R(C_PREV_PensionFund) = RoundMe3(DbNullToDouble(DsEmp.Tables(0).Rows(i).Item(34)), 2)
+                    R(C_PREV_UnionDed) = RoundMe3(DbNullToDouble(DsEmp.Tables(0).Rows(i).Item(35)), 2)
+                    R(C_PREV_GESY) = RoundMe3(DbNullToDouble(DsEmp.Tables(0).Rows(i).Item(36)), 2)
+                Else
+                    R(C_PREV_GrossEarnings) = 0
+                    R(C_PREV_SIDed) = 0
+                    R(C_PREV_PFFund) = 0
+                    R(C_PREV_LifeIns) = 0
+                    R(C_PREV_Discounts) = 0
+                    R(C_PREV_Medical) = 0
+                    R(C_PREV_PensionFund) = 0
+                    R(C_PREV_UnionDed) = 0
+                    R(C_PREV_GESY) = 0
+                End If
 
 
 
@@ -20702,7 +20770,7 @@ todo:   ' check for status in trxnheader
         Next
 
         Dim DsComp As DataSet
-        Str = " SELECT AdMsCompany.Com_Name," &
+            Str = " SELECT AdMsCompany.Com_Name," &
                 " AdMsCompany.Com_TIC," &
                 " AdMsCompany.Com_Address1," &
                 " AdMsCompany.Com_Address2, " &
@@ -20715,7 +20783,7 @@ todo:   ' check for status in trxnheader
                 " AdMsCompany.Com_Code = PrMsTemplateGroup.Com_Code" &
                 " WHERE (PrMsTemplateGroup.TemGrp_Code = " & enQuoteString(PerGrp.TemGrpCode) & ")"
 
-        DsComp = GetData(Str)
+            DsComp = GetData(Str)
         Ds.Tables.Add(DsComp.Tables(0).Copy)
         Ds.Tables(1).TableName = "CompanyDetails"
 
@@ -21013,6 +21081,10 @@ todo:   ' check for status in trxnheader
         " PrMsDeductionCodes ON PrTxTrxnLines.DedCod_Code = PrMsDeductionCodes.DedCod_Code INNER JOIN" &
         " PrMsEmployees ON PrTxTrxnHeader.Emp_Code = PrMsEmployees.Emp_Code" &
         " WHERE  (PrMsDeductionCodes.DedTyp_Code = 'IT')"
+        If Global1.PARAM_HideEmpWithBlanksSIR Then
+            StrX = StrX & "  AND (PrMsEmployees.ComSin_EmpSocialInsNo <>'')"
+        End If
+       
 
         StrX = StrX & Str & " Order by PrTxtrxnHeader.emp_Code ASC"
 

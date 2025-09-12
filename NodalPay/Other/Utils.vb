@@ -368,6 +368,13 @@ Module Utils
     End Sub
 
 #Region "ShowTables And DataSets"
+    Public Function FWC(D As Double) As String
+        Dim S As String
+        S = Format(D, "0.00")
+        S = S.Replace(".", ",")
+        Return S
+
+    End Function
     Public Function GetDateAndTime(ByVal Date1 As Date) As String
         Dim S As String
         S = Date1.Year & "-" & Date1.Month.ToString.PadLeft(2, "0") & "-" & Date1.Day.ToString.PadLeft(2, "0") & " " & Date1.Hour.ToString.PadLeft(2, "0") & ":" & Date1.Minute.ToString.PadLeft(2, "0")

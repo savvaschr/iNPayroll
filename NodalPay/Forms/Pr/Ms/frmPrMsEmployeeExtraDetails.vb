@@ -334,7 +334,11 @@ Public Class frmPrMsEmployeeExtraDetails
 
         Date63 = DateAdd(DateInterval.Year, 63, Emp.BirthDate)
         Date65 = DateAdd(DateInterval.Year, 65, Emp.BirthDate)
-        DateStart400 = DateAdd(DateInterval.Month, 400, Me.DateStartDateToPrevServ.Value.Date)
+        If Emp.StartDate < Me.DateStartDateToPrevServ.Value Then
+            DateStart400 = DateAdd(DateInterval.Month, 400, Emp.StartDate)
+        Else
+            DateStart400 = DateAdd(DateInterval.Month, 400, Me.DateStartDateToPrevServ.Value.Date)
+        End If
 
         Me.DateComDate400Months.Value = DateStart400
         Me.DateRetirementDate63.Value = Date63

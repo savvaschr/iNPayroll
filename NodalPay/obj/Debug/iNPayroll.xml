@@ -64,6 +64,9 @@ iNPayroll
 <member name="F:NodalPay.FrmPrTxCalculatePayroll.Ern">
  '''''''''''''''''''''''''''
 </member>
+<member name="F:NodalPay.FrmIR63A.MT_TotalGrossEmoluments">
+IR7 2024 Totals Variables
+</member>
 <member name="M:NodalPay.Encryption.Boring(System.String)">
  <summary>
  moving all characters in string insert then into new index

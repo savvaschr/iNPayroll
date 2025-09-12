@@ -11789,7 +11789,7 @@ Public Class FrmPayrollTotalsX
                     r1(9) = DsHeader.Tables(0).Rows(i).Item(9)
                     r1(10) = DsHeader.Tables(0).Rows(i).Item(10)
                     r1(11) = DsHeader.Tables(0).Rows(i).Item(11)
-                    r1(12) = DsHeader.Tables(0).Rows(i).Item(12)
+                    r1(12) = DsHeader.Tables(0).Rows(i).Item(13)
                     DtPensionFund.Rows.Add(r1)
                 End If
 
@@ -12075,6 +12075,7 @@ Public Class FrmPayrollTotalsX
         Dim GrossSal As Double
         Dim Total As Double
         Dim COLA As Double
+        Dim E2 As Double
         Dim PenFund As Double
         Dim WidowFund As Double
         Dim C18 As Double
@@ -12082,10 +12083,43 @@ Public Class FrmPayrollTotalsX
         Dim Total_GrossSal As Double = 0
         Dim Total_Total As Double = 0
         Dim Total_COLA As Double = 0
+        Dim Total_E2 As Double
         Dim Total_PenFund As Double = 0
         Dim Total_WidowFund As Double = 0
         Dim Total_C18 As Double = 0
 
+        '0
+        'DtPensionFund.Columns.Add("TrxHdr_Id", System.Type.GetType("System.Int32"))
+        '1
+        'DtPensionFund.Columns.Add("Emp_Code", System.Type.GetType("System.String"))
+        '2
+        'DtPensionFund.Columns.Add("Emp_FullName", System.Type.GetType("System.String"))
+        '3
+        'DtPensionFund.Columns.Add("TrxHdr_NetSalary", System.Type.GetType("System.Double"))
+        '4
+        'DtPensionFund.Columns.Add("TrxHdr_MonthlySalary", System.Type.GetType("System.Double"))
+        '5
+        'DtPensionFund.Columns.Add("TrxHdr_PeriodUnits", System.Type.GetType("System.Double"))
+        '6
+        'DtPensionFund.Columns.Add("Salary", System.Type.GetType("System.Double"))
+        '7
+        'DtPensionFund.Columns.Add("COLA", System.Type.GetType("System.Double"))
+        '8
+        'DtPensionFund.Columns.Add("Total", System.Type.GetType("System.Double"))
+        '9
+        'DtPensionFund.Columns.Add("D18", System.Type.GetType("System.Double"))
+        '10
+        'DtPensionFund.Columns.Add("Widow", System.Type.GetType("System.Double"))
+        '11
+        'DtPensionFund.Columns.Add("C10", System.Type.GetType("System.Double"))
+        '12
+        'DtPensionFund.Columns.Add("emp_identificationcard", System.Type.GetType("System.String"))
+        '13
+        'DtPensionFund.Columns.Add("emp_CNP", System.Type.GetType("System.String"))
+        '14
+        'DtPensionFund.Columns.Add("Arrears1", System.Type.GetType("System.Double"))
+        '15
+        'DtPensionFund.Columns.Add("Arrears2", System.Type.GetType("System.Double"))
 
 
         Dim i As Integer
@@ -12099,11 +12133,12 @@ Public Class FrmPayrollTotalsX
                 HeaderId = DbNullToInt(DsHeader.Tables(0).Rows(i).Item(0))
                 GrossSal = Global1.Business.GetEarningCodeForHeader(HeaderId, "E01")
                 COLA = Global1.Business.GetEarningCodeForHeader(HeaderId, "E28")
+                E2 = Global1.Business.GetEarningCodeForHeader(HeaderId, "E2")
                 PenFund = Global1.Business.GetDeductionCodeForHeader(HeaderId, "D24")
                 WidowFund = Global1.Business.GetDeductionForHeader(HeaderId, "WO")
                 C18 = Global1.Business.GetContributionCodeForHeader(HeaderId, "C18")
 
-                Total = GrossSal + COLA
+                Total = GrossSal + COLA + E2
                 AddRecord = True
 
                 If PenFund = 0 And C18 = 0 Then
@@ -12116,10 +12151,12 @@ Public Class FrmPayrollTotalsX
                     DsHeader.Tables(0).Rows(i).Item(9) = PenFund
                     DsHeader.Tables(0).Rows(i).Item(10) = WidowFund
                     DsHeader.Tables(0).Rows(i).Item(11) = C18
+                    DsHeader.Tables(0).Rows(i).Item(12) = E2
 
                     Total_GrossSal = Total_GrossSal + GrossSal
                     Total_Total = Total_Total + Total
                     Total_COLA = Total_COLA + COLA
+                    Total_E2 = Total_E2 + E2
                     Total_PenFund = Total_PenFund + PenFund
                     Total_WidowFund = Total_WidowFund + WidowFund
                     Total_C18 = Total_C18 + C18
@@ -12137,7 +12174,8 @@ Public Class FrmPayrollTotalsX
                     r1(9) = DsHeader.Tables(0).Rows(i).Item(9)
                     r1(10) = DsHeader.Tables(0).Rows(i).Item(10)
                     r1(11) = DsHeader.Tables(0).Rows(i).Item(11)
-                    r1(12) = DsHeader.Tables(0).Rows(i).Item(12)
+                    r1(15) = DsHeader.Tables(0).Rows(i).Item(12)
+                    r1(12) = DsHeader.Tables(0).Rows(i).Item(13)
                     DtPensionFund.Rows.Add(r1)
 
                 End If
@@ -12159,6 +12197,7 @@ Public Class FrmPayrollTotalsX
             r(11) = Total_C18
             r(12) = ""
             r(13) = ""
+            r(15) = Total_E2
 
             DtPensionFund.Rows.Add(r)
         End If
@@ -12186,7 +12225,7 @@ Public Class FrmPayrollTotalsX
         DsR.Tables(2).TableName = "Period"
 
 
-        'Utils.WriteSchemaWithXmlTextWriter(DsR, "C:\Users\Administrator\Documents\Visual Studio 2005\Projects\NodalPay\NodalPay\XML\PenFundReport5")
+        '  Utils.WriteSchemaWithXmlTextWriter(DsR, "C:\Users\Admin\Documents\Visual Studio 2015\Projects\NodalPay - 2019\NodalPay\XML\PenFundReport5")
 
         If CheckDataSet(DsHeader) Then
             Utils.ShowReport("PensionFund5.rpt", DsR, FrmReport, "", False)

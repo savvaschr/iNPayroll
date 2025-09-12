@@ -742,8 +742,8 @@ Public Class cBusiness
         Return MyBase.REPORT_IR7_4_ForPERIOD(PerGrp, FromCode, ToCode, YearDate, ForPeriodCode, showmessages, ShowInExcel, BIKOnSI, Dissablerehire)
 
     End Function
-    Public Shadows Function REPORT_IR7_5(ByVal PerGrp As cPrMsPeriodGroups, ByVal FromCode As String, ByVal ToCode As String, ByVal YearDate As Date, Optional ByVal showmessages As Boolean = True, Optional ByVal ShowInExcel As Boolean = False, Optional ByVal BIKOnSI As Boolean = False, Optional ByVal Dissablerehire As Boolean = False) As DataSet
-        Return MyBase.REPORT_IR7_5(PerGrp, FromCode, ToCode, YearDate, showmessages, ShowInExcel, BIKOnSI, Dissablerehire)
+    Public Shadows Function REPORT_IR7_2024(ByVal PerGrp As cPrMsPeriodGroups, ByVal FromCode As String, ByVal ToCode As String, ByVal YearDate As Date, Optional ByVal showmessages As Boolean = True, Optional ByVal ShowInExcel As Boolean = False, Optional ByVal BIKOnSI As Boolean = False, Optional ByVal Dissablerehire As Boolean = False) As DataSet
+        Return MyBase.REPORT_IR7_2024(PerGrp, FromCode, ToCode, YearDate, showmessages, ShowInExcel, BIKOnSI, Dissablerehire)
 
     End Function
 

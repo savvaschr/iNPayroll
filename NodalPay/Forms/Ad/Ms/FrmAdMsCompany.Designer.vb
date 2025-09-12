@@ -19,138 +19,139 @@ Partial Class FrmAdMsCompany
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle
+        Me.components = New System.ComponentModel.Container()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmAdMsCompany))
-        Me.DG1 = New System.Windows.Forms.DataGridView
-        Me.Com_Id = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Com_Code = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Com_Name = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Com_NameS = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Com_VAT = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Com_Reg = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Adr_Code = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Com_CurMode = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Com_CurRate = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Com_CurSymbol1 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Com_CurSymbol2 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Com_CurrentDate = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.TabControl1 = New System.Windows.Forms.TabControl
-        Me.TabPage1 = New System.Windows.Forms.TabPage
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox
-        Me.txtAccountantPostCode = New System.Windows.Forms.TextBox
-        Me.txtAccountantPOBox = New System.Windows.Forms.TextBox
-        Me.txtAccountantTitle = New System.Windows.Forms.TextBox
-        Me.txtCurSymbol = New System.Windows.Forms.TextBox
-        Me.lblAccountantPostCode = New System.Windows.Forms.Label
-        Me.lblAccountantPOBox = New System.Windows.Forms.Label
-        Me.lblAccountantTitle = New System.Windows.Forms.Label
-        Me.lblCurSymbol = New System.Windows.Forms.Label
-        Me.txtId = New System.Windows.Forms.TextBox
-        Me.txtDescL = New System.Windows.Forms.TextBox
-        Me.txtDescS = New System.Windows.Forms.TextBox
-        Me.txtCode = New System.Windows.Forms.TextBox
-        Me.Label3 = New System.Windows.Forms.Label
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.TabPage2 = New System.Windows.Forms.TabPage
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox
-        Me.Label27 = New System.Windows.Forms.Label
-        Me.Logo = New System.Windows.Forms.PictureBox
-        Me.Browse = New System.Windows.Forms.Button
-        Me.BRemove = New System.Windows.Forms.Button
-        Me.txtFax2 = New System.Windows.Forms.TextBox
-        Me.txtFax1 = New System.Windows.Forms.TextBox
-        Me.txtTel2 = New System.Windows.Forms.TextBox
-        Me.txtTel1 = New System.Windows.Forms.TextBox
-        Me.lblFax2 = New System.Windows.Forms.Label
-        Me.lblFax1 = New System.Windows.Forms.Label
-        Me.lblTel2 = New System.Windows.Forms.Label
-        Me.lblTel1 = New System.Windows.Forms.Label
-        Me.txtAdr4 = New System.Windows.Forms.TextBox
-        Me.txtAdr3 = New System.Windows.Forms.TextBox
-        Me.txtAdr2 = New System.Windows.Forms.TextBox
-        Me.txtAdr1 = New System.Windows.Forms.TextBox
-        Me.Label11 = New System.Windows.Forms.Label
-        Me.TabPage3 = New System.Windows.Forms.TabPage
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox
-        Me.txtSI5 = New System.Windows.Forms.TextBox
-        Me.Label26 = New System.Windows.Forms.Label
-        Me.txtbankcode4 = New System.Windows.Forms.TextBox
-        Me.Label24 = New System.Windows.Forms.Label
-        Me.txtSI4 = New System.Windows.Forms.TextBox
-        Me.Label25 = New System.Windows.Forms.Label
-        Me.txtbankcode3 = New System.Windows.Forms.TextBox
-        Me.Label22 = New System.Windows.Forms.Label
-        Me.txtSI3 = New System.Windows.Forms.TextBox
-        Me.Label23 = New System.Windows.Forms.Label
-        Me.txtbankcode2 = New System.Windows.Forms.TextBox
-        Me.Label20 = New System.Windows.Forms.Label
-        Me.txtSI2 = New System.Windows.Forms.TextBox
-        Me.Label21 = New System.Windows.Forms.Label
-        Me.txtbankcode = New System.Windows.Forms.TextBox
-        Me.Label4 = New System.Windows.Forms.Label
-        Me.txtSIRegNo = New System.Windows.Forms.TextBox
-        Me.txtTaxCard = New System.Windows.Forms.TextBox
-        Me.lblSIRegNo = New System.Windows.Forms.Label
-        Me.lblTaxCard = New System.Windows.Forms.Label
-        Me.txtTIC = New System.Windows.Forms.TextBox
-        Me.lblTIC = New System.Windows.Forms.Label
-        Me.cmbTICCategory = New System.Windows.Forms.ComboBox
-        Me.cmbTICType = New System.Windows.Forms.ComboBox
-        Me.cmbAccIdentity = New System.Windows.Forms.ComboBox
-        Me.Label10 = New System.Windows.Forms.Label
-        Me.txtAccTIC = New System.Windows.Forms.TextBox
-        Me.Label12 = New System.Windows.Forms.Label
-        Me.Label13 = New System.Windows.Forms.Label
-        Me.Label14 = New System.Windows.Forms.Label
-        Me.TabPage4 = New System.Windows.Forms.TabPage
-        Me.Label19 = New System.Windows.Forms.Label
-        Me.cmbBalAccountType = New System.Windows.Forms.ComboBox
-        Me.Label18 = New System.Windows.Forms.Label
-        Me.cmbAccountType = New System.Windows.Forms.ComboBox
-        Me.txtTSBalAccount = New System.Windows.Forms.TextBox
-        Me.txtTSAccount = New System.Windows.Forms.TextBox
-        Me.txtTimesheetsDefJob = New System.Windows.Forms.TextBox
-        Me.Label15 = New System.Windows.Forms.Label
-        Me.Label16 = New System.Windows.Forms.Label
-        Me.Label17 = New System.Windows.Forms.Label
-        Me.txtGLAnal5 = New System.Windows.Forms.TextBox
-        Me.Label9 = New System.Windows.Forms.Label
-        Me.txtGLAnal4 = New System.Windows.Forms.TextBox
-        Me.Label8 = New System.Windows.Forms.Label
-        Me.txtGLAnal3 = New System.Windows.Forms.TextBox
-        Me.Label7 = New System.Windows.Forms.Label
-        Me.txtGLAnal2 = New System.Windows.Forms.TextBox
-        Me.Label6 = New System.Windows.Forms.Label
-        Me.txtGLAnal1 = New System.Windows.Forms.TextBox
-        Me.Label5 = New System.Windows.Forms.Label
+        Me.DG1 = New System.Windows.Forms.DataGridView()
+        Me.Com_Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Com_Code = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Com_Name = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Com_NameS = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Com_VAT = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Com_Reg = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Adr_Code = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Com_CurMode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Com_CurRate = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Com_CurSymbol1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Com_CurSymbol2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Com_CurrentDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.txtAccountantPostCode = New System.Windows.Forms.TextBox()
+        Me.txtAccountantPOBox = New System.Windows.Forms.TextBox()
+        Me.txtAccountantTitle = New System.Windows.Forms.TextBox()
+        Me.txtCurSymbol = New System.Windows.Forms.TextBox()
+        Me.lblAccountantPostCode = New System.Windows.Forms.Label()
+        Me.lblAccountantPOBox = New System.Windows.Forms.Label()
+        Me.lblAccountantTitle = New System.Windows.Forms.Label()
+        Me.lblCurSymbol = New System.Windows.Forms.Label()
+        Me.txtId = New System.Windows.Forms.TextBox()
+        Me.txtDescL = New System.Windows.Forms.TextBox()
+        Me.txtDescS = New System.Windows.Forms.TextBox()
+        Me.txtCode = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.Label28 = New System.Windows.Forms.Label()
+        Me.Stamp = New System.Windows.Forms.PictureBox()
+        Me.Browse2 = New System.Windows.Forms.Button()
+        Me.BRemove2 = New System.Windows.Forms.Button()
+        Me.Label27 = New System.Windows.Forms.Label()
+        Me.Logo = New System.Windows.Forms.PictureBox()
+        Me.Browse = New System.Windows.Forms.Button()
+        Me.BRemove = New System.Windows.Forms.Button()
+        Me.txtFax2 = New System.Windows.Forms.TextBox()
+        Me.txtFax1 = New System.Windows.Forms.TextBox()
+        Me.txtTel2 = New System.Windows.Forms.TextBox()
+        Me.txtTel1 = New System.Windows.Forms.TextBox()
+        Me.lblFax2 = New System.Windows.Forms.Label()
+        Me.lblFax1 = New System.Windows.Forms.Label()
+        Me.lblTel2 = New System.Windows.Forms.Label()
+        Me.lblTel1 = New System.Windows.Forms.Label()
+        Me.txtAdr4 = New System.Windows.Forms.TextBox()
+        Me.txtAdr3 = New System.Windows.Forms.TextBox()
+        Me.txtAdr2 = New System.Windows.Forms.TextBox()
+        Me.txtAdr1 = New System.Windows.Forms.TextBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.txtSI5 = New System.Windows.Forms.TextBox()
+        Me.Label26 = New System.Windows.Forms.Label()
+        Me.txtbankcode4 = New System.Windows.Forms.TextBox()
+        Me.Label24 = New System.Windows.Forms.Label()
+        Me.txtSI4 = New System.Windows.Forms.TextBox()
+        Me.Label25 = New System.Windows.Forms.Label()
+        Me.txtbankcode3 = New System.Windows.Forms.TextBox()
+        Me.Label22 = New System.Windows.Forms.Label()
+        Me.txtSI3 = New System.Windows.Forms.TextBox()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.txtbankcode2 = New System.Windows.Forms.TextBox()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.txtSI2 = New System.Windows.Forms.TextBox()
+        Me.Label21 = New System.Windows.Forms.Label()
+        Me.txtbankcode = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.txtSIRegNo = New System.Windows.Forms.TextBox()
+        Me.txtTaxCard = New System.Windows.Forms.TextBox()
+        Me.lblSIRegNo = New System.Windows.Forms.Label()
+        Me.lblTaxCard = New System.Windows.Forms.Label()
+        Me.txtTIC = New System.Windows.Forms.TextBox()
+        Me.lblTIC = New System.Windows.Forms.Label()
+        Me.cmbTICCategory = New System.Windows.Forms.ComboBox()
+        Me.cmbTICType = New System.Windows.Forms.ComboBox()
+        Me.cmbAccIdentity = New System.Windows.Forms.ComboBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.txtAccTIC = New System.Windows.Forms.TextBox()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.Label19 = New System.Windows.Forms.Label()
+        Me.cmbBalAccountType = New System.Windows.Forms.ComboBox()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.cmbAccountType = New System.Windows.Forms.ComboBox()
+        Me.txtTSBalAccount = New System.Windows.Forms.TextBox()
+        Me.txtTSAccount = New System.Windows.Forms.TextBox()
+        Me.txtTimesheetsDefJob = New System.Windows.Forms.TextBox()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.txtGLAnal5 = New System.Windows.Forms.TextBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.txtGLAnal4 = New System.Windows.Forms.TextBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.txtGLAnal3 = New System.Windows.Forms.TextBox()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.txtGLAnal2 = New System.Windows.Forms.TextBox()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.txtGLAnal1 = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.Er1 = New System.Windows.Forms.ErrorProvider(Me.components)
         Me.Er2 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip
-        Me.TLSSave = New System.Windows.Forms.ToolStripButton
-        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton
-        Me.btnCompanyUsers = New System.Windows.Forms.ToolStripButton
-        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel
-        Me.TSDeleteCompany = New System.Windows.Forms.ToolStripButton
-        Me.btnCreatePermitions = New System.Windows.Forms.ToolStripButton
-        Me.TSBExcel = New System.Windows.Forms.ToolStripButton
-        Me.ToolStripSplitButton1 = New System.Windows.Forms.ToolStripSplitButton
-        Me.PayslipsPerCompanyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.PayslipsOfSelectedCompanyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.UsersPerCompanyForSpecificYearToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog
-        Me.Label28 = New System.Windows.Forms.Label
-        Me.Stamp = New System.Windows.Forms.PictureBox
-        Me.Browse2 = New System.Windows.Forms.Button
-        Me.BRemove2 = New System.Windows.Forms.Button
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.TLSSave = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripButton1 = New System.Windows.Forms.ToolStripButton()
+        Me.btnCompanyUsers = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripLabel1 = New System.Windows.Forms.ToolStripLabel()
+        Me.TSDeleteCompany = New System.Windows.Forms.ToolStripButton()
+        Me.btnCreatePermitions = New System.Windows.Forms.ToolStripButton()
+        Me.TSBExcel = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSplitButton1 = New System.Windows.Forms.ToolStripSplitButton()
+        Me.PayslipsPerCompanyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PayslipsOfSelectedCompanyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.UsersPerCompanyForSpecificYearToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         CType(Me.DG1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.GroupBox3.SuspendLayout()
+        CType(Me.Stamp, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Logo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -158,7 +159,6 @@ Partial Class FrmAdMsCompany
         CType(Me.Er1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Er2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
-        CType(Me.Stamp, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'DG1
@@ -166,24 +166,24 @@ Partial Class FrmAdMsCompany
         Me.DG1.AllowUserToAddRows = False
         Me.DG1.AllowUserToDeleteRows = False
         Me.DG1.BackgroundColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
-        DataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DG1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DG1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.DG1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DG1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Com_Id, Me.Com_Code, Me.Com_Name, Me.Com_NameS, Me.Com_VAT, Me.Com_Reg, Me.Adr_Code, Me.Com_CurMode, Me.Com_CurRate, Me.Com_CurSymbol1, Me.Com_CurSymbol2, Me.Com_CurrentDate})
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
-        DataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DG1.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DG1.DefaultCellStyle = DataGridViewCellStyle4
         Me.DG1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DG1.Location = New System.Drawing.Point(12, 297)
         Me.DG1.MultiSelect = False
@@ -456,7 +456,7 @@ Partial Class FrmAdMsCompany
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage2.Size = New System.Drawing.Size(1111, 230)
         Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "Details"
+        Me.TabPage2.Text = "Address/Contact Details"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
         'GroupBox3
@@ -487,6 +487,48 @@ Partial Class FrmAdMsCompany
         Me.GroupBox3.Size = New System.Drawing.Size(1099, 217)
         Me.GroupBox3.TabIndex = 0
         Me.GroupBox3.TabStop = False
+        '
+        'Label28
+        '
+        Me.Label28.AutoSize = True
+        Me.Label28.Location = New System.Drawing.Point(807, 20)
+        Me.Label28.Name = "Label28"
+        Me.Label28.Size = New System.Drawing.Size(37, 13)
+        Me.Label28.TabIndex = 309
+        Me.Label28.Text = "Stamp"
+        '
+        'Stamp
+        '
+        Me.Stamp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Stamp.Image = Global.NodalPay.My.Resources.Resources.Company1
+        Me.Stamp.Location = New System.Drawing.Point(889, 16)
+        Me.Stamp.Name = "Stamp"
+        Me.Stamp.Size = New System.Drawing.Size(186, 152)
+        Me.Stamp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.Stamp.TabIndex = 308
+        Me.Stamp.TabStop = False
+        '
+        'Browse2
+        '
+        Me.Browse2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Browse2.ForeColor = System.Drawing.Color.Black
+        Me.Browse2.Location = New System.Drawing.Point(889, 174)
+        Me.Browse2.Name = "Browse2"
+        Me.Browse2.Size = New System.Drawing.Size(80, 23)
+        Me.Browse2.TabIndex = 306
+        Me.Browse2.Text = "Browse..."
+        Me.Browse2.UseVisualStyleBackColor = True
+        '
+        'BRemove2
+        '
+        Me.BRemove2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.BRemove2.ForeColor = System.Drawing.Color.Black
+        Me.BRemove2.Location = New System.Drawing.Point(973, 174)
+        Me.BRemove2.Name = "BRemove2"
+        Me.BRemove2.Size = New System.Drawing.Size(100, 23)
+        Me.BRemove2.TabIndex = 307
+        Me.BRemove2.Text = "Remove"
+        Me.BRemove2.UseVisualStyleBackColor = True
         '
         'Label27
         '
@@ -646,7 +688,7 @@ Partial Class FrmAdMsCompany
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Size = New System.Drawing.Size(1111, 230)
         Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "I.R. 7 Details"
+        Me.TabPage3.Text = "S.I. Registration. IR7, IR63 and Other Details"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
         'GroupBox2
@@ -689,7 +731,7 @@ Partial Class FrmAdMsCompany
         '
         'txtSI5
         '
-        Me.txtSI5.Location = New System.Drawing.Point(436, 110)
+        Me.txtSI5.Location = New System.Drawing.Point(478, 110)
         Me.txtSI5.Name = "txtSI5"
         Me.txtSI5.Size = New System.Drawing.Size(100, 20)
         Me.txtSI5.TabIndex = 58
@@ -697,7 +739,7 @@ Partial Class FrmAdMsCompany
         'Label26
         '
         Me.Label26.AutoSize = True
-        Me.Label26.Location = New System.Drawing.Point(355, 113)
+        Me.Label26.Location = New System.Drawing.Point(397, 113)
         Me.Label26.Name = "Label26"
         Me.Label26.Size = New System.Drawing.Size(75, 13)
         Me.Label26.TabIndex = 57
@@ -705,7 +747,7 @@ Partial Class FrmAdMsCompany
         '
         'txtbankcode4
         '
-        Me.txtbankcode4.Location = New System.Drawing.Point(635, 85)
+        Me.txtbankcode4.Location = New System.Drawing.Point(677, 85)
         Me.txtbankcode4.MaxLength = 5
         Me.txtbankcode4.Name = "txtbankcode4"
         Me.txtbankcode4.Size = New System.Drawing.Size(100, 20)
@@ -714,7 +756,7 @@ Partial Class FrmAdMsCompany
         'Label24
         '
         Me.Label24.AutoSize = True
-        Me.Label24.Location = New System.Drawing.Point(554, 88)
+        Me.Label24.Location = New System.Drawing.Point(596, 88)
         Me.Label24.Name = "Label24"
         Me.Label24.Size = New System.Drawing.Size(69, 13)
         Me.Label24.TabIndex = 55
@@ -722,7 +764,7 @@ Partial Class FrmAdMsCompany
         '
         'txtSI4
         '
-        Me.txtSI4.Location = New System.Drawing.Point(436, 85)
+        Me.txtSI4.Location = New System.Drawing.Point(478, 85)
         Me.txtSI4.Name = "txtSI4"
         Me.txtSI4.Size = New System.Drawing.Size(100, 20)
         Me.txtSI4.TabIndex = 54
@@ -730,7 +772,7 @@ Partial Class FrmAdMsCompany
         'Label25
         '
         Me.Label25.AutoSize = True
-        Me.Label25.Location = New System.Drawing.Point(355, 88)
+        Me.Label25.Location = New System.Drawing.Point(397, 88)
         Me.Label25.Name = "Label25"
         Me.Label25.Size = New System.Drawing.Size(75, 13)
         Me.Label25.TabIndex = 53
@@ -738,7 +780,7 @@ Partial Class FrmAdMsCompany
         '
         'txtbankcode3
         '
-        Me.txtbankcode3.Location = New System.Drawing.Point(635, 62)
+        Me.txtbankcode3.Location = New System.Drawing.Point(677, 62)
         Me.txtbankcode3.MaxLength = 5
         Me.txtbankcode3.Name = "txtbankcode3"
         Me.txtbankcode3.Size = New System.Drawing.Size(100, 20)
@@ -747,7 +789,7 @@ Partial Class FrmAdMsCompany
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(554, 65)
+        Me.Label22.Location = New System.Drawing.Point(596, 65)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(69, 13)
         Me.Label22.TabIndex = 51
@@ -755,7 +797,7 @@ Partial Class FrmAdMsCompany
         '
         'txtSI3
         '
-        Me.txtSI3.Location = New System.Drawing.Point(436, 62)
+        Me.txtSI3.Location = New System.Drawing.Point(478, 62)
         Me.txtSI3.Name = "txtSI3"
         Me.txtSI3.Size = New System.Drawing.Size(100, 20)
         Me.txtSI3.TabIndex = 50
@@ -763,7 +805,7 @@ Partial Class FrmAdMsCompany
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(355, 65)
+        Me.Label23.Location = New System.Drawing.Point(397, 65)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(75, 13)
         Me.Label23.TabIndex = 49
@@ -771,7 +813,7 @@ Partial Class FrmAdMsCompany
         '
         'txtbankcode2
         '
-        Me.txtbankcode2.Location = New System.Drawing.Point(635, 39)
+        Me.txtbankcode2.Location = New System.Drawing.Point(677, 39)
         Me.txtbankcode2.MaxLength = 5
         Me.txtbankcode2.Name = "txtbankcode2"
         Me.txtbankcode2.Size = New System.Drawing.Size(100, 20)
@@ -780,7 +822,7 @@ Partial Class FrmAdMsCompany
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(554, 42)
+        Me.Label20.Location = New System.Drawing.Point(596, 42)
         Me.Label20.Name = "Label20"
         Me.Label20.Size = New System.Drawing.Size(69, 13)
         Me.Label20.TabIndex = 47
@@ -788,7 +830,7 @@ Partial Class FrmAdMsCompany
         '
         'txtSI2
         '
-        Me.txtSI2.Location = New System.Drawing.Point(436, 39)
+        Me.txtSI2.Location = New System.Drawing.Point(478, 39)
         Me.txtSI2.Name = "txtSI2"
         Me.txtSI2.Size = New System.Drawing.Size(100, 20)
         Me.txtSI2.TabIndex = 46
@@ -796,7 +838,7 @@ Partial Class FrmAdMsCompany
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(355, 42)
+        Me.Label21.Location = New System.Drawing.Point(397, 42)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(75, 13)
         Me.Label21.TabIndex = 45
@@ -804,7 +846,7 @@ Partial Class FrmAdMsCompany
         '
         'txtbankcode
         '
-        Me.txtbankcode.Location = New System.Drawing.Point(635, 16)
+        Me.txtbankcode.Location = New System.Drawing.Point(677, 16)
         Me.txtbankcode.MaxLength = 5
         Me.txtbankcode.Name = "txtbankcode"
         Me.txtbankcode.Size = New System.Drawing.Size(100, 20)
@@ -813,7 +855,7 @@ Partial Class FrmAdMsCompany
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(554, 19)
+        Me.Label4.Location = New System.Drawing.Point(596, 19)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(69, 13)
         Me.Label4.TabIndex = 43
@@ -821,14 +863,14 @@ Partial Class FrmAdMsCompany
         '
         'txtSIRegNo
         '
-        Me.txtSIRegNo.Location = New System.Drawing.Point(436, 16)
+        Me.txtSIRegNo.Location = New System.Drawing.Point(478, 16)
         Me.txtSIRegNo.Name = "txtSIRegNo"
         Me.txtSIRegNo.Size = New System.Drawing.Size(100, 20)
         Me.txtSIRegNo.TabIndex = 42
         '
         'txtTaxCard
         '
-        Me.txtTaxCard.Location = New System.Drawing.Point(118, 133)
+        Me.txtTaxCard.Location = New System.Drawing.Point(139, 133)
         Me.txtTaxCard.Name = "txtTaxCard"
         Me.txtTaxCard.Size = New System.Drawing.Size(100, 20)
         Me.txtTaxCard.TabIndex = 41
@@ -836,7 +878,7 @@ Partial Class FrmAdMsCompany
         'lblSIRegNo
         '
         Me.lblSIRegNo.AutoSize = True
-        Me.lblSIRegNo.Location = New System.Drawing.Point(355, 19)
+        Me.lblSIRegNo.Location = New System.Drawing.Point(397, 19)
         Me.lblSIRegNo.Name = "lblSIRegNo"
         Me.lblSIRegNo.Size = New System.Drawing.Size(75, 13)
         Me.lblSIRegNo.TabIndex = 40
@@ -847,13 +889,13 @@ Partial Class FrmAdMsCompany
         Me.lblTaxCard.AutoSize = True
         Me.lblTaxCard.Location = New System.Drawing.Point(6, 136)
         Me.lblTaxCard.Name = "lblTaxCard"
-        Me.lblTaxCard.Size = New System.Drawing.Size(47, 13)
+        Me.lblTaxCard.Size = New System.Drawing.Size(127, 13)
         Me.lblTaxCard.TabIndex = 39
-        Me.lblTaxCard.Text = "TaxCard"
+        Me.lblTaxCard.Text = "TFA T.I.N. (VAT Reg.No)"
         '
         'txtTIC
         '
-        Me.txtTIC.Location = New System.Drawing.Point(118, 112)
+        Me.txtTIC.Location = New System.Drawing.Point(139, 112)
         Me.txtTIC.Name = "txtTIC"
         Me.txtTIC.Size = New System.Drawing.Size(100, 20)
         Me.txtTIC.TabIndex = 38
@@ -863,15 +905,15 @@ Partial Class FrmAdMsCompany
         Me.lblTIC.AutoSize = True
         Me.lblTIC.Location = New System.Drawing.Point(6, 117)
         Me.lblTIC.Name = "lblTIC"
-        Me.lblTIC.Size = New System.Drawing.Size(24, 13)
+        Me.lblTIC.Size = New System.Drawing.Size(81, 13)
         Me.lblTIC.TabIndex = 37
-        Me.lblTIC.Text = "TIC"
+        Me.lblTIC.Text = "Company T.I.N."
         '
         'cmbTICCategory
         '
         Me.cmbTICCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbTICCategory.FormattingEnabled = True
-        Me.cmbTICCategory.Location = New System.Drawing.Point(118, 65)
+        Me.cmbTICCategory.Location = New System.Drawing.Point(139, 65)
         Me.cmbTICCategory.Name = "cmbTICCategory"
         Me.cmbTICCategory.Size = New System.Drawing.Size(219, 21)
         Me.cmbTICCategory.TabIndex = 24
@@ -880,7 +922,7 @@ Partial Class FrmAdMsCompany
         '
         Me.cmbTICType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbTICType.FormattingEnabled = True
-        Me.cmbTICType.Location = New System.Drawing.Point(118, 89)
+        Me.cmbTICType.Location = New System.Drawing.Point(139, 89)
         Me.cmbTICType.Name = "cmbTICType"
         Me.cmbTICType.Size = New System.Drawing.Size(219, 21)
         Me.cmbTICType.TabIndex = 23
@@ -889,7 +931,7 @@ Partial Class FrmAdMsCompany
         '
         Me.cmbAccIdentity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.cmbAccIdentity.FormattingEnabled = True
-        Me.cmbAccIdentity.Location = New System.Drawing.Point(118, 42)
+        Me.cmbAccIdentity.Location = New System.Drawing.Point(139, 42)
         Me.cmbAccIdentity.Name = "cmbAccIdentity"
         Me.cmbAccIdentity.Size = New System.Drawing.Size(219, 21)
         Me.cmbAccIdentity.TabIndex = 22
@@ -899,13 +941,13 @@ Partial Class FrmAdMsCompany
         Me.Label10.AutoSize = True
         Me.Label10.Location = New System.Drawing.Point(6, 92)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(51, 13)
+        Me.Label10.Size = New System.Drawing.Size(61, 13)
         Me.Label10.TabIndex = 21
-        Me.Label10.Text = "TIC Type"
+        Me.Label10.Text = "T.I.N. Type"
         '
         'txtAccTIC
         '
-        Me.txtAccTIC.Location = New System.Drawing.Point(118, 19)
+        Me.txtAccTIC.Location = New System.Drawing.Point(139, 19)
         Me.txtAccTIC.MaxLength = 9
         Me.txtAccTIC.Name = "txtAccTIC"
         Me.txtAccTIC.Size = New System.Drawing.Size(100, 20)
@@ -916,9 +958,9 @@ Partial Class FrmAdMsCompany
         Me.Label12.AutoSize = True
         Me.Label12.Location = New System.Drawing.Point(6, 65)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(69, 13)
+        Me.Label12.Size = New System.Drawing.Size(79, 13)
         Me.Label12.TabIndex = 2
-        Me.Label12.Text = "TIC Category"
+        Me.Label12.Text = "T.I.N. Category"
         '
         'Label13
         '
@@ -934,9 +976,9 @@ Partial Class FrmAdMsCompany
         Me.Label14.AutoSize = True
         Me.Label14.Location = New System.Drawing.Point(6, 19)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(82, 13)
+        Me.Label14.Size = New System.Drawing.Size(92, 13)
         Me.Label14.TabIndex = 0
-        Me.Label14.Text = "Accountant TIC"
+        Me.Label14.Text = "Accountant T.I.N."
         '
         'TabPage4
         '
@@ -1246,48 +1288,6 @@ Partial Class FrmAdMsCompany
         '
         Me.OpenFileDialog1.FileName = "OpenFileDialog1"
         '
-        'Label28
-        '
-        Me.Label28.AutoSize = True
-        Me.Label28.Location = New System.Drawing.Point(807, 20)
-        Me.Label28.Name = "Label28"
-        Me.Label28.Size = New System.Drawing.Size(37, 13)
-        Me.Label28.TabIndex = 309
-        Me.Label28.Text = "Stamp"
-        '
-        'Stamp
-        '
-        Me.Stamp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Stamp.Image = Global.NodalPay.My.Resources.Resources.Company1
-        Me.Stamp.Location = New System.Drawing.Point(889, 16)
-        Me.Stamp.Name = "Stamp"
-        Me.Stamp.Size = New System.Drawing.Size(186, 152)
-        Me.Stamp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
-        Me.Stamp.TabIndex = 308
-        Me.Stamp.TabStop = False
-        '
-        'Browse2
-        '
-        Me.Browse2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Browse2.ForeColor = System.Drawing.Color.Black
-        Me.Browse2.Location = New System.Drawing.Point(889, 174)
-        Me.Browse2.Name = "Browse2"
-        Me.Browse2.Size = New System.Drawing.Size(80, 23)
-        Me.Browse2.TabIndex = 306
-        Me.Browse2.Text = "Browse..."
-        Me.Browse2.UseVisualStyleBackColor = True
-        '
-        'BRemove2
-        '
-        Me.BRemove2.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.BRemove2.ForeColor = System.Drawing.Color.Black
-        Me.BRemove2.Location = New System.Drawing.Point(973, 174)
-        Me.BRemove2.Name = "BRemove2"
-        Me.BRemove2.Size = New System.Drawing.Size(100, 23)
-        Me.BRemove2.TabIndex = 307
-        Me.BRemove2.Text = "Remove"
-        Me.BRemove2.UseVisualStyleBackColor = True
-        '
         'FrmAdMsCompany
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1308,6 +1308,7 @@ Partial Class FrmAdMsCompany
         Me.TabPage2.ResumeLayout(False)
         Me.GroupBox3.ResumeLayout(False)
         Me.GroupBox3.PerformLayout()
+        CType(Me.Stamp, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Logo, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage3.ResumeLayout(False)
         Me.GroupBox2.ResumeLayout(False)
@@ -1318,7 +1319,6 @@ Partial Class FrmAdMsCompany
         CType(Me.Er2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ToolStrip1.ResumeLayout(False)
         Me.ToolStrip1.PerformLayout()
-        CType(Me.Stamp, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

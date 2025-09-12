@@ -68,6 +68,7 @@ Public Class FrmIR61_2019
 
         Dim C As New cAdMsCompany(TemGrp.CompanyCode)
         Me.txtTAXId.Text = C.TIC
+        Me.txtVATRegNo.Text = C.TaxCard
         Me.txtCompName.Text = C.Name
         Me.txtAdr1.Text = C.Address1 & " " & C.Address2
         Me.txtAdr2.Text = C.Address3 & " " & C.Address4
@@ -127,17 +128,7 @@ Public Class FrmIR61_2019
 
         End If
 
-        Dim DsTaxable As DataSet
-        DsTaxable = Global1.Business.REPORT_IR61_GetTaxableIncome(PerGroup, SIPeriod)
-        If CheckDataSet(DsTaxable) Then
-            Me.txtTaxableIncome.Text = Format(DbNullToDouble(DsTaxable.Tables(0).Rows(0).Item(0)), "0.00")
-            'dTax = DbNullToDouble(Ds.Tables(0).Rows(0).Item(0))
-        Else
-            Me.txtTaxableIncome.Text = "0.00"
-            'dTax = 0
-
-        End If
-
+        Me.txtTaxableIncome.Text = "0.00"
 
         DsDED = Global1.Business.REPORT_IR61_Gesy_DEDUCTION(PerGroup, SIPeriod)
         If CheckDataSet(DsDED) Then
@@ -641,7 +632,7 @@ Public Class FrmIR61_2019
 
 
             Ds.Tables.Add(dt)
-
+            Dim Error1 As String = ""
             For i = 0 To DsTax.Tables(0).Rows.Count - 1
 
                 R = dt.NewRow
@@ -688,7 +679,14 @@ Public Class FrmIR61_2019
                 R(COLx_GhsWithheldFromEmployeeBonus) = "0,00"
                 R(COLx_BonusGhsEmployersContribution) = "0,00"
                 R(COLx_PensionableBenefitsContribution) = "0,00"
+                If TIC = "" Then
+                    If Error1 = "" Then
+                        Error1 = "Missing TIC numbers of Employee(s):" & Chr(13)
+                    End If
+                    Error1 = Error1 & Chr(13) & Code & " - " & Fname & " " & LName
 
+
+                End If
                 dt.Rows.Add(R)
 
             Next
@@ -823,9 +821,17 @@ Public Class FrmIR61_2019
             End If
             PrepareXMLFiletoTAX(Ds)
             Me.Cursor = Cursors.Default
-            MsgBox("File is Created " & GLBDisplayFilename, MsgBoxStyle.Information)
+            If Error1 = "" Then
+                MsgBox("File is Created. " & GLBDisplayFilename, MsgBoxStyle.Information)
+            Else
+                MsgBox("File is Created with ERRORS. " & GLBDisplayFilename, MsgBoxStyle.Information)
+                MsgBox(Error1)
+                My.Computer.Clipboard.SetText(Error1)
+                MsgBox("Errors are copied to  Clipboard")
+            End If
+
         Else
-            MsgBox("No Results found", MsgBoxStyle.Information)
+                MsgBox("No Results found", MsgBoxStyle.Information)
         End If
 
     End Sub
@@ -884,7 +890,7 @@ Public Class FrmIR61_2019
         S = "<PayeReturnHeader>"
         WriteToTAXFile(S, Company)
 
-        S = "<TaxpayerNumber>" & Company.TIC & "</TaxpayerNumber>"
+        S = "<TaxpayerNumber>" & Company.TaxCard & "</TaxpayerNumber>"
         WriteToTAXFile(S, Company)
 
         S = "<Year>" & PerGroup.Year & "</Year>"
@@ -910,119 +916,125 @@ Public Class FrmIR61_2019
         WriteToTAXFile(S, Company)
         Dim i As Integer
         For i = 0 To ds.Tables(0).Rows.Count - 2
+            Dim E8_GrossEmoluments As Double = 0
+            Dim E17_PriorYearBonus As Double = 0
 
-            S = "<PayeEmployee>"
-            WriteToTAXFile(S, Company)
+            E8_GrossEmoluments = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_GrossEmoluments))
+            E17_PriorYearBonus = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_PriorYearBonusPaid))
 
-            S = "<TaxpayerNumber>" & DbNullToString(ds.Tables(0).Rows(i).Item(COLx_TaxpayerNumber)) & "</TaxpayerNumber>"
-            WriteToTAXFile(S, Company)
-
-            S = "<Name>" & DbNullToString(ds.Tables(0).Rows(i).Item(COLx_Name)) & "</Name>"
-            WriteToTAXFile(S, Company)
-
-            Dim Dstart As Date
-            Dstart = CDate(DbNullToString(ds.Tables(0).Rows(i).Item(COLx_EmployeeStartDate)))
-
-            If Dstart.Month = Per.Code And Dstart.Year = PerGroup.Year Then
-                S = "<EmployeeStartDate>" & Format(Dstart, "yyyy-MM-dd") & "</EmployeeStartDate>"
+            If E8_GrossEmoluments > 0 Or E17_PriorYearBonus > 0 Then
+                S = "<PayeEmployee>"
                 WriteToTAXFile(S, Company)
-            End If
 
-            If DbNullToString(ds.Tables(0).Rows(i).Item(COLx_EmploymentEndDate)) <> "" Then
-                Dim DEnd As Date
-                DEnd = CDate(DbNullToString(ds.Tables(0).Rows(i).Item(COLx_EmploymentEndDate)))
-                If DEnd.Month = Per.Code And DEnd.Year = PerGroup.Year Then
-                    S = "<EmploymentEndDate>" & Format(DEnd, "yyyy-MM-dd") & "</EmploymentEndDate>"
+                S = "<TaxpayerNumber>" & DbNullToString(ds.Tables(0).Rows(i).Item(COLx_TaxpayerNumber)) & "</TaxpayerNumber>"
+                WriteToTAXFile(S, Company)
+
+                S = "<Name>" & DbNullToString(ds.Tables(0).Rows(i).Item(COLx_Name)) & "</Name>"
+                WriteToTAXFile(S, Company)
+
+                Dim Dstart As Date
+                Dstart = CDate(DbNullToString(ds.Tables(0).Rows(i).Item(COLx_EmployeeStartDate)))
+
+                If Dstart.Month = Per.Code And Dstart.Year = PerGroup.Year Then
+                    S = "<EmployeeStartDate>" & Format(Dstart, "yyyy-MM-dd") & "</EmployeeStartDate>"
                     WriteToTAXFile(S, Company)
                 End If
+
+                If DbNullToString(ds.Tables(0).Rows(i).Item(COLx_EmploymentEndDate)) <> "" Then
+                    Dim DEnd As Date
+                    DEnd = CDate(DbNullToString(ds.Tables(0).Rows(i).Item(COLx_EmploymentEndDate)))
+                    If DEnd.Month = Per.Code And DEnd.Year = PerGroup.Year Then
+                        S = "<EmploymentEndDate>" & Format(DEnd, "yyyy-MM-dd") & "</EmploymentEndDate>"
+                        WriteToTAXFile(S, Company)
+                    End If
+                End If
+
+
+                Dim N As Double
+                N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_Emoluments))
+                S = "<Emoluments>" & MyFormat(N) & "</Emoluments>"
+
+                WriteToTAXFile(S, Company)
+
+                N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_Pensions))
+                S = "<Pensions>" & MyFormat(N) & "</Pensions>"
+                WriteToTAXFile(S, Company)
+
+                N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_SocialInsurancePensions))
+                S = "<SocialInsurancePensions>" & MyFormat(N) & "</SocialInsurancePensions>"
+                WriteToTAXFile(S, Company)
+
+                N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_GrossEmoluments))
+                S = "<GrossEmoluments>" & MyFormat(N) & "</GrossEmoluments>"
+                WriteToTAXFile(S, Company)
+
+                N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_BenefitFromRelatedParties))
+                S = "<BenefitFromRelatedParties>" & MyFormat(N) & "</BenefitFromRelatedParties>"
+                WriteToTAXFile(S, Company)
+
+                N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_TaxWithheldGrossEmoluments))
+                S = "<TaxWithheldGrossEmoluments>" & MyFormat(N) & "</TaxWithheldGrossEmoluments>"
+                WriteToTAXFile(S, Company)
+
+                N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_TaxDeductedFinancialBenefitsRelatedParties))
+                S = "<TaxDeductedFinancialBenefitsRelatedParties>" & MyFormat(N) & "</TaxDeductedFinancialBenefitsRelatedParties>"
+                WriteToTAXFile(S, Company)
+
+                N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_GhsWithheldPensioners))
+                S = "<GhsWithheldPensioners>" & MyFormat(N) & "</GhsWithheldPensioners>"
+                WriteToTAXFile(S, Company)
+
+                N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_GhsWithheldEmployee))
+                S = "<GhsWithheldEmployee>" & MyFormat(N) & "</GhsWithheldEmployee>"
+                WriteToTAXFile(S, Company)
+
+                S = "<IsEmployeeOfficer>" & DbNullToString(ds.Tables(0).Rows(i).Item(COLx_IsEmployeeOfficer)) & "</IsEmployeeOfficer>"
+                WriteToTAXFile(S, Company)
+
+                N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_GhsWithheldOfficer))
+                S = "<GhsWithheldOfficer>" & MyFormat(N) & "</GhsWithheldOfficer>"
+                WriteToTAXFile(S, Company)
+
+                N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_GhsEmployersContribution))
+                S = "<GhsEmployersContribution>" & MyFormat(N) & "</GhsEmployersContribution>"
+                WriteToTAXFile(S, Company)
+
+                S = "<IsBonusReceivedThisMonthForPreviousYear>" & DbNullToString(ds.Tables(0).Rows(i).Item(COLx_IsBonusReceivedThisMonthForPreviousYear)) & "</IsBonusReceivedThisMonthForPreviousYear>"
+                WriteToTAXFile(S, Company)
+
+                N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_PriorYearBonusPaid))
+                S = "<PriorYearBonusPaid>" & MyFormat(N) & "</PriorYearBonusPaid>"
+                WriteToTAXFile(S, Company)
+
+                S = "<PriorBonusYear>" & DbNullToString(ds.Tables(0).Rows(i).Item(COLx_PriorBonusYear)) & "</PriorBonusYear>"
+                WriteToTAXFile(S, Company)
+
+                S = "<WasEmployeeAnOfficerAtEndOfBonusYear>" & DbNullToString(ds.Tables(0).Rows(i).Item(COLx_WasEmployeeAnOfficerAtEndOfBonusYear)) & "</WasEmployeeAnOfficerAtEndOfBonusYear>"
+                WriteToTAXFile(S, Company)
+
+                N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_TaxWithheldFrBonus))
+                S = "<TaxWithheldFrBonus>" & MyFormat(N) & "</TaxWithheldFrBonus>"
+                WriteToTAXFile(S, Company)
+
+                N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_BonusGhsWithheldOfficers))
+                S = "<BonusGhsWithheldOfficers>" & MyFormat(N) & "</BonusGhsWithheldOfficers>"
+                WriteToTAXFile(S, Company)
+
+                N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_GhsWithheldFromEmployeeBonus))
+                S = "<GhsWithheldFromEmployeeBonus>" & MyFormat(N) & "</GhsWithheldFromEmployeeBonus>"
+                WriteToTAXFile(S, Company)
+
+                N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_BonusGhsEmployersContribution))
+                S = "<BonusGhsEmployersContribution>" & MyFormat(N) & "</BonusGhsEmployersContribution>"
+                WriteToTAXFile(S, Company)
+
+                N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_PensionableBenefitsContribution))
+                S = "<PensionableBenefitsContribution>" & MyFormat(N) & "</PensionableBenefitsContribution>"
+                WriteToTAXFile(S, Company)
+
+                S = "</PayeEmployee>"
+                WriteToTAXFile(S, Company)
             End If
-
-
-            Dim N As Double
-            N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_Emoluments))
-            S = "<Emoluments>" & MyFormat(N) & "</Emoluments>"
-
-            WriteToTAXFile(S, Company)
-
-            N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_Pensions))
-            S = "<Pensions>" & MyFormat(N) & "</Pensions>"
-            WriteToTAXFile(S, Company)
-
-            N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_SocialInsurancePensions))
-            S = "<SocialInsurancePensions>" & MyFormat(N) & "</SocialInsurancePensions>"
-            WriteToTAXFile(S, Company)
-
-            N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_GrossEmoluments))
-            S = "<GrossEmoluments>" & MyFormat(N) & "</GrossEmoluments>"
-            WriteToTAXFile(S, Company)
-
-            N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_BenefitFromRelatedParties))
-            S = "<BenefitFromRelatedParties>" & MyFormat(N) & "</BenefitFromRelatedParties>"
-            WriteToTAXFile(S, Company)
-
-            N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_TaxWithheldGrossEmoluments))
-            S = "<TaxWithheldGrossEmoluments>" & MyFormat(N) & "</TaxWithheldGrossEmoluments>"
-            WriteToTAXFile(S, Company)
-
-            N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_TaxDeductedFinancialBenefitsRelatedParties))
-            S = "<TaxDeductedFinancialBenefitsRelatedParties>" & MyFormat(N) & "</TaxDeductedFinancialBenefitsRelatedParties>"
-            WriteToTAXFile(S, Company)
-
-            N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_GhsWithheldPensioners))
-            S = "<GhsWithheldPensioners>" & MyFormat(N) & "</GhsWithheldPensioners>"
-            WriteToTAXFile(S, Company)
-
-            N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_GhsWithheldEmployee))
-            S = "<GhsWithheldEmployee>" & MyFormat(N) & "</GhsWithheldEmployee>"
-            WriteToTAXFile(S, Company)
-
-            S = "<IsEmployeeOfficer>" & DbNullToString(ds.Tables(0).Rows(i).Item(COLx_IsEmployeeOfficer)) & "</IsEmployeeOfficer>"
-            WriteToTAXFile(S, Company)
-
-            N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_GhsWithheldOfficer))
-            S = "<GhsWithheldOfficer>" & MyFormat(N) & "</GhsWithheldOfficer>"
-            WriteToTAXFile(S, Company)
-
-            N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_GhsEmployersContribution))
-            S = "<GhsEmployersContribution>" & MyFormat(N) & "</GhsEmployersContribution>"
-            WriteToTAXFile(S, Company)
-
-            S = "<IsBonusReceivedThisMonthForPreviousYear>" & DbNullToString(ds.Tables(0).Rows(i).Item(COLx_IsBonusReceivedThisMonthForPreviousYear)) & "</IsBonusReceivedThisMonthForPreviousYear>"
-            WriteToTAXFile(S, Company)
-
-            N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_PriorYearBonusPaid))
-            S = "<PriorYearBonusPaid>" & MyFormat(N) & "</PriorYearBonusPaid>"
-            WriteToTAXFile(S, Company)
-
-            S = "<PriorBonusYear>" & DbNullToString(ds.Tables(0).Rows(i).Item(COLx_PriorBonusYear)) & "</PriorBonusYear>"
-            WriteToTAXFile(S, Company)
-
-            S = "<WasEmployeeAnOfficerAtEndOfBonusYear>" & DbNullToString(ds.Tables(0).Rows(i).Item(COLx_WasEmployeeAnOfficerAtEndOfBonusYear)) & "</WasEmployeeAnOfficerAtEndOfBonusYear>"
-            WriteToTAXFile(S, Company)
-
-            N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_TaxWithheldFrBonus))
-            S = "<TaxWithheldFrBonus>" & MyFormat(N) & "</TaxWithheldFrBonus>"
-            WriteToTAXFile(S, Company)
-
-            N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_BonusGhsWithheldOfficers))
-            S = "<BonusGhsWithheldOfficers>" & MyFormat(N) & "</BonusGhsWithheldOfficers>"
-            WriteToTAXFile(S, Company)
-
-            N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_GhsWithheldFromEmployeeBonus))
-            S = "<GhsWithheldFromEmployeeBonus>" & MyFormat(N) & "</GhsWithheldFromEmployeeBonus>"
-            WriteToTAXFile(S, Company)
-
-            N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_BonusGhsEmployersContribution))
-            S = "<BonusGhsEmployersContribution>" & MyFormat(N) & "</BonusGhsEmployersContribution>"
-            WriteToTAXFile(S, Company)
-
-            N = DbNullToDouble(ds.Tables(0).Rows(i).Item(COLx_PensionableBenefitsContribution))
-            S = "<PensionableBenefitsContribution>" & MyFormat(N) & "</PensionableBenefitsContribution>"
-            WriteToTAXFile(S, Company)
-
-            S = "</PayeEmployee>"
-            WriteToTAXFile(S, Company)
-
 
         Next
         S = "</PayeEmployees>"
@@ -1223,8 +1235,8 @@ Public Class FrmIR61_2019
 
         Try
             ' Dim mFile As System.IO.File
-            Dim FileName As String = TAXFileDir & "\" & Company.NameShort & "_Tax.xml"
-            glbDisplayFilename = FileName
+            Dim FileName As String = TAXFileDir & Company.NameShort & "_Tax.xml"
+            GLBDisplayFilename = FileName
             Dim TW As System.IO.TextWriter
 
             If InitFile Then
@@ -1249,5 +1261,20 @@ Public Class FrmIR61_2019
         Return Flag
     End Function
 
+    Private Sub btnFindTaxable_Click(sender As Object, e As EventArgs) Handles btnFindTaxable.Click
+        Dim SIPeriod As cPrSsSocialInsPeriods
+        SIPeriod = CType(Me.CmbSIPeriod.SelectedItem, cPrSsSocialInsPeriods)
 
+        Dim DsTaxable As DataSet
+        DsTaxable = Global1.Business.REPORT_IR61_GetTaxableIncome(PerGroup, SIPeriod)
+        If CheckDataSet(DsTaxable) Then
+            Me.txtTaxableIncome.Text = Format(DbNullToDouble(DsTaxable.Tables(0).Rows(0).Item(0)), "0.00")
+            'dTax = DbNullToDouble(Ds.Tables(0).Rows(0).Item(0))
+        Else
+            Me.txtTaxableIncome.Text = "0.00"
+            'dTax = 0
+
+        End If
+
+    End Sub
 End Class

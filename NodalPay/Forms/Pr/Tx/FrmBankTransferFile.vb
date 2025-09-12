@@ -6260,8 +6260,206 @@ Public Class FrmBankTransferFile
         End Try
         Return Flag
     End Function
+    Private Sub Button14_Click(sender As Object, e As EventArgs) Handles Button14.Click
+        Create_SEPAGA_CSV_SEPA()
+    End Sub
+    Private Sub Create_SEPAGA_CSV_SEPA()
+        InitFile = True
+        Dim Includeinactive As Boolean = False
+        Dim EmployeeBankCode As String = ""
 
-   
+
+        If Me.CBInactive.CheckState = CheckState.Checked Then
+            Includeinactive = True
+        End If
+        Dim ds As DataSet
+
+
+        ds = PrepareDSForReport_ForSEPAGA(Includeinactive, EmployeeBankCode)
+
+        Dim ExecutionDate As String = ""
+        ExecutionDate = Format(Me.DatePay.Value.Date, "yyMMdd")
+
+
+
+        If CBSelectEmployees.CheckState = CheckState.Checked Then
+            If Not HellenicToOther Then
+                RunSelection = False
+                Dim F As New FrmSelectEmployeesForBankFile
+                F.ForHellenic = False
+                F.Ds = ds
+                F.Owner = Me
+                F.ShowDialog()
+                If Me.RunSelection Then
+                    Dim k As Integer
+                    For k = 0 To ds.Tables(0).Rows.Count - 1
+                        ds.Tables(0).Rows(k).Item(11) = DsSelection.Tables(0).Rows(k).Item(11)
+                    Next
+                End If
+            Else
+                If Me.RunSelection Then
+                    Dim k As Integer
+                    For k = 0 To ds.Tables(0).Rows.Count - 1
+                        ds.Tables(0).Rows(k).Item(11) = DsSelection.Tables(0).Rows(k).Item(10)
+                    Next
+                End If
+            End If
+        End If
+
+
+        If CheckDataSet(ds) Then
+            Dim Header As String = ""
+            Dim Line As String
+            Dim Separator As String = ","
+
+
+
+            Dim c1_TranCode As String = "K90"
+            Dim c2_ValDate As String = ""
+            Dim c3_Currency As String = "EUR"
+            Dim c4_Amount As String = ""
+            Dim c5_FromAccount As String = ""
+
+            Dim c6_BenIntermediarySwift As String = ""
+            Dim c7_BenIntermediaryAccount As String = ""
+            Dim c8_BenIntermediaryClearingCode As String = ""
+
+            Dim c9_BenBankBIC As String = ""
+            Dim c10_BenIBAN As String = ""
+            Dim c11_BenAccountNo As String = ""
+            Dim c12_BenClearingCode As String = ""
+            Dim c13_BenName As String = ""
+            Dim c14_BenAddr As String = ""
+            Dim c15_BenCity As String = ""
+            Dim c16_BenCountry As String = ""
+
+            Dim c17_Details1 As String = ""
+            Dim c18_Details2 As String = ""
+            Dim c19_ChargesTo As String = ""
+            Dim c20_Priority As String = "N"
+            Dim c21_RefNumber As String = ""
+
+
+            Dim i As Integer
+            Dim TrxnCode As String = "K90"
+            Dim EmpCode As String
+            Dim EmpName As String
+            Dim Salary As Double
+            Dim BankCode As String
+            Dim BankAccount As String
+            Dim BankDesc As String
+            Dim IBAN As String
+            Dim EmpID As String
+            Dim BenefName As String
+            Dim CompanyBankAcc As String = Me.ComboBankAcc.Text
+            Dim BANKcountry As String
+            Dim BenCountry As String
+
+
+            For i = 0 To ds.Tables(0).Rows.Count - 1
+                If DbNullToString(ds.Tables(0).Rows(i).Item(11)) = "1" Then
+                    Line = ""
+                    EmpCode = DbNullToString(ds.Tables(0).Rows(i).Item(0))
+                    Salary = DbNullToString(ds.Tables(0).Rows(i).Item(1))
+                    EmpName = DbNullToString(ds.Tables(0).Rows(i).Item(2))
+                    BankCode = DbNullToString(ds.Tables(0).Rows(i).Item(3))
+                    BankAccount = DbNullToString(ds.Tables(0).Rows(i).Item(4))
+                    ' BankDesc = DbNullToString(ds.Tables(0).Rows(i).Item(5))
+                    IBAN = DbNullToString(ds.Tables(0).Rows(i).Item(8))
+                    EmpID = DbNullToString(ds.Tables(0).Rows(i).Item(9))
+                    BenefName = DbNullToString(ds.Tables(0).Rows(i).Item(10))
+                    If BenefName <> "" Then
+                        EmpName = BenefName
+                    End If
+                    If IBAN = "" Then
+                        MsgBox("Employee with Code " & EmpCode & " does not have an IBAN Number, Please correct, cannot proceed!", MsgBoxStyle.Critical)
+                        Exit Sub
+                    End If
+
+                    BANKcountry = IBAN.Substring(0, 2)
+                    BenCountry = IBAN.Substring(0, 2)
+
+
+                    Dim Bank As New cPrAnBanks(BankCode)
+                    Dim Emp As New cPrMsEmployees(EmpCode)
+
+
+                    Dim Swift As String
+                    Swift = FindSwiftCode(Bank, False)
+
+
+                    c1_TranCode = "G00"
+                    c2_ValDate = ExecutionDate
+                    c3_Currency = "EUR"
+                    c4_Amount = Salary
+                    c5_FromAccount = CompanyBankAcc
+
+                    c6_BenIntermediarySwift = ""
+                    c7_BenIntermediaryAccount = ""
+                    c8_BenIntermediaryClearingCode = ""
+
+                    c9_BenBankBIC = Swift
+                    c10_BenIBAN = IBAN
+                    c11_BenAccountNo = ""
+                    c12_BenClearingCode = ""
+                    c13_BenName = EmpName
+                    c14_BenAddr = Emp.Address1.Replace(",", " ")
+
+                    c15_BenCity = Emp.Address2.Replace(",", " ")
+                    c16_BenCountry = BenCountry
+
+                    c17_Details1 = "Salary of " & Period.DescriptionL
+                    c18_Details2 = "Payroll"
+                    c19_ChargesTo = "OUR"
+                    c20_Priority = "N"
+                    c21_RefNumber = Period.Code & "_" & EmpCode
+
+
+
+
+                    Line = Line & c1_TranCode & Separator
+                    Line = Line & c2_ValDate & Separator
+                    Line = Line & c3_Currency & Separator
+                    Line = Line & c4_Amount & Separator
+                    Line = Line & c9_BenBankBIC & Separator
+                    Line = Line & c10_BenIBAN & Separator
+                    Line = Line & c13_BenName & Separator
+                    Line = Line & c14_BenAddr & Separator
+                    Line = Line & c15_BenCity & Separator
+                    Line = Line & c16_BenCountry & Separator
+                    Line = Line & c17_Details1 & Separator
+                    Line = Line & c18_Details2 & Separator
+                    Line = Line & c19_ChargesTo & Separator
+                    Line = Line & c20_Priority & Separator
+                    Line = Line & c21_RefNumber
+
+
+                    'Line = Line & c5_FromAccount & Separator
+                    'Line = Line & c8_BenIntermediaryClearingCode & Separator
+                    'Line = Line & c9_BenBankBIC & Separator
+
+
+                    'Line = Line & c10_BenIBAN & Separator
+                    'Line = Line & c11_BenAccountNo & Separator
+                    'Line = Line & c12_BenClearingCode & Separator
+
+
+
+
+
+
+
+                    WriteToCSVFile_SEPAGA(Line, "")
+                End If
+            Next
+            MsgBox("File is created", MsgBoxStyle.Information)
+        Else
+            MsgBox("There are no Employees maching the Criteria", MsgBoxStyle.Information)
+        End If
+
+    End Sub
+
+
     Private Sub BtnCreateEWallet_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnCreateEWallet.Click
         CreateEwalletFile(True)
     End Sub
@@ -7620,4 +7818,6 @@ Public Class FrmBankTransferFile
         End Try
         Return Flag
     End Function
+
+
 End Class

@@ -66,6 +66,7 @@ Partial Class FrmBankTransferFile
         Me.BtnMoneyGate = New System.Windows.Forms.Button()
         Me.Button13 = New System.Windows.Forms.Button()
         Me.BtnCreateKyribaExcelFile = New System.Windows.Forms.Button()
+        Me.Button14 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Button1
@@ -190,7 +191,7 @@ Partial Class FrmBankTransferFile
         'CBAutopay
         '
         Me.CBAutopay.AutoSize = True
-        Me.CBAutopay.Location = New System.Drawing.Point(51, 361)
+        Me.CBAutopay.Location = New System.Drawing.Point(47, 361)
         Me.CBAutopay.Margin = New System.Windows.Forms.Padding(4)
         Me.CBAutopay.Name = "CBAutopay"
         Me.CBAutopay.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -202,7 +203,7 @@ Partial Class FrmBankTransferFile
         'CBConsolidate
         '
         Me.CBConsolidate.AutoSize = True
-        Me.CBConsolidate.Location = New System.Drawing.Point(51, 389)
+        Me.CBConsolidate.Location = New System.Drawing.Point(48, 389)
         Me.CBConsolidate.Margin = New System.Windows.Forms.Padding(4)
         Me.CBConsolidate.Name = "CBConsolidate"
         Me.CBConsolidate.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -292,7 +293,7 @@ Partial Class FrmBankTransferFile
         'CBSelectEmployees
         '
         Me.CBSelectEmployees.AutoSize = True
-        Me.CBSelectEmployees.Location = New System.Drawing.Point(783, 769)
+        Me.CBSelectEmployees.Location = New System.Drawing.Point(169, 446)
         Me.CBSelectEmployees.Margin = New System.Windows.Forms.Padding(4)
         Me.CBSelectEmployees.Name = "CBSelectEmployees"
         Me.CBSelectEmployees.RightToLeft = System.Windows.Forms.RightToLeft.Yes
@@ -314,7 +315,7 @@ Partial Class FrmBankTransferFile
         '
         'Button4
         '
-        Me.Button4.Location = New System.Drawing.Point(783, 368)
+        Me.Button4.Location = New System.Drawing.Point(783, 367)
         Me.Button4.Margin = New System.Windows.Forms.Padding(4)
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(300, 28)
@@ -345,7 +346,7 @@ Partial Class FrmBankTransferFile
         '
         'Button5
         '
-        Me.Button5.Location = New System.Drawing.Point(783, 404)
+        Me.Button5.Location = New System.Drawing.Point(783, 402)
         Me.Button5.Margin = New System.Windows.Forms.Padding(4)
         Me.Button5.Name = "Button5"
         Me.Button5.Size = New System.Drawing.Size(300, 28)
@@ -356,7 +357,7 @@ Partial Class FrmBankTransferFile
         '
         'Button6
         '
-        Me.Button6.Location = New System.Drawing.Point(783, 546)
+        Me.Button6.Location = New System.Drawing.Point(783, 542)
         Me.Button6.Margin = New System.Windows.Forms.Padding(4)
         Me.Button6.Name = "Button6"
         Me.Button6.Size = New System.Drawing.Size(300, 28)
@@ -367,7 +368,7 @@ Partial Class FrmBankTransferFile
         '
         'Button7
         '
-        Me.Button7.Location = New System.Drawing.Point(783, 439)
+        Me.Button7.Location = New System.Drawing.Point(783, 437)
         Me.Button7.Margin = New System.Windows.Forms.Padding(4)
         Me.Button7.Name = "Button7"
         Me.Button7.Size = New System.Drawing.Size(300, 28)
@@ -378,7 +379,7 @@ Partial Class FrmBankTransferFile
         '
         'Button8
         '
-        Me.Button8.Location = New System.Drawing.Point(783, 702)
+        Me.Button8.Location = New System.Drawing.Point(783, 717)
         Me.Button8.Margin = New System.Windows.Forms.Padding(4)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(300, 28)
@@ -389,7 +390,7 @@ Partial Class FrmBankTransferFile
         '
         'Button9
         '
-        Me.Button9.Location = New System.Drawing.Point(783, 737)
+        Me.Button9.Location = New System.Drawing.Point(783, 752)
         Me.Button9.Margin = New System.Windows.Forms.Padding(4)
         Me.Button9.Name = "Button9"
         Me.Button9.Size = New System.Drawing.Size(300, 28)
@@ -410,7 +411,7 @@ Partial Class FrmBankTransferFile
         '
         'Button10
         '
-        Me.Button10.Location = New System.Drawing.Point(783, 582)
+        Me.Button10.Location = New System.Drawing.Point(783, 577)
         Me.Button10.Margin = New System.Windows.Forms.Padding(4)
         Me.Button10.Name = "Button10"
         Me.Button10.Size = New System.Drawing.Size(300, 28)
@@ -431,7 +432,7 @@ Partial Class FrmBankTransferFile
         '
         'Button12
         '
-        Me.Button12.Location = New System.Drawing.Point(783, 618)
+        Me.Button12.Location = New System.Drawing.Point(783, 612)
         Me.Button12.Margin = New System.Windows.Forms.Padding(4)
         Me.Button12.Name = "Button12"
         Me.Button12.Size = New System.Drawing.Size(300, 28)
@@ -462,7 +463,7 @@ Partial Class FrmBankTransferFile
         '
         'BtniSXMoney
         '
-        Me.BtniSXMoney.Location = New System.Drawing.Point(783, 654)
+        Me.BtniSXMoney.Location = New System.Drawing.Point(783, 682)
         Me.BtniSXMoney.Margin = New System.Windows.Forms.Padding(4)
         Me.BtniSXMoney.Name = "BtniSXMoney"
         Me.BtniSXMoney.Size = New System.Drawing.Size(300, 28)
@@ -473,7 +474,7 @@ Partial Class FrmBankTransferFile
         '
         'btnEcommbx2
         '
-        Me.btnEcommbx2.Location = New System.Drawing.Point(783, 475)
+        Me.btnEcommbx2.Location = New System.Drawing.Point(783, 472)
         Me.btnEcommbx2.Margin = New System.Windows.Forms.Padding(4)
         Me.btnEcommbx2.Name = "btnEcommbx2"
         Me.btnEcommbx2.Size = New System.Drawing.Size(300, 28)
@@ -504,7 +505,7 @@ Partial Class FrmBankTransferFile
         '
         'Button13
         '
-        Me.Button13.Location = New System.Drawing.Point(783, 511)
+        Me.Button13.Location = New System.Drawing.Point(783, 507)
         Me.Button13.Margin = New System.Windows.Forms.Padding(4)
         Me.Button13.Name = "Button13"
         Me.Button13.Size = New System.Drawing.Size(300, 28)
@@ -523,12 +524,24 @@ Partial Class FrmBankTransferFile
         Me.BtnCreateKyribaExcelFile.Text = "Create .CSV File - Kyriba"
         Me.BtnCreateKyribaExcelFile.UseVisualStyleBackColor = True
         '
+        'Button14
+        '
+        Me.Button14.Location = New System.Drawing.Point(783, 647)
+        Me.Button14.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button14.Name = "Button14"
+        Me.Button14.Size = New System.Drawing.Size(300, 28)
+        Me.Button14.TabIndex = 93
+        Me.Button14.Text = "Create .CSV File - Sepaga Bank SEPA"
+        Me.Button14.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button14.UseVisualStyleBackColor = True
+        '
         'FrmBankTransferFile
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.ClientSize = New System.Drawing.Size(1416, 836)
+        Me.Controls.Add(Me.Button14)
         Me.Controls.Add(Me.BtnCreateKyribaExcelFile)
         Me.Controls.Add(Me.Button13)
         Me.Controls.Add(Me.BtnMoneyGate)
@@ -624,4 +637,5 @@ Partial Class FrmBankTransferFile
     Friend WithEvents BtnMoneyGate As System.Windows.Forms.Button
     Friend WithEvents Button13 As System.Windows.Forms.Button
     Friend WithEvents BtnCreateKyribaExcelFile As Button
+    Friend WithEvents Button14 As Button
 End Class
