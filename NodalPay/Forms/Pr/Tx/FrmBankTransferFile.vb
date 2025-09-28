@@ -2026,11 +2026,13 @@ Public Class FrmBankTransferFile
 
         WL("<Cdtr>")
         WL("<Nm>" & semployeename & "</Nm>")
-        WL("<PstlAdr>")
-        WL("<Ctry>" & sCountryCode & "</Ctry>")
-        'WL("<AdrLine>address line1</AdrLine>")
-        'WL("<AdrLine>address line2</AdrLine>")
-        WL("</PstlAdr>")
+        If Not IsEurobank Then
+            WL("<PstlAdr>")
+            WL("<Ctry>" & sCountryCode & "</Ctry>")
+            'WL("<AdrLine>address line1</AdrLine>")
+            'WL("<AdrLine>address line2</AdrLine>")
+            WL("</PstlAdr>")
+        End If
         'WL("<Id>")
         'WL("<PrvtId>")
         'WL("<DtAndPlcOfBirth>")

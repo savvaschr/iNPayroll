@@ -43,6 +43,7 @@ Public Class FrmIR63A
     Dim MT_GHSWithHeldPensioners As Double = 0
     Dim MT_GHSWithHeldOfficers As Double = 0
     Dim MT_GHSEmployersContribution As Double = 0
+    Dim GLBExportfilesDir As String = ""
 
     Private Sub FrmIR63A_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Me.RadioButton1.Checked = True
@@ -413,6 +414,15 @@ Public Class FrmIR63A
         End If
 
 
+        Dim Dsx As DataSet
+        Dsx = Global1.Business.GetParameter("SIContributions", "ExportFileDir")
+        If CheckDataSet(ds) Then
+            Dim Par As New cPrSsParameters(ds.Tables(0).Rows(0))
+            glbexportfilesDir = Replace(Par.Value1, "$", Global1.GLBUserCode)
+        Else
+            MsgBox("Missing SI COntributions File Parameter Section 'SIContributions' Item 'ExportFileDir'", MsgBoxStyle.Critical)
+            glbexportfilesDir = ""
+        End If
 
 
 
@@ -2250,6 +2260,675 @@ Public Class FrmIR63A
             Dim C_PREV_Medical As Integer = 54
             Dim C_PREV_PensionFund As Integer = 55
             Dim C_PREV_UnionDed As Integer = 56
+            Dim C_PREV_Gesi As Integer = 57
+            Dim C_Email As Integer = 58
+
+
+
+            Dim LastName As String
+            Dim FirstName As String
+            Dim Adr1 As String
+            Dim Adr2 As String
+            Dim PostCode As String
+            Dim EmpTaxID As String
+
+            Dim TOTAL_Local As Double = 0
+            Dim TOTAL_Abroad As Double = 0
+            Dim TOTAL_Allowances As Double = 0
+            Dim TOTAL_Total456 As Double = 0
+            Dim TOTAL_SI As Double = 0
+            Dim TOTAL_PF As Double = 0
+            Dim TOTAL_MF As Double = 0
+            Dim TOTAL_UNION As Double = 0
+            Dim TOTAL_OtherDisc As Double = 0
+            Dim TOTAL_TotalDisc As Double = 0
+            Dim TOTAL_Taxable As Double = 0
+            Dim TOTAL_IT As Double = 0
+            Dim TOTAL_SpecialTax As Double = 0
+            Dim TOTAL_SPDeduction As Double = 0
+            Dim TOTAL_SPContribution As Double = 0
+            Dim TOTAL_LifeInsurance As Double = 0
+
+            Dim TOTAL_AllowanceBenefits As Double = 0
+            Dim TOTAL_TaxableFromOther As Double = 0
+            Dim TOTAL_NonTaxable As Double = 0
+            Dim TOTAL_Syntaksiodotika As Double = 0
+            Dim TOTAL_MiwsiApolavon As Double = 0
+            Dim TOTAL_WidowOrphans As Double = 0
+            Dim TOTAL_PensionFund As Double = 0
+
+            Dim TOTAL_BIKWithSI As Double = 0
+            Dim TOTAL_BIKWithoutSI As Double = 0
+            Dim TOTAL_GESYtoSI As Double = 0
+            Dim TOTAL_GESYDed As Double = 0
+            Dim TOTAL_GESYCon As Double = 0
+            Dim TOTAL_DirectorFees As Double = 0
+            Dim TOTAL_PrivatePensionFund As Double = 0
+            Dim TOTAL_PrivateMedical As Double = 0
+
+
+
+
+            Dim Str03 As String = ""
+
+            Dim Company As New cAdMsCompany(TemGrp.CompanyCode)
+            Dim CompanyName As String
+            Dim ComAdr1 As String
+            Dim ComAdr2 As String
+            Dim ComPost As String
+
+            Dim TIC1 As String = ""
+            Dim TIC2 As String = ""
+            Dim TIC3 As String = ""
+            Dim TIC4 As String = ""
+
+
+            InitFile = True
+            Dim i As Integer
+            If CheckDataSet(Ds) Then
+                'GET TOTALS
+                For i = 0 To Ds.Tables(0).Rows.Count - 1
+                    Place = "Totals"
+                    index = i
+
+                    With Ds.Tables(0).Rows(i)
+                        TOTAL_Local = TOTAL_Local + DbNullToDouble(.Item(C_Local))
+                        TOTAL_Abroad = TOTAL_Abroad + DbNullToDouble(.Item(C_Abroad))
+                        TOTAL_Allowances = TOTAL_Allowances + DbNullToDouble(.Item(C_Allowances))
+                        TOTAL_Total456 = TOTAL_Total456 + DbNullToDouble(.Item(C_Total456))
+                        TOTAL_SI = TOTAL_SI + DbNullToDouble(.Item(C_SI))
+                        TOTAL_PF = TOTAL_PF + DbNullToDouble(.Item(C_PF))
+                        TOTAL_MF = TOTAL_MF + DbNullToDouble(.Item(C_MF))
+                        TOTAL_UNION = TOTAL_UNION + DbNullToDouble(.Item(C_UNION))
+                        TOTAL_OtherDisc = TOTAL_OtherDisc + DbNullToDouble(.Item(C_OtherDisc))
+                        TOTAL_TotalDisc = TOTAL_TotalDisc + DbNullToDouble(.Item(C_TotalDisc))
+                        TOTAL_Taxable = TOTAL_Taxable + DbNullToDouble(.Item(C_Taxable))
+                        TOTAL_IT = TOTAL_IT + DbNullToDouble(.Item(C_IT))
+                        TOTAL_SpecialTax = TOTAL_SpecialTax + DbNullToDouble(.Item(C_EmpSpecialTaxDed)) + DbNullToDouble(.Item(C_EmpSpecialTaxCon))
+                        TOTAL_SPDeduction = TOTAL_SPDeduction + DbNullToDouble(.Item(C_EmpSpecialTaxDed))
+                        TOTAL_SPContribution = TOTAL_SPContribution + DbNullToDouble(.Item(C_EmpSpecialTaxCon))
+                        TOTAL_LifeInsurance = TOTAL_LifeInsurance + DbNullToDouble(.Item(C_LifeInsurance))
+
+                        TOTAL_AllowanceBenefits = TOTAL_AllowanceBenefits + DbNullToDouble(.Item(C_AllowanceBenefits))
+                        TOTAL_TaxableFromOther = TOTAL_TaxableFromOther + DbNullToDouble(.Item(C_TaxableFromOther))
+                        TOTAL_NonTaxable = TOTAL_NonTaxable + DbNullToDouble(.Item(C_NonTaxable))
+                        TOTAL_Syntaksiodotika = TOTAL_Syntaksiodotika + DbNullToDouble(.Item(C_Syntaksiodotika))
+                        TOTAL_MiwsiApolavon = TOTAL_MiwsiApolavon + DbNullToDouble(.Item(C_MiwsiApolavon))
+                        TOTAL_WidowOrphans = TOTAL_WidowOrphans + DbNullToDouble(.Item(C_WidowOrphans))
+                        TOTAL_PensionFund = TOTAL_PensionFund + DbNullToDouble(.Item(C_PensionFund))
+
+                        TOTAL_BIKWithSI = TOTAL_BIKWithSI + DbNullToDouble(.Item(C_BIK_withSI))
+                        TOTAL_BIKWithoutSI = TOTAL_BIKWithoutSI + DbNullToDouble(.Item(C_BIK_withoutSI))
+                        TOTAL_GESYtoSI = TOTAL_GESYtoSI + DbNullToDouble(.Item(C_GESYtoSI))
+                        TOTAL_GESYDed = TOTAL_GESYDed + DbNullToDouble(.Item(C_GESYtoBIKDed))
+                        TOTAL_GESYCon = TOTAL_GESYCon + DbNullToDouble(.Item(C_GESYtoBIKCon))
+                        TOTAL_DirectorFees = TOTAL_DirectorFees + DbNullToDouble(.Item(C_DirectorFees))
+                        TOTAL_PrivatePensionFund = TOTAL_PrivatePensionFund + DbNullToDouble(.Item(C_PrivatePensionFund))
+                        TOTAL_PrivatePensionFund = TOTAL_PrivateMedical + DbNullToDouble(.Item(C_PrivateMedicalFund))
+
+                    End With
+
+                Next
+                TOTAL_BIKWithoutSI = TOTAL_BIKWithoutSI + TOTAL_DirectorFees
+                '---------------------------------------------
+                'RECORD 01
+                '---------------------------------------------
+                '0
+                Str03 = 1 & PP
+                '1
+                Str03 = Str03 & Ds.Tables(2).Rows(0).Item(0) & PP
+                Dim YEAR As String
+                YEAR = Ds.Tables(2).Rows(0).Item(0)
+
+                '2
+                If Company.TaxCard = "" Then
+                    MsgBox("Please enter Tax ID", MsgBoxStyle.Critical)
+                    Exit Function
+                End If
+                Str03 = Str03 & Company.TaxCard.PadLeft(9, " ") & PP
+
+                '3
+                Str03 = Str03 & " " & PP
+                '4
+                'Str03 = Str03 & " ".PadLeft(9, " ")
+                Str03 = Str03 & " ".PadLeft(15, " ") & PP
+                '5
+                Str03 = Str03 & Company.SIRegNo.PadRight(15, " ") & PP
+                '6
+                CompanyName = Company.Name
+                If CompanyName.Length > 35 Then
+                    CompanyName = CompanyName.Substring(0, 34)
+                End If
+                Str03 = Str03 & CompanyName.PadRight(35, " ") & PP
+                '7
+                Str03 = Str03 & "".PadRight(25, " ") & PP
+                '8
+                ComAdr1 = Company.Address1
+                If ComAdr1.Length > 35 Then
+                    ComAdr1 = ComAdr1.Substring(0, 34)
+                End If
+                Str03 = Str03 & ComAdr1.PadRight(35, " ") & PP
+                '9
+                ComAdr2 = Company.Address2
+                If ComAdr2.Length > 30 Then
+                    ComAdr2 = ComAdr2.Substring(0, 29)
+                End If
+                Str03 = Str03 & ComAdr2.PadRight(30, " ") & PP
+                '10
+                ComPost = Company.Address3
+                If ComPost.Length > 10 Then
+                    ComPost = ComPost.Substring(0, 10)
+                End If
+                Str03 = Str03 & ComPost.PadRight(10, " ") & PP
+                '11
+                Str03 = Str03 & FixNumber((i), 15) & PP
+                '12
+                Str03 = Str03 & FixNumber(TOTAL_Local, 15) & PP
+                '13
+                Str03 = Str03 & FixNumber(TOTAL_Abroad, 15) & PP
+                '14
+                Str03 = Str03 & FixNumber(TOTAL_Allowances, 15) & PP
+                '15
+                Str03 = Str03 & FixNumber(TOTAL_Total456, 15) & PP
+                '16
+                Str03 = Str03 & FixNumber(TOTAL_SI, 15) & PP
+                '17
+                Str03 = Str03 & FixNumber(TOTAL_PF, 15) & PP
+                '18
+                Str03 = Str03 & FixNumber(TOTAL_MF, 15) & PP
+                '19
+                Str03 = Str03 & FixNumber(TOTAL_UNION, 15) & PP
+                '20
+                Str03 = Str03 & FixNumber(TOTAL_OtherDisc, 15) & PP
+                '21
+                Str03 = Str03 & FixNumber(TOTAL_TotalDisc, 15) & PP
+                '22
+                Str03 = Str03 & FixNumber(TOTAL_Taxable, 15) & PP
+                '23
+                Str03 = Str03 & FixNumber(TOTAL_IT, 15) & PP
+                '24
+                Str03 = Str03 & FixNumber(0, 15) & PP
+                '25
+                Str03 = Str03 & FixNumber(0, 15) & PP
+                '26
+                'Str03 = Str03 & "00000000"
+                Str03 = Str03 & "        " & PP
+                '27
+                'Str03 = Str03 & "00000000"
+                Str03 = Str03 & "        " & PP
+                '28
+                Str03 = Str03 & FixNumber(TaxGiven, 15) & PP
+                '29
+                Str03 = Str03 & FixNumber(0, 15) & PP
+                '30
+                Str03 = Str03 & FixNumber(0, 15) & PP
+
+                If Company.AccIdentity = 1 Then
+                    TIC1 = Company.AccountantTIC
+                ElseIf Company.AccIdentity = 2 Then
+                    TIC2 = Company.AccountantTIC
+                ElseIf Company.AccIdentity = 3 Then
+                    TIC3 = Company.AccountantTIC
+                ElseIf Company.AccIdentity = 4 Then
+                    TIC4 = Company.AccountantTIC
+
+                End If
+                TIC4 = Company.AccountantTIC
+                '31
+                Str03 = Str03 & TIC1.PadRight(9, " ") & PP
+                '32
+                Str03 = Str03 & TIC2.PadRight(9, " ") & PP
+                '33
+                Str03 = Str03 & TIC3.PadRight(9, " ") & PP
+                '34
+                Str03 = Str03 & TIC4.PadRight(9, " ") & PP
+                '35
+                Str03 = Str03 & Company.AccIdentity & PP
+                '36
+                Str03 = Str03 & Company.TICCategory & PP
+                '37
+                Str03 = Str03 & Company.TICType & PP
+                '38
+                Str03 = Str03 & "0".PadLeft(7, "0") & PP
+                '39
+                Str03 = Str03 & Original & PP
+                '40
+                Str03 = Str03 & FixNumber(TOTAL_SPDeduction, 15) & PP
+                '41
+                Str03 = Str03 & FixNumber(TOTAL_SPContribution, 15) & PP
+                '42
+                Str03 = Str03 & FixNumber(TOTAL_SpecialTax, 15) & PP
+                '43
+                Str03 = Str03 & Company.AccountantTitle & PP
+                '44
+                Str03 = Str03 & Company.AccountantTIC & PP
+                '45
+                Str03 = Str03 & FixNumber(TOTAL_LifeInsurance, 15) & PP
+                '46
+                Str03 = Str03 & FixNumber(TOTAL_AllowanceBenefits, 15) & PP
+                '47
+                Str03 = Str03 & FixNumber(TOTAL_TaxableFromOther, 15) & PP
+                '48
+                Str03 = Str03 & FixNumber(TOTAL_NonTaxable, 15) & PP
+                '49
+                Str03 = Str03 & FixNumber(TOTAL_Syntaksiodotika, 15) & PP
+                '50
+                Str03 = Str03 & FixNumber(TOTAL_MiwsiApolavon, 15) & PP
+                '51
+                Str03 = Str03 & FixNumber(TOTAL_WidowOrphans, 15) & PP
+                '52
+                Str03 = Str03 & FixNumber(TOTAL_PensionFund, 15) & PP
+
+                '#2019 GESY
+                '53
+                Str03 = Str03 & FixNumber(TOTAL_BIKWithSI, 15) & PP
+                '54
+                Str03 = Str03 & FixNumber(TOTAL_BIKWithoutSI, 15) & PP
+                '55
+                Str03 = Str03 & FixNumber(TOTAL_GESYtoSI, 15) & PP
+                '56
+                Str03 = Str03 & FixNumber(TOTAL_GESYDed, 15) & PP
+                '57
+                Str03 = Str03 & FixNumber(TOTAL_GESYCon, 15) & PP
+                '58
+                Str03 = Str03 & FixNumber(TOTAL_DirectorFees, 15) & PP
+                '59
+                Str03 = Str03 & FixNumber(TOTAL_PrivatePensionFund, 15) & PP
+                '60
+                Str03 = Str03 & FixNumber(TOTAL_PrivateMedical, 11)
+
+
+                Str03 = Replace(Str03, "&", " ")
+                WriteToIR7File(Str03)
+
+                '---------------------------------------------
+                'END OF 01
+                '---------------------------------------------
+
+
+                Dim Str02 As String
+                For i = 0 To Ds.Tables(0).Rows.Count - 1
+
+                    Place = "lines " & i
+                    index = i
+
+                    With Ds.Tables(0).Rows(i)
+                        '1
+                        Str02 = 2 & PP
+                        '2
+                        Str02 = Str02 & Ds.Tables(2).Rows(0).Item(0) & PP
+                        '3
+                        ' Dim xx As String
+                        ' xx = .Item(C_EmpIDType)
+                        If .Item(C_EmpIDType) = " " Then
+                            EmpTaxID = .Item(C_EmpTaxID)
+                            Str02 = Str02 & EmpTaxID.PadLeft(9, " ") & PP
+
+                        Else
+                            Str02 = Str02 & "".PadLeft(9, " ") & PP
+
+                        End If
+
+                        If .Item(C_EmpIDType) <> " " Then
+                            '4
+                            Str02 = Str02 & .Item(C_EmpIDType) & PP
+                            '5
+                            Str02 = Str02 & .Item(C_EmpIDCard).ToString.PadRight(15) & PP
+
+                        Else
+                            '4
+                            Str02 = Str02 & " " & PP
+                            '5
+                            Str02 = Str02 & "".PadLeft(15, " ") & PP
+                        End If
+                        '6
+                        Str02 = Str02 & .Item(C_EmpSINo).Padright(15, " ") & PP
+
+
+                        LastName = .Item(C_EmpLastName)
+                        If LastName.Length > 35 Then
+                            LastName = LastName.Substring(0, 34)
+                        End If
+                        '7
+                        Str02 = Str02 & LastName.PadRight(35, " ") & PP
+                        '8
+                        FirstName = .Item(C_EmpFirstName)
+                        If FirstName.Length > 25 Then
+                            FirstName = FirstName.Substring(0, 24)
+                        End If
+                        Place3 = LastName & " " & FirstName
+                        Str02 = Str02 & FirstName.PadRight(25, " ") & PP
+                        '9
+                        Adr1 = .Item(C_Adr1)
+                        If Adr1.Length > 35 Then
+                            Adr1 = Adr1.Substring(0, 34)
+                        End If
+                        Str02 = Str02 & Adr1.PadRight(35, " ") & PP
+                        '10
+                        Adr2 = .Item(C_Adr2)
+                        If Adr2.Length > 30 Then
+                            Adr2 = Adr2.Substring(0, 29)
+                        End If
+                        Str02 = Str02 & Adr2.PadRight(30, " ") & PP
+                        '11
+                        PostCode = .Item(C_PostCode)
+                        If PostCode.Length > 10 Then
+                            PostCode = PostCode.Substring(0, 10)
+                        End If
+                        Str02 = Str02 & PostCode.PadRight(10, " ") & PP
+                        '12
+                        Str02 = Str02 & FixNumber((i + 1), 15) & PP
+                        '13
+                        Str02 = Str02 & FixNumber(.Item(C_Local), 15) & PP
+                        '14
+                        Str02 = Str02 & FixNumber(.Item(C_Abroad), 15) & PP
+                        '15
+
+                        Str02 = Str02 & FixNumber(.Item(C_Allowances), 15) & PP
+                        '16
+                        Str02 = Str02 & FixNumber(.Item(C_Total456), 15) & PP
+                        '17
+                        Str02 = Str02 & FixNumber(.Item(C_SI), 15) & PP
+                        '18
+                        Str02 = Str02 & FixNumber(.Item(C_PF), 15) & PP
+                        '19
+                        Str02 = Str02 & FixNumber(.Item(C_MF), 15) & PP
+                        '20
+                        Str02 = Str02 & FixNumber(.Item(C_UNION), 15) & PP
+                        '21
+                        Str02 = Str02 & FixNumber(.Item(C_OtherDisc), 15) & PP
+                        '22
+                        Str02 = Str02 & FixNumber(.Item(C_TotalDisc), 15) & PP
+                        '23
+                        Str02 = Str02 & FixNumber(.Item(C_Taxable), 15) & PP
+                        '24
+                        Str02 = Str02 & FixNumber(.Item(C_IT), 15) & PP
+                        '25   2011
+                        Str02 = Str02 & FixNumber(0, 15) & PP
+                        '26   2011
+                        Str02 = Str02 & FixNumber(0, 15) & PP
+
+                        '27
+                        If Trim(Trim(.Item(C_StartDate))) <> "" Then
+                            Dim yyyy As String
+                            Dim mm As String
+                            Dim dd As String
+                            Dim Ar() As String
+
+                            Ar = DbNullToString(.Item(C_StartDate)).Split("/")
+                            Dim D As String
+                            D = Ar(2) & Ar(1).PadLeft(2, "0") & Ar(0).PadLeft(2, "0")
+
+                            If Ar(2) <> YEAR Then
+                                Str02 = Str02 & "        " & PP
+                            Else
+                                Str02 = Str02 & D & PP
+                            End If
+                        Else
+                            Str02 = Str02 & "        " & PP
+                        End If
+                        '28
+                        If Trim(Trim(.Item(C_LeaveDate))) <> "" Then
+                            Place = "Lines Date In " & i
+                            Dim yyyy As String
+                            Dim mm As String
+                            Dim dd As String
+                            Dim Ar() As String
+                            Ar = DbNullToString(.Item(C_LeaveDate)).Split("/")
+                            Dim D As String
+                            D = Ar(2) & Ar(1).PadLeft(2, "0") & Ar(0).PadLeft(2, "0")
+                            If Ar(2) <> YEAR Then
+                                Str02 = Str02 & "        " & PP
+                            Else
+                                Str02 = Str02 & D & PP
+                            End If
+                            Place = "Lines Date Out " & i
+                        Else
+                            Str02 = Str02 & "        " & PP
+                        End If
+
+                        Dim PensionNo As String
+                        Dim PensionType As String
+                        PensionNo = DbNullToString(.Item(C_PensionNo))
+                        PensionType = DbNullToString(.Item(C_PensionType))
+                        '29
+                        Str02 = Str02 & "".PadLeft(11, " ") & PP
+                        '30
+                        Str02 = Str02 & "".PadLeft(11, " ") & PP
+                        '31
+                        Str02 = Str02 & "".PadLeft(11, " ") & PP
+                        '32
+                        Str02 = Str02 & "".PadLeft(9, " ") & PP
+                        '33
+                        Str02 = Str02 & "".PadLeft(9, " ") & PP
+                        '34
+                        Str02 = Str02 & "".PadLeft(9, " ") & PP
+                        '35
+                        Str02 = Str02 & "".PadLeft(9, " ") & PP
+                        '36
+                        Str02 = Str02 & "".PadLeft(1, " ") & PP
+                        '37
+                        Str02 = Str02 & "".PadLeft(1, " ") & PP
+                        '38
+                        Str02 = Str02 & "".PadLeft(1, " ") & PP
+                        '39
+                        Str02 = Str02 & PensionNo.PadLeft(7, "0") & PP
+                        '40
+                        Str02 = Str02 & PensionType.PadLeft(1, "0") & PP
+                        '41
+                        Str02 = Str02 & FixNumber(.Item(C_EmpSpecialTaxDed), 15) & PP
+                        '42
+                        Str02 = Str02 & FixNumber(.Item(C_EmpSpecialTaxCon), 15) & PP
+                        '43
+                        If .Item(C_SalaryPeriods) > 13 Then
+
+                            .Item(C_SalaryPeriods) = 13
+                        End If
+                        Str02 = Str02 & .Item(C_SalaryPeriods) & PP
+
+                        '44
+                        Place2 = 1
+                        If .Item(C_EmpIDType) = " " Then
+                            Place2 = 2
+                            Str02 = Str02 & "0" & PP
+                            Place2 = 3
+                        ElseIf .Item(C_EmpIDType) = "Τ" Then
+                            'T"
+                            Place2 = 4
+                            Str02 = Str02 & "1" & PP
+                            Place2 = 5
+                        ElseIf .Item(C_EmpIDType) = "Α" Then
+                            'A
+                            Place2 = 6
+                            Str02 = Str02 & "2" & PP
+                            Place2 = 7
+                        ElseIf .Item(C_EmpIDType) = "Φ" Then
+                            'F
+                            Place2 = 8
+                            Str02 = Str02 & "3" & PP
+                            Place2 = 9
+
+                        End If
+
+                        Place2 = "x1"
+
+
+
+                        '45
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_LifeInsurance)), 15) & PP
+                        Place2 = "x2"
+                        '46
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_TaxableFromOther)), 15) & PP
+                        Place2 = "x3"
+                        '47
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_NonTaxable)), 15) & PP
+                        Place2 = "x4"
+                        '48
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_Syntaksiodotika)), 15) & PP
+                        Place2 = "x5"
+                        '49
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_MiwsiApolavon)), 15) & PP
+                        Place2 = "x6"
+                        '50
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_WidowOrphans)), 15) & PP
+                        Place2 = "x7"
+                        '51
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_PensionFund)), 15) & PP
+                        Place2 = "x8"
+
+                        '#2019 GESY
+                        '52
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_BIK_withSI)), 15) & PP
+                        Place2 = "x9"
+                        '53
+                        Dim BIK_WithoutSI As Double = 0
+                        Dim DirectorFees As Double = 0
+
+                        BIK_WithoutSI = DbNullToDouble(.Item(C_BIK_withoutSI))
+                        DirectorFees = DbNullToDouble(.Item(C_DirectorFees))
+                        Dim AB As Double = BIK_WithoutSI '+ DirectorFees
+                        'Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_BIK_withoutSI)), 15) & PP
+                        Str02 = Str02 & FixNumber(AB, 15) & PP
+                        Place2 = "x10"
+                        '54
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_GESYtoSI)), 15) & PP
+                        Place2 = "x11"
+                        '55
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_GESYtoBIKDed)), 15) & PP
+                        Place2 = "x12"
+                        '56
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_GESYtoBIKCon)), 15) & PP
+                        Place2 = "x13"
+                        '57
+                        Str02 = Str02 & DbNullToString(.Item(C_EmpType)) & PP
+                        Place2 = "x14"
+                        '58
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_DirectorFees)), 15) & PP
+                        '59
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_PrivatePensionFund)), 15) & PP
+                        '60
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_PrivateMedicalFund)), 15) & PP
+                        '61
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_PREV_GrossEarnings)), 15) & PP
+                        '62
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_PREV_SIDed)), 15) & PP
+                        '63
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_PREV_PFFund)), 15) & PP
+                        '64
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_PREV_LifeIns)), 15) & PP
+                        '65
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_PREV_Discounts)), 15) & PP
+                        '66
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_PREV_Medical)), 15) & PP
+                        '67
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_PREV_PensionFund)), 15) & PP
+                        '68
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_PREV_UnionDed)), 15) & PP
+                        '69
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_PREV_Gesi)), 15) & PP
+                        '70
+                        Str02 = Str02 & DbNullToString(.Item(C_Email))
+
+
+
+
+
+                    End With
+                    Str02 = Replace(Str02, "&", " ")
+                    Place = "lines before write " & i
+                    Place2 = "x15"
+                    Place4 = Str02
+                    WriteToIR7File(Str02)
+
+                    Place2 = "x16"
+
+                Next
+            End If
+        Catch ex As Exception
+            Utils.ShowException(ex)
+            MsgBox(index)
+            MsgBox(Place)
+            MsgBox(Place2)
+            MsgBox(Place3)
+            MsgBox(Place4)
+            Flag = False
+        End Try
+        Return Flag
+    End Function
+    Private Function CreateIR7File_2024_Integers(ByVal Ds As DataSet) As Boolean
+        Dim index As Integer
+        Dim Place As String = ""
+        Dim Place2 As String = ""
+        Dim Place3 As String = ""
+        Dim Place4 As String = ""
+
+        Dim Flag As Boolean = True
+        Try
+            Dim PP As String = "|"
+
+            Dim C_EmpLastName As Integer = 0
+            Dim C_EmpFirstName As Integer = 1
+            Dim C_EmpName As Integer = 2
+            Dim C_EmpTaxID As Integer = 3
+            Dim C_EmpIDType As Integer = 4
+            Dim C_EmpIDCard As Integer = 5
+            Dim C_Local As Integer = 6
+            Dim C_Abroad As Integer = 7
+            Dim C_Allowances As Integer = 8
+            Dim C_Total456 As Integer = 9
+            Dim C_SI As Integer = 10
+            Dim C_PF As Integer = 11
+            Dim C_MF As Integer = 12
+            Dim C_UNION As Integer = 13
+            Dim C_OtherDisc As Integer = 14
+            Dim C_TotalDisc As Integer = 15
+            Dim C_Taxable As Integer = 16
+            Dim C_IT As Integer = 17
+            Dim C_StartDate As Integer = 18
+            Dim C_LeaveDate As Integer = 19
+            Dim C_Adr1 As Integer = 20
+            Dim C_Adr2 As Integer = 21
+            Dim C_Adr3 As Integer = 22
+            Dim C_PostCode As Integer = 23
+            Dim C_PensionNo As Integer = 24
+            Dim C_PensionType As Integer = 25
+            Dim C_EmpSINo As Integer = 26
+            Dim C_EmpCode As Integer = 27
+            Dim C_EmpSpecialTaxDed As Integer = 28
+            Dim C_EmpSpecialTaxCon As Integer = 29
+            Dim C_SalaryPeriods As Integer = 30
+
+            Dim C_LifeInsurance As Integer = 31
+
+            Dim C_AllowanceBenefits As Integer = 32
+            Dim C_TaxableFromOther As Integer = 33
+            Dim C_NonTaxable As Integer = 34
+            Dim C_Syntaksiodotika As Integer = 35
+            Dim C_MiwsiApolavon As Integer = 36
+            Dim C_WidowOrphans As Integer = 37
+            Dim C_PensionFund As Integer = 38
+            '#2019
+            Dim C_BIK_withSI As Integer = 39
+            Dim C_BIK_withoutSI As Integer = 40
+            'Include them in Total epr7m3t0r4c1
+            'end of #2019
+            Dim C_GESYtoSI As Integer = 41
+            Dim C_GESYtoBIKDed As Integer = 42
+            Dim C_GESYtoBIKCon As Integer = 43
+            Dim C_EmpType As Integer = 44
+            Dim C_DirectorFees As Integer = 46
+            Dim C_PrivatePensionFund As Integer = 47
+            Dim C_PrivateMedicalFund As Integer = 48
+
+            Dim C_PREV_GrossEarnings As Integer = 49
+            Dim C_PREV_SIDed As Integer = 50
+            Dim C_PREV_PFFund As Integer = 51
+            Dim C_PREV_LifeIns As Integer = 52
+            Dim C_PREV_Discounts As Integer = 53
+            Dim C_PREV_Medical As Integer = 54
+            Dim C_PREV_PensionFund As Integer = 55
+            Dim C_PREV_UnionDed As Integer = 56
+            Dim C_PREV_Gesi As Integer = 57
 
 
 
@@ -2810,7 +3489,9 @@ Public Class FrmIR63A
                         '67
                         Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_PREV_PensionFund)), 11) & PP
                         '68
-                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_PREV_UnionDed)), 11)
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_PREV_UnionDed)), 11) & PP
+                        '69
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_PREV_Gesi)), 11)
 
 
 
@@ -5355,6 +6036,30 @@ Public Class FrmIR63A
             End If
         Next
         Return CInt(d) & "/" & CInt(m) & "/" & CInt(y)
+
+    End Function
+    Public Function changeformtatodate2(ByVal S As String) As String
+        Dim i As Integer
+        Dim x As String = ""
+        Dim y As String = ""
+        Dim m As String = ""
+        Dim d As String = ""
+
+        For i = 0 To S.Length - 1
+            x = S.Substring(i, 1)
+            If i <= 3 Then
+                y = y + x
+            ElseIf i > 3 And i <= 5 Then
+                m = m + x
+            Else
+                d = d + x
+            End If
+        Next
+        Dim SS As String
+        SS = y & "-" & m.PadLeft(2, "0") & "-" & d.PadLeft(2, "0")
+        Return SS
+        'Return CInt(y) & "-" & CInt(m) & "-" & CInt(d)
+
 
     End Function
     Private Function WL(ByVal Line As String) As Boolean
@@ -8863,6 +9568,28 @@ Public Class FrmIR63A
             ShowWeb(str)
         End If
     End Sub
+    Private Sub Button7_Click(sender As Object, e As EventArgs) Handles Button7.Click
+        OpenExportfilesDir()
+    End Sub
+    Private Sub OpenExportfilesDir()
+
+        Process.Start(GLBExportFilesDir)
+    End Sub
+
+    Private Sub Button6_Click(sender As Object, e As EventArgs) Handles Button6.Click
+        Dim str As String
+        Dim Ds As DataSet
+        Ds = Global1.Business.GetParameter("URL", "TFA")
+        If CheckDataSet(Ds) Then
+            Dim Par As New cPrSsParameters(Ds.Tables(0).Rows(0))
+            str = Par.Value1
+        Else
+            MsgBox("Missing Parameter , 'URL','TFA' TFA URL is missing'", MsgBoxStyle.Critical)
+        End If
+        If str <> "" Then
+            ShowWeb(str)
+        End If
+    End Sub
     Private Sub ShowWeb(ByVal Str As String)
         System.Diagnostics.Process.Start(Str)
     End Sub
@@ -8950,6 +9677,12 @@ Public Class FrmIR63A
     End Sub
 
     Private Sub mnuCreateXML2024_Click(sender As Object, e As EventArgs) Handles mnuCreateXML2024.Click
+        CreateXMLFileProcedure_2024(False)
+    End Sub
+    Private Sub mnuCreateXML2024_WithExcel_Click(sender As Object, e As EventArgs) Handles mnuCreateXML2024_WithExcel.Click
+        CreateXMLFileProcedure_2024(True)
+    End Sub
+    Private Sub CreateXMLFileProcedure_2024(ShowExcel As Boolean)
         MT_TotalGrossEmoluments = 0
         MT_ContributionsPensionableBenefits = 0
         MT_SpecialContributionPublic = 0
@@ -8962,7 +9695,7 @@ Public Class FrmIR63A
         MT_GHSEmployersContribution = 0
 
 
-        XmlFile2024(False, False)
+        XmlFile2024(ShowExcel, False)
     End Sub
     Private Sub XmlFile2024(ByVal ShowAsExcel As Boolean, ByVal SetBIKonSI As Boolean)
 
@@ -8974,18 +9707,18 @@ Public Class FrmIR63A
         'If Me.TaxGiven = -1 Or Me.Original = -1 Then
         '    MsgBox("Please Fill Tax Given and type of Report", MsgBoxStyle.Information)
         'Else
-        ShowAsExcel = True
+
         IR7_2024(False, True, True, ShowAsExcel, SetBIKonSI)
 
-            If GLB_XMLOriginFile <> "" Then
+        If GLB_XMLOriginFile <> "" Then
             CreateXMLFile_2024(False)
-            ShowAsExcel = False
-            If ShowAsExcel Then
-                    LoadDataSetToExcel(MyDsxl, "ir7")
-                End If
-            Else
-                MsgBox("Failed to create .xml File")
-            End If
+            '    ShowAsExcel = False
+            '   If ShowAsExcel Then
+            '  LoadDataSetToExcel(MyDsxl, "ir7")
+            'End If
+        Else
+            MsgBox("Failed to create .xml File")
+        End If
         '  End If
     End Sub
     Private Sub IR7_2024(ByVal SendToPrinter As Boolean, ByVal File As Boolean, ByVal XMLCreation As Boolean, ByVal ShowInExcel As Boolean, ByVal BIKonSI As Boolean)
@@ -9251,8 +9984,8 @@ Public Class FrmIR63A
         Ar = Line.Split("|")
         Year = Ar(1)
 
-        Dim A1 As Double = StringtoDecimal2New(Ar(20))
-        Dim A2 As Double = StringtoDecimal2New(Ar(50))
+        Dim A1 As Double = StringtoDecimal2ReturnDouble(Ar(20))
+        Dim A2 As Double = StringtoDecimal2ReturnDouble(Ar(50))
         OtherDiscounts = A1 + A2
         'OtherDiscounts = StringtoInteger(OtherDiscounts)
 
@@ -9289,16 +10022,16 @@ Public Class FrmIR63A
         'Dim MT_GHSEmployersContribution As Double = 0
 
         WL("</PayeEmployees>")
-        WL("<TotalGrossEmoluments>" & MT_TotalGrossEmoluments & "</TotalGrossEmoluments>")
-        WL("<TotalTaxWithheld>" & MT_TaxWithheld & "</TotalTaxWithheld>")
-        WL("<TotalPensionableBenefitsContribution>" & MT_ContributionsPensionableBenefits & "</TotalPensionableBenefitsContribution>")
-        WL("<TotalSpecialContributionOfficers>" & MT_SpecialContributionPublic & "</TotalSpecialContributionOfficers>")
-        WL("<TotalSpecialContributionPrivate>" & MT_SpecialContributionPrivate & "</TotalSpecialContributionPrivate>")
-        WL("<TotalReductionOfEmolumentsAndPensions>" & MT_ReductionOfEmolumentsandPensions & "</TotalReductionOfEmolumentsAndPensions>")
-        WL("<TotalGhsWithheldPensioners>" & MT_GHSWithHeldPensioners & "</TotalGhsWithheldPensioners>")
-        WL("<TotalGhsWithheldOfficers>" & MT_GHSWithHeldOfficers & "</TotalGhsWithheldOfficers>")
-        WL("<TotalGhsWithheldEmployees>" & MT_GHSWithHeldEmployee & "</TotalGhsWithheldEmployees>")
-        WL("<TotalGhsEmployersContribution>" & MT_GHSEmployersContribution & "</TotalGhsEmployersContribution>")
+        WL("<TotalGrossEmoluments>" & FWC(MT_TotalGrossEmoluments) & "</TotalGrossEmoluments>")
+        WL("<TotalTaxWithheld>" & FWC(MT_TaxWithheld) & "</TotalTaxWithheld>")
+        WL("<TotalPensionableBenefitsContribution>" & FWC(MT_ContributionsPensionableBenefits) & "</TotalPensionableBenefitsContribution>")
+        WL("<TotalSpecialContributionOfficers>" & FWC(MT_SpecialContributionPublic) & "</TotalSpecialContributionOfficers>")
+        WL("<TotalSpecialContributionPrivate>" & FWC(MT_SpecialContributionPrivate) & "</TotalSpecialContributionPrivate>")
+        WL("<TotalReductionOfEmolumentsAndPensions>" & FWC(MT_ReductionOfEmolumentsandPensions) & "</TotalReductionOfEmolumentsAndPensions>")
+        WL("<TotalGhsWithheldPensioners>" & FWC(MT_GHSWithHeldPensioners) & "</TotalGhsWithheldPensioners>")
+        WL("<TotalGhsWithheldOfficers>" & FWC(MT_GHSWithHeldOfficers) & "</TotalGhsWithheldOfficers>")
+        WL("<TotalGhsWithheldEmployees>" & FWC(MT_GHSWithHeldEmployee) & "</TotalGhsWithheldEmployees>")
+        WL("<TotalGhsEmployersContribution>" & FWC(MT_GHSEmployersContribution) & "</TotalGhsEmployersContribution>")
         WL("</PayeReturnBody>")
         WL("</PayeReturn>")
 
@@ -9392,10 +10125,11 @@ Public Class FrmIR63A
 
         Dim Ar() As String
         Ar = Line.Split("|")
+        Dim PersonalPF As Double = StringtoDecimal2ReturnDouble(Ar(58))
+        Dim PersonalMF As Double = StringtoDecimal2ReturnDouble(Ar(59))
 
-
-        Dim A1 As Double = StringtoDecimal2New(Ar(20))
-        Dim A2 As Double = StringtoDecimal2New(Ar(48))
+        Dim A1 As Double = StringtoDecimal2ReturnDouble(Ar(20))
+        Dim A2 As Double = StringtoDecimal2ReturnDouble(Ar(48))
         OtherDiscounts = A1 + A2
         '    OtherDiscounts = StringtoInteger(OtherDiscounts)
 
@@ -9430,11 +10164,12 @@ Public Class FrmIR63A
             '<!--  Q8 Town/Village: Mandatory If Q1 Is 0 -->
             WL("<PostCode>" & Trim(Ar(10)) & "</PostCode>")
             '<!--  Q9 Post Code: Mandatory If Q1 Is 0 -->
-            'WL("<EmailAddress>αδσσαδσαδσα</EmailAddress>")
+
+            WL("<EmailAddress>" & Trim(Ar(69)) & "</EmailAddress>")
             '<!-- Q10 Email Address: Mandatory If Q1 Is 0, Must be a valid Email -->
         End If
-        Dim BIKWithSI As Double = StringtoDecimal2New(Ar(51)) / 100
-        Dim BIKWithoutSI As Double = StringtoDecimal2New(Ar(52)) / 100
+        Dim BIKWithSI As Double = StringtoDecimal2ReturnDouble(Ar(51))
+        Dim BIKWithoutSI As Double = StringtoDecimal2ReturnDouble(Ar(52))
 
         '---------------------------------------------------
 
@@ -9445,7 +10180,7 @@ Public Class FrmIR63A
 
 
 
-        Dim Entos As Double = StringtoDecimal2New(CLng(Ar(12)))
+        Dim Entos As Double = StringtoDecimal2ReturnDouble((Ar(12)))
         'If Entos > 0 Then
         'Entos = Entos - (BIKWithSI + BIKWithoutSI)
         'End If
@@ -9511,20 +10246,20 @@ Public Class FrmIR63A
         Dim PreviousGesy As Double = 0
 
 
-        TaxablefromOther = StringtoDecimal2New(CLng((Ar(45))))
+        TaxablefromOther = StringtoDecimal2ReturnDouble((Ar(45)))
         Rents = 0
 
-        PreviousEarnings = StringtoDecimal2New(CLng((Ar(60))))
-        PreviousSI = StringtoDecimal2New(CLng((Ar(61))))
-        PreviousPF = StringtoDecimal2New(CLng((Ar(62))))
-        PreviousLifeInsurance = StringtoDecimal2New(CLng((Ar(63))))
-        PreviousDiscount = StringtoDecimal2New(CLng((Ar(64))))
-        PreviousMF = StringtoDecimal2New(CLng((Ar(65))))
-        PreviousPenF = StringtoDecimal2New(CLng((Ar(66))))
-        PreviousUnion = StringtoDecimal2New(CLng((Ar(67))))
-        PreviousGesy = StringtoDecimal2New(CLng((Ar(68))))
+        PreviousEarnings = StringtoDecimal2ReturnDouble((Ar(60)))
+        PreviousSI = StringtoDecimal2ReturnDouble((Ar(61)))
+        PreviousPF = StringtoDecimal2ReturnDouble((Ar(62)))
+        PreviousLifeInsurance = StringtoDecimal2ReturnDouble((Ar(63)))
+        PreviousDiscount = StringtoDecimal2ReturnDouble((Ar(64)))
+        PreviousMF = StringtoDecimal2ReturnDouble((Ar(65)))
+        PreviousPenF = StringtoDecimal2ReturnDouble((Ar(66)))
+        PreviousUnion = StringtoDecimal2ReturnDouble((Ar(67)))
+        PreviousGesy = StringtoDecimal2ReturnDouble((Ar(68)))
 
-        IncomeFromOthersources = IncomeFromOthersources + Rents = PreviousEarnings - PreviousSI - PreviousPF - PreviousLifeInsurance - PreviousDiscount - PreviousMF - PreviousPenF - PreviousUnion - PreviousGesy
+        IncomeFromOthersources = IncomeFromOthersources + Rents + PreviousEarnings - PreviousSI - PreviousPF - PreviousLifeInsurance - PreviousDiscount - PreviousMF - PreviousPenF - PreviousUnion - PreviousGesy
 
         '60 PREV_GrossEarnings 
         '61 PREV_SIDed 
@@ -9536,36 +10271,37 @@ Public Class FrmIR63A
         '67 PREV_UnionDed
 
 
-        Q11 = StringtoDecimal2New(CLng((Ar(15))))
+        Q11 = StringtoDecimal2ReturnDouble((Ar(15)))
+        Q15a = StringtoDecimal2ReturnDouble(Trim(Ar(57)))
+        Q16 = BIKWithSI
+        Q17 = BIKWithoutSI
+        Q18 = Q15a + Q16 + Q17
         'cccccccccccccccc
         WL("<GrossEmoluments>" & FWC(Q11) & "</GrossEmoluments>")
         '<!-- Q11 Gross Emoluments: Must be Sum Of Q12, 13, 14, 15, 15a, 16, 17, 19, 21 - ->
-        Q12 = Entos
+        Q12 = Entos - Q18
         WL("<EmolumentsWithinCyprus>" & FWC(Q12) & "</EmolumentsWithinCyprus>")
         '<!-- Q12 Emoluments within Cyprus -->
         Q13 = 0
         WL("<EmolumentsWithinCyprusSpecialRate >" & FWC(Q13) & "</EmolumentsWithinCyprusSpecialRate>")
         '<!-- Q13 Emoluments within Cyprus (special rate 8%) -->
-        Q14 = StringtoDecimal2New(CLng(Trim(Ar(13))))
+        Q14 = StringtoDecimal2ReturnDouble(Trim(Ar(13)))
         WL("<EmolumentsOutsideCyprus>" & FWC(Q14) & "</EmolumentsOutsideCyprus>")
         '<!-- Q14 Emoluments Outside Cyprus -->
         Q15 = 0
-        WL("<BenefitFromRelatedParties >" & FWC(Q15) & "</BenefitFromRelatedParties>")
+        WL("<BenefitFromRelatedParties>" & FWC(Q15) & "</BenefitFromRelatedParties>")
         '<!-- Q15 Benefit from debit balances of related parties of legal persons -->
-        Q15a = StringtoDecimal2New(CLng(Trim(Ar(57))))
         WL("<DirectorFees>" & FWC(Q15a) & "</DirectorFees>")
         '<!-- Q15a Director's fees -->
         WL("<TaxResidenceCountryOfDirector>Cyprus</TaxResidenceCountryOfDirector>")
         '<!-- Q15b Tax residence country of Director -->
         '''''''''''WL("<TaxNumberOfDirector>111111</TaxNumberOfDirector>")
         '<!-- Q15c Tax number of Director (when tax residence country Is Not Cyprus) -->
-        Q16 = BIKWithSI
         WL("<AllowancesWithSocialInsurance >" & FWC(Q16) & "</AllowancesWithSocialInsurance>")
         '<!-- Q16 Allowances, Benefits/Commissions, And Benefits in Kind with Social Insurance Fund Contributions -->
-        Q17 = BIKWithoutSI
         WL("<AllowancesWithoutSocialInsurance>" & FWC(Q17) & "</AllowancesWithoutSocialInsurance>")
         '<!-- Q17 Allowances, Benefits/Commissions, And Benefits in Kind without Social Insurance Fund Contributions -->
-        Q18 = Q15a + Q16 + Q17
+
         WL("<SumOfAllowances>" & FWC(Q18) & "</SumOfAllowances>")
         '<!-- Q18 Sum of Allowances: Must be Sum Of Q15a, 16, 17 - ->
         Q19 = 0
@@ -9580,7 +10316,7 @@ Public Class FrmIR63A
         WL("<WidowsPensionNonTaxableDeductions>" & FWC(Q22) & "</WidowsPensionNonTaxableDeductions>")
         '<!-- Q22 Widow's Pension Non-taxable deductions -->
         Q23 = Q11
-        Q23 = StringtoDecimal2New(CLng((Ar(15))))
+        Q23 = StringtoDecimal2ReturnDouble((Ar(15)))
 
         MT_TotalGrossEmoluments = MT_TotalGrossEmoluments + Q23
         WL("<TotalTaxableIncome>" & FWC(Q23) & "</TotalTaxableIncome>")
@@ -9591,33 +10327,37 @@ Public Class FrmIR63A
         Q25 = IncomeFromOthersources
         WL("<TaxableIncomeFromOtherSources>" & FWC(Q25) & "</TaxableIncomeFromOtherSources>")
         '<!-- Q25 Taxable Income from Other Sources (per TD59A) -->
-        Q26 = StringtoDecimal2New(CLng((Trim(Ar(16)))))
+        Q26 = StringtoDecimal2ReturnDouble((Trim(Ar(16))))
         WL("<EmployeeContributionSocialInsuranceFund>" & FWC(Q26) & "</EmployeeContributionSocialInsuranceFund>")
         '<!-- Q26 Employee's Contribution - Social Insurance Fund -->
-        Q27 = StringtoDecimal2New(CLng((Trim(Ar(17)))))
+        Q27 = StringtoDecimal2ReturnDouble((Trim(Ar(17))))
         WL("<EmployeeContributionProvidentAndPensionFund>" & FWC(Q27) & "</EmployeeContributionProvidentAndPensionFund>")
         '<!-- Q27 Employee's Contribution - Provident and Pension Funds -->
-        Q28 = StringtoDecimal2New(CLng((Trim(Ar(18)))))
+        Q28 = StringtoDecimal2ReturnDouble((Trim(Ar(18))))
         WL("<EmployeeContributionMedicalFund>" & FWC(Q28) & "</EmployeeContributionMedicalFund>")
         '<!-- Q28 Employee's Contribution - Medical Fund -->
-        Q29 = StringtoDecimal2New(CLng(Trim(Ar(19))))
+        Q29 = StringtoDecimal2ReturnDouble(Trim(Ar(19)))
         WL("<EmployeeContributionTradeUnion>" & FWC(Q29) & "</EmployeeContributionTradeUnion>")
         '<!-- Q29 Employee's Contribution - Trade Union -->
-        Q30 = StringtoDecimal2New(CLng(Trim(Ar(44))))
+        Q30 = StringtoDecimal2ReturnDouble(Trim(Ar(44)))
         WL("<LifeInsurancePremium>" & FWC(Q30) & "</LifeInsurancePremium>")
         '<!-- Q30 Life Insurance Premiums (as restricted by law) -->
-        Q31 = StringtoDecimal2New(CLng(Trim(Ar(46))))
+        Q31 = StringtoDecimal2ReturnDouble(Trim(Ar(46)))
         WL("<NonTaxableIncome>" & FWC(Q31) & "</NonTaxableIncome>")
         '<!-- Q31 Non-Taxable Income (included in Gross Emoluments) -->
 
-        Q32 = StringtoDecimal2New(CLng(OtherDiscounts))
+        Dim OtherIR59Deductions As Double = OtherDiscounts
+
+
+        Q32 = OtherIR59Deductions + PersonalPF + PersonalMF
+
         WL("<OtherIR59Deductions>" & FWC(Q32) & "</OtherIR59Deductions>")
         '<!-- Q32 Other Deductions as per form IR59 (part B2, 6 & 7) -->
-        Q33 = StringtoDecimal2ReturnDouble(CLng(Ar(53)))
+        Q33 = StringtoDecimal2ReturnDouble(Ar(53))
         WL("<GhsEmployeesContributionToOtherDepartments>" & FWC(Q33) & "</GhsEmployeesContributionToOtherDepartments>")
         '<!-- Q33 GHS - Contribution of Employees Payable to Other Departments -->
-        Q34 = StringtoDecimal2ReturnDouble(CLng(Ar(47)))
-        WL("<PensionableBenefitsContribution> " & FWC(Q34) & "</PensionableBenefitsContribution>")
+        Q34 = StringtoDecimal2ReturnDouble(Ar(47))
+        WL("<PensionableBenefitsContribution>" & FWC(Q34) & "</PensionableBenefitsContribution>")
         MT_ContributionsPensionableBenefits = MT_ContributionsPensionableBenefits + Q34
         '<!-- Q34 Contribution Towards Pensionable Benefits (3%) Deducted from Emoluments -->
         Q35 = 0
@@ -9632,11 +10372,11 @@ Public Class FrmIR63A
         '<!-- Q37 Special Contribution of Employer for Employees in the Private Sector -->
         MT_SpecialContributionPrivate = MT_SpecialContributionPrivate + Q36 + Q37
 
-        Q38 = StringtoDecimal2ReturnDouble(CLng(Ar(48)))
+        Q38 = StringtoDecimal2ReturnDouble(Ar(48))
         WL("<ReductionOfEmolumentsAndPensions>" & FWC(Q38) & "</ReductionOfEmolumentsAndPensions>")
         MT_ReductionOfEmolumentsandPensions = MT_ReductionOfEmolumentsandPensions + Q38
         '<!-- Q38 Broader Public Sector Reduction of Emoluments And Pensions -->
-        Q39 = StringtoDecimal2ReturnDouble(CLng(Ar(55)))
+        Q39 = StringtoDecimal2ReturnDouble(Ar(55))
         employeeType = Ar(56)
         If employeeType = "3" Then
             Q39 = 0
@@ -9663,19 +10403,22 @@ Public Class FrmIR63A
         '<!-- Q44 GHS withheld from Pensioners: Sum of Q42 & Q43 -->
 
         If employeeType = 3 Then
+            WL("<IsEmployeeAnOfficer>" & 1 & "</IsEmployeeAnOfficer>")
+            Q46 = StringtoDecimal2ReturnDouble(Ar(55))
+            Q56 = StringtoDecimal2ReturnDouble(Ar(54))
+
+        Else
             WL("<IsEmployeeAnOfficer>" & 0 & "</IsEmployeeAnOfficer>")
             Q46 = 0
-            Q47 = 0
-        Else
-            WL("<IsEmployeeAnOfficer>" & 1 & "</IsEmployeeAnOfficer>")
-            Q46 = StringtoDecimal2ReturnDouble(CLng(Ar(55)))
-            Q47 = StringtoDecimal2ReturnDouble(CLng(Ar(54)))
+            Q56 = 0
         End If
         '<!-- Q45 Is the employee an Officer? Yes=1 , No=0 -->
 
         WL("<GhsWithheldOfficers>" & FWC(Q46) & "</GhsWithheldOfficers>")
         MT_GHSWithHeldOfficers = MT_GHSWithHeldOfficers + Q46
         '<!-- Q46 GHS withheld from officers -->
+
+        Q47 = Q41 + Q44 + Q46
         WL("<GhsEmployeesContributionToTaxDepartment>" & FWC(Q47) & "</GhsEmployeesContributionToTaxDepartment>")
         '<!-- Q47 GHS Contribution of Employees Payable to Tax Department: Sum of Q41, 44, 46 - ->
         Q48 = Q26 + Q27 + Q28 + Q29 + Q30 + Q31 + Q32 + Q33 + Q34 + Q38 + Q41 + Q44 + Q46
@@ -9684,14 +10427,14 @@ Public Class FrmIR63A
         Q49 = Q23 - Q48
         WL("<ChargeableIncome>" & FWC(Q49) & "</ChargeableIncome>")
         '<!-- Q49 Chargeable Income: Q23 minus Q48 -->
-        Q50 = StringtoDecimal2ReturnDouble(CLng(Ar(23)))
+        Q50 = StringtoDecimal2ReturnDouble(Ar(23))
         WL("<TaxWithheldEmolumentsNormalRate>" & FWC(Q50) & "</TaxWithheldEmolumentsNormalRate>")
         '<!-- Q50 Tax withheld from emoluments with normal rate -->
         Q51 = 0
         WL("<TaxWithheldEmolumentsSpecialRate>" & FWC(Q51) & "</TaxWithheldEmolumentsSpecialRate>")
         '<!-- Q51 Tax withheld from emoluments with special rate (8%) -->
         Q52 = 0
-        WL("<TaxWithheldPensionsNormalRate> " & FWC(Q52) & "</TaxWithheldPensionsNormalRate>")
+        WL("<TaxWithheldPensionsNormalRate>" & FWC(Q52) & "</TaxWithheldPensionsNormalRate>")
         '<!-- Q52 Tax withheld from pensions with normal rates -->
         Q53 = 0
         WL("<TaxWithheldPensionsWidow>" & FWC(Q53) & "</TaxWithheldPensionsWidow>")
@@ -9703,22 +10446,34 @@ Public Class FrmIR63A
         WL("<TaxWithheldPriorYearBonus>" & FWC(Q55) & "</TaxWithheldPriorYearBonus>")
         MT_TaxWithheld = MT_TaxWithheld + Q55 + Q54
         '<!-- Q55 Tax withheld from prior year bonus -->
-        Q56 = 0
+        'Q56 = 0
         WL("<GhsEmployersContributionPayable>" & FWC(Q56) & "</GhsEmployersContributionPayable>")
         '<!-- Q56 GHS Employer's Contribution Payable to Tax Department -->
         MT_GHSEmployersContribution = MT_GHSEmployersContribution + Q56
         WL("<SalaryPaymentMethod>12</SalaryPaymentMethod>")
         '<!-- Q57 Method of salary payment  Monthly (12 Or 13) Or Weekly (52 Or 53) -->
-        WL("<EmploymentCommencementDate>2024-12-31</EmploymentCommencementDate>")
-        '<!-- Q58 Commencement of Employment Date during the current year: Dates must be in format YYYY-MM-DD -->
-        WL("<EmploymentTerminationDate>2024-12-31</EmploymentTerminationDate>")
-        '<!-- Q59 Termination of Employment Date during the current year -->
+        If Trim(Ar(26)) <> "" Then
+            Dim S As String
+
+            S = changeformtatodate2(Trim(Ar(26)))
+            WL("<EmploymentCommencementDate>" & S & "</EmploymentCommencementDate>")
+            '<!-- Q58 Commencement of Employment Date during the current year: Dates must be in format YYYY-MM-DD -->
+            'R(31) = S
+        End If
+        If Trim(Ar(27)) <> "" Then
+            Dim S As String
+            S = changeformtatodate2(Trim(Ar(27)))
+            WL("<EmploymentTerminationDate>" & S & "</EmploymentTerminationDate>")
+            '<!-- Q59 Termination of Employment Date during the current year -->
+            '  R(32) = S
+        End If
+
         WL("</PayeEmployee>")
         ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
 
-        'WL("<mof:row number=""" & CLng(Ar(11)) & """>")
-        'R(0) = CLng(Ar(11))
+        'WL("<mof:row number=""" & Ar(11)) & """>")
+        'R(0) = Ar(11))
         'If Trim(Ar(2)) <> "" Then
         '    'TIC Number
         '    WL("<mof:field key=""epr7m6t0r1c1"">" & Trim(Ar(2)) & "</mof:field>")
@@ -9782,8 +10537,8 @@ Public Class FrmIR63A
         'R(11) = Entos
 
         ''OUTSIDE THE REPUBLIC OF CYPRUS
-        'WL("<mof:field key=""epr7m6t0r1c9"">" & CLng(Trim(Ar(13))) & "</mof:field>")
-        'R(12) = CLng(Trim(Ar(13)))
+        'WL("<mof:field key=""epr7m6t0r1c9"">" & Trim(Ar(13))) & "</mof:field>")
+        'R(12) = Trim(Ar(13)))
 
         ''ALLOWANCES/BENEFITS/COMMITIONS
         ''51 (C_BIK_withSI)), 11) & PP
@@ -9799,60 +10554,60 @@ Public Class FrmIR63A
 
 
         ''TOTAL OF COLUMNS
-        'WL("<mof:field key=""epr7m6t0r1c11"">" & CLng(Ar(15)) & "</mof:field>")
-        'R(15) = CLng(Ar(15))
+        'WL("<mof:field key=""epr7m6t0r1c11"">" & Ar(15)) & "</mof:field>")
+        'R(15) = Ar(15))
         ''TAXABLE FROM OTHER SOURCES
-        ''WL("<mof:field key=""epr7m6t0r1c11c"">" & CLng(Trim(Ar(15))) & "</mof:field>")
+        ''WL("<mof:field key=""epr7m6t0r1c11c"">" & Trim(Ar(15))) & "</mof:field>")
 
         ''SOCIAL INSURANCE FUND
-        'WL("<mof:field key=""epr7m6t0r1c12"">" & CLng(Trim(Ar(16))) & "</mof:field>")
-        'R(16) = CLng(Ar(16))
+        'WL("<mof:field key=""epr7m6t0r1c12"">" & Trim(Ar(16))) & "</mof:field>")
+        'R(16) = Ar(16))
 
         ''PROVIDENT FUND AND PENSION FUND
-        'WL("<mof:field key=""epr7m6t0r1c13"">" & CLng(Trim(Ar(17))) & "</mof:field>")
-        'R(17) = CLng(Ar(17))
+        'WL("<mof:field key=""epr7m6t0r1c13"">" & Trim(Ar(17))) & "</mof:field>")
+        'R(17) = Ar(17))
         ''MEDICAL FUND
-        'WL("<mof:field key=""epr7m6t0r1c14"">" & CLng(Trim(Ar(18))) & "</mof:field>")
-        'R(18) = CLng(Ar(18))
+        'WL("<mof:field key=""epr7m6t0r1c14"">" & Trim(Ar(18))) & "</mof:field>")
+        'R(18) = Ar(18))
         ''UNIONS
-        'WL("<mof:field key=""epr7m6t0r1c15"">" & CLng(Trim(Ar(19))) & "</mof:field>")
-        'R(19) = CLng(Ar(19))
+        'WL("<mof:field key=""epr7m6t0r1c15"">" & Trim(Ar(19))) & "</mof:field>")
+        'R(19) = Ar(19))
         ''Life Insurance
-        'WL("<mof:field key=""epr7m6t0r1c15b"">" & CLng(Trim(Ar(44))) & "</mof:field>")
-        'R(20) = CLng(Ar(44))
+        'WL("<mof:field key=""epr7m6t0r1c15b"">" & Trim(Ar(44))) & "</mof:field>")
+        'R(20) = Ar(44))
         ''NON TAXABLE INCOME (INCLUDED IN TOTALS)
 
-        'WL("<mof:field key=""epr7m6t0r1c15c"">" & CLng(Trim(Ar(46))) & "</mof:field>")
-        'R(21) = CLng(Ar(46))
+        'WL("<mof:field key=""epr7m6t0r1c15c"">" & Trim(Ar(46))) & "</mof:field>")
+        'R(21) = Ar(46))
 
         ''Other Discounts
-        'WL("<mof:field key=""epr7m6t0r1c16"">" & CLng(OtherDiscounts) & "</mof:field>")
-        'R(22) = CLng(OtherDiscounts)
+        'WL("<mof:field key=""epr7m6t0r1c16"">" & OtherDiscounts) & "</mof:field>")
+        'R(22) = OtherDiscounts)
 
         ''Total Discounts
-        'WL("<mof:field key=""epr7m6t0r1c17"">" & CLng(Trim(Ar(21))) & "</mof:field>")
-        'R(23) = CLng(Ar(21))
+        'WL("<mof:field key=""epr7m6t0r1c17"">" & Trim(Ar(21))) & "</mof:field>")
+        'R(23) = Ar(21))
         ''TAXABLE INCOME
-        'WL("<mof:field key=""epr7m6t0r1c18"">" & CLng(Trim(Ar(22))) & "</mof:field>")
-        'R(24) = CLng(Ar(22))
+        'WL("<mof:field key=""epr7m6t0r1c18"">" & Trim(Ar(22))) & "</mof:field>")
+        'R(24) = Ar(22))
 
         ''INCOME TAX
-        'WL("<mof:field key=""epr7m6t0r1c19"">" & StringtoDecimal2(CLng(Ar(23))) & "</mof:field>")
-        'R(25) = StringtoDecimal2(CLng(Ar(23)))
+        'WL("<mof:field key=""epr7m6t0r1c19"">" & StringtoDecimal2(Ar(23))) & "</mof:field>")
+        'R(25) = StringtoDecimal2(Ar(23)))
         ''SPECIAL CONTRIBUTION - gesi not FOR 2017
-        ''WL("<mof:field key=""epr7m6t0r1c19b"">" & StringtoDecimal2(CLng(Ar(24))) & "</mof:field>")
+        ''WL("<mof:field key=""epr7m6t0r1c19b"">" & StringtoDecimal2(Ar(24))) & "</mof:field>")
 
         ''EISFORA SYNTAKSIODOTIKON OFELIMATON (+xiron orfanon + tameio syntaksis - na elegxw an einai mesa)
-        'WL("<mof:field key=""epr7m6t0r1c19c"">" & StringtoDecimal2(CLng(Ar(47))) & "</mof:field>")
-        'R(26) = StringtoDecimal2(CLng(Ar(47)))
+        'WL("<mof:field key=""epr7m6t0r1c19c"">" & StringtoDecimal2(Ar(47))) & "</mof:field>")
+        'R(26) = StringtoDecimal2(Ar(47)))
         ''''
         ''MEIOSI APOLAVON
-        'WL("<mof:field key=""epr7m6t0r1c19d"">" & StringtoDecimal2(CLng(Ar(48))) & "</mof:field>")
-        'R(27) = StringtoDecimal2(CLng(Ar(48)))
+        'WL("<mof:field key=""epr7m6t0r1c19d"">" & StringtoDecimal2(Ar(48))) & "</mof:field>")
+        'R(27) = StringtoDecimal2(Ar(48)))
         ''GESI NOT FOR 2017
-        ''WL("<mof:field key=""epr7m6t0r1c19e"">" & StringtoDecimal2(CLng(Ar(40))) & "</mof:field>")
+        ''WL("<mof:field key=""epr7m6t0r1c19e"">" & StringtoDecimal2(Ar(40))) & "</mof:field>")
         ''GESI NOT FOR 2017
-        ''WL("<mof:field key=""epr7m6t0r1c19f"">" & StringtoDecimal2(CLng(Ar(41))) & "</mof:field>")
+        ''WL("<mof:field key=""epr7m6t0r1c19f"">" & StringtoDecimal2(Ar(41))) & "</mof:field>")
 
         ''DIAGRAFETE
         ''WL("<mof:field key=""epr7m6t0r1c19g"">" & Ar(42) & "</mof:field>")
@@ -9860,14 +10615,14 @@ Public Class FrmIR63A
 
 
         ''53 (C_GESYtoSI)), 11) & PP
-        'WL("<mof:field key=""epr7m6t0r1c19b"">" & StringtoDecimal2(CLng(Ar(53))) & "</mof:field>")
-        'R(28) = StringtoDecimal2(CLng(Ar(53)))
+        'WL("<mof:field key=""epr7m6t0r1c19b"">" & StringtoDecimal2(Ar(53))) & "</mof:field>")
+        'R(28) = StringtoDecimal2(Ar(53)))
         ''54 (C_GESYtoBIKDed)), 11) & PP
-        'WL("<mof:field key=""epr7m6t0r1c19e"">" & StringtoDecimal2(CLng(Ar(55))) & "</mof:field>")
-        'R(29) = StringtoDecimal2(CLng(Ar(55)))
+        'WL("<mof:field key=""epr7m6t0r1c19e"">" & StringtoDecimal2(Ar(55))) & "</mof:field>")
+        'R(29) = StringtoDecimal2(Ar(55)))
         ''55 (C_GESYtoBIKCon)), 11)
-        'WL("<mof:field key=""epr7m6t0r1c19f"">" & StringtoDecimal2(CLng(Ar(54))) & "</mof:field>")
-        'R(30) = StringtoDecimal2(CLng(Ar(54)))
+        'WL("<mof:field key=""epr7m6t0r1c19f"">" & StringtoDecimal2(Ar(54))) & "</mof:field>")
+        'R(30) = StringtoDecimal2(Ar(54)))
 
         ''''
 
@@ -9891,7 +10646,6 @@ Public Class FrmIR63A
         MyDsxl.Tables(0).Rows.Add(R)
 
     End Sub
-
 
 
 End Class
