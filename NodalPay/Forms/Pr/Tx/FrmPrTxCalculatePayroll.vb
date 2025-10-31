@@ -5,6 +5,12 @@ Imports Microsoft.Office.Interop
 'Imports Microsoft.Office.Interop.Excel
 'Imports Microsoft.Office.Interop.Excel
 Public Class FrmPrTxCalculatePayroll
+    Dim GLB_NEWTax_EarningsFromPreviousEmployment As Double = 0
+    Dim GLB_NEWTax_RentsAndIncomeFromOtherSources As Double = 0
+    Dim GLB_NEWTax_SocialInsurancePension As Double = 0
+    Dim GLB_NEWTax_TotalEarningsFromME As Double = 0
+    Dim GLB_NEWTax_TotalSPLIT As Double = 0
+    Dim GLB_NEWTax_Total As Double = 0
 
     Dim GLB_PeriodTaxable As Double
     Dim GlbNightShiftamount As Double = 0
@@ -137,7 +143,7 @@ Public Class FrmPrTxCalculatePayroll
     Dim GLBRecurringEarning14 As Double = 0
     Dim GLBBenefitsRecurringEarning14 As Double = 0
 
-    
+
 
     Dim GLBSalaryForRate As Double = 0
     Public PreviousPeriod As cPrMsPeriodCodes
@@ -247,6 +253,14 @@ Public Class FrmPrTxCalculatePayroll
 
 
     Private Sub FrmPrTxCalculatePayroll_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Me.Label63.Text = "Reccuring" & Environment.NewLine & "Earnings"
+        Me.Label68.Text = "Current Period" & Environment.NewLine & "Earnings"
+        If Global1.GLBNewTaxmethod Then
+            Me.CBMethodUsed.Checked = True
+        Else
+            Me.CBMethodUsed.Checked = False
+        End If
+
         ServicePointManager.SecurityProtocol = Tls12
         If Global1.UserRole = Roles.Admin Or Global1.UserRole = Roles.Manager Then
             'If UCase(Global1.UserName) = "SA" Or UCase(Globadl1.UserName) = "NODAL" Then
@@ -261,9 +275,9 @@ Public Class FrmPrTxCalculatePayroll
 
         Me.CBAllowNegativeTax.Checked = Global1.PARAM_Allow_NegativeTAX
         If Global1.PARAM_TaxRule = "16.67" Then
-            Me.Label80.Text = "One Sixth Rule (SI+PF+MF+LI+GeSY)"
+            Me.Label80.Text = "1/6 Rule(SI+PF+MF+LI+GeSY)"
         Else
-            Me.Label80.Text = "One Fifth Rule (SI+PF+MF+LI+GeSY)"
+            Me.Label80.Text = "1/5 Rule(SI+PF+MF+LI+GeSY)"
         End If
         Me.LblPFLimit.Text = "PF Limit " & PARAM_PFLimit & " % "
         Me.lblMFLimit.Text = "MF Limit " & PARAM_MFLimit & " % "
@@ -289,7 +303,7 @@ Public Class FrmPrTxCalculatePayroll
         InitArray_C_Final()
         ClearMe()
         FixStatus(mystatus)
-
+        Me.ShowHideControlsForNewTax()
     End Sub
 
     Public Sub CalculateSalaryPerUnits()
@@ -432,7 +446,7 @@ Public Class FrmPrTxCalculatePayroll
 
         Me.txtTempstatus.Text = ""
         ClearEDC()
-        CLEARIR59()
+        ClearIR59()
     End Sub
     Private Sub ClearIR59()
         txtROTotalTaxable.Text = "0.00"
@@ -476,6 +490,8 @@ Public Class FrmPrTxCalculatePayroll
         txtORPeriodTax.Text = "0.00"
         txtCPPeriodTax.Text = "0.00"
         txtORRemTaxPeriods.Text = "0.00"
+        Me.LblRemTaxable.Text = ""
+
         txtORPeriodUnitsRatio.Text = "0.00"
         txtORDifference.Text = "0.00"
         txtFinalPeriodTax.Text = "0.00"
@@ -488,6 +504,44 @@ Public Class FrmPrTxCalculatePayroll
 
         Me.txtRGesyLimit.Text = "0.00"
         Me.txtCGesyLimit.Text = "0.00"
+
+        Me.txtAA_REC_CurrentEmployment.Text = "0.00"
+        Me.txtAA_REC_SIPension.Text = "0.00"
+        Me.txtAA_REC_FromOthersources.Text = "0.00"
+        Me.txtAA_REC_PreviousEmployment.Text = "0.00"
+        Me.txtAA_REC_NotionalIncome.Text = "0.00"
+        Me.txtAA_REC_TotalTaxable.Text = "0.00"
+
+        Me.txtTA_REC_TotalTaxable.Text = "0.00"
+        Me.txtTA_REC_CurrentEmployment.Text = "0.00"
+        Me.txtTA_REC_SIPension.Text = "0.00"
+        Me.txtTA_REC_FromOthersources.Text = "0.00"
+        Me.txtTA_REC_PreviousEmployment.Text = "0.00"
+        Me.txtTA_REC_NotionalIncome.Text = "0.00"
+
+        Me.txt_REC_TempPAYE.Text = "0.00"
+
+        Me.txtAA_PER_CurrentEmployment.Text = "0.00"
+        Me.txtAA_PER_SIPension.Text = "0.00"
+        Me.txtAA_PER_FromOthersources.Text = "0.00"
+        Me.txtAA_PER_PreviousEmployment.Text = "0.00"
+        Me.txtAA_PER_NotionalIncome.Text = "0.00"
+        Me.txtAA_PER_TotalTaxable.Text = "0.00"
+
+        Me.txtTA_PER_TotalTaxable.Text = "0.00"
+        Me.txtTA_PER_CurrentEmployment.Text = "0.00"
+        Me.txtTA_PER_SIPension.Text = "0.00"
+        Me.txtTA_PER_FromOthersources.Text = "0.00"
+        Me.txtTA_PER_PreviousEmployment.Text = "0.00"
+        Me.txtTA_PER_NotionalIncome.Text = "0.00"
+
+        Me.txt_PER_TempPAYE.Text = "0.00"
+        Me.txtTaxDifference.Text = "0.00"
+        Me.txtNewPeriodTax.Text = "0.00"
+        Me.txtNewPaid.Text = "0.00"
+        Me.txtPERCurrent_SI_Notional.Text = "0.00"
+        Me.txtPerRemaining.Text = "0.00"
+
 
 
 
@@ -788,6 +842,10 @@ Public Class FrmPrTxCalculatePayroll
                             E_CalculateBenefitsInKind(Emp, EE, Earn)
                         Case "BR" 'RECURRING BENEFITS IN KIND
                             E_CalculateBenefitsInKindRecurring(Emp, EE, Earn)
+                        Case "NI"
+                            E_CalculateNotionalIncome(Emp, EE, Earn)
+                        Case "NR"
+                            E_CalculateNotionalIncomeReccuring(Emp, EE, Earn)
                         Case "B2" 'RECURRING BENEFITS IN KIND 14
                             E_CalculateBenefitsInKindRecurring_14(Emp, EE, Earn)
                         Case "RE" 'RECURRING EARNING
@@ -808,7 +866,7 @@ Public Class FrmPrTxCalculatePayroll
                         Case "TP" 'TimeOff
                             E_CalculateTimeOffPositive(Emp, EE, Earn)
                     End Select
-                   
+
                 End If
             Next
             If HASSeparateCOLA Then
@@ -837,14 +895,15 @@ Public Class FrmPrTxCalculatePayroll
                             E_CalculateBenefitsInKindRecurring(Emp, EE, Earn)
                         Case "B2" 'RECURRING BENEFITS IN KIND 14
                             E_CalculateBenefitsInKindRecurring_14(Emp, EE, Earn)
-                       
+
                         Case "RE" 'RECURRING EARNING
                             E_CalculateRecurringEarning(Emp, EE, Earn)
                         Case "R2" 'RECURRING EARNING 14
                             E_CalculateRecurringEarning14(Emp, EE, Earn)
                         Case "PD" 'PENSION Deduction
                             E_CalculatePensionDeduction(Emp, EE, Earn)
-
+                        Case "NR"
+                            E_CalculateNotionalIncomeReccuring(Emp, EE, Earn)
                     End Select
                 End If
             Next
@@ -856,7 +915,7 @@ Public Class FrmPrTxCalculatePayroll
             Dim TotalE As Double
             TotalE = CalculateTotalEarnings()
             Me.txtTotalEarnings.Text = Format(RoundMe2(TotalE, 2), "0.00")
-            End If
+        End If
 
     End Sub
     Private Sub E_CalculateSalary(ByVal Emp As cPrMsEmployees, ByVal EmpEarn As cPrMsEmployeeEarnings, ByVal Earn As cPrMsEarningCodes, ByVal OnlyRecuring As Boolean)
@@ -1580,14 +1639,14 @@ Public Class FrmPrTxCalculatePayroll
                                     Manually = True
                                 Else
                                     t13Salary = Ern(i).txtValue.Text
-                                    manually = True
+                                    Manually = True
                                 End If
                             End If
                         End If
                         Exit For
                     End If
                 Next
-                If not manually then
+                If Not Manually Then
 
                     'AnuallUnitsOfThisPeriod = ActualUnits + SILeaveUnits
                     AnuallUnitsOfThisPeriod = PeriodAnnualUnits
@@ -1949,7 +2008,7 @@ Public Class FrmPrTxCalculatePayroll
                 Exit For
             End If
         Next
-        
+
         For i = 0 To E_Final.Length - 1
             If Earn.Code = E_Final(i).Earn.ErnCodCode Then
                 E_Final(i).MyValue = Fines
@@ -2368,7 +2427,7 @@ Public Class FrmPrTxCalculatePayroll
         Dim i As Integer
 
         Dim EmpRate As Decimal = 0
-      
+
         Dim UseThisRate As Double = RateForOvertimeCalc
 
 
@@ -2428,7 +2487,7 @@ Public Class FrmPrTxCalculatePayroll
         Dim i As Integer
 
         Dim EmpRate As Decimal = 0
-       
+
         Dim UseThisRate As Double = RateForOvertimeCalc
 
 
@@ -2509,7 +2568,7 @@ Public Class FrmPrTxCalculatePayroll
 
 
 
-       
+
         For i = 0 To Ern.Length - 1
             If Earn.Code = Ern(i).Ern.ErnCodCode Then
                 TempEarn = Ern(i).Ern
@@ -2538,7 +2597,7 @@ Public Class FrmPrTxCalculatePayroll
                 Exit For
             End If
         Next
-      
+
     End Sub
     Private Function GetPreviousPeriodRate() As Decimal
         Dim Rate As Decimal = 0
@@ -2546,7 +2605,7 @@ Public Class FrmPrTxCalculatePayroll
         Dim PeriodCode As String = ""
         If PreviousPeriod.PayCat_Code = "3" Or PreviousPeriod.PayCat_Code = "4" Then
             PeriodToGetRateFrom = PreviousPeriod.GetPreviousPeriod
-            periodcode = PeriodToGetRateFrom.Code
+            PeriodCode = PeriodToGetRateFrom.Code
         Else
             PeriodCode = PreviousPeriod.Code
         End If
@@ -2634,7 +2693,7 @@ Public Class FrmPrTxCalculatePayroll
             End If
         Next
 
-        If Not Calledfrom13 And Not calledFrom14 Then
+        If Not Calledfrom13 And Not CalledFrom14 Then
             GLBCOLAValue = GLBCOLAValue + COLAValue
             For i = 0 To E_Final.Length - 1
                 If Earn.Code = E_Final(i).Earn.ErnCodCode Then
@@ -2646,7 +2705,7 @@ Public Class FrmPrTxCalculatePayroll
             If Calledfrom13 Then
                 GLBAdditionTo13 = COLAValue
             End If
-            If calledFrom14 Then
+            If CalledFrom14 Then
                 GLBAdditionTo14 = COLAValue
             End If
         End If
@@ -2689,6 +2748,66 @@ Public Class FrmPrTxCalculatePayroll
         Next
     End Sub
     Private Sub E_CalculateBenefitsInKindRecurring(ByVal Emp As cPrMsEmployees, ByVal EmpEarn As cPrMsEmployeeEarnings, ByVal Earn As cPrMsEarningCodes)
+        Dim TempEarn As New cPrMsTemplateEarnings
+        Dim i As Integer
+        Dim Percentage As Double
+        Dim Value As Double
+        Dim ValueToCalcFrom As Double
+        For i = 0 To Ern.Length - 1
+            If Earn.Code = Ern(i).Ern.ErnCodCode Then
+                TempEarn = Ern(i).Ern
+                If TempEarn.ErnCodCode <> "" Then
+                    If TempEarn.TypeMode = "P" Then
+                        ValueToCalcFrom = FindValueOfFormula(TempEarn.CalcFormula)
+                        Percentage = Ern(i).txtValue.Text
+                        Value = Percentage / 100 * ValueToCalcFrom
+
+                    ElseIf TempEarn.TypeMode = "V" Then
+                        Value = Ern(i).txtValue.Text
+                    End If
+                    Exit For
+                End If
+            End If
+        Next
+        GLBBenefitsRecurringEarning = GLBBenefitsRecurringEarning + Value
+        For i = 0 To E_Final.Length - 1
+            If Earn.Code = E_Final(i).Earn.ErnCodCode Then
+                E_Final(i).MyValue = Value
+                Exit For
+            End If
+        Next
+    End Sub
+    Private Sub E_CalculateNotionalIncome(ByVal Emp As cPrMsEmployees, ByVal EmpEarn As cPrMsEmployeeEarnings, ByVal Earn As cPrMsEarningCodes)
+        Dim TempEarn As New cPrMsTemplateEarnings
+        Dim i As Integer
+        Dim Percentage As Double
+        Dim Value As Double
+        Dim ValueToCalcFrom As Double
+        For i = 0 To Ern.Length - 1
+            If Earn.Code = Ern(i).Ern.ErnCodCode Then
+                TempEarn = Ern(i).Ern
+                If TempEarn.ErnCodCode <> "" Then
+                    If TempEarn.TypeMode = "P" Then
+                        ValueToCalcFrom = FindValueOfFormula(TempEarn.CalcFormula)
+                        Percentage = Ern(i).txtValue.Text
+                        Value = Percentage / 100 * ValueToCalcFrom
+
+                    ElseIf TempEarn.TypeMode = "V" Then
+                        Value = Ern(i).txtValue.Text
+                    End If
+                    Exit For
+                End If
+            End If
+        Next
+
+        For i = 0 To E_Final.Length - 1
+            If Earn.Code = E_Final(i).Earn.ErnCodCode Then
+                E_Final(i).MyValue = Value
+                Exit For
+            End If
+        Next
+    End Sub
+    Private Sub E_CalculateNotionalIncomeReccuring(ByVal Emp As cPrMsEmployees, ByVal EmpEarn As cPrMsEmployeeEarnings, ByVal Earn As cPrMsEarningCodes)
         Dim TempEarn As New cPrMsTemplateEarnings
         Dim i As Integer
         Dim Percentage As Double
@@ -2784,7 +2903,7 @@ Public Class FrmPrTxCalculatePayroll
             End If
         Next
     End Sub
-    
+
     Private Sub E_CalculateRecurringEarning14(ByVal Emp As cPrMsEmployees, ByVal EmpEarn As cPrMsEmployeeEarnings, ByVal Earn As cPrMsEarningCodes)
         Dim TempEarn As New cPrMsTemplateEarnings
         Dim i As Integer
@@ -2874,7 +2993,7 @@ Public Class FrmPrTxCalculatePayroll
             End If
         Next
 
-        GLBPensiondeduction = GLBPensiondeduction + Value
+        GLBPensionDeduction = GLBPensionDeduction + Value
 
         For i = 0 To E_Final.Length - 1
             If Earn.Code = E_Final(i).Earn.ErnCodCode Then
@@ -3967,7 +4086,7 @@ Public Class FrmPrTxCalculatePayroll
             BIK_RemainingPeriodsWithGESI = 0
         End If
 
-        
+
         'Dim TodateGESI As Double
         'TodateGESI = Global1.Business.GetToDate_SI_PF_MF(Emp, GLBCurrentPeriod, "GD")
 
@@ -4064,7 +4183,7 @@ Public Class FrmPrTxCalculatePayroll
         ' End If
 
     End Sub
-   
+
     Private Sub D_TaxableIncomeANDSIIncomeForCasesOf13NotTaxable(ByVal Emp As cPrMsEmployees, ByVal EmpDed As cPrMsEmployeeDeductions, ByVal Dedu As cPrMsDeductionCodes)
         Dim TempDed As New cPrMsTemplateDeductions
         Dim i As Integer
@@ -4156,8 +4275,8 @@ Public Class FrmPrTxCalculatePayroll
                             End If
 
                             D_Final(i).MyValue = ITValue
-                            TaxTouse = ITValue
-                            useTax = True
+                            TaxToUse = ITValue
+                            UseTax = True
                             ValueToCalcFrom = FindValueOfFormula(TempDed.CalcFormula, True)
                             Period_TaxableIncome = ValueToCalcFrom + Emp.OtherIncome3
                             '''' 26/7 for Action
@@ -4169,7 +4288,7 @@ Public Class FrmPrTxCalculatePayroll
                                 DiscountsX = RoundMe2(EmpDisX.TotalDiscounts / GLBCurrentPeriod.NumberOfTaxablePeriods, 2)
                             End If
 
-                            
+
 
                             '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
                             'Dim dsETD As DataSet
@@ -4674,8 +4793,8 @@ Public Class FrmPrTxCalculatePayroll
             Me.txtSumPeriodTax.Text = ITValue
 
             'emp.Emp_PrevITDeduct
-            End If
-            If ITValue < 0 Then
+        End If
+        If ITValue < 0 Then
             'If Not Global1.PARAM_Allow_NegativeTAX Then
             If Not Me.CBAllowNegativeTax.Checked Then
                 ITValue = 0
@@ -4778,6 +4897,9 @@ Public Class FrmPrTxCalculatePayroll
                             D_Final(i).MyValue = ITValue
                             ValueToCalcFrom = FindValueOfFormula(TempDed.CalcFormula, True)
                             Period_TaxableIncome = ValueToCalcFrom + Emp.OtherIncome3
+
+
+
                             '''' 26/7 for Action
                             Dim EmpDisX As New cPrTxEmployeeDiscounts(Emp.Code, Me.GLBCurrentPeriod.PrdGrpCode)
                             Dim Lifeinsx As Double = 0
@@ -4869,7 +4991,7 @@ Public Class FrmPrTxCalculatePayroll
 
 
 
-       
+
 
         Dim Discounts As Double = 0
         Dim Total_LifeIns As Double = 0
@@ -4911,9 +5033,10 @@ Public Class FrmPrTxCalculatePayroll
 
 
 
-
+        GLB_NEWTax_EarningsFromPreviousEmployment = 0
         If Emp.StartDate.Year = Me.GLBCurrentPeriod.DateFrom.Year Then
             'Previous_SI_PF_MF = Emp.Emp_PrevSIDeduct + Emp.Emp_PrevPFDeduct
+            GLB_NEWTax_EarningsFromPreviousEmployment = Emp.PreviousEarnings
             Previous_SI = Emp.Emp_PrevSIDeduct
             Previous_PF = Emp.Emp_PrevPFDeduct
             Previous_MF = Emp.PrevMedFund
@@ -4929,7 +5052,9 @@ Public Class FrmPrTxCalculatePayroll
             Previous_GESI = Emp.PreviousGesiD
             Previous_Union = Emp.PreviousUnion
 
-
+            If GLBNewTaxmethod Then
+                Previous_ITValue = 0
+            End If
         End If
 
 
@@ -5128,11 +5253,11 @@ Public Class FrmPrTxCalculatePayroll
         End If
 
         'CHANGE 12/03/2019 RECURING Earnings and Ben in Kind means for ALL Remaining Periods
-        
+
         RecEarnings = GLBRecurringEarning * (NormalRemPeriods)
         RecBenefits = GLBBenefitsRecurringEarning * (NormalRemPeriods)
         GLBRemainingReccuringBIK = RecBenefits
-        If Global1.param_Andrikian13PeriodLast Then
+        If Global1.PARAM_Andrikian13PeriodLast Then
             If NormalRemPeriods = -1 Then
                 RecEarnings = 0
                 RecBenefits = 0
@@ -5290,7 +5415,13 @@ Public Class FrmPrTxCalculatePayroll
         Total_LifeIns = LifeIns + LifeIns_Todate + Previous_LifeInsurance
         LI_display = Total_LifeIns
 
+
+
+
+
         S_TaxableEarningToDate = EarningsToDate + CurrentPeriodEarnings + Previous_Earnings + (Emp.OtherIncome3) + Emp.OtherIncome1 + Emp.OtherIncome2 + Emp.OtherIncome4 '+ Me.GetPeriodSplitForTAX  ' * NumberOfTaxablePeriodsTodate / GLBCurrentPeriod.NumberOfTaxablePeriods)
+
+
         S_InsurableEarningToDate = insurableToDate
 
         SalaryEstimation_13_14 = FindSalary() + GLBSILeave
@@ -5344,6 +5475,7 @@ Public Class FrmPrTxCalculatePayroll
 
 
         S_TaxableEarningToDate = S_TaxableEarningToDate + OtherIncome4_13_14_Estimation - ToDateSpecialTax_13_14
+
 
 
 
@@ -5410,6 +5542,8 @@ Public Class FrmPrTxCalculatePayroll
         S_TaxableEarningToDate = S_TaxableEarningToDate + EstimatedEarningsByTheEndOfYear
 
 
+
+
         Dim MissedPeriods As Boolean = False
         If GLBCurrentPeriod.NumberOfTaxablePeriodsUntilNow - NumberOfTaxableWorkedPeriods <> 0 Then
             MissedPeriods = True
@@ -5436,7 +5570,27 @@ Public Class FrmPrTxCalculatePayroll
             Me.txt_Split_Total.Text = 0
         End If
 
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        'TAX AMOUNTS ANALYSIS
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
         S_TaxableEarningToDate = S_TaxableEarningToDate + Me.txt_Split_Total.Text '- Me.txt_Split_ToDate.Text
+
+        GLB_NEWTax_RentsAndIncomeFromOtherSources = Emp.OtherIncome2
+        GLB_NEWTax_SocialInsurancePension = PensionByTheendOftheYear + Emp.OtherIncome3
+        GLB_NEWTax_Total = S_TaxableEarningToDate
+        GLB_NEWTax_TotalSPLIT = Me.txt_Split_Total.Text
+        GLB_NEWTax_TotalEarningsFromME = S_TaxableEarningToDate - Me.txt_Split_Total.Text - GLB_NEWTax_RentsAndIncomeFromOtherSources - GLB_NEWTax_EarningsFromPreviousEmployment
+
+
+
+
+
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+
+
+
 
         If OnlyRecuring Then
             Me.txtROTotalTaxable.Text = Format(S_TaxableEarningToDate, "0.00")
@@ -5694,6 +5848,7 @@ Public Class FrmPrTxCalculatePayroll
 
         Dim S_ITValueToDate As Double
         S_ITValueToDate = Global1.Business.GetITValueToDate(Emp, Dedu, GLBCurrentPeriod)
+        Dim TAXValueToDateForCurrentIncome As Double = S_ITValueToDate
         S_ITValueToDate = S_ITValueToDate + Previous_ITValue
         Me.txtsumTaxMustPayUntilNow.Text = ITValue
 
@@ -5702,15 +5857,88 @@ Public Class FrmPrTxCalculatePayroll
 
         Me.txtSumTaxPaid.Text = S_ITValueToDate
         If OnlyRecuring Then
-            Me.txtORtaxableearnings.Text = RoundMe2(AmountToCheck, 2)
-            Me.txtORTotalTax.Text = ITValue
-            Me.txtORPaidTax.Text = S_ITValueToDate
+            Me.txtORtaxableearnings.Text = Format(RoundMe2(AmountToCheck, 2), "0.00")
+            Me.txtORTotalTax.Text = Format(ITValue, "0.00")
+            Me.txtORPaidTax.Text = Format(S_ITValueToDate, "0.00")
         Else
-            Me.txtCPtaxableearnings.Text = RoundMe2(AmountToCheck, 2)
-            Me.txtCPTotalTax.Text = ITValue
-            Me.txtCPPaidTax.Text = S_ITValueToDate
+            Me.txtCPtaxableearnings.Text = Format(RoundMe2(AmountToCheck, 2), "0.00")
+            Me.txtCPTotalTax.Text = Format(ITValue, "0.00")
+            Me.txtCPPaidTax.Text = Format(S_ITValueToDate, "0.00")
 
         End If
+
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        'TAX ANALYSIS
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        If OnlyRecuring Then
+            Me.txtAA_REC_CurrentEmployment.Text = Format(GLB_NEWTax_TotalEarningsFromME - GLB_NEWTax_SocialInsurancePension, "0.00")
+            Me.txtAA_REC_SIPension.Text = Format(GLB_NEWTax_SocialInsurancePension, "0.00")
+            Me.txtAA_REC_FromOthersources.Text = Format(GLB_NEWTax_RentsAndIncomeFromOtherSources, "0.00")
+            Me.txtAA_REC_PreviousEmployment.Text = Format(GLB_NEWTax_EarningsFromPreviousEmployment, "0.00")
+            Me.txtAA_REC_NotionalIncome.Text = Format(0, "0.00")
+            Me.txtAA_REC_TotalTaxable.Text = Format(GLB_NEWTax_Total, "0.00")
+
+            Dim Tax_OnCurrentEmployment As Double = ITValue / GLB_NEWTax_Total * (GLB_NEWTax_TotalEarningsFromME - GLB_NEWTax_SocialInsurancePension)
+            Dim Tax_OnSIPension As Double = ITValue / GLB_NEWTax_Total * GLB_NEWTax_SocialInsurancePension
+            Dim Tax_OnOtherIncome As Double = ITValue / GLB_NEWTax_Total * GLB_NEWTax_RentsAndIncomeFromOtherSources
+            Dim Tax_OnPreviousEmployment As Double = ITValue / GLB_NEWTax_Total * GLB_NEWTax_EarningsFromPreviousEmployment
+            Dim Tax_OnNotionalIncome As Double = ITValue / GLB_NEWTax_Total * 0
+
+            Me.txtTA_REC_TotalTaxable.Text = Format(ITValue, "0.00")
+            Me.txtTA_REC_CurrentEmployment.Text = Format(Tax_OnCurrentEmployment, "0.00")
+            Me.txtTA_REC_SIPension.Text = Format(Tax_OnSIPension, "0.00")
+            Me.txtTA_REC_FromOthersources.Text = Format(Tax_OnOtherIncome, "0.00")
+            Me.txtTA_REC_PreviousEmployment.Text = Format(Tax_OnPreviousEmployment, "0.00")
+            Me.txtTA_REC_NotionalIncome.Text = Format(Tax_OnNotionalIncome, "0.00")
+
+            Dim REMTaxPeriods As Integer = GLBCurrentPeriod.NumberOfTaxablePeriods - NumberOfTaxablePeriodsTodate + 1
+            Dim MonthlyTAX As Double = (Tax_OnCurrentEmployment + Tax_OnSIPension - TAXValueToDateForCurrentIncome) / REMTaxPeriods
+            Me.txt_REC_TempPAYE.Text = Format(MonthlyTAX, "0.00")
+        Else
+            Me.txtAA_PER_CurrentEmployment.Text = Format(GLB_NEWTax_TotalEarningsFromME - GLB_NEWTax_SocialInsurancePension, "0.00")
+            Me.txtAA_PER_SIPension.Text = Format(GLB_NEWTax_SocialInsurancePension, "0.00")
+            Me.txtAA_PER_FromOthersources.Text = Format(GLB_NEWTax_RentsAndIncomeFromOtherSources, "0.00")
+            Me.txtAA_PER_PreviousEmployment.Text = Format(GLB_NEWTax_EarningsFromPreviousEmployment, "0.00")
+            Me.txtAA_PER_NotionalIncome.Text = Format(0, "0.00")
+            Me.txtAA_PER_TotalTaxable.Text = Format(GLB_NEWTax_Total, "0.00")
+
+            Dim Tax_OnCurrentEmployment As Double = ITValue / GLB_NEWTax_Total * (GLB_NEWTax_TotalEarningsFromME - GLB_NEWTax_SocialInsurancePension)
+            Dim Tax_OnSIPension As Double = ITValue / GLB_NEWTax_Total * GLB_NEWTax_SocialInsurancePension
+            Dim Tax_OnOtherIncome As Double = ITValue / GLB_NEWTax_Total * GLB_NEWTax_RentsAndIncomeFromOtherSources
+            Dim Tax_OnPreviousEmployment As Double = ITValue / GLB_NEWTax_Total * GLB_NEWTax_EarningsFromPreviousEmployment
+            Dim Tax_OnNotionalIncome As Double = ITValue / GLB_NEWTax_Total * 0
+
+            Me.txtTA_PER_TotalTaxable.Text = Format(ITValue, "0.00")
+            Me.txtTA_PER_CurrentEmployment.Text = Format(Tax_OnCurrentEmployment, "0.00")
+            Me.txtTA_PER_SIPension.Text = Format(Tax_OnSIPension, "0.00")
+            Me.txtTA_PER_FromOthersources.Text = Format(Tax_OnOtherIncome, "0.00")
+            Me.txtTA_PER_PreviousEmployment.Text = Format(Tax_OnPreviousEmployment, "0.00")
+            Me.txtTA_PER_NotionalIncome.Text = Format(Tax_OnNotionalIncome, "0.00")
+
+            Dim REMTaxPeriods As Integer = GLBCurrentPeriod.NumberOfTaxablePeriods - NumberOfTaxablePeriodsTodate + 1
+            Dim MonthlyTAX As Double = (Tax_OnCurrentEmployment + Tax_OnSIPension - TAXValueToDateForCurrentIncome) / REMTaxPeriods
+            Me.txt_PER_TempPAYE.Text = Format(MonthlyTAX, "0.00")
+
+            Dim TaxDifference As Double = 0
+            TaxDifference = CDbl(Me.txtTA_PER_CurrentEmployment.Text) - CDbl(Me.txtTA_REC_CurrentEmployment.Text)
+
+            Me.txtTaxDifference.Text = Format(TaxDifference, "0.00")
+            Dim NewTax As Double = 0
+            NewTax = CDbl(Me.txt_REC_TempPAYE.Text) + TaxDifference
+            Me.txtNewPeriodTax.Text = Format(NewTax, "0.00")
+            Dim NewPaid As Double = S_ITValueToDate
+            Me.txtNewPaid.Text = Format(S_ITValueToDate, "0.00")
+            Dim CurrentSINotional As Double = Tax_OnCurrentEmployment + Tax_OnSIPension + Tax_OnNotionalIncome
+            Me.txtPERCurrent_SI_Notional.Text = Format(CurrentSINotional, "0.00")
+            Dim NewRemaining As Double = Format(CurrentSINotional - NewPaid, "0.00")
+            Me.txtPerRemaining.Text = Format(NewRemaining, "0.00")
+
+
+
+        End If
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
         If Global1.PARAM_SplitIsEnabled Then
             S_ITValueToDate = S_ITValueToDate + GLBEmployee.TaxForSplit
             Me.txtInterCompanyTax.Text = GLBEmployee.TaxForSplit
@@ -5813,6 +6041,9 @@ Public Class FrmPrTxCalculatePayroll
         End If
 
 
+
+
+
         Return ITValue
 
         Debug.WriteLine(OnlyRecuring & " " & S_TaxableEarningToDate)
@@ -5835,11 +6066,12 @@ Public Class FrmPrTxCalculatePayroll
         RemainingTaxablePeriods = GLBCurrentPeriod.NumberOfTaxablePeriods - NumberOfTaxablePeriodsTodate
 
         Me.txtORRemTaxPeriods.Text = (RemainingTaxablePeriods + 1)
+        Me.LblRemTaxable.Text = " / " & (RemainingTaxablePeriods + 1)
 
 
 
         ITValue = NEW_EXTRAPOLATION_CalculationOfIncomeTax(Emp, EmpDed, Dedu, UseFixedITValue, OnlyRecuring)
-       
+
         If OnlyRecuring Then
             GLBITValueWithRecuring = ITValue
             Me.txtORPeriodTax.Text = Format(ITValue / (RemainingTaxablePeriods + 1), "0.00")
@@ -5851,6 +6083,7 @@ Public Class FrmPrTxCalculatePayroll
             ' tPeriodTaxWOUTBIK = Format((ITValue - Me.GLBTaxWithoutBIK), "0.00")
             'MsgBox(tPeriodTaxWOUTBIK)
             If Not UseFixedITValue Then
+
                 If GLBITValueWithNORecuring = GLBITValueWithRecuring Then
                     MonthDiff = 0
                 Else
@@ -5898,6 +6131,7 @@ Public Class FrmPrTxCalculatePayroll
                     End If
 
 
+
                 End If
                 Me.txtORDifference.Text = Format(MonthDiff, "0.00")
 
@@ -5907,6 +6141,7 @@ Public Class FrmPrTxCalculatePayroll
                 End If
                 ' xxx()
                 'ITValue = ITValue / (RemainingTaxablePeriods + 1)
+
             End If
 
             Me.txtORPeriodUnitsRatio.Text = 1
@@ -5939,11 +6174,30 @@ Public Class FrmPrTxCalculatePayroll
                 If Not Me.CBAllowNegativeTax.Checked Then
                     ITValue = 0
                 Else
-                    MsgBox("Tax for Employee " & Emp.Code & " - " & Emp.FullName & " is negative", MsgBoxStyle.Information)
+                    MsgBox("Tax For Employee " & Emp.Code & " - " & Emp.FullName & " Is negative", MsgBoxStyle.Information)
                 End If
             End If
             Me.txtSumPeriodTax.Text = ITValue
             Me.txtFinalPeriodTax.Text = Format(ITValue, "0.00")
+
+
+
+
+            If Global1.GLBNewTaxmethod Then
+                ITValue = CDbl(Me.txtNewPeriodTax.Text)
+                If Me.GLB_PeriodTaxable = 0 Then
+                    ITValue = 0
+                End If
+                If ITValue < 0 Then
+                    ITValue = 0
+                End If
+            End If
+
+            Dim Limit35 As Double
+            Limit35 = 35 * GLB_PeriodTaxable / 100
+            If ITValue > Limit35 Then
+                MsgBox("35% limit")
+            End If
 
             For i = 0 To D_Final.Length - 1
                 If Dedu.Code = D_Final(i).Ded.DedCodCode Then
@@ -6066,7 +6320,7 @@ Public Class FrmPrTxCalculatePayroll
 
 
     End Function
-  
+
     Private Function Calculate_PF_byTheEndOfYear(ByVal EstimatedEarningsByTheEndOfYear As Double, ByVal NoOfTaxablePeriodsUntilNow As Integer) As Double
         If CheckDataSet(GLBTemplatePFDs) Then
             Dim i As Integer
@@ -6182,7 +6436,7 @@ Public Class FrmPrTxCalculatePayroll
                                 Val2 = ValueToCalcFrom - PF.Limit
                                 PFValue = PFValue + (PF2.DedValue / 100 * Val2)
                             Else
-                                MsgBox("Please enter a Valid Next Code in Prov.Fund Table for Code" & PF.Code & " For employee " & Emp.Code & " - " & Emp.FullName, MsgBoxStyle.Critical)
+                                MsgBox("Please enter a Valid Next Code In Prov.Fund Table For Code" & PF.Code & " For employee " & Emp.Code & " - " & Emp.FullName, MsgBoxStyle.Critical)
                                 PFValue = 0
                             End If
                         Else
@@ -6210,7 +6464,7 @@ Public Class FrmPrTxCalculatePayroll
                                     Val2 = ValueToCalcFrom - PF.Limit
                                     xPfValue = xPfValue + (PF2.DedValue / 100 * Val2)
                                 Else
-                                    MsgBox("Please enter a Valid Next Code in Prov.Fund Table for Code" & PF.Code & " For employee " & Emp.Code & " - " & Emp.FullName, MsgBoxStyle.Critical)
+                                    MsgBox("Please enter a Valid Next Code In Prov.Fund Table For Code" & PF.Code & " For employee " & Emp.Code & " - " & Emp.FullName, MsgBoxStyle.Critical)
                                     xPfValue = 0
                                 End If
                             Else
@@ -6459,7 +6713,7 @@ Public Class FrmPrTxCalculatePayroll
                     If Period_InsurableIncome + AnnualInsurableToDate > Limits.InsurableAnnual Then
                         Period_InsurableIncome = Limits.InsurableAnnual - AnnualInsurableToDate
                         If Period_InsurableIncome < 0 Then
-                            MsgBox("Period Insurable issue for Employee " & Emp.Code & ", please contact iNsoft")
+                            MsgBox("Period Insurable issue For Employee " & Emp.Code & ", please contact iNsoft")
                             Period_InsurableIncome = 0
                         End If
                         SIValueFinal = Period_InsurableIncome * SIValuePercentage / 100
@@ -6599,7 +6853,7 @@ Public Class FrmPrTxCalculatePayroll
         '                If Period_InsurableIncome + AnnualInsurableToDate > InsurableAnnual Then
         '                    Period_InsurableIncome = InsurableAnnual - AnnualInsurableToDate
         '                    If Period_InsurableIncome < 0 Then
-        '                        MsgBox("Period Insurable issue for Employee " & Emp.Code & ", please contact iNsoft")
+        '                        MsgBox("Period Insurable issue For Employee " & Emp.Code & ", please contact iNsoft")
         '                        Period_InsurableIncome = 0
         '                    End If
         '                    SIValueFinal = Period_InsurableIncome * SIValuePercentage / 100
@@ -6769,7 +7023,7 @@ Public Class FrmPrTxCalculatePayroll
                         If Period_InsurableIncome + AnnualInsurableToDate > Limits.InsurableAnnual Then
                             Period_InsurableIncome = Limits.InsurableAnnual - AnnualInsurableToDate
                             If Period_InsurableIncome < 0 Then
-                                MsgBox("Period Insurable issue for Employee " & Emp.Code & ", please contact iNsoft")
+                                MsgBox("Period Insurable issue For Employee " & Emp.Code & ", please contact iNsoft")
                                 Period_InsurableIncome = 0
                             End If
                             SIValueFinal = Period_InsurableIncome * SIValuePercentage / 100
@@ -6910,7 +7164,7 @@ Public Class FrmPrTxCalculatePayroll
                         If Period_InsurableIncome + AnnualInsurableToDate > InsurableAnnual Then
                             Period_InsurableIncome = InsurableAnnual - AnnualInsurableToDate
                             If Period_InsurableIncome < 0 Then
-                                MsgBox("Period Insurable issue for Employee " & Emp.Code & ", please contact iNsoft")
+                                MsgBox("Period Insurable issue For Employee " & Emp.Code & ", please contact iNsoft")
                                 Period_InsurableIncome = 0
                             End If
                             SIValueFinal = Period_InsurableIncome * SIValuePercentage / 100
@@ -7095,7 +7349,7 @@ Public Class FrmPrTxCalculatePayroll
                         If Period_InsurableIncome + AnnualInsurableToDate > TempLimitsInsurableAnnual Then
                             Period_InsurableIncome = TempLimitsInsurableAnnual - AnnualInsurableToDate
                             If Period_InsurableIncome < 0 Then
-                                MsgBox("Period Insurable issue for Employee " & Emp.Code & ", please contact iNsoft")
+                                MsgBox("Period Insurable issue For Employee " & Emp.Code & ", please contact iNsoft")
                                 Period_InsurableIncome = 0
                             End If
                             SIValueFinal = Period_InsurableIncome * SIValuePercentage / 100
@@ -7247,7 +7501,7 @@ Public Class FrmPrTxCalculatePayroll
                         If Period_InsurableIncome + AnnualInsurableToDate > InsurableAnnual Then
                             Period_InsurableIncome = InsurableAnnual - AnnualInsurableToDate
                             If Period_InsurableIncome < 0 Then
-                                MsgBox("Period Insurable issue for Employee " & Emp.Code & ", please contact iNsoft")
+                                MsgBox("Period Insurable issue For Employee " & Emp.Code & ", please contact iNsoft")
                                 Period_InsurableIncome = 0
                             End If
                             SIValueFinal = Period_InsurableIncome * SIValuePercentage / 100
@@ -7319,7 +7573,7 @@ Public Class FrmPrTxCalculatePayroll
         Dim SIPeriodInsurableIncome As Double
         Dim SILimit As Double
 
-        
+
         For i = 0 To Ded.Length - 1
             If Dedu.Code = Ded(i).Ded.DedCodCode Then
                 TempDed = Ded(i).Ded
@@ -7368,7 +7622,7 @@ Public Class FrmPrTxCalculatePayroll
                 If SIValueForRemainingPeriods > SIValueLimit Then
                     SIValueForRemainingPeriods = SIValueLimit
                 End If
-              
+
 
                 Exit For
             End If
@@ -7379,7 +7633,7 @@ Public Class FrmPrTxCalculatePayroll
 
     End Sub
     Private Sub CalculateSIforSplit(ByVal MonthSIValue As Double, ByVal SIPercentage As Double, ByVal SIMonthlyLimit As Double)
-        If Global1.param_splitisEnabled Then
+        If Global1.PARAM_SplitIsEnabled Then
             Dim SplitAmount As Double
             Dim SIOnSplit As Double
             Dim SILimit As Double
@@ -8217,7 +8471,7 @@ Public Class FrmPrTxCalculatePayroll
                 Dim Cont As New cPrMsContributionCodes(Con(i).Con.ConCodCode)
 
                 Select Case Cont.ConTypCode
-                    Case "IN" 'INDUSTRIAL
+                    Case "In" 'INDUSTRIAL
                         C_CalculateIndustrial(Emp, EC, Cont)
                     Case "MF" 'MEDICAL FUND 'F
                         C_CalculateMedicalFund(Emp, EC, Cont)
@@ -8529,7 +8783,7 @@ Public Class FrmPrTxCalculatePayroll
                 FixedGesy = 0
             End If
             'Dim Ans As New MsgBoxResult
-            'Ans = MsgBox("Continue with Calculating Gesy as " & FixedGesy, MsgBoxStyle.YesNo)
+            'Ans = MsgBox("Continue With Calculating Gesy As " & FixedGesy, MsgBoxStyle.YesNo)
             'If Ans = MsgBoxResult.Yes Then
             GESIValue = FixedGesy
             For i = 0 To C_Final.Length - 1
@@ -8551,7 +8805,7 @@ Public Class FrmPrTxCalculatePayroll
         Dim BIK_GESIValue As Double
         Dim BIK_ValueToCalcFrom As Double
 
-        
+
 
 
         For i = 0 To Ded.Length - 1
@@ -8637,7 +8891,7 @@ Public Class FrmPrTxCalculatePayroll
                                     Val2 = ValueToCalcFrom - PF.Limit
                                     PFValue = PFValue + (PF2.ConValue / 100 * Val2)
                                 Else
-                                    MsgBox("Please enter a Valid Next Code in Prov.Fund Table for Code" & PF.Code & " For employee " & Emp.Code & " - " & Emp.FullName, MsgBoxStyle.Critical)
+                                    MsgBox("Please enter a Valid Next Code In Prov.Fund Table For Code" & PF.Code & " For employee " & Emp.Code & " - " & Emp.FullName, MsgBoxStyle.Critical)
                                     PFValue = 0
                                 End If
                             Else
@@ -8919,7 +9173,7 @@ Public Class FrmPrTxCalculatePayroll
                         If Period_InsurableIncome + AnnualInsurableToDate > TempLimitsInsurableAnnual Then
                             Period_InsurableIncome = RoundMeUp(TempLimitsInsurableAnnual - AnnualInsurableToDate)
                             If Period_InsurableIncome < 0 Then
-                                MsgBox("Period Insurable issue for Employee " & Emp.Code & ", please contact iNsoft")
+                                MsgBox("Period Insurable issue For Employee " & Emp.Code & ", please contact iNsoft")
                                 Period_InsurableIncome = 0
                             End If
                             SIValueFinal = Period_InsurableIncome * SIValuePercentage / 100
@@ -9063,7 +9317,7 @@ Public Class FrmPrTxCalculatePayroll
                         If Period_InsurableIncome + AnnualInsurableToDate > InsurableAnnual Then
                             Period_InsurableIncome = RoundMeUp(InsurableAnnual - AnnualInsurableToDate)
                             If Period_InsurableIncome < 0 Then
-                                MsgBox("Period Insurable issue for Employee " & Emp.Code & ", please contact iNsoft")
+                                MsgBox("Period Insurable issue For Employee " & Emp.Code & ", please contact iNsoft")
                                 Period_InsurableIncome = 0
                             End If
                             SIValueFinal = Period_InsurableIncome * SIValuePercentage / 100
@@ -9230,7 +9484,7 @@ Public Class FrmPrTxCalculatePayroll
                         If Period_InsurableIncome + AnnualInsurableToDate > Limits.InsurableAnnual Then
                             Period_InsurableIncome = RoundMeUp(Limits.InsurableAnnual - AnnualInsurableToDate)
                             If Period_InsurableIncome < 0 Then
-                                MsgBox("Period Insurable issue for Employee " & Emp.Code & ", please contact iNsoft")
+                                MsgBox("Period Insurable issue For Employee " & Emp.Code & ", please contact iNsoft")
                                 Period_InsurableIncome = 0
                             End If
                             SIValueFinal = Period_InsurableIncome * SIValuePercentage / 100
@@ -9361,7 +9615,7 @@ Public Class FrmPrTxCalculatePayroll
                         If Period_InsurableIncome + AnnualInsurableToDate > InsurableAnnual Then
                             Period_InsurableIncome = RoundMeUp(InsurableAnnual - AnnualInsurableToDate)
                             If Period_InsurableIncome < 0 Then
-                                MsgBox("Period Insurable issue for Employee " & Emp.Code & ", please contact iNsoft")
+                                MsgBox("Period Insurable issue For Employee " & Emp.Code & ", please contact iNsoft")
                                 Period_InsurableIncome = 0
                             End If
                             SIValueFinal = Period_InsurableIncome * SIValuePercentage / 100
@@ -9455,7 +9709,7 @@ Public Class FrmPrTxCalculatePayroll
         '    End If
         'End If
         If SCValue < 0 Then
-            MsgBox("Warning - Negative Social Cohesion Fund on Employee " & GLBEmployee.Code & " " & GLBEmployee.FullName, MsgBoxStyle.Information)
+            MsgBox("Warning - Negative Social Cohesion Fund On Employee " & GLBEmployee.Code & " " & GLBEmployee.FullName, MsgBoxStyle.Information)
             SCValue = 0
         End If
         For i = 0 To C_Final.Length - 1
@@ -9889,10 +10143,10 @@ Public Class FrmPrTxCalculatePayroll
                 End If
             Else
                 If Hdr.Status = "POST" Then
-                    MsgBox("This Entry is POSTED cannot Calculate", MsgBoxStyle.Information)
+                    MsgBox("This Entry Is POSTED cannot Calculate", MsgBoxStyle.Information)
                 End If
                 If Hdr.Status = "CALC" Then
-                    MsgBox("This Entry is CALCULATED cannot Calculate", MsgBoxStyle.Information)
+                    MsgBox("This Entry Is CALCULATED cannot Calculate", MsgBoxStyle.Information)
                 End If
             End If
         Else
@@ -9910,7 +10164,7 @@ Public Class FrmPrTxCalculatePayroll
             Net = CDbl(Me.txtNetSalary.Text)
             If Net < 0 Then
                 If Not OnlyRecuringEarnings Then
-                    MsgBox("Negative NET on Employee " & GLBEmployee.Code & " " & GLBEmployee.FullName, MsgBoxStyle.Critical)
+                    MsgBox("Negative NET On Employee " & GLBEmployee.Code & " " & GLBEmployee.FullName, MsgBoxStyle.Critical)
                     If Global1.PARAM_ShowNegativeNet Then
                         AddNegativeNet(GLBEmployee.Code, GLBEmployee.FullName, Net)
                     End If
@@ -9923,7 +10177,7 @@ Public Class FrmPrTxCalculatePayroll
         Return Calculated
     End Function
     Private Sub AddNegativeNet(ByVal EmpCode As String, ByVal EmpName As String, ByVal Net As Double)
-        CType(Me.Owner, FrmPayroll1).addnegativenet(EmpCode, EmpName, Net)
+        CType(Me.Owner, FrmPayroll1).AddNegativeNet(EmpCode, EmpName, Net)
     End Sub
     Private Function CheckForLoan(ByVal EmpCode As String) As Boolean
         Dim F As Boolean = True
@@ -9978,7 +10232,7 @@ Public Class FrmPrTxCalculatePayroll
 
 
                             If DedAmount > RemAmount Then
-                                MsgBox("Deducted amount for Loan " & LoanCode & " of Employee " & EmpCode & " is greater than Loan Balance.Cannot Continue with Calculation.Remaining amount is:" & Format(RemAmount, "0.00"), MsgBoxStyle.Critical)
+                                MsgBox("Deducted amount For Loan " & LoanCode & " Of Employee " & EmpCode & " Is greater than Loan Balance.Cannot Continue With Calculation.Remaining amount Is:" & Format(RemAmount, "0.00"), MsgBoxStyle.Critical)
                                 F = False
                                 Exit For
                             End If
@@ -10063,7 +10317,7 @@ Public Class FrmPrTxCalculatePayroll
                     'CL=Cola
                     'RE=Recouring Earning
                     'PD=Pension Decrease
-                    If Ern.ErnTypCode = "SA" Or Ern.ErnTypCode = "CL" Or Ern.ErnTypCode = "RE" Or Ern.ErnTypCode = "BR" Or Ern.ErnTypCode = "PD" Or Ern.ErnTypCode = "R2" Or Ern.ErnTypCode = "B2" Then
+                    If Ern.ErnTypCode = "SA" Or Ern.ErnTypCode = "CL" Or Ern.ErnTypCode = "RE" Or Ern.ErnTypCode = "BR" Or Ern.ErnTypCode = "PD" Or Ern.ErnTypCode = "R2" Or Ern.ErnTypCode = "B2" Or Ern.ErnTypCode = "NR" Then
                         Val = Val + E_Final(k).MyValue
                         Exit For
                     End If
@@ -10140,7 +10394,7 @@ Public Class FrmPrTxCalculatePayroll
 
                     'If Ern.ErnTypCode = "SA" Or Ern.ErnTypCode = "CL" Or Ern.ErnTypCode = "RE" Or Ern.ErnTypCode = "BK" Or Ern.ErnTypCode = "CL" Then
                     'If Ern.ErnTypCode = "SA" Or Ern.ErnTypCode = "CL" Or Ern.ErnTypCode = "RE" Or Ern.ErnTypCode = "BR" Or Ern.ErnTypCode = "PD" Or Ern.ErnTypCode = "R2" Or Ern.ErnTypCode = "B2" Then
-                    If Ern.ErnTypCode = "SA" Or Ern.ErnTypCode = "CL" Or Ern.ErnTypCode = "RE" Or Ern.ErnTypCode = "BK" Or Ern.ErnTypCode = "BR" Or Ern.ErnTypCode = "PD" Or Ern.ErnTypCode = "R2" Or Ern.ErnTypCode = "B2" Then
+                    If Ern.ErnTypCode = "SA" Or Ern.ErnTypCode = "CL" Or Ern.ErnTypCode = "RE" Or Ern.ErnTypCode = "BK" Or Ern.ErnTypCode = "BR" Or Ern.ErnTypCode = "PD" Or Ern.ErnTypCode = "R2" Or Ern.ErnTypCode = "B2" Or Ern.ErnTypCode = "NR" Then
                         If Ern.ErnTypCode = "SA" Then
                             Val = Val + Me.GrossFor13AND14Calc
                             Exit For
@@ -10206,7 +10460,7 @@ Public Class FrmPrTxCalculatePayroll
                     'RE=Recouring Earnin
                     'If Ern.ErnTypCode = "SA" Or Ern.ErnTypCode = "CL" Or Ern.ErnTypCode = "RE" Or Ern.ErnTypCode = "BK" Or Ern.ErnTypCode = "CL" Then
                     'If Ern.ErnTypCode = "SA" Or Ern.ErnTypCode = "CL" Or Ern.ErnTypCode = "RE" Or Ern.ErnTypCode = "BR" Or Ern.ErnTypCode = "PD" Or Ern.ErnTypCode = "R2" Or Ern.ErnTypCode = "B2" Then
-                    If Ern.ErnTypCode = "BR" Or Ern.ErnTypCode = "B2" Then
+                    If Ern.ErnTypCode = "BR" Or Ern.ErnTypCode = "B2" Or Ern.ErnTypCode = "NR" Then
                         Val = Val + E_Final(k).MyValue
                         Exit For
                     End If
@@ -10432,140 +10686,140 @@ Public Class FrmPrTxCalculatePayroll
                     Throw Exx
                 End If
 
-        'Saving Earnings
-        Dim YearToDate As Double
-        Dim Ern As cPrMsTemplateEarnings
-        For i = 0 To E_Final.Length - 1
-            If Not E_Final(i).Earn.ErnCodCode Is Nothing Then
-                Count = Count + 1
-                Ern = E_Final(i).Earn
-                Dim E As New cPrTxTrxnLines(Hdr.Id, Ern)
-                YearToDate = Global1.Business.FindYTD_EDC(GLBEmployee, GLBCurrentPeriod, Ern.ErnCodCode, "E")
-                '  If YearToDate = 0 Then
-                'YearToDate = E_Final(i).txtValue.Text
-                'End If
-                With E
-                    .TrxLin_Id = Count
-                    .TrxHdr_Id = Hdr.Id
-                    .TrxLin_Type = "E"
-                    .ErnCod_Code = Ern.ErnCodCode
-                    .TrxLin_PeriodValue = E_Final(i).txtValue.Text
-                    .TrxLin_YTDValue = .TrxLin_PeriodValue + YearToDate
-                    .TrxLin_EDC = Me.Ern(i).txtValue.Text
-                    .TrxLin_EDCDescription = Ern.DisplayName
-                    .TrxLin_ConsolDesc = Ern.ConsolDesc
+                'Saving Earnings
+                Dim YearToDate As Double
+                Dim Ern As cPrMsTemplateEarnings
+                For i = 0 To E_Final.Length - 1
+                    If Not E_Final(i).Earn.ErnCodCode Is Nothing Then
+                        Count = Count + 1
+                        Ern = E_Final(i).Earn
+                        Dim E As New cPrTxTrxnLines(Hdr.Id, Ern)
+                        YearToDate = Global1.Business.FindYTD_EDC(GLBEmployee, GLBCurrentPeriod, Ern.ErnCodCode, "E")
+                        '  If YearToDate = 0 Then
+                        'YearToDate = E_Final(i).txtValue.Text
+                        'End If
+                        With E
+                            .TrxLin_Id = Count
+                            .TrxHdr_Id = Hdr.Id
+                            .TrxLin_Type = "E"
+                            .ErnCod_Code = Ern.ErnCodCode
+                            .TrxLin_PeriodValue = E_Final(i).txtValue.Text
+                            .TrxLin_YTDValue = .TrxLin_PeriodValue + YearToDate
+                            .TrxLin_EDC = Me.Ern(i).txtValue.Text
+                            .TrxLin_EDCDescription = Ern.DisplayName
+                            .TrxLin_ConsolDesc = Ern.ConsolDesc
 
-                    If Not .Save Then
+                            If Not .Save Then
 
-                        Throw Exx
+                                Throw Exx
+                            End If
+                        End With
                     End If
-                End With
-            End If
-        Next
+                Next
 
 
-        'Saving Deductions()
-        Dim Ded As cPrMsTemplateDeductions
-        For i = 0 To D_Final.Length - 1
-            If Not D_Final(i).Ded.DedCodCode Is Nothing Then
-                Count = Count + 1
-                Ded = D_Final(i).Ded
-                Dim D As New cPrTxTrxnLines(Hdr.Id, Ded)
-                YearToDate = Global1.Business.FindYTD_EDC(GLBEmployee, GLBCurrentPeriod, Ded.DedCodCode, "D")
-                'If YearToDate = 0 Then
-                '    YearToDate = D_Final(i).txtValue.Text
-                'End If
-                With D
-                    .TrxLin_Id = Count
-                    .TrxHdr_Id = Hdr.Id
-                    .TrxLin_Type = "D"
-                    .DedCod_Code = Ded.DedCodCode
-                    .TrxLin_PeriodValue = D_Final(i).txtValue.Text
-                    .TrxLin_YTDValue = .TrxLin_PeriodValue + YearToDate
-                    .TrxLin_EDC = Me.Ded(i).txtValue.Text
-                    .TrxLin_EDCDescription = Ded.DisplayName
-                    .TrxLin_ConsolDesc = Ded.ConsolDesc
-                    If Not .Save Then
+                'Saving Deductions()
+                Dim Ded As cPrMsTemplateDeductions
+                For i = 0 To D_Final.Length - 1
+                    If Not D_Final(i).Ded.DedCodCode Is Nothing Then
+                        Count = Count + 1
+                        Ded = D_Final(i).Ded
+                        Dim D As New cPrTxTrxnLines(Hdr.Id, Ded)
+                        YearToDate = Global1.Business.FindYTD_EDC(GLBEmployee, GLBCurrentPeriod, Ded.DedCodCode, "D")
+                        'If YearToDate = 0 Then
+                        '    YearToDate = D_Final(i).txtValue.Text
+                        'End If
+                        With D
+                            .TrxLin_Id = Count
+                            .TrxHdr_Id = Hdr.Id
+                            .TrxLin_Type = "D"
+                            .DedCod_Code = Ded.DedCodCode
+                            .TrxLin_PeriodValue = D_Final(i).txtValue.Text
+                            .TrxLin_YTDValue = .TrxLin_PeriodValue + YearToDate
+                            .TrxLin_EDC = Me.Ded(i).txtValue.Text
+                            .TrxLin_EDCDescription = Ded.DisplayName
+                            .TrxLin_ConsolDesc = Ded.ConsolDesc
+                            If Not .Save Then
 
-                        Throw Exx
+                                Throw Exx
+                            End If
+                        End With
                     End If
-                End With
-            End If
-        Next
+                Next
 
 
-        'Saving Contributions
-        Dim Con As cPrMsTemplateContributions
-        For i = 0 To C_Final.Length - 1
-            If Not C_Final(i).Con.ConCodCode Is Nothing Then
-                Count = Count + 1
-                Con = C_Final(i).Con
-                Dim C As New cPrTxTrxnLines(Hdr.Id, Con)
-                YearToDate = Global1.Business.FindYTD_EDC(GLBEmployee, GLBCurrentPeriod, Con.ConCodCode, "C")
-                'If YearToDate = 0 Then
-                '    YearToDate = C_Final(i).txtValue.Text
-                'End If
-                With C
-                    .TrxLin_Id = Count
-                    .TrxHdr_Id = Hdr.Id
-                    .TrxLin_Type = "C"
-                    .ConCod_Code = Con.ConCodCode
-                    .TrxLin_PeriodValue = C_Final(i).txtValue.Text
-                    .TrxLin_YTDValue = .TrxLin_PeriodValue + YearToDate
-                    .TrxLin_EDC = Me.Con(i).txtValue.Text
-                    .TrxLin_EDCDescription = Con.DisplayName
-                    .TrxLin_ConsolDesc = Con.ConsolDesc
-                    If Not .Save Then
+                'Saving Contributions
+                Dim Con As cPrMsTemplateContributions
+                For i = 0 To C_Final.Length - 1
+                    If Not C_Final(i).Con.ConCodCode Is Nothing Then
+                        Count = Count + 1
+                        Con = C_Final(i).Con
+                        Dim C As New cPrTxTrxnLines(Hdr.Id, Con)
+                        YearToDate = Global1.Business.FindYTD_EDC(GLBEmployee, GLBCurrentPeriod, Con.ConCodCode, "C")
+                        'If YearToDate = 0 Then
+                        '    YearToDate = C_Final(i).txtValue.Text
+                        'End If
+                        With C
+                            .TrxLin_Id = Count
+                            .TrxHdr_Id = Hdr.Id
+                            .TrxLin_Type = "C"
+                            .ConCod_Code = Con.ConCodCode
+                            .TrxLin_PeriodValue = C_Final(i).txtValue.Text
+                            .TrxLin_YTDValue = .TrxLin_PeriodValue + YearToDate
+                            .TrxLin_EDC = Me.Con(i).txtValue.Text
+                            .TrxLin_EDCDescription = Con.DisplayName
+                            .TrxLin_ConsolDesc = Con.ConsolDesc
+                            If Not .Save Then
 
-                        Throw Exx
+                                Throw Exx
+                            End If
+                        End With
                     End If
-                End With
-            End If
-        Next
+                Next
 
 
-        If Global1.PARAM_AnnualLeaveAllocation Then
-            If Me.GLBAnnualAllocationForthisTemplate Then
-                'If Me.GLBEmployee.PayUni_Code = "2" Then
-                'Global1.Business.updateAnnualLeaveHeaderId(Hdr.Emp_Code, Hdr.Id)
-                Dim AL As New cPrTxEmployeeLeave
-                With AL
-                    .Id = 0
-                    .EmpCode = Me.GLBEmployee.Code
-                    .Status = "Approved"
-                    .Type = "1"
-                    .ReqDate = Now.Date
-                    .ProcDate = Now.Date
-                    .FromDate = Now.Date
-                    .ToDate = Now.Date
-                    .ProcBy = Global1.GLBUserId
-                    .Units = GLBAnnualLeaveUnits
-                    .Action = AN_IncreaseCODE
-                    .HdrId = Hdr.Id
-                    If Not .Save() Then
-                        Throw Exx
+                If Global1.PARAM_AnnualLeaveAllocation Then
+                    If Me.GLBAnnualAllocationForthisTemplate Then
+                        'If Me.GLBEmployee.PayUni_Code = "2" Then
+                        'Global1.Business.updateAnnualLeaveHeaderId(Hdr.Emp_Code, Hdr.Id)
+                        Dim AL As New cPrTxEmployeeLeave
+                        With AL
+                            .Id = 0
+                            .EmpCode = Me.GLBEmployee.Code
+                            .Status = "Approved"
+                            .Type = "1"
+                            .ReqDate = Now.Date
+                            .ProcDate = Now.Date
+                            .FromDate = Now.Date
+                            .ToDate = Now.Date
+                            .ProcBy = Global1.GLBUserId
+                            .Units = GLBAnnualLeaveUnits
+                            .Action = AN_IncreaseCODE
+                            .HdrId = Hdr.Id
+                            If Not .Save() Then
+                                Throw Exx
+                            End If
+                        End With
+                        'End If
                     End If
-                End With
-                'End If
-            End If
-        End If
+                End If
 
 
-        SaveIR59(Me.GLBEmployee.Code, Me.GLBCurrentPeriod.Code)
+                SaveIR59(Me.GLBEmployee.Code, Me.GLBCurrentPeriod.Code)
 
 
 
-        Global1.Business.CommitTransaction()
-        If Not SuppressMsg Then
-            MsgBox("Payroll Succefully Saved ", MsgBoxStyle.Information)
-        End If
-        FixStatus("CALC")
+                Global1.Business.CommitTransaction()
+                If Not SuppressMsg Then
+                    MsgBox("Payroll Succefully Saved ", MsgBoxStyle.Information)
+                End If
+                FixStatus("CALC")
             Catch ex As Exception
-            Global1.Business.Rollback()
-            Utils.ShowException(Exx)
-        End Try
+                Global1.Business.Rollback()
+                Utils.ShowException(Exx)
+            End Try
         Else
-        MsgBox("Please Calculate Payroll first and then Save", MsgBoxStyle.Information)
+            MsgBox("Please Calculate Payroll first and then Save", MsgBoxStyle.Information)
         End If
 
     End Sub
@@ -10599,7 +10853,7 @@ Public Class FrmPrTxCalculatePayroll
             If Not Ern(i).Ern Is Nothing Then
                 Dim Earn As New cPrMsEarningCodes(Ern(i).Ern.ErnCodCode)
                 'If Earn.ErnTypCode <> "SI" And Earn.ErnTypCode <> "3E" And Earn.ErnTypCode <> "4E" Then
-                If Earn.ErnTypCode <> "3E" And Earn.ErnTypCode <> "4E" And Earn.ErnTypCode <> "UM" And Earn.ErnTypCode <> "LP" And Earn.ErnTypCode <> "BK" And Earn.ErnTypCode <> "BR" And Earn.ErnTypCode <> "B2" Then
+                If Earn.ErnTypCode <> "3E" And Earn.ErnTypCode <> "4E" And Earn.ErnTypCode <> "UM" And Earn.ErnTypCode <> "LP" And Earn.ErnTypCode <> "BK" And Earn.ErnTypCode <> "BR" And Earn.ErnTypCode <> "B2" And Earn.ErnTypCode <> "NR" And Earn.ErnTypCode <> "NI" Then
                     Value = Value + E_Final(i).txtValue.Text
                 End If
                 If Earn.ErnTypCode = "SI" Then
@@ -10839,7 +11093,7 @@ Public Class FrmPrTxCalculatePayroll
     Public Sub LoadCalculatedOrPosted(ByVal Hdr As cPrTxTrxnHeader, ByVal PeriodCode As cPrMsPeriodCodes)
         Try
 
-        
+
             Dim ds As DataSet
             ds = Global1.Business.GetAllTrxnLines(Hdr.Id)
             If CheckDataSet(ds) Then
@@ -11132,7 +11386,7 @@ Public Class FrmPrTxCalculatePayroll
                                 GC.Collect()
                                 If UploadToExelsys Then
                                     'Write Code to upload to Exelsys
-                                    UpLoadPayslipToExelsys(ExportFile, Hdr)
+                                    UploadPayslipToExelsys(ExportFile, Hdr)
                                 End If
                             Else
                                 If Not SendToTextFile Then
@@ -11236,82 +11490,82 @@ Public Class FrmPrTxCalculatePayroll
                             End If
 
                             Dim ReportName As String = PayslipFoldeDirectory & TempRepName & ".xlsx"
-                                Dim ReportNamePDF As String = PayslipFoldeDirectory & TempRepName & ".pdf"
-                                Dim ReportNamePDF_Encrypted As String = PayslipFoldeDirectory & TempRepName & "_Encrypted.pdf"
+                            Dim ReportNamePDF As String = PayslipFoldeDirectory & TempRepName & ".pdf"
+                            Dim ReportNamePDF_Encrypted As String = PayslipFoldeDirectory & TempRepName & "_Encrypted.pdf"
 
-                                Try
-
-
-                                    '  Utils.WriteSchemaWithXmlTextWriter(ds, "C:\Users\Admin\Documents\Visual Studio 2015\Projects\NodalPay - 2019\NodalPay\XML\PayslipALL")
-
-                                    ' Dim ReportNamePDF As String = GLBEmployee.Code & ".pdf"
-
-                                    Dim RowCount As Integer = 1
-                                    Dim Col As Integer = 1
-                                    Dim MyFontSize As Integer = 9
-
-                                    'Dim style As Excel.Style = xlWorkSheet.Application.ActiveWorkbook.Styles.Add("NewStyle")
-                                    'style.Font.Bold = True
-                                    'style.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Gray)
-
-                                    '  xlWorkSheet.Cells(rownumber, 1).Style = "NewStyle"
-
-                                    'Dim xls As Microsoft.Office.Interop.Excel.Application
-                                    'Dim xlsWorkBook As Microsoft.Office.Interop.Excel.Workbook
-                                    'Dim xlsWorkSheet As Microsoft.Office.Interop.Excel.Worksheet
-                                    'Dim misValue As Object = System.Reflection.Missing.Value
-
-                                    ' xls = New Microsoft.Office.Interop.Excel.Application
+                            Try
 
 
-                                    Dim style As Microsoft.Office.Interop.Excel.Style = xlsWorkBook.Styles.Add("NewStyle")
+                                '  Utils.WriteSchemaWithXmlTextWriter(ds, "C:\Users\Admin\Documents\Visual Studio 2015\Projects\NodalPay - 2019\NodalPay\XML\PayslipALL")
 
-                                    style.Font.Bold = True
-                                    style.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGray)
-                                    style.Font.Size = MyFontSize
-                                    style.NumberFormat = "@"
+                                ' Dim ReportNamePDF As String = GLBEmployee.Code & ".pdf"
+
+                                Dim RowCount As Integer = 1
+                                Dim Col As Integer = 1
+                                Dim MyFontSize As Integer = 9
+
+                                'Dim style As Excel.Style = xlWorkSheet.Application.ActiveWorkbook.Styles.Add("NewStyle")
+                                'style.Font.Bold = True
+                                'style.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.Gray)
+
+                                '  xlWorkSheet.Cells(rownumber, 1).Style = "NewStyle"
+
+                                'Dim xls As Microsoft.Office.Interop.Excel.Application
+                                'Dim xlsWorkBook As Microsoft.Office.Interop.Excel.Workbook
+                                'Dim xlsWorkSheet As Microsoft.Office.Interop.Excel.Worksheet
+                                'Dim misValue As Object = System.Reflection.Missing.Value
+
+                                ' xls = New Microsoft.Office.Interop.Excel.Application
 
 
+                                Dim style As Microsoft.Office.Interop.Excel.Style = xlsWorkBook.Styles.Add("NewStyle")
 
-
-                                    xlsWorkSheet.Cells.NumberFormat = "@"
-                                    xlsWorkSheet.Cells.Font.Size = MyFontSize
+                                style.Font.Bold = True
+                                style.Interior.Color = System.Drawing.ColorTranslator.ToOle(System.Drawing.Color.LightGray)
+                                style.Font.Size = MyFontSize
+                                style.NumberFormat = "@"
 
 
 
 
-                                    Dim Address As String
-                                    Address = DbNullToString(Ds.Tables(0).Rows(0).Item(2))
-                                    Address = Address & " " & DbNullToString(Ds.Tables(0).Rows(0).Item(3))
-                                    Address = Address & " " & DbNullToString(Ds.Tables(0).Rows(0).Item(4))
-                                    Address = Address & " " & DbNullToString(Ds.Tables(0).Rows(0).Item(5))
-
-
-                                    Dim tname As String = DbNullToString(Ds.Tables(0).Rows(0).Item(1))
-                                    Dim tPosition As String = DbNullToString(Ds.Tables(0).Rows(0).Item(13))
-                                    Dim tEmail As String = GLBEmployee.Email
-                                    Dim tIdNumber As String = DbNullToString(Ds.Tables(0).Rows(0).Item(8))
-                                    Dim tSocialSecNo As String = DbNullToString(Ds.Tables(0).Rows(0).Item(7))
-                                    Dim tDateOfBirth As String = Format(GLBEmployee.BirthDate, "dd/MM/yyyy")
-                                    Dim tBankDetails As String = GLBEmployee.IBAN
-                                    Dim tTaxNo As String = GLBEmployee.TaxID
-                                    Dim tStartDate As String = Format(GLBEmployee.StartDate, "dd/MM/yyyy")
-                                    Dim tAddress As String = Address
-                                    Dim tTel As String = DbNullToString(Ds.Tables(0).Rows(0).Item(6))
+                                xlsWorkSheet.Cells.NumberFormat = "@"
+                                xlsWorkSheet.Cells.Font.Size = MyFontSize
 
 
 
-                                    Dim rowERN As Integer = 0
-                                    Dim rowTotalERN As Integer = 0
-                                    Dim rowDED As Integer = 0
-                                    Dim rowTotalDED As Integer = 0
-                                    Dim rowNET As Integer = 0
-                                    Dim rowCON As Integer = 0
-                                    Dim rowTotalCON As Integer = 0
-                                    Dim rowCostToComp As Integer = 0
-                                    Dim rowCostToSI As Integer = 0
-                                    Dim rowCostToIR As Integer = 0
-                                    CompanyDescription = DbNullToString(Ds.Tables(1).Rows(0).Item(0))
+
+                                Dim Address As String
+                                Address = DbNullToString(Ds.Tables(0).Rows(0).Item(2))
+                                Address = Address & " " & DbNullToString(Ds.Tables(0).Rows(0).Item(3))
+                                Address = Address & " " & DbNullToString(Ds.Tables(0).Rows(0).Item(4))
+                                Address = Address & " " & DbNullToString(Ds.Tables(0).Rows(0).Item(5))
+
+
+                                Dim tname As String = DbNullToString(Ds.Tables(0).Rows(0).Item(1))
+                                Dim tPosition As String = DbNullToString(Ds.Tables(0).Rows(0).Item(13))
+                                Dim tEmail As String = GLBEmployee.Email
+                                Dim tIdNumber As String = DbNullToString(Ds.Tables(0).Rows(0).Item(8))
+                                Dim tSocialSecNo As String = DbNullToString(Ds.Tables(0).Rows(0).Item(7))
+                                Dim tDateOfBirth As String = Format(GLBEmployee.BirthDate, "dd/MM/yyyy")
+                                Dim tBankDetails As String = GLBEmployee.IBAN
+                                Dim tTaxNo As String = GLBEmployee.TaxID
+                                Dim tStartDate As String = Format(GLBEmployee.StartDate, "dd/MM/yyyy")
+                                Dim tAddress As String = Address
+                                Dim tTel As String = DbNullToString(Ds.Tables(0).Rows(0).Item(6))
+
+
+
+                                Dim rowERN As Integer = 0
+                                Dim rowTotalERN As Integer = 0
+                                Dim rowDED As Integer = 0
+                                Dim rowTotalDED As Integer = 0
+                                Dim rowNET As Integer = 0
+                                Dim rowCON As Integer = 0
+                                Dim rowTotalCON As Integer = 0
+                                Dim rowCostToComp As Integer = 0
+                                Dim rowCostToSI As Integer = 0
+                                Dim rowCostToIR As Integer = 0
+                                CompanyDescription = DbNullToString(Ds.Tables(1).Rows(0).Item(0))
 
                                 If Not Global1.PARAM_GLBAllMonthsPayslipTOTALS Then
                                     xlsWorkSheet.Cells(1, 2) = "PAYMENT SLIP  -  " & CompanyDescription
@@ -11351,704 +11605,704 @@ Public Class FrmPrTxCalculatePayroll
 
 
                                 Dim i As Integer
-                                    xlsWorkSheet.Cells(13, 2) = "EARNINGS"
-                                    rowERN = 13
-                                    xlsWorkSheet.Cells(13, 4) = "JAN-" & GLBCurrentYear
-                                    xlsWorkSheet.Cells(13, 5) = "FEB-" & GLBCurrentYear
-                                    xlsWorkSheet.Cells(13, 6) = "MAR-" & GLBCurrentYear
-                                    xlsWorkSheet.Cells(13, 7) = "APR-" & GLBCurrentYear
-                                    xlsWorkSheet.Cells(13, 8) = "MAY-" & GLBCurrentYear
-                                    xlsWorkSheet.Cells(13, 9) = "JUN-" & GLBCurrentYear
-                                    xlsWorkSheet.Cells(13, 10) = "JUL-" & GLBCurrentYear
-                                    xlsWorkSheet.Cells(13, 11) = "AUG-" & GLBCurrentYear
-                                    xlsWorkSheet.Cells(13, 12) = "SEP-" & GLBCurrentYear
-                                    xlsWorkSheet.Cells(13, 13) = "OCT-" & GLBCurrentYear
-                                    xlsWorkSheet.Cells(13, 14) = "NOV-" & GLBCurrentYear
-                                    xlsWorkSheet.Cells(13, 15) = "DEC-" & GLBCurrentYear
-                                    xlsWorkSheet.Cells(13, 16) = "Total"
+                                xlsWorkSheet.Cells(13, 2) = "EARNINGS"
+                                rowERN = 13
+                                xlsWorkSheet.Cells(13, 4) = "JAN-" & GLBCurrentYear
+                                xlsWorkSheet.Cells(13, 5) = "FEB-" & GLBCurrentYear
+                                xlsWorkSheet.Cells(13, 6) = "MAR-" & GLBCurrentYear
+                                xlsWorkSheet.Cells(13, 7) = "APR-" & GLBCurrentYear
+                                xlsWorkSheet.Cells(13, 8) = "MAY-" & GLBCurrentYear
+                                xlsWorkSheet.Cells(13, 9) = "JUN-" & GLBCurrentYear
+                                xlsWorkSheet.Cells(13, 10) = "JUL-" & GLBCurrentYear
+                                xlsWorkSheet.Cells(13, 11) = "AUG-" & GLBCurrentYear
+                                xlsWorkSheet.Cells(13, 12) = "SEP-" & GLBCurrentYear
+                                xlsWorkSheet.Cells(13, 13) = "OCT-" & GLBCurrentYear
+                                xlsWorkSheet.Cells(13, 14) = "NOV-" & GLBCurrentYear
+                                xlsWorkSheet.Cells(13, 15) = "DEC-" & GLBCurrentYear
+                                xlsWorkSheet.Cells(13, 16) = "Total"
 
-                                    xlsWorkSheet.Cells(13, 2).style = "NewStyle"
-                                    xlsWorkSheet.Cells(13, 4).style = "NewStyle"
-                                    xlsWorkSheet.Cells(13, 5).style = "NewStyle"
-                                    xlsWorkSheet.Cells(13, 6).style = "NewStyle"
-                                    xlsWorkSheet.Cells(13, 7).style = "NewStyle"
-                                    xlsWorkSheet.Cells(13, 8).style = "NewStyle"
-                                    xlsWorkSheet.Cells(13, 9).style = "NewStyle"
-                                    xlsWorkSheet.Cells(13, 10).style = "NewStyle"
-                                    xlsWorkSheet.Cells(13, 11).style = "NewStyle"
-                                    xlsWorkSheet.Cells(13, 12).style = "NewStyle"
-                                    xlsWorkSheet.Cells(13, 13).style = "NewStyle"
-                                    xlsWorkSheet.Cells(13, 14).style = "NewStyle"
-                                    xlsWorkSheet.Cells(13, 15).style = "NewStyle"
-                                    xlsWorkSheet.Cells(13, 16).style = "NewStyle"
-
-
-                                    Dim ErnC As Integer = 14
-                                    Dim DedC As Integer
-                                    Dim ConC As Integer
-                                    Dim tt As Integer = 2
-                                    Dim k As Integer
-                                    Dim col1 As Integer = 1
-                                    Dim col2 As Integer = 2
-                                    Dim col3 As Integer = 3
-                                    Dim col4 As Integer = 4
-                                    Dim Col4Plus12 As Integer = col4 + 12
-                                    Dim add As Integer = 4
-                                    Dim LastEarningsColumn As Integer
-                                    Dim LastDeductionsColumn As Integer
-                                    Dim LastContributionsColumn As Integer
-                                    Dim LastRow As Integer
-                                    Dim totalErnC As Integer
-                                    Dim totaldedC As Integer
-                                    Dim totalConC As Integer
-                                    Dim hh As Integer = 14
-                                    Dim TotalCol4 As Integer = 0
-                                    Dim WriteEDC As Boolean = True
-                                    Dim WriteE As Boolean = True
-                                    Dim WriteD As Boolean = True
-                                    Dim WriteC As Boolean = True
-                                    Dim TotalNet As Double = 0
-
-                                    Dim PeriodCostToSI As Double = 0
-                                    Dim YTDCostToSI As Double = 0
-
-                                    Dim PeriodCostToTAX As Double = 0
-                                    Dim YTDCostToTAX As Double = 0
-
-                                    '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-                                    'Write EDC Headers
-                                    '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-                                    For k = 0 To 11
-                                        tt = tt + 1
-                                        hh = hh + 1
-                                        ErnC = 14
-                                        add = 4 * k
-                                        col1 = 1
-                                        col2 = 2
-                                        col3 = 3
-                                        col4 = 4
-
-                                        If Ds.Tables(tt).Rows.Count > 0 Then
-                                            For i = 0 To Ds.Tables(tt).Rows.Count - 1
-                                                Dim Type As String
-                                                Type = DbNullToString(Ds.Tables(tt).Rows(i).Item(1))
-                                                Dim ECode As String
-                                                Dim EDesc As String
-                                                Dim EPerc As String
-                                                If Type = "E" Then
-                                                    ECode = DbNullToString(Ds.Tables(tt).Rows(i).Item(2))
-                                                    EDesc = DbNullToString(Ds.Tables(tt).Rows(i).Item(3))
-                                                    EPerc = DbNullToString(Ds.Tables(tt).Rows(i).Item(4))
-                                                    ' xlsWorkSheet.Cells(ErnC, col1) = ECode
-                                                    xlsWorkSheet.Cells(ErnC, col2) = EDesc
-                                                    xlsWorkSheet.Cells(ErnC, col3) = CheckIfEDCisPercentage(ECode, EPerc)
-                                                    ErnC = ErnC + 1
-                                                End If
-                                                LastEarningsColumn = ErnC
-                                            Next
-                                            xlsWorkSheet.Cells(LastEarningsColumn, col2) = "TOTAL Earnings"
-                                            rowTotalERN = LastEarningsColumn
-                                            LastEarningsColumn = LastEarningsColumn + 1
-
-                                            xlsWorkSheet.Cells(LastEarningsColumn, col2) = "DEDUCTIONS"
-                                            rowDED = LastEarningsColumn
-
-                                            LastEarningsColumn = LastEarningsColumn + 1
-                                            DedC = LastEarningsColumn
-                                            For i = 0 To Ds.Tables(tt).Rows.Count - 1
-                                                Dim Type As String
-                                                Type = DbNullToString(Ds.Tables(tt).Rows(i).Item(1))
-                                                Dim DCode As String
-                                                Dim DDesc As String
-                                                Dim DPerc As String
-                                                If Type = "D" Then
-                                                    DCode = DbNullToString(Ds.Tables(tt).Rows(i).Item(2))
-                                                    DDesc = DbNullToString(Ds.Tables(tt).Rows(i).Item(3))
-                                                    DPerc = DbNullToString(Ds.Tables(tt).Rows(i).Item(4))
-                                                    'xlsWorkSheet.Cells(DedC, col1) = DCode
-                                                    xlsWorkSheet.Cells(DedC, col2) = DDesc
-                                                    xlsWorkSheet.Cells(DedC, col3) = CheckIfEDCisPercentage(DCode, DPerc)
-                                                    DedC = DedC + 1
-                                                End If
-                                                LastDeductionsColumn = DedC
-                                            Next
-                                            xlsWorkSheet.Cells(LastDeductionsColumn, col2) = "TOTAL Deductions"
-                                            rowTotalDED = LastDeductionsColumn
-                                            LastDeductionsColumn = LastDeductionsColumn + 1
-
-                                            xlsWorkSheet.Cells(LastDeductionsColumn, col2) = "NET INCOME"
-                                            rowNET = LastDeductionsColumn
-                                            LastDeductionsColumn = LastDeductionsColumn + 1
-
-                                            xlsWorkSheet.Cells(LastDeductionsColumn, col2) = "CONTRIBUTIONS"
-                                            rowCON = LastDeductionsColumn
-                                            LastDeductionsColumn = LastDeductionsColumn + 1
-
-                                            ConC = LastDeductionsColumn
-                                            For i = 0 To Ds.Tables(tt).Rows.Count - 1
-                                                Dim Type As String
-                                                Type = DbNullToString(Ds.Tables(tt).Rows(i).Item(1))
-                                                Dim CCode As String
-                                                Dim CDesc As String
-                                                Dim CPerc As String
-                                                If Type = "C" Then
-                                                    CCode = DbNullToString(Ds.Tables(tt).Rows(i).Item(2))
-                                                    CDesc = DbNullToString(Ds.Tables(tt).Rows(i).Item(3))
-                                                    CPerc = DbNullToString(Ds.Tables(tt).Rows(i).Item(4))
-                                                    'xlsWorkSheet.Cells(ConC, 1) = CCode
-                                                    xlsWorkSheet.Cells(ConC, 2) = CDesc
-                                                    xlsWorkSheet.Cells(ConC, 3) = CheckIfEDCisPercentage(CCode, CPerc)
-                                                    ConC = ConC + 1
-                                                End If
-                                                LastContributionsColumn = ConC
-                                            Next
+                                xlsWorkSheet.Cells(13, 2).style = "NewStyle"
+                                xlsWorkSheet.Cells(13, 4).style = "NewStyle"
+                                xlsWorkSheet.Cells(13, 5).style = "NewStyle"
+                                xlsWorkSheet.Cells(13, 6).style = "NewStyle"
+                                xlsWorkSheet.Cells(13, 7).style = "NewStyle"
+                                xlsWorkSheet.Cells(13, 8).style = "NewStyle"
+                                xlsWorkSheet.Cells(13, 9).style = "NewStyle"
+                                xlsWorkSheet.Cells(13, 10).style = "NewStyle"
+                                xlsWorkSheet.Cells(13, 11).style = "NewStyle"
+                                xlsWorkSheet.Cells(13, 12).style = "NewStyle"
+                                xlsWorkSheet.Cells(13, 13).style = "NewStyle"
+                                xlsWorkSheet.Cells(13, 14).style = "NewStyle"
+                                xlsWorkSheet.Cells(13, 15).style = "NewStyle"
+                                xlsWorkSheet.Cells(13, 16).style = "NewStyle"
 
 
-                                            xlsWorkSheet.Cells(LastContributionsColumn, col2) = "TOTAL Contributions"
-                                            rowTotalCON = LastContributionsColumn
-                                            LastContributionsColumn = LastContributionsColumn + 1
+                                Dim ErnC As Integer = 14
+                                Dim DedC As Integer
+                                Dim ConC As Integer
+                                Dim tt As Integer = 2
+                                Dim k As Integer
+                                Dim col1 As Integer = 1
+                                Dim col2 As Integer = 2
+                                Dim col3 As Integer = 3
+                                Dim col4 As Integer = 4
+                                Dim Col4Plus12 As Integer = col4 + 12
+                                Dim add As Integer = 4
+                                Dim LastEarningsColumn As Integer
+                                Dim LastDeductionsColumn As Integer
+                                Dim LastContributionsColumn As Integer
+                                Dim LastRow As Integer
+                                Dim totalErnC As Integer
+                                Dim totaldedC As Integer
+                                Dim totalConC As Integer
+                                Dim hh As Integer = 14
+                                Dim TotalCol4 As Integer = 0
+                                Dim WriteEDC As Boolean = True
+                                Dim WriteE As Boolean = True
+                                Dim WriteD As Boolean = True
+                                Dim WriteC As Boolean = True
+                                Dim TotalNet As Double = 0
 
-                                            xlsWorkSheet.Cells(LastContributionsColumn, col2) = "Cost To Company"
-                                            rowCostToComp = LastContributionsColumn
-                                            LastContributionsColumn = LastContributionsColumn + 1
+                                Dim PeriodCostToSI As Double = 0
+                                Dim YTDCostToSI As Double = 0
 
-                                            xlsWorkSheet.Cells(LastContributionsColumn, col2) = "Payment to Social Insurance"
-                                            rowCostToSI = LastContributionsColumn
-                                            LastContributionsColumn = LastContributionsColumn + 1
+                                Dim PeriodCostToTAX As Double = 0
+                                Dim YTDCostToTAX As Double = 0
 
-                                            xlsWorkSheet.Cells(LastContributionsColumn, col2) = "Payment to IR"
-                                            rowCostToIR = LastContributionsColumn
-                                            Exit For
-                                        End If
-                                    Next
-                                    '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-                                    'END OF Write EDC Headers
-                                    '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-                                    tt = 2
-                                    If YTDTotalPeriods = 12 Then
-                                        hh = 14
-                                    Else
-                                        hh = 15
-                                    End If
-                                    Dim EYTDVal As Double = 0
-                                    Dim DYTDVal As Double = 0
-                                    Dim CYTDVal As Double = 0
-                                    For k = 0 To 11
-                                        tt = tt + 1
-                                        hh = hh + 1
-                                        ErnC = 14
-                                        add = 4 * k
-                                        col1 = 1 + add
-                                        col2 = 2 + add
-                                        col3 = 3 + add
-                                        col4 = 4 + k
+                                '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                'Write EDC Headers
+                                '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                For k = 0 To 11
+                                    tt = tt + 1
+                                    hh = hh + 1
+                                    ErnC = 14
+                                    add = 4 * k
+                                    col1 = 1
+                                    col2 = 2
+                                    col3 = 3
+                                    col4 = 4
 
-                                        If Ds.Tables(tt).Rows.Count > 0 Then
-
-                                            For i = 0 To Ds.Tables(tt).Rows.Count - 1
-                                                Dim Type As String
-                                                Type = DbNullToString(Ds.Tables(tt).Rows(i).Item(1))
-                                                Dim ECode As String
-                                                Dim EDesc As String
-                                                Dim EPerc As String
-                                                Dim EVal As Double
-                                                If Type = "E" Then
-                                                    ECode = DbNullToString(Ds.Tables(tt).Rows(i).Item(2))
-                                                    EDesc = DbNullToString(Ds.Tables(tt).Rows(i).Item(3))
-                                                    EPerc = DbNullToString(Ds.Tables(tt).Rows(i).Item(4))
-                                                    EVal = DbNullToDouble(Ds.Tables(tt).Rows(i).Item(5))
-                                                    EYTDVal = DbNullToDouble(Ds.Tables(tt).Rows(i).Item(6))
-
-                                                    xlsWorkSheet.Cells(ErnC, col4) = Format(EVal, "0.00")
-                                                    xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
-                                                    '  If ECode = "E01" Then
-                                                    ' MsgBox(1)
-                                                    'End If
-                                                    xlsWorkSheet.Cells(ErnC, Col4Plus12) = Format(EYTDVal, "0.00")
-                                                    xlsWorkSheet.Columns(Col4Plus12).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
-                                                    ErnC = ErnC + 1
-                                                End If
-                                            Next
-                                            totalErnC = ErnC
-
-                                        Else
-                                            Dim tempi As Integer = ErnC
-                                            For i = ErnC To totalErnC - 1
-                                                xlsWorkSheet.Cells(ErnC, col4) = Format(0, "0.00")
-                                                xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
+                                    If Ds.Tables(tt).Rows.Count > 0 Then
+                                        For i = 0 To Ds.Tables(tt).Rows.Count - 1
+                                            Dim Type As String
+                                            Type = DbNullToString(Ds.Tables(tt).Rows(i).Item(1))
+                                            Dim ECode As String
+                                            Dim EDesc As String
+                                            Dim EPerc As String
+                                            If Type = "E" Then
+                                                ECode = DbNullToString(Ds.Tables(tt).Rows(i).Item(2))
+                                                EDesc = DbNullToString(Ds.Tables(tt).Rows(i).Item(3))
+                                                EPerc = DbNullToString(Ds.Tables(tt).Rows(i).Item(4))
+                                                ' xlsWorkSheet.Cells(ErnC, col1) = ECode
+                                                xlsWorkSheet.Cells(ErnC, col2) = EDesc
+                                                xlsWorkSheet.Cells(ErnC, col3) = CheckIfEDCisPercentage(ECode, EPerc)
                                                 ErnC = ErnC + 1
-                                            Next
+                                            End If
+                                            LastEarningsColumn = ErnC
+                                        Next
+                                        xlsWorkSheet.Cells(LastEarningsColumn, col2) = "TOTAL Earnings"
+                                        rowTotalERN = LastEarningsColumn
+                                        LastEarningsColumn = LastEarningsColumn + 1
 
-                                        End If
+                                        xlsWorkSheet.Cells(LastEarningsColumn, col2) = "DEDUCTIONS"
+                                        rowDED = LastEarningsColumn
+
+                                        LastEarningsColumn = LastEarningsColumn + 1
+                                        DedC = LastEarningsColumn
+                                        For i = 0 To Ds.Tables(tt).Rows.Count - 1
+                                            Dim Type As String
+                                            Type = DbNullToString(Ds.Tables(tt).Rows(i).Item(1))
+                                            Dim DCode As String
+                                            Dim DDesc As String
+                                            Dim DPerc As String
+                                            If Type = "D" Then
+                                                DCode = DbNullToString(Ds.Tables(tt).Rows(i).Item(2))
+                                                DDesc = DbNullToString(Ds.Tables(tt).Rows(i).Item(3))
+                                                DPerc = DbNullToString(Ds.Tables(tt).Rows(i).Item(4))
+                                                'xlsWorkSheet.Cells(DedC, col1) = DCode
+                                                xlsWorkSheet.Cells(DedC, col2) = DDesc
+                                                xlsWorkSheet.Cells(DedC, col3) = CheckIfEDCisPercentage(DCode, DPerc)
+                                                DedC = DedC + 1
+                                            End If
+                                            LastDeductionsColumn = DedC
+                                        Next
+                                        xlsWorkSheet.Cells(LastDeductionsColumn, col2) = "TOTAL Deductions"
+                                        rowTotalDED = LastDeductionsColumn
+                                        LastDeductionsColumn = LastDeductionsColumn + 1
+
+                                        xlsWorkSheet.Cells(LastDeductionsColumn, col2) = "NET INCOME"
+                                        rowNET = LastDeductionsColumn
+                                        LastDeductionsColumn = LastDeductionsColumn + 1
+
+                                        xlsWorkSheet.Cells(LastDeductionsColumn, col2) = "CONTRIBUTIONS"
+                                        rowCON = LastDeductionsColumn
+                                        LastDeductionsColumn = LastDeductionsColumn + 1
+
+                                        ConC = LastDeductionsColumn
+                                        For i = 0 To Ds.Tables(tt).Rows.Count - 1
+                                            Dim Type As String
+                                            Type = DbNullToString(Ds.Tables(tt).Rows(i).Item(1))
+                                            Dim CCode As String
+                                            Dim CDesc As String
+                                            Dim CPerc As String
+                                            If Type = "C" Then
+                                                CCode = DbNullToString(Ds.Tables(tt).Rows(i).Item(2))
+                                                CDesc = DbNullToString(Ds.Tables(tt).Rows(i).Item(3))
+                                                CPerc = DbNullToString(Ds.Tables(tt).Rows(i).Item(4))
+                                                'xlsWorkSheet.Cells(ConC, 1) = CCode
+                                                xlsWorkSheet.Cells(ConC, 2) = CDesc
+                                                xlsWorkSheet.Cells(ConC, 3) = CheckIfEDCisPercentage(CCode, CPerc)
+                                                ConC = ConC + 1
+                                            End If
+                                            LastContributionsColumn = ConC
+                                        Next
 
 
-                                        If Ds.Tables(hh).Rows.Count > 0 Then
-                                            xlsWorkSheet.Cells(ErnC, col4) = Format(DbNullToDouble(Ds.Tables(hh).Rows(0).Item(1)), "0.00")
-                                            xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
+                                        xlsWorkSheet.Cells(LastContributionsColumn, col2) = "TOTAL Contributions"
+                                        rowTotalCON = LastContributionsColumn
+                                        LastContributionsColumn = LastContributionsColumn + 1
 
+                                        xlsWorkSheet.Cells(LastContributionsColumn, col2) = "Cost To Company"
+                                        rowCostToComp = LastContributionsColumn
+                                        LastContributionsColumn = LastContributionsColumn + 1
 
-                                            xlsWorkSheet.Cells(ErnC, Col4Plus12) = Format(DbNullToDouble(Ds.Tables(hh).Rows(0).Item(9)), "0.00")
-                                            xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
+                                        xlsWorkSheet.Cells(LastContributionsColumn, col2) = "Payment to Social Insurance"
+                                        rowCostToSI = LastContributionsColumn
+                                        LastContributionsColumn = LastContributionsColumn + 1
 
-                                        Else
+                                        xlsWorkSheet.Cells(LastContributionsColumn, col2) = "Payment to IR"
+                                        rowCostToIR = LastContributionsColumn
+                                        Exit For
+                                    End If
+                                Next
+                                '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                'END OF Write EDC Headers
+                                '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                tt = 2
+                                If YTDTotalPeriods = 12 Then
+                                    hh = 14
+                                Else
+                                    hh = 15
+                                End If
+                                Dim EYTDVal As Double = 0
+                                Dim DYTDVal As Double = 0
+                                Dim CYTDVal As Double = 0
+                                For k = 0 To 11
+                                    tt = tt + 1
+                                    hh = hh + 1
+                                    ErnC = 14
+                                    add = 4 * k
+                                    col1 = 1 + add
+                                    col2 = 2 + add
+                                    col3 = 3 + add
+                                    col4 = 4 + k
+
+                                    If Ds.Tables(tt).Rows.Count > 0 Then
+
+                                        For i = 0 To Ds.Tables(tt).Rows.Count - 1
+                                            Dim Type As String
+                                            Type = DbNullToString(Ds.Tables(tt).Rows(i).Item(1))
+                                            Dim ECode As String
+                                            Dim EDesc As String
+                                            Dim EPerc As String
+                                            Dim EVal As Double
+                                            If Type = "E" Then
+                                                ECode = DbNullToString(Ds.Tables(tt).Rows(i).Item(2))
+                                                EDesc = DbNullToString(Ds.Tables(tt).Rows(i).Item(3))
+                                                EPerc = DbNullToString(Ds.Tables(tt).Rows(i).Item(4))
+                                                EVal = DbNullToDouble(Ds.Tables(tt).Rows(i).Item(5))
+                                                EYTDVal = DbNullToDouble(Ds.Tables(tt).Rows(i).Item(6))
+
+                                                xlsWorkSheet.Cells(ErnC, col4) = Format(EVal, "0.00")
+                                                xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
+                                                '  If ECode = "E01" Then
+                                                ' MsgBox(1)
+                                                'End If
+                                                xlsWorkSheet.Cells(ErnC, Col4Plus12) = Format(EYTDVal, "0.00")
+                                                xlsWorkSheet.Columns(Col4Plus12).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
+                                                ErnC = ErnC + 1
+                                            End If
+                                        Next
+                                        totalErnC = ErnC
+
+                                    Else
+                                        Dim tempi As Integer = ErnC
+                                        For i = ErnC To totalErnC - 1
                                             xlsWorkSheet.Cells(ErnC, col4) = Format(0, "0.00")
                                             xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
-                                        End If
-                                        ErnC = ErnC + 1
-                                        LastEarningsColumn = ErnC
-                                        TotalCol4 = col4
-                                    Next
+                                            ErnC = ErnC + 1
+                                        Next
 
-
-
-
-                                    tt = 2
-                                    If YTDTotalPeriods = 12 Then
-                                        hh = 14
-                                    Else
-                                        hh = 15
                                     End If
-                                    For k = 0 To 11
-                                        tt = tt + 1
-                                        hh = hh + 1
-
-                                        add = 4 * k
-                                        col1 = 1 + add
-                                        col2 = 2 + add
-                                        col3 = 3 + add
-                                        col4 = 4 + k
-                                        DedC = LastEarningsColumn + 1
 
 
-                                        If Ds.Tables(tt).Rows.Count > 0 Then
+                                    If Ds.Tables(hh).Rows.Count > 0 Then
+                                        xlsWorkSheet.Cells(ErnC, col4) = Format(DbNullToDouble(Ds.Tables(hh).Rows(0).Item(1)), "0.00")
+                                        xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
 
-                                            For i = 0 To Ds.Tables(tt).Rows.Count - 1
-                                                Dim Type As String
-                                                Type = DbNullToString(Ds.Tables(tt).Rows(i).Item(1))
-                                                Dim dCode As String
-                                                Dim dDesc As String
-                                                Dim dPerc As String
-                                                Dim dVal As Double
-                                                If Type = "D" Then
-                                                    dCode = DbNullToString(Ds.Tables(tt).Rows(i).Item(2))
-                                                    dDesc = DbNullToString(Ds.Tables(tt).Rows(i).Item(3))
-                                                    dPerc = DbNullToString(Ds.Tables(tt).Rows(i).Item(4))
-                                                    dVal = DbNullToDouble(Ds.Tables(tt).Rows(i).Item(5))
-                                                    DYTDVal = DbNullToDouble(Ds.Tables(tt).Rows(i).Item(6))
-                                                    xlsWorkSheet.Cells(DedC, col4) = Format(dVal, "0.00")
-                                                    xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
 
-                                                    xlsWorkSheet.Cells(DedC, Col4Plus12) = Format(DYTDVal, "0.00")
-                                                    xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
-                                                    DedC = DedC + 1
-                                                    If CheckIfEDCisPaidToSI(dCode) Then
-                                                        PeriodCostToSI = PeriodCostToSI + dVal
-                                                        YTDCostToSI = YTDCostToSI + dVal
-                                                    End If
-                                                    If CheckIfEDCisPaidToTAX(dCode) Then
-                                                        PeriodCostToTAX = PeriodCostToTAX + dVal
-                                                        YTDCostToTAX = YTDCostToTAX + dVal
-                                                    End If
+                                        xlsWorkSheet.Cells(ErnC, Col4Plus12) = Format(DbNullToDouble(Ds.Tables(hh).Rows(0).Item(9)), "0.00")
+                                        xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
 
-                                                End If
-                                            Next
-                                            Ds.Tables(hh).Rows(0).Item(12) = PeriodCostToSI
-                                            Ds.Tables(hh).Rows(0).Item(13) = PeriodCostToTAX
-                                            PeriodCostToSI = 0
-                                            PeriodCostToTAX = 0
-                                            totaldedC = DedC
-                                        Else
-                                            Dim tempi As Integer = DedC
-                                            For i = DedC To totaldedC - 1
-                                                xlsWorkSheet.Cells(DedC, col4) = Format(0, "0.00")
+                                    Else
+                                        xlsWorkSheet.Cells(ErnC, col4) = Format(0, "0.00")
+                                        xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
+                                    End If
+                                    ErnC = ErnC + 1
+                                    LastEarningsColumn = ErnC
+                                    TotalCol4 = col4
+                                Next
+
+
+
+
+                                tt = 2
+                                If YTDTotalPeriods = 12 Then
+                                    hh = 14
+                                Else
+                                    hh = 15
+                                End If
+                                For k = 0 To 11
+                                    tt = tt + 1
+                                    hh = hh + 1
+
+                                    add = 4 * k
+                                    col1 = 1 + add
+                                    col2 = 2 + add
+                                    col3 = 3 + add
+                                    col4 = 4 + k
+                                    DedC = LastEarningsColumn + 1
+
+
+                                    If Ds.Tables(tt).Rows.Count > 0 Then
+
+                                        For i = 0 To Ds.Tables(tt).Rows.Count - 1
+                                            Dim Type As String
+                                            Type = DbNullToString(Ds.Tables(tt).Rows(i).Item(1))
+                                            Dim dCode As String
+                                            Dim dDesc As String
+                                            Dim dPerc As String
+                                            Dim dVal As Double
+                                            If Type = "D" Then
+                                                dCode = DbNullToString(Ds.Tables(tt).Rows(i).Item(2))
+                                                dDesc = DbNullToString(Ds.Tables(tt).Rows(i).Item(3))
+                                                dPerc = DbNullToString(Ds.Tables(tt).Rows(i).Item(4))
+                                                dVal = DbNullToDouble(Ds.Tables(tt).Rows(i).Item(5))
+                                                DYTDVal = DbNullToDouble(Ds.Tables(tt).Rows(i).Item(6))
+                                                xlsWorkSheet.Cells(DedC, col4) = Format(dVal, "0.00")
+                                                xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
+
+                                                xlsWorkSheet.Cells(DedC, Col4Plus12) = Format(DYTDVal, "0.00")
                                                 xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
                                                 DedC = DedC + 1
-                                            Next
-
-                                        End If
-
-
-                                        If Ds.Tables(hh).Rows.Count > 0 Then
-
-                                            xlsWorkSheet.Cells(DedC, col4) = Format(DbNullToDouble(Ds.Tables(hh).Rows(0).Item(2)), "0.00")
-                                            xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
-
-                                            xlsWorkSheet.Cells(DedC, Col4Plus12) = Format(DbNullToDouble(Ds.Tables(hh).Rows(0).Item(10)), "0.00")
-                                            xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
-
-                                        Else
-                                            xlsWorkSheet.Cells(DedC, col4) = Format(0, "0.00")
-                                            xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
-                                        End If
-                                        DedC = DedC + 1
-
-                                        If Ds.Tables(hh).Rows.Count > 0 Then
-                                            TotalNet = TotalNet + DbNullToDouble(Ds.Tables(hh).Rows(0).Item(4))
-                                            xlsWorkSheet.Cells(DedC, col4) = Format(DbNullToDouble(Ds.Tables(hh).Rows(0).Item(4)), "0.00")
-                                            xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
-
-                                            xlsWorkSheet.Cells(DedC, Col4Plus12) = Format(TotalNet, "0.00")
-                                            xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
-
-                                        Else
-                                            xlsWorkSheet.Cells(DedC, col4) = Format(0, "0.00")
-                                            xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
-                                        End If
-                                        DedC = DedC + 1
-                                        LastDeductionsColumn = DedC
-
-                                    Next
-
-                                    'contributions
-                                    tt = 2
-                                    If YTDTotalPeriods = 12 Then
-                                        hh = 14
-                                    Else
-                                        hh = 15
-                                    End If
-                                    For k = 0 To 11
-                                        tt = tt + 1
-                                        hh = hh + 1
-
-                                        add = 4 * k
-                                        col1 = 1 + add
-                                        col2 = 2 + add
-                                        col3 = 3 + add
-                                        col4 = 4 + k
-                                        ConC = LastDeductionsColumn + 1
-                                        If Ds.Tables(tt).Rows.Count > 0 Then
-                                            For i = 0 To Ds.Tables(tt).Rows.Count - 1
-                                                Dim Type As String
-                                                Type = DbNullToString(Ds.Tables(tt).Rows(i).Item(1))
-                                                Dim cCode As String
-                                                Dim cDesc As String
-                                                Dim cPerc As String
-                                                Dim cVal As Double
-                                                If Type = "C" Then
-                                                    cCode = DbNullToString(Ds.Tables(tt).Rows(i).Item(2))
-                                                    cDesc = DbNullToString(Ds.Tables(tt).Rows(i).Item(3))
-                                                    cPerc = DbNullToString(Ds.Tables(tt).Rows(i).Item(4))
-                                                    cVal = DbNullToDouble(Ds.Tables(tt).Rows(i).Item(5))
-                                                    CYTDVal = DbNullToDouble(Ds.Tables(tt).Rows(i).Item(6))
-
-                                                    xlsWorkSheet.Cells(ConC, col4) = Format(cVal, "0.00")
-                                                    xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
-
-                                                    xlsWorkSheet.Cells(ConC, Col4Plus12) = Format(CYTDVal, "0.00")
-                                                    xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
-                                                    If CheckIfEDCisPaidToSI(cCode) Then
-                                                        PeriodCostToSI = PeriodCostToSI + cVal
-                                                        YTDCostToSI = YTDCostToSI + cVal
-                                                    End If
-                                                    If CheckIfEDCisPaidToTAX(cCode) Then
-                                                        PeriodCostToTAX = PeriodCostToTAX + cVal
-                                                        YTDCostToTAX = YTDCostToTAX + cVal
-                                                    End If
-
-                                                    ConC = ConC + 1
+                                                If CheckIfEDCisPaidToSI(dCode) Then
+                                                    PeriodCostToSI = PeriodCostToSI + dVal
+                                                    YTDCostToSI = YTDCostToSI + dVal
                                                 End If
-                                            Next
-                                            totalConC = ConC
+                                                If CheckIfEDCisPaidToTAX(dCode) Then
+                                                    PeriodCostToTAX = PeriodCostToTAX + dVal
+                                                    YTDCostToTAX = YTDCostToTAX + dVal
+                                                End If
 
-                                            Ds.Tables(hh).Rows(0).Item(12) = PeriodCostToSI + DbNullToDouble(Ds.Tables(hh).Rows(0).Item(12))
-                                            Ds.Tables(hh).Rows(0).Item(13) = PeriodCostToTAX + DbNullToDouble(Ds.Tables(hh).Rows(0).Item(13))
+                                            End If
+                                        Next
+                                        Ds.Tables(hh).Rows(0).Item(12) = PeriodCostToSI
+                                        Ds.Tables(hh).Rows(0).Item(13) = PeriodCostToTAX
+                                        PeriodCostToSI = 0
+                                        PeriodCostToTAX = 0
+                                        totaldedC = DedC
+                                    Else
+                                        Dim tempi As Integer = DedC
+                                        For i = DedC To totaldedC - 1
+                                            xlsWorkSheet.Cells(DedC, col4) = Format(0, "0.00")
+                                            xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
+                                            DedC = DedC + 1
+                                        Next
 
-                                            PeriodCostToSI = 0
-                                            PeriodCostToTAX = 0
-                                        Else
-                                            Dim tempi As Integer = ConC
-                                            For i = ConC To totalConC - 1
-                                                xlsWorkSheet.Cells(ConC, col4) = Format(0, "0.00")
+                                    End If
+
+
+                                    If Ds.Tables(hh).Rows.Count > 0 Then
+
+                                        xlsWorkSheet.Cells(DedC, col4) = Format(DbNullToDouble(Ds.Tables(hh).Rows(0).Item(2)), "0.00")
+                                        xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
+
+                                        xlsWorkSheet.Cells(DedC, Col4Plus12) = Format(DbNullToDouble(Ds.Tables(hh).Rows(0).Item(10)), "0.00")
+                                        xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
+
+                                    Else
+                                        xlsWorkSheet.Cells(DedC, col4) = Format(0, "0.00")
+                                        xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
+                                    End If
+                                    DedC = DedC + 1
+
+                                    If Ds.Tables(hh).Rows.Count > 0 Then
+                                        TotalNet = TotalNet + DbNullToDouble(Ds.Tables(hh).Rows(0).Item(4))
+                                        xlsWorkSheet.Cells(DedC, col4) = Format(DbNullToDouble(Ds.Tables(hh).Rows(0).Item(4)), "0.00")
+                                        xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
+
+                                        xlsWorkSheet.Cells(DedC, Col4Plus12) = Format(TotalNet, "0.00")
+                                        xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
+
+                                    Else
+                                        xlsWorkSheet.Cells(DedC, col4) = Format(0, "0.00")
+                                        xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
+                                    End If
+                                    DedC = DedC + 1
+                                    LastDeductionsColumn = DedC
+
+                                Next
+
+                                'contributions
+                                tt = 2
+                                If YTDTotalPeriods = 12 Then
+                                    hh = 14
+                                Else
+                                    hh = 15
+                                End If
+                                For k = 0 To 11
+                                    tt = tt + 1
+                                    hh = hh + 1
+
+                                    add = 4 * k
+                                    col1 = 1 + add
+                                    col2 = 2 + add
+                                    col3 = 3 + add
+                                    col4 = 4 + k
+                                    ConC = LastDeductionsColumn + 1
+                                    If Ds.Tables(tt).Rows.Count > 0 Then
+                                        For i = 0 To Ds.Tables(tt).Rows.Count - 1
+                                            Dim Type As String
+                                            Type = DbNullToString(Ds.Tables(tt).Rows(i).Item(1))
+                                            Dim cCode As String
+                                            Dim cDesc As String
+                                            Dim cPerc As String
+                                            Dim cVal As Double
+                                            If Type = "C" Then
+                                                cCode = DbNullToString(Ds.Tables(tt).Rows(i).Item(2))
+                                                cDesc = DbNullToString(Ds.Tables(tt).Rows(i).Item(3))
+                                                cPerc = DbNullToString(Ds.Tables(tt).Rows(i).Item(4))
+                                                cVal = DbNullToDouble(Ds.Tables(tt).Rows(i).Item(5))
+                                                CYTDVal = DbNullToDouble(Ds.Tables(tt).Rows(i).Item(6))
+
+                                                xlsWorkSheet.Cells(ConC, col4) = Format(cVal, "0.00")
                                                 xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
+
+                                                xlsWorkSheet.Cells(ConC, Col4Plus12) = Format(CYTDVal, "0.00")
+                                                xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
+                                                If CheckIfEDCisPaidToSI(cCode) Then
+                                                    PeriodCostToSI = PeriodCostToSI + cVal
+                                                    YTDCostToSI = YTDCostToSI + cVal
+                                                End If
+                                                If CheckIfEDCisPaidToTAX(cCode) Then
+                                                    PeriodCostToTAX = PeriodCostToTAX + cVal
+                                                    YTDCostToTAX = YTDCostToTAX + cVal
+                                                End If
+
                                                 ConC = ConC + 1
-                                            Next
+                                            End If
+                                        Next
+                                        totalConC = ConC
 
-                                        End If
-
-                                        If Ds.Tables(hh).Rows.Count > 0 Then
-                                            xlsWorkSheet.Cells(ConC, col4) = Format(DbNullToDouble(Ds.Tables(hh).Rows(0).Item(3)), "0.00")
-                                            xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
-
-                                            xlsWorkSheet.Cells(ConC, Col4Plus12) = Format(DbNullToDouble(Ds.Tables(hh).Rows(0).Item(11)), "0.00")
-                                            xlsWorkSheet.Columns(Col4Plus12).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
-
-                                            Dim CostToComp As Double
-                                            CostToComp = DbNullToDouble(Ds.Tables(hh).Rows(0).Item(1)) + DbNullToDouble(Ds.Tables(hh).Rows(0).Item(3))
-
-                                            Dim YTDCostToComp As Double
-                                            YTDCostToComp = DbNullToDouble(Ds.Tables(hh).Rows(0).Item(9)) + DbNullToDouble(Ds.Tables(hh).Rows(0).Item(11))
-
-                                            xlsWorkSheet.Cells(rowCostToComp, col4) = Format(CostToComp, "0.00")
-                                            xlsWorkSheet.Cells(rowCostToComp, Col4Plus12) = Format(YTDCostToComp, "0.00")
-
-
-                                            xlsWorkSheet.Cells(rowCostToSI, col4) = Format(DbNullToDouble(Ds.Tables(hh).Rows(0).Item(12)), "0.00")
-                                            xlsWorkSheet.Cells(rowCostToIR, col4) = Format(DbNullToDouble(Ds.Tables(hh).Rows(0).Item(13)), "0.00")
-
-                                            xlsWorkSheet.Cells(rowCostToSI, Col4Plus12) = Format(YTDCostToSI, "0.00")
-                                            xlsWorkSheet.Cells(rowCostToIR, Col4Plus12) = Format(YTDCostToTAX, "0.00")
-
-
-                                        Else
-                                            xlsWorkSheet.Cells(ConC, col4) = Format(0, "0.00")
-                                            xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
-                                            xlsWorkSheet.Cells(rowCostToComp, col4) = Format(0, "0.00")
-
-                                            xlsWorkSheet.Cells(rowCostToSI, col4) = Format(0, "0.00")
-                                            xlsWorkSheet.Cells(rowCostToIR, col4) = Format(0, "0.00")
-
-                                        End If
-                                        ConC = ConC + 1
+                                        Ds.Tables(hh).Rows(0).Item(12) = PeriodCostToSI + DbNullToDouble(Ds.Tables(hh).Rows(0).Item(12))
+                                        Ds.Tables(hh).Rows(0).Item(13) = PeriodCostToTAX + DbNullToDouble(Ds.Tables(hh).Rows(0).Item(13))
 
                                         PeriodCostToSI = 0
                                         PeriodCostToTAX = 0
-                                        LastContributionsColumn = ConC
-
-                                    Next
-
-                                    For i = 1 To rowCostToIR
-                                        For k = 2 To 16
-
-                                            If i = rowERN Then
-                                                xlsWorkSheet.Cells(i, k).style = "NewStyle"
-                                            End If
-                                            If i = rowTotalERN Then
-                                                xlsWorkSheet.Cells(i, k).style = "NewStyle"
-                                            End If
-                                            If i = rowDED Then
-                                                xlsWorkSheet.Cells(i, k).style = "NewStyle"
-                                            End If
-                                            If i = rowTotalDED Then
-                                                xlsWorkSheet.Cells(i, k).style = "NewStyle"
-                                            End If
-                                            If i = rowNET Then
-                                                xlsWorkSheet.Cells(i, k).style = "NewStyle"
-                                            End If
-                                            If i = rowCON Then
-                                                xlsWorkSheet.Cells(i, k).style = "NewStyle"
-                                            End If
-                                            If i = rowTotalCON Then
-                                                xlsWorkSheet.Cells(i, k).style = "NewStyle"
-                                            End If
-                                            If i = rowCostToComp Then
-                                                xlsWorkSheet.Cells(i, k).style = "NewStyle"
-                                            End If
-                                            If i = rowCostToSI Then
-                                                xlsWorkSheet.Cells(i, k).style = "NewStyle"
-                                            End If
-                                            If i = rowCostToIR Then
-                                                xlsWorkSheet.Cells(i, k).style = "NewStyle"
-                                            End If
-
-                                            If i >= 13 And k >= 2 Then
-                                                Dim cell As Excel.Range = xlsWorkSheet.Cells(i, k)
-                                                With cell.Borders
-                                                    .LineStyle = Excel.XlLineStyle.xlContinuous
-                                                    .Weight = Excel.XlBorderWeight.xlThin
-                                                    .Color = RGB(0, 0, 0) ' Black color
-                                                End With
-                                            End If
-
+                                    Else
+                                        Dim tempi As Integer = ConC
+                                        For i = ConC To totalConC - 1
+                                            xlsWorkSheet.Cells(ConC, col4) = Format(0, "0.00")
+                                            xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
+                                            ConC = ConC + 1
                                         Next
+
+                                    End If
+
+                                    If Ds.Tables(hh).Rows.Count > 0 Then
+                                        xlsWorkSheet.Cells(ConC, col4) = Format(DbNullToDouble(Ds.Tables(hh).Rows(0).Item(3)), "0.00")
+                                        xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
+
+                                        xlsWorkSheet.Cells(ConC, Col4Plus12) = Format(DbNullToDouble(Ds.Tables(hh).Rows(0).Item(11)), "0.00")
+                                        xlsWorkSheet.Columns(Col4Plus12).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
+
+                                        Dim CostToComp As Double
+                                        CostToComp = DbNullToDouble(Ds.Tables(hh).Rows(0).Item(1)) + DbNullToDouble(Ds.Tables(hh).Rows(0).Item(3))
+
+                                        Dim YTDCostToComp As Double
+                                        YTDCostToComp = DbNullToDouble(Ds.Tables(hh).Rows(0).Item(9)) + DbNullToDouble(Ds.Tables(hh).Rows(0).Item(11))
+
+                                        xlsWorkSheet.Cells(rowCostToComp, col4) = Format(CostToComp, "0.00")
+                                        xlsWorkSheet.Cells(rowCostToComp, Col4Plus12) = Format(YTDCostToComp, "0.00")
+
+
+                                        xlsWorkSheet.Cells(rowCostToSI, col4) = Format(DbNullToDouble(Ds.Tables(hh).Rows(0).Item(12)), "0.00")
+                                        xlsWorkSheet.Cells(rowCostToIR, col4) = Format(DbNullToDouble(Ds.Tables(hh).Rows(0).Item(13)), "0.00")
+
+                                        xlsWorkSheet.Cells(rowCostToSI, Col4Plus12) = Format(YTDCostToSI, "0.00")
+                                        xlsWorkSheet.Cells(rowCostToIR, Col4Plus12) = Format(YTDCostToTAX, "0.00")
+
+
+                                    Else
+                                        xlsWorkSheet.Cells(ConC, col4) = Format(0, "0.00")
+                                        xlsWorkSheet.Columns(col4).HorizontalAlignment = Microsoft.Office.Interop.Excel.Constants.xlRight
+                                        xlsWorkSheet.Cells(rowCostToComp, col4) = Format(0, "0.00")
+
+                                        xlsWorkSheet.Cells(rowCostToSI, col4) = Format(0, "0.00")
+                                        xlsWorkSheet.Cells(rowCostToIR, col4) = Format(0, "0.00")
+
+                                    End If
+                                    ConC = ConC + 1
+
+                                    PeriodCostToSI = 0
+                                    PeriodCostToTAX = 0
+                                    LastContributionsColumn = ConC
+
+                                Next
+
+                                For i = 1 To rowCostToIR
+                                    For k = 2 To 16
+
+                                        If i = rowERN Then
+                                            xlsWorkSheet.Cells(i, k).style = "NewStyle"
+                                        End If
+                                        If i = rowTotalERN Then
+                                            xlsWorkSheet.Cells(i, k).style = "NewStyle"
+                                        End If
+                                        If i = rowDED Then
+                                            xlsWorkSheet.Cells(i, k).style = "NewStyle"
+                                        End If
+                                        If i = rowTotalDED Then
+                                            xlsWorkSheet.Cells(i, k).style = "NewStyle"
+                                        End If
+                                        If i = rowNET Then
+                                            xlsWorkSheet.Cells(i, k).style = "NewStyle"
+                                        End If
+                                        If i = rowCON Then
+                                            xlsWorkSheet.Cells(i, k).style = "NewStyle"
+                                        End If
+                                        If i = rowTotalCON Then
+                                            xlsWorkSheet.Cells(i, k).style = "NewStyle"
+                                        End If
+                                        If i = rowCostToComp Then
+                                            xlsWorkSheet.Cells(i, k).style = "NewStyle"
+                                        End If
+                                        If i = rowCostToSI Then
+                                            xlsWorkSheet.Cells(i, k).style = "NewStyle"
+                                        End If
+                                        If i = rowCostToIR Then
+                                            xlsWorkSheet.Cells(i, k).style = "NewStyle"
+                                        End If
+
+                                        If i >= 13 And k >= 2 Then
+                                            Dim cell As Excel.Range = xlsWorkSheet.Cells(i, k)
+                                            With cell.Borders
+                                                .LineStyle = Excel.XlLineStyle.xlContinuous
+                                                .Weight = Excel.XlBorderWeight.xlThin
+                                                .Color = RGB(0, 0, 0) ' Black color
+                                            End With
+                                        End If
+
                                     Next
-                                    Dim cell2 As Excel.Range = xlsWorkSheet.Range("B1:P1")
-                                    With cell2.Borders(Excel.XlBordersIndex.xlEdgeTop)
-                                        .LineStyle = Excel.XlLineStyle.xlContinuous
-                                        .Weight = Excel.XlBorderWeight.xlThin
-                                        .Color = RGB(0, 0, 0) ' Black color
+                                Next
+                                Dim cell2 As Excel.Range = xlsWorkSheet.Range("B1:P1")
+                                With cell2.Borders(Excel.XlBordersIndex.xlEdgeTop)
+                                    .LineStyle = Excel.XlLineStyle.xlContinuous
+                                    .Weight = Excel.XlBorderWeight.xlThin
+                                    .Color = RGB(0, 0, 0) ' Black color
+                                End With
+                                With cell2.Borders(Excel.XlBordersIndex.xlEdgeLeft)
+                                    .LineStyle = Excel.XlLineStyle.xlContinuous
+                                    .Weight = Excel.XlBorderWeight.xlThin
+                                    .Color = RGB(0, 0, 0) ' Black color
+                                End With
+                                With cell2.Borders(Excel.XlBordersIndex.xlEdgeRight)
+                                    .LineStyle = Excel.XlLineStyle.xlContinuous
+                                    .Weight = Excel.XlBorderWeight.xlThin
+                                    .Color = RGB(0, 0, 0) ' Black color
+                                End With
+                                With cell2.Borders(Excel.XlBordersIndex.xlEdgeBottom)
+                                    .LineStyle = Excel.XlLineStyle.xlContinuous
+                                    .Weight = Excel.XlBorderWeight.xlThin
+                                    .Color = RGB(0, 0, 0) ' Black color
+                                End With
+
+                                Dim cell3 As Excel.Range = xlsWorkSheet.Range("B2:P12")
+                                With cell3.Borders(Excel.XlBordersIndex.xlEdgeTop)
+                                    .LineStyle = Excel.XlLineStyle.xlContinuous
+                                    .Weight = Excel.XlBorderWeight.xlThin
+                                    .Color = RGB(0, 0, 0) ' Black color
+                                End With
+                                With cell3.Borders(Excel.XlBordersIndex.xlEdgeLeft)
+                                    .LineStyle = Excel.XlLineStyle.xlContinuous
+                                    .Weight = Excel.XlBorderWeight.xlThin
+                                    .Color = RGB(0, 0, 0) ' Black color
+                                End With
+                                With cell3.Borders(Excel.XlBordersIndex.xlEdgeRight)
+                                    .LineStyle = Excel.XlLineStyle.xlContinuous
+                                    .Weight = Excel.XlBorderWeight.xlThin
+                                    .Color = RGB(0, 0, 0) ' Black color
+                                End With
+                                With cell3.Borders(Excel.XlBordersIndex.xlEdgeBottom)
+                                    .LineStyle = Excel.XlLineStyle.xlContinuous
+                                    .Weight = Excel.XlBorderWeight.xlThin
+                                    .Color = RGB(0, 0, 0) ' Black color
+                                End With
+
+                                ''' ADDITION
+                                With xlsWorkSheet.Range("B23:P24,B32:P34,B42:P45,B13:P13,B1:P1")
+                                    With .Interior
+                                        .Pattern = Excel.XlPattern.xlPatternSolid
+                                        .PatternColorIndex = Excel.XlPattern.xlPatternAutomatic
+                                        ' .ThemeColor = Excel.XlPattern.xlPatternGray16
+                                        .TintAndShade = -0.0999786370433668
+                                        .PatternTintAndShade = 0
                                     End With
-                                    With cell2.Borders(Excel.XlBordersIndex.xlEdgeLeft)
-                                        .LineStyle = Excel.XlLineStyle.xlContinuous
-                                        .Weight = Excel.XlBorderWeight.xlThin
-                                        .Color = RGB(0, 0, 0) ' Black color
-                                    End With
-                                    With cell2.Borders(Excel.XlBordersIndex.xlEdgeRight)
-                                        .LineStyle = Excel.XlLineStyle.xlContinuous
-                                        .Weight = Excel.XlBorderWeight.xlThin
-                                        .Color = RGB(0, 0, 0) ' Black color
-                                    End With
-                                    With cell2.Borders(Excel.XlBordersIndex.xlEdgeBottom)
-                                        .LineStyle = Excel.XlLineStyle.xlContinuous
-                                        .Weight = Excel.XlBorderWeight.xlThin
-                                        .Color = RGB(0, 0, 0) ' Black color
-                                    End With
-
-                                    Dim cell3 As Excel.Range = xlsWorkSheet.Range("B2:P12")
-                                    With cell3.Borders(Excel.XlBordersIndex.xlEdgeTop)
-                                        .LineStyle = Excel.XlLineStyle.xlContinuous
-                                        .Weight = Excel.XlBorderWeight.xlThin
-                                        .Color = RGB(0, 0, 0) ' Black color
-                                    End With
-                                    With cell3.Borders(Excel.XlBordersIndex.xlEdgeLeft)
-                                        .LineStyle = Excel.XlLineStyle.xlContinuous
-                                        .Weight = Excel.XlBorderWeight.xlThin
-                                        .Color = RGB(0, 0, 0) ' Black color
-                                    End With
-                                    With cell3.Borders(Excel.XlBordersIndex.xlEdgeRight)
-                                        .LineStyle = Excel.XlLineStyle.xlContinuous
-                                        .Weight = Excel.XlBorderWeight.xlThin
-                                        .Color = RGB(0, 0, 0) ' Black color
-                                    End With
-                                    With cell3.Borders(Excel.XlBordersIndex.xlEdgeBottom)
-                                        .LineStyle = Excel.XlLineStyle.xlContinuous
-                                        .Weight = Excel.XlBorderWeight.xlThin
-                                        .Color = RGB(0, 0, 0) ' Black color
-                                    End With
-
-                                    ''' ADDITION
-                                    With xlsWorkSheet.Range("B23:P24,B32:P34,B42:P45,B13:P13,B1:P1")
-                                        With .Interior
-                                            .Pattern = Excel.XlPattern.xlPatternSolid
-                                            .PatternColorIndex = Excel.XlPattern.xlPatternAutomatic
-                                            ' .ThemeColor = Excel.XlPattern.xlPatternGray16
-                                            .TintAndShade = -0.0999786370433668
-                                            .PatternTintAndShade = 0
-                                        End With
-                                    End With
-                                    xlsWorkSheet.Range("D23:P24,D32:P34,D42:P45").HorizontalAlignment = Excel.XlHAlign.xlHAlignRight
-                                    xlsWorkSheet.Range("D13:P13").HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter
-                                    xlsWorkSheet.Range("C25:C41").HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter
-                                    ''' END OF ADDITION
+                                End With
+                                xlsWorkSheet.Range("D23:P24,D32:P34,D42:P45").HorizontalAlignment = Excel.XlHAlign.xlHAlignRight
+                                xlsWorkSheet.Range("D13:P13").HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter
+                                xlsWorkSheet.Range("C25:C41").HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter
+                                ''' END OF ADDITION
 
 
 
-                                    xlsWorkSheet.PageSetup.FitToPagesWide = 1
-                                    xlsWorkSheet.PageSetup.FitToPagesTall = 1
+                                xlsWorkSheet.PageSetup.FitToPagesWide = 1
+                                xlsWorkSheet.PageSetup.FitToPagesTall = 1
 
-                                    xlsWorkSheet.PageSetup.Orientation = Excel.XlPageOrientation.xlLandscape
+                                xlsWorkSheet.PageSetup.Orientation = Excel.XlPageOrientation.xlLandscape
 
-                                    xls.DisplayAlerts = False
-                                    xlsWorkBook.SaveAs(ReportName)
-                                    xls.DisplayAlerts = True
-                                    ' xls.ActiveSheet.ExportAsFixedFormat(0, "C:\sample.pdf")
-                                    ' xls.ExportAsFixedFormat(Excel.XlFixedFormatType.xlTypePDF, "C:\VBForumsPdf", Excel.XlFixedFormatQuality.xlQualityStandard, True, True, 1, 10, False)                                'xlsWorkBook.ExportAsFixedFormat(Type:=Excel.XlFixedFormatType.xlTypePDF, Filename:=ReportNamePDF, Quality:=Excel.xlFixedFormatQuality.xlQualityStandard, IncludeDocProperties:=True, IgnorePrintAreas:=False, From:=1, To:=1, OpenAfterPublish:=True)
-                                    'xlsWorkBook.ExportAsFixedFormat(Type:=Excel.XlFixedFormatType.xlTypePDF, Filename:=ReportNamePDF, Quality:=Excel.XlFixedFormatQuality.xlQualityStandard, IncludeDocProperties:=True, IgnorePrintAreas:=False, From:=1, To:=1, OpenAfterPublish:=True)
+                                xls.DisplayAlerts = False
+                                xlsWorkBook.SaveAs(ReportName)
+                                xls.DisplayAlerts = True
+                                ' xls.ActiveSheet.ExportAsFixedFormat(0, "C:\sample.pdf")
+                                ' xls.ExportAsFixedFormat(Excel.XlFixedFormatType.xlTypePDF, "C:\VBForumsPdf", Excel.XlFixedFormatQuality.xlQualityStandard, True, True, 1, 10, False)                                'xlsWorkBook.ExportAsFixedFormat(Type:=Excel.XlFixedFormatType.xlTypePDF, Filename:=ReportNamePDF, Quality:=Excel.xlFixedFormatQuality.xlQualityStandard, IncludeDocProperties:=True, IgnorePrintAreas:=False, From:=1, To:=1, OpenAfterPublish:=True)
+                                'xlsWorkBook.ExportAsFixedFormat(Type:=Excel.XlFixedFormatType.xlTypePDF, Filename:=ReportNamePDF, Quality:=Excel.XlFixedFormatQuality.xlQualityStandard, IncludeDocProperties:=True, IgnorePrintAreas:=False, From:=1, To:=1, OpenAfterPublish:=True)
 
-                                    'MsgBox("File Is created", MsgBoxStyle.Information)
+                                'MsgBox("File Is created", MsgBoxStyle.Information)
 
-                                    '''''
+                                '''''
 
-                                    '''''
+                                '''''
 
-                                    '''''''''''''''''''''''''''''''''''''''''''
+                                '''''''''''''''''''''''''''''''''''''''''''
+                            Catch ex As Exception
+                                Utils.ShowException(ex)
+                            Finally
+                                xlsWorkBook.Close()
+
+                                xls.Quit()
+                                System.Runtime.InteropServices.Marshal.ReleaseComObject(xlsWorkSheet)
+                                System.Runtime.InteropServices.Marshal.ReleaseComObject(xlsWorkBook)
+                                System.Runtime.InteropServices.Marshal.ReleaseComObject(xls)
+
+                                ReleaseObject(xlsWorkSheet)
+                                ReleaseObject(xlsWorkBook)
+                                ReleaseObject(xls)
+
+                                GC.Collect()
+                                Cursor.Current = Cursors.Default
+                                Application.DoEvents()
+
+                            End Try
+
+                            ''''''''' Create PDF from EXCEL
+                            If ExportInPDF Then
+                                Try
+                                    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                    'Convert Excel File to PDF
+                                    '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                    Dim Excel2 As Excel.Application = New Excel.Application()
+                                    Dim WorkBook As Excel.Workbook = Excel2.Workbooks.Open(ReportName)
+                                    Dim WorkSheets As Excel.Sheets = WorkBook.Sheets
+                                    Dim WorkSheet As Excel.Worksheet = CType(WorkSheets(1), Microsoft.Office.Interop.Excel.Worksheet)
+                                    Excel2.DisplayAlerts = False
+                                    Excel2.Visible = False
+
+                                    ' Set the page setup to fit everything on one page
+                                    WorkSheet.PageSetup.Orientation = Excel.XlPageOrientation.xlLandscape ' Optional: Set to Landscape
+                                    WorkSheet.Columns.AutoFit()
+                                    ' Use scaling to ensure content fits within the width of the page
+                                    WorkSheet.PageSetup.Zoom = False
+                                    WorkSheet.PageSetup.FitToPagesWide = 1
+                                    WorkSheet.PageSetup.FitToPagesTall = 1
+                                    '''' Addition
+
+
+
+
+
+
+                                    ' Set margins (optional, adjust if needed)
+                                    WorkSheet.PageSetup.TopMargin = Excel2.CentimetersToPoints(1)
+                                    WorkSheet.PageSetup.BottomMargin = Excel2.CentimetersToPoints(1)
+                                    WorkSheet.PageSetup.LeftMargin = Excel2.CentimetersToPoints(0.5)
+                                    WorkSheet.PageSetup.RightMargin = Excel2.CentimetersToPoints(0.5)
+
+                                    ' Export as PDF
+                                    WorkSheet.ExportAsFixedFormat(
+                                Type:=Excel.XlFixedFormatType.xlTypePDF,
+                                Filename:=ReportNamePDF,
+                                Quality:=Excel.XlFixedFormatQuality.xlQualityStandard,
+                                IncludeDocProperties:=True,
+                                IgnorePrintAreas:=False,
+                                From:=1,
+                                To:=1,
+                                OpenAfterPublish:=False
+                            )
+
+                                    ' Clean up
+                                    WorkBook.Close(SaveChanges:=False)
+                                    Excel2.Quit()
+                                    System.Runtime.InteropServices.Marshal.ReleaseComObject(WorkSheet)
+                                    System.Runtime.InteropServices.Marshal.ReleaseComObject(WorkSheets)
+                                    System.Runtime.InteropServices.Marshal.ReleaseComObject(WorkBook)
+                                    System.Runtime.InteropServices.Marshal.ReleaseComObject(Excel2)
+                                    GC.Collect()
+                                    GC.WaitForPendingFinalizers()
+
+                                    '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                    'END of Convertion of Excel File to PD
+                                    '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                    '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                    'ENCRYPT PDF File
+                                    '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                    Dim FiletoBeEmailed As String = ReportNamePDF
+                                    If UseEncryptionOnYTDExportInPDF Then
+                                        If Trim(GLBEmployee.Password) <> "" Then
+                                            Utils.EncryptPdf(ReportNamePDF, ReportNamePDF_Encrypted, Trim(GLBEmployee.Password))
+                                            FiletoBeEmailed = ReportNamePDF_Encrypted
+                                            Try
+                                                System.IO.File.Delete(ReportNamePDF)
+
+                                            Catch ex As Exception
+
+                                            End Try
+                                        End If
+                                    End If
+
+                                    'END OF PDF File Encryption
+                                    '''''''''''''''''''''''''''''''''''''''
+                                    CompanyDescription = DbNullToString(Ds.Tables(1).Rows(0).Item(0))
+                                    If Gmail Then
+                                        GEmailFile(FiletoBeEmailed, GLBEmployee, CompanyDescription, StrYear, "", GLBWording, Useemail2)
+                                    ElseIf Office365 Then
+                                        Me.Send365Email(FiletoBeEmailed, GLBEmployee, CompanyDescription, "", GLBWording, Useemail2)
+
+                                    ElseIf SMTP Then
+                                        Me.Send_SMTP_EmailFile(FiletoBeEmailed, GLBEmployee, CompanyDescription, StrYear, "", Global1.PARAM_SMTPEmailHost, GLBWording, Useemail2)
+                                        '  Me.Send_SMTP_EmailFile_NoAthentication(ExportFile, GLBEmployee, CompanyDescription, StrYear, ExportFileTS, Global1.PARAM_SMTPEmailHost, GLBWording)
+                                    ElseIf SendToTextFile Then
+
+                                        EmailFile(FiletoBeEmailed, GLBEmployee, CompanyDescription, "", GLBWording, Useemail2, GLBYTDScheduledDateTime, GLBYTDScheduled, True)
+                                    End If
                                 Catch ex As Exception
                                     Utils.ShowException(ex)
-                                Finally
-                                    xlsWorkBook.Close()
-
-                                    xls.Quit()
-                                    System.Runtime.InteropServices.Marshal.ReleaseComObject(xlsWorkSheet)
-                                    System.Runtime.InteropServices.Marshal.ReleaseComObject(xlsWorkBook)
-                                    System.Runtime.InteropServices.Marshal.ReleaseComObject(xls)
-
-                                    ReleaseObject(xlsWorkSheet)
-                                    ReleaseObject(xlsWorkBook)
-                                    ReleaseObject(xls)
-
-                                    GC.Collect()
-                                    Cursor.Current = Cursors.Default
-                                    Application.DoEvents()
-
                                 End Try
-
-                                ''''''''' Create PDF from EXCEL
-                                If ExportInPDF Then
-                                    Try
-                                        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-                                        'Convert Excel File to PDF
-                                        '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-                                        Dim Excel2 As Excel.Application = New Excel.Application()
-                                        Dim WorkBook As Excel.Workbook = Excel2.Workbooks.Open(ReportName)
-                                        Dim WorkSheets As Excel.Sheets = WorkBook.Sheets
-                                        Dim WorkSheet As Excel.Worksheet = CType(WorkSheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-                                        Excel2.DisplayAlerts = False
-                                        Excel2.Visible = False
-
-                                        ' Set the page setup to fit everything on one page
-                                        WorkSheet.PageSetup.Orientation = Excel.XlPageOrientation.xlLandscape ' Optional: Set to Landscape
-                                        WorkSheet.Columns.AutoFit()
-                                        ' Use scaling to ensure content fits within the width of the page
-                                        WorkSheet.PageSetup.Zoom = False
-                                        WorkSheet.PageSetup.FitToPagesWide = 1
-                                        WorkSheet.PageSetup.FitToPagesTall = 1
-                                        '''' Addition
-
-
-
-
-
-
-                                        ' Set margins (optional, adjust if needed)
-                                        WorkSheet.PageSetup.TopMargin = Excel2.CentimetersToPoints(1)
-                                        WorkSheet.PageSetup.BottomMargin = Excel2.CentimetersToPoints(1)
-                                        WorkSheet.PageSetup.LeftMargin = Excel2.CentimetersToPoints(0.5)
-                                        WorkSheet.PageSetup.RightMargin = Excel2.CentimetersToPoints(0.5)
-
-                                        ' Export as PDF
-                                        WorkSheet.ExportAsFixedFormat(
-                                    Type:=Excel.XlFixedFormatType.xlTypePDF,
-                                    Filename:=ReportNamePDF,
-                                    Quality:=Excel.XlFixedFormatQuality.xlQualityStandard,
-                                    IncludeDocProperties:=True,
-                                    IgnorePrintAreas:=False,
-                                    From:=1,
-                                    To:=1,
-                                    OpenAfterPublish:=False
-                                )
-
-                                        ' Clean up
-                                        WorkBook.Close(SaveChanges:=False)
-                                        Excel2.Quit()
-                                        System.Runtime.InteropServices.Marshal.ReleaseComObject(WorkSheet)
-                                        System.Runtime.InteropServices.Marshal.ReleaseComObject(WorkSheets)
-                                        System.Runtime.InteropServices.Marshal.ReleaseComObject(WorkBook)
-                                        System.Runtime.InteropServices.Marshal.ReleaseComObject(Excel2)
-                                        GC.Collect()
-                                        GC.WaitForPendingFinalizers()
-
-                                        '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-                                        'END of Convertion of Excel File to PD
-                                        '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-                                        '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-                                        'ENCRYPT PDF File
-                                        '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-                                        Dim FiletoBeEmailed As String = ReportNamePDF
-                                        If UseEncryptionOnYTDExportInPDF Then
-                                            If Trim(GLBEmployee.Password) <> "" Then
-                                                Utils.EncryptPdf(ReportNamePDF, ReportNamePDF_Encrypted, Trim(GLBEmployee.Password))
-                                                FiletoBeEmailed = ReportNamePDF_Encrypted
-                                                Try
-                                                    System.IO.File.Delete(ReportNamePDF)
-
-                                                Catch ex As Exception
-
-                                                End Try
-                                            End If
-                                        End If
-
-                                        'END OF PDF File Encryption
-                                        '''''''''''''''''''''''''''''''''''''''
-                                        CompanyDescription = DbNullToString(Ds.Tables(1).Rows(0).Item(0))
-                                        If Gmail Then
-                                            GEmailFile(FiletoBeEmailed, GLBEmployee, CompanyDescription, StrYear, "", GLBWording, Useemail2)
-                                        ElseIf Office365 Then
-                                            Me.Send365Email(FiletoBeEmailed, GLBEmployee, CompanyDescription, "", GLBWording, Useemail2)
-
-                                        ElseIf SMTP Then
-                                            Me.Send_SMTP_EmailFile(FiletoBeEmailed, GLBEmployee, CompanyDescription, StrYear, "", Global1.PARAM_SMTPEmailHost, GLBWording, Useemail2)
-                                            '  Me.Send_SMTP_EmailFile_NoAthentication(ExportFile, GLBEmployee, CompanyDescription, StrYear, ExportFileTS, Global1.PARAM_SMTPEmailHost, GLBWording)
-                                        ElseIf SendToTextFile Then
-
-                                            EmailFile(FiletoBeEmailed, GLBEmployee, CompanyDescription, "", GLBWording, Useemail2, GLBYTDScheduledDateTime, GLBYTDScheduled, True)
-                                        End If
-                                    Catch ex As Exception
-                                        Utils.ShowException(ex)
-                                    End Try
-                                End If
-                                'exportinPDF
-
                             End If
+                            'exportinPDF
+
                         End If
+                    End If
                 End If
 
             End If
@@ -12084,7 +12338,7 @@ Public Class FrmPrTxCalculatePayroll
             PeriodStartDate = CDate("1900-01-01")
 
             Dim filePath As String = ExportFile
-                Dim fileBytes As Byte() = System.IO.File.ReadAllBytes(filePath)
+            Dim fileBytes As Byte() = System.IO.File.ReadAllBytes(filePath)
 
             pDocument.Description = Description
             pDocument.DocumentType = ".pdf"
@@ -12285,7 +12539,7 @@ Public Class FrmPrTxCalculatePayroll
                 Email.SendEmailTEST(EmployeeEmail, EmailSubject, Msg, ExportFile, "Payslip", Exportfile2, SendDateAndTime, ScheduleSend)
             End If
         Else
-                MsgBox("Please Define Email Address For Employee " & GLBEmployee.Code & " - " & GLBEmployee.FullName, MsgBoxStyle.Exclamation)
+            MsgBox("Please Define Email Address For Employee " & GLBEmployee.Code & " - " & GLBEmployee.FullName, MsgBoxStyle.Exclamation)
         End If
 
     End Sub
@@ -12408,7 +12662,7 @@ Public Class FrmPrTxCalculatePayroll
                 mailClient.DeliveryMethod = Net.Mail.SmtpDeliveryMethod.Network
                 mailClient.UseDefaultCredentials = False
 
-                
+
 
 
 
@@ -12842,13 +13096,13 @@ Public Class FrmPrTxCalculatePayroll
 
 
 
-    
-   
+
+
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         Dim F As New FrmDisLFFE
         F.EmpCode = GLBEmployee.Code
         F.Period = GLBCurrentPeriod
-        F.show()
+        F.Show()
 
     End Sub
 
@@ -12922,6 +13176,48 @@ Public Class FrmPrTxCalculatePayroll
                     .Rec_Gesi_Limit = Me.txtRGesyLimit.Text
                     .Act_Gesi_Limit = Me.txtCGesyLimit.Text
 
+
+                    .ARec_Current = Me.txtAA_REC_CurrentEmployment.Text
+                    .ARec_SI = Me.txtAA_REC_SIPension.Text
+                    .ARec_Other = Me.txtAA_REC_FromOthersources.Text
+                    .ARec_Previous = Me.txtAA_REC_PreviousEmployment.Text
+                    .ARec_Notional = Me.txtAA_REC_NotionalIncome.Text
+                    .ARec_Total = Me.txtAA_REC_TotalTaxable.Text
+
+                    .TRec_Current = Me.txtTA_REC_CurrentEmployment.Text
+                    .TRec_SI = Me.txtTA_REC_SIPension.Text
+                    .TRec_Other = Me.txtTA_REC_FromOthersources.Text
+                    .TRec_Previous = Me.txtTA_REC_PreviousEmployment.Text
+                    .TRec_Notional = Me.txtTA_REC_NotionalIncome.Text
+                    .TRec_Total = Me.txtTA_REC_TotalTaxable.Text
+
+                    .APer_Current = Me.txtAA_PER_CurrentEmployment.Text
+                    .APer_SI = Me.txtAA_PER_SIPension.Text
+                    .APer_Other = Me.txtAA_PER_FromOthersources.Text
+                    .APer_Previous = Me.txtAA_PER_PreviousEmployment.Text
+                    .APer_Notional = Me.txtAA_PER_NotionalIncome.Text
+                    .APer_Total = Me.txtAA_PER_TotalTaxable.Text
+
+                    .TPer_Current = Me.txtTA_PER_CurrentEmployment.Text
+                    .TPer_SI = Me.txtTA_PER_SIPension.Text
+                    .TPer_Other = Me.txtTA_PER_FromOthersources.Text
+                    .TPer_Previous = Me.txtTA_PER_PreviousEmployment.Text
+                    .TPer_Notional = Me.txtTA_PER_NotionalIncome.Text
+                    .TPer_Total = Me.txtTA_PER_TotalTaxable.Text
+
+                    .New_Difference = Me.txtTaxDifference.Text
+                    .New_Paid = Me.txtNewPaid.Text
+                    .Rec_NewPAYE = Me.txt_REC_TempPAYE.Text
+                    .Per_NewPAYE = Me.txt_PER_TempPAYE.Text
+                    .Per_NewPeriodTax = Me.txtNewPeriodTax.Text
+                    .Per_TotalCurSINot = Me.txtPERCurrent_SI_Notional.Text
+                    .Per_NewRemaining = Me.txtPerRemaining.Text
+                    If Global1.GLBNewTaxmethod Then
+                        .Per_MethodUsed = 1
+                    Else
+                        .Per_MethodUsed = 0
+                    End If
+
                     If Not .Save Then
                         Throw Exx
                     End If
@@ -12963,7 +13259,7 @@ Public Class FrmPrTxCalculatePayroll
                         txtCPFLimit.Text = Format(.Act_PFLimit, "0.00")
                         txtROSI.Text = Format(.Rec_SI, "0.00")
                         txtCPSI.Text = Format(.Act_SI, "0.00")
-                        txtROMF.Text = format(.Rec_MF, "0.00")
+                        txtROMF.Text = Format(.Rec_MF, "0.00")
                         txtCPMF.Text = Format(.Act_MF, "0.00")
                         txtRmedLimit.Text = Format(.Rec_MFLimit, "0.00")
                         txtCMedLimit.Text = Format(.Act_MFLimit, "0.00")
@@ -12992,6 +13288,52 @@ Public Class FrmPrTxCalculatePayroll
 
                         Me.txtRGesyLimit.Text = Format(.Rec_Gesi_Limit, "0.00")
                         Me.txtCGesyLimit.Text = Format(.Act_Gesi_Limit, "0.00")
+
+
+
+                        Me.txtAA_REC_CurrentEmployment.Text = Format(.ARec_Current, "0.00")
+                        Me.txtAA_REC_SIPension.Text = Format(.ARec_SI, "0.00")
+                        Me.txtAA_REC_FromOthersources.Text = Format(.ARec_Other, "0.00")
+                        Me.txtAA_REC_PreviousEmployment.Text = Format(.ARec_Previous, "0.00")
+                        Me.txtAA_REC_NotionalIncome.Text = Format(.ARec_Notional, "0.00")
+                        Me.txtAA_REC_TotalTaxable.Text = Format(.ARec_Total, "0.00")
+                        Me.txtTA_REC_CurrentEmployment.Text = Format(.TRec_Current, "0.00")
+                        Me.txtTA_REC_SIPension.Text = Format(.TRec_SI, "0.00")
+                        Me.txtTA_REC_FromOthersources.Text = Format(.TRec_Other, "0.00")
+                        Me.txtTA_REC_PreviousEmployment.Text = Format(.TRec_Previous, "0.00")
+                        Me.txtTA_REC_NotionalIncome.Text = Format(.TRec_Notional, "0.00")
+                        Me.txtTA_REC_TotalTaxable.Text = Format(.TRec_Total, "0.00")
+
+                        Me.txtAA_PER_CurrentEmployment.Text = Format(.APer_Current, "0.00")
+                        Me.txtAA_PER_SIPension.Text = Format(.APer_SI, "0.00")
+                        Me.txtAA_PER_FromOthersources.Text = Format(.APer_Other, "0.00")
+                        Me.txtAA_PER_PreviousEmployment.Text = Format(.APer_Previous, "0.00")
+                        Me.txtAA_PER_NotionalIncome.Text = Format(.APer_Notional, "0.00")
+                        Me.txtAA_PER_TotalTaxable.Text = Format(.APer_Total, "0.00")
+                        Me.txtTA_PER_CurrentEmployment.Text = Format(.TPer_Current, "0.00")
+                        Me.txtTA_PER_SIPension.Text = Format(.TPer_SI, "0.00")
+                        Me.txtTA_PER_FromOthersources.Text = Format(.TPer_Other, "0.00")
+                        Me.txtTA_PER_PreviousEmployment.Text = Format(.TPer_Previous, "0.00")
+                        Me.txtTA_PER_NotionalIncome.Text = Format(.TPer_Notional, "0.00")
+                        Me.txtTA_PER_TotalTaxable.Text = Format(.TPer_Total, "0.00")
+
+                        Me.txtTaxDifference.Text = Format(.New_Difference, "0.00")
+                        Me.txtNewPaid.Text = Format(.New_Paid, "0.00")
+                        txt_REC_TempPAYE.Text = Format(.Rec_NewPAYE, "0.00")
+                        txt_PER_TempPAYE.Text = Format(.Per_NewPAYE, "0.00")
+                        txtNewPeriodTax.Text = Format(.Per_NewPeriodTax, "0.00")
+                        Me.txtPERCurrent_SI_Notional.Text = Format(.Per_TotalCurSINot, "0.00")
+                        Me.txtPerRemaining.Text = Format(.Per_NewRemaining, "0.00")
+                        If .Per_MethodUsed = 1 Then
+                            CBMethodUsed.checked = True
+                        Else
+                            CBMethodUsed.checked = False
+                        End If
+
+
+
+
+
 
                         'Change Color
 
@@ -13496,7 +13838,7 @@ Public Class FrmPrTxCalculatePayroll
 
 
                                     .PaymentMethod = Findpaymethod()
-                                    
+
                                     .PaymentRef = "PAY REF"
                                     If Global1.PARAM_EmpCodeinChequeRef Then
                                         .PaymentRef = Emp.Code
@@ -13689,8 +14031,8 @@ Public Class FrmPrTxCalculatePayroll
     End Sub
     Private Sub BtnNext_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnNext.Click
         'CType(Me.Owner, FrmPayroll1).LoadNextEmployee(True, False, CurrentOwnerColumn, Me)
-        CType(Me.Owner, FrmPayroll1).glbrunnext = True
-        CType(Me.Owner, FrmPayroll1).glbGridIndex = CurrentOwnerColumn
+        CType(Me.Owner, FrmPayroll1).GLBRunNext = True
+        CType(Me.Owner, FrmPayroll1).GLBGridIndex = CurrentOwnerColumn
         Me.Close()
 
     End Sub
@@ -13698,7 +14040,7 @@ Public Class FrmPrTxCalculatePayroll
     Private Sub BtnPrevius_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPrevius.Click
         'CType(Me.Owner, FrmPayroll1).LoadNextEmployee(False, True, CurrentOwnerColumn, Me)
         CType(Me.Owner, FrmPayroll1).GLBRunPrevious = True
-        CType(Me.Owner, FrmPayroll1).glbGridIndex = CurrentOwnerColumn
+        CType(Me.Owner, FrmPayroll1).GLBGridIndex = CurrentOwnerColumn
         Me.Close()
 
     End Sub
@@ -13760,6 +14102,42 @@ Public Class FrmPrTxCalculatePayroll
             MsgBox("Please 'Calculate' first !", MsgBoxStyle.Critical)
         End If
     End Sub
-  
+    Private Sub ShowHideControlsForNewTax()
+        Dim TF As Boolean = True
+        If Global1.GLBNewTaxmethod = True Then
+            TF = False
+        Else
+            TF = True
+        End If
+        Label60.Visible = TF
+        Label65.Visible = TF
+        Label64.Visible = TF
+        txtORPaidTax.Visible = TF
+        txtORRemainingTax.Visible = TF
+        txtORPeriodTax.Visible = TF
+        txtCPPaidTax.Visible = TF
+        txtCPRemainingTax.Visible = TF
+        txtCPPeriodTax.Visible = TF
+        Label61.Visible = TF
+        txtORDifference.Visible = TF
+        txtFinalPeriodTax.Visible = TF
+        Label67.Visible = TF
+        txtInterCompanyTax.Visible = TF
+
+        Label109.Visible = Not TF
+        Label115.Visible = Not TF
+        Label116.Visible = Not TF
+        Label116.Visible = Not TF
+        Label116.Visible = Not TF
+        txt_REC_TempPAYE.Visible = Not TF
+        txt_PER_TempPAYE.Visible = Not TF
+        txtPERCurrent_SI_Notional.Visible = Not TF
+        txtNewPaid.Visible = Not TF
+        txtPerRemaining.Visible = Not TF
+        txtNewPeriodTax.Visible = Not TF
+
+    End Sub
+
+
 
 End Class

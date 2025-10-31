@@ -57,6 +57,39 @@ Public Class cPrTxIr59
 
     Private mRec_Gesi_Limit As Double
     Private mAct_Gesi_Limit As Double
+    'New Fields
+    Private mARec_Current As Double
+    Private mARec_SI As Double
+    Private mARec_Other As Double
+    Private mARec_Previous As Double
+    Private mARec_Notional As Double
+    Private mARec_Total As Double
+    Private mTRec_Current As Double
+    Private mTRec_SI As Double
+    Private mTRec_Other As Double
+    Private mTRec_Previous As Double
+    Private mTRec_Notional As Double
+    Private mTRec_Total As Double
+    Private mAPer_Current As Double
+    Private mAPer_SI As Double
+    Private mAPer_Other As Double
+    Private mAPer_Previous As Double
+    Private mAPer_Notional As Double
+    Private mAPer_Total As Double
+    Private mTPer_Current As Double
+    Private mTPer_SI As Double
+    Private mTPer_Other As Double
+    Private mTPer_Previous As Double
+    Private mTPer_Notional As Double
+    Private mTPer_Total As Double
+    Private mNew_Difference As Double
+    Private mNew_Paid As Double
+    Private mRec_NewPAYE As Double
+    Private mPer_NewPAYE As Double
+    Private mPer_NewPeriodTax As Double
+    Private mPer_TotalCurSINot As Double
+    Private mPer_NewRemaining as Double
+    Private mPer_MethodUsed As String
 
 
     Public Property Pay_Id() As Integer
@@ -509,6 +542,263 @@ Public Class cPrTxIr59
             mAct_Gesi_Limit = value
         End Set
     End Property
+
+    Public Property ARec_Current As Double
+        Get
+            Return mARec_Current
+        End Get
+        Set(ByVal value As Double)
+            mARec_Current = value
+        End Set
+    End Property
+    Public Property ARec_SI As Double
+        Get
+            Return mARec_SI
+        End Get
+        Set(ByVal value As Double)
+            mARec_SI = value
+        End Set
+    End Property
+    Public Property ARec_Other As Double
+        Get
+            Return mARec_Other
+        End Get
+        Set(ByVal value As Double)
+            mARec_Other = value
+        End Set
+    End Property
+    Public Property ARec_Previous As Double
+        Get
+            Return mARec_Previous
+        End Get
+        Set(ByVal value As Double)
+            mARec_Previous = value
+        End Set
+    End Property
+    Public Property ARec_Notional As Double
+        Get
+            Return mARec_Notional
+        End Get
+        Set(ByVal value As Double)
+            mARec_Notional = value
+        End Set
+    End Property
+    Public Property ARec_Total As Double
+        Get
+            Return mARec_Total
+        End Get
+        Set(ByVal value As Double)
+            mARec_Total = value
+        End Set
+    End Property
+    Public Property TRec_Current As Double
+        Get
+            Return mTRec_Current
+        End Get
+        Set(ByVal value As Double)
+            mTRec_Current = value
+        End Set
+    End Property
+    Public Property TRec_SI As Double
+        Get
+            Return mTRec_SI
+        End Get
+        Set(ByVal value As Double)
+            mTRec_SI = value
+        End Set
+    End Property
+    Public Property TRec_Other As Double
+        Get
+            Return mTRec_Other
+        End Get
+        Set(ByVal value As Double)
+            mTRec_Other = value
+        End Set
+    End Property
+    Public Property TRec_Previous As Double
+        Get
+            Return mTRec_Previous
+        End Get
+        Set(ByVal value As Double)
+            mTRec_Previous = value
+        End Set
+    End Property
+    Public Property TRec_Notional As Double
+        Get
+            Return mTRec_Notional
+        End Get
+        Set(ByVal value As Double)
+            mTRec_Notional = value
+        End Set
+    End Property
+    Public Property TRec_Total As Double
+        Get
+            Return mTRec_Total
+        End Get
+        Set(ByVal value As Double)
+            mTRec_Total = value
+        End Set
+    End Property
+    Public Property APer_Current As Double
+        Get
+            Return mAPer_Current
+        End Get
+        Set(ByVal value As Double)
+            mAPer_Current = value
+        End Set
+    End Property
+    Public Property APer_SI As Double
+        Get
+            Return mAPer_SI
+        End Get
+        Set(ByVal value As Double)
+            mAPer_SI = value
+        End Set
+    End Property
+    Public Property APer_Other As Double
+        Get
+            Return mAPer_Other
+        End Get
+        Set(ByVal value As Double)
+            mAPer_Other = value
+        End Set
+    End Property
+    Public Property APer_Previous As Double
+        Get
+            Return mAPer_Previous
+        End Get
+        Set(ByVal value As Double)
+            mAPer_Previous = value
+        End Set
+    End Property
+    Public Property APer_Notional As Double
+        Get
+            Return mAPer_Notional
+        End Get
+        Set(ByVal value As Double)
+            mAPer_Notional = value
+        End Set
+    End Property
+    Public Property APer_Total As Double
+        Get
+            Return mAPer_Total
+        End Get
+        Set(ByVal value As Double)
+            mAPer_Total = value
+        End Set
+    End Property
+    Public Property TPer_Current As Double
+        Get
+            Return mTPer_Current
+        End Get
+        Set(ByVal value As Double)
+            mTPer_Current = value
+        End Set
+    End Property
+    Public Property TPer_SI As Double
+        Get
+            Return mTPer_SI
+        End Get
+        Set(ByVal value As Double)
+            mTPer_SI = value
+        End Set
+    End Property
+    Public Property TPer_Other As Double
+        Get
+            Return mTPer_Other
+        End Get
+        Set(ByVal value As Double)
+            mTPer_Other = value
+        End Set
+    End Property
+    Public Property TPer_Previous As Double
+        Get
+            Return mTPer_Previous
+        End Get
+        Set(ByVal value As Double)
+            mTPer_Previous = value
+        End Set
+    End Property
+    Public Property TPer_Notional As Double
+        Get
+            Return mTPer_Notional
+        End Get
+        Set(ByVal value As Double)
+            mTPer_Notional = value
+        End Set
+    End Property
+    Public Property TPer_Total As Double
+        Get
+            Return mTPer_Total
+        End Get
+        Set(ByVal value As Double)
+            mTPer_Total = value
+        End Set
+    End Property
+    Public Property New_Difference As Double
+        Get
+            Return mNew_Difference
+        End Get
+        Set(ByVal value As Double)
+            mNew_Difference = value
+        End Set
+    End Property
+    Public Property New_Paid As Double
+        Get
+            Return mNew_Paid
+        End Get
+        Set(ByVal value As Double)
+            mNew_Paid = value
+        End Set
+    End Property
+    Public Property Rec_NewPAYE As Double
+        Get
+            Return mRec_NewPAYE
+        End Get
+        Set(ByVal value As Double)
+            mRec_NewPAYE = value
+        End Set
+    End Property
+    Public Property Per_NewPAYE As Double
+        Get
+            Return mPer_NewPAYE
+        End Get
+        Set(ByVal value As Double)
+            mPer_NewPAYE = value
+        End Set
+    End Property
+    Public Property Per_NewPeriodTax As Double
+        Get
+            Return mPer_NewPeriodTax
+        End Get
+        Set(ByVal value As Double)
+            mPer_NewPeriodTax = value
+        End Set
+    End Property
+    Public Property Per_TotalCurSINot As Double
+        Get
+            Return mPer_TotalCurSINot
+        End Get
+        Set(ByVal value As Double)
+            mPer_TotalCurSINot = value
+        End Set
+    End Property
+    Public Property Per_NewRemaining As Double
+        Get
+            Return mPer_NewRemaining
+        End Get
+        Set(ByVal value As Double)
+            mPer_NewRemaining = value
+        End Set
+    End Property
+    Public Property Per_MethodUsed As String
+        Get
+            Return mPer_NewPeriodTax
+        End Get
+        Set(ByVal value As String)
+            mPer_NewPeriodTax = value
+        End Set
+    End Property
     Public Sub New()
 
     End Sub
@@ -585,6 +875,41 @@ Public Class cPrTxIr59
 
         mRec_Gesi_Limit = DbNullToDouble(dr.Item(54))
         mAct_Gesi_Limit = DbNullToDouble(dr.Item(55))
+
+        'New Fields
+        mARec_Current = DbNullToDouble(dr.Item(56))
+        mARec_SI = DbNullToDouble(dr.Item(57))
+        mARec_Other = DbNullToDouble(dr.Item(58))
+        mARec_Previous = DbNullToDouble(dr.Item(59))
+        mARec_Notional = DbNullToDouble(dr.Item(60))
+        mARec_Total = DbNullToDouble(dr.Item(61))
+        mTRec_Current = DbNullToDouble(dr.Item(62))
+        mTRec_SI = DbNullToDouble(dr.Item(63))
+        mTRec_Other = DbNullToDouble(dr.Item(64))
+        mTRec_Previous = DbNullToDouble(dr.Item(65))
+        mTRec_Notional = DbNullToDouble(dr.Item(66))
+        mTRec_Total = DbNullToDouble(dr.Item(67))
+        mAPer_Current = DbNullToDouble(dr.Item(68))
+        mAPer_SI = DbNullToDouble(dr.Item(69))
+        mAPer_Other = DbNullToDouble(dr.Item(70))
+        mAPer_Previous = DbNullToDouble(dr.Item(71))
+        mAPer_Notional = DbNullToDouble(dr.Item(72))
+        mAPer_Total = DbNullToDouble(dr.Item(73))
+        mTPer_Current = DbNullToDouble(dr.Item(74))
+        mTPer_SI = DbNullToDouble(dr.Item(75))
+        mTPer_Other = DbNullToDouble(dr.Item(76))
+        mTPer_Previous = DbNullToDouble(dr.Item(77))
+        mTPer_Notional = DbNullToDouble(dr.Item(78))
+        mTPer_Total = DbNullToDouble(dr.Item(79))
+        mNew_Difference = DbNullToDouble(dr.Item(80))
+        mNew_Paid = DbNullToDouble(dr.Item(81))
+        mRec_NewPAYE = DbNullToDouble(dr.Item(82))
+        mPer_NewPAYE = DbNullToDouble(dr.Item(83))
+        mPer_NewPeriodTax = DbNullToDouble(dr.Item(84))
+        mPer_TotalCurSINot = DbNullToDouble(dr.Item(85))
+        mPer_NewRemaining = DbNullToDouble(dr.Item(86))
+        mPer_MethodUsed = DbNullToString(dr.Item(87))
+
     End Sub
 
     '

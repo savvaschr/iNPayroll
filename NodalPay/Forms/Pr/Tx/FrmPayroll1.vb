@@ -310,6 +310,12 @@ Public Class FrmPayroll1
 
 
     Private Sub FrmPayroll1_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+        Dim Px As New cPrSsParameters("PAYE", "NEWMethod")
+        If Px.Value1 = 1 Then
+            Global1.GLBNewTaxmethod = True
+        Else
+            Global1.GLBNewTaxmethod = False
+        End If
         Dim P As New cPrSsParameters("System", "AllocationStatus")
         If P.Value1 = "" Then
             MsgBox("Please define Allocation Status Variable")
@@ -3299,6 +3305,10 @@ Public Class FrmPayroll1
                     EE.MyValue = E_CalculateDirectorFees(Emp, EE, Earn, TempErn)
                 Case "TP" 'TIME OFF POSITIVE
                     EE.MyValue = E_CalculateTimeOffPossitive(Emp, EE, Earn, TempErn)
+                Case "NI" 'Notional Income
+                    EE.MyValue = E_Calculatenotionalincome(Emp, EE, Earn, TempErn)
+                Case "NR" 'Notional Income Reccuring
+                    EE.MyValue = E_CalculatenotionalincomeReccuring(Emp, EE, Earn, TempErn)
 
             End Select
         End If
@@ -3793,6 +3803,36 @@ Public Class FrmPayroll1
         End If
 
         Return BIK
+
+    End Function
+    Private Function E_Calculatenotionalincome(ByVal Emp As cPrMsEmployees, ByVal EmpErn As cPrMsEmployeeEarnings, ByVal Earn As cPrMsEarningCodes, ByVal TempErn As cPrMsTemplateEarnings) As Double
+        'Dim TempErn As New cPrMsTemplateEarnings(Me.GLBTempGroup.Code, Earn.Code)
+        Dim NI As Double
+
+        If TempErn.ErnCodCode <> "" Then
+            If TempErn.TypeMode = "P" Then
+                NI = EmpErn.MyValue
+            ElseIf TempErn.TypeMode = "V" Then
+                NI = EmpErn.MyValue
+            End If
+        End If
+
+        Return NI
+
+    End Function
+    Private Function E_CalculatenotionalincomeReccuring(ByVal Emp As cPrMsEmployees, ByVal EmpErn As cPrMsEmployeeEarnings, ByVal Earn As cPrMsEarningCodes, ByVal TempErn As cPrMsTemplateEarnings) As Double
+        'Dim TempErn As New cPrMsTemplateEarnings(Me.GLBTempGroup.Code, Earn.Code)
+        Dim NI As Double
+
+        If TempErn.ErnCodCode <> "" Then
+            If TempErn.TypeMode = "P" Then
+                NI = EmpErn.MyValue
+            ElseIf TempErn.TypeMode = "V" Then
+                NI = EmpErn.MyValue
+            End If
+        End If
+
+        Return NI
 
     End Function
 

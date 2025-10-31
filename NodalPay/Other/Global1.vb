@@ -1,12 +1,14 @@
 Module Global1
-    Public Version As String = "2.2025.006"
+    Public Version As String = "2.2025.008"
     'YTD Report
     'Sum Annual Units for 13nth
     'Open Next Year Period Automatically
 
-    Public VersionDate As String = "26/09/2025"
+    Public VersionDate As String = "29/10/2025"
     '14th Salary
     'Payslip directory
+
+    Public GLBNewTaxmethod As Boolean = False
 
     Public ConnectionTimeoutValue As Integer = 180
     Public IsConnected As Boolean
@@ -386,6 +388,7 @@ Module Global1
     Public GLBExelsys_WSBusinessEntity As String = ""
 
     Public TESTOUTLOOK As Boolean = False
+
 
 
 

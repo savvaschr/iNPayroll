@@ -19044,6 +19044,8 @@ todo:   ' check for status in trxnheader
         Dim C_PREV_UnionDed As Integer = 56
         Dim C_PREV_GESY As Integer = 57
         Dim C_email As Integer = 58
+        Dim C_LWBPensioner As Integer = 59
+        Dim C_LWBGESY As Integer = 60
 
 
 
@@ -19197,6 +19199,9 @@ todo:   ' check for status in trxnheader
         dt.Columns.Add(New DataColumn("PrevGesy", System.Type.GetType("System.Double")))
         '58
         dt.Columns.Add(New DataColumn("Email", System.Type.GetType("System.String")))
+        '59
+        dt.Columns.Add(New DataColumn("LWBPensioner", System.Type.GetType("System.String")))
+
 
 
 
@@ -19239,7 +19244,8 @@ todo:   ' check for status in trxnheader
         " Emp_PrevUnion, " &
         " Emp_PrevGesiD, " &
         " Emp_Email, " &
-        " Emp_Email2 " &
+        " Emp_Email2, " &
+        " Emp_OtherIncome2 " &
         " FROM PrMsEmployees " &
         " WHERE Emp_Code In " &
         " (Select Emp_Code FROM PrTxTrxnHeader WHERE " &
@@ -19471,6 +19477,12 @@ todo:   ' check for status in trxnheader
                     EmpType = "3"
                 End If
                 R(C_EmpType) = EmpType
+                Dim LWBEmployee As Integer
+                LWBEmployee = DbNullToString(DsEmp.Tables(0).Rows(i).Item(21))
+                R(C_LWBPensioner) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(21))
+
+                Dim TaxableFromOther As Double = DbNullToDouble(DsEmp.Tables(0).Rows(i).Item(35))
+                R(C_TaxableFromOther) = TaxableFromOther
 
                 Dim DsPerPerCom As DataSet
                 Dim StrX As String
@@ -22553,6 +22565,55 @@ todo:   ' check for status in trxnheader
 
         Return GetData(StrX)
 
+    End Function
+    Protected Function REPORT_IR61_Gesy_DEDUCTIONTameioSyntakseon_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
+        Dim Str As String = ""
+        Dim StrX As String
+        Dim Last As Integer
+        Dim Ds As DataSet
+        Dim i As Integer
+        Dim PerCode As String
+
+        '''''''''''''''''''''''''''' NEW PART ''''''''''''''''''''''''''''''''''''''''''''
+        Dim strPerGroupCode As String
+        Dim strTempGroupCode As String
+        Dim strPerCode As String
+
+        Dim TemGrp As New cPrMsTemplateGroup(PerGrp.TemGrpCode)
+        Ds = Me.GetAll_Templates_PeriodGroups_Periods_OfSIPeriod(SIPeriod.Code, TemGrp.CompanyCode, PerGrp.Year)
+        If CheckDataSet(Ds) Then
+            Last = Ds.Tables(0).Rows.Count - 1
+            For i = 0 To Ds.Tables(0).Rows.Count - 1
+                strTempGroupCode = enQuoteString(DbNullToString(Ds.Tables(0).Rows(i).Item(0)))
+                strPerGroupCode = enQuoteString(DbNullToString(Ds.Tables(0).Rows(i).Item(1)))
+                strPerCode = enQuoteString(DbNullToString(Ds.Tables(0).Rows(i).Item(2)))
+                If i = 0 Then
+                    Str = Str & " AND ( "
+                Else
+                    Str = Str & " OR "
+                End If
+                Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " AND  PrTxTrxnHeader.PrdCod_Code = " & strPerCode & " )"
+                If i = Last Then
+                    Str = Str & " )"
+                End If
+
+            Next
+        End If
+
+        StrX = " SELECT PrTxTrxnHeader.Emp_Code, " &
+            " PrTxTrxnLines.TrxLin_PeriodValue" &
+            " FROM  PrTxTrxnHeader INNER JOIN" &
+            " PrTxTrxnLines ON " &
+            " PrTxTrxnHeader.TrxHdr_Id = PrTxTrxnLines.TrxHdr_Id INNER JOIN" &
+            " PrMsDeductionCodes ON " &
+            " PrTxTrxnLines.DedCod_Code = PrMsDeductionCodes.DedCod_Code" &
+            " WHERE  (PrMsDeductionCodes.DedTyp_Code = 'GD') " &
+            " AND (PrTxTrxnHeader.Emp_Code in (Select Emp_Code from PrMsEmployees where Emp_IsDirector <> '1'))"
+
+        '  StrX = StrX & Str2X & Str & StrZ
+        StrX = StrX & Str & " Order by PrTxtrxnHeader.emp_Code ASC"
+
+        Return GetData(StrX)
     End Function
     Protected Function REPORT_IR61_Gesy_DEDUCTION_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
         Dim Str As String = ""
@@ -58160,5 +58221,69 @@ todo:   ' check for status in trxnheader
 
         Return True
     End Function
+    Protected Function Upgrade_2025_04()
+
+        Dim Str As String
+        Dim i As Integer
+        Dim f As Boolean = True
+
+        Str = "ALTER TABLE PrTxIr59 " &
+        " ADD " &
+         " ARec_Current Decimal(18,2)," &
+         " ARec_SI Decimal(18,2)," &
+         " ARec_Other Decimal(18,2)," &
+         " ARec_Previous Decimal(18,2)," &
+         " ARec_Notional Decimal(18,2)," &
+         " ARec_Total Decimal(18,2)," &
+         " TRec_Current Decimal(18,2)," &
+         " TRec_SI Decimal(18,2)," &
+         " TRec_Other Decimal(18,2)," &
+         " TRec_Previous Decimal(18,2)," &
+         " TRec_Notional Decimal(18,2)," &
+         " TRec_Total Decimal(18,2)," &
+         " APer_Current Decimal(18,2)," &
+         " APer_SI Decimal(18,2)," &
+         " APer_Other Decimal(18,2)," &
+         " APer_Previous Decimal(18,2)," &
+         " APer_Notional Decimal(18,2)," &
+         " APer_Total Decimal(18,2)," &
+         " TPer_Current Decimal(18,2)," &
+         " TPer_SI Decimal(18,2)," &
+         " TPer_Other Decimal(18,2)," &
+         " TPer_Previous Decimal(18,2)," &
+         " TPer_Notional Decimal(18,2)," &
+         " TPer_Total Decimal(18,2)," &
+         " New_Difference Decimal(18,2)," &
+         " New_Paid Decimal(18,2)," &
+         " Rec_NewPAYE Decimal(18,2)," &
+         " Per_NewPAYE Decimal(18,2), " &
+         " Per_NewPeriodTax Decimal(18,2), " &
+         " Per_TotalCurSINot Decimal(18,2), " &
+         " Per_NewRemaining Decimal(18,2), " &
+         " Per_MethodUsed varchar(1) "
+
+
+        i = ExecuteNonQuery(Str)
+        If i >= 0 Then
+            MsgBox("New columns Added in PrTxIr59", MsgBoxStyle.Information)
+            '   Str = "Update PrTxIr59 set " &
+            '   " Rec_Gesi_Limit=0," &
+            '  " Act_Gesi_Limit=0"
+
+            'i = ExecuteNonQuery(Str)
+            'If i >= 0 Then
+            ' MsgBox("Value set to '0'", MsgBoxStyle.Information)
+            ' Else
+            '    MsgBox("Fail to set value to '0'", MsgBoxStyle.Critical)
+            '   f = False
+            'End If
+
+        Else
+            MsgBox("Fail to add New columns in PrTxIr59", MsgBoxStyle.Critical)
+            f = False
+        End If
+        Return f
+    End Function
+
 End Class
 

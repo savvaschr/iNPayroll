@@ -54,52 +54,7 @@ Partial Class FrmPrTxCalculatePayroll
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.C_Pay15 = New NodalPay.C_Pay()
-        Me.C_Pay14 = New NodalPay.C_Pay()
-        Me.C_Pay13 = New NodalPay.C_Pay()
-        Me.C_Pay12 = New NodalPay.C_Pay()
-        Me.C_Pay11 = New NodalPay.C_Pay()
-        Me.C_Pay10 = New NodalPay.C_Pay()
-        Me.C_Pay9 = New NodalPay.C_Pay()
-        Me.C_Pay8 = New NodalPay.C_Pay()
-        Me.C_Pay7 = New NodalPay.C_Pay()
-        Me.C_Pay6 = New NodalPay.C_Pay()
-        Me.C_Pay5 = New NodalPay.C_Pay()
-        Me.C_Pay4 = New NodalPay.C_Pay()
-        Me.C_Pay3 = New NodalPay.C_Pay()
-        Me.C_Pay2 = New NodalPay.C_Pay()
-        Me.C_Pay1 = New NodalPay.C_Pay()
-        Me.D_Pay15 = New NodalPay.D_Pay()
-        Me.D_Pay14 = New NodalPay.D_Pay()
-        Me.D_Pay13 = New NodalPay.D_Pay()
-        Me.D_Pay12 = New NodalPay.D_Pay()
-        Me.D_Pay11 = New NodalPay.D_Pay()
-        Me.D_Pay10 = New NodalPay.D_Pay()
-        Me.D_Pay9 = New NodalPay.D_Pay()
-        Me.D_Pay8 = New NodalPay.D_Pay()
-        Me.D_Pay7 = New NodalPay.D_Pay()
-        Me.D_Pay6 = New NodalPay.D_Pay()
-        Me.D_Pay5 = New NodalPay.D_Pay()
-        Me.D_Pay4 = New NodalPay.D_Pay()
-        Me.D_Pay3 = New NodalPay.D_Pay()
-        Me.D_Pay2 = New NodalPay.D_Pay()
-        Me.D_Pay1 = New NodalPay.D_Pay()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.E_Pay15 = New NodalPay.E_Pay()
-        Me.E_Pay14 = New NodalPay.E_Pay()
-        Me.E_Pay13 = New NodalPay.E_Pay()
-        Me.E_Pay12 = New NodalPay.E_Pay()
-        Me.E_Pay11 = New NodalPay.E_Pay()
-        Me.E_Pay10 = New NodalPay.E_Pay()
-        Me.E_Pay9 = New NodalPay.E_Pay()
-        Me.E_Pay8 = New NodalPay.E_Pay()
-        Me.E_Pay7 = New NodalPay.E_Pay()
-        Me.E_Pay6 = New NodalPay.E_Pay()
-        Me.E_Pay5 = New NodalPay.E_Pay()
-        Me.E_Pay4 = New NodalPay.E_Pay()
-        Me.E_Pay3 = New NodalPay.E_Pay()
-        Me.E_Pay2 = New NodalPay.E_Pay()
-        Me.E_Pay1 = New NodalPay.E_Pay()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.txtOneSixthRule = New System.Windows.Forms.TextBox()
         Me.Label48 = New System.Windows.Forms.Label()
@@ -144,51 +99,6 @@ Partial Class FrmPrTxCalculatePayroll
         Me.Label12 = New System.Windows.Forms.Label()
         Me.txtTotalEarnings = New System.Windows.Forms.TextBox()
         Me.Label11 = New System.Windows.Forms.Label()
-        Me.C_Final15 = New NodalPay.C_Final()
-        Me.D_Final15 = New NodalPay.D_Final()
-        Me.E_Final15 = New NodalPay.E_Final()
-        Me.C_Final14 = New NodalPay.C_Final()
-        Me.D_Final14 = New NodalPay.D_Final()
-        Me.E_Final14 = New NodalPay.E_Final()
-        Me.C_Final13 = New NodalPay.C_Final()
-        Me.D_Final13 = New NodalPay.D_Final()
-        Me.E_Final13 = New NodalPay.E_Final()
-        Me.C_Final12 = New NodalPay.C_Final()
-        Me.D_Final12 = New NodalPay.D_Final()
-        Me.E_Final12 = New NodalPay.E_Final()
-        Me.C_Final11 = New NodalPay.C_Final()
-        Me.D_Final11 = New NodalPay.D_Final()
-        Me.E_Final11 = New NodalPay.E_Final()
-        Me.C_Final10 = New NodalPay.C_Final()
-        Me.D_Final10 = New NodalPay.D_Final()
-        Me.E_Final10 = New NodalPay.E_Final()
-        Me.C_Final9 = New NodalPay.C_Final()
-        Me.D_Final9 = New NodalPay.D_Final()
-        Me.E_Final9 = New NodalPay.E_Final()
-        Me.C_Final8 = New NodalPay.C_Final()
-        Me.D_Final8 = New NodalPay.D_Final()
-        Me.E_Final8 = New NodalPay.E_Final()
-        Me.C_Final7 = New NodalPay.C_Final()
-        Me.D_Final7 = New NodalPay.D_Final()
-        Me.E_Final7 = New NodalPay.E_Final()
-        Me.C_Final6 = New NodalPay.C_Final()
-        Me.D_Final6 = New NodalPay.D_Final()
-        Me.E_Final6 = New NodalPay.E_Final()
-        Me.C_Final5 = New NodalPay.C_Final()
-        Me.D_Final5 = New NodalPay.D_Final()
-        Me.E_Final5 = New NodalPay.E_Final()
-        Me.C_Final4 = New NodalPay.C_Final()
-        Me.D_Final4 = New NodalPay.D_Final()
-        Me.E_Final4 = New NodalPay.E_Final()
-        Me.C_Final3 = New NodalPay.C_Final()
-        Me.D_Final3 = New NodalPay.D_Final()
-        Me.E_Final3 = New NodalPay.E_Final()
-        Me.C_Final2 = New NodalPay.C_Final()
-        Me.D_Final2 = New NodalPay.D_Final()
-        Me.E_Final2 = New NodalPay.E_Final()
-        Me.C_Final1 = New NodalPay.C_Final()
-        Me.D_Final1 = New NodalPay.D_Final()
-        Me.E_Final1 = New NodalPay.E_Final()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Label50 = New System.Windows.Forms.Label()
@@ -197,6 +107,55 @@ Partial Class FrmPrTxCalculatePayroll
         Me.BtnCalculateGross = New System.Windows.Forms.Button()
         Me.txtNetToBe = New System.Windows.Forms.TextBox()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.Label118 = New System.Windows.Forms.Label()
+        Me.txtPerRemaining = New System.Windows.Forms.TextBox()
+        Me.txtPERCurrent_SI_Notional = New System.Windows.Forms.TextBox()
+        Me.Label117 = New System.Windows.Forms.Label()
+        Me.Label116 = New System.Windows.Forms.Label()
+        Me.Label115 = New System.Windows.Forms.Label()
+        Me.txtNewPaid = New System.Windows.Forms.TextBox()
+        Me.txtNewPeriodTax = New System.Windows.Forms.TextBox()
+        Me.txtTaxDifference = New System.Windows.Forms.TextBox()
+        Me.Label114 = New System.Windows.Forms.Label()
+        Me.Label112 = New System.Windows.Forms.Label()
+        Me.Label113 = New System.Windows.Forms.Label()
+        Me.Label111 = New System.Windows.Forms.Label()
+        Me.Label110 = New System.Windows.Forms.Label()
+        Me.txt_PER_TempPAYE = New System.Windows.Forms.TextBox()
+        Me.txtTA_PER_TotalTaxable = New System.Windows.Forms.TextBox()
+        Me.txtAA_PER_TotalTaxable = New System.Windows.Forms.TextBox()
+        Me.txtTA_PER_NotionalIncome = New System.Windows.Forms.TextBox()
+        Me.txtAA_PER_NotionalIncome = New System.Windows.Forms.TextBox()
+        Me.txtTA_PER_PreviousEmployment = New System.Windows.Forms.TextBox()
+        Me.txtAA_PER_PreviousEmployment = New System.Windows.Forms.TextBox()
+        Me.txtTA_PER_FromOthersources = New System.Windows.Forms.TextBox()
+        Me.txtAA_PER_FromOthersources = New System.Windows.Forms.TextBox()
+        Me.txtTA_PER_SIPension = New System.Windows.Forms.TextBox()
+        Me.txtAA_PER_SIPension = New System.Windows.Forms.TextBox()
+        Me.txtTA_PER_CurrentEmployment = New System.Windows.Forms.TextBox()
+        Me.txtAA_PER_CurrentEmployment = New System.Windows.Forms.TextBox()
+        Me.txt_REC_TempPAYE = New System.Windows.Forms.TextBox()
+        Me.Label109 = New System.Windows.Forms.Label()
+        Me.txtTA_REC_TotalTaxable = New System.Windows.Forms.TextBox()
+        Me.txtAA_REC_TotalTaxable = New System.Windows.Forms.TextBox()
+        Me.txtTA_REC_NotionalIncome = New System.Windows.Forms.TextBox()
+        Me.txtAA_REC_NotionalIncome = New System.Windows.Forms.TextBox()
+        Me.txtTA_REC_PreviousEmployment = New System.Windows.Forms.TextBox()
+        Me.txtAA_REC_PreviousEmployment = New System.Windows.Forms.TextBox()
+        Me.txtTA_REC_FromOthersources = New System.Windows.Forms.TextBox()
+        Me.txtAA_REC_FromOthersources = New System.Windows.Forms.TextBox()
+        Me.txtTA_REC_SIPension = New System.Windows.Forms.TextBox()
+        Me.txtAA_REC_SIPension = New System.Windows.Forms.TextBox()
+        Me.txtTA_REC_CurrentEmployment = New System.Windows.Forms.TextBox()
+        Me.txtAA_REC_CurrentEmployment = New System.Windows.Forms.TextBox()
+        Me.Label108 = New System.Windows.Forms.Label()
+        Me.Label107 = New System.Windows.Forms.Label()
+        Me.Label85 = New System.Windows.Forms.Label()
+        Me.Label84 = New System.Windows.Forms.Label()
+        Me.Label83 = New System.Windows.Forms.Label()
+        Me.Label82 = New System.Windows.Forms.Label()
+        Me.Label51 = New System.Windows.Forms.Label()
+        Me.Label10 = New System.Windows.Forms.Label()
         Me.Label106 = New System.Windows.Forms.Label()
         Me.txtCGesyLimit = New System.Windows.Forms.TextBox()
         Me.txtRGesyLimit = New System.Windows.Forms.TextBox()
@@ -383,6 +342,98 @@ Partial Class FrmPrTxCalculatePayroll
         Me.BtnPrevius = New System.Windows.Forms.Button()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.txtTempstatus = New System.Windows.Forms.TextBox()
+        Me.CBMethodUsed = New System.Windows.Forms.CheckBox()
+        Me.LblRemTaxable = New System.Windows.Forms.Label()
+        Me.C_Pay15 = New NodalPay.C_Pay()
+        Me.C_Pay14 = New NodalPay.C_Pay()
+        Me.C_Pay13 = New NodalPay.C_Pay()
+        Me.C_Pay12 = New NodalPay.C_Pay()
+        Me.C_Pay11 = New NodalPay.C_Pay()
+        Me.C_Pay10 = New NodalPay.C_Pay()
+        Me.C_Pay9 = New NodalPay.C_Pay()
+        Me.C_Pay8 = New NodalPay.C_Pay()
+        Me.C_Pay7 = New NodalPay.C_Pay()
+        Me.C_Pay6 = New NodalPay.C_Pay()
+        Me.C_Pay5 = New NodalPay.C_Pay()
+        Me.C_Pay4 = New NodalPay.C_Pay()
+        Me.C_Pay3 = New NodalPay.C_Pay()
+        Me.C_Pay2 = New NodalPay.C_Pay()
+        Me.C_Pay1 = New NodalPay.C_Pay()
+        Me.D_Pay15 = New NodalPay.D_Pay()
+        Me.D_Pay14 = New NodalPay.D_Pay()
+        Me.D_Pay13 = New NodalPay.D_Pay()
+        Me.D_Pay12 = New NodalPay.D_Pay()
+        Me.D_Pay11 = New NodalPay.D_Pay()
+        Me.D_Pay10 = New NodalPay.D_Pay()
+        Me.D_Pay9 = New NodalPay.D_Pay()
+        Me.D_Pay8 = New NodalPay.D_Pay()
+        Me.D_Pay7 = New NodalPay.D_Pay()
+        Me.D_Pay6 = New NodalPay.D_Pay()
+        Me.D_Pay5 = New NodalPay.D_Pay()
+        Me.D_Pay4 = New NodalPay.D_Pay()
+        Me.D_Pay3 = New NodalPay.D_Pay()
+        Me.D_Pay2 = New NodalPay.D_Pay()
+        Me.D_Pay1 = New NodalPay.D_Pay()
+        Me.E_Pay15 = New NodalPay.E_Pay()
+        Me.E_Pay14 = New NodalPay.E_Pay()
+        Me.E_Pay13 = New NodalPay.E_Pay()
+        Me.E_Pay12 = New NodalPay.E_Pay()
+        Me.E_Pay11 = New NodalPay.E_Pay()
+        Me.E_Pay10 = New NodalPay.E_Pay()
+        Me.E_Pay9 = New NodalPay.E_Pay()
+        Me.E_Pay8 = New NodalPay.E_Pay()
+        Me.E_Pay7 = New NodalPay.E_Pay()
+        Me.E_Pay6 = New NodalPay.E_Pay()
+        Me.E_Pay5 = New NodalPay.E_Pay()
+        Me.E_Pay4 = New NodalPay.E_Pay()
+        Me.E_Pay3 = New NodalPay.E_Pay()
+        Me.E_Pay2 = New NodalPay.E_Pay()
+        Me.E_Pay1 = New NodalPay.E_Pay()
+        Me.C_Final15 = New NodalPay.C_Final()
+        Me.D_Final15 = New NodalPay.D_Final()
+        Me.E_Final15 = New NodalPay.E_Final()
+        Me.C_Final14 = New NodalPay.C_Final()
+        Me.D_Final14 = New NodalPay.D_Final()
+        Me.E_Final14 = New NodalPay.E_Final()
+        Me.C_Final13 = New NodalPay.C_Final()
+        Me.D_Final13 = New NodalPay.D_Final()
+        Me.E_Final13 = New NodalPay.E_Final()
+        Me.C_Final12 = New NodalPay.C_Final()
+        Me.D_Final12 = New NodalPay.D_Final()
+        Me.E_Final12 = New NodalPay.E_Final()
+        Me.C_Final11 = New NodalPay.C_Final()
+        Me.D_Final11 = New NodalPay.D_Final()
+        Me.E_Final11 = New NodalPay.E_Final()
+        Me.C_Final10 = New NodalPay.C_Final()
+        Me.D_Final10 = New NodalPay.D_Final()
+        Me.E_Final10 = New NodalPay.E_Final()
+        Me.C_Final9 = New NodalPay.C_Final()
+        Me.D_Final9 = New NodalPay.D_Final()
+        Me.E_Final9 = New NodalPay.E_Final()
+        Me.C_Final8 = New NodalPay.C_Final()
+        Me.D_Final8 = New NodalPay.D_Final()
+        Me.E_Final8 = New NodalPay.E_Final()
+        Me.C_Final7 = New NodalPay.C_Final()
+        Me.D_Final7 = New NodalPay.D_Final()
+        Me.E_Final7 = New NodalPay.E_Final()
+        Me.C_Final6 = New NodalPay.C_Final()
+        Me.D_Final6 = New NodalPay.D_Final()
+        Me.E_Final6 = New NodalPay.E_Final()
+        Me.C_Final5 = New NodalPay.C_Final()
+        Me.D_Final5 = New NodalPay.D_Final()
+        Me.E_Final5 = New NodalPay.E_Final()
+        Me.C_Final4 = New NodalPay.C_Final()
+        Me.D_Final4 = New NodalPay.D_Final()
+        Me.E_Final4 = New NodalPay.E_Final()
+        Me.C_Final3 = New NodalPay.C_Final()
+        Me.D_Final3 = New NodalPay.D_Final()
+        Me.E_Final3 = New NodalPay.E_Final()
+        Me.C_Final2 = New NodalPay.C_Final()
+        Me.D_Final2 = New NodalPay.D_Final()
+        Me.E_Final2 = New NodalPay.E_Final()
+        Me.C_Final1 = New NodalPay.C_Final()
+        Me.D_Final1 = New NodalPay.D_Final()
+        Me.E_Final1 = New NodalPay.E_Final()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -579,7 +630,7 @@ Partial Class FrmPrTxCalculatePayroll
         Me.TabControl1.Location = New System.Drawing.Point(8, 195)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(898, 541)
+        Me.TabControl1.Size = New System.Drawing.Size(891, 488)
         Me.TabControl1.TabIndex = 52
         '
         'TabPage1
@@ -594,7 +645,7 @@ Partial Class FrmPrTxCalculatePayroll
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(890, 515)
+        Me.TabPage1.Size = New System.Drawing.Size(883, 462)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "EDC Amounts"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -721,216 +772,6 @@ Partial Class FrmPrTxCalculatePayroll
         Me.Label5.TabIndex = 46
         Me.Label5.Text = "Deductions"
         '
-        'C_Pay15
-        '
-        Me.C_Pay15.Location = New System.Drawing.Point(500, 308)
-        Me.C_Pay15.Name = "C_Pay15"
-        Me.C_Pay15.Size = New System.Drawing.Size(236, 20)
-        Me.C_Pay15.TabIndex = 45
-        '
-        'C_Pay14
-        '
-        Me.C_Pay14.Location = New System.Drawing.Point(500, 288)
-        Me.C_Pay14.Name = "C_Pay14"
-        Me.C_Pay14.Size = New System.Drawing.Size(236, 20)
-        Me.C_Pay14.TabIndex = 44
-        '
-        'C_Pay13
-        '
-        Me.C_Pay13.Location = New System.Drawing.Point(500, 268)
-        Me.C_Pay13.Name = "C_Pay13"
-        Me.C_Pay13.Size = New System.Drawing.Size(236, 20)
-        Me.C_Pay13.TabIndex = 43
-        '
-        'C_Pay12
-        '
-        Me.C_Pay12.Location = New System.Drawing.Point(500, 248)
-        Me.C_Pay12.Name = "C_Pay12"
-        Me.C_Pay12.Size = New System.Drawing.Size(236, 20)
-        Me.C_Pay12.TabIndex = 42
-        '
-        'C_Pay11
-        '
-        Me.C_Pay11.Location = New System.Drawing.Point(500, 228)
-        Me.C_Pay11.Name = "C_Pay11"
-        Me.C_Pay11.Size = New System.Drawing.Size(236, 20)
-        Me.C_Pay11.TabIndex = 41
-        '
-        'C_Pay10
-        '
-        Me.C_Pay10.Location = New System.Drawing.Point(500, 208)
-        Me.C_Pay10.Name = "C_Pay10"
-        Me.C_Pay10.Size = New System.Drawing.Size(236, 20)
-        Me.C_Pay10.TabIndex = 40
-        '
-        'C_Pay9
-        '
-        Me.C_Pay9.Location = New System.Drawing.Point(500, 188)
-        Me.C_Pay9.Name = "C_Pay9"
-        Me.C_Pay9.Size = New System.Drawing.Size(236, 20)
-        Me.C_Pay9.TabIndex = 39
-        '
-        'C_Pay8
-        '
-        Me.C_Pay8.Location = New System.Drawing.Point(500, 168)
-        Me.C_Pay8.Name = "C_Pay8"
-        Me.C_Pay8.Size = New System.Drawing.Size(236, 20)
-        Me.C_Pay8.TabIndex = 38
-        '
-        'C_Pay7
-        '
-        Me.C_Pay7.Location = New System.Drawing.Point(500, 148)
-        Me.C_Pay7.Name = "C_Pay7"
-        Me.C_Pay7.Size = New System.Drawing.Size(236, 20)
-        Me.C_Pay7.TabIndex = 37
-        '
-        'C_Pay6
-        '
-        Me.C_Pay6.Location = New System.Drawing.Point(500, 128)
-        Me.C_Pay6.Name = "C_Pay6"
-        Me.C_Pay6.Size = New System.Drawing.Size(236, 20)
-        Me.C_Pay6.TabIndex = 36
-        '
-        'C_Pay5
-        '
-        Me.C_Pay5.Location = New System.Drawing.Point(500, 108)
-        Me.C_Pay5.Name = "C_Pay5"
-        Me.C_Pay5.Size = New System.Drawing.Size(236, 20)
-        Me.C_Pay5.TabIndex = 35
-        '
-        'C_Pay4
-        '
-        Me.C_Pay4.Location = New System.Drawing.Point(500, 88)
-        Me.C_Pay4.Name = "C_Pay4"
-        Me.C_Pay4.Size = New System.Drawing.Size(236, 20)
-        Me.C_Pay4.TabIndex = 34
-        '
-        'C_Pay3
-        '
-        Me.C_Pay3.Location = New System.Drawing.Point(500, 68)
-        Me.C_Pay3.Name = "C_Pay3"
-        Me.C_Pay3.Size = New System.Drawing.Size(236, 20)
-        Me.C_Pay3.TabIndex = 33
-        '
-        'C_Pay2
-        '
-        Me.C_Pay2.Location = New System.Drawing.Point(500, 48)
-        Me.C_Pay2.Name = "C_Pay2"
-        Me.C_Pay2.Size = New System.Drawing.Size(236, 20)
-        Me.C_Pay2.TabIndex = 32
-        '
-        'C_Pay1
-        '
-        Me.C_Pay1.Location = New System.Drawing.Point(500, 28)
-        Me.C_Pay1.Name = "C_Pay1"
-        Me.C_Pay1.Size = New System.Drawing.Size(236, 20)
-        Me.C_Pay1.TabIndex = 31
-        '
-        'D_Pay15
-        '
-        Me.D_Pay15.Location = New System.Drawing.Point(245, 308)
-        Me.D_Pay15.Name = "D_Pay15"
-        Me.D_Pay15.Size = New System.Drawing.Size(236, 20)
-        Me.D_Pay15.TabIndex = 30
-        '
-        'D_Pay14
-        '
-        Me.D_Pay14.Location = New System.Drawing.Point(245, 288)
-        Me.D_Pay14.Name = "D_Pay14"
-        Me.D_Pay14.Size = New System.Drawing.Size(236, 20)
-        Me.D_Pay14.TabIndex = 29
-        '
-        'D_Pay13
-        '
-        Me.D_Pay13.Location = New System.Drawing.Point(245, 268)
-        Me.D_Pay13.Name = "D_Pay13"
-        Me.D_Pay13.Size = New System.Drawing.Size(236, 20)
-        Me.D_Pay13.TabIndex = 28
-        '
-        'D_Pay12
-        '
-        Me.D_Pay12.Location = New System.Drawing.Point(245, 248)
-        Me.D_Pay12.Name = "D_Pay12"
-        Me.D_Pay12.Size = New System.Drawing.Size(236, 20)
-        Me.D_Pay12.TabIndex = 27
-        '
-        'D_Pay11
-        '
-        Me.D_Pay11.Location = New System.Drawing.Point(245, 228)
-        Me.D_Pay11.Name = "D_Pay11"
-        Me.D_Pay11.Size = New System.Drawing.Size(236, 20)
-        Me.D_Pay11.TabIndex = 26
-        '
-        'D_Pay10
-        '
-        Me.D_Pay10.Location = New System.Drawing.Point(245, 208)
-        Me.D_Pay10.Name = "D_Pay10"
-        Me.D_Pay10.Size = New System.Drawing.Size(236, 20)
-        Me.D_Pay10.TabIndex = 25
-        '
-        'D_Pay9
-        '
-        Me.D_Pay9.Location = New System.Drawing.Point(245, 188)
-        Me.D_Pay9.Name = "D_Pay9"
-        Me.D_Pay9.Size = New System.Drawing.Size(236, 20)
-        Me.D_Pay9.TabIndex = 24
-        '
-        'D_Pay8
-        '
-        Me.D_Pay8.Location = New System.Drawing.Point(245, 168)
-        Me.D_Pay8.Name = "D_Pay8"
-        Me.D_Pay8.Size = New System.Drawing.Size(236, 20)
-        Me.D_Pay8.TabIndex = 23
-        '
-        'D_Pay7
-        '
-        Me.D_Pay7.Location = New System.Drawing.Point(245, 148)
-        Me.D_Pay7.Name = "D_Pay7"
-        Me.D_Pay7.Size = New System.Drawing.Size(236, 20)
-        Me.D_Pay7.TabIndex = 22
-        '
-        'D_Pay6
-        '
-        Me.D_Pay6.Location = New System.Drawing.Point(245, 128)
-        Me.D_Pay6.Name = "D_Pay6"
-        Me.D_Pay6.Size = New System.Drawing.Size(236, 20)
-        Me.D_Pay6.TabIndex = 21
-        '
-        'D_Pay5
-        '
-        Me.D_Pay5.Location = New System.Drawing.Point(245, 108)
-        Me.D_Pay5.Name = "D_Pay5"
-        Me.D_Pay5.Size = New System.Drawing.Size(236, 20)
-        Me.D_Pay5.TabIndex = 20
-        '
-        'D_Pay4
-        '
-        Me.D_Pay4.Location = New System.Drawing.Point(245, 88)
-        Me.D_Pay4.Name = "D_Pay4"
-        Me.D_Pay4.Size = New System.Drawing.Size(236, 20)
-        Me.D_Pay4.TabIndex = 19
-        '
-        'D_Pay3
-        '
-        Me.D_Pay3.Location = New System.Drawing.Point(245, 68)
-        Me.D_Pay3.Name = "D_Pay3"
-        Me.D_Pay3.Size = New System.Drawing.Size(236, 20)
-        Me.D_Pay3.TabIndex = 18
-        '
-        'D_Pay2
-        '
-        Me.D_Pay2.Location = New System.Drawing.Point(245, 48)
-        Me.D_Pay2.Name = "D_Pay2"
-        Me.D_Pay2.Size = New System.Drawing.Size(236, 20)
-        Me.D_Pay2.TabIndex = 17
-        '
-        'D_Pay1
-        '
-        Me.D_Pay1.Location = New System.Drawing.Point(245, 28)
-        Me.D_Pay1.Name = "D_Pay1"
-        Me.D_Pay1.Size = New System.Drawing.Size(236, 20)
-        Me.D_Pay1.TabIndex = 16
-        '
         'Label4
         '
         Me.Label4.AutoSize = True
@@ -939,111 +780,6 @@ Partial Class FrmPrTxCalculatePayroll
         Me.Label4.Size = New System.Drawing.Size(48, 13)
         Me.Label4.TabIndex = 15
         Me.Label4.Text = "Earnings"
-        '
-        'E_Pay15
-        '
-        Me.E_Pay15.Location = New System.Drawing.Point(3, 308)
-        Me.E_Pay15.Name = "E_Pay15"
-        Me.E_Pay15.Size = New System.Drawing.Size(236, 20)
-        Me.E_Pay15.TabIndex = 14
-        '
-        'E_Pay14
-        '
-        Me.E_Pay14.Location = New System.Drawing.Point(3, 288)
-        Me.E_Pay14.Name = "E_Pay14"
-        Me.E_Pay14.Size = New System.Drawing.Size(236, 20)
-        Me.E_Pay14.TabIndex = 13
-        '
-        'E_Pay13
-        '
-        Me.E_Pay13.Location = New System.Drawing.Point(3, 268)
-        Me.E_Pay13.Name = "E_Pay13"
-        Me.E_Pay13.Size = New System.Drawing.Size(236, 20)
-        Me.E_Pay13.TabIndex = 12
-        '
-        'E_Pay12
-        '
-        Me.E_Pay12.Location = New System.Drawing.Point(3, 248)
-        Me.E_Pay12.Name = "E_Pay12"
-        Me.E_Pay12.Size = New System.Drawing.Size(236, 20)
-        Me.E_Pay12.TabIndex = 11
-        '
-        'E_Pay11
-        '
-        Me.E_Pay11.Location = New System.Drawing.Point(3, 228)
-        Me.E_Pay11.Name = "E_Pay11"
-        Me.E_Pay11.Size = New System.Drawing.Size(236, 20)
-        Me.E_Pay11.TabIndex = 10
-        '
-        'E_Pay10
-        '
-        Me.E_Pay10.Location = New System.Drawing.Point(3, 208)
-        Me.E_Pay10.Name = "E_Pay10"
-        Me.E_Pay10.Size = New System.Drawing.Size(236, 20)
-        Me.E_Pay10.TabIndex = 9
-        '
-        'E_Pay9
-        '
-        Me.E_Pay9.Location = New System.Drawing.Point(3, 188)
-        Me.E_Pay9.Name = "E_Pay9"
-        Me.E_Pay9.Size = New System.Drawing.Size(236, 20)
-        Me.E_Pay9.TabIndex = 8
-        '
-        'E_Pay8
-        '
-        Me.E_Pay8.Location = New System.Drawing.Point(3, 168)
-        Me.E_Pay8.Name = "E_Pay8"
-        Me.E_Pay8.Size = New System.Drawing.Size(236, 20)
-        Me.E_Pay8.TabIndex = 7
-        '
-        'E_Pay7
-        '
-        Me.E_Pay7.Location = New System.Drawing.Point(3, 148)
-        Me.E_Pay7.Name = "E_Pay7"
-        Me.E_Pay7.Size = New System.Drawing.Size(236, 20)
-        Me.E_Pay7.TabIndex = 6
-        '
-        'E_Pay6
-        '
-        Me.E_Pay6.Location = New System.Drawing.Point(3, 128)
-        Me.E_Pay6.Name = "E_Pay6"
-        Me.E_Pay6.Size = New System.Drawing.Size(236, 20)
-        Me.E_Pay6.TabIndex = 5
-        '
-        'E_Pay5
-        '
-        Me.E_Pay5.Location = New System.Drawing.Point(3, 108)
-        Me.E_Pay5.Name = "E_Pay5"
-        Me.E_Pay5.Size = New System.Drawing.Size(236, 20)
-        Me.E_Pay5.TabIndex = 4
-        '
-        'E_Pay4
-        '
-        Me.E_Pay4.Location = New System.Drawing.Point(3, 88)
-        Me.E_Pay4.Name = "E_Pay4"
-        Me.E_Pay4.Size = New System.Drawing.Size(236, 20)
-        Me.E_Pay4.TabIndex = 3
-        '
-        'E_Pay3
-        '
-        Me.E_Pay3.Location = New System.Drawing.Point(3, 68)
-        Me.E_Pay3.Name = "E_Pay3"
-        Me.E_Pay3.Size = New System.Drawing.Size(236, 20)
-        Me.E_Pay3.TabIndex = 2
-        '
-        'E_Pay2
-        '
-        Me.E_Pay2.Location = New System.Drawing.Point(3, 48)
-        Me.E_Pay2.Name = "E_Pay2"
-        Me.E_Pay2.Size = New System.Drawing.Size(236, 20)
-        Me.E_Pay2.TabIndex = 1
-        '
-        'E_Pay1
-        '
-        Me.E_Pay1.Location = New System.Drawing.Point(3, 28)
-        Me.E_Pay1.Name = "E_Pay1"
-        Me.E_Pay1.Size = New System.Drawing.Size(236, 20)
-        Me.E_Pay1.TabIndex = 0
         '
         'Panel2
         '
@@ -1433,7 +1169,7 @@ Partial Class FrmPrTxCalculatePayroll
         Me.TabPage3.Controls.Add(Me.E_Final1)
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Size = New System.Drawing.Size(890, 515)
+        Me.TabPage3.Size = New System.Drawing.Size(883, 462)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "Payroll Amounts"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -1514,366 +1250,6 @@ Partial Class FrmPrTxCalculatePayroll
         Me.Label11.TabIndex = 54
         Me.Label11.Text = "Total Earnings"
         '
-        'C_Final15
-        '
-        Me.C_Final15.Location = New System.Drawing.Point(519, 303)
-        Me.C_Final15.MyValue = 0R
-        Me.C_Final15.Name = "C_Final15"
-        Me.C_Final15.Size = New System.Drawing.Size(236, 20)
-        Me.C_Final15.TabIndex = 44
-        '
-        'D_Final15
-        '
-        Me.D_Final15.Location = New System.Drawing.Point(265, 303)
-        Me.D_Final15.MyValue = 0R
-        Me.D_Final15.Name = "D_Final15"
-        Me.D_Final15.Size = New System.Drawing.Size(236, 20)
-        Me.D_Final15.TabIndex = 43
-        '
-        'E_Final15
-        '
-        Me.E_Final15.Location = New System.Drawing.Point(12, 303)
-        Me.E_Final15.MyValue = 0R
-        Me.E_Final15.Name = "E_Final15"
-        Me.E_Final15.Size = New System.Drawing.Size(236, 20)
-        Me.E_Final15.TabIndex = 42
-        '
-        'C_Final14
-        '
-        Me.C_Final14.Location = New System.Drawing.Point(519, 283)
-        Me.C_Final14.MyValue = 0R
-        Me.C_Final14.Name = "C_Final14"
-        Me.C_Final14.Size = New System.Drawing.Size(236, 20)
-        Me.C_Final14.TabIndex = 41
-        '
-        'D_Final14
-        '
-        Me.D_Final14.Location = New System.Drawing.Point(265, 283)
-        Me.D_Final14.MyValue = 0R
-        Me.D_Final14.Name = "D_Final14"
-        Me.D_Final14.Size = New System.Drawing.Size(236, 20)
-        Me.D_Final14.TabIndex = 40
-        '
-        'E_Final14
-        '
-        Me.E_Final14.Location = New System.Drawing.Point(12, 283)
-        Me.E_Final14.MyValue = 0R
-        Me.E_Final14.Name = "E_Final14"
-        Me.E_Final14.Size = New System.Drawing.Size(236, 20)
-        Me.E_Final14.TabIndex = 39
-        '
-        'C_Final13
-        '
-        Me.C_Final13.Location = New System.Drawing.Point(519, 263)
-        Me.C_Final13.MyValue = 0R
-        Me.C_Final13.Name = "C_Final13"
-        Me.C_Final13.Size = New System.Drawing.Size(236, 20)
-        Me.C_Final13.TabIndex = 38
-        '
-        'D_Final13
-        '
-        Me.D_Final13.Location = New System.Drawing.Point(265, 263)
-        Me.D_Final13.MyValue = 0R
-        Me.D_Final13.Name = "D_Final13"
-        Me.D_Final13.Size = New System.Drawing.Size(236, 20)
-        Me.D_Final13.TabIndex = 37
-        '
-        'E_Final13
-        '
-        Me.E_Final13.Location = New System.Drawing.Point(12, 263)
-        Me.E_Final13.MyValue = 0R
-        Me.E_Final13.Name = "E_Final13"
-        Me.E_Final13.Size = New System.Drawing.Size(236, 20)
-        Me.E_Final13.TabIndex = 36
-        '
-        'C_Final12
-        '
-        Me.C_Final12.Location = New System.Drawing.Point(519, 243)
-        Me.C_Final12.MyValue = 0R
-        Me.C_Final12.Name = "C_Final12"
-        Me.C_Final12.Size = New System.Drawing.Size(236, 20)
-        Me.C_Final12.TabIndex = 35
-        '
-        'D_Final12
-        '
-        Me.D_Final12.Location = New System.Drawing.Point(265, 243)
-        Me.D_Final12.MyValue = 0R
-        Me.D_Final12.Name = "D_Final12"
-        Me.D_Final12.Size = New System.Drawing.Size(236, 20)
-        Me.D_Final12.TabIndex = 34
-        '
-        'E_Final12
-        '
-        Me.E_Final12.Location = New System.Drawing.Point(12, 243)
-        Me.E_Final12.MyValue = 0R
-        Me.E_Final12.Name = "E_Final12"
-        Me.E_Final12.Size = New System.Drawing.Size(236, 20)
-        Me.E_Final12.TabIndex = 33
-        '
-        'C_Final11
-        '
-        Me.C_Final11.Location = New System.Drawing.Point(519, 223)
-        Me.C_Final11.MyValue = 0R
-        Me.C_Final11.Name = "C_Final11"
-        Me.C_Final11.Size = New System.Drawing.Size(236, 20)
-        Me.C_Final11.TabIndex = 32
-        '
-        'D_Final11
-        '
-        Me.D_Final11.Location = New System.Drawing.Point(265, 223)
-        Me.D_Final11.MyValue = 0R
-        Me.D_Final11.Name = "D_Final11"
-        Me.D_Final11.Size = New System.Drawing.Size(236, 20)
-        Me.D_Final11.TabIndex = 31
-        '
-        'E_Final11
-        '
-        Me.E_Final11.Location = New System.Drawing.Point(12, 223)
-        Me.E_Final11.MyValue = 0R
-        Me.E_Final11.Name = "E_Final11"
-        Me.E_Final11.Size = New System.Drawing.Size(236, 20)
-        Me.E_Final11.TabIndex = 30
-        '
-        'C_Final10
-        '
-        Me.C_Final10.Location = New System.Drawing.Point(519, 203)
-        Me.C_Final10.MyValue = 0R
-        Me.C_Final10.Name = "C_Final10"
-        Me.C_Final10.Size = New System.Drawing.Size(236, 20)
-        Me.C_Final10.TabIndex = 29
-        '
-        'D_Final10
-        '
-        Me.D_Final10.Location = New System.Drawing.Point(265, 203)
-        Me.D_Final10.MyValue = 0R
-        Me.D_Final10.Name = "D_Final10"
-        Me.D_Final10.Size = New System.Drawing.Size(236, 20)
-        Me.D_Final10.TabIndex = 28
-        '
-        'E_Final10
-        '
-        Me.E_Final10.Location = New System.Drawing.Point(12, 203)
-        Me.E_Final10.MyValue = 0R
-        Me.E_Final10.Name = "E_Final10"
-        Me.E_Final10.Size = New System.Drawing.Size(236, 20)
-        Me.E_Final10.TabIndex = 27
-        '
-        'C_Final9
-        '
-        Me.C_Final9.Location = New System.Drawing.Point(519, 183)
-        Me.C_Final9.MyValue = 0R
-        Me.C_Final9.Name = "C_Final9"
-        Me.C_Final9.Size = New System.Drawing.Size(236, 20)
-        Me.C_Final9.TabIndex = 26
-        '
-        'D_Final9
-        '
-        Me.D_Final9.Location = New System.Drawing.Point(265, 183)
-        Me.D_Final9.MyValue = 0R
-        Me.D_Final9.Name = "D_Final9"
-        Me.D_Final9.Size = New System.Drawing.Size(236, 20)
-        Me.D_Final9.TabIndex = 25
-        '
-        'E_Final9
-        '
-        Me.E_Final9.Location = New System.Drawing.Point(12, 183)
-        Me.E_Final9.MyValue = 0R
-        Me.E_Final9.Name = "E_Final9"
-        Me.E_Final9.Size = New System.Drawing.Size(236, 20)
-        Me.E_Final9.TabIndex = 24
-        '
-        'C_Final8
-        '
-        Me.C_Final8.Location = New System.Drawing.Point(519, 163)
-        Me.C_Final8.MyValue = 0R
-        Me.C_Final8.Name = "C_Final8"
-        Me.C_Final8.Size = New System.Drawing.Size(236, 20)
-        Me.C_Final8.TabIndex = 23
-        '
-        'D_Final8
-        '
-        Me.D_Final8.Location = New System.Drawing.Point(265, 163)
-        Me.D_Final8.MyValue = 0R
-        Me.D_Final8.Name = "D_Final8"
-        Me.D_Final8.Size = New System.Drawing.Size(236, 20)
-        Me.D_Final8.TabIndex = 22
-        '
-        'E_Final8
-        '
-        Me.E_Final8.Location = New System.Drawing.Point(12, 163)
-        Me.E_Final8.MyValue = 0R
-        Me.E_Final8.Name = "E_Final8"
-        Me.E_Final8.Size = New System.Drawing.Size(236, 20)
-        Me.E_Final8.TabIndex = 21
-        '
-        'C_Final7
-        '
-        Me.C_Final7.Location = New System.Drawing.Point(519, 143)
-        Me.C_Final7.MyValue = 0R
-        Me.C_Final7.Name = "C_Final7"
-        Me.C_Final7.Size = New System.Drawing.Size(236, 20)
-        Me.C_Final7.TabIndex = 20
-        '
-        'D_Final7
-        '
-        Me.D_Final7.Location = New System.Drawing.Point(265, 143)
-        Me.D_Final7.MyValue = 0R
-        Me.D_Final7.Name = "D_Final7"
-        Me.D_Final7.Size = New System.Drawing.Size(236, 20)
-        Me.D_Final7.TabIndex = 19
-        '
-        'E_Final7
-        '
-        Me.E_Final7.Location = New System.Drawing.Point(12, 143)
-        Me.E_Final7.MyValue = 0R
-        Me.E_Final7.Name = "E_Final7"
-        Me.E_Final7.Size = New System.Drawing.Size(236, 20)
-        Me.E_Final7.TabIndex = 18
-        '
-        'C_Final6
-        '
-        Me.C_Final6.Location = New System.Drawing.Point(519, 123)
-        Me.C_Final6.MyValue = 0R
-        Me.C_Final6.Name = "C_Final6"
-        Me.C_Final6.Size = New System.Drawing.Size(236, 20)
-        Me.C_Final6.TabIndex = 17
-        '
-        'D_Final6
-        '
-        Me.D_Final6.Location = New System.Drawing.Point(265, 123)
-        Me.D_Final6.MyValue = 0R
-        Me.D_Final6.Name = "D_Final6"
-        Me.D_Final6.Size = New System.Drawing.Size(236, 20)
-        Me.D_Final6.TabIndex = 16
-        '
-        'E_Final6
-        '
-        Me.E_Final6.Location = New System.Drawing.Point(12, 123)
-        Me.E_Final6.MyValue = 0R
-        Me.E_Final6.Name = "E_Final6"
-        Me.E_Final6.Size = New System.Drawing.Size(236, 20)
-        Me.E_Final6.TabIndex = 15
-        '
-        'C_Final5
-        '
-        Me.C_Final5.Location = New System.Drawing.Point(519, 103)
-        Me.C_Final5.MyValue = 0R
-        Me.C_Final5.Name = "C_Final5"
-        Me.C_Final5.Size = New System.Drawing.Size(236, 20)
-        Me.C_Final5.TabIndex = 14
-        '
-        'D_Final5
-        '
-        Me.D_Final5.Location = New System.Drawing.Point(265, 103)
-        Me.D_Final5.MyValue = 0R
-        Me.D_Final5.Name = "D_Final5"
-        Me.D_Final5.Size = New System.Drawing.Size(236, 20)
-        Me.D_Final5.TabIndex = 13
-        '
-        'E_Final5
-        '
-        Me.E_Final5.Location = New System.Drawing.Point(12, 103)
-        Me.E_Final5.MyValue = 0R
-        Me.E_Final5.Name = "E_Final5"
-        Me.E_Final5.Size = New System.Drawing.Size(236, 20)
-        Me.E_Final5.TabIndex = 12
-        '
-        'C_Final4
-        '
-        Me.C_Final4.Location = New System.Drawing.Point(519, 83)
-        Me.C_Final4.MyValue = 0R
-        Me.C_Final4.Name = "C_Final4"
-        Me.C_Final4.Size = New System.Drawing.Size(236, 20)
-        Me.C_Final4.TabIndex = 11
-        '
-        'D_Final4
-        '
-        Me.D_Final4.Location = New System.Drawing.Point(265, 83)
-        Me.D_Final4.MyValue = 0R
-        Me.D_Final4.Name = "D_Final4"
-        Me.D_Final4.Size = New System.Drawing.Size(236, 20)
-        Me.D_Final4.TabIndex = 10
-        '
-        'E_Final4
-        '
-        Me.E_Final4.Location = New System.Drawing.Point(12, 83)
-        Me.E_Final4.MyValue = 0R
-        Me.E_Final4.Name = "E_Final4"
-        Me.E_Final4.Size = New System.Drawing.Size(236, 20)
-        Me.E_Final4.TabIndex = 9
-        '
-        'C_Final3
-        '
-        Me.C_Final3.Location = New System.Drawing.Point(519, 63)
-        Me.C_Final3.MyValue = 0R
-        Me.C_Final3.Name = "C_Final3"
-        Me.C_Final3.Size = New System.Drawing.Size(236, 20)
-        Me.C_Final3.TabIndex = 8
-        '
-        'D_Final3
-        '
-        Me.D_Final3.Location = New System.Drawing.Point(265, 63)
-        Me.D_Final3.MyValue = 0R
-        Me.D_Final3.Name = "D_Final3"
-        Me.D_Final3.Size = New System.Drawing.Size(236, 20)
-        Me.D_Final3.TabIndex = 7
-        '
-        'E_Final3
-        '
-        Me.E_Final3.Location = New System.Drawing.Point(12, 63)
-        Me.E_Final3.MyValue = 0R
-        Me.E_Final3.Name = "E_Final3"
-        Me.E_Final3.Size = New System.Drawing.Size(236, 20)
-        Me.E_Final3.TabIndex = 6
-        '
-        'C_Final2
-        '
-        Me.C_Final2.Location = New System.Drawing.Point(519, 43)
-        Me.C_Final2.MyValue = 0R
-        Me.C_Final2.Name = "C_Final2"
-        Me.C_Final2.Size = New System.Drawing.Size(236, 20)
-        Me.C_Final2.TabIndex = 5
-        '
-        'D_Final2
-        '
-        Me.D_Final2.Location = New System.Drawing.Point(265, 43)
-        Me.D_Final2.MyValue = 0R
-        Me.D_Final2.Name = "D_Final2"
-        Me.D_Final2.Size = New System.Drawing.Size(236, 20)
-        Me.D_Final2.TabIndex = 4
-        '
-        'E_Final2
-        '
-        Me.E_Final2.Location = New System.Drawing.Point(12, 43)
-        Me.E_Final2.MyValue = 0R
-        Me.E_Final2.Name = "E_Final2"
-        Me.E_Final2.Size = New System.Drawing.Size(236, 20)
-        Me.E_Final2.TabIndex = 3
-        '
-        'C_Final1
-        '
-        Me.C_Final1.Location = New System.Drawing.Point(519, 23)
-        Me.C_Final1.MyValue = 0R
-        Me.C_Final1.Name = "C_Final1"
-        Me.C_Final1.Size = New System.Drawing.Size(236, 20)
-        Me.C_Final1.TabIndex = 2
-        '
-        'D_Final1
-        '
-        Me.D_Final1.Location = New System.Drawing.Point(265, 23)
-        Me.D_Final1.MyValue = 0R
-        Me.D_Final1.Name = "D_Final1"
-        Me.D_Final1.Size = New System.Drawing.Size(236, 20)
-        Me.D_Final1.TabIndex = 1
-        '
-        'E_Final1
-        '
-        Me.E_Final1.Location = New System.Drawing.Point(12, 23)
-        Me.E_Final1.MyValue = 0R
-        Me.E_Final1.Name = "E_Final1"
-        Me.E_Final1.Size = New System.Drawing.Size(236, 20)
-        Me.E_Final1.TabIndex = 0
-        '
         'TabPage2
         '
         Me.TabPage2.Controls.Add(Me.Button3)
@@ -1884,7 +1260,7 @@ Partial Class FrmPrTxCalculatePayroll
         Me.TabPage2.Controls.Add(Me.txtNetToBe)
         Me.TabPage2.Location = New System.Drawing.Point(4, 22)
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Size = New System.Drawing.Size(890, 515)
+        Me.TabPage2.Size = New System.Drawing.Size(883, 462)
         Me.TabPage2.TabIndex = 3
         Me.TabPage2.Text = "Net To Gross Calculation"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -1945,6 +1321,57 @@ Partial Class FrmPrTxCalculatePayroll
         '
         'TabPage4
         '
+        Me.TabPage4.Controls.Add(Me.LblRemTaxable)
+        Me.TabPage4.Controls.Add(Me.CBMethodUsed)
+        Me.TabPage4.Controls.Add(Me.Label118)
+        Me.TabPage4.Controls.Add(Me.txtPerRemaining)
+        Me.TabPage4.Controls.Add(Me.txtPERCurrent_SI_Notional)
+        Me.TabPage4.Controls.Add(Me.Label117)
+        Me.TabPage4.Controls.Add(Me.Label116)
+        Me.TabPage4.Controls.Add(Me.Label115)
+        Me.TabPage4.Controls.Add(Me.txtNewPaid)
+        Me.TabPage4.Controls.Add(Me.txtNewPeriodTax)
+        Me.TabPage4.Controls.Add(Me.txtTaxDifference)
+        Me.TabPage4.Controls.Add(Me.Label114)
+        Me.TabPage4.Controls.Add(Me.Label112)
+        Me.TabPage4.Controls.Add(Me.Label113)
+        Me.TabPage4.Controls.Add(Me.Label111)
+        Me.TabPage4.Controls.Add(Me.Label110)
+        Me.TabPage4.Controls.Add(Me.txt_PER_TempPAYE)
+        Me.TabPage4.Controls.Add(Me.txtTA_PER_TotalTaxable)
+        Me.TabPage4.Controls.Add(Me.txtAA_PER_TotalTaxable)
+        Me.TabPage4.Controls.Add(Me.txtTA_PER_NotionalIncome)
+        Me.TabPage4.Controls.Add(Me.txtAA_PER_NotionalIncome)
+        Me.TabPage4.Controls.Add(Me.txtTA_PER_PreviousEmployment)
+        Me.TabPage4.Controls.Add(Me.txtAA_PER_PreviousEmployment)
+        Me.TabPage4.Controls.Add(Me.txtTA_PER_FromOthersources)
+        Me.TabPage4.Controls.Add(Me.txtAA_PER_FromOthersources)
+        Me.TabPage4.Controls.Add(Me.txtTA_PER_SIPension)
+        Me.TabPage4.Controls.Add(Me.txtAA_PER_SIPension)
+        Me.TabPage4.Controls.Add(Me.txtTA_PER_CurrentEmployment)
+        Me.TabPage4.Controls.Add(Me.txtAA_PER_CurrentEmployment)
+        Me.TabPage4.Controls.Add(Me.txt_REC_TempPAYE)
+        Me.TabPage4.Controls.Add(Me.Label109)
+        Me.TabPage4.Controls.Add(Me.txtTA_REC_TotalTaxable)
+        Me.TabPage4.Controls.Add(Me.txtAA_REC_TotalTaxable)
+        Me.TabPage4.Controls.Add(Me.txtTA_REC_NotionalIncome)
+        Me.TabPage4.Controls.Add(Me.txtAA_REC_NotionalIncome)
+        Me.TabPage4.Controls.Add(Me.txtTA_REC_PreviousEmployment)
+        Me.TabPage4.Controls.Add(Me.txtAA_REC_PreviousEmployment)
+        Me.TabPage4.Controls.Add(Me.txtTA_REC_FromOthersources)
+        Me.TabPage4.Controls.Add(Me.txtAA_REC_FromOthersources)
+        Me.TabPage4.Controls.Add(Me.txtTA_REC_SIPension)
+        Me.TabPage4.Controls.Add(Me.txtAA_REC_SIPension)
+        Me.TabPage4.Controls.Add(Me.txtTA_REC_CurrentEmployment)
+        Me.TabPage4.Controls.Add(Me.txtAA_REC_CurrentEmployment)
+        Me.TabPage4.Controls.Add(Me.Label108)
+        Me.TabPage4.Controls.Add(Me.Label107)
+        Me.TabPage4.Controls.Add(Me.Label85)
+        Me.TabPage4.Controls.Add(Me.Label84)
+        Me.TabPage4.Controls.Add(Me.Label83)
+        Me.TabPage4.Controls.Add(Me.Label82)
+        Me.TabPage4.Controls.Add(Me.Label51)
+        Me.TabPage4.Controls.Add(Me.Label10)
         Me.TabPage4.Controls.Add(Me.Label106)
         Me.TabPage4.Controls.Add(Me.txtCGesyLimit)
         Me.TabPage4.Controls.Add(Me.txtRGesyLimit)
@@ -2030,15 +1457,489 @@ Partial Class FrmPrTxCalculatePayroll
         Me.TabPage4.Controls.Add(Me.txtORPeriodTax)
         Me.TabPage4.Location = New System.Drawing.Point(4, 22)
         Me.TabPage4.Name = "TabPage4"
-        Me.TabPage4.Size = New System.Drawing.Size(890, 515)
+        Me.TabPage4.Size = New System.Drawing.Size(883, 462)
         Me.TabPage4.TabIndex = 4
         Me.TabPage4.Text = "Income Tax Analysis"
         Me.TabPage4.UseVisualStyleBackColor = True
         '
+        'Label118
+        '
+        Me.Label118.AutoSize = True
+        Me.Label118.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        Me.Label118.Location = New System.Drawing.Point(575, 253)
+        Me.Label118.Name = "Label118"
+        Me.Label118.Size = New System.Drawing.Size(76, 15)
+        Me.Label118.TabIndex = 234
+        Me.Label118.Text = "Period Tax"
+        '
+        'txtPerRemaining
+        '
+        Me.txtPerRemaining.BackColor = System.Drawing.Color.Aqua
+        Me.txtPerRemaining.Location = New System.Drawing.Point(729, 227)
+        Me.txtPerRemaining.Name = "txtPerRemaining"
+        Me.txtPerRemaining.ReadOnly = True
+        Me.txtPerRemaining.Size = New System.Drawing.Size(72, 20)
+        Me.txtPerRemaining.TabIndex = 233
+        Me.txtPerRemaining.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtPERCurrent_SI_Notional
+        '
+        Me.txtPERCurrent_SI_Notional.BackColor = System.Drawing.Color.Aqua
+        Me.txtPERCurrent_SI_Notional.Location = New System.Drawing.Point(729, 187)
+        Me.txtPERCurrent_SI_Notional.Name = "txtPERCurrent_SI_Notional"
+        Me.txtPERCurrent_SI_Notional.ReadOnly = True
+        Me.txtPERCurrent_SI_Notional.Size = New System.Drawing.Size(72, 20)
+        Me.txtPERCurrent_SI_Notional.TabIndex = 232
+        Me.txtPERCurrent_SI_Notional.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label117
+        '
+        Me.Label117.AutoSize = True
+        Me.Label117.Location = New System.Drawing.Point(575, 230)
+        Me.Label117.Name = "Label117"
+        Me.Label117.Size = New System.Drawing.Size(57, 13)
+        Me.Label117.TabIndex = 231
+        Me.Label117.Text = "Remaining"
+        '
+        'Label116
+        '
+        Me.Label116.AutoSize = True
+        Me.Label116.Location = New System.Drawing.Point(575, 210)
+        Me.Label116.Name = "Label116"
+        Me.Label116.Size = New System.Drawing.Size(28, 13)
+        Me.Label116.TabIndex = 230
+        Me.Label116.Text = "Paid"
+        '
+        'Label115
+        '
+        Me.Label115.AutoSize = True
+        Me.Label115.Location = New System.Drawing.Point(575, 190)
+        Me.Label115.Name = "Label115"
+        Me.Label115.Size = New System.Drawing.Size(149, 13)
+        Me.Label115.TabIndex = 229
+        Me.Label115.Text = "Current +SIPension + Notional"
+        '
+        'txtNewPaid
+        '
+        Me.txtNewPaid.BackColor = System.Drawing.Color.Aqua
+        Me.txtNewPaid.Location = New System.Drawing.Point(729, 207)
+        Me.txtNewPaid.Name = "txtNewPaid"
+        Me.txtNewPaid.ReadOnly = True
+        Me.txtNewPaid.Size = New System.Drawing.Size(72, 20)
+        Me.txtNewPaid.TabIndex = 228
+        Me.txtNewPaid.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtNewPeriodTax
+        '
+        Me.txtNewPeriodTax.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.txtNewPeriodTax.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        Me.txtNewPeriodTax.Location = New System.Drawing.Point(729, 249)
+        Me.txtNewPeriodTax.Name = "txtNewPeriodTax"
+        Me.txtNewPeriodTax.ReadOnly = True
+        Me.txtNewPeriodTax.Size = New System.Drawing.Size(72, 22)
+        Me.txtNewPeriodTax.TabIndex = 227
+        Me.txtNewPeriodTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtTaxDifference
+        '
+        Me.txtTaxDifference.BackColor = System.Drawing.Color.Aqua
+        Me.txtTaxDifference.Location = New System.Drawing.Point(806, 167)
+        Me.txtTaxDifference.Name = "txtTaxDifference"
+        Me.txtTaxDifference.ReadOnly = True
+        Me.txtTaxDifference.Size = New System.Drawing.Size(72, 20)
+        Me.txtTaxDifference.TabIndex = 226
+        Me.txtTaxDifference.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label114
+        '
+        Me.Label114.AutoSize = True
+        Me.Label114.Location = New System.Drawing.Point(803, 151)
+        Me.Label114.Name = "Label114"
+        Me.Label114.Size = New System.Drawing.Size(77, 13)
+        Me.Label114.TabIndex = 225
+        Me.Label114.Text = "Tax Difference"
+        '
+        'Label112
+        '
+        Me.Label112.AutoSize = True
+        Me.Label112.Location = New System.Drawing.Point(731, 31)
+        Me.Label112.Name = "Label112"
+        Me.Label112.Size = New System.Drawing.Size(74, 13)
+        Me.Label112.TabIndex = 224
+        Me.Label112.Text = "Tax Allocation"
+        '
+        'Label113
+        '
+        Me.Label113.AutoSize = True
+        Me.Label113.Location = New System.Drawing.Point(655, 31)
+        Me.Label113.Name = "Label113"
+        Me.Label113.Size = New System.Drawing.Size(48, 13)
+        Me.Label113.TabIndex = 223
+        Me.Label113.Text = "Amounts"
+        '
+        'Label111
+        '
+        Me.Label111.AutoSize = True
+        Me.Label111.Location = New System.Drawing.Point(663, 9)
+        Me.Label111.Name = "Label111"
+        Me.Label111.Size = New System.Drawing.Size(118, 13)
+        Me.Label111.TabIndex = 222
+        Me.Label111.Text = "Current Period Earnings"
+        '
+        'Label110
+        '
+        Me.Label110.AutoSize = True
+        Me.Label110.Location = New System.Drawing.Point(513, 9)
+        Me.Label110.Name = "Label110"
+        Me.Label110.Size = New System.Drawing.Size(118, 13)
+        Me.Label110.TabIndex = 221
+        Me.Label110.Text = "Only Recuring Earnings"
+        '
+        'txt_PER_TempPAYE
+        '
+        Me.txt_PER_TempPAYE.BackColor = System.Drawing.Color.Aqua
+        Me.txt_PER_TempPAYE.Location = New System.Drawing.Point(730, 167)
+        Me.txt_PER_TempPAYE.Name = "txt_PER_TempPAYE"
+        Me.txt_PER_TempPAYE.ReadOnly = True
+        Me.txt_PER_TempPAYE.Size = New System.Drawing.Size(72, 20)
+        Me.txt_PER_TempPAYE.TabIndex = 220
+        Me.txt_PER_TempPAYE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtTA_PER_TotalTaxable
+        '
+        Me.txtTA_PER_TotalTaxable.BackColor = System.Drawing.Color.Aqua
+        Me.txtTA_PER_TotalTaxable.Location = New System.Drawing.Point(730, 147)
+        Me.txtTA_PER_TotalTaxable.Name = "txtTA_PER_TotalTaxable"
+        Me.txtTA_PER_TotalTaxable.ReadOnly = True
+        Me.txtTA_PER_TotalTaxable.Size = New System.Drawing.Size(72, 20)
+        Me.txtTA_PER_TotalTaxable.TabIndex = 219
+        Me.txtTA_PER_TotalTaxable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtAA_PER_TotalTaxable
+        '
+        Me.txtAA_PER_TotalTaxable.BackColor = System.Drawing.Color.Aqua
+        Me.txtAA_PER_TotalTaxable.Location = New System.Drawing.Point(653, 147)
+        Me.txtAA_PER_TotalTaxable.Name = "txtAA_PER_TotalTaxable"
+        Me.txtAA_PER_TotalTaxable.ReadOnly = True
+        Me.txtAA_PER_TotalTaxable.Size = New System.Drawing.Size(72, 20)
+        Me.txtAA_PER_TotalTaxable.TabIndex = 218
+        Me.txtAA_PER_TotalTaxable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtTA_PER_NotionalIncome
+        '
+        Me.txtTA_PER_NotionalIncome.BackColor = System.Drawing.Color.Aqua
+        Me.txtTA_PER_NotionalIncome.Location = New System.Drawing.Point(730, 127)
+        Me.txtTA_PER_NotionalIncome.Name = "txtTA_PER_NotionalIncome"
+        Me.txtTA_PER_NotionalIncome.ReadOnly = True
+        Me.txtTA_PER_NotionalIncome.Size = New System.Drawing.Size(72, 20)
+        Me.txtTA_PER_NotionalIncome.TabIndex = 217
+        Me.txtTA_PER_NotionalIncome.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtAA_PER_NotionalIncome
+        '
+        Me.txtAA_PER_NotionalIncome.BackColor = System.Drawing.Color.Aqua
+        Me.txtAA_PER_NotionalIncome.Location = New System.Drawing.Point(653, 127)
+        Me.txtAA_PER_NotionalIncome.Name = "txtAA_PER_NotionalIncome"
+        Me.txtAA_PER_NotionalIncome.ReadOnly = True
+        Me.txtAA_PER_NotionalIncome.Size = New System.Drawing.Size(72, 20)
+        Me.txtAA_PER_NotionalIncome.TabIndex = 216
+        Me.txtAA_PER_NotionalIncome.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtTA_PER_PreviousEmployment
+        '
+        Me.txtTA_PER_PreviousEmployment.BackColor = System.Drawing.Color.Aqua
+        Me.txtTA_PER_PreviousEmployment.Location = New System.Drawing.Point(730, 107)
+        Me.txtTA_PER_PreviousEmployment.Name = "txtTA_PER_PreviousEmployment"
+        Me.txtTA_PER_PreviousEmployment.ReadOnly = True
+        Me.txtTA_PER_PreviousEmployment.Size = New System.Drawing.Size(72, 20)
+        Me.txtTA_PER_PreviousEmployment.TabIndex = 215
+        Me.txtTA_PER_PreviousEmployment.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtAA_PER_PreviousEmployment
+        '
+        Me.txtAA_PER_PreviousEmployment.BackColor = System.Drawing.Color.Aqua
+        Me.txtAA_PER_PreviousEmployment.Location = New System.Drawing.Point(653, 107)
+        Me.txtAA_PER_PreviousEmployment.Name = "txtAA_PER_PreviousEmployment"
+        Me.txtAA_PER_PreviousEmployment.ReadOnly = True
+        Me.txtAA_PER_PreviousEmployment.Size = New System.Drawing.Size(72, 20)
+        Me.txtAA_PER_PreviousEmployment.TabIndex = 214
+        Me.txtAA_PER_PreviousEmployment.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtTA_PER_FromOthersources
+        '
+        Me.txtTA_PER_FromOthersources.BackColor = System.Drawing.Color.Aqua
+        Me.txtTA_PER_FromOthersources.Location = New System.Drawing.Point(730, 87)
+        Me.txtTA_PER_FromOthersources.Name = "txtTA_PER_FromOthersources"
+        Me.txtTA_PER_FromOthersources.ReadOnly = True
+        Me.txtTA_PER_FromOthersources.Size = New System.Drawing.Size(72, 20)
+        Me.txtTA_PER_FromOthersources.TabIndex = 213
+        Me.txtTA_PER_FromOthersources.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtAA_PER_FromOthersources
+        '
+        Me.txtAA_PER_FromOthersources.BackColor = System.Drawing.Color.Aqua
+        Me.txtAA_PER_FromOthersources.Location = New System.Drawing.Point(653, 87)
+        Me.txtAA_PER_FromOthersources.Name = "txtAA_PER_FromOthersources"
+        Me.txtAA_PER_FromOthersources.ReadOnly = True
+        Me.txtAA_PER_FromOthersources.Size = New System.Drawing.Size(72, 20)
+        Me.txtAA_PER_FromOthersources.TabIndex = 212
+        Me.txtAA_PER_FromOthersources.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtTA_PER_SIPension
+        '
+        Me.txtTA_PER_SIPension.BackColor = System.Drawing.Color.Aqua
+        Me.txtTA_PER_SIPension.Location = New System.Drawing.Point(730, 67)
+        Me.txtTA_PER_SIPension.Name = "txtTA_PER_SIPension"
+        Me.txtTA_PER_SIPension.ReadOnly = True
+        Me.txtTA_PER_SIPension.Size = New System.Drawing.Size(72, 20)
+        Me.txtTA_PER_SIPension.TabIndex = 211
+        Me.txtTA_PER_SIPension.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtAA_PER_SIPension
+        '
+        Me.txtAA_PER_SIPension.BackColor = System.Drawing.Color.Aqua
+        Me.txtAA_PER_SIPension.Location = New System.Drawing.Point(653, 67)
+        Me.txtAA_PER_SIPension.Name = "txtAA_PER_SIPension"
+        Me.txtAA_PER_SIPension.ReadOnly = True
+        Me.txtAA_PER_SIPension.Size = New System.Drawing.Size(72, 20)
+        Me.txtAA_PER_SIPension.TabIndex = 210
+        Me.txtAA_PER_SIPension.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtTA_PER_CurrentEmployment
+        '
+        Me.txtTA_PER_CurrentEmployment.BackColor = System.Drawing.Color.Aqua
+        Me.txtTA_PER_CurrentEmployment.Location = New System.Drawing.Point(730, 47)
+        Me.txtTA_PER_CurrentEmployment.Name = "txtTA_PER_CurrentEmployment"
+        Me.txtTA_PER_CurrentEmployment.ReadOnly = True
+        Me.txtTA_PER_CurrentEmployment.Size = New System.Drawing.Size(72, 20)
+        Me.txtTA_PER_CurrentEmployment.TabIndex = 209
+        Me.txtTA_PER_CurrentEmployment.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtAA_PER_CurrentEmployment
+        '
+        Me.txtAA_PER_CurrentEmployment.BackColor = System.Drawing.Color.Aqua
+        Me.txtAA_PER_CurrentEmployment.Location = New System.Drawing.Point(653, 47)
+        Me.txtAA_PER_CurrentEmployment.Name = "txtAA_PER_CurrentEmployment"
+        Me.txtAA_PER_CurrentEmployment.ReadOnly = True
+        Me.txtAA_PER_CurrentEmployment.Size = New System.Drawing.Size(72, 20)
+        Me.txtAA_PER_CurrentEmployment.TabIndex = 208
+        Me.txtAA_PER_CurrentEmployment.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txt_REC_TempPAYE
+        '
+        Me.txt_REC_TempPAYE.BackColor = System.Drawing.Color.Aqua
+        Me.txt_REC_TempPAYE.Location = New System.Drawing.Point(575, 167)
+        Me.txt_REC_TempPAYE.Name = "txt_REC_TempPAYE"
+        Me.txt_REC_TempPAYE.ReadOnly = True
+        Me.txt_REC_TempPAYE.Size = New System.Drawing.Size(72, 20)
+        Me.txt_REC_TempPAYE.TabIndex = 207
+        Me.txt_REC_TempPAYE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label109
+        '
+        Me.Label109.AutoSize = True
+        Me.Label109.Location = New System.Drawing.Point(494, 173)
+        Me.Label109.Name = "Label109"
+        Me.Label109.Size = New System.Drawing.Size(35, 13)
+        Me.Label109.TabIndex = 205
+        Me.Label109.Text = "PAYE"
+        '
+        'txtTA_REC_TotalTaxable
+        '
+        Me.txtTA_REC_TotalTaxable.BackColor = System.Drawing.Color.Aqua
+        Me.txtTA_REC_TotalTaxable.Location = New System.Drawing.Point(575, 147)
+        Me.txtTA_REC_TotalTaxable.Name = "txtTA_REC_TotalTaxable"
+        Me.txtTA_REC_TotalTaxable.ReadOnly = True
+        Me.txtTA_REC_TotalTaxable.Size = New System.Drawing.Size(72, 20)
+        Me.txtTA_REC_TotalTaxable.TabIndex = 204
+        Me.txtTA_REC_TotalTaxable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtAA_REC_TotalTaxable
+        '
+        Me.txtAA_REC_TotalTaxable.BackColor = System.Drawing.Color.Aqua
+        Me.txtAA_REC_TotalTaxable.Location = New System.Drawing.Point(497, 147)
+        Me.txtAA_REC_TotalTaxable.Name = "txtAA_REC_TotalTaxable"
+        Me.txtAA_REC_TotalTaxable.ReadOnly = True
+        Me.txtAA_REC_TotalTaxable.Size = New System.Drawing.Size(72, 20)
+        Me.txtAA_REC_TotalTaxable.TabIndex = 203
+        Me.txtAA_REC_TotalTaxable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtTA_REC_NotionalIncome
+        '
+        Me.txtTA_REC_NotionalIncome.BackColor = System.Drawing.Color.Aqua
+        Me.txtTA_REC_NotionalIncome.Location = New System.Drawing.Point(575, 127)
+        Me.txtTA_REC_NotionalIncome.Name = "txtTA_REC_NotionalIncome"
+        Me.txtTA_REC_NotionalIncome.ReadOnly = True
+        Me.txtTA_REC_NotionalIncome.Size = New System.Drawing.Size(72, 20)
+        Me.txtTA_REC_NotionalIncome.TabIndex = 202
+        Me.txtTA_REC_NotionalIncome.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtAA_REC_NotionalIncome
+        '
+        Me.txtAA_REC_NotionalIncome.BackColor = System.Drawing.Color.Aqua
+        Me.txtAA_REC_NotionalIncome.Location = New System.Drawing.Point(497, 127)
+        Me.txtAA_REC_NotionalIncome.Name = "txtAA_REC_NotionalIncome"
+        Me.txtAA_REC_NotionalIncome.ReadOnly = True
+        Me.txtAA_REC_NotionalIncome.Size = New System.Drawing.Size(72, 20)
+        Me.txtAA_REC_NotionalIncome.TabIndex = 201
+        Me.txtAA_REC_NotionalIncome.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtTA_REC_PreviousEmployment
+        '
+        Me.txtTA_REC_PreviousEmployment.BackColor = System.Drawing.Color.Aqua
+        Me.txtTA_REC_PreviousEmployment.Location = New System.Drawing.Point(575, 107)
+        Me.txtTA_REC_PreviousEmployment.Name = "txtTA_REC_PreviousEmployment"
+        Me.txtTA_REC_PreviousEmployment.ReadOnly = True
+        Me.txtTA_REC_PreviousEmployment.Size = New System.Drawing.Size(72, 20)
+        Me.txtTA_REC_PreviousEmployment.TabIndex = 200
+        Me.txtTA_REC_PreviousEmployment.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtAA_REC_PreviousEmployment
+        '
+        Me.txtAA_REC_PreviousEmployment.BackColor = System.Drawing.Color.Aqua
+        Me.txtAA_REC_PreviousEmployment.Location = New System.Drawing.Point(497, 107)
+        Me.txtAA_REC_PreviousEmployment.Name = "txtAA_REC_PreviousEmployment"
+        Me.txtAA_REC_PreviousEmployment.ReadOnly = True
+        Me.txtAA_REC_PreviousEmployment.Size = New System.Drawing.Size(72, 20)
+        Me.txtAA_REC_PreviousEmployment.TabIndex = 199
+        Me.txtAA_REC_PreviousEmployment.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtTA_REC_FromOthersources
+        '
+        Me.txtTA_REC_FromOthersources.BackColor = System.Drawing.Color.Aqua
+        Me.txtTA_REC_FromOthersources.Location = New System.Drawing.Point(575, 87)
+        Me.txtTA_REC_FromOthersources.Name = "txtTA_REC_FromOthersources"
+        Me.txtTA_REC_FromOthersources.ReadOnly = True
+        Me.txtTA_REC_FromOthersources.Size = New System.Drawing.Size(72, 20)
+        Me.txtTA_REC_FromOthersources.TabIndex = 198
+        Me.txtTA_REC_FromOthersources.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtAA_REC_FromOthersources
+        '
+        Me.txtAA_REC_FromOthersources.BackColor = System.Drawing.Color.Aqua
+        Me.txtAA_REC_FromOthersources.Location = New System.Drawing.Point(497, 87)
+        Me.txtAA_REC_FromOthersources.Name = "txtAA_REC_FromOthersources"
+        Me.txtAA_REC_FromOthersources.ReadOnly = True
+        Me.txtAA_REC_FromOthersources.Size = New System.Drawing.Size(72, 20)
+        Me.txtAA_REC_FromOthersources.TabIndex = 197
+        Me.txtAA_REC_FromOthersources.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtTA_REC_SIPension
+        '
+        Me.txtTA_REC_SIPension.BackColor = System.Drawing.Color.Aqua
+        Me.txtTA_REC_SIPension.Location = New System.Drawing.Point(575, 67)
+        Me.txtTA_REC_SIPension.Name = "txtTA_REC_SIPension"
+        Me.txtTA_REC_SIPension.ReadOnly = True
+        Me.txtTA_REC_SIPension.Size = New System.Drawing.Size(72, 20)
+        Me.txtTA_REC_SIPension.TabIndex = 196
+        Me.txtTA_REC_SIPension.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtAA_REC_SIPension
+        '
+        Me.txtAA_REC_SIPension.BackColor = System.Drawing.Color.Aqua
+        Me.txtAA_REC_SIPension.Location = New System.Drawing.Point(497, 67)
+        Me.txtAA_REC_SIPension.Name = "txtAA_REC_SIPension"
+        Me.txtAA_REC_SIPension.ReadOnly = True
+        Me.txtAA_REC_SIPension.Size = New System.Drawing.Size(72, 20)
+        Me.txtAA_REC_SIPension.TabIndex = 195
+        Me.txtAA_REC_SIPension.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtTA_REC_CurrentEmployment
+        '
+        Me.txtTA_REC_CurrentEmployment.BackColor = System.Drawing.Color.Aqua
+        Me.txtTA_REC_CurrentEmployment.Location = New System.Drawing.Point(575, 47)
+        Me.txtTA_REC_CurrentEmployment.Name = "txtTA_REC_CurrentEmployment"
+        Me.txtTA_REC_CurrentEmployment.ReadOnly = True
+        Me.txtTA_REC_CurrentEmployment.Size = New System.Drawing.Size(72, 20)
+        Me.txtTA_REC_CurrentEmployment.TabIndex = 194
+        Me.txtTA_REC_CurrentEmployment.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtAA_REC_CurrentEmployment
+        '
+        Me.txtAA_REC_CurrentEmployment.BackColor = System.Drawing.Color.Aqua
+        Me.txtAA_REC_CurrentEmployment.Location = New System.Drawing.Point(497, 47)
+        Me.txtAA_REC_CurrentEmployment.Name = "txtAA_REC_CurrentEmployment"
+        Me.txtAA_REC_CurrentEmployment.ReadOnly = True
+        Me.txtAA_REC_CurrentEmployment.Size = New System.Drawing.Size(72, 20)
+        Me.txtAA_REC_CurrentEmployment.TabIndex = 193
+        Me.txtAA_REC_CurrentEmployment.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label108
+        '
+        Me.Label108.AutoSize = True
+        Me.Label108.Location = New System.Drawing.Point(575, 31)
+        Me.Label108.Name = "Label108"
+        Me.Label108.Size = New System.Drawing.Size(74, 13)
+        Me.Label108.TabIndex = 192
+        Me.Label108.Text = "Tax Allocation"
+        '
+        'Label107
+        '
+        Me.Label107.AutoSize = True
+        Me.Label107.Location = New System.Drawing.Point(494, 31)
+        Me.Label107.Name = "Label107"
+        Me.Label107.Size = New System.Drawing.Size(48, 13)
+        Me.Label107.TabIndex = 191
+        Me.Label107.Text = "Amounts"
+        '
+        'Label85
+        '
+        Me.Label85.AutoSize = True
+        Me.Label85.Location = New System.Drawing.Point(390, 130)
+        Me.Label85.Name = "Label85"
+        Me.Label85.Size = New System.Drawing.Size(84, 13)
+        Me.Label85.TabIndex = 190
+        Me.Label85.Text = "Notional Income"
+        '
+        'Label84
+        '
+        Me.Label84.AutoSize = True
+        Me.Label84.Location = New System.Drawing.Point(390, 150)
+        Me.Label84.Name = "Label84"
+        Me.Label84.Size = New System.Drawing.Size(72, 13)
+        Me.Label84.TabIndex = 189
+        Me.Label84.Text = "Total Taxable"
+        '
+        'Label83
+        '
+        Me.Label83.AutoSize = True
+        Me.Label83.Location = New System.Drawing.Point(390, 110)
+        Me.Label83.Name = "Label83"
+        Me.Label83.Size = New System.Drawing.Size(108, 13)
+        Me.Label83.TabIndex = 188
+        Me.Label83.Text = "Previous Employment"
+        '
+        'Label82
+        '
+        Me.Label82.AutoSize = True
+        Me.Label82.Location = New System.Drawing.Point(390, 73)
+        Me.Label82.Name = "Label82"
+        Me.Label82.Size = New System.Drawing.Size(94, 13)
+        Me.Label82.TabIndex = 187
+        Me.Label82.Text = "Social Ins Pension"
+        '
+        'Label51
+        '
+        Me.Label51.AutoSize = True
+        Me.Label51.Location = New System.Drawing.Point(390, 92)
+        Me.Label51.Name = "Label51"
+        Me.Label51.Size = New System.Drawing.Size(101, 13)
+        Me.Label51.TabIndex = 186
+        Me.Label51.Text = "From Other Sources"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(390, 54)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(101, 13)
+        Me.Label10.TabIndex = 185
+        Me.Label10.Text = "Current Employment"
+        '
         'Label106
         '
         Me.Label106.AutoSize = True
-        Me.Label106.Location = New System.Drawing.Point(454, 253)
+        Me.Label106.Location = New System.Drawing.Point(313, 271)
         Me.Label106.Name = "Label106"
         Me.Label106.Size = New System.Drawing.Size(59, 13)
         Me.Label106.TabIndex = 184
@@ -2047,37 +1948,37 @@ Partial Class FrmPrTxCalculatePayroll
         'txtCGesyLimit
         '
         Me.txtCGesyLimit.BackColor = System.Drawing.Color.Yellow
-        Me.txtCGesyLimit.Location = New System.Drawing.Point(657, 250)
+        Me.txtCGesyLimit.Location = New System.Drawing.Point(465, 268)
         Me.txtCGesyLimit.Name = "txtCGesyLimit"
         Me.txtCGesyLimit.ReadOnly = True
-        Me.txtCGesyLimit.Size = New System.Drawing.Size(123, 20)
+        Me.txtCGesyLimit.Size = New System.Drawing.Size(72, 20)
         Me.txtCGesyLimit.TabIndex = 183
         Me.txtCGesyLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtRGesyLimit
         '
         Me.txtRGesyLimit.BackColor = System.Drawing.Color.Yellow
-        Me.txtRGesyLimit.Location = New System.Drawing.Point(528, 250)
+        Me.txtRGesyLimit.Location = New System.Drawing.Point(387, 268)
         Me.txtRGesyLimit.Name = "txtRGesyLimit"
         Me.txtRGesyLimit.ReadOnly = True
-        Me.txtRGesyLimit.Size = New System.Drawing.Size(123, 20)
+        Me.txtRGesyLimit.Size = New System.Drawing.Size(72, 20)
         Me.txtRGesyLimit.TabIndex = 182
         Me.txtRGesyLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtCP_BIK_GESI
         '
         Me.txtCP_BIK_GESI.BackColor = System.Drawing.Color.Yellow
-        Me.txtCP_BIK_GESI.Location = New System.Drawing.Point(325, 269)
+        Me.txtCP_BIK_GESI.Location = New System.Drawing.Point(236, 287)
         Me.txtCP_BIK_GESI.Name = "txtCP_BIK_GESI"
         Me.txtCP_BIK_GESI.ReadOnly = True
-        Me.txtCP_BIK_GESI.Size = New System.Drawing.Size(123, 20)
+        Me.txtCP_BIK_GESI.Size = New System.Drawing.Size(72, 20)
         Me.txtCP_BIK_GESI.TabIndex = 181
         Me.txtCP_BIK_GESI.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label103
         '
         Me.Label103.AutoSize = True
-        Me.Label103.Location = New System.Drawing.Point(3, 272)
+        Me.Label103.Location = New System.Drawing.Point(3, 290)
         Me.Label103.Name = "Label103"
         Me.Label103.Size = New System.Drawing.Size(79, 13)
         Me.Label103.TabIndex = 180
@@ -2086,27 +1987,27 @@ Partial Class FrmPrTxCalculatePayroll
         'txtRO_BIK_GESI
         '
         Me.txtRO_BIK_GESI.BackColor = System.Drawing.Color.Yellow
-        Me.txtRO_BIK_GESI.Location = New System.Drawing.Point(196, 269)
+        Me.txtRO_BIK_GESI.Location = New System.Drawing.Point(161, 287)
         Me.txtRO_BIK_GESI.Name = "txtRO_BIK_GESI"
         Me.txtRO_BIK_GESI.ReadOnly = True
-        Me.txtRO_BIK_GESI.Size = New System.Drawing.Size(123, 20)
+        Me.txtRO_BIK_GESI.Size = New System.Drawing.Size(72, 20)
         Me.txtRO_BIK_GESI.TabIndex = 179
         Me.txtRO_BIK_GESI.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtCPGesi
         '
         Me.txtCPGesi.BackColor = System.Drawing.Color.Yellow
-        Me.txtCPGesi.Location = New System.Drawing.Point(325, 250)
+        Me.txtCPGesi.Location = New System.Drawing.Point(236, 268)
         Me.txtCPGesi.Name = "txtCPGesi"
         Me.txtCPGesi.ReadOnly = True
-        Me.txtCPGesi.Size = New System.Drawing.Size(123, 20)
+        Me.txtCPGesi.Size = New System.Drawing.Size(72, 20)
         Me.txtCPGesi.TabIndex = 178
         Me.txtCPGesi.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label102
         '
         Me.Label102.AutoSize = True
-        Me.Label102.Location = New System.Drawing.Point(3, 253)
+        Me.Label102.Location = New System.Drawing.Point(3, 271)
         Me.Label102.Name = "Label102"
         Me.Label102.Size = New System.Drawing.Size(35, 13)
         Me.Label102.TabIndex = 177
@@ -2115,27 +2016,27 @@ Partial Class FrmPrTxCalculatePayroll
         'txtROGesi
         '
         Me.txtROGesi.BackColor = System.Drawing.Color.Yellow
-        Me.txtROGesi.Location = New System.Drawing.Point(196, 250)
+        Me.txtROGesi.Location = New System.Drawing.Point(161, 268)
         Me.txtROGesi.Name = "txtROGesi"
         Me.txtROGesi.ReadOnly = True
-        Me.txtROGesi.Size = New System.Drawing.Size(123, 20)
+        Me.txtROGesi.Size = New System.Drawing.Size(72, 20)
         Me.txtROGesi.TabIndex = 176
         Me.txtROGesi.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtInterCompanyTax
         '
-        Me.txtInterCompanyTax.Location = New System.Drawing.Point(465, 370)
+        Me.txtInterCompanyTax.Location = New System.Drawing.Point(316, 388)
         Me.txtInterCompanyTax.Name = "txtInterCompanyTax"
         Me.txtInterCompanyTax.ReadOnly = True
-        Me.txtInterCompanyTax.Size = New System.Drawing.Size(123, 20)
+        Me.txtInterCompanyTax.Size = New System.Drawing.Size(107, 20)
         Me.txtInterCompanyTax.TabIndex = 175
         Me.txtInterCompanyTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'BtnPrintIR59
         '
-        Me.BtnPrintIR59.Location = New System.Drawing.Point(609, 38)
+        Me.BtnPrintIR59.Location = New System.Drawing.Point(734, 368)
         Me.BtnPrintIR59.Name = "BtnPrintIR59"
-        Me.BtnPrintIR59.Size = New System.Drawing.Size(269, 23)
+        Me.BtnPrintIR59.Size = New System.Drawing.Size(144, 23)
         Me.BtnPrintIR59.TabIndex = 174
         Me.BtnPrintIR59.Text = "Print"
         Me.BtnPrintIR59.UseVisualStyleBackColor = True
@@ -2143,9 +2044,9 @@ Partial Class FrmPrTxCalculatePayroll
         '
         'btnLoadValues
         '
-        Me.btnLoadValues.Location = New System.Drawing.Point(609, 9)
+        Me.btnLoadValues.Location = New System.Drawing.Point(621, 393)
         Me.btnLoadValues.Name = "btnLoadValues"
-        Me.btnLoadValues.Size = New System.Drawing.Size(269, 23)
+        Me.btnLoadValues.Size = New System.Drawing.Size(102, 58)
         Me.btnLoadValues.TabIndex = 173
         Me.btnLoadValues.Text = "Load Values"
         Me.btnLoadValues.UseVisualStyleBackColor = True
@@ -2153,17 +2054,17 @@ Partial Class FrmPrTxCalculatePayroll
         'txtCPFLimit
         '
         Me.txtCPFLimit.BackColor = System.Drawing.Color.Yellow
-        Me.txtCPFLimit.Location = New System.Drawing.Point(657, 189)
+        Me.txtCPFLimit.Location = New System.Drawing.Point(465, 207)
         Me.txtCPFLimit.Name = "txtCPFLimit"
         Me.txtCPFLimit.ReadOnly = True
-        Me.txtCPFLimit.Size = New System.Drawing.Size(123, 20)
+        Me.txtCPFLimit.Size = New System.Drawing.Size(72, 20)
         Me.txtCPFLimit.TabIndex = 170
         Me.txtCPFLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'LblPFLimit
         '
         Me.LblPFLimit.AutoSize = True
-        Me.LblPFLimit.Location = New System.Drawing.Point(455, 192)
+        Me.LblPFLimit.Location = New System.Drawing.Point(314, 210)
         Me.LblPFLimit.Name = "LblPFLimit"
         Me.LblPFLimit.Size = New System.Drawing.Size(67, 13)
         Me.LblPFLimit.TabIndex = 169
@@ -2172,27 +2073,27 @@ Partial Class FrmPrTxCalculatePayroll
         'txtRPFLimit
         '
         Me.txtRPFLimit.BackColor = System.Drawing.Color.Yellow
-        Me.txtRPFLimit.Location = New System.Drawing.Point(528, 189)
+        Me.txtRPFLimit.Location = New System.Drawing.Point(387, 207)
         Me.txtRPFLimit.Name = "txtRPFLimit"
         Me.txtRPFLimit.ReadOnly = True
-        Me.txtRPFLimit.Size = New System.Drawing.Size(123, 20)
+        Me.txtRPFLimit.Size = New System.Drawing.Size(72, 20)
         Me.txtRPFLimit.TabIndex = 168
         Me.txtRPFLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtCMedLimit
         '
         Me.txtCMedLimit.BackColor = System.Drawing.Color.Yellow
-        Me.txtCMedLimit.Location = New System.Drawing.Point(657, 228)
+        Me.txtCMedLimit.Location = New System.Drawing.Point(465, 246)
         Me.txtCMedLimit.Name = "txtCMedLimit"
         Me.txtCMedLimit.ReadOnly = True
-        Me.txtCMedLimit.Size = New System.Drawing.Size(123, 20)
+        Me.txtCMedLimit.Size = New System.Drawing.Size(72, 20)
         Me.txtCMedLimit.TabIndex = 166
         Me.txtCMedLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'lblMFLimit
         '
         Me.lblMFLimit.AutoSize = True
-        Me.lblMFLimit.Location = New System.Drawing.Point(454, 231)
+        Me.lblMFLimit.Location = New System.Drawing.Point(313, 249)
         Me.lblMFLimit.Name = "lblMFLimit"
         Me.lblMFLimit.Size = New System.Drawing.Size(72, 13)
         Me.lblMFLimit.TabIndex = 165
@@ -2201,27 +2102,27 @@ Partial Class FrmPrTxCalculatePayroll
         'txtRmedLimit
         '
         Me.txtRmedLimit.BackColor = System.Drawing.Color.Yellow
-        Me.txtRmedLimit.Location = New System.Drawing.Point(528, 228)
+        Me.txtRmedLimit.Location = New System.Drawing.Point(387, 246)
         Me.txtRmedLimit.Name = "txtRmedLimit"
         Me.txtRmedLimit.ReadOnly = True
-        Me.txtRmedLimit.Size = New System.Drawing.Size(123, 20)
+        Me.txtRmedLimit.Size = New System.Drawing.Size(72, 20)
         Me.txtRmedLimit.TabIndex = 164
         Me.txtRmedLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtCTotalSIPFMFLI
         '
         Me.txtCTotalSIPFMFLI.BackColor = System.Drawing.Color.Yellow
-        Me.txtCTotalSIPFMFLI.Location = New System.Drawing.Point(325, 290)
+        Me.txtCTotalSIPFMFLI.Location = New System.Drawing.Point(236, 308)
         Me.txtCTotalSIPFMFLI.Name = "txtCTotalSIPFMFLI"
         Me.txtCTotalSIPFMFLI.ReadOnly = True
-        Me.txtCTotalSIPFMFLI.Size = New System.Drawing.Size(123, 20)
+        Me.txtCTotalSIPFMFLI.Size = New System.Drawing.Size(72, 20)
         Me.txtCTotalSIPFMFLI.TabIndex = 163
         Me.txtCTotalSIPFMFLI.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label81
         '
         Me.Label81.AutoSize = True
-        Me.Label81.Location = New System.Drawing.Point(3, 293)
+        Me.Label81.Location = New System.Drawing.Point(3, 311)
         Me.Label81.Name = "Label81"
         Me.Label81.Size = New System.Drawing.Size(139, 13)
         Me.Label81.TabIndex = 162
@@ -2230,56 +2131,56 @@ Partial Class FrmPrTxCalculatePayroll
         'txtRtotalSIPFMFLI
         '
         Me.txtRtotalSIPFMFLI.BackColor = System.Drawing.Color.Yellow
-        Me.txtRtotalSIPFMFLI.Location = New System.Drawing.Point(196, 290)
+        Me.txtRtotalSIPFMFLI.Location = New System.Drawing.Point(161, 308)
         Me.txtRtotalSIPFMFLI.Name = "txtRtotalSIPFMFLI"
         Me.txtRtotalSIPFMFLI.ReadOnly = True
-        Me.txtRtotalSIPFMFLI.Size = New System.Drawing.Size(123, 20)
+        Me.txtRtotalSIPFMFLI.Size = New System.Drawing.Size(72, 20)
         Me.txtRtotalSIPFMFLI.TabIndex = 161
         Me.txtRtotalSIPFMFLI.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtCPOnesixt
         '
         Me.txtCPOnesixt.BackColor = System.Drawing.Color.Yellow
-        Me.txtCPOnesixt.Location = New System.Drawing.Point(325, 310)
+        Me.txtCPOnesixt.Location = New System.Drawing.Point(236, 328)
         Me.txtCPOnesixt.Name = "txtCPOnesixt"
         Me.txtCPOnesixt.ReadOnly = True
-        Me.txtCPOnesixt.Size = New System.Drawing.Size(123, 20)
+        Me.txtCPOnesixt.Size = New System.Drawing.Size(72, 20)
         Me.txtCPOnesixt.TabIndex = 160
         Me.txtCPOnesixt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label80
         '
         Me.Label80.AutoSize = True
-        Me.Label80.Location = New System.Drawing.Point(3, 313)
+        Me.Label80.Location = New System.Drawing.Point(3, 331)
         Me.Label80.Name = "Label80"
-        Me.Label80.Size = New System.Drawing.Size(186, 13)
+        Me.Label80.Size = New System.Drawing.Size(154, 13)
         Me.Label80.TabIndex = 159
-        Me.Label80.Text = "One Sixth Rule (SI+PF+MF+LI+GeSY)"
+        Me.Label80.Text = "1/6 Rule(SI+PF+MF+LI+GeSY)"
         '
         'txtROonesixt
         '
         Me.txtROonesixt.BackColor = System.Drawing.Color.Yellow
-        Me.txtROonesixt.Location = New System.Drawing.Point(196, 310)
+        Me.txtROonesixt.Location = New System.Drawing.Point(161, 328)
         Me.txtROonesixt.Name = "txtROonesixt"
         Me.txtROonesixt.ReadOnly = True
-        Me.txtROonesixt.Size = New System.Drawing.Size(123, 20)
+        Me.txtROonesixt.Size = New System.Drawing.Size(72, 20)
         Me.txtROonesixt.TabIndex = 158
         Me.txtROonesixt.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtCPUnion
         '
         Me.txtCPUnion.BackColor = System.Drawing.Color.Yellow
-        Me.txtCPUnion.Location = New System.Drawing.Point(325, 149)
+        Me.txtCPUnion.Location = New System.Drawing.Point(236, 167)
         Me.txtCPUnion.Name = "txtCPUnion"
         Me.txtCPUnion.ReadOnly = True
-        Me.txtCPUnion.Size = New System.Drawing.Size(123, 20)
+        Me.txtCPUnion.Size = New System.Drawing.Size(72, 20)
         Me.txtCPUnion.TabIndex = 157
         Me.txtCPUnion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label79
         '
         Me.Label79.AutoSize = True
-        Me.Label79.Location = New System.Drawing.Point(21, 149)
+        Me.Label79.Location = New System.Drawing.Point(3, 167)
         Me.Label79.Name = "Label79"
         Me.Label79.Size = New System.Drawing.Size(35, 13)
         Me.Label79.TabIndex = 156
@@ -2288,27 +2189,27 @@ Partial Class FrmPrTxCalculatePayroll
         'txtROUnion
         '
         Me.txtROUnion.BackColor = System.Drawing.Color.Yellow
-        Me.txtROUnion.Location = New System.Drawing.Point(196, 149)
+        Me.txtROUnion.Location = New System.Drawing.Point(161, 167)
         Me.txtROUnion.Name = "txtROUnion"
         Me.txtROUnion.ReadOnly = True
-        Me.txtROUnion.Size = New System.Drawing.Size(123, 20)
+        Me.txtROUnion.Size = New System.Drawing.Size(72, 20)
         Me.txtROUnion.TabIndex = 155
         Me.txtROUnion.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtCPMF
         '
         Me.txtCPMF.BackColor = System.Drawing.Color.Yellow
-        Me.txtCPMF.Location = New System.Drawing.Point(325, 229)
+        Me.txtCPMF.Location = New System.Drawing.Point(236, 247)
         Me.txtCPMF.Name = "txtCPMF"
         Me.txtCPMF.ReadOnly = True
-        Me.txtCPMF.Size = New System.Drawing.Size(123, 20)
+        Me.txtCPMF.Size = New System.Drawing.Size(72, 20)
         Me.txtCPMF.TabIndex = 154
         Me.txtCPMF.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label78
         '
         Me.Label78.AutoSize = True
-        Me.Label78.Location = New System.Drawing.Point(3, 232)
+        Me.Label78.Location = New System.Drawing.Point(3, 250)
         Me.Label78.Name = "Label78"
         Me.Label78.Size = New System.Drawing.Size(71, 13)
         Me.Label78.TabIndex = 153
@@ -2317,27 +2218,27 @@ Partial Class FrmPrTxCalculatePayroll
         'txtROMF
         '
         Me.txtROMF.BackColor = System.Drawing.Color.Yellow
-        Me.txtROMF.Location = New System.Drawing.Point(196, 229)
+        Me.txtROMF.Location = New System.Drawing.Point(161, 247)
         Me.txtROMF.Name = "txtROMF"
         Me.txtROMF.ReadOnly = True
-        Me.txtROMF.Size = New System.Drawing.Size(123, 20)
+        Me.txtROMF.Size = New System.Drawing.Size(72, 20)
         Me.txtROMF.TabIndex = 152
         Me.txtROMF.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtCPXO
         '
         Me.txtCPXO.BackColor = System.Drawing.Color.Yellow
-        Me.txtCPXO.Location = New System.Drawing.Point(325, 129)
+        Me.txtCPXO.Location = New System.Drawing.Point(236, 147)
         Me.txtCPXO.Name = "txtCPXO"
         Me.txtCPXO.ReadOnly = True
-        Me.txtCPXO.Size = New System.Drawing.Size(123, 20)
+        Me.txtCPXO.Size = New System.Drawing.Size(72, 20)
         Me.txtCPXO.TabIndex = 151
         Me.txtCPXO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label77
         '
         Me.Label77.AutoSize = True
-        Me.Label77.Location = New System.Drawing.Point(3, 129)
+        Me.Label77.Location = New System.Drawing.Point(3, 147)
         Me.Label77.Name = "Label77"
         Me.Label77.Size = New System.Drawing.Size(109, 13)
         Me.Label77.TabIndex = 150
@@ -2346,26 +2247,26 @@ Partial Class FrmPrTxCalculatePayroll
         'txtROXO
         '
         Me.txtROXO.BackColor = System.Drawing.Color.Yellow
-        Me.txtROXO.Location = New System.Drawing.Point(196, 129)
+        Me.txtROXO.Location = New System.Drawing.Point(161, 147)
         Me.txtROXO.Name = "txtROXO"
         Me.txtROXO.ReadOnly = True
-        Me.txtROXO.Size = New System.Drawing.Size(123, 20)
+        Me.txtROXO.Size = New System.Drawing.Size(72, 20)
         Me.txtROXO.TabIndex = 149
         Me.txtROXO.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtCPDec
         '
-        Me.txtCPDec.Location = New System.Drawing.Point(325, 89)
+        Me.txtCPDec.Location = New System.Drawing.Point(236, 107)
         Me.txtCPDec.Name = "txtCPDec"
         Me.txtCPDec.ReadOnly = True
-        Me.txtCPDec.Size = New System.Drawing.Size(123, 20)
+        Me.txtCPDec.Size = New System.Drawing.Size(72, 20)
         Me.txtCPDec.TabIndex = 148
         Me.txtCPDec.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label76
         '
         Me.Label76.AutoSize = True
-        Me.Label76.Location = New System.Drawing.Point(3, 89)
+        Me.Label76.Location = New System.Drawing.Point(3, 107)
         Me.Label76.Name = "Label76"
         Me.Label76.Size = New System.Drawing.Size(85, 13)
         Me.Label76.TabIndex = 147
@@ -2373,10 +2274,10 @@ Partial Class FrmPrTxCalculatePayroll
         '
         'txtRODec
         '
-        Me.txtRODec.Location = New System.Drawing.Point(196, 89)
+        Me.txtRODec.Location = New System.Drawing.Point(161, 107)
         Me.txtRODec.Name = "txtRODec"
         Me.txtRODec.ReadOnly = True
-        Me.txtRODec.Size = New System.Drawing.Size(123, 20)
+        Me.txtRODec.Size = New System.Drawing.Size(72, 20)
         Me.txtRODec.TabIndex = 146
         Me.txtRODec.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -2384,17 +2285,17 @@ Partial Class FrmPrTxCalculatePayroll
         '
         Me.txtCPPenF.AcceptsReturn = True
         Me.txtCPPenF.BackColor = System.Drawing.Color.Yellow
-        Me.txtCPPenF.Location = New System.Drawing.Point(325, 109)
+        Me.txtCPPenF.Location = New System.Drawing.Point(236, 127)
         Me.txtCPPenF.Name = "txtCPPenF"
         Me.txtCPPenF.ReadOnly = True
-        Me.txtCPPenF.Size = New System.Drawing.Size(123, 20)
+        Me.txtCPPenF.Size = New System.Drawing.Size(72, 20)
         Me.txtCPPenF.TabIndex = 145
         Me.txtCPPenF.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label75
         '
         Me.Label75.AutoSize = True
-        Me.Label75.Location = New System.Drawing.Point(3, 109)
+        Me.Label75.Location = New System.Drawing.Point(3, 127)
         Me.Label75.Name = "Label75"
         Me.Label75.Size = New System.Drawing.Size(72, 13)
         Me.Label75.TabIndex = 144
@@ -2403,27 +2304,27 @@ Partial Class FrmPrTxCalculatePayroll
         'txtROPenF
         '
         Me.txtROPenF.BackColor = System.Drawing.Color.Yellow
-        Me.txtROPenF.Location = New System.Drawing.Point(196, 109)
+        Me.txtROPenF.Location = New System.Drawing.Point(161, 127)
         Me.txtROPenF.Name = "txtROPenF"
         Me.txtROPenF.ReadOnly = True
-        Me.txtROPenF.Size = New System.Drawing.Size(123, 20)
+        Me.txtROPenF.Size = New System.Drawing.Size(72, 20)
         Me.txtROPenF.TabIndex = 143
         Me.txtROPenF.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtCPPF
         '
         Me.txtCPPF.BackColor = System.Drawing.Color.Yellow
-        Me.txtCPPF.Location = New System.Drawing.Point(325, 189)
+        Me.txtCPPF.Location = New System.Drawing.Point(236, 207)
         Me.txtCPPF.Name = "txtCPPF"
         Me.txtCPPF.ReadOnly = True
-        Me.txtCPPF.Size = New System.Drawing.Size(123, 20)
+        Me.txtCPPF.Size = New System.Drawing.Size(72, 20)
         Me.txtCPPF.TabIndex = 142
         Me.txtCPPF.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label74
         '
         Me.Label74.AutoSize = True
-        Me.Label74.Location = New System.Drawing.Point(3, 189)
+        Me.Label74.Location = New System.Drawing.Point(3, 207)
         Me.Label74.Name = "Label74"
         Me.Label74.Size = New System.Drawing.Size(79, 13)
         Me.Label74.TabIndex = 141
@@ -2432,56 +2333,56 @@ Partial Class FrmPrTxCalculatePayroll
         'txtROPF
         '
         Me.txtROPF.BackColor = System.Drawing.Color.Yellow
-        Me.txtROPF.Location = New System.Drawing.Point(196, 189)
+        Me.txtROPF.Location = New System.Drawing.Point(161, 207)
         Me.txtROPF.Name = "txtROPF"
         Me.txtROPF.ReadOnly = True
-        Me.txtROPF.Size = New System.Drawing.Size(123, 20)
+        Me.txtROPF.Size = New System.Drawing.Size(72, 20)
         Me.txtROPF.TabIndex = 140
         Me.txtROPF.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtCPFE
         '
         Me.txtCPFE.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.txtCPFE.Location = New System.Drawing.Point(325, 69)
+        Me.txtCPFE.Location = New System.Drawing.Point(236, 87)
         Me.txtCPFE.Name = "txtCPFE"
         Me.txtCPFE.ReadOnly = True
-        Me.txtCPFE.Size = New System.Drawing.Size(123, 20)
+        Me.txtCPFE.Size = New System.Drawing.Size(72, 20)
         Me.txtCPFE.TabIndex = 139
         Me.txtCPFE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label73
         '
         Me.Label73.AutoSize = True
-        Me.Label73.Location = New System.Drawing.Point(3, 69)
+        Me.Label73.Location = New System.Drawing.Point(3, 87)
         Me.Label73.Name = "Label73"
-        Me.Label73.Size = New System.Drawing.Size(176, 13)
+        Me.Label73.Size = New System.Drawing.Size(153, 13)
         Me.Label73.TabIndex = 138
-        Me.Label73.Text = "First Employment (Incl. in Discounts)"
+        Me.Label73.Text = "First Employment (Incl. in Disc.)"
         '
         'txtROFE
         '
         Me.txtROFE.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
-        Me.txtROFE.Location = New System.Drawing.Point(196, 69)
+        Me.txtROFE.Location = New System.Drawing.Point(161, 87)
         Me.txtROFE.Name = "txtROFE"
         Me.txtROFE.ReadOnly = True
-        Me.txtROFE.Size = New System.Drawing.Size(123, 20)
+        Me.txtROFE.Size = New System.Drawing.Size(72, 20)
         Me.txtROFE.TabIndex = 137
         Me.txtROFE.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtCPLI
         '
         Me.txtCPLI.BackColor = System.Drawing.Color.Yellow
-        Me.txtCPLI.Location = New System.Drawing.Point(325, 169)
+        Me.txtCPLI.Location = New System.Drawing.Point(236, 187)
         Me.txtCPLI.Name = "txtCPLI"
         Me.txtCPLI.ReadOnly = True
-        Me.txtCPLI.Size = New System.Drawing.Size(123, 20)
+        Me.txtCPLI.Size = New System.Drawing.Size(72, 20)
         Me.txtCPLI.TabIndex = 136
         Me.txtCPLI.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label72
         '
         Me.Label72.AutoSize = True
-        Me.Label72.Location = New System.Drawing.Point(3, 169)
+        Me.Label72.Location = New System.Drawing.Point(3, 187)
         Me.Label72.Name = "Label72"
         Me.Label72.Size = New System.Drawing.Size(74, 13)
         Me.Label72.TabIndex = 135
@@ -2490,26 +2391,26 @@ Partial Class FrmPrTxCalculatePayroll
         'txtROLI
         '
         Me.txtROLI.BackColor = System.Drawing.Color.Yellow
-        Me.txtROLI.Location = New System.Drawing.Point(196, 169)
+        Me.txtROLI.Location = New System.Drawing.Point(161, 187)
         Me.txtROLI.Name = "txtROLI"
         Me.txtROLI.ReadOnly = True
-        Me.txtROLI.Size = New System.Drawing.Size(123, 20)
+        Me.txtROLI.Size = New System.Drawing.Size(72, 20)
         Me.txtROLI.TabIndex = 134
         Me.txtROLI.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtCPDI
         '
-        Me.txtCPDI.Location = New System.Drawing.Point(325, 49)
+        Me.txtCPDI.Location = New System.Drawing.Point(236, 67)
         Me.txtCPDI.Name = "txtCPDI"
         Me.txtCPDI.ReadOnly = True
-        Me.txtCPDI.Size = New System.Drawing.Size(123, 20)
+        Me.txtCPDI.Size = New System.Drawing.Size(72, 20)
         Me.txtCPDI.TabIndex = 133
         Me.txtCPDI.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label71
         '
         Me.Label71.AutoSize = True
-        Me.Label71.Location = New System.Drawing.Point(3, 49)
+        Me.Label71.Location = New System.Drawing.Point(3, 67)
         Me.Label71.Name = "Label71"
         Me.Label71.Size = New System.Drawing.Size(54, 13)
         Me.Label71.TabIndex = 132
@@ -2517,27 +2418,27 @@ Partial Class FrmPrTxCalculatePayroll
         '
         'txtRODI
         '
-        Me.txtRODI.Location = New System.Drawing.Point(196, 49)
+        Me.txtRODI.Location = New System.Drawing.Point(161, 67)
         Me.txtRODI.Name = "txtRODI"
         Me.txtRODI.ReadOnly = True
-        Me.txtRODI.Size = New System.Drawing.Size(123, 20)
+        Me.txtRODI.Size = New System.Drawing.Size(72, 20)
         Me.txtRODI.TabIndex = 131
         Me.txtRODI.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtCPSI
         '
         Me.txtCPSI.BackColor = System.Drawing.Color.Yellow
-        Me.txtCPSI.Location = New System.Drawing.Point(325, 209)
+        Me.txtCPSI.Location = New System.Drawing.Point(236, 227)
         Me.txtCPSI.Name = "txtCPSI"
         Me.txtCPSI.ReadOnly = True
-        Me.txtCPSI.Size = New System.Drawing.Size(123, 20)
+        Me.txtCPSI.Size = New System.Drawing.Size(72, 20)
         Me.txtCPSI.TabIndex = 130
         Me.txtCPSI.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label70
         '
         Me.Label70.AutoSize = True
-        Me.Label70.Location = New System.Drawing.Point(3, 209)
+        Me.Label70.Location = New System.Drawing.Point(3, 227)
         Me.Label70.Name = "Label70"
         Me.Label70.Size = New System.Drawing.Size(86, 13)
         Me.Label70.TabIndex = 129
@@ -2546,26 +2447,26 @@ Partial Class FrmPrTxCalculatePayroll
         'txtROSI
         '
         Me.txtROSI.BackColor = System.Drawing.Color.Yellow
-        Me.txtROSI.Location = New System.Drawing.Point(196, 209)
+        Me.txtROSI.Location = New System.Drawing.Point(161, 227)
         Me.txtROSI.Name = "txtROSI"
         Me.txtROSI.ReadOnly = True
-        Me.txtROSI.Size = New System.Drawing.Size(123, 20)
+        Me.txtROSI.Size = New System.Drawing.Size(72, 20)
         Me.txtROSI.TabIndex = 128
         Me.txtROSI.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtCPTotalTaxable
         '
-        Me.txtCPTotalTaxable.Location = New System.Drawing.Point(325, 29)
+        Me.txtCPTotalTaxable.Location = New System.Drawing.Point(236, 47)
         Me.txtCPTotalTaxable.Name = "txtCPTotalTaxable"
         Me.txtCPTotalTaxable.ReadOnly = True
-        Me.txtCPTotalTaxable.Size = New System.Drawing.Size(123, 20)
+        Me.txtCPTotalTaxable.Size = New System.Drawing.Size(72, 20)
         Me.txtCPTotalTaxable.TabIndex = 127
         Me.txtCPTotalTaxable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label69
         '
         Me.Label69.AutoSize = True
-        Me.Label69.Location = New System.Drawing.Point(3, 32)
+        Me.Label69.Location = New System.Drawing.Point(3, 50)
         Me.Label69.Name = "Label69"
         Me.Label69.Size = New System.Drawing.Size(72, 13)
         Me.Label69.TabIndex = 126
@@ -2573,18 +2474,18 @@ Partial Class FrmPrTxCalculatePayroll
         '
         'txtROTotalTaxable
         '
-        Me.txtROTotalTaxable.Location = New System.Drawing.Point(196, 29)
+        Me.txtROTotalTaxable.Location = New System.Drawing.Point(161, 47)
         Me.txtROTotalTaxable.Name = "txtROTotalTaxable"
         Me.txtROTotalTaxable.ReadOnly = True
-        Me.txtROTotalTaxable.Size = New System.Drawing.Size(123, 20)
+        Me.txtROTotalTaxable.Size = New System.Drawing.Size(72, 20)
         Me.txtROTotalTaxable.TabIndex = 125
         Me.txtROTotalTaxable.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(608, 67)
+        Me.Button1.Location = New System.Drawing.Point(734, 393)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(270, 23)
+        Me.Button1.Size = New System.Drawing.Size(144, 58)
         Me.Button1.TabIndex = 124
         Me.Button1.Text = "Show Discounts/Life Insurance / First Employment"
         Me.Button1.UseVisualStyleBackColor = True
@@ -2592,35 +2493,37 @@ Partial Class FrmPrTxCalculatePayroll
         'Label67
         '
         Me.Label67.AutoSize = True
-        Me.Label67.Location = New System.Drawing.Point(462, 416)
+        Me.Label67.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        Me.Label67.Location = New System.Drawing.Point(314, 432)
         Me.Label67.Name = "Label67"
-        Me.Label67.Size = New System.Drawing.Size(58, 13)
+        Me.Label67.Size = New System.Drawing.Size(84, 16)
         Me.Label67.TabIndex = 123
         Me.Label67.Text = "Period Tax"
         '
         'txtFinalPeriodTax
         '
         Me.txtFinalPeriodTax.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
-        Me.txtFinalPeriodTax.Location = New System.Drawing.Point(657, 413)
+        Me.txtFinalPeriodTax.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        Me.txtFinalPeriodTax.Location = New System.Drawing.Point(487, 428)
         Me.txtFinalPeriodTax.Name = "txtFinalPeriodTax"
         Me.txtFinalPeriodTax.ReadOnly = True
-        Me.txtFinalPeriodTax.Size = New System.Drawing.Size(123, 20)
+        Me.txtFinalPeriodTax.Size = New System.Drawing.Size(107, 22)
         Me.txtFinalPeriodTax.TabIndex = 122
         Me.txtFinalPeriodTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtORPeriodUnitsRatio
         '
-        Me.txtORPeriodUnitsRatio.Location = New System.Drawing.Point(657, 333)
+        Me.txtORPeriodUnitsRatio.Location = New System.Drawing.Point(487, 348)
         Me.txtORPeriodUnitsRatio.Name = "txtORPeriodUnitsRatio"
         Me.txtORPeriodUnitsRatio.ReadOnly = True
-        Me.txtORPeriodUnitsRatio.Size = New System.Drawing.Size(123, 20)
+        Me.txtORPeriodUnitsRatio.Size = New System.Drawing.Size(50, 20)
         Me.txtORPeriodUnitsRatio.TabIndex = 121
         Me.txtORPeriodUnitsRatio.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label66
         '
         Me.Label66.AutoSize = True
-        Me.Label66.Location = New System.Drawing.Point(462, 336)
+        Me.Label66.Location = New System.Drawing.Point(314, 348)
         Me.Label66.Name = "Label66"
         Me.Label66.Size = New System.Drawing.Size(168, 13)
         Me.Label66.TabIndex = 120
@@ -2628,17 +2531,17 @@ Partial Class FrmPrTxCalculatePayroll
         '
         'txtCPRemainingTax
         '
-        Me.txtCPRemainingTax.Location = New System.Drawing.Point(325, 390)
+        Me.txtCPRemainingTax.Location = New System.Drawing.Point(236, 408)
         Me.txtCPRemainingTax.Name = "txtCPRemainingTax"
         Me.txtCPRemainingTax.ReadOnly = True
-        Me.txtCPRemainingTax.Size = New System.Drawing.Size(123, 20)
+        Me.txtCPRemainingTax.Size = New System.Drawing.Size(72, 20)
         Me.txtCPRemainingTax.TabIndex = 119
         Me.txtCPRemainingTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label65
         '
         Me.Label65.AutoSize = True
-        Me.Label65.Location = New System.Drawing.Point(3, 390)
+        Me.Label65.Location = New System.Drawing.Point(3, 408)
         Me.Label65.Name = "Label65"
         Me.Label65.Size = New System.Drawing.Size(78, 13)
         Me.Label65.TabIndex = 118
@@ -2646,62 +2549,62 @@ Partial Class FrmPrTxCalculatePayroll
         '
         'txtORRemainingTax
         '
-        Me.txtORRemainingTax.Location = New System.Drawing.Point(196, 390)
+        Me.txtORRemainingTax.Location = New System.Drawing.Point(161, 408)
         Me.txtORRemainingTax.Name = "txtORRemainingTax"
         Me.txtORRemainingTax.ReadOnly = True
-        Me.txtORRemainingTax.Size = New System.Drawing.Size(123, 20)
+        Me.txtORRemainingTax.Size = New System.Drawing.Size(72, 20)
         Me.txtORRemainingTax.TabIndex = 117
         Me.txtORRemainingTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtCPPaidTax
         '
-        Me.txtCPPaidTax.Location = New System.Drawing.Point(325, 370)
+        Me.txtCPPaidTax.Location = New System.Drawing.Point(236, 388)
         Me.txtCPPaidTax.Name = "txtCPPaidTax"
         Me.txtCPPaidTax.ReadOnly = True
-        Me.txtCPPaidTax.Size = New System.Drawing.Size(123, 20)
+        Me.txtCPPaidTax.Size = New System.Drawing.Size(72, 20)
         Me.txtCPPaidTax.TabIndex = 115
         Me.txtCPPaidTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtCPTotalTax
         '
-        Me.txtCPTotalTax.Location = New System.Drawing.Point(325, 350)
+        Me.txtCPTotalTax.Location = New System.Drawing.Point(236, 368)
         Me.txtCPTotalTax.Name = "txtCPTotalTax"
         Me.txtCPTotalTax.ReadOnly = True
-        Me.txtCPTotalTax.Size = New System.Drawing.Size(123, 20)
+        Me.txtCPTotalTax.Size = New System.Drawing.Size(72, 20)
         Me.txtCPTotalTax.TabIndex = 113
         Me.txtCPTotalTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtCPtaxableearnings
         '
-        Me.txtCPtaxableearnings.Location = New System.Drawing.Point(325, 330)
+        Me.txtCPtaxableearnings.Location = New System.Drawing.Point(236, 348)
         Me.txtCPtaxableearnings.Name = "txtCPtaxableearnings"
         Me.txtCPtaxableearnings.ReadOnly = True
-        Me.txtCPtaxableearnings.Size = New System.Drawing.Size(123, 20)
+        Me.txtCPtaxableearnings.Size = New System.Drawing.Size(72, 20)
         Me.txtCPtaxableearnings.TabIndex = 112
         Me.txtCPtaxableearnings.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtCPPeriodTax
         '
-        Me.txtCPPeriodTax.Location = New System.Drawing.Point(325, 410)
+        Me.txtCPPeriodTax.Location = New System.Drawing.Point(236, 428)
         Me.txtCPPeriodTax.Name = "txtCPPeriodTax"
         Me.txtCPPeriodTax.ReadOnly = True
-        Me.txtCPPeriodTax.Size = New System.Drawing.Size(123, 20)
+        Me.txtCPPeriodTax.Size = New System.Drawing.Size(72, 20)
         Me.txtCPPeriodTax.TabIndex = 111
         Me.txtCPPeriodTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label64
         '
         Me.Label64.AutoSize = True
-        Me.Label64.Location = New System.Drawing.Point(3, 410)
+        Me.Label64.Location = New System.Drawing.Point(3, 428)
         Me.Label64.Name = "Label64"
-        Me.Label64.Size = New System.Drawing.Size(144, 13)
+        Me.Label64.Size = New System.Drawing.Size(138, 13)
         Me.Label64.TabIndex = 110
-        Me.Label64.Text = "Remaining / Taxable Periods"
+        Me.Label64.Text = "Remaining/Taxable Periods"
         '
         'Label62
         '
         Me.Label62.AutoSize = True
-        Me.Label62.Location = New System.Drawing.Point(462, 310)
+        Me.Label62.Location = New System.Drawing.Point(314, 331)
         Me.Label62.Name = "Label62"
         Me.Label62.Size = New System.Drawing.Size(167, 13)
         Me.Label62.TabIndex = 109
@@ -2710,7 +2613,7 @@ Partial Class FrmPrTxCalculatePayroll
         'Label61
         '
         Me.Label61.AutoSize = True
-        Me.Label61.Location = New System.Drawing.Point(465, 393)
+        Me.Label61.Location = New System.Drawing.Point(314, 411)
         Me.Label61.Name = "Label61"
         Me.Label61.Size = New System.Drawing.Size(56, 13)
         Me.Label61.TabIndex = 108
@@ -2719,7 +2622,7 @@ Partial Class FrmPrTxCalculatePayroll
         'Label60
         '
         Me.Label60.AutoSize = True
-        Me.Label60.Location = New System.Drawing.Point(3, 370)
+        Me.Label60.Location = New System.Drawing.Point(3, 388)
         Me.Label60.Name = "Label60"
         Me.Label60.Size = New System.Drawing.Size(53, 13)
         Me.Label60.TabIndex = 107
@@ -2728,7 +2631,7 @@ Partial Class FrmPrTxCalculatePayroll
         'Label59
         '
         Me.Label59.AutoSize = True
-        Me.Label59.Location = New System.Drawing.Point(3, 350)
+        Me.Label59.Location = New System.Drawing.Point(3, 368)
         Me.Label59.Name = "Label59"
         Me.Label59.Size = New System.Drawing.Size(52, 13)
         Me.Label59.TabIndex = 106
@@ -2737,7 +2640,7 @@ Partial Class FrmPrTxCalculatePayroll
         'Label58
         '
         Me.Label58.AutoSize = True
-        Me.Label58.Location = New System.Drawing.Point(3, 330)
+        Me.Label58.Location = New System.Drawing.Point(3, 348)
         Me.Label58.Name = "Label58"
         Me.Label58.Size = New System.Drawing.Size(83, 13)
         Me.Label58.TabIndex = 105
@@ -2745,73 +2648,71 @@ Partial Class FrmPrTxCalculatePayroll
         '
         'Label68
         '
-        Me.Label68.AutoSize = True
-        Me.Label68.Location = New System.Drawing.Point(332, 13)
+        Me.Label68.Location = New System.Drawing.Point(229, 9)
         Me.Label68.Name = "Label68"
-        Me.Label68.Size = New System.Drawing.Size(118, 13)
+        Me.Label68.Size = New System.Drawing.Size(79, 13)
         Me.Label68.TabIndex = 101
-        Me.Label68.Text = "Current Period Earnings"
+        Me.Label68.Text = "Current Period"
         '
         'txtORDifference
         '
-        Me.txtORDifference.Location = New System.Drawing.Point(657, 383)
+        Me.txtORDifference.Location = New System.Drawing.Point(487, 408)
         Me.txtORDifference.Name = "txtORDifference"
         Me.txtORDifference.ReadOnly = True
-        Me.txtORDifference.Size = New System.Drawing.Size(123, 20)
+        Me.txtORDifference.Size = New System.Drawing.Size(107, 20)
         Me.txtORDifference.TabIndex = 100
         Me.txtORDifference.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtORPaidTax
         '
-        Me.txtORPaidTax.Location = New System.Drawing.Point(196, 370)
+        Me.txtORPaidTax.Location = New System.Drawing.Point(161, 388)
         Me.txtORPaidTax.Name = "txtORPaidTax"
         Me.txtORPaidTax.ReadOnly = True
-        Me.txtORPaidTax.Size = New System.Drawing.Size(123, 20)
+        Me.txtORPaidTax.Size = New System.Drawing.Size(72, 20)
         Me.txtORPaidTax.TabIndex = 99
         Me.txtORPaidTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtORRemTaxPeriods
         '
-        Me.txtORRemTaxPeriods.Location = New System.Drawing.Point(657, 307)
+        Me.txtORRemTaxPeriods.Location = New System.Drawing.Point(487, 328)
         Me.txtORRemTaxPeriods.Name = "txtORRemTaxPeriods"
         Me.txtORRemTaxPeriods.ReadOnly = True
-        Me.txtORRemTaxPeriods.Size = New System.Drawing.Size(123, 20)
+        Me.txtORRemTaxPeriods.Size = New System.Drawing.Size(50, 20)
         Me.txtORRemTaxPeriods.TabIndex = 96
         Me.txtORRemTaxPeriods.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtORTotalTax
         '
-        Me.txtORTotalTax.Location = New System.Drawing.Point(196, 350)
+        Me.txtORTotalTax.Location = New System.Drawing.Point(161, 368)
         Me.txtORTotalTax.Name = "txtORTotalTax"
         Me.txtORTotalTax.ReadOnly = True
-        Me.txtORTotalTax.Size = New System.Drawing.Size(123, 20)
+        Me.txtORTotalTax.Size = New System.Drawing.Size(72, 20)
         Me.txtORTotalTax.TabIndex = 94
         Me.txtORTotalTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtORtaxableearnings
         '
-        Me.txtORtaxableearnings.Location = New System.Drawing.Point(196, 330)
+        Me.txtORtaxableearnings.Location = New System.Drawing.Point(161, 348)
         Me.txtORtaxableearnings.Name = "txtORtaxableearnings"
         Me.txtORtaxableearnings.ReadOnly = True
-        Me.txtORtaxableearnings.Size = New System.Drawing.Size(123, 20)
+        Me.txtORtaxableearnings.Size = New System.Drawing.Size(72, 20)
         Me.txtORtaxableearnings.TabIndex = 93
         Me.txtORtaxableearnings.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'Label63
         '
-        Me.Label63.AutoSize = True
-        Me.Label63.Location = New System.Drawing.Point(193, 13)
+        Me.Label63.Location = New System.Drawing.Point(163, 9)
         Me.Label63.Name = "Label63"
-        Me.Label63.Size = New System.Drawing.Size(126, 13)
+        Me.Label63.Size = New System.Drawing.Size(94, 24)
         Me.Label63.TabIndex = 91
-        Me.Label63.Text = "ONLY Recuring Earnings"
+        Me.Label63.Text = "Reccuring"
         '
         'txtORPeriodTax
         '
-        Me.txtORPeriodTax.Location = New System.Drawing.Point(196, 410)
+        Me.txtORPeriodTax.Location = New System.Drawing.Point(161, 428)
         Me.txtORPeriodTax.Name = "txtORPeriodTax"
         Me.txtORPeriodTax.ReadOnly = True
-        Me.txtORPeriodTax.Size = New System.Drawing.Size(123, 20)
+        Me.txtORPeriodTax.Size = New System.Drawing.Size(72, 20)
         Me.txtORPeriodTax.TabIndex = 85
         Me.txtORPeriodTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -2850,7 +2751,7 @@ Partial Class FrmPrTxCalculatePayroll
         Me.TabPage5.Controls.Add(Me.Label86)
         Me.TabPage5.Location = New System.Drawing.Point(4, 22)
         Me.TabPage5.Name = "TabPage5"
-        Me.TabPage5.Size = New System.Drawing.Size(890, 515)
+        Me.TabPage5.Size = New System.Drawing.Size(883, 462)
         Me.TabPage5.TabIndex = 5
         Me.TabPage5.Text = "Annual Leave Analysis"
         Me.TabPage5.UseVisualStyleBackColor = True
@@ -3277,7 +3178,7 @@ Partial Class FrmPrTxCalculatePayroll
         '
         'btnRecalculate
         '
-        Me.btnRecalculate.Location = New System.Drawing.Point(836, 37)
+        Me.btnRecalculate.Location = New System.Drawing.Point(812, 36)
         Me.btnRecalculate.Name = "btnRecalculate"
         Me.btnRecalculate.Size = New System.Drawing.Size(87, 23)
         Me.btnRecalculate.TabIndex = 56
@@ -3687,7 +3588,7 @@ Partial Class FrmPrTxCalculatePayroll
         'BtnNext
         '
         Me.BtnNext.Image = CType(resources.GetObject("BtnNext.Image"), System.Drawing.Image)
-        Me.BtnNext.Location = New System.Drawing.Point(849, 2)
+        Me.BtnNext.Location = New System.Drawing.Point(824, 2)
         Me.BtnNext.Name = "BtnNext"
         Me.BtnNext.Size = New System.Drawing.Size(75, 23)
         Me.BtnNext.TabIndex = 80
@@ -3696,7 +3597,7 @@ Partial Class FrmPrTxCalculatePayroll
         'BtnPrevius
         '
         Me.BtnPrevius.Image = CType(resources.GetObject("BtnPrevius.Image"), System.Drawing.Image)
-        Me.BtnPrevius.Location = New System.Drawing.Point(768, 2)
+        Me.BtnPrevius.Location = New System.Drawing.Point(743, 2)
         Me.BtnPrevius.Name = "BtnPrevius"
         Me.BtnPrevius.Size = New System.Drawing.Size(75, 23)
         Me.BtnPrevius.TabIndex = 81
@@ -3719,12 +3620,707 @@ Partial Class FrmPrTxCalculatePayroll
         Me.txtTempstatus.Size = New System.Drawing.Size(121, 20)
         Me.txtTempstatus.TabIndex = 82
         '
+        'CBMethodUsed
+        '
+        Me.CBMethodUsed.AutoSize = True
+        Me.CBMethodUsed.Enabled = False
+        Me.CBMethodUsed.Location = New System.Drawing.Point(6, 9)
+        Me.CBMethodUsed.Name = "CBMethodUsed"
+        Me.CBMethodUsed.Size = New System.Drawing.Size(91, 17)
+        Me.CBMethodUsed.TabIndex = 235
+        Me.CBMethodUsed.Text = "NEW Method"
+        Me.CBMethodUsed.UseVisualStyleBackColor = True
+        '
+        'LblRemTaxable
+        '
+        Me.LblRemTaxable.AutoSize = True
+        Me.LblRemTaxable.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        Me.LblRemTaxable.Location = New System.Drawing.Point(801, 230)
+        Me.LblRemTaxable.Name = "LblRemTaxable"
+        Me.LblRemTaxable.Size = New System.Drawing.Size(0, 13)
+        Me.LblRemTaxable.TabIndex = 236
+        '
+        'C_Pay15
+        '
+        Me.C_Pay15.Location = New System.Drawing.Point(500, 308)
+        Me.C_Pay15.Name = "C_Pay15"
+        Me.C_Pay15.Size = New System.Drawing.Size(236, 20)
+        Me.C_Pay15.TabIndex = 45
+        '
+        'C_Pay14
+        '
+        Me.C_Pay14.Location = New System.Drawing.Point(500, 288)
+        Me.C_Pay14.Name = "C_Pay14"
+        Me.C_Pay14.Size = New System.Drawing.Size(236, 20)
+        Me.C_Pay14.TabIndex = 44
+        '
+        'C_Pay13
+        '
+        Me.C_Pay13.Location = New System.Drawing.Point(500, 268)
+        Me.C_Pay13.Name = "C_Pay13"
+        Me.C_Pay13.Size = New System.Drawing.Size(236, 20)
+        Me.C_Pay13.TabIndex = 43
+        '
+        'C_Pay12
+        '
+        Me.C_Pay12.Location = New System.Drawing.Point(500, 248)
+        Me.C_Pay12.Name = "C_Pay12"
+        Me.C_Pay12.Size = New System.Drawing.Size(236, 20)
+        Me.C_Pay12.TabIndex = 42
+        '
+        'C_Pay11
+        '
+        Me.C_Pay11.Location = New System.Drawing.Point(500, 228)
+        Me.C_Pay11.Name = "C_Pay11"
+        Me.C_Pay11.Size = New System.Drawing.Size(236, 20)
+        Me.C_Pay11.TabIndex = 41
+        '
+        'C_Pay10
+        '
+        Me.C_Pay10.Location = New System.Drawing.Point(500, 208)
+        Me.C_Pay10.Name = "C_Pay10"
+        Me.C_Pay10.Size = New System.Drawing.Size(236, 20)
+        Me.C_Pay10.TabIndex = 40
+        '
+        'C_Pay9
+        '
+        Me.C_Pay9.Location = New System.Drawing.Point(500, 188)
+        Me.C_Pay9.Name = "C_Pay9"
+        Me.C_Pay9.Size = New System.Drawing.Size(236, 20)
+        Me.C_Pay9.TabIndex = 39
+        '
+        'C_Pay8
+        '
+        Me.C_Pay8.Location = New System.Drawing.Point(500, 168)
+        Me.C_Pay8.Name = "C_Pay8"
+        Me.C_Pay8.Size = New System.Drawing.Size(236, 20)
+        Me.C_Pay8.TabIndex = 38
+        '
+        'C_Pay7
+        '
+        Me.C_Pay7.Location = New System.Drawing.Point(500, 148)
+        Me.C_Pay7.Name = "C_Pay7"
+        Me.C_Pay7.Size = New System.Drawing.Size(236, 20)
+        Me.C_Pay7.TabIndex = 37
+        '
+        'C_Pay6
+        '
+        Me.C_Pay6.Location = New System.Drawing.Point(500, 128)
+        Me.C_Pay6.Name = "C_Pay6"
+        Me.C_Pay6.Size = New System.Drawing.Size(236, 20)
+        Me.C_Pay6.TabIndex = 36
+        '
+        'C_Pay5
+        '
+        Me.C_Pay5.Location = New System.Drawing.Point(500, 108)
+        Me.C_Pay5.Name = "C_Pay5"
+        Me.C_Pay5.Size = New System.Drawing.Size(236, 20)
+        Me.C_Pay5.TabIndex = 35
+        '
+        'C_Pay4
+        '
+        Me.C_Pay4.Location = New System.Drawing.Point(500, 88)
+        Me.C_Pay4.Name = "C_Pay4"
+        Me.C_Pay4.Size = New System.Drawing.Size(236, 20)
+        Me.C_Pay4.TabIndex = 34
+        '
+        'C_Pay3
+        '
+        Me.C_Pay3.Location = New System.Drawing.Point(500, 68)
+        Me.C_Pay3.Name = "C_Pay3"
+        Me.C_Pay3.Size = New System.Drawing.Size(236, 20)
+        Me.C_Pay3.TabIndex = 33
+        '
+        'C_Pay2
+        '
+        Me.C_Pay2.Location = New System.Drawing.Point(500, 48)
+        Me.C_Pay2.Name = "C_Pay2"
+        Me.C_Pay2.Size = New System.Drawing.Size(236, 20)
+        Me.C_Pay2.TabIndex = 32
+        '
+        'C_Pay1
+        '
+        Me.C_Pay1.Location = New System.Drawing.Point(500, 28)
+        Me.C_Pay1.Name = "C_Pay1"
+        Me.C_Pay1.Size = New System.Drawing.Size(236, 20)
+        Me.C_Pay1.TabIndex = 31
+        '
+        'D_Pay15
+        '
+        Me.D_Pay15.Location = New System.Drawing.Point(245, 308)
+        Me.D_Pay15.Name = "D_Pay15"
+        Me.D_Pay15.Size = New System.Drawing.Size(236, 20)
+        Me.D_Pay15.TabIndex = 30
+        '
+        'D_Pay14
+        '
+        Me.D_Pay14.Location = New System.Drawing.Point(245, 288)
+        Me.D_Pay14.Name = "D_Pay14"
+        Me.D_Pay14.Size = New System.Drawing.Size(236, 20)
+        Me.D_Pay14.TabIndex = 29
+        '
+        'D_Pay13
+        '
+        Me.D_Pay13.Location = New System.Drawing.Point(245, 268)
+        Me.D_Pay13.Name = "D_Pay13"
+        Me.D_Pay13.Size = New System.Drawing.Size(236, 20)
+        Me.D_Pay13.TabIndex = 28
+        '
+        'D_Pay12
+        '
+        Me.D_Pay12.Location = New System.Drawing.Point(245, 248)
+        Me.D_Pay12.Name = "D_Pay12"
+        Me.D_Pay12.Size = New System.Drawing.Size(236, 20)
+        Me.D_Pay12.TabIndex = 27
+        '
+        'D_Pay11
+        '
+        Me.D_Pay11.Location = New System.Drawing.Point(245, 228)
+        Me.D_Pay11.Name = "D_Pay11"
+        Me.D_Pay11.Size = New System.Drawing.Size(236, 20)
+        Me.D_Pay11.TabIndex = 26
+        '
+        'D_Pay10
+        '
+        Me.D_Pay10.Location = New System.Drawing.Point(245, 208)
+        Me.D_Pay10.Name = "D_Pay10"
+        Me.D_Pay10.Size = New System.Drawing.Size(236, 20)
+        Me.D_Pay10.TabIndex = 25
+        '
+        'D_Pay9
+        '
+        Me.D_Pay9.Location = New System.Drawing.Point(245, 188)
+        Me.D_Pay9.Name = "D_Pay9"
+        Me.D_Pay9.Size = New System.Drawing.Size(236, 20)
+        Me.D_Pay9.TabIndex = 24
+        '
+        'D_Pay8
+        '
+        Me.D_Pay8.Location = New System.Drawing.Point(245, 168)
+        Me.D_Pay8.Name = "D_Pay8"
+        Me.D_Pay8.Size = New System.Drawing.Size(236, 20)
+        Me.D_Pay8.TabIndex = 23
+        '
+        'D_Pay7
+        '
+        Me.D_Pay7.Location = New System.Drawing.Point(245, 148)
+        Me.D_Pay7.Name = "D_Pay7"
+        Me.D_Pay7.Size = New System.Drawing.Size(236, 20)
+        Me.D_Pay7.TabIndex = 22
+        '
+        'D_Pay6
+        '
+        Me.D_Pay6.Location = New System.Drawing.Point(245, 128)
+        Me.D_Pay6.Name = "D_Pay6"
+        Me.D_Pay6.Size = New System.Drawing.Size(236, 20)
+        Me.D_Pay6.TabIndex = 21
+        '
+        'D_Pay5
+        '
+        Me.D_Pay5.Location = New System.Drawing.Point(245, 108)
+        Me.D_Pay5.Name = "D_Pay5"
+        Me.D_Pay5.Size = New System.Drawing.Size(236, 20)
+        Me.D_Pay5.TabIndex = 20
+        '
+        'D_Pay4
+        '
+        Me.D_Pay4.Location = New System.Drawing.Point(245, 88)
+        Me.D_Pay4.Name = "D_Pay4"
+        Me.D_Pay4.Size = New System.Drawing.Size(236, 20)
+        Me.D_Pay4.TabIndex = 19
+        '
+        'D_Pay3
+        '
+        Me.D_Pay3.Location = New System.Drawing.Point(245, 68)
+        Me.D_Pay3.Name = "D_Pay3"
+        Me.D_Pay3.Size = New System.Drawing.Size(236, 20)
+        Me.D_Pay3.TabIndex = 18
+        '
+        'D_Pay2
+        '
+        Me.D_Pay2.Location = New System.Drawing.Point(245, 48)
+        Me.D_Pay2.Name = "D_Pay2"
+        Me.D_Pay2.Size = New System.Drawing.Size(236, 20)
+        Me.D_Pay2.TabIndex = 17
+        '
+        'D_Pay1
+        '
+        Me.D_Pay1.Location = New System.Drawing.Point(245, 28)
+        Me.D_Pay1.Name = "D_Pay1"
+        Me.D_Pay1.Size = New System.Drawing.Size(236, 20)
+        Me.D_Pay1.TabIndex = 16
+        '
+        'E_Pay15
+        '
+        Me.E_Pay15.Location = New System.Drawing.Point(3, 308)
+        Me.E_Pay15.Name = "E_Pay15"
+        Me.E_Pay15.Size = New System.Drawing.Size(236, 20)
+        Me.E_Pay15.TabIndex = 14
+        '
+        'E_Pay14
+        '
+        Me.E_Pay14.Location = New System.Drawing.Point(3, 288)
+        Me.E_Pay14.Name = "E_Pay14"
+        Me.E_Pay14.Size = New System.Drawing.Size(236, 20)
+        Me.E_Pay14.TabIndex = 13
+        '
+        'E_Pay13
+        '
+        Me.E_Pay13.Location = New System.Drawing.Point(3, 268)
+        Me.E_Pay13.Name = "E_Pay13"
+        Me.E_Pay13.Size = New System.Drawing.Size(236, 20)
+        Me.E_Pay13.TabIndex = 12
+        '
+        'E_Pay12
+        '
+        Me.E_Pay12.Location = New System.Drawing.Point(3, 248)
+        Me.E_Pay12.Name = "E_Pay12"
+        Me.E_Pay12.Size = New System.Drawing.Size(236, 20)
+        Me.E_Pay12.TabIndex = 11
+        '
+        'E_Pay11
+        '
+        Me.E_Pay11.Location = New System.Drawing.Point(3, 228)
+        Me.E_Pay11.Name = "E_Pay11"
+        Me.E_Pay11.Size = New System.Drawing.Size(236, 20)
+        Me.E_Pay11.TabIndex = 10
+        '
+        'E_Pay10
+        '
+        Me.E_Pay10.Location = New System.Drawing.Point(3, 208)
+        Me.E_Pay10.Name = "E_Pay10"
+        Me.E_Pay10.Size = New System.Drawing.Size(236, 20)
+        Me.E_Pay10.TabIndex = 9
+        '
+        'E_Pay9
+        '
+        Me.E_Pay9.Location = New System.Drawing.Point(3, 188)
+        Me.E_Pay9.Name = "E_Pay9"
+        Me.E_Pay9.Size = New System.Drawing.Size(236, 20)
+        Me.E_Pay9.TabIndex = 8
+        '
+        'E_Pay8
+        '
+        Me.E_Pay8.Location = New System.Drawing.Point(3, 168)
+        Me.E_Pay8.Name = "E_Pay8"
+        Me.E_Pay8.Size = New System.Drawing.Size(236, 20)
+        Me.E_Pay8.TabIndex = 7
+        '
+        'E_Pay7
+        '
+        Me.E_Pay7.Location = New System.Drawing.Point(3, 148)
+        Me.E_Pay7.Name = "E_Pay7"
+        Me.E_Pay7.Size = New System.Drawing.Size(236, 20)
+        Me.E_Pay7.TabIndex = 6
+        '
+        'E_Pay6
+        '
+        Me.E_Pay6.Location = New System.Drawing.Point(3, 128)
+        Me.E_Pay6.Name = "E_Pay6"
+        Me.E_Pay6.Size = New System.Drawing.Size(236, 20)
+        Me.E_Pay6.TabIndex = 5
+        '
+        'E_Pay5
+        '
+        Me.E_Pay5.Location = New System.Drawing.Point(3, 108)
+        Me.E_Pay5.Name = "E_Pay5"
+        Me.E_Pay5.Size = New System.Drawing.Size(236, 20)
+        Me.E_Pay5.TabIndex = 4
+        '
+        'E_Pay4
+        '
+        Me.E_Pay4.Location = New System.Drawing.Point(3, 88)
+        Me.E_Pay4.Name = "E_Pay4"
+        Me.E_Pay4.Size = New System.Drawing.Size(236, 20)
+        Me.E_Pay4.TabIndex = 3
+        '
+        'E_Pay3
+        '
+        Me.E_Pay3.Location = New System.Drawing.Point(3, 68)
+        Me.E_Pay3.Name = "E_Pay3"
+        Me.E_Pay3.Size = New System.Drawing.Size(236, 20)
+        Me.E_Pay3.TabIndex = 2
+        '
+        'E_Pay2
+        '
+        Me.E_Pay2.Location = New System.Drawing.Point(3, 48)
+        Me.E_Pay2.Name = "E_Pay2"
+        Me.E_Pay2.Size = New System.Drawing.Size(236, 20)
+        Me.E_Pay2.TabIndex = 1
+        '
+        'E_Pay1
+        '
+        Me.E_Pay1.Location = New System.Drawing.Point(3, 28)
+        Me.E_Pay1.Name = "E_Pay1"
+        Me.E_Pay1.Size = New System.Drawing.Size(236, 20)
+        Me.E_Pay1.TabIndex = 0
+        '
+        'C_Final15
+        '
+        Me.C_Final15.Location = New System.Drawing.Point(519, 303)
+        Me.C_Final15.MyValue = 0R
+        Me.C_Final15.Name = "C_Final15"
+        Me.C_Final15.Size = New System.Drawing.Size(236, 20)
+        Me.C_Final15.TabIndex = 44
+        '
+        'D_Final15
+        '
+        Me.D_Final15.Location = New System.Drawing.Point(265, 303)
+        Me.D_Final15.MyValue = 0R
+        Me.D_Final15.Name = "D_Final15"
+        Me.D_Final15.Size = New System.Drawing.Size(236, 20)
+        Me.D_Final15.TabIndex = 43
+        '
+        'E_Final15
+        '
+        Me.E_Final15.Location = New System.Drawing.Point(12, 303)
+        Me.E_Final15.MyValue = 0R
+        Me.E_Final15.Name = "E_Final15"
+        Me.E_Final15.Size = New System.Drawing.Size(236, 20)
+        Me.E_Final15.TabIndex = 42
+        '
+        'C_Final14
+        '
+        Me.C_Final14.Location = New System.Drawing.Point(519, 283)
+        Me.C_Final14.MyValue = 0R
+        Me.C_Final14.Name = "C_Final14"
+        Me.C_Final14.Size = New System.Drawing.Size(236, 20)
+        Me.C_Final14.TabIndex = 41
+        '
+        'D_Final14
+        '
+        Me.D_Final14.Location = New System.Drawing.Point(265, 283)
+        Me.D_Final14.MyValue = 0R
+        Me.D_Final14.Name = "D_Final14"
+        Me.D_Final14.Size = New System.Drawing.Size(236, 20)
+        Me.D_Final14.TabIndex = 40
+        '
+        'E_Final14
+        '
+        Me.E_Final14.Location = New System.Drawing.Point(12, 283)
+        Me.E_Final14.MyValue = 0R
+        Me.E_Final14.Name = "E_Final14"
+        Me.E_Final14.Size = New System.Drawing.Size(236, 20)
+        Me.E_Final14.TabIndex = 39
+        '
+        'C_Final13
+        '
+        Me.C_Final13.Location = New System.Drawing.Point(519, 263)
+        Me.C_Final13.MyValue = 0R
+        Me.C_Final13.Name = "C_Final13"
+        Me.C_Final13.Size = New System.Drawing.Size(236, 20)
+        Me.C_Final13.TabIndex = 38
+        '
+        'D_Final13
+        '
+        Me.D_Final13.Location = New System.Drawing.Point(265, 263)
+        Me.D_Final13.MyValue = 0R
+        Me.D_Final13.Name = "D_Final13"
+        Me.D_Final13.Size = New System.Drawing.Size(236, 20)
+        Me.D_Final13.TabIndex = 37
+        '
+        'E_Final13
+        '
+        Me.E_Final13.Location = New System.Drawing.Point(12, 263)
+        Me.E_Final13.MyValue = 0R
+        Me.E_Final13.Name = "E_Final13"
+        Me.E_Final13.Size = New System.Drawing.Size(236, 20)
+        Me.E_Final13.TabIndex = 36
+        '
+        'C_Final12
+        '
+        Me.C_Final12.Location = New System.Drawing.Point(519, 243)
+        Me.C_Final12.MyValue = 0R
+        Me.C_Final12.Name = "C_Final12"
+        Me.C_Final12.Size = New System.Drawing.Size(236, 20)
+        Me.C_Final12.TabIndex = 35
+        '
+        'D_Final12
+        '
+        Me.D_Final12.Location = New System.Drawing.Point(265, 243)
+        Me.D_Final12.MyValue = 0R
+        Me.D_Final12.Name = "D_Final12"
+        Me.D_Final12.Size = New System.Drawing.Size(236, 20)
+        Me.D_Final12.TabIndex = 34
+        '
+        'E_Final12
+        '
+        Me.E_Final12.Location = New System.Drawing.Point(12, 243)
+        Me.E_Final12.MyValue = 0R
+        Me.E_Final12.Name = "E_Final12"
+        Me.E_Final12.Size = New System.Drawing.Size(236, 20)
+        Me.E_Final12.TabIndex = 33
+        '
+        'C_Final11
+        '
+        Me.C_Final11.Location = New System.Drawing.Point(519, 223)
+        Me.C_Final11.MyValue = 0R
+        Me.C_Final11.Name = "C_Final11"
+        Me.C_Final11.Size = New System.Drawing.Size(236, 20)
+        Me.C_Final11.TabIndex = 32
+        '
+        'D_Final11
+        '
+        Me.D_Final11.Location = New System.Drawing.Point(265, 223)
+        Me.D_Final11.MyValue = 0R
+        Me.D_Final11.Name = "D_Final11"
+        Me.D_Final11.Size = New System.Drawing.Size(236, 20)
+        Me.D_Final11.TabIndex = 31
+        '
+        'E_Final11
+        '
+        Me.E_Final11.Location = New System.Drawing.Point(12, 223)
+        Me.E_Final11.MyValue = 0R
+        Me.E_Final11.Name = "E_Final11"
+        Me.E_Final11.Size = New System.Drawing.Size(236, 20)
+        Me.E_Final11.TabIndex = 30
+        '
+        'C_Final10
+        '
+        Me.C_Final10.Location = New System.Drawing.Point(519, 203)
+        Me.C_Final10.MyValue = 0R
+        Me.C_Final10.Name = "C_Final10"
+        Me.C_Final10.Size = New System.Drawing.Size(236, 20)
+        Me.C_Final10.TabIndex = 29
+        '
+        'D_Final10
+        '
+        Me.D_Final10.Location = New System.Drawing.Point(265, 203)
+        Me.D_Final10.MyValue = 0R
+        Me.D_Final10.Name = "D_Final10"
+        Me.D_Final10.Size = New System.Drawing.Size(236, 20)
+        Me.D_Final10.TabIndex = 28
+        '
+        'E_Final10
+        '
+        Me.E_Final10.Location = New System.Drawing.Point(12, 203)
+        Me.E_Final10.MyValue = 0R
+        Me.E_Final10.Name = "E_Final10"
+        Me.E_Final10.Size = New System.Drawing.Size(236, 20)
+        Me.E_Final10.TabIndex = 27
+        '
+        'C_Final9
+        '
+        Me.C_Final9.Location = New System.Drawing.Point(519, 183)
+        Me.C_Final9.MyValue = 0R
+        Me.C_Final9.Name = "C_Final9"
+        Me.C_Final9.Size = New System.Drawing.Size(236, 20)
+        Me.C_Final9.TabIndex = 26
+        '
+        'D_Final9
+        '
+        Me.D_Final9.Location = New System.Drawing.Point(265, 183)
+        Me.D_Final9.MyValue = 0R
+        Me.D_Final9.Name = "D_Final9"
+        Me.D_Final9.Size = New System.Drawing.Size(236, 20)
+        Me.D_Final9.TabIndex = 25
+        '
+        'E_Final9
+        '
+        Me.E_Final9.Location = New System.Drawing.Point(12, 183)
+        Me.E_Final9.MyValue = 0R
+        Me.E_Final9.Name = "E_Final9"
+        Me.E_Final9.Size = New System.Drawing.Size(236, 20)
+        Me.E_Final9.TabIndex = 24
+        '
+        'C_Final8
+        '
+        Me.C_Final8.Location = New System.Drawing.Point(519, 163)
+        Me.C_Final8.MyValue = 0R
+        Me.C_Final8.Name = "C_Final8"
+        Me.C_Final8.Size = New System.Drawing.Size(236, 20)
+        Me.C_Final8.TabIndex = 23
+        '
+        'D_Final8
+        '
+        Me.D_Final8.Location = New System.Drawing.Point(265, 163)
+        Me.D_Final8.MyValue = 0R
+        Me.D_Final8.Name = "D_Final8"
+        Me.D_Final8.Size = New System.Drawing.Size(236, 20)
+        Me.D_Final8.TabIndex = 22
+        '
+        'E_Final8
+        '
+        Me.E_Final8.Location = New System.Drawing.Point(12, 163)
+        Me.E_Final8.MyValue = 0R
+        Me.E_Final8.Name = "E_Final8"
+        Me.E_Final8.Size = New System.Drawing.Size(236, 20)
+        Me.E_Final8.TabIndex = 21
+        '
+        'C_Final7
+        '
+        Me.C_Final7.Location = New System.Drawing.Point(519, 143)
+        Me.C_Final7.MyValue = 0R
+        Me.C_Final7.Name = "C_Final7"
+        Me.C_Final7.Size = New System.Drawing.Size(236, 20)
+        Me.C_Final7.TabIndex = 20
+        '
+        'D_Final7
+        '
+        Me.D_Final7.Location = New System.Drawing.Point(265, 143)
+        Me.D_Final7.MyValue = 0R
+        Me.D_Final7.Name = "D_Final7"
+        Me.D_Final7.Size = New System.Drawing.Size(236, 20)
+        Me.D_Final7.TabIndex = 19
+        '
+        'E_Final7
+        '
+        Me.E_Final7.Location = New System.Drawing.Point(12, 143)
+        Me.E_Final7.MyValue = 0R
+        Me.E_Final7.Name = "E_Final7"
+        Me.E_Final7.Size = New System.Drawing.Size(236, 20)
+        Me.E_Final7.TabIndex = 18
+        '
+        'C_Final6
+        '
+        Me.C_Final6.Location = New System.Drawing.Point(519, 123)
+        Me.C_Final6.MyValue = 0R
+        Me.C_Final6.Name = "C_Final6"
+        Me.C_Final6.Size = New System.Drawing.Size(236, 20)
+        Me.C_Final6.TabIndex = 17
+        '
+        'D_Final6
+        '
+        Me.D_Final6.Location = New System.Drawing.Point(265, 123)
+        Me.D_Final6.MyValue = 0R
+        Me.D_Final6.Name = "D_Final6"
+        Me.D_Final6.Size = New System.Drawing.Size(236, 20)
+        Me.D_Final6.TabIndex = 16
+        '
+        'E_Final6
+        '
+        Me.E_Final6.Location = New System.Drawing.Point(12, 123)
+        Me.E_Final6.MyValue = 0R
+        Me.E_Final6.Name = "E_Final6"
+        Me.E_Final6.Size = New System.Drawing.Size(236, 20)
+        Me.E_Final6.TabIndex = 15
+        '
+        'C_Final5
+        '
+        Me.C_Final5.Location = New System.Drawing.Point(519, 103)
+        Me.C_Final5.MyValue = 0R
+        Me.C_Final5.Name = "C_Final5"
+        Me.C_Final5.Size = New System.Drawing.Size(236, 20)
+        Me.C_Final5.TabIndex = 14
+        '
+        'D_Final5
+        '
+        Me.D_Final5.Location = New System.Drawing.Point(265, 103)
+        Me.D_Final5.MyValue = 0R
+        Me.D_Final5.Name = "D_Final5"
+        Me.D_Final5.Size = New System.Drawing.Size(236, 20)
+        Me.D_Final5.TabIndex = 13
+        '
+        'E_Final5
+        '
+        Me.E_Final5.Location = New System.Drawing.Point(12, 103)
+        Me.E_Final5.MyValue = 0R
+        Me.E_Final5.Name = "E_Final5"
+        Me.E_Final5.Size = New System.Drawing.Size(236, 20)
+        Me.E_Final5.TabIndex = 12
+        '
+        'C_Final4
+        '
+        Me.C_Final4.Location = New System.Drawing.Point(519, 83)
+        Me.C_Final4.MyValue = 0R
+        Me.C_Final4.Name = "C_Final4"
+        Me.C_Final4.Size = New System.Drawing.Size(236, 20)
+        Me.C_Final4.TabIndex = 11
+        '
+        'D_Final4
+        '
+        Me.D_Final4.Location = New System.Drawing.Point(265, 83)
+        Me.D_Final4.MyValue = 0R
+        Me.D_Final4.Name = "D_Final4"
+        Me.D_Final4.Size = New System.Drawing.Size(236, 20)
+        Me.D_Final4.TabIndex = 10
+        '
+        'E_Final4
+        '
+        Me.E_Final4.Location = New System.Drawing.Point(12, 83)
+        Me.E_Final4.MyValue = 0R
+        Me.E_Final4.Name = "E_Final4"
+        Me.E_Final4.Size = New System.Drawing.Size(236, 20)
+        Me.E_Final4.TabIndex = 9
+        '
+        'C_Final3
+        '
+        Me.C_Final3.Location = New System.Drawing.Point(519, 63)
+        Me.C_Final3.MyValue = 0R
+        Me.C_Final3.Name = "C_Final3"
+        Me.C_Final3.Size = New System.Drawing.Size(236, 20)
+        Me.C_Final3.TabIndex = 8
+        '
+        'D_Final3
+        '
+        Me.D_Final3.Location = New System.Drawing.Point(265, 63)
+        Me.D_Final3.MyValue = 0R
+        Me.D_Final3.Name = "D_Final3"
+        Me.D_Final3.Size = New System.Drawing.Size(236, 20)
+        Me.D_Final3.TabIndex = 7
+        '
+        'E_Final3
+        '
+        Me.E_Final3.Location = New System.Drawing.Point(12, 63)
+        Me.E_Final3.MyValue = 0R
+        Me.E_Final3.Name = "E_Final3"
+        Me.E_Final3.Size = New System.Drawing.Size(236, 20)
+        Me.E_Final3.TabIndex = 6
+        '
+        'C_Final2
+        '
+        Me.C_Final2.Location = New System.Drawing.Point(519, 43)
+        Me.C_Final2.MyValue = 0R
+        Me.C_Final2.Name = "C_Final2"
+        Me.C_Final2.Size = New System.Drawing.Size(236, 20)
+        Me.C_Final2.TabIndex = 5
+        '
+        'D_Final2
+        '
+        Me.D_Final2.Location = New System.Drawing.Point(265, 43)
+        Me.D_Final2.MyValue = 0R
+        Me.D_Final2.Name = "D_Final2"
+        Me.D_Final2.Size = New System.Drawing.Size(236, 20)
+        Me.D_Final2.TabIndex = 4
+        '
+        'E_Final2
+        '
+        Me.E_Final2.Location = New System.Drawing.Point(12, 43)
+        Me.E_Final2.MyValue = 0R
+        Me.E_Final2.Name = "E_Final2"
+        Me.E_Final2.Size = New System.Drawing.Size(236, 20)
+        Me.E_Final2.TabIndex = 3
+        '
+        'C_Final1
+        '
+        Me.C_Final1.Location = New System.Drawing.Point(519, 23)
+        Me.C_Final1.MyValue = 0R
+        Me.C_Final1.Name = "C_Final1"
+        Me.C_Final1.Size = New System.Drawing.Size(236, 20)
+        Me.C_Final1.TabIndex = 2
+        '
+        'D_Final1
+        '
+        Me.D_Final1.Location = New System.Drawing.Point(265, 23)
+        Me.D_Final1.MyValue = 0R
+        Me.D_Final1.Name = "D_Final1"
+        Me.D_Final1.Size = New System.Drawing.Size(236, 20)
+        Me.D_Final1.TabIndex = 1
+        '
+        'E_Final1
+        '
+        Me.E_Final1.Location = New System.Drawing.Point(12, 23)
+        Me.E_Final1.MyValue = 0R
+        Me.E_Final1.Name = "E_Final1"
+        Me.E_Final1.Size = New System.Drawing.Size(236, 20)
+        Me.E_Final1.TabIndex = 0
+        '
         'FrmPrTxCalculatePayroll
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        Me.ClientSize = New System.Drawing.Size(935, 750)
+        Me.ClientSize = New System.Drawing.Size(905, 687)
         Me.Controls.Add(Me.Label9)
         Me.Controls.Add(Me.txtTempstatus)
         Me.Controls.Add(Me.BtnNext)
@@ -4095,10 +4691,8 @@ Partial Class FrmPrTxCalculatePayroll
     Friend WithEvents Label81 As System.Windows.Forms.Label
     Friend WithEvents txtRtotalSIPFMFLI As System.Windows.Forms.TextBox
     Friend WithEvents txtCMedLimit As System.Windows.Forms.TextBox
-    Friend WithEvents lblMFLimit As System.Windows.Forms.Label
     Friend WithEvents txtRmedLimit As System.Windows.Forms.TextBox
     Friend WithEvents txtCPFLimit As System.Windows.Forms.TextBox
-    Friend WithEvents LblPFLimit As System.Windows.Forms.Label
     Friend WithEvents txtRPFLimit As System.Windows.Forms.TextBox
     Friend WithEvents btnLoadValues As System.Windows.Forms.Button
     Friend WithEvents BtnPrintIR59 As System.Windows.Forms.Button
@@ -4154,11 +4748,64 @@ Partial Class FrmPrTxCalculatePayroll
     Friend WithEvents Label104 As System.Windows.Forms.Label
     Friend WithEvents txtFixedGesyC As System.Windows.Forms.TextBox
     Friend WithEvents txtFixedGesyD As System.Windows.Forms.TextBox
-    Friend WithEvents Label106 As System.Windows.Forms.Label
     Friend WithEvents txtCGesyLimit As System.Windows.Forms.TextBox
     Friend WithEvents txtRGesyLimit As System.Windows.Forms.TextBox
     Friend WithEvents btnUpdateGESIableForSI As System.Windows.Forms.Button
     Friend WithEvents txtUpdateGesiableforSI As System.Windows.Forms.TextBox
     Friend WithEvents Label9 As Label
     Friend WithEvents txtTempstatus As TextBox
+    Friend WithEvents Label108 As Label
+    Friend WithEvents Label107 As Label
+    Friend WithEvents Label85 As Label
+    Friend WithEvents Label84 As Label
+    Friend WithEvents Label83 As Label
+    Friend WithEvents Label82 As Label
+    Friend WithEvents Label51 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents txtTA_REC_TotalTaxable As TextBox
+    Friend WithEvents txtAA_REC_TotalTaxable As TextBox
+    Friend WithEvents txtTA_REC_NotionalIncome As TextBox
+    Friend WithEvents txtAA_REC_NotionalIncome As TextBox
+    Friend WithEvents txtTA_REC_PreviousEmployment As TextBox
+    Friend WithEvents txtAA_REC_PreviousEmployment As TextBox
+    Friend WithEvents txtTA_REC_FromOthersources As TextBox
+    Friend WithEvents txtAA_REC_FromOthersources As TextBox
+    Friend WithEvents txtTA_REC_SIPension As TextBox
+    Friend WithEvents txtAA_REC_SIPension As TextBox
+    Friend WithEvents txtTA_REC_CurrentEmployment As TextBox
+    Friend WithEvents txtAA_REC_CurrentEmployment As TextBox
+    Friend WithEvents txt_REC_TempPAYE As TextBox
+    Friend WithEvents Label109 As Label
+    Friend WithEvents Label112 As Label
+    Friend WithEvents Label113 As Label
+    Friend WithEvents Label111 As Label
+    Friend WithEvents Label110 As Label
+    Friend WithEvents txt_PER_TempPAYE As TextBox
+    Friend WithEvents txtTA_PER_TotalTaxable As TextBox
+    Friend WithEvents txtAA_PER_TotalTaxable As TextBox
+    Friend WithEvents txtTA_PER_NotionalIncome As TextBox
+    Friend WithEvents txtAA_PER_NotionalIncome As TextBox
+    Friend WithEvents txtTA_PER_PreviousEmployment As TextBox
+    Friend WithEvents txtAA_PER_PreviousEmployment As TextBox
+    Friend WithEvents txtTA_PER_FromOthersources As TextBox
+    Friend WithEvents txtAA_PER_FromOthersources As TextBox
+    Friend WithEvents txtTA_PER_SIPension As TextBox
+    Friend WithEvents txtAA_PER_SIPension As TextBox
+    Friend WithEvents txtTA_PER_CurrentEmployment As TextBox
+    Friend WithEvents txtAA_PER_CurrentEmployment As TextBox
+    Friend WithEvents txtTaxDifference As TextBox
+    Friend WithEvents Label114 As Label
+    Friend WithEvents txtNewPeriodTax As TextBox
+    Friend WithEvents txtNewPaid As TextBox
+    Friend WithEvents Label106 As Label
+    Friend WithEvents LblPFLimit As Label
+    Friend WithEvents lblMFLimit As Label
+    Friend WithEvents Label118 As Label
+    Friend WithEvents txtPerRemaining As TextBox
+    Friend WithEvents txtPERCurrent_SI_Notional As TextBox
+    Friend WithEvents Label117 As Label
+    Friend WithEvents Label116 As Label
+    Friend WithEvents Label115 As Label
+    Friend WithEvents CBMethodUsed As CheckBox
+    Friend WithEvents LblRemTaxable As Label
 End Class

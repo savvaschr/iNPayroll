@@ -507,6 +507,7 @@ Public Class FrmIR61_2019
             Exit Sub
         End If
 
+
         MonthlyReportTofile(WithExcel)
     End Sub
     Private Sub MonthlyReportTofile(ShowExcel As Boolean)
@@ -515,6 +516,7 @@ Public Class FrmIR61_2019
         Dim Ds As New DataSet
         Dim DsTax As DataSet
         Dim DsTaxable As DataSet
+        Dim DsDEDTameioSyntakseon As DataSet
         Dim DsDED As DataSet
         Dim DsCON As DataSet
         Dim DsCONPen As DataSet
@@ -790,6 +792,7 @@ Public Class FrmIR61_2019
                         '   Exit For
                     End If
                 Next
+
                 For k = 0 To DsDED.Tables(0).Rows.Count - 1
                     Dim tCode As String
                     tCode = DbNullToString(DsDED.Tables(0).Rows(k).Item(0))

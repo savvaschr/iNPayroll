@@ -2262,6 +2262,7 @@ Public Class FrmIR63A
             Dim C_PREV_UnionDed As Integer = 56
             Dim C_PREV_Gesi As Integer = 57
             Dim C_Email As Integer = 58
+            Dim C_LWBPensioner As Integer = 59
 
 
 
@@ -2827,7 +2828,9 @@ Public Class FrmIR63A
                         '69
                         Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_PREV_Gesi)), 15) & PP
                         '70
-                        Str02 = Str02 & DbNullToString(.Item(C_Email))
+                        Str02 = Str02 & DbNullToString(.Item(C_Email)) & PP
+                        '70
+                        Str02 = Str02 & DbNullToString(.Item(C_LWBPensioner))
 
 
 
@@ -10114,7 +10117,7 @@ Public Class FrmIR63A
         '66 PREV_PensionFund
         '67 PREV_UnionDed
         '68 PREV_Gesi
-
+        '69 IsLWBPensioner
         '-------------------------------------
         Dim employeeType As String
         Dim OtherDiscounts As Double
@@ -10259,8 +10262,10 @@ Public Class FrmIR63A
         PreviousUnion = StringtoDecimal2ReturnDouble((Ar(67)))
         PreviousGesy = StringtoDecimal2ReturnDouble((Ar(68)))
 
-        IncomeFromOthersources = IncomeFromOthersources + Rents + PreviousEarnings - PreviousSI - PreviousPF - PreviousLifeInsurance - PreviousDiscount - PreviousMF - PreviousPenF - PreviousUnion - PreviousGesy
-
+        IncomeFromOthersources = TaxablefromOther + Rents + PreviousEarnings - PreviousSI - PreviousPF - PreviousLifeInsurance - PreviousDiscount - PreviousMF - PreviousPenF - PreviousUnion - PreviousGesy
+        If IncomeFromOthersources < 0 Then
+            IncomeFromOthersources = 0
+        End If
         '60 PREV_GrossEarnings 
         '61 PREV_SIDed 
         '62 PREV_PFFund
@@ -10375,12 +10380,20 @@ Public Class FrmIR63A
         Q38 = StringtoDecimal2ReturnDouble(Ar(48))
         WL("<ReductionOfEmolumentsAndPensions>" & FWC(Q38) & "</ReductionOfEmolumentsAndPensions>")
         MT_ReductionOfEmolumentsandPensions = MT_ReductionOfEmolumentsandPensions + Q38
+
         '<!-- Q38 Broader Public Sector Reduction of Emoluments And Pensions -->
-        Q39 = StringtoDecimal2ReturnDouble(Ar(55))
+        Q39 = StringtoDecimal2ReturnDouble(Ar(54))
         employeeType = Ar(56)
         If employeeType = "3" Then
             Q39 = 0
         End If
+        If Ar(70) = 1 Then
+            Q42 = Q39
+            Q39 = 0
+        Else
+            Q42 = 0
+        End If
+
 
         WL("<GhsWithheldEmployeesNormalRate>" & FWC(Q39) & "</GhsWithheldEmployeesNormalRate>")
         '<!-- Q39 GHS withheld from employees for income subject to normal rate tax -->
@@ -10391,7 +10404,7 @@ Public Class FrmIR63A
         WL("<GhsWithheldEmployees>" & FWC(Q41) & "</GhsWithheldEmployees>")
         '<!-- Q41 GHS withheld from employees: Sum of Q39 & Q40 -->
         MT_GHSWithHeldEmployee = MT_GHSWithHeldEmployee + Q41
-        Q42 = 0
+
         WL("<GhsWithheldPensionersNormalRate>" & FWC(Q42) & "</GhsWithheldPensionersNormalRate>")
         '<!-- Q42 GHS withheld from pensioners for income subject to normal rate tax -->
         Q43 = 0
@@ -10404,13 +10417,11 @@ Public Class FrmIR63A
 
         If employeeType = 3 Then
             WL("<IsEmployeeAnOfficer>" & 1 & "</IsEmployeeAnOfficer>")
+            'reverse 54 with 55 if employee is officer
             Q46 = StringtoDecimal2ReturnDouble(Ar(55))
-            Q56 = StringtoDecimal2ReturnDouble(Ar(54))
-
         Else
             WL("<IsEmployeeAnOfficer>" & 0 & "</IsEmployeeAnOfficer>")
             Q46 = 0
-            Q56 = 0
         End If
         '<!-- Q45 Is the employee an Officer? Yes=1 , No=0 -->
 
@@ -10446,11 +10457,21 @@ Public Class FrmIR63A
         WL("<TaxWithheldPriorYearBonus>" & FWC(Q55) & "</TaxWithheldPriorYearBonus>")
         MT_TaxWithheld = MT_TaxWithheld + Q55 + Q54
         '<!-- Q55 Tax withheld from prior year bonus -->
-        'Q56 = 0
+        If employeeType = "3" Then
+            'Contribution of Officer is on Ar(54)
+            Q56 = StringtoDecimal2ReturnDouble(Ar(54))
+        Else
+            'Contribution of NON Officer is on Ar(55)
+            Q56 = StringtoDecimal2ReturnDouble(Ar(55))
+        End If
+
         WL("<GhsEmployersContributionPayable>" & FWC(Q56) & "</GhsEmployersContributionPayable>")
         '<!-- Q56 GHS Employer's Contribution Payable to Tax Department -->
         MT_GHSEmployersContribution = MT_GHSEmployersContribution + Q56
-        WL("<SalaryPaymentMethod>12</SalaryPaymentMethod>")
+
+
+        Dim salaryPeriods As Integer = Ar(42)
+        WL("<SalaryPaymentMethod>" & salaryPeriods & "</SalaryPaymentMethod>")
         '<!-- Q57 Method of salary payment  Monthly (12 Or 13) Or Weekly (52 Or 53) -->
         If Trim(Ar(26)) <> "" Then
             Dim S As String

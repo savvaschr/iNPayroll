@@ -787,6 +787,10 @@ Public Class cBusiness
         Return MyBase.REPORT_IR61_Gesy_DEDUCTION(PerGrp, SIPeriod)
 
     End Function
+    Public Shadows Function REPORT_IR61_Gesy_DEDUCTIONTameioSyntakseon_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
+        Return MyBase.REPORT_IR61_Gesy_DEDUCTIONTameiosyntakseon_PerEmployee(PerGrp, SIPeriod)
+
+    End Function
     Public Shadows Function REPORT_IR61_Gesy_DEDUCTION_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
         Return MyBase.REPORT_IR61_Gesy_DEDUCTION_PerEmployee(PerGrp, SIPeriod)
 
@@ -2184,6 +2188,9 @@ Public Class cBusiness
     End Function
     Public Function Upgrade_2025_03() As Boolean
         Return MyBase.Upgrade_2025_03
+    End Function
+    Public Function Upgrade_2025_04() As Boolean
+        Return MyBase.Upgrade_2025_04
     End Function
 
     Public Function FindNumberOfNormalPeriodsForThisEmployeeForThisPeriodGroup(ByVal glbcurrentperiod As cPrMsPeriodCodes, ByVal EmpCode As String) As Integer
