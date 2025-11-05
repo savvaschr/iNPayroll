@@ -107,6 +107,16 @@ Partial Class FrmPrTxCalculatePayroll
         Me.BtnCalculateGross = New System.Windows.Forms.Button()
         Me.txtNetToBe = New System.Windows.Forms.TextBox()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
+        Me.txtTA_PER_Split = New System.Windows.Forms.TextBox()
+        Me.txtAA_PER_Split = New System.Windows.Forms.TextBox()
+        Me.txtTA_REC_Split = New System.Windows.Forms.TextBox()
+        Me.txtAA_REC_Split = New System.Windows.Forms.TextBox()
+        Me.Label119 = New System.Windows.Forms.Label()
+        Me.Label121 = New System.Windows.Forms.Label()
+        Me.txtNotionalPeriodTax = New System.Windows.Forms.TextBox()
+        Me.Label120 = New System.Windows.Forms.Label()
+        Me.LblRemTaxable = New System.Windows.Forms.Label()
+        Me.CBMethodUsed = New System.Windows.Forms.CheckBox()
         Me.Label118 = New System.Windows.Forms.Label()
         Me.txtPerRemaining = New System.Windows.Forms.TextBox()
         Me.txtPERCurrent_SI_Notional = New System.Windows.Forms.TextBox()
@@ -342,8 +352,6 @@ Partial Class FrmPrTxCalculatePayroll
         Me.BtnPrevius = New System.Windows.Forms.Button()
         Me.Label9 = New System.Windows.Forms.Label()
         Me.txtTempstatus = New System.Windows.Forms.TextBox()
-        Me.CBMethodUsed = New System.Windows.Forms.CheckBox()
-        Me.LblRemTaxable = New System.Windows.Forms.Label()
         Me.C_Pay15 = New NodalPay.C_Pay()
         Me.C_Pay14 = New NodalPay.C_Pay()
         Me.C_Pay13 = New NodalPay.C_Pay()
@@ -1321,6 +1329,14 @@ Partial Class FrmPrTxCalculatePayroll
         '
         'TabPage4
         '
+        Me.TabPage4.Controls.Add(Me.txtTA_PER_Split)
+        Me.TabPage4.Controls.Add(Me.txtAA_PER_Split)
+        Me.TabPage4.Controls.Add(Me.txtTA_REC_Split)
+        Me.TabPage4.Controls.Add(Me.txtAA_REC_Split)
+        Me.TabPage4.Controls.Add(Me.Label119)
+        Me.TabPage4.Controls.Add(Me.Label121)
+        Me.TabPage4.Controls.Add(Me.txtNotionalPeriodTax)
+        Me.TabPage4.Controls.Add(Me.Label120)
         Me.TabPage4.Controls.Add(Me.LblRemTaxable)
         Me.TabPage4.Controls.Add(Me.CBMethodUsed)
         Me.TabPage4.Controls.Add(Me.Label118)
@@ -1462,11 +1478,109 @@ Partial Class FrmPrTxCalculatePayroll
         Me.TabPage4.Text = "Income Tax Analysis"
         Me.TabPage4.UseVisualStyleBackColor = True
         '
+        'txtTA_PER_Split
+        '
+        Me.txtTA_PER_Split.BackColor = System.Drawing.Color.Aqua
+        Me.txtTA_PER_Split.Location = New System.Drawing.Point(730, 147)
+        Me.txtTA_PER_Split.Name = "txtTA_PER_Split"
+        Me.txtTA_PER_Split.ReadOnly = True
+        Me.txtTA_PER_Split.Size = New System.Drawing.Size(72, 20)
+        Me.txtTA_PER_Split.TabIndex = 245
+        Me.txtTA_PER_Split.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtAA_PER_Split
+        '
+        Me.txtAA_PER_Split.BackColor = System.Drawing.Color.Aqua
+        Me.txtAA_PER_Split.Location = New System.Drawing.Point(653, 147)
+        Me.txtAA_PER_Split.Name = "txtAA_PER_Split"
+        Me.txtAA_PER_Split.ReadOnly = True
+        Me.txtAA_PER_Split.Size = New System.Drawing.Size(72, 20)
+        Me.txtAA_PER_Split.TabIndex = 244
+        Me.txtAA_PER_Split.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtTA_REC_Split
+        '
+        Me.txtTA_REC_Split.BackColor = System.Drawing.Color.Aqua
+        Me.txtTA_REC_Split.Location = New System.Drawing.Point(575, 147)
+        Me.txtTA_REC_Split.Name = "txtTA_REC_Split"
+        Me.txtTA_REC_Split.ReadOnly = True
+        Me.txtTA_REC_Split.Size = New System.Drawing.Size(72, 20)
+        Me.txtTA_REC_Split.TabIndex = 243
+        Me.txtTA_REC_Split.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'txtAA_REC_Split
+        '
+        Me.txtAA_REC_Split.BackColor = System.Drawing.Color.Aqua
+        Me.txtAA_REC_Split.Location = New System.Drawing.Point(497, 147)
+        Me.txtAA_REC_Split.Name = "txtAA_REC_Split"
+        Me.txtAA_REC_Split.ReadOnly = True
+        Me.txtAA_REC_Split.Size = New System.Drawing.Size(72, 20)
+        Me.txtAA_REC_Split.TabIndex = 242
+        Me.txtAA_REC_Split.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label119
+        '
+        Me.Label119.AutoSize = True
+        Me.Label119.Location = New System.Drawing.Point(390, 150)
+        Me.Label119.Name = "Label119"
+        Me.Label119.Size = New System.Drawing.Size(87, 13)
+        Me.Label119.TabIndex = 241
+        Me.Label119.Text = "Split Employment"
+        '
+        'Label121
+        '
+        Me.Label121.AutoSize = True
+        Me.Label121.Location = New System.Drawing.Point(574, 307)
+        Me.Label121.Name = "Label121"
+        Me.Label121.Size = New System.Drawing.Size(113, 13)
+        Me.Label121.TabIndex = 240
+        Me.Label121.Text = "Included in Period Tax"
+        '
+        'txtNotionalPeriodTax
+        '
+        Me.txtNotionalPeriodTax.BackColor = System.Drawing.Color.PowderBlue
+        Me.txtNotionalPeriodTax.Location = New System.Drawing.Point(728, 291)
+        Me.txtNotionalPeriodTax.Name = "txtNotionalPeriodTax"
+        Me.txtNotionalPeriodTax.ReadOnly = True
+        Me.txtNotionalPeriodTax.Size = New System.Drawing.Size(72, 20)
+        Me.txtNotionalPeriodTax.TabIndex = 239
+        Me.txtNotionalPeriodTax.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
+        '
+        'Label120
+        '
+        Me.Label120.AutoSize = True
+        Me.Label120.Location = New System.Drawing.Point(574, 294)
+        Me.Label120.Name = "Label120"
+        Me.Label120.Size = New System.Drawing.Size(138, 13)
+        Me.Label120.TabIndex = 238
+        Me.Label120.Text = "Notional Income Period Tax"
+        '
+        'LblRemTaxable
+        '
+        Me.LblRemTaxable.AutoSize = True
+        Me.LblRemTaxable.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        Me.LblRemTaxable.Location = New System.Drawing.Point(806, 250)
+        Me.LblRemTaxable.Name = "LblRemTaxable"
+        Me.LblRemTaxable.Size = New System.Drawing.Size(28, 13)
+        Me.LblRemTaxable.TabIndex = 236
+        Me.LblRemTaxable.Text = " / 1"
+        '
+        'CBMethodUsed
+        '
+        Me.CBMethodUsed.AutoSize = True
+        Me.CBMethodUsed.Enabled = False
+        Me.CBMethodUsed.Location = New System.Drawing.Point(6, 9)
+        Me.CBMethodUsed.Name = "CBMethodUsed"
+        Me.CBMethodUsed.Size = New System.Drawing.Size(91, 17)
+        Me.CBMethodUsed.TabIndex = 235
+        Me.CBMethodUsed.Text = "NEW Method"
+        Me.CBMethodUsed.UseVisualStyleBackColor = True
+        '
         'Label118
         '
         Me.Label118.AutoSize = True
         Me.Label118.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
-        Me.Label118.Location = New System.Drawing.Point(575, 253)
+        Me.Label118.Location = New System.Drawing.Point(574, 273)
         Me.Label118.Name = "Label118"
         Me.Label118.Size = New System.Drawing.Size(76, 15)
         Me.Label118.TabIndex = 234
@@ -1475,7 +1589,7 @@ Partial Class FrmPrTxCalculatePayroll
         'txtPerRemaining
         '
         Me.txtPerRemaining.BackColor = System.Drawing.Color.Aqua
-        Me.txtPerRemaining.Location = New System.Drawing.Point(729, 227)
+        Me.txtPerRemaining.Location = New System.Drawing.Point(728, 247)
         Me.txtPerRemaining.Name = "txtPerRemaining"
         Me.txtPerRemaining.ReadOnly = True
         Me.txtPerRemaining.Size = New System.Drawing.Size(72, 20)
@@ -1485,7 +1599,7 @@ Partial Class FrmPrTxCalculatePayroll
         'txtPERCurrent_SI_Notional
         '
         Me.txtPERCurrent_SI_Notional.BackColor = System.Drawing.Color.Aqua
-        Me.txtPERCurrent_SI_Notional.Location = New System.Drawing.Point(729, 187)
+        Me.txtPERCurrent_SI_Notional.Location = New System.Drawing.Point(728, 207)
         Me.txtPERCurrent_SI_Notional.Name = "txtPERCurrent_SI_Notional"
         Me.txtPERCurrent_SI_Notional.ReadOnly = True
         Me.txtPERCurrent_SI_Notional.Size = New System.Drawing.Size(72, 20)
@@ -1495,7 +1609,7 @@ Partial Class FrmPrTxCalculatePayroll
         'Label117
         '
         Me.Label117.AutoSize = True
-        Me.Label117.Location = New System.Drawing.Point(575, 230)
+        Me.Label117.Location = New System.Drawing.Point(574, 250)
         Me.Label117.Name = "Label117"
         Me.Label117.Size = New System.Drawing.Size(57, 13)
         Me.Label117.TabIndex = 231
@@ -1504,7 +1618,7 @@ Partial Class FrmPrTxCalculatePayroll
         'Label116
         '
         Me.Label116.AutoSize = True
-        Me.Label116.Location = New System.Drawing.Point(575, 210)
+        Me.Label116.Location = New System.Drawing.Point(574, 230)
         Me.Label116.Name = "Label116"
         Me.Label116.Size = New System.Drawing.Size(28, 13)
         Me.Label116.TabIndex = 230
@@ -1513,7 +1627,7 @@ Partial Class FrmPrTxCalculatePayroll
         'Label115
         '
         Me.Label115.AutoSize = True
-        Me.Label115.Location = New System.Drawing.Point(575, 190)
+        Me.Label115.Location = New System.Drawing.Point(574, 210)
         Me.Label115.Name = "Label115"
         Me.Label115.Size = New System.Drawing.Size(149, 13)
         Me.Label115.TabIndex = 229
@@ -1522,7 +1636,7 @@ Partial Class FrmPrTxCalculatePayroll
         'txtNewPaid
         '
         Me.txtNewPaid.BackColor = System.Drawing.Color.Aqua
-        Me.txtNewPaid.Location = New System.Drawing.Point(729, 207)
+        Me.txtNewPaid.Location = New System.Drawing.Point(728, 227)
         Me.txtNewPaid.Name = "txtNewPaid"
         Me.txtNewPaid.ReadOnly = True
         Me.txtNewPaid.Size = New System.Drawing.Size(72, 20)
@@ -1533,7 +1647,7 @@ Partial Class FrmPrTxCalculatePayroll
         '
         Me.txtNewPeriodTax.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
         Me.txtNewPeriodTax.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
-        Me.txtNewPeriodTax.Location = New System.Drawing.Point(729, 249)
+        Me.txtNewPeriodTax.Location = New System.Drawing.Point(728, 269)
         Me.txtNewPeriodTax.Name = "txtNewPeriodTax"
         Me.txtNewPeriodTax.ReadOnly = True
         Me.txtNewPeriodTax.Size = New System.Drawing.Size(72, 22)
@@ -1543,7 +1657,7 @@ Partial Class FrmPrTxCalculatePayroll
         'txtTaxDifference
         '
         Me.txtTaxDifference.BackColor = System.Drawing.Color.Aqua
-        Me.txtTaxDifference.Location = New System.Drawing.Point(806, 167)
+        Me.txtTaxDifference.Location = New System.Drawing.Point(805, 187)
         Me.txtTaxDifference.Name = "txtTaxDifference"
         Me.txtTaxDifference.ReadOnly = True
         Me.txtTaxDifference.Size = New System.Drawing.Size(72, 20)
@@ -1553,7 +1667,7 @@ Partial Class FrmPrTxCalculatePayroll
         'Label114
         '
         Me.Label114.AutoSize = True
-        Me.Label114.Location = New System.Drawing.Point(803, 151)
+        Me.Label114.Location = New System.Drawing.Point(802, 171)
         Me.Label114.Name = "Label114"
         Me.Label114.Size = New System.Drawing.Size(77, 13)
         Me.Label114.TabIndex = 225
@@ -1598,7 +1712,7 @@ Partial Class FrmPrTxCalculatePayroll
         'txt_PER_TempPAYE
         '
         Me.txt_PER_TempPAYE.BackColor = System.Drawing.Color.Aqua
-        Me.txt_PER_TempPAYE.Location = New System.Drawing.Point(730, 167)
+        Me.txt_PER_TempPAYE.Location = New System.Drawing.Point(729, 187)
         Me.txt_PER_TempPAYE.Name = "txt_PER_TempPAYE"
         Me.txt_PER_TempPAYE.ReadOnly = True
         Me.txt_PER_TempPAYE.Size = New System.Drawing.Size(72, 20)
@@ -1608,7 +1722,7 @@ Partial Class FrmPrTxCalculatePayroll
         'txtTA_PER_TotalTaxable
         '
         Me.txtTA_PER_TotalTaxable.BackColor = System.Drawing.Color.Aqua
-        Me.txtTA_PER_TotalTaxable.Location = New System.Drawing.Point(730, 147)
+        Me.txtTA_PER_TotalTaxable.Location = New System.Drawing.Point(729, 167)
         Me.txtTA_PER_TotalTaxable.Name = "txtTA_PER_TotalTaxable"
         Me.txtTA_PER_TotalTaxable.ReadOnly = True
         Me.txtTA_PER_TotalTaxable.Size = New System.Drawing.Size(72, 20)
@@ -1618,7 +1732,7 @@ Partial Class FrmPrTxCalculatePayroll
         'txtAA_PER_TotalTaxable
         '
         Me.txtAA_PER_TotalTaxable.BackColor = System.Drawing.Color.Aqua
-        Me.txtAA_PER_TotalTaxable.Location = New System.Drawing.Point(653, 147)
+        Me.txtAA_PER_TotalTaxable.Location = New System.Drawing.Point(652, 167)
         Me.txtAA_PER_TotalTaxable.Name = "txtAA_PER_TotalTaxable"
         Me.txtAA_PER_TotalTaxable.ReadOnly = True
         Me.txtAA_PER_TotalTaxable.Size = New System.Drawing.Size(72, 20)
@@ -1628,7 +1742,7 @@ Partial Class FrmPrTxCalculatePayroll
         'txtTA_PER_NotionalIncome
         '
         Me.txtTA_PER_NotionalIncome.BackColor = System.Drawing.Color.Aqua
-        Me.txtTA_PER_NotionalIncome.Location = New System.Drawing.Point(730, 127)
+        Me.txtTA_PER_NotionalIncome.Location = New System.Drawing.Point(730, 87)
         Me.txtTA_PER_NotionalIncome.Name = "txtTA_PER_NotionalIncome"
         Me.txtTA_PER_NotionalIncome.ReadOnly = True
         Me.txtTA_PER_NotionalIncome.Size = New System.Drawing.Size(72, 20)
@@ -1638,7 +1752,7 @@ Partial Class FrmPrTxCalculatePayroll
         'txtAA_PER_NotionalIncome
         '
         Me.txtAA_PER_NotionalIncome.BackColor = System.Drawing.Color.Aqua
-        Me.txtAA_PER_NotionalIncome.Location = New System.Drawing.Point(653, 127)
+        Me.txtAA_PER_NotionalIncome.Location = New System.Drawing.Point(653, 87)
         Me.txtAA_PER_NotionalIncome.Name = "txtAA_PER_NotionalIncome"
         Me.txtAA_PER_NotionalIncome.ReadOnly = True
         Me.txtAA_PER_NotionalIncome.Size = New System.Drawing.Size(72, 20)
@@ -1648,7 +1762,7 @@ Partial Class FrmPrTxCalculatePayroll
         'txtTA_PER_PreviousEmployment
         '
         Me.txtTA_PER_PreviousEmployment.BackColor = System.Drawing.Color.Aqua
-        Me.txtTA_PER_PreviousEmployment.Location = New System.Drawing.Point(730, 107)
+        Me.txtTA_PER_PreviousEmployment.Location = New System.Drawing.Point(730, 127)
         Me.txtTA_PER_PreviousEmployment.Name = "txtTA_PER_PreviousEmployment"
         Me.txtTA_PER_PreviousEmployment.ReadOnly = True
         Me.txtTA_PER_PreviousEmployment.Size = New System.Drawing.Size(72, 20)
@@ -1658,7 +1772,7 @@ Partial Class FrmPrTxCalculatePayroll
         'txtAA_PER_PreviousEmployment
         '
         Me.txtAA_PER_PreviousEmployment.BackColor = System.Drawing.Color.Aqua
-        Me.txtAA_PER_PreviousEmployment.Location = New System.Drawing.Point(653, 107)
+        Me.txtAA_PER_PreviousEmployment.Location = New System.Drawing.Point(653, 127)
         Me.txtAA_PER_PreviousEmployment.Name = "txtAA_PER_PreviousEmployment"
         Me.txtAA_PER_PreviousEmployment.ReadOnly = True
         Me.txtAA_PER_PreviousEmployment.Size = New System.Drawing.Size(72, 20)
@@ -1668,7 +1782,7 @@ Partial Class FrmPrTxCalculatePayroll
         'txtTA_PER_FromOthersources
         '
         Me.txtTA_PER_FromOthersources.BackColor = System.Drawing.Color.Aqua
-        Me.txtTA_PER_FromOthersources.Location = New System.Drawing.Point(730, 87)
+        Me.txtTA_PER_FromOthersources.Location = New System.Drawing.Point(730, 107)
         Me.txtTA_PER_FromOthersources.Name = "txtTA_PER_FromOthersources"
         Me.txtTA_PER_FromOthersources.ReadOnly = True
         Me.txtTA_PER_FromOthersources.Size = New System.Drawing.Size(72, 20)
@@ -1678,7 +1792,7 @@ Partial Class FrmPrTxCalculatePayroll
         'txtAA_PER_FromOthersources
         '
         Me.txtAA_PER_FromOthersources.BackColor = System.Drawing.Color.Aqua
-        Me.txtAA_PER_FromOthersources.Location = New System.Drawing.Point(653, 87)
+        Me.txtAA_PER_FromOthersources.Location = New System.Drawing.Point(653, 107)
         Me.txtAA_PER_FromOthersources.Name = "txtAA_PER_FromOthersources"
         Me.txtAA_PER_FromOthersources.ReadOnly = True
         Me.txtAA_PER_FromOthersources.Size = New System.Drawing.Size(72, 20)
@@ -1728,7 +1842,7 @@ Partial Class FrmPrTxCalculatePayroll
         'txt_REC_TempPAYE
         '
         Me.txt_REC_TempPAYE.BackColor = System.Drawing.Color.Aqua
-        Me.txt_REC_TempPAYE.Location = New System.Drawing.Point(575, 167)
+        Me.txt_REC_TempPAYE.Location = New System.Drawing.Point(574, 187)
         Me.txt_REC_TempPAYE.Name = "txt_REC_TempPAYE"
         Me.txt_REC_TempPAYE.ReadOnly = True
         Me.txt_REC_TempPAYE.Size = New System.Drawing.Size(72, 20)
@@ -1738,7 +1852,7 @@ Partial Class FrmPrTxCalculatePayroll
         'Label109
         '
         Me.Label109.AutoSize = True
-        Me.Label109.Location = New System.Drawing.Point(494, 173)
+        Me.Label109.Location = New System.Drawing.Point(493, 193)
         Me.Label109.Name = "Label109"
         Me.Label109.Size = New System.Drawing.Size(35, 13)
         Me.Label109.TabIndex = 205
@@ -1747,7 +1861,7 @@ Partial Class FrmPrTxCalculatePayroll
         'txtTA_REC_TotalTaxable
         '
         Me.txtTA_REC_TotalTaxable.BackColor = System.Drawing.Color.Aqua
-        Me.txtTA_REC_TotalTaxable.Location = New System.Drawing.Point(575, 147)
+        Me.txtTA_REC_TotalTaxable.Location = New System.Drawing.Point(574, 167)
         Me.txtTA_REC_TotalTaxable.Name = "txtTA_REC_TotalTaxable"
         Me.txtTA_REC_TotalTaxable.ReadOnly = True
         Me.txtTA_REC_TotalTaxable.Size = New System.Drawing.Size(72, 20)
@@ -1757,7 +1871,7 @@ Partial Class FrmPrTxCalculatePayroll
         'txtAA_REC_TotalTaxable
         '
         Me.txtAA_REC_TotalTaxable.BackColor = System.Drawing.Color.Aqua
-        Me.txtAA_REC_TotalTaxable.Location = New System.Drawing.Point(497, 147)
+        Me.txtAA_REC_TotalTaxable.Location = New System.Drawing.Point(496, 167)
         Me.txtAA_REC_TotalTaxable.Name = "txtAA_REC_TotalTaxable"
         Me.txtAA_REC_TotalTaxable.ReadOnly = True
         Me.txtAA_REC_TotalTaxable.Size = New System.Drawing.Size(72, 20)
@@ -1767,7 +1881,7 @@ Partial Class FrmPrTxCalculatePayroll
         'txtTA_REC_NotionalIncome
         '
         Me.txtTA_REC_NotionalIncome.BackColor = System.Drawing.Color.Aqua
-        Me.txtTA_REC_NotionalIncome.Location = New System.Drawing.Point(575, 127)
+        Me.txtTA_REC_NotionalIncome.Location = New System.Drawing.Point(575, 87)
         Me.txtTA_REC_NotionalIncome.Name = "txtTA_REC_NotionalIncome"
         Me.txtTA_REC_NotionalIncome.ReadOnly = True
         Me.txtTA_REC_NotionalIncome.Size = New System.Drawing.Size(72, 20)
@@ -1777,7 +1891,7 @@ Partial Class FrmPrTxCalculatePayroll
         'txtAA_REC_NotionalIncome
         '
         Me.txtAA_REC_NotionalIncome.BackColor = System.Drawing.Color.Aqua
-        Me.txtAA_REC_NotionalIncome.Location = New System.Drawing.Point(497, 127)
+        Me.txtAA_REC_NotionalIncome.Location = New System.Drawing.Point(497, 87)
         Me.txtAA_REC_NotionalIncome.Name = "txtAA_REC_NotionalIncome"
         Me.txtAA_REC_NotionalIncome.ReadOnly = True
         Me.txtAA_REC_NotionalIncome.Size = New System.Drawing.Size(72, 20)
@@ -1787,7 +1901,7 @@ Partial Class FrmPrTxCalculatePayroll
         'txtTA_REC_PreviousEmployment
         '
         Me.txtTA_REC_PreviousEmployment.BackColor = System.Drawing.Color.Aqua
-        Me.txtTA_REC_PreviousEmployment.Location = New System.Drawing.Point(575, 107)
+        Me.txtTA_REC_PreviousEmployment.Location = New System.Drawing.Point(575, 127)
         Me.txtTA_REC_PreviousEmployment.Name = "txtTA_REC_PreviousEmployment"
         Me.txtTA_REC_PreviousEmployment.ReadOnly = True
         Me.txtTA_REC_PreviousEmployment.Size = New System.Drawing.Size(72, 20)
@@ -1797,7 +1911,7 @@ Partial Class FrmPrTxCalculatePayroll
         'txtAA_REC_PreviousEmployment
         '
         Me.txtAA_REC_PreviousEmployment.BackColor = System.Drawing.Color.Aqua
-        Me.txtAA_REC_PreviousEmployment.Location = New System.Drawing.Point(497, 107)
+        Me.txtAA_REC_PreviousEmployment.Location = New System.Drawing.Point(497, 127)
         Me.txtAA_REC_PreviousEmployment.Name = "txtAA_REC_PreviousEmployment"
         Me.txtAA_REC_PreviousEmployment.ReadOnly = True
         Me.txtAA_REC_PreviousEmployment.Size = New System.Drawing.Size(72, 20)
@@ -1807,7 +1921,7 @@ Partial Class FrmPrTxCalculatePayroll
         'txtTA_REC_FromOthersources
         '
         Me.txtTA_REC_FromOthersources.BackColor = System.Drawing.Color.Aqua
-        Me.txtTA_REC_FromOthersources.Location = New System.Drawing.Point(575, 87)
+        Me.txtTA_REC_FromOthersources.Location = New System.Drawing.Point(575, 107)
         Me.txtTA_REC_FromOthersources.Name = "txtTA_REC_FromOthersources"
         Me.txtTA_REC_FromOthersources.ReadOnly = True
         Me.txtTA_REC_FromOthersources.Size = New System.Drawing.Size(72, 20)
@@ -1817,7 +1931,7 @@ Partial Class FrmPrTxCalculatePayroll
         'txtAA_REC_FromOthersources
         '
         Me.txtAA_REC_FromOthersources.BackColor = System.Drawing.Color.Aqua
-        Me.txtAA_REC_FromOthersources.Location = New System.Drawing.Point(497, 87)
+        Me.txtAA_REC_FromOthersources.Location = New System.Drawing.Point(497, 107)
         Me.txtAA_REC_FromOthersources.Name = "txtAA_REC_FromOthersources"
         Me.txtAA_REC_FromOthersources.ReadOnly = True
         Me.txtAA_REC_FromOthersources.Size = New System.Drawing.Size(72, 20)
@@ -1885,7 +1999,7 @@ Partial Class FrmPrTxCalculatePayroll
         'Label85
         '
         Me.Label85.AutoSize = True
-        Me.Label85.Location = New System.Drawing.Point(390, 130)
+        Me.Label85.Location = New System.Drawing.Point(390, 90)
         Me.Label85.Name = "Label85"
         Me.Label85.Size = New System.Drawing.Size(84, 13)
         Me.Label85.TabIndex = 190
@@ -1894,7 +2008,7 @@ Partial Class FrmPrTxCalculatePayroll
         'Label84
         '
         Me.Label84.AutoSize = True
-        Me.Label84.Location = New System.Drawing.Point(390, 150)
+        Me.Label84.Location = New System.Drawing.Point(389, 170)
         Me.Label84.Name = "Label84"
         Me.Label84.Size = New System.Drawing.Size(72, 13)
         Me.Label84.TabIndex = 189
@@ -1903,7 +2017,7 @@ Partial Class FrmPrTxCalculatePayroll
         'Label83
         '
         Me.Label83.AutoSize = True
-        Me.Label83.Location = New System.Drawing.Point(390, 110)
+        Me.Label83.Location = New System.Drawing.Point(390, 132)
         Me.Label83.Name = "Label83"
         Me.Label83.Size = New System.Drawing.Size(108, 13)
         Me.Label83.TabIndex = 188
@@ -1921,7 +2035,7 @@ Partial Class FrmPrTxCalculatePayroll
         'Label51
         '
         Me.Label51.AutoSize = True
-        Me.Label51.Location = New System.Drawing.Point(390, 92)
+        Me.Label51.Location = New System.Drawing.Point(390, 110)
         Me.Label51.Name = "Label51"
         Me.Label51.Size = New System.Drawing.Size(101, 13)
         Me.Label51.TabIndex = 186
@@ -1948,10 +2062,10 @@ Partial Class FrmPrTxCalculatePayroll
         'txtCGesyLimit
         '
         Me.txtCGesyLimit.BackColor = System.Drawing.Color.Yellow
-        Me.txtCGesyLimit.Location = New System.Drawing.Point(465, 268)
+        Me.txtCGesyLimit.Location = New System.Drawing.Point(451, 268)
         Me.txtCGesyLimit.Name = "txtCGesyLimit"
         Me.txtCGesyLimit.ReadOnly = True
-        Me.txtCGesyLimit.Size = New System.Drawing.Size(72, 20)
+        Me.txtCGesyLimit.Size = New System.Drawing.Size(58, 20)
         Me.txtCGesyLimit.TabIndex = 183
         Me.txtCGesyLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -1961,7 +2075,7 @@ Partial Class FrmPrTxCalculatePayroll
         Me.txtRGesyLimit.Location = New System.Drawing.Point(387, 268)
         Me.txtRGesyLimit.Name = "txtRGesyLimit"
         Me.txtRGesyLimit.ReadOnly = True
-        Me.txtRGesyLimit.Size = New System.Drawing.Size(72, 20)
+        Me.txtRGesyLimit.Size = New System.Drawing.Size(58, 20)
         Me.txtRGesyLimit.TabIndex = 182
         Me.txtRGesyLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -2054,10 +2168,10 @@ Partial Class FrmPrTxCalculatePayroll
         'txtCPFLimit
         '
         Me.txtCPFLimit.BackColor = System.Drawing.Color.Yellow
-        Me.txtCPFLimit.Location = New System.Drawing.Point(465, 207)
+        Me.txtCPFLimit.Location = New System.Drawing.Point(451, 207)
         Me.txtCPFLimit.Name = "txtCPFLimit"
         Me.txtCPFLimit.ReadOnly = True
-        Me.txtCPFLimit.Size = New System.Drawing.Size(72, 20)
+        Me.txtCPFLimit.Size = New System.Drawing.Size(58, 20)
         Me.txtCPFLimit.TabIndex = 170
         Me.txtCPFLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -2076,17 +2190,17 @@ Partial Class FrmPrTxCalculatePayroll
         Me.txtRPFLimit.Location = New System.Drawing.Point(387, 207)
         Me.txtRPFLimit.Name = "txtRPFLimit"
         Me.txtRPFLimit.ReadOnly = True
-        Me.txtRPFLimit.Size = New System.Drawing.Size(72, 20)
+        Me.txtRPFLimit.Size = New System.Drawing.Size(58, 20)
         Me.txtRPFLimit.TabIndex = 168
         Me.txtRPFLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
         'txtCMedLimit
         '
         Me.txtCMedLimit.BackColor = System.Drawing.Color.Yellow
-        Me.txtCMedLimit.Location = New System.Drawing.Point(465, 246)
+        Me.txtCMedLimit.Location = New System.Drawing.Point(451, 246)
         Me.txtCMedLimit.Name = "txtCMedLimit"
         Me.txtCMedLimit.ReadOnly = True
-        Me.txtCMedLimit.Size = New System.Drawing.Size(72, 20)
+        Me.txtCMedLimit.Size = New System.Drawing.Size(58, 20)
         Me.txtCMedLimit.TabIndex = 166
         Me.txtCMedLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -2105,7 +2219,7 @@ Partial Class FrmPrTxCalculatePayroll
         Me.txtRmedLimit.Location = New System.Drawing.Point(387, 246)
         Me.txtRmedLimit.Name = "txtRmedLimit"
         Me.txtRmedLimit.ReadOnly = True
-        Me.txtRmedLimit.Size = New System.Drawing.Size(72, 20)
+        Me.txtRmedLimit.Size = New System.Drawing.Size(58, 20)
         Me.txtRmedLimit.TabIndex = 164
         Me.txtRmedLimit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right
         '
@@ -2342,7 +2456,7 @@ Partial Class FrmPrTxCalculatePayroll
         '
         'txtCPFE
         '
-        Me.txtCPFE.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
+        Me.txtCPFE.BackColor = System.Drawing.Color.PowderBlue
         Me.txtCPFE.Location = New System.Drawing.Point(236, 87)
         Me.txtCPFE.Name = "txtCPFE"
         Me.txtCPFE.ReadOnly = True
@@ -2361,7 +2475,7 @@ Partial Class FrmPrTxCalculatePayroll
         '
         'txtROFE
         '
-        Me.txtROFE.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
+        Me.txtROFE.BackColor = System.Drawing.Color.PowderBlue
         Me.txtROFE.Location = New System.Drawing.Point(161, 87)
         Me.txtROFE.Name = "txtROFE"
         Me.txtROFE.ReadOnly = True
@@ -3620,26 +3734,6 @@ Partial Class FrmPrTxCalculatePayroll
         Me.txtTempstatus.Size = New System.Drawing.Size(121, 20)
         Me.txtTempstatus.TabIndex = 82
         '
-        'CBMethodUsed
-        '
-        Me.CBMethodUsed.AutoSize = True
-        Me.CBMethodUsed.Enabled = False
-        Me.CBMethodUsed.Location = New System.Drawing.Point(6, 9)
-        Me.CBMethodUsed.Name = "CBMethodUsed"
-        Me.CBMethodUsed.Size = New System.Drawing.Size(91, 17)
-        Me.CBMethodUsed.TabIndex = 235
-        Me.CBMethodUsed.Text = "NEW Method"
-        Me.CBMethodUsed.UseVisualStyleBackColor = True
-        '
-        'LblRemTaxable
-        '
-        Me.LblRemTaxable.AutoSize = True
-        Me.LblRemTaxable.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
-        Me.LblRemTaxable.Location = New System.Drawing.Point(801, 230)
-        Me.LblRemTaxable.Name = "LblRemTaxable"
-        Me.LblRemTaxable.Size = New System.Drawing.Size(0, 13)
-        Me.LblRemTaxable.TabIndex = 236
-        '
         'C_Pay15
         '
         Me.C_Pay15.Location = New System.Drawing.Point(500, 308)
@@ -4808,4 +4902,12 @@ Partial Class FrmPrTxCalculatePayroll
     Friend WithEvents Label115 As Label
     Friend WithEvents CBMethodUsed As CheckBox
     Friend WithEvents LblRemTaxable As Label
+    Friend WithEvents Label121 As Label
+    Friend WithEvents txtNotionalPeriodTax As TextBox
+    Friend WithEvents Label120 As Label
+    Friend WithEvents txtTA_PER_Split As TextBox
+    Friend WithEvents txtAA_PER_Split As TextBox
+    Friend WithEvents txtTA_REC_Split As TextBox
+    Friend WithEvents txtAA_REC_Split As TextBox
+    Friend WithEvents Label119 As Label
 End Class

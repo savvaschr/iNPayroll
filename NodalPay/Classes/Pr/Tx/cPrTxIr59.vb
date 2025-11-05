@@ -91,6 +91,11 @@ Public Class cPrTxIr59
     Private mPer_NewRemaining as Double
     Private mPer_MethodUsed As String
 
+    Private mARec_Split As Double
+    Private mTRec_Split As Double
+    Private mAPer_Split As Double
+    Private mTPer_Split As Double
+
 
     Public Property Pay_Id() As Integer
         Get
@@ -793,10 +798,42 @@ Public Class cPrTxIr59
     End Property
     Public Property Per_MethodUsed As String
         Get
-            Return mPer_NewPeriodTax
+            Return mPer_MethodUsed
         End Get
         Set(ByVal value As String)
-            mPer_NewPeriodTax = value
+            mPer_MethodUsed = value
+        End Set
+    End Property
+    Public Property ARec_Split As Double
+        Get
+            Return mARec_Split
+        End Get
+        Set(ByVal value As Double)
+            mARec_Split = value
+        End Set
+    End Property
+    Public Property TRec_Split As Double
+        Get
+            Return mTRec_Split
+        End Get
+        Set(ByVal value As Double)
+            mTRec_Split = value
+        End Set
+    End Property
+    Public Property APer_Split As Double
+        Get
+            Return mAPer_Split
+        End Get
+        Set(ByVal value As Double)
+            mAPer_Split = value
+        End Set
+    End Property
+    Public Property TPer_Split As Double
+        Get
+            Return mTPer_Split
+        End Get
+        Set(ByVal value As Double)
+            mTPer_Split = value
         End Set
     End Property
     Public Sub New()
@@ -910,6 +947,10 @@ Public Class cPrTxIr59
         mPer_NewRemaining = DbNullToDouble(dr.Item(86))
         mPer_MethodUsed = DbNullToString(dr.Item(87))
 
+        mARec_Split = DbNullToDouble(dr.Item(88))
+        mTRec_Split = DbNullToDouble(dr.Item(89))
+        mAPer_Split = DbNullToDouble(dr.Item(90))
+        mTPer_Split = DbNullToDouble(dr.Item(91))
     End Sub
 
     '

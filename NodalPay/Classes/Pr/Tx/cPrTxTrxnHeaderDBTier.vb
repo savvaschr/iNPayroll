@@ -85,7 +85,10 @@ Public Class cPrTxTrxnHeaderDbTier
                 " Trxhdr_FEControlAmount, " &
                 " TrxHdr_TaxOnBIK, " &
                " TrxHdr_SIPension, " &
-               " TrxHdr_GovPension " &
+               " TrxHdr_GovPension, " &
+               " TrxHdr_PeriodNotional, " &
+                " TrxHdr_PeriodTaxOnNotional, " &
+                " TrxHdr_PeriodGESYOnNotional " &
                 "  FROM PrTxTrxnHeader" &
                 "  WHERE TrxHdr_Id = " & tTrxHdr_Id
         Return MyBase.GetData(Str)
@@ -168,7 +171,10 @@ Public Class cPrTxTrxnHeaderDbTier
                 " Trxhdr_FEControlAmount, " &
                 " TrxHdr_TaxOnBIK, " &
                 " TrxHdr_SIPension, " &
-                " TrxHdr_GovPension " &
+                " TrxHdr_GovPension, " &
+                " TrxHdr_PeriodNotional, " &
+                " TrxHdr_PeriodTaxOnNotional, " &
+                " TrxHdr_PeriodGESYOnNotional " &
             "  FROM PrTxTrxnHeader" &
             "  WHERE  Emp_Code=" & enQuoteString(tEmpCode) &
             "  AND PrdCod_Code=" & enQuoteString(tPeriodCode)
@@ -346,15 +352,24 @@ Public Class cPrTxTrxnHeaderDbTier
             SpParams.Add(.GOVPension)         '(75)
             SpNames.Add("TrxHdr_GovPension")  '(75)
 
+            SpParams.Add(.periodnotional)         '(76)
+            SpNames.Add("TrxHdr_PeriodNotional")  '(76)
+
+
+            SpParams.Add(.PeriodTaxOnNotional)         '(77)
+            SpNames.Add("TrxHdr_PeriodTaxOnNotional")  '(77)
+
+            SpParams.Add(.PeriodGESYOnNotional)         '(78)
+            SpNames.Add("TrxHdr_periodgesyOnNotional")  '(78)
 
 
 
         End With
-        SpNames.Add("NewId")                                                 '(76)
-        SpParams.Add(CInt(0))                                                '(76)
-        If Me.StoredProcedure("AG_PrTxTrxnHeader_Save_Update", SpParams, SpNames, 76) Then
+        SpNames.Add("NewId")                                                 '(79)
+        SpParams.Add(CInt(0))                                                '(79)
+        If Me.StoredProcedure("AG_PrTxTrxnHeader_Save_Update", SpParams, SpNames, 79) Then
             If _cPrTxTrxnHeader.Id = 0 Then
-                _cPrTxTrxnHeader.Id = DbNullToInt(SpParams(76))
+                _cPrTxTrxnHeader.Id = DbNullToInt(SpParams(79))
             End If
             Return True
         Else

@@ -89,7 +89,11 @@ Public Class cPrTxIr59DBTier
             " Per_NewPeriodTax,  " &
             " Per_TotalCurSINot, " &
             " Per_NewRemaining, " &
-            " Per_MethodUsed  " &
+            " Per_MethodUsed,  " &
+            " ARec_Split, " &
+            " TRec_Split,  " &
+            " APer_Split, " &
+            " TPer_Split " &
             " FROM PrTxIr59 " &
             " WHERE Trxhdr_id = " & TrxHdr_Id
 
@@ -187,8 +191,12 @@ Public Class cPrTxIr59DBTier
                 ", Per_NewPAYE  = " & .Per_NewPAYE &
                 ", Per_NewPeriodTax = " & .Per_NewPeriodTax &
                 ", Per_TotalCurSINot = " & .Per_TotalCurSINot &
-                ", Per_NewRemaining, " & .Per_NewRemaining &
-                ", Per_MethodUsed  " & enQuoteString(.Per_MethodUsed) &
+                ", Per_NewRemaining = " & .Per_NewRemaining &
+                ", Per_MethodUsed = " & enQuoteString(.Per_MethodUsed) &
+                ", ARec_Split = " & .ARec_Split &
+                ", TRec_Split=   " & .TRec_Split &
+                ", APer_Split = " & .APer_Split &
+                ", TPer_Split = " & .APer_Split &
                 "  WHERE Trxhdr_id = " & enQuoteString(.Trxhdr_id)
 
 
@@ -283,7 +291,11 @@ Public Class cPrTxIr59DBTier
                     " Per_NewPeriodTax, " &
                     " Per_TotalCurSINot," &
                     " Per_NewRemaining, " &
-                    " Per_MethodUsed  " &
+                    " Per_MethodUsed,  " &
+                    " ARec_Split, " &
+                    " TRec_Split, " &
+                    " APer_Split, " &
+                    " TPer_Split " &
                     " )" &
                     " Values (" & .Trxhdr_id & "," &
                     enQuoteString(.TemGrp_Code) & "," &
@@ -371,7 +383,12 @@ Public Class cPrTxIr59DBTier
                     .Per_NewPeriodTax & "," &
                     .Per_TotalCurSINot & "," &
                     .Per_NewRemaining & "," &
-                    enQuoteString(.Per_MethodUsed) & ")"
+                    enQuoteString(.Per_MethodUsed) & "," &
+                    .aRec_Split & "," &
+                    .TRec_Split & "," &
+                    .APer_Split & "," &
+                    .TPer_Split & ")"
+
             End With
         End If
 

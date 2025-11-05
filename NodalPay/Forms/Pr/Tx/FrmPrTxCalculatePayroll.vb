@@ -8,6 +8,8 @@ Public Class FrmPrTxCalculatePayroll
     Dim GLB_NEWTax_EarningsFromPreviousEmployment As Double = 0
     Dim GLB_NEWTax_RentsAndIncomeFromOtherSources As Double = 0
     Dim GLB_NEWTax_SocialInsurancePension As Double = 0
+    Dim GLB_NEWTax_NotionalIncome As Double = 0
+
     Dim GLB_NEWTax_TotalEarningsFromME As Double = 0
     Dim GLB_NEWTax_TotalSPLIT As Double = 0
     Dim GLB_NEWTax_Total As Double = 0
@@ -137,6 +139,9 @@ Public Class FrmPrTxCalculatePayroll
     Dim GLBCOLAValue As Double = 0
     Dim GLBRecurringEarning As Double = 0
     Dim GLBBenefitsRecurringEarning As Double = 0
+    Dim GLBNotionalRecurringEarning As Double = 0
+    Dim GLBNonRecuringPeriodNotional As Double = 0
+
     Dim GLBBenefitsRecurringEarning2 As Double = 0
     Dim GLBPensionDeduction As Double = 0
 
@@ -222,8 +227,12 @@ Public Class FrmPrTxCalculatePayroll
     Public GLBMySIDeductionRate As Double = 0
     Public GLBMySIcontributionRate As Double = 0
 
+    Dim GLBGESIOnNotional As Double = 0
+
     Const _Tls12 As SslProtocols = DirectCast(&HC00, SslProtocols)
     Const Tls12 As SecurityProtocolType = DirectCast(_Tls12, SecurityProtocolType)
+
+
 
     Private Sub FrmPrTxCalculatePayroll_FormClosing(ByVal sender As Object, ByVal e As System.Windows.Forms.FormClosingEventArgs) Handles Me.FormClosing
         If Not LoadedFromArchive Then
@@ -266,7 +275,7 @@ Public Class FrmPrTxCalculatePayroll
             'If UCase(Global1.UserName) = "SA" Or UCase(Globadl1.UserName) = "NODAL" Then
             Me.TSBAdminTool.Visible = True
             Me.TsbSystem.Visible = True
-            Me.BtnPrintIR59.Visible = True
+            Me.BtnPrintIR59.Visible = False
         Else
             Me.TSBAdminTool.Visible = False
             Me.TsbSystem.Visible = False
@@ -540,7 +549,16 @@ Public Class FrmPrTxCalculatePayroll
         Me.txtNewPeriodTax.Text = "0.00"
         Me.txtNewPaid.Text = "0.00"
         Me.txtPERCurrent_SI_Notional.Text = "0.00"
+
+        Me.txtNotionalPeriodTax.Text = "0.00"
+
         Me.txtPerRemaining.Text = "0.00"
+
+        Me.txtAA_REC_Split.Text = "0.00"
+        Me.txtTA_REC_Split.Text = "0.00"
+        Me.txtAA_PER_Split.Text = "0.00"
+        Me.txtTA_PER_Split.Text = "0.00"
+
 
 
 
@@ -2778,6 +2796,7 @@ Public Class FrmPrTxCalculatePayroll
         Next
     End Sub
     Private Sub E_CalculateNotionalIncome(ByVal Emp As cPrMsEmployees, ByVal EmpEarn As cPrMsEmployeeEarnings, ByVal Earn As cPrMsEarningCodes)
+        GLBNonRecuringPeriodNotional = 0
         Dim TempEarn As New cPrMsTemplateEarnings
         Dim i As Integer
         Dim Percentage As Double
@@ -2799,6 +2818,9 @@ Public Class FrmPrTxCalculatePayroll
                 End If
             End If
         Next
+
+
+        GLBNonRecuringPeriodNotional = Value
 
         For i = 0 To E_Final.Length - 1
             If Earn.Code = E_Final(i).Earn.ErnCodCode Then
@@ -2829,7 +2851,9 @@ Public Class FrmPrTxCalculatePayroll
                 End If
             End If
         Next
-        GLBBenefitsRecurringEarning = GLBBenefitsRecurringEarning + Value
+
+        GLBNotionalRecurringEarning = GLBNotionalRecurringEarning + Value
+
         For i = 0 To E_Final.Length - 1
             If Earn.Code = E_Final(i).Earn.ErnCodCode Then
                 E_Final(i).MyValue = Value
@@ -4519,6 +4543,7 @@ Public Class FrmPrTxCalculatePayroll
             Dim FE As Double = 0
             Dim RecEarnings As Double = 0
             Dim RecBenefits As Double = 0
+            Dim Recnotional As Double = 0
             Dim Sequence As Integer = 0
             'Dim RemPeriods As Integer = GLBCurrentPeriod.NumberOfTotalPeriods - GLBCurrentPeriod.Sequence + 1
             Dim RemPeriods As Integer = GLBCurrentPeriod.NumberOfTotalPeriods - GLBCurrentPeriod.NumberOfNonTaxablePeriods - GLBCurrentPeriod.Sequence + 1
@@ -4528,7 +4553,9 @@ Public Class FrmPrTxCalculatePayroll
             'CHANGE 12/03/2019 RECURING Earnings and Ben in Kind means for ALL Remaining Periods
             RecEarnings = GLBRecurringEarning * (NormalRemPeriods)
             RecBenefits = GLBBenefitsRecurringEarning * (NormalRemPeriods)
+            Recnotional = GLBNotionalRecurringEarning * (NormalRemPeriods)
 
+            GLB_NEWTax_NotionalIncome = Recnotional
 
 
 
@@ -4536,7 +4563,7 @@ Public Class FrmPrTxCalculatePayroll
             If Emp.TerminateDate <> "" Then
                 FE = CurrentPeriodEarnings + EarningsToDate
             Else
-                FE = (Me.GlbEmpSalary.SalaryValue * (RemPeriods - 1)) + CurrentPeriodEarnings + EarningsToDate + RecEarnings + RecBenefits + (GLBCurrentPeriod.NumberOfNotNormalPeriodsToCome * Me.GlbEmpSalary.SalaryValue)
+                FE = (Me.GlbEmpSalary.SalaryValue * (RemPeriods - 1)) + CurrentPeriodEarnings + EarningsToDate + RecEarnings + RecBenefits + Recnotional + (GLBCurrentPeriod.NumberOfNotNormalPeriodsToCome * Me.GlbEmpSalary.SalaryValue)
             End If
 
 
@@ -5004,6 +5031,9 @@ Public Class FrmPrTxCalculatePayroll
         Dim EarningsToDate As Double = 0
         Dim insurableToDate As Double = 0
 
+        Dim NotionalIncome_ToDate As Double = 0
+        Dim NotionalIncomeTAX_ToDate As Double = 0
+
         Dim S_Period_SI_PF_MF_LI As Double = 0
         Dim S_Discounts As Double = 0
         Dim S_Decrease As Double = 0
@@ -5215,6 +5245,8 @@ Public Class FrmPrTxCalculatePayroll
             Dis_display = Discounts_Todate
 
             Discounts_Todate = Discounts_Todate + FE_Todate
+            NotionalIncome_ToDate = DbNullToDouble(ds.Tables(0).Rows(0).Item(5))
+            NotionalIncomeTAX_ToDate = DbNullToDouble(ds.Tables(0).Rows(0).Item(6))
         End If
 
 
@@ -5231,6 +5263,7 @@ Public Class FrmPrTxCalculatePayroll
 
         Dim RecPensionDeduction As Double = 0
         Dim RecBenefits As Double = 0
+        Dim RecNotional As Double = 0
         Dim RecBenefits14 As Double = 0
         Dim Sequence As Integer = 0
 
@@ -5256,13 +5289,18 @@ Public Class FrmPrTxCalculatePayroll
 
         RecEarnings = GLBRecurringEarning * (NormalRemPeriods)
         RecBenefits = GLBBenefitsRecurringEarning * (NormalRemPeriods)
+        RecNotional = GLBNotionalRecurringEarning * (NormalRemPeriods)
+
         GLBRemainingReccuringBIK = RecBenefits
+
         If Global1.PARAM_Andrikian13PeriodLast Then
             If NormalRemPeriods = -1 Then
                 RecEarnings = 0
                 RecBenefits = 0
+                RecNotional = 0
             End If
         End If
+        GLB_NEWTax_NotionalIncome = RecNotional
 
         RecEarnings14 = GLBRecurringEarning14 * (NormalRemPeriods + RemNotNormalPeriods)
         RecBenefits14 = GLBBenefitsRecurringEarning14 * (NormalRemPeriods + RemNotNormalPeriods)
@@ -5291,7 +5329,7 @@ Public Class FrmPrTxCalculatePayroll
             FE = CurrentPeriodEarnings + EarningsToDate + Emp.OtherIncome3
         Else
             If RemPeriods = 0 Then
-                FE = CurrentPeriodEarnings + PensionByTheendOftheYear + EarningsToDate + RecEarnings + RecBenefits + RecPensionDeduction + RecEarnings14 + RecBenefits14
+                FE = CurrentPeriodEarnings + PensionByTheendOftheYear + EarningsToDate + RecEarnings + RecBenefits + RecNotional + RecPensionDeduction + RecEarnings14 + RecBenefits14
             Else
                 'SalAndColaNormal = (Me.GlbEmpSalary.SalaryValue + GLBCOLAValue) * (NormalRemPeriods)
                 'SalAndColaNOTNormal = (RemNotNormalPeriods) * Ratio1314 * (Me.GlbEmpSalary.SalaryValue + GLBCOLAValue)
@@ -5309,7 +5347,7 @@ Public Class FrmPrTxCalculatePayroll
                 End If
 
                 PensionByTheendOftheYear = PensionByTheendOftheYear * (RemTaxablePeriods - 1)
-                FE = (PensionByTheendOftheYear + SalAndColaNormal + SalAndColaNOTNormal) + CurrentPeriodEarnings + EarningsToDate + RecEarnings + RecBenefits + Emp.OtherIncome3 + RecPensionDeduction + RecEarnings14 + RecBenefits14
+                FE = (PensionByTheendOftheYear + SalAndColaNormal + SalAndColaNOTNormal) + CurrentPeriodEarnings + EarningsToDate + RecEarnings + RecBenefits + RecNotional + Emp.OtherIncome3 + RecPensionDeduction + RecEarnings14 + RecBenefits14
 
             End If
         End If
@@ -5321,11 +5359,11 @@ Public Class FrmPrTxCalculatePayroll
 
         If Emp.PayUni_Code = Global1.GLB_Units_Hourly_Code Then
             'Tax Calculation for Hourly **************************************************************************************************************
-            PeriodRecInsEarnings = Me.GLBGrossSalaryForHourlyRateForTaxCalculation + GLBCOLAValue + GLBRecurringEarning + GLBBenefitsRecurringEarning + GLBEmployee.BonusOnsalary + GLBSILeave + GLBRecurringEarning14 + GLBBenefitsRecurringEarning14
+            PeriodRecInsEarnings = Me.GLBGrossSalaryForHourlyRateForTaxCalculation + GLBCOLAValue + GLBRecurringEarning + GLBBenefitsRecurringEarning + GLBNotionalRecurringEarning + GLBEmployee.BonusOnsalary + GLBSILeave + GLBRecurringEarning14 + GLBBenefitsRecurringEarning14
             PeriodRecInsEarnings1314 = (Me.GLBGrossSalaryForHourlyRateForTaxCalculation + GLBCOLAValue + GLBEmployee.BonusOnsalary + GLBSILeave) * Ratio1314
             '**********************************************************************************************
         Else
-            PeriodRecInsEarnings = Me.GlbEmpSalary.SalaryValue + GLBCOLAValue + GLBRecurringEarning + GLBBenefitsRecurringEarning + GLBEmployee.BonusOnsalary + GLBSILeave + GLBRecurringEarning14 + GLBBenefitsRecurringEarning14
+            PeriodRecInsEarnings = Me.GlbEmpSalary.SalaryValue + GLBCOLAValue + GLBRecurringEarning + GLBBenefitsRecurringEarning + GLBNotionalRecurringEarning + GLBEmployee.BonusOnsalary + GLBSILeave + GLBRecurringEarning14 + GLBBenefitsRecurringEarning14
             PeriodRecInsEarnings1314 = (Me.GlbEmpSalary.SalaryValue + GLBCOLAValue + GLBEmployee.BonusOnsalary + GLBSILeave) * Ratio1314
         End If
 
@@ -5871,75 +5909,114 @@ Public Class FrmPrTxCalculatePayroll
         'TAX ANALYSIS
         ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
         If OnlyRecuring Then
-            Me.txtAA_REC_CurrentEmployment.Text = Format(GLB_NEWTax_TotalEarningsFromME - GLB_NEWTax_SocialInsurancePension, "0.00")
+
+            GLB_NEWTax_NotionalIncome = GLB_NEWTax_NotionalIncome + NotionalIncome_ToDate
+
+            Me.txtAA_REC_CurrentEmployment.Text = Format(GLB_NEWTax_TotalEarningsFromME - GLB_NEWTax_SocialInsurancePension - GLB_NEWTax_NotionalIncome, "0.00")
             Me.txtAA_REC_SIPension.Text = Format(GLB_NEWTax_SocialInsurancePension, "0.00")
             Me.txtAA_REC_FromOthersources.Text = Format(GLB_NEWTax_RentsAndIncomeFromOtherSources, "0.00")
             Me.txtAA_REC_PreviousEmployment.Text = Format(GLB_NEWTax_EarningsFromPreviousEmployment, "0.00")
-            Me.txtAA_REC_NotionalIncome.Text = Format(0, "0.00")
+
+            Me.txtAA_REC_NotionalIncome.Text = Format(GLB_NEWTax_NotionalIncome, "0.00")
+            Me.txtAA_REC_Split.Text = Format(GLB_NEWTax_TotalSPLIT, "0.00")
             Me.txtAA_REC_TotalTaxable.Text = Format(GLB_NEWTax_Total, "0.00")
 
-            Dim Tax_OnCurrentEmployment As Double = ITValue / GLB_NEWTax_Total * (GLB_NEWTax_TotalEarningsFromME - GLB_NEWTax_SocialInsurancePension)
-            Dim Tax_OnSIPension As Double = ITValue / GLB_NEWTax_Total * GLB_NEWTax_SocialInsurancePension
-            Dim Tax_OnOtherIncome As Double = ITValue / GLB_NEWTax_Total * GLB_NEWTax_RentsAndIncomeFromOtherSources
-            Dim Tax_OnPreviousEmployment As Double = ITValue / GLB_NEWTax_Total * GLB_NEWTax_EarningsFromPreviousEmployment
-            Dim Tax_OnNotionalIncome As Double = ITValue / GLB_NEWTax_Total * 0
+            Dim Tax_OnCurrentEmployment As Double = 0
+            Dim Tax_OnSIPension As Double = 0
+            Dim Tax_OnOtherIncome As Double = 0
+            Dim Tax_OnPreviousEmployment As Double = 0
+            Dim Tax_OnNotionalIncome As Double = 0
+            Dim Tax_OnSplit As Double = 0
+
+            If GLB_NEWTax_Total > 0 Then
+                Tax_OnCurrentEmployment = ITValue / GLB_NEWTax_Total * (GLB_NEWTax_TotalEarningsFromME - GLB_NEWTax_SocialInsurancePension - GLB_NEWTax_NotionalIncome)
+                Tax_OnSIPension = ITValue / GLB_NEWTax_Total * GLB_NEWTax_SocialInsurancePension
+                Tax_OnOtherIncome = ITValue / GLB_NEWTax_Total * GLB_NEWTax_RentsAndIncomeFromOtherSources
+                Tax_OnPreviousEmployment = ITValue / GLB_NEWTax_Total * GLB_NEWTax_EarningsFromPreviousEmployment
+                Tax_OnNotionalIncome = ITValue / GLB_NEWTax_Total * GLB_NEWTax_NotionalIncome
+                Tax_OnSplit = ITValue / GLB_NEWTax_Total * GLB_NEWTax_TotalSPLIT
+            End If
 
             Me.txtTA_REC_TotalTaxable.Text = Format(ITValue, "0.00")
-            Me.txtTA_REC_CurrentEmployment.Text = Format(Tax_OnCurrentEmployment, "0.00")
-            Me.txtTA_REC_SIPension.Text = Format(Tax_OnSIPension, "0.00")
-            Me.txtTA_REC_FromOthersources.Text = Format(Tax_OnOtherIncome, "0.00")
-            Me.txtTA_REC_PreviousEmployment.Text = Format(Tax_OnPreviousEmployment, "0.00")
-            Me.txtTA_REC_NotionalIncome.Text = Format(Tax_OnNotionalIncome, "0.00")
+                Me.txtTA_REC_CurrentEmployment.Text = Format(Tax_OnCurrentEmployment, "0.00")
+                Me.txtTA_REC_SIPension.Text = Format(Tax_OnSIPension, "0.00")
+                Me.txtTA_REC_FromOthersources.Text = Format(Tax_OnOtherIncome, "0.00")
+                Me.txtTA_REC_PreviousEmployment.Text = Format(Tax_OnPreviousEmployment, "0.00")
+                Me.txtTA_REC_NotionalIncome.Text = Format(Tax_OnNotionalIncome, "0.00")
+                Me.txtTA_REC_Split.Text = Format(Tax_OnSplit, "0.00")
 
-            Dim REMTaxPeriods As Integer = GLBCurrentPeriod.NumberOfTaxablePeriods - NumberOfTaxablePeriodsTodate + 1
-            Dim MonthlyTAX As Double = (Tax_OnCurrentEmployment + Tax_OnSIPension - TAXValueToDateForCurrentIncome) / REMTaxPeriods
-            Me.txt_REC_TempPAYE.Text = Format(MonthlyTAX, "0.00")
-        Else
-            Me.txtAA_PER_CurrentEmployment.Text = Format(GLB_NEWTax_TotalEarningsFromME - GLB_NEWTax_SocialInsurancePension, "0.00")
+                Dim REMTaxPeriods As Integer = GLBCurrentPeriod.NumberOfTaxablePeriods - NumberOfTaxablePeriodsTodate + 1
+                Dim MonthlyTAX As Double = (Tax_OnCurrentEmployment + Tax_OnSIPension + Tax_OnNotionalIncome - TAXValueToDateForCurrentIncome) / REMTaxPeriods
+                Me.txt_REC_TempPAYE.Text = Format(MonthlyTAX, "0.00")
+            Else
+                GLB_NEWTax_NotionalIncome = GLB_NEWTax_NotionalIncome + NotionalIncome_ToDate
+
+            Me.txtAA_PER_CurrentEmployment.Text = Format(GLB_NEWTax_TotalEarningsFromME - GLB_NEWTax_SocialInsurancePension - GLB_NEWTax_NotionalIncome, "0.00")
             Me.txtAA_PER_SIPension.Text = Format(GLB_NEWTax_SocialInsurancePension, "0.00")
             Me.txtAA_PER_FromOthersources.Text = Format(GLB_NEWTax_RentsAndIncomeFromOtherSources, "0.00")
             Me.txtAA_PER_PreviousEmployment.Text = Format(GLB_NEWTax_EarningsFromPreviousEmployment, "0.00")
-            Me.txtAA_PER_NotionalIncome.Text = Format(0, "0.00")
+            Me.txtAA_PER_Split.Text = Format(GLB_NEWTax_TotalSPLIT, "0.00")
+
+            GLB_NEWTax_NotionalIncome = GLB_NEWTax_NotionalIncome + GLBNonRecuringPeriodNotional
+            Me.txtAA_PER_NotionalIncome.Text = Format(GLB_NEWTax_NotionalIncome, "0.00")
+
             Me.txtAA_PER_TotalTaxable.Text = Format(GLB_NEWTax_Total, "0.00")
 
-            Dim Tax_OnCurrentEmployment As Double = ITValue / GLB_NEWTax_Total * (GLB_NEWTax_TotalEarningsFromME - GLB_NEWTax_SocialInsurancePension)
-            Dim Tax_OnSIPension As Double = ITValue / GLB_NEWTax_Total * GLB_NEWTax_SocialInsurancePension
-            Dim Tax_OnOtherIncome As Double = ITValue / GLB_NEWTax_Total * GLB_NEWTax_RentsAndIncomeFromOtherSources
-            Dim Tax_OnPreviousEmployment As Double = ITValue / GLB_NEWTax_Total * GLB_NEWTax_EarningsFromPreviousEmployment
-            Dim Tax_OnNotionalIncome As Double = ITValue / GLB_NEWTax_Total * 0
+            Dim Tax_OnCurrentEmployment As Double = 0
+            Dim Tax_OnSIPension As Double = 0
+            Dim Tax_OnOtherIncome As Double = 0
+            Dim Tax_OnPreviousEmployment As Double = 0
+            Dim Tax_OnNotionalIncome As Double = 0
+            Dim Tax_Onsplit As Double = 0
+
+            If GLB_NEWTax_Total > 0 Then
+                Tax_OnCurrentEmployment = ITValue / GLB_NEWTax_Total * (GLB_NEWTax_TotalEarningsFromME - GLB_NEWTax_SocialInsurancePension - GLB_NEWTax_NotionalIncome)
+                Tax_OnSIPension = ITValue / GLB_NEWTax_Total * GLB_NEWTax_SocialInsurancePension
+                Tax_OnOtherIncome = ITValue / GLB_NEWTax_Total * GLB_NEWTax_RentsAndIncomeFromOtherSources
+                Tax_OnPreviousEmployment = ITValue / GLB_NEWTax_Total * GLB_NEWTax_EarningsFromPreviousEmployment
+                Tax_OnNotionalIncome = ITValue / GLB_NEWTax_Total * GLB_NEWTax_NotionalIncome
+                Tax_Onsplit = ITValue / GLB_NEWTax_Total * GLB_NEWTax_TotalSPLIT
+            End If
 
             Me.txtTA_PER_TotalTaxable.Text = Format(ITValue, "0.00")
-            Me.txtTA_PER_CurrentEmployment.Text = Format(Tax_OnCurrentEmployment, "0.00")
-            Me.txtTA_PER_SIPension.Text = Format(Tax_OnSIPension, "0.00")
-            Me.txtTA_PER_FromOthersources.Text = Format(Tax_OnOtherIncome, "0.00")
-            Me.txtTA_PER_PreviousEmployment.Text = Format(Tax_OnPreviousEmployment, "0.00")
-            Me.txtTA_PER_NotionalIncome.Text = Format(Tax_OnNotionalIncome, "0.00")
+                Me.txtTA_PER_CurrentEmployment.Text = Format(Tax_OnCurrentEmployment, "0.00")
+                Me.txtTA_PER_SIPension.Text = Format(Tax_OnSIPension, "0.00")
+                Me.txtTA_PER_FromOthersources.Text = Format(Tax_OnOtherIncome, "0.00")
+                Me.txtTA_PER_PreviousEmployment.Text = Format(Tax_OnPreviousEmployment, "0.00")
+                Me.txtTA_PER_NotionalIncome.Text = Format(Tax_OnNotionalIncome, "0.00")
+                Me.txtTA_PER_Split.Text = Format(Tax_Onsplit, "0.00")
 
-            Dim REMTaxPeriods As Integer = GLBCurrentPeriod.NumberOfTaxablePeriods - NumberOfTaxablePeriodsTodate + 1
-            Dim MonthlyTAX As Double = (Tax_OnCurrentEmployment + Tax_OnSIPension - TAXValueToDateForCurrentIncome) / REMTaxPeriods
-            Me.txt_PER_TempPAYE.Text = Format(MonthlyTAX, "0.00")
+                Dim REMTaxPeriods As Integer = GLBCurrentPeriod.NumberOfTaxablePeriods - NumberOfTaxablePeriodsTodate + 1
+                Dim MonthlyTAX As Double = (Tax_OnCurrentEmployment + Tax_OnSIPension + Tax_OnNotionalIncome - TAXValueToDateForCurrentIncome) / REMTaxPeriods
 
-            Dim TaxDifference As Double = 0
-            TaxDifference = CDbl(Me.txtTA_PER_CurrentEmployment.Text) - CDbl(Me.txtTA_REC_CurrentEmployment.Text)
-
-            Me.txtTaxDifference.Text = Format(TaxDifference, "0.00")
-            Dim NewTax As Double = 0
-            NewTax = CDbl(Me.txt_REC_TempPAYE.Text) + TaxDifference
-            Me.txtNewPeriodTax.Text = Format(NewTax, "0.00")
-            Dim NewPaid As Double = S_ITValueToDate
-            Me.txtNewPaid.Text = Format(S_ITValueToDate, "0.00")
-            Dim CurrentSINotional As Double = Tax_OnCurrentEmployment + Tax_OnSIPension + Tax_OnNotionalIncome
-            Me.txtPERCurrent_SI_Notional.Text = Format(CurrentSINotional, "0.00")
-            Dim NewRemaining As Double = Format(CurrentSINotional - NewPaid, "0.00")
-            Me.txtPerRemaining.Text = Format(NewRemaining, "0.00")
+                Dim Tax_OnNotionalIncomePAID As Double = 0
+                Dim NotionalIncomePeriodTAX As Double = (Tax_OnNotionalIncome - Tax_OnNotionalIncomePAID) / REMTaxPeriods
 
 
+                Me.txtNotionalPeriodTax.Text = Format(NotionalIncomePeriodTAX, "0.00")
+                Me.txt_PER_TempPAYE.Text = Format(MonthlyTAX, "0.00")
 
-        End If
-        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
-        ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                Dim TaxDifference As Double = 0
+                TaxDifference = CDbl(Me.txtTA_PER_CurrentEmployment.Text) - CDbl(Me.txtTA_REC_CurrentEmployment.Text)
 
-        If Global1.PARAM_SplitIsEnabled Then
+                Me.txtTaxDifference.Text = Format(TaxDifference, "0.00")
+                Dim NewTax As Double = 0
+                NewTax = CDbl(Me.txt_REC_TempPAYE.Text) + TaxDifference
+                Me.txtNewPeriodTax.Text = Format(NewTax, "0.00")
+                Dim NewPaid As Double = S_ITValueToDate
+                Me.txtNewPaid.Text = Format(S_ITValueToDate, "0.00")
+                Dim CurrentSINotional As Double = Tax_OnCurrentEmployment + Tax_OnSIPension + Tax_OnNotionalIncome ' Tax_OnNotionalIncome is included in Current
+                Me.txtPERCurrent_SI_Notional.Text = Format(CurrentSINotional, "0.00")
+                Dim NewRemaining As Double = Format(CurrentSINotional - NewPaid, "0.00")
+                Me.txtPerRemaining.Text = Format(NewRemaining, "0.00")
+
+
+
+            End If
+            ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+            ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+            If Global1.PARAM_SplitIsEnabled Then
             S_ITValueToDate = S_ITValueToDate + GLBEmployee.TaxForSplit
             Me.txtInterCompanyTax.Text = GLBEmployee.TaxForSplit
         End If
@@ -6182,30 +6259,39 @@ Public Class FrmPrTxCalculatePayroll
 
 
 
-
-            If Global1.GLBNewTaxmethod Then
-                ITValue = CDbl(Me.txtNewPeriodTax.Text)
-                If Me.GLB_PeriodTaxable = 0 Then
-                    ITValue = 0
-                End If
-                If ITValue < 0 Then
-                    ITValue = 0
+            If Not UseFixedITValue Then
+                If Global1.GLBNewTaxmethod Then
+                    ITValue = CDbl(Me.txtNewPeriodTax.Text)
+                    If Me.GLB_PeriodTaxable = 0 Then
+                        ITValue = 0
+                    End If
+                    If ITValue < 0 Then
+                        ITValue = 0
+                    End If
                 End If
             End If
 
             Dim Limit35 As Double
             Limit35 = 35 * GLB_PeriodTaxable / 100
-            If ITValue > Limit35 Then
-                MsgBox("35% limit")
+            If Limit35 <> 0 Then
+                If ITValue >= Limit35 Then
+
+                    Limit35 = Limit35 - 1
+                    If Limit35 < 0 Then
+                        Limit35 = 0
+                    End If
+                    MsgBox("Period TAX for Employee " & Emp.Code & " - " & Emp.FullName & " is " & ITValue & " and this is greater or equal than 35% of Period Taxable amount " & GLB_PeriodTaxable & ".Please investigate !TAX will be limited to " & Limit35, MsgBoxStyle.Information)
+                    ITValue = Limit35
+                End If
             End If
 
             For i = 0 To D_Final.Length - 1
-                If Dedu.Code = D_Final(i).Ded.DedCodCode Then
-                    D_Final(i).MyValue = ITValue
-                    Exit For
-                End If
-            Next
-        End If
+                    If Dedu.Code = D_Final(i).Ded.DedCodCode Then
+                        D_Final(i).MyValue = ITValue
+                        Exit For
+                    End If
+                Next
+            End If
 
 
     End Sub
@@ -10119,6 +10205,7 @@ Public Class FrmPrTxCalculatePayroll
         GLBRecurringEarning14 = 0
         GLBPensionDeduction = 0
         GLBBenefitsRecurringEarning = 0
+        GLBNotionalRecurringEarning = 0
         GLBBenefitsRecurringEarning14 = 0
         GLBCOLAValue = 0
         GLBSalaryForRate = 0
@@ -10645,6 +10732,10 @@ Public Class FrmPrTxCalculatePayroll
                     .TaxOnBIK = GLBTaxOnBIK
                     .SIPension = GLBEmployee.OtherIncome3
                     .GOVPension = 0
+
+                    .PeriodNotional = Me.GLBNotionalRecurringEarning + GLBNonRecuringPeriodNotional
+                    .PeriodTAXOnNotional = Me.txtNotionalPeriodTax.Text
+                    .PeriodGESYOnNotional = GLBGESIOnNotional
 
                     If CDbl(Me.txtActualUnits.Text) = 0 Then
                         .MyRate = 0
@@ -13218,6 +13309,11 @@ Public Class FrmPrTxCalculatePayroll
                         .Per_MethodUsed = 0
                     End If
 
+                    .ARec_Split = Me.txtAA_REC_Split.Text
+                    .TRec_Split = Me.txtTA_REC_Split.Text
+                    .APer_Split = Me.txtAA_PER_Split.Text
+                    .TPer_Split = Me.txtTA_PER_Split.Text
+
                     If Not .Save Then
                         Throw Exx
                     End If
@@ -13237,6 +13333,9 @@ Public Class FrmPrTxCalculatePayroll
                 Dim S As New cPrTxIr59(Hdr.Id)
                 If S.Pay_Id <> 0 Then
                     With S
+
+                        Me.txtNotionalPeriodTax.Text = Format(Hdr.PeriodTAXOnNotional, "0.00")
+
                         txtROTotalTaxable.Text = Format(.Rec_GrossIncome, "0.00")
                         txtCPTotalTaxable.Text = Format(.Act_GrossIncome, "0.00")
                         txtRODI.Text = Format(.Rec_Discounts, "0.00")
@@ -13325,13 +13424,16 @@ Public Class FrmPrTxCalculatePayroll
                         Me.txtPERCurrent_SI_Notional.Text = Format(.Per_TotalCurSINot, "0.00")
                         Me.txtPerRemaining.Text = Format(.Per_NewRemaining, "0.00")
                         If .Per_MethodUsed = 1 Then
-                            CBMethodUsed.checked = True
+                            CBMethodUsed.Checked = True
                         Else
-                            CBMethodUsed.checked = False
+                            CBMethodUsed.Checked = False
                         End If
 
 
-
+                        Me.txtAA_REC_Split.Text = Format(.ARec_Split, "0.00")
+                        Me.txtTA_REC_Split.Text = Format(.TRec_Split, "0.00")
+                        Me.txtAA_PER_Split.Text = Format(.APer_Split, "0.00")
+                        Me.txtTA_PER_Split.Text = Format(.TPer_Split, "0.00")
 
 
 
@@ -14136,8 +14238,20 @@ Public Class FrmPrTxCalculatePayroll
         txtPerRemaining.Visible = Not TF
         txtNewPeriodTax.Visible = Not TF
 
-    End Sub
+        txtTaxDifference.Visible = Not TF
+        Label114.Visible = Not TF
+        Label117.Visible = Not TF
+        Label118.Visible = Not TF
+        Label120.Visible = Not TF
+        Label121.Visible = Not TF
 
+        txtNotionalPeriodTax.Visible = Not TF
+        LblRemTaxable.Visible = Not TF
+
+
+
+
+    End Sub
 
 
 End Class

@@ -89,6 +89,9 @@ Public Class cPrTxTrxnHeader
     Private mTAXOnBIK As Double
     Private mSIPension As Double
     Private mGOVPension As Double
+    Private mPeriodNotional As Double
+    Private mPeriodTAXonNotional As Double
+    Private mPeriodGESYonNotional As Double
 
     Public Property Id() As Integer
         Get
@@ -710,6 +713,30 @@ Public Class cPrTxTrxnHeader
             mGOVPension = value
         End Set
     End Property
+    Public Property PeriodNotional As Double
+        Get
+            Return mPeriodNotional
+        End Get
+        Set(ByVal value As Double)
+            mPeriodNotional = value
+        End Set
+    End Property
+    Public Property PeriodTAXOnNotional As Double
+        Get
+            Return mPeriodTAXonNotional
+        End Get
+        Set(ByVal value As Double)
+            mPeriodTAXonNotional = value
+        End Set
+    End Property
+    Public Property PeriodGESYOnNotional As Double
+        Get
+            Return mPeriodGESYonNotional
+        End Get
+        Set(ByVal value As Double)
+            mPeriodGESYonNotional = value
+        End Set
+    End Property
 
     'end Savvas RND
     Public Sub New()
@@ -827,6 +854,10 @@ Public Class cPrTxTrxnHeader
         mTAXOnBIK = DbNullToDouble(dr.Item(73))
         mSIPension = DbNullToDouble(dr.Item(74))
         mGOVPension = DbNullToDouble(dr.Item(75))
+
+        mPeriodNotional = DbNullToDouble(dr.Item(76))
+        mPeriodTAXonNotional = DbNullToDouble(dr.Item(77))
+        mPeriodGESYonNotional = DbNullToDouble(dr.Item(78))
 
 
 

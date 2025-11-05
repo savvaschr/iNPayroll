@@ -3235,14 +3235,16 @@ todo:   ' check for status in trxnheader
         '      " WHERE (Emp_Code = " & enQuoteString(Emp.Code) & ")" & _
         '      " AND (PrdGrp_Code = " & enQuoteString(CurrentPeriod.PrdGrpCode) & ")" & _
         '      " AND (TrxHdr_Status='POST')"
-        str = " SELECT SUM(TrxHdr_TaxableIncome+TrxHdr_TaxableFromOther)," & _
-             " SUM(TrxHdr_LifeInsurance)," & _
-             " SUM(TrxHdr_Discounts)," & _
-             " SUM(TrxHdr_PeriodInsurable), " & _
-             " SUM(TrxHdr_FE) " & _
-             " FROM PrTxTrxnHeader" & _
-             " WHERE (Emp_Code = " & enQuoteString(Emp.Code) & ")" & _
-             " AND (PrdGrp_Code = " & enQuoteString(CurrentPeriod.PrdGrpCode) & ")" & _
+        str = " SELECT SUM(TrxHdr_TaxableIncome+TrxHdr_TaxableFromOther)," &
+             " SUM(TrxHdr_LifeInsurance)," &
+             " SUM(TrxHdr_Discounts)," &
+             " SUM(TrxHdr_PeriodInsurable), " &
+             " SUM(TrxHdr_FE), " &
+             " SUM(TrxHdr_PeriodNotional), " &
+             " SUM(TrxHdr_PeriodTaxOnNotional) " &
+             " FROM PrTxTrxnHeader" &
+             " WHERE (Emp_Code = " & enQuoteString(Emp.Code) & ")" &
+             " AND (PrdGrp_Code = " & enQuoteString(CurrentPeriod.PrdGrpCode) & ")" &
              " AND (TrxHdr_Status='POST')"
         Return GetData(str)
     End Function
@@ -5136,24 +5138,27 @@ todo:   ' check for status in trxnheader
         " Trxhdr_FEControlAmount, " &
         " TrxHdr_TaxOnBIK, " &
         " TrxHdr_SIPension, " &
-        " TrxHdr_GovPension " &
+        " TrxHdr_GovPension, " &
+        " TrxHdr_PeriodNotional, " &
+        " TrxHdr_PeriodTaxOnNotional, " &
+        " TrxHdr_PeriodgesyOnNotional " &
          " FROM  PrTxTrxnHeader" &
          " WHERE (TrxHdr_Id >= " & MinId & ")" &
-         " AND (TrxHdr_Id <= " & MaxId & ")" &
-        " AND (TemGrp_Code=" & enQuoteString(TempGroup.Code) & ")" '& _
+         " And (TrxHdr_Id <= " & MaxId & ")" &
+        " And (TemGrp_Code=" & enQuoteString(TempGroup.Code) & ")" '& _
 
         If Global1.param_SortByChequeNo Then
             str2 = " Order by TrxHdr_PaymentRef Asc"
         End If
 
-        ''" AND PrdCod_Code=" & enQuoteString(PeriodCode)
+        ''" And PrdCod_Code=" & enQuoteString(PeriodCode)
         Str = Str & Str2
         Return MyBase.GetData(Str)
 
     End Function
     Protected Function GetPrTxTrxnLinesOfHeaderID(ByVal HeaderId) As DataSet
         Dim Str As String
-        Str = " SELECT  TrxLin_Id," & _
+        Str = " Select  TrxLin_Id," & _
             " TrxHdr_Id," & _
             " TrxLin_Type," & _
             " ErnCod_Code," & _
@@ -5173,12 +5178,12 @@ todo:   ' check for status in trxnheader
     End Function
     Protected Function GetPrTrxnLinesOfHeaderIdOfAdvances(ByVal HeaderID As Integer) As DataSet
         Dim Str As String
-        Str = "SELECT PrTxTrxnLines.TrxLin_PeriodValue, PrTxTrxnLines.DedCod_Code" & _
+        Str = "Select PrTxTrxnLines.TrxLin_PeriodValue, PrTxTrxnLines.DedCod_Code" & _
             " FROM PrTxTrxnLines INNER JOIN" & _
-            " PrMsDeductionCodes ON PrTxTrxnLines.DedCod_Code = PrMsDeductionCodes.DedCod_Code INNER JOIN" & _
-            " PrSsDeductionTypes ON PrMsDeductionCodes.DedTyp_Code = PrSsDeductionTypes.DedTyp_Code" & _
+            " PrMsDeductionCodes On PrTxTrxnLines.DedCod_Code = PrMsDeductionCodes.DedCod_Code INNER JOIN" & _
+            " PrSsDeductionTypes On PrMsDeductionCodes.DedTyp_Code = PrSsDeductionTypes.DedTyp_Code" & _
             " WHERE(PrTxTrxnLines.TrxHdr_Id = " & HeaderID & ")" & _
-            " AND (PrTxTrxnLines.TrxLin_Type = 'D') " & _
+            " And (PrTxTrxnLines.TrxLin_Type = 'D') " & _
             " AND (PrSsDeductionTypes.DedTyp_Code = 'AD')" & _
             " AND (PrTxTrxnLines.TrxLin_PeriodValue <>0)" & _
             " ORDER BY PrTxTrxnLines.TrxLin_Id"
@@ -58260,7 +58265,11 @@ todo:   ' check for status in trxnheader
          " Per_NewPeriodTax Decimal(18,2), " &
          " Per_TotalCurSINot Decimal(18,2), " &
          " Per_NewRemaining Decimal(18,2), " &
-         " Per_MethodUsed varchar(1) "
+         " Per_MethodUsed varchar(1), " &
+         " ARec_Split Decimal(18,2), " &
+         " TRec_Split Decimal(18,2), " &
+         " APer_Split Decimal(18,2), " &
+         " TPer_Split Decimal(18,2) "
 
 
         i = ExecuteNonQuery(Str)
@@ -58282,6 +58291,389 @@ todo:   ' check for status in trxnheader
             MsgBox("Fail to add New columns in PrTxIr59", MsgBoxStyle.Critical)
             f = False
         End If
+
+
+
+
+        '''''''''''''''''NEW Fields on Header ''''''''''''''''''''
+        i = 0
+        Str = " ALTER TABLE PrTxtrxnheader " &
+        " ADD [TrxHdr_PeriodNotional] decimal(18,2) NULL, " &
+        " [TrxHdr_PeriodTaxOnNotional] decimal(18,2) NULL, " &
+        " [TrxHdr_PeriodGesyOnNotional] decimal(18,2) NULL "
+
+
+
+        i = ExecuteNonQuery(Str)
+        If i >= 0 Then
+            MsgBox("3 New columns Added in PrTxTrxnheader", MsgBoxStyle.Information)
+            Str = " Update PrTxtrxnheader " &
+                  " set TrxHdr_PeriodNotional=0, " &
+                  " TrxHdr_PeriodTaxOnNotional=0,  " &
+                  " TrxHdr_PeriodGesyOnNotional=0  "
+
+            i = ExecuteNonQuery(Str)
+        Else
+            MsgBox("Fail to add New columns in PrTxTrxnheader", MsgBoxStyle.Critical)
+        End If
+
+
+
+
+        Str = "ALTER PROCEDURE [dbo].[AG_PrTxTrxnHeader_SAVE_UPDATE]" &
+               " @TrxHdr_Id int," &
+               " @Emp_Code varchar(16)," &
+               " @PrdGrp_Code varchar(6)," &
+               " @PrdCod_Code varchar(6)," &
+               " @PayCat_Code varchar(4)," &
+               " @TrxHdr_Date datetime," &
+               " @TrxHdr_Status varchar(4)," &
+               " @TrxHdr_TotalErnPeriod Decimal(18,2)," &
+               " @TrxHdr_TotalErnYTD Decimal(18,2)," &
+               " @TrxHdr_TotalDedPeriod Decimal(18,2)," &
+               " @TrxHdr_TotalDedYTD Decimal(18,2)," &
+               " @TrxHdr_TotalConPeriod Decimal(18,2)," &
+               " @TrxHdr_TotalConYTD Decimal(18,2)," &
+               " @TrxHdr_SIIncome Decimal(18,2)," &
+               " @TrxHdr_TaxableIncome Decimal(18,2)," &
+               " @TrxHdr_PaymentMethod varchar(50)," &
+               " @TrxHdr_PaymentRef varchar(50)," &
+               " @TrxHdr_PeriodUnits Decimal(18,2)," &
+               " @TrxHdr_AnnualUnits Decimal(18,2)," &
+               " @TrxHdr_AnnualLeave Decimal(18,2)," &
+               " @TrxHdr_LifeInsurance Decimal(18,2)," &
+               " @TrxHdr_Discounts Decimal(18,2)," &
+               " @TrxHdr_Interfacestatus varchar(4)," &
+               " @TrxHdr_Overtime1 Decimal(10,2)," &
+               " @TrxHdr_Overtime2 Decimal(10,2)," &
+               " @TrxHdr_SIUnits Decimal(10,2)," &
+               " @TrxHdr_MonthlySalary Decimal(18,2)," &
+               " @TrxHdr_NetSalary Decimal(18,2)," &
+               " @TrxHdr_PeriodInsurable Decimal(18,2)," &
+               " @TemGrp_Code varchar(6)," &
+               " @TrxHdr_ChequeNo varchar(50)," &
+               " @TrxHdr_TaxableFromOther Decimal(18,2)," &
+               " @TrxHdr_CurrencySymbol varchar(3)," &
+               " @TrxHdr_Rate Decimal(18,10)," &
+               " @TrxHdr_NormalDays Decimal(18,2)," &
+               " @TrxHdr_Salary1 Decimal(18,2)," &
+               " @TrxHdr_Salary2 Decimal(18,2)," &
+               " @TrxHdr_Overtime3 Decimal(10,2)," &
+               " @TrxHdr_Sectors Decimal(18,2)," &
+               " @TrxHdr_Dutyhours Decimal(18,2)," &
+               " @TrxHdr_FlightHours Decimal(18,2)," &
+               " @TrxHdr_Commission Decimal(18,2)," &
+               " @TrxHdr_PBAmount Decimal(18,2)," &
+               " @TrxHdr_PBRate Decimal(18,2)," &
+               " @TrxHdr_Overlay Decimal(18,2)," &
+               " @TrxHdr_PeriodSplit Decimal(18,2)," &
+               " @TrxHdr_PeriodSplitSI Decimal(18,2)," &
+               " @TrxHdr_A1 varchar(12), " &
+               " @TrxHdr_A2 varchar(12), " &
+               " @TrxHdr_A3 varchar(12), " &
+               " @TrxHdr_A4 varchar(12), " &
+               " @TrxHdr_A5 varchar(12), " &
+               " @TrxHdr_Union varchar(12), " &
+               " @TrxHdr_Position varchar(12), " &
+               " @TrxHdr_COLA Decimal(18, 2)," &
+               " @TrxHdr_MyRate Decimal(18, 4)," &
+               " @TrxHdr_FE Decimal(18, 2)," &
+               " @TrxHdr_NetYTD Decimal(18, 2)," &
+               " @TrxHdr_PFOnAgreedSalary Decimal(18, 2)," &
+               " @TrxHdr_BasisOnSalary Decimal(18, 2)," &
+               " @TrxHdr_GesiD Decimal(18, 2)," &
+               " @TrxHdr_GesiC Decimal(18, 2)," &
+               " @TrxHdr_Medical Decimal(18, 2)," &
+               " @Com_Code varchar(10)," &
+               " @TrxHdr_Year varchar(4), " &
+               " @TrxHdr_GESIableAmount Decimal(18, 2)," &
+               " @TrxHdr_BIK_GesiD Decimal(18, 2)," &
+               " @TrxHdr_BIK_GesiC Decimal(18, 2)," &
+               " @TrxHdr_BIK_Gesiable Decimal(18, 2)," &
+               " @TrxHdr_AnalGen1 varchar(20)," &
+               " @TrxHdr_Maternity varchar(1)," &
+               " @TrxHdr_FEPercent varchar(4)," &
+               " @TrxHdr_FEControlAmount Decimal(18,2), " &
+               " @TrxHdr_TaxOnBIK Decimal(18,2), " &
+               " @TrxHdr_SIPension Decimal(18,2), " &
+               " @TrxHdr_GovPension Decimal(18,2), " &
+               " @TrxHdr_PeriodNotional  Decimal(18,2), " &
+               " @TrxHdr_PeriodTaxOnNotional  Decimal(18,2), " &
+               " @TrxHdr_PeriodGesyOnNotional  Decimal(18,2), " &
+               " @NewId Int OUTPUT " &
+               " As" &
+               " Declare @Result As Int" &
+               " Set  @Result = 0" &
+               " Select @Result = Count(*)" &
+               " FROM PrTxTrxnHeader" &
+               " WHERE TrxHdr_Id =  @TrxHdr_Id" &
+               " If(@Result Is NULL) Or (@Result=0)" &
+               " BEGIN" &
+               "   INSERT INTO PrTxTrxnHeader" &
+               "   (Emp_Code,                                           " &
+               " PrdGrp_Code," &
+               " PrdCod_Code,                                        " &
+               " PayCat_Code,                                        " &
+               " TrxHdr_Date,                                        " &
+               " TrxHdr_Status,                                      " &
+               " TrxHdr_TotalErnPeriod,                              " &
+               " TrxHdr_TotalErnYTD,                                 " &
+               " TrxHdr_TotalDedPeriod,                              " &
+               " TrxHdr_TotalDedYTD,                                 " &
+               " TrxHdr_TotalConPeriod,                              " &
+               " TrxHdr_TotalConYTD,                                 " &
+               " TrxHdr_SIIncome,                                    " &
+               " TrxHdr_TaxableIncome,                               " &
+               " TrxHdr_PaymentMethod,                               " &
+               " TrxHdr_PaymentRef,                                  " &
+               " TrxHdr_PeriodUnits,                                 " &
+               " TrxHdr_AnnualUnits,                                 " &
+               " TrxHdr_AnnualLeave,                                  " &
+               " TrxHdr_LifeInsurance,                                " &
+               " TrxHdr_Discounts,                                    " &
+               " TrxHdr_InterfaceStatus,                               " &
+               " TrxHdr_Overtime1," &
+               " TrxHdr_Overtime2," &
+               " TrxHdr_SIUnits," &
+               " TrxHdr_MonthlySalary," &
+               " TrxHdr_NetSalary," &
+               " TrxHdr_PeriodInsurable," &
+               " TemGrp_Code," &
+               " TrxHdr_ChequeNo," &
+               " TrxHdr_TaxableFromOther," &
+               " TrxHdr_CurrencySymbol," &
+               " TrxHdr_Rate," &
+               " TrxHdr_NormalDays," &
+               " TrxHdr_Salary1," &
+               " TrxHdr_Salary2," &
+               " TrxHdr_Overtime3," &
+               " TrxHdr_Sectors," &
+               " TrxHdr_Dutyhours," &
+               " TrxHdr_FlightHours," &
+               " TrxHdr_Commission," &
+               " TrxHdr_PBAmount," &
+               " TrxHdr_PBRate," &
+               " TrxHdr_Overlay," &
+               " TrxHdr_PeriodSplit, " &
+               " TrxHdr_PeriodSplitSI, " &
+               " TrxHdr_A1, " &
+               " TrxHdr_A2, " &
+               " TrxHdr_A3, " &
+               " TrxHdr_A4, " &
+               " TrxHdr_A5, " &
+               " TrxHdr_Union, " &
+               " TrxHdr_Position, " &
+               " TrxHdr_COLA," &
+               " TrxHdr_MyRate, " &
+               " TrxHdr_FE, " &
+               " TrxHdr_NetYTD, " &
+               " TrxHdr_PFOnAgreedSalary, " &
+               " TrxHdr_BasisOnSalary, " &
+               " TrxHdr_GesiD, " &
+               " TrxHdr_GesiC, " &
+               " TrxHdr_Medical, " &
+               " Com_Code, " &
+               " TrxHdr_Year, " &
+               " TrxHdr_GESIableAmount, " &
+               " TrxHdr_BIK_GesiD, " &
+               " TrxHdr_BIK_GesiC, " &
+               " TrxHdr_BIK_Gesiable, " &
+               " TrxHdr_AnalGen1, " &
+               " TrxHdr_Maternity, " &
+               " TrxHdr_FEPercent, " &
+               " TrxHdr_FEControlAmount, " &
+               " TrxHdr_TaxOnBIK, " &
+               " TrxHdr_SIPension, " &
+               " TrxHdr_GovPension, " &
+               " TrxHdr_PeriodNotional, " &
+               " TrxHdr_PeriodTaxOnNotional, " &
+               " TrxHdr_PeriodGesyOnNotional " &
+               " )" &
+               " VALUES (" &
+               " @Emp_Code,                                           " &
+               " @PrdGrp_Code,                                        " &
+               " @PrdCod_Code,                                        " &
+               " @PayCat_Code,                                        " &
+               " @TrxHdr_Date,                                        " &
+               " @TrxHdr_Status,                                      " &
+               " @TrxHdr_TotalErnPeriod,                              " &
+               " @TrxHdr_TotalErnYTD,                                 " &
+               " @TrxHdr_TotalDedPeriod,                              " &
+               " @TrxHdr_TotalDedYTD,                                 " &
+               " @TrxHdr_TotalConPeriod,                              " &
+               " @TrxHdr_TotalConYTD,                                 " &
+               " @TrxHdr_SIIncome,                                    " &
+               " @TrxHdr_TaxableIncome,                               " &
+               " @TrxHdr_PaymentMethod,                               " &
+               " @TrxHdr_PaymentRef,                                  " &
+               " @TrxHdr_PeriodUnits,                                 " &
+               " @TrxHdr_AnnualUnits,                                 " &
+               " @TrxHdr_AnnualLeave,                                 " &
+               " @TrxHdr_LifeInsurance,                               " &
+               " @TrxHdr_Discounts,                                   " &
+               " @TrxHdr_InterfaceStatus,                              " &
+               " @TrxHdr_Overtime1," &
+               " @TrxHdr_Overtime2," &
+               " @TrxHdr_SIUnits," &
+               " @TrxHdr_MonthlySalary," &
+               " @TrxHdr_NetSalary," &
+               " @TrxHdr_PeriodInsurable," &
+               " @TemGrp_Code, " &
+               " @TrxHdr_ChequeNo," &
+               " @TrxHdr_TaxableFromOther," &
+               " @TrxHdr_CurrencySymbol," &
+               " @TrxHdr_Rate," &
+               " @TrxHdr_NormalDays," &
+               " @TrxHdr_Salary1," &
+               " @TrxHdr_Salary2," &
+               " @TrxHdr_Overtime3," &
+               " @TrxHdr_Sectors," &
+               " @TrxHdr_Dutyhours," &
+               " @TrxHdr_FlightHours," &
+               " @TrxHdr_Commission," &
+               " @TrxHdr_PBAmount," &
+               " @TrxHdr_PBRate," &
+               " @TrxHdr_Overlay," &
+               " @TrxHdr_PeriodSplit, " &
+               " @TrxHdr_PeriodSplitSI, " &
+               " @TrxHdr_A1, " &
+               " @TrxHdr_A2, " &
+               " @TrxHdr_A3, " &
+               " @TrxHdr_A4, " &
+               " @TrxHdr_A5, " &
+               " @TrxHdr_Union, " &
+               " @TrxHdr_Position, " &
+               " @TrxHdr_COLA," &
+               " @TrxHdr_MyRate," &
+               " @TrxHdr_FE, " &
+               " @TrxHdr_NetYTD, " &
+               " @TrxHdr_PFOnAgreedSalary, " &
+               " @TrxHdr_BasisOnSalary, " &
+               " @TrxHdr_GesiD, " &
+               " @TrxHdr_GesiC, " &
+               " @TrxHdr_Medical, " &
+               " @Com_Code, " &
+               " @TrxHdr_Year, " &
+               " @TrxHdr_GESIableAmount, " &
+               " @TrxHdr_BIK_GesiD, " &
+               " @TrxHdr_BIK_GesiC, " &
+               " @TrxHdr_BIK_Gesiable, " &
+               " @TrxHdr_AnalGen1, " &
+               " @TrxHdr_Maternity, " &
+               " @TrxHdr_FEPercent, " &
+               " @TrxHdr_FEControlAmount, " &
+               " @TrxHdr_TaxOnBIK, " &
+               " @TrxHdr_SIPension, " &
+               " @TrxHdr_GovPension, " &
+               " @TrxHdr_PeriodNotional, " &
+               " @TrxHdr_PeriodTaxOnNotional, " &
+               " @TrxHdr_PeriodGesyOnNotional " &
+               " )" &
+               " End" &
+               " Else" &
+               " BEGIN" &
+               " UPDATE PrTxTrxnHeader" &
+               " Set " &
+               " Emp_Code=@Emp_Code,                                   " &
+               " PrdGrp_Code=@PrdGrp_Code," &
+               " PrdCod_Code=@PrdCod_Code,                             " &
+               " PayCat_Code=@PayCat_Code,                             " &
+               " TrxHdr_Date=@TrxHdr_Date,                             " &
+               " TrxHdr_Status=@TrxHdr_Status,                         " &
+               " TrxHdr_TotalErnPeriod=@TrxHdr_TotalErnPeriod,         " &
+               " TrxHdr_TotalErnYTD=@TrxHdr_TotalErnYTD,               " &
+               " TrxHdr_TotalDedPeriod=@TrxHdr_TotalDedPeriod,         " &
+               " TrxHdr_TotalDedYTD=@TrxHdr_TotalDedYTD,               " &
+               " TrxHdr_TotalConPeriod=@TrxHdr_TotalConPeriod,         " &
+               " TrxHdr_TotalConYTD=@TrxHdr_TotalConYTD,               " &
+               " TrxHdr_SIIncome=@TrxHdr_SIIncome,                     " &
+               " TrxHdr_TaxableIncome=@TrxHdr_TaxableIncome,           " &
+               " TrxHdr_PaymentMethod=@TrxHdr_PaymentMethod,           " &
+               " TrxHdr_PaymentRef=@TrxHdr_PaymentRef,                 " &
+               " TrxHdr_PeriodUnits=@TrxHdr_PeriodUnits,               " &
+               " TrxHdr_AnnualUnits=@TrxHdr_AnnualUnits,               " &
+               " TrxHdr_AnnualLeave=@TrxHdr_AnnualLeave,                " &
+               " TrxHdr_LifeInsurance=@TrxHdr_LifeInsurance,           " &
+               " TrxHdr_Discounts=@TrxHdr_Discounts,                    " &
+               " TrxHdr_InterfaceStatus=@TrxHdr_InterfaceStatus,        " &
+               " TrxHdr_Overtime1=@TrxHdr_Overtime1," &
+               " TrxHdr_Overtime2=@TrxHdr_Overtime2," &
+               " TrxHdr_SIUnits=@TrxHdr_SIUnits," &
+               " TrxHdr_MonthlySalary=@TrxHdr_MonthlySalary," &
+               " TrxHdr_NetSalary=@TrxHdr_NetSalary," &
+               " TrxHdr_PeriodInsurable=@TrxHdr_PeriodInsurable," &
+               " TemGrp_Code=@TemGrp_Code," &
+               " TrxHdr_ChequeNo=@TrxHdr_ChequeNo ," &
+               " TrxHdr_TaxableFromOther=@TrxHdr_TaxableFromOther," &
+               " TrxHdr_CurrencySymbol=@TrxHdr_CurrencySymbol," &
+               " TrxHdr_Rate=@TrxHdr_Rate," &
+               " TrxHdr_NormalDays=@TrxHdr_NormalDays ," &
+               " TrxHdr_Salary1=@TrxHdr_Salary1," &
+               " TrxHdr_Salary2=@TrxHdr_Salary2," &
+               " TrxHdr_Overtime3=@TrxHdr_Overtime3," &
+               " TrxHdr_Sectors=@TrxHdr_Sectors," &
+               " TrxHdr_Dutyhours=@TrxHdr_Dutyhours," &
+               " TrxHdr_FlightHours=@TrxHdr_FlightHours," &
+               " TrxHdr_Commission=@TrxHdr_Commission," &
+               " TrxHdr_PBAmount=@TrxHdr_PBAmount," &
+               " TrxHdr_PBRate=@TrxHdr_PBRate," &
+               " TrxHdr_Overlay=@TrxHdr_Overlay," &
+               " TrxHdr_PeriodSplit=@TrxHdr_PeriodSplit, " &
+               " TrxHdr_PeriodSplitSI=@TrxHdr_PeriodSplitSI," &
+               " TrxHdr_A1=@TrxHdr_A1, " &
+               " TrxHdr_A2=@TrxHdr_A2, " &
+               " TrxHdr_A3=@TrxHdr_A3, " &
+               " TrxHdr_A4=@TrxHdr_A4, " &
+               " TrxHdr_A5=@TrxHdr_A5, " &
+               " TrxHdr_Union=@TrxHdr_Union, " &
+               " TrxHdr_Position=@TrxHdr_Position, " &
+               " TrxHdr_COLA=@TrxHdr_COLA," &
+               " TrxHdr_MyRate=@TrxHdr_MyRate, " &
+               " TrxHdr_FE=@TrxHdr_FE, " &
+               " TrxHdr_NetYTD=@TrxHdr_NetYTD, " &
+               " TrxHdr_PFOnAgreedSalary=@TrxHdr_PFOnAgreedSalary, " &
+               " TrxHdr_BasisOnSalary=@TrxHdr_BasisOnSalary, " &
+               " TrxHdr_GesiD=@TrxHdr_GesiD, " &
+               " TrxHdr_GesiC=@TrxHdr_GesiC, " &
+               " TrxHdr_Medical=@TrxHdr_Medical, " &
+               " Com_Code=@Com_Code, " &
+               " TrxHdr_Year=@TrxHdr_Year, " &
+               " TrxHdr_GESIableAmount =@TrxHdr_GESIableAmount, " &
+               " TrxHdr_BIK_GesiD = @TrxHdr_BIK_GesiD, " &
+               " TrxHdr_BIK_GesiC = @TrxHdr_BIK_GesiC, " &
+               " TrxHdr_BIK_Gesiable = @TrxHdr_BIK_Gesiable, " &
+               " TrxHdr_AnalGen1 = @TrxHdr_AnalGen1, " &
+               " TrxHdr_Maternity = @TrxHdr_Maternity, " &
+               " TrxHdr_FEPercent = @TrxHdr_FEPercent, " &
+               " TrxHdr_FEControlAmount =@TrxHdr_FEControlAmount, " &
+               " TrxHdr_TaxOnBIK= @TrxHdr_TaxOnBIK, " &
+               " TrxHdr_SIPension= @TrxHdr_SIPension, " &
+               " TrxHdr_GovPension =@TrxHdr_GovPension, " &
+               " TrxHdr_PeriodNotional=@TrxHdr_PeriodNotional, " &
+               " TrxHdr_PeriodTaxOnNotional=@TrxHdr_PeriodTaxOnNotional, " &
+               " TrxHdr_PeriodGesyOnNotional =@TrxHdr_PeriodGesyOnNotional " &
+               " WHERE TrxHdr_Id = @TrxHdr_Id " &
+               " End " &
+               " Set  @NewId=SCOPE_IDENTITY()"
+
+        Dim Proceed As Boolean = False
+        i = ExecuteNonQuery(Str)
+        If i >= 0 Then
+            MsgBox("SP PrTxTrxnHeader was updated", MsgBoxStyle.Information)
+            Proceed = True
+        Else
+            MsgBox("Unable To Update SP PrTxTrxnHeader", MsgBoxStyle.Critical)
+        End If
+
+
+
+
+        Return Proceed
+
+
+        Return True
+
+
         Return f
     End Function
 
