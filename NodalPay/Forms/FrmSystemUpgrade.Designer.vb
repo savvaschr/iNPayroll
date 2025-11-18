@@ -103,10 +103,11 @@ Partial Class FrmSystemUpgrade
         Me.Button78 = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Button81 = New System.Windows.Forms.Button()
         Me.Button80 = New System.Windows.Forms.Button()
         Me.Button79 = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.Button81 = New System.Windows.Forms.Button()
+        Me.Button82 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -931,6 +932,7 @@ Partial Class FrmSystemUpgrade
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.Button82)
         Me.TabPage2.Controls.Add(Me.Button81)
         Me.TabPage2.Controls.Add(Me.Button80)
         Me.TabPage2.Controls.Add(Me.Button79)
@@ -961,6 +963,16 @@ Partial Class FrmSystemUpgrade
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "2025"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'Button81
+        '
+        Me.Button81.Location = New System.Drawing.Point(254, 64)
+        Me.Button81.Name = "Button81"
+        Me.Button81.Size = New System.Drawing.Size(233, 23)
+        Me.Button81.TabIndex = 81
+        Me.Button81.Text = "81. New Fields on IR59 Table"
+        Me.Button81.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button81.UseVisualStyleBackColor = True
         '
         'Button80
         '
@@ -1051,15 +1063,15 @@ Partial Class FrmSystemUpgrade
         Me.TabPage1.Text = "2024"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
-        'Button81
+        'Button82
         '
-        Me.Button81.Location = New System.Drawing.Point(254, 64)
-        Me.Button81.Name = "Button81"
-        Me.Button81.Size = New System.Drawing.Size(233, 23)
-        Me.Button81.TabIndex = 81
-        Me.Button81.Text = "81. New Fields on IR59 Table"
-        Me.Button81.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button81.UseVisualStyleBackColor = True
+        Me.Button82.Location = New System.Drawing.Point(254, 93)
+        Me.Button82.Name = "Button82"
+        Me.Button82.Size = New System.Drawing.Size(233, 23)
+        Me.Button82.TabIndex = 82
+        Me.Button82.Text = "82. Add PAYE Method - SET to FALSE"
+        Me.Button82.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button82.UseVisualStyleBackColor = True
         '
         'FrmSystemUpgrade
         '
@@ -1160,4 +1172,5 @@ Partial Class FrmSystemUpgrade
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents Button80 As Button
     Friend WithEvents Button81 As Button
+    Friend WithEvents Button82 As Button
 End Class

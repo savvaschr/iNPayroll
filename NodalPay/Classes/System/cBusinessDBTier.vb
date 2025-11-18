@@ -19050,7 +19050,10 @@ todo:   ' check for status in trxnheader
         Dim C_PREV_GESY As Integer = 57
         Dim C_email As Integer = 58
         Dim C_LWBPensioner As Integer = 59
-        Dim C_LWBGESY As Integer = 60
+        'Dim C_LWBGESY As Integer = 60
+
+        Dim C_NotionalAmount As Integer = 60
+        Dim C_NotionalTax As Integer = 61
 
 
 
@@ -19074,6 +19077,10 @@ todo:   ' check for status in trxnheader
         Dim MeiwsiApolavon As Double = 0
         Dim WidowAndOrphans As Double = 0
         Dim Pensionfund As Double = 0
+
+        Dim NotionalAmount As Double = 0
+        Dim NotionalTax As Double = 0
+
 
         Dim D2 As Date
         D2 = DateAdd(DateInterval.Year, 1, YearDate)
@@ -19206,6 +19213,10 @@ todo:   ' check for status in trxnheader
         dt.Columns.Add(New DataColumn("Email", System.Type.GetType("System.String")))
         '59
         dt.Columns.Add(New DataColumn("LWBPensioner", System.Type.GetType("System.String")))
+        '60
+        dt.Columns.Add(New DataColumn("NotionalAmount", System.Type.GetType("System.Double")))
+        '61
+        dt.Columns.Add(New DataColumn("NotionalTax", System.Type.GetType("System.Double")))
 
 
 
@@ -19574,7 +19585,9 @@ todo:   ' check for status in trxnheader
                 Dim DsTaxableEarnings As DataSet
 
 
-                Str = " SELECT SUM(TrxHdr_TotalErnPeriod)" &
+                Str = " SELECT SUM(TrxHdr_TotalErnPeriod)," &
+                      " SUM(TrxHdr_PeriodNotional)," &
+                      " SUM(TrxHdr_PeriodTaxOnNotional)" &
                       " FROM  PrTxTrxnHeader" &
                       " WHERE (Emp_Code = " & enQuoteString(EmpCode) & ")"
                 Str = Str & StrPeriodGroupCodes
@@ -19632,8 +19645,11 @@ todo:   ' check for status in trxnheader
                 End If
 
 
+                NotionalAmount = DbNullToDouble(DsGrossEarnings.Tables(0).Rows(0).Item(1))
+                NotionalTax = DbNullToDouble(DsGrossEarnings.Tables(0).Rows(0).Item(2))
 
-                LocalErn = DbNullToDouble(DsGrossEarnings.Tables(0).Rows(0).Item(0)) - NonTaxable + SILeaveValue + BenefitsInKind
+                LocalErn = DbNullToDouble(DsGrossEarnings.Tables(0).Rows(0).Item(0)) - NonTaxable + SILeaveValue + BenefitsInKind '- NotionalAmount
+
                 LocalErn = LocalErn + OtherContributions
 
 
@@ -19645,7 +19661,8 @@ todo:   ' check for status in trxnheader
 
                 R(C_Local) = LocalErn
 
-
+                R(C_NotionalAmount) = NotionalAmount
+                R(C_NotionalTax) = NotionalTax
 
 
                 AbroadErn = "0.00"
@@ -19654,7 +19671,7 @@ todo:   ' check for status in trxnheader
 
                 R(C_Allowances) = Allowances
 
-                TotalErn = LocalErn + AbroadErn + Allowances
+                TotalErn = LocalErn + AbroadErn + Allowances + NotionalAmount
                 R(C_Total456) = TotalErn
 
 
@@ -19675,7 +19692,7 @@ todo:   ' check for status in trxnheader
 
                 Dim DsPF As DataSet = GetSumsOfEmployeeDeductions_IR7("PF", EmpCode, StrPeriodGroupCodes)
                 PF = RoundMe3(DbNullToDouble(DsPF.Tables(0).Rows(0).Item(0)), 2)
-                PF = PF + Pensionfund + WidowAndOrphans
+                PF = PF '+ Pensionfund + WidowAndOrphans
                 R(C_PF) = PF
 
                 R(C_SyntaksiodotikaOfelimata) = Pensionfund + WidowAndOrphans
@@ -19916,7 +19933,10 @@ todo:   ' check for status in trxnheader
 
 
                 Dim DsIT As DataSet = GetSumsOfEmployeeDeductions_IR7("IT", EmpCode, StrPeriodGroupCodes)
-                R(C_IT) = DbNullToDouble(DsIT.Tables(0).Rows(0).Item(0))
+
+                Dim IncomeTax As Double = DbNullToDouble(DsIT.Tables(0).Rows(0).Item(0))
+                IncomeTax = IncomeTax '- NotionalTax
+                R(C_IT) = IncomeTax
 
 
 
@@ -19970,7 +19990,7 @@ todo:   ' check for status in trxnheader
                         End If
                     End If
                 Else
-                    MsgBox("Employee with Code " & EmpCode & " will not be added in IR7, zero values for this year")
+                    MsgBox("Employee with Code " & EmpCode & " will Not be added in IR7, zero values for this year")
                 End If
 
 
@@ -22098,7 +22118,7 @@ todo:   ' check for status in trxnheader
         Return GetData(StrX)
 
     End Function
-    Protected Function REPORT_IR61_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
+    Protected Function REPORT_IR61_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, ALLYear As Boolean) As DataSet
         Dim Str As String = ""
         Dim StrX As String
         Dim Last As Integer
@@ -22124,10 +22144,14 @@ todo:   ' check for status in trxnheader
                 Else
                     Str = Str & " OR "
                 End If
-                Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " AND  PrTxTrxnHeader.PrdCod_Code = " & strPerCode & " )"
-                If i = Last Then
-                    Str = Str & " )"
+                If Not ALLYear Then
+                    Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " AND  PrTxTrxnHeader.PrdCod_Code = " & strPerCode & " )"
+                Else
+                    Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " )"
                 End If
+                If i = Last Then
+                        Str = Str & " )"
+                    End If
 
             Next
         End If
@@ -22153,7 +22177,7 @@ todo:   ' check for status in trxnheader
         If Global1.PARAM_HideEmpWithBlanksSIR Then
             StrX = StrX & "  AND (PrMsEmployees.ComSin_EmpSocialInsNo <>'')"
         End If
-       
+
 
         StrX = StrX & Str & " Order by PrTxtrxnHeader.emp_Code ASC"
 
@@ -22208,7 +22232,7 @@ todo:   ' check for status in trxnheader
         Return GetData(StrX)
 
     End Function
-    Protected Function REPORT_IR61_GetTaxableIncome_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
+    Protected Function REPORT_IR61_GetTaxableIncome_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, ALLYear As Boolean) As DataSet
         Dim Str As String = ""
         Dim StrX As String
         Dim Last As Integer
@@ -22234,7 +22258,11 @@ todo:   ' check for status in trxnheader
                 Else
                     Str = Str & " Or "
                 End If
-                Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " And  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " And  PrTxTrxnHeader.PrdCod_Code = " & strPerCode & " )"
+                If Not ALLYear Then
+                    Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " And  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " And  PrTxTrxnHeader.PrdCod_Code = " & strPerCode & " )"
+                Else
+                    Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " And  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " )"
+                End If
                 If i = Last Then
                     Str = Str & " )"
                 End If
@@ -22620,7 +22648,7 @@ todo:   ' check for status in trxnheader
 
         Return GetData(StrX)
     End Function
-    Protected Function REPORT_IR61_Gesy_DEDUCTION_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
+    Protected Function REPORT_IR61_Gesy_DEDUCTION_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, ALLYear As Boolean) As DataSet
         Dim Str As String = ""
         Dim StrX As String
         Dim Last As Integer
@@ -22646,7 +22674,11 @@ todo:   ' check for status in trxnheader
                 Else
                     Str = Str & " OR "
                 End If
-                Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " AND  PrTxTrxnHeader.PrdCod_Code = " & strPerCode & " )"
+                If Not ALLYear Then
+                    Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " AND  PrTxTrxnHeader.PrdCod_Code = " & strPerCode & " )"
+                Else
+                    Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " )"
+                End If
                 If i = Last Then
                     Str = Str & " )"
                 End If
@@ -22669,6 +22701,215 @@ todo:   ' check for status in trxnheader
 
         Return GetData(StrX)
     End Function
+    Protected Function REPORT_IR61_PensionFund_DEDUCTION_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, ALLYears As Boolean) As DataSet
+        Dim Str As String = ""
+        Dim StrX As String
+        Dim Last As Integer
+        Dim Ds As DataSet
+        Dim i As Integer
+        Dim PerCode As String
+
+        '''''''''''''''''''''''''''' NEW PART ''''''''''''''''''''''''''''''''''''''''''''
+        Dim strPerGroupCode As String
+        Dim strTempGroupCode As String
+        Dim strPerCode As String
+
+        Dim TemGrp As New cPrMsTemplateGroup(PerGrp.TemGrpCode)
+        Ds = Me.GetAll_Templates_PeriodGroups_Periods_OfSIPeriod(SIPeriod.Code, TemGrp.CompanyCode, PerGrp.Year)
+        If CheckDataSet(Ds) Then
+            Last = Ds.Tables(0).Rows.Count - 1
+            For i = 0 To Ds.Tables(0).Rows.Count - 1
+                strTempGroupCode = enQuoteString(DbNullToString(Ds.Tables(0).Rows(i).Item(0)))
+                strPerGroupCode = enQuoteString(DbNullToString(Ds.Tables(0).Rows(i).Item(1)))
+                strPerCode = enQuoteString(DbNullToString(Ds.Tables(0).Rows(i).Item(2)))
+                If i = 0 Then
+                    Str = Str & " AND ( "
+                Else
+                    Str = Str & " OR "
+                End If
+                If Not ALLYears Then
+                    Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " AND  PrTxTrxnHeader.PrdCod_Code = " & strPerCode & " )"
+                Else
+                    Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & "  )"
+                End If
+                If i = Last Then
+                    Str = Str & " )"
+                End If
+
+            Next
+        End If
+
+        StrX = " SELECT PrTxTrxnHeader.Emp_Code, " &
+            " PrTxTrxnLines.TrxLin_PeriodValue" &
+            " FROM  PrTxTrxnHeader INNER JOIN" &
+            " PrTxTrxnLines ON " &
+            " PrTxTrxnHeader.TrxHdr_Id = PrTxTrxnLines.TrxHdr_Id INNER JOIN" &
+            " PrMsDeductionCodes ON " &
+            " PrTxTrxnLines.DedCod_Code = PrMsDeductionCodes.DedCod_Code" &
+            " WHERE  (PrMsDeductionCodes.DedTyp_Code = 'PN') "
+
+
+        '  StrX = StrX & Str2X & Str & StrZ
+        StrX = StrX & Str & " Order by PrTxtrxnHeader.emp_Code ASC"
+
+        Return GetData(StrX)
+    End Function
+    Protected Function REPORT_IR61_WidowANDOrphans_DEDUCTION_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, ALLYears As Boolean) As DataSet
+        Dim Str As String = ""
+        Dim StrX As String
+        Dim Last As Integer
+        Dim Ds As DataSet
+        Dim i As Integer
+        Dim PerCode As String
+
+        '''''''''''''''''''''''''''' NEW PART ''''''''''''''''''''''''''''''''''''''''''''
+        Dim strPerGroupCode As String
+        Dim strTempGroupCode As String
+        Dim strPerCode As String
+
+        Dim TemGrp As New cPrMsTemplateGroup(PerGrp.TemGrpCode)
+        Ds = Me.GetAll_Templates_PeriodGroups_Periods_OfSIPeriod(SIPeriod.Code, TemGrp.CompanyCode, PerGrp.Year)
+        If CheckDataSet(Ds) Then
+            Last = Ds.Tables(0).Rows.Count - 1
+            For i = 0 To Ds.Tables(0).Rows.Count - 1
+                strTempGroupCode = enQuoteString(DbNullToString(Ds.Tables(0).Rows(i).Item(0)))
+                strPerGroupCode = enQuoteString(DbNullToString(Ds.Tables(0).Rows(i).Item(1)))
+                strPerCode = enQuoteString(DbNullToString(Ds.Tables(0).Rows(i).Item(2)))
+                If i = 0 Then
+                    Str = Str & " AND ( "
+                Else
+                    Str = Str & " OR "
+                End If
+                If Not ALLYears Then
+                    Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " AND  PrTxTrxnHeader.PrdCod_Code = " & strPerCode & " )"
+                Else
+                    Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & "  )"
+                End If
+                If i = Last Then
+                    Str = Str & " )"
+                End If
+
+            Next
+        End If
+
+        StrX = " SELECT PrTxTrxnHeader.Emp_Code, " &
+            " PrTxTrxnLines.TrxLin_PeriodValue" &
+            " FROM  PrTxTrxnHeader INNER JOIN" &
+            " PrTxTrxnLines ON " &
+            " PrTxTrxnHeader.TrxHdr_Id = PrTxTrxnLines.TrxHdr_Id INNER JOIN" &
+            " PrMsDeductionCodes ON " &
+            " PrTxTrxnLines.DedCod_Code = PrMsDeductionCodes.DedCod_Code" &
+            " WHERE  (PrMsDeductionCodes.DedTyp_Code = 'WO') "
+
+
+        '  StrX = StrX & Str2X & Str & StrZ
+        StrX = StrX & Str & " Order by PrTxtrxnHeader.emp_Code ASC"
+
+        Return GetData(StrX)
+    End Function
+    Public Shadows Function REPORT_IR61_NotionalAmount_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, ALLYears As Boolean) As DataSet
+        Dim Str As String = ""
+        Dim StrX As String
+        Dim Last As Integer
+        Dim Ds As DataSet
+        Dim i As Integer
+        Dim PerCode As String
+
+        '''''''''''''''''''''''''''' NEW PART ''''''''''''''''''''''''''''''''''''''''''''
+        Dim strPerGroupCode As String
+        Dim strTempGroupCode As String
+        Dim strPerCode As String
+
+        Dim TemGrp As New cPrMsTemplateGroup(PerGrp.TemGrpCode)
+        Ds = Me.GetAll_Templates_PeriodGroups_Periods_OfSIPeriod(SIPeriod.Code, TemGrp.CompanyCode, PerGrp.Year)
+        If CheckDataSet(Ds) Then
+            Last = Ds.Tables(0).Rows.Count - 1
+            For i = 0 To Ds.Tables(0).Rows.Count - 1
+                strTempGroupCode = enQuoteString(DbNullToString(Ds.Tables(0).Rows(i).Item(0)))
+                strPerGroupCode = enQuoteString(DbNullToString(Ds.Tables(0).Rows(i).Item(1)))
+                strPerCode = enQuoteString(DbNullToString(Ds.Tables(0).Rows(i).Item(2)))
+                If i = 0 Then
+                    Str = Str & "  ( "
+                Else
+                    Str = Str & " OR "
+                End If
+                If Not ALLYears Then
+                    Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " AND  PrTxTrxnHeader.PrdCod_Code = " & strPerCode & " )"
+                Else
+                    Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & "  )"
+                End If
+                If i = Last Then
+                    Str = Str & " )"
+                End If
+
+            Next
+        End If
+
+        StrX = " SELECT PrTxTrxnHeader.Emp_Code, " &
+            " PrTxTrxnHeader.TrxHdr_PeriodNotional " &
+            " FROM  PrTxTrxnHeader " &
+            " WHERE "
+
+        '  StrX = StrX & Str2X & Str & StrZ
+        StrX = StrX & Str & " Order by PrTxtrxnHeader.emp_Code ASC"
+
+        Return GetData(StrX)
+
+    End Function
+    Public Shadows Function REPORT_IR61_NotionalTax_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, ALLYears As Boolean) As DataSet
+
+        Dim Str As String = ""
+        Dim StrX As String
+        Dim Last As Integer
+        Dim Ds As DataSet
+        Dim i As Integer
+        Dim PerCode As String
+
+        '''''''''''''''''''''''''''' NEW PART ''''''''''''''''''''''''''''''''''''''''''''
+        Dim strPerGroupCode As String
+        Dim strTempGroupCode As String
+        Dim strPerCode As String
+
+        Dim TemGrp As New cPrMsTemplateGroup(PerGrp.TemGrpCode)
+        Ds = Me.GetAll_Templates_PeriodGroups_Periods_OfSIPeriod(SIPeriod.Code, TemGrp.CompanyCode, PerGrp.Year)
+        If CheckDataSet(Ds) Then
+            Last = Ds.Tables(0).Rows.Count - 1
+            For i = 0 To Ds.Tables(0).Rows.Count - 1
+                strTempGroupCode = enQuoteString(DbNullToString(Ds.Tables(0).Rows(i).Item(0)))
+                strPerGroupCode = enQuoteString(DbNullToString(Ds.Tables(0).Rows(i).Item(1)))
+                strPerCode = enQuoteString(DbNullToString(Ds.Tables(0).Rows(i).Item(2)))
+                If i = 0 Then
+                    Str = Str & "  ( "
+                Else
+                    Str = Str & " OR "
+                End If
+                If Not ALLYears Then
+                    Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " AND  PrTxTrxnHeader.PrdCod_Code = " & strPerCode & " )"
+                Else
+                    Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & "  )"
+                End If
+                If i = Last Then
+                    Str = Str & " )"
+                End If
+
+            Next
+        End If
+
+        StrX = " SELECT PrTxTrxnHeader.Emp_Code, " &
+            " PrTxTrxnHeader.TrxHdr_PeriodTaxOnNotional " &
+            " FROM  PrTxTrxnHeader " &
+            " WHERE "
+
+        '  StrX = StrX & Str2X & Str & StrZ
+        StrX = StrX & Str & " Order by PrTxtrxnHeader.emp_Code ASC"
+
+        Return GetData(StrX)
+
+
+    End Function
+
+
+
     Protected Function REPORT_IR61_Gesy_CONTRIBUTION_LWBPen(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
         Dim Str As String = ""
         Dim StrX As String
@@ -22812,7 +23053,7 @@ todo:   ' check for status in trxnheader
         Return GetData(StrX)
 
     End Function
-    Protected Function REPORT_IR61_Gesy_CONTRIBUTION_LWBPen_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
+    Protected Function REPORT_IR61_Gesy_CONTRIBUTION_LWBPen_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, ALLYear As Boolean) As DataSet
         Dim Str As String = ""
         Dim StrX As String
         Dim Last As Integer
@@ -22839,7 +23080,11 @@ todo:   ' check for status in trxnheader
                 Else
                     Str = Str & " OR "
                 End If
-                Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " AND  PrTxTrxnHeader.PrdCod_Code = " & strPerCode & " )"
+                If Not ALLYear Then
+                    Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " AND  PrTxTrxnHeader.PrdCod_Code = " & strPerCode & " )"
+                Else
+                    Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " )"
+                End If
                 If i = Last Then
                     Str = Str & " )"
                 End If
@@ -23005,7 +23250,7 @@ todo:   ' check for status in trxnheader
         Return GetData(StrX)
 
     End Function
-    Protected Function REPORT_IR61_Gesy_CONTRIBUTION_Directors_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
+    Protected Function REPORT_IR61_Gesy_CONTRIBUTION_Directors_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, ALLYEar As Boolean) As DataSet
         Dim Str As String = ""
         Dim StrX As String
         Dim Last As Integer
@@ -23031,7 +23276,11 @@ todo:   ' check for status in trxnheader
                 Else
                     Str = Str & " OR "
                 End If
-                Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " AND  PrTxTrxnHeader.PrdCod_Code = " & strPerCode & " )"
+                If Not ALLYEar Then
+                    Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " AND  PrTxTrxnHeader.PrdCod_Code = " & strPerCode & " )"
+                Else
+                    Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " )"
+                End If
                 If i = Last Then
                     Str = Str & " )"
                 End If
@@ -23198,7 +23447,7 @@ todo:   ' check for status in trxnheader
         Return GetData(StrX)
 
     End Function
-    Protected Function REPORT_IR61_Gesy_DEDUCTION_Directors_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
+    Protected Function REPORT_IR61_Gesy_DEDUCTION_Directors_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, ALLYears As Boolean) As DataSet
         Dim Str As String = ""
         Dim StrX As String
         Dim Last As Integer
@@ -23225,7 +23474,11 @@ todo:   ' check for status in trxnheader
                 Else
                     Str = Str & " OR "
                 End If
-                Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " AND  PrTxTrxnHeader.PrdCod_Code = " & strPerCode & " )"
+                If Not ALLYears Then
+                    Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " AND  PrTxTrxnHeader.PrdCod_Code = " & strPerCode & " )"
+                Else
+                    Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " )"
+                End If
                 If i = Last Then
                     Str = Str & " )"
                 End If
@@ -23393,7 +23646,7 @@ todo:   ' check for status in trxnheader
         Return GetData(StrX)
 
     End Function
-    Protected Function REPORT_IR61_Gesy_CONTRIBUTION_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
+    Protected Function REPORT_IR61_Gesy_CONTRIBUTION_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, ALLYear As Boolean) As DataSet
         Dim Str As String = ""
         Dim StrX As String
         Dim Last As Integer
@@ -23419,7 +23672,11 @@ todo:   ' check for status in trxnheader
                 Else
                     Str = Str & " OR "
                 End If
-                Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " AND  PrTxTrxnHeader.PrdCod_Code = " & strPerCode & " )"
+                If Not ALLYear Then
+                    Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " AND  PrTxTrxnHeader.PrdCod_Code = " & strPerCode & " )"
+                Else
+                    Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " )"
+                End If
                 If i = Last Then
                     Str = Str & " )"
                 End If
@@ -23429,7 +23686,7 @@ todo:   ' check for status in trxnheader
 
 
 
-         StrX = " Select PrTxTrxnHeader.Emp_Code, " & _
+        StrX = " Select PrTxTrxnHeader.Emp_Code, " &
             "  PrTxTrxnLines.TrxLin_PeriodValue" &
             " FROM  PrTxTrxnHeader INNER JOIN" &
             " PrTxTrxnLines On " &
@@ -58676,6 +58933,36 @@ todo:   ' check for status in trxnheader
 
         Return f
     End Function
+    Protected Function Upgrade_2025_05()
+        Dim Par As New cPrSsParameters("PAYE", "NewMethod")
+        If Par.Id = 0 Then
+            Par.Id = 0
+            Par.Section = "PAYE"
+            Par.Item = "NewMethod"
+            Par.Value1 = "0"
+            Par.Type1 = "T"
+            Par.System1 = "Y"
+            Par.Description = "NewPAYE"
+            If Not Par.Save() Then
+                MsgBox("Error")
+            Else
+                MsgBox("Added , set to FALSE")
+            End If
+        Else
+            Par.Value1 = "0"
+            If Not Par.Save() Then
+                MsgBox("Error")
+            Else
+                MsgBox("Updated , set to FALSE")
+            End If
+
+
+        End If
+
+    End Function
+
+
+
 
 End Class
 

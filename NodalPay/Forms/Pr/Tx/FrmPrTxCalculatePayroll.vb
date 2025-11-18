@@ -8557,7 +8557,7 @@ Public Class FrmPrTxCalculatePayroll
                 Dim Cont As New cPrMsContributionCodes(Con(i).Con.ConCodCode)
 
                 Select Case Cont.ConTypCode
-                    Case "In" 'INDUSTRIAL
+                    Case "IN" 'INDUSTRIAL
                         C_CalculateIndustrial(Emp, EC, Cont)
                     Case "MF" 'MEDICAL FUND 'F
                         C_CalculateMedicalFund(Emp, EC, Cont)
@@ -8609,7 +8609,7 @@ Public Class FrmPrTxCalculatePayroll
             Dim AnnualINDCon As Double = 0
             Dim TempAnnualINDCon As Double = 0
 
-            For i = 0 To Ded.Length - 1
+            For i = 0 To Con.Length - 1
                 If Cont.Code = Con(i).Con.ConCodCode Then
                     TempCon = Con(i).Con
 
@@ -8666,7 +8666,7 @@ Public Class FrmPrTxCalculatePayroll
             Dim AnnualINDCon As Double = 0
             Dim TempAnnualINDCon As Double = 0
 
-            For i = 0 To Ded.Length - 1
+            For i = 0 To Con.Length - 1
                 If Cont.Code = Con(i).Con.ConCodCode Then
                     TempCon = Con(i).Con
 
@@ -13423,7 +13423,7 @@ Public Class FrmPrTxCalculatePayroll
                         txtNewPeriodTax.Text = Format(.Per_NewPeriodTax, "0.00")
                         Me.txtPERCurrent_SI_Notional.Text = Format(.Per_TotalCurSINot, "0.00")
                         Me.txtPerRemaining.Text = Format(.Per_NewRemaining, "0.00")
-                        If .Per_MethodUsed = 1 Then
+                        If .Per_MethodUsed = "1" Then
                             CBMethodUsed.Checked = True
                         Else
                             CBMethodUsed.Checked = False

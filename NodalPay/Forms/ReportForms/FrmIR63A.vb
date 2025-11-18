@@ -3,8 +3,11 @@ Imports System.Text
 Imports Microsoft.Office.Interop.Excel
 Imports System.Data
 
-Public Class FrmIR63A
+Imports System.Xml
+'Imports Excel = Microsoft.Office.Interop.Excel
 
+Public Class FrmIR63A
+    Dim GLBIRExcelDestination As String = ""
     Dim GetEmailCredentials As Boolean = True
     Dim MyDs5 As DataSet
     Dim dt5 As System.Data.DataTable
@@ -46,6 +49,11 @@ Public Class FrmIR63A
     Dim GLBExportfilesDir As String = ""
 
     Private Sub FrmIR63A_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
+
+
+        If GLBUserCode = "sa" Then
+            Me.btnShowXML.Visible = True
+        End If
         Me.RadioButton1.Checked = True
         Me.RadioButton1.Enabled = False
         Me.RadioButton2.Enabled = False
@@ -418,10 +426,10 @@ Public Class FrmIR63A
         Dsx = Global1.Business.GetParameter("SIContributions", "ExportFileDir")
         If CheckDataSet(ds) Then
             Dim Par As New cPrSsParameters(ds.Tables(0).Rows(0))
-            glbexportfilesDir = Replace(Par.Value1, "$", Global1.GLBUserCode)
+            GLBExportfilesDir = Replace(Par.Value1, "$", Global1.GLBUserCode)
         Else
             MsgBox("Missing SI COntributions File Parameter Section 'SIContributions' Item 'ExportFileDir'", MsgBoxStyle.Critical)
-            glbexportfilesDir = ""
+            GLBExportfilesDir = ""
         End If
 
 
@@ -2263,6 +2271,8 @@ Public Class FrmIR63A
             Dim C_PREV_Gesi As Integer = 57
             Dim C_Email As Integer = 58
             Dim C_LWBPensioner As Integer = 59
+            Dim C_NotionalAmount As Integer = 60
+            Dim C_NotionalTax As Integer = 61
 
 
 
@@ -2306,6 +2316,9 @@ Public Class FrmIR63A
             Dim TOTAL_DirectorFees As Double = 0
             Dim TOTAL_PrivatePensionFund As Double = 0
             Dim TOTAL_PrivateMedical As Double = 0
+
+            Dim TOTAL_NotionalAmount As Double = 0
+            Dim TOTAL_NotionalTax As Double = 0
 
 
 
@@ -2367,6 +2380,9 @@ Public Class FrmIR63A
                         TOTAL_PrivatePensionFund = TOTAL_PrivatePensionFund + DbNullToDouble(.Item(C_PrivatePensionFund))
                         TOTAL_PrivatePensionFund = TOTAL_PrivateMedical + DbNullToDouble(.Item(C_PrivateMedicalFund))
 
+
+                        TOTAL_NotionalAmount = TOTAL_NotionalAmount + DbNullToDouble(.Item(C_NotionalAmount))
+                        TOTAL_NotionalTax = TOTAL_NotionalTax + DbNullToDouble(.Item(C_NotionalTax))
                     End With
 
                 Next
@@ -2536,7 +2552,12 @@ Public Class FrmIR63A
                 '59
                 Str03 = Str03 & FixNumber(TOTAL_PrivatePensionFund, 15) & PP
                 '60
-                Str03 = Str03 & FixNumber(TOTAL_PrivateMedical, 11)
+                Str03 = Str03 & FixNumber(TOTAL_PrivateMedical, 11) & PP
+
+                '61
+                Str03 = Str03 & FixNumber(TOTAL_NotionalAmount, 15) & PP
+                '62
+                Str03 = Str03 & FixNumber(TOTAL_NotionalTax, 15)
 
 
                 Str03 = Replace(Str03, "&", " ")
@@ -2829,8 +2850,12 @@ Public Class FrmIR63A
                         Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_PREV_Gesi)), 15) & PP
                         '70
                         Str02 = Str02 & DbNullToString(.Item(C_Email)) & PP
-                        '70
-                        Str02 = Str02 & DbNullToString(.Item(C_LWBPensioner))
+                        '71
+                        Str02 = Str02 & DbNullToString(.Item(C_LWBPensioner)) & PP
+                        '72
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_NotionalAmount)), 15) & PP
+                        '73
+                        Str02 = Str02 & FixNumber(DbNullToDouble(.Item(C_NotionalTax)), 15)
 
 
 
@@ -9715,13 +9740,23 @@ Public Class FrmIR63A
 
         If GLB_XMLOriginFile <> "" Then
             CreateXMLFile_2024(False)
+            Cursor.Current = Cursors.WaitCursor
             '    ShowAsExcel = False
             '   If ShowAsExcel Then
             '  LoadDataSetToExcel(MyDsxl, "ir7")
             'End If
+            If ShowAsExcel Then
+                Me.ReadIR7_XMLFileAndConvertItToExcel2(GLB_XMLDestinationFile)
+                If System.IO.File.Exists(GLBIRExcelDestination) Then
+                    Process.Start(GLBIRExcelDestination)
+                Else
+                    MsgBox(GLBIRExcelDestination & " Not Found", MsgBoxStyle.Information)
+                End If
+            End If
         Else
             MsgBox("Failed to create .xml File")
         End If
+        Cursor.Current = Cursors.Default
         '  End If
     End Sub
     Private Sub IR7_2024(ByVal SendToPrinter As Boolean, ByVal File As Boolean, ByVal XMLCreation As Boolean, ByVal ShowInExcel As Boolean, ByVal BIKonSI As Boolean)
@@ -9797,7 +9832,7 @@ Public Class FrmIR63A
                     GLB_XMLOriginFile = IR7FileDir & Ir7Filename
 
                     If ShowInExcel Then
-                        LoadDataSetToExcel(Ds, "ir7")
+                        '  LoadDataSetToExcel(Ds, "ir7")
                     End If
 
 
@@ -10118,6 +10153,8 @@ Public Class FrmIR63A
         '67 PREV_UnionDed
         '68 PREV_Gesi
         '69 IsLWBPensioner
+        '70 NotionalAmount
+        '71 NotionalTax
         '-------------------------------------
         Dim employeeType As String
         Dim OtherDiscounts As Double
@@ -10293,7 +10330,7 @@ Public Class FrmIR63A
         Q14 = StringtoDecimal2ReturnDouble(Trim(Ar(13)))
         WL("<EmolumentsOutsideCyprus>" & FWC(Q14) & "</EmolumentsOutsideCyprus>")
         '<!-- Q14 Emoluments Outside Cyprus -->
-        Q15 = 0
+        Q15 = StringtoDecimal2ReturnDouble(Trim(Ar(71)))
         WL("<BenefitFromRelatedParties>" & FWC(Q15) & "</BenefitFromRelatedParties>")
         '<!-- Q15 Benefit from debit balances of related parties of legal persons -->
         WL("<DirectorFees>" & FWC(Q15a) & "</DirectorFees>")
@@ -10667,6 +10704,193 @@ Public Class FrmIR63A
         MyDsxl.Tables(0).Rows.Add(R)
 
     End Sub
+
+
+
+    Private Sub ReadIR7_XMLFileAndConvertItToExcel(ImportFrom As String)
+
+
+        ' Load XML into DataSet
+        Dim ds As New DataSet()
+        Dim Path As String = "C:\nodalwin\Payroll\ExportFiles\"
+
+        GLBIRExcelDestination = ImportFrom.Replace(".xml", ".xlsx")
+        ' Load XML
+        Dim xmlDoc As New XmlDocument()
+        xmlDoc.Load(ImportFrom) ' Replace with your actual XML path
+
+        ' Create Excel
+        Dim xlApp As New Application
+        Dim xlWorkbook As Workbook = xlApp.Workbooks.Add()
+        Dim xlWorksheet As Worksheet = CType(xlWorkbook.Sheets(1), Worksheet)
+
+        ' Select all PayeEmployee nodes
+        Dim employeeNodes = xmlDoc.SelectNodes("//PayeEmployee")
+
+        If employeeNodes.Count = 0 Then
+            Console.WriteLine("No PayeEmployee records found.")
+            Return
+        End If
+
+        ' Get column headers from first employee
+        Dim firstEmployee = employeeNodes(0)
+        Dim colIndex As Integer = 1
+        For Each childNode As XmlNode In firstEmployee.ChildNodes
+            xlWorksheet.Cells(1, colIndex) = childNode.Name
+            colIndex += 1
+        Next
+
+        ' Write employee data
+        Dim rowIndex As Integer = 2
+        For Each employee As XmlNode In employeeNodes
+            colIndex = 1
+            For Each childNode As XmlNode In employee.ChildNodes
+
+                'xlWorksheet.Cells(rowIndex, colIndex) = childNode.InnerText
+                'colIndex += 1
+                Dim valueText = childNode.InnerText.Trim()
+
+                ' Convert comma to period for numeric values
+                If valueText.Contains(",") AndAlso IsNumeric(valueText.Replace(",", ".")) Then
+                    valueText = valueText.Replace(",", ".")
+                End If
+
+                xlWorksheet.Cells(rowIndex, colIndex) = valueText
+                colIndex += 1
+
+            Next
+            rowIndex += 1
+        Next
+        ' Auto-fit columns
+        Dim i As Integer
+        For i = 1 To firstEmployee.ChildNodes.Count
+            xlWorksheet.Columns(i).AutoFit()
+        Next
+
+        ' Add totals row
+        Dim totalRowIndex As Integer = rowIndex
+        xlWorksheet.Cells(totalRowIndex, 1) = "TOTALS"
+        Dim col As Integer
+        Dim r As Integer
+        For col = 2 To firstEmployee.ChildNodes.Count
+            Dim isNumericColumn As Boolean = True
+
+            ' Check if all values in the column are numeric
+            For r = 2 To rowIndex - 1
+                Dim cellValue = xlWorksheet.Cells(r, col).Value
+                If Not IsNumeric(cellValue) Then
+                    isNumericColumn = False
+                    Exit For
+                End If
+            Next
+
+            ' If numeric, calculate sum
+            If isNumericColumn Then
+                Dim sumFormula = $"=SUM({xlWorksheet.Cells(2, col).Address}:{xlWorksheet.Cells(rowIndex - 1, col).Address})"
+                xlWorksheet.Cells(totalRowIndex, col).Formula = sumFormula
+            End If
+        Next
+
+
+
+        ' Save Excel file
+        xlWorkbook.SaveAs(GLBIRExcelDestination) ' Replace with desired output path
+        xlWorkbook.Close()
+        xlApp.Quit()
+
+
+
+
+        MsgBox("Export complete!")
+
+    End Sub
+    Private Sub ReadIR7_XMLFileAndConvertItToExcel2(ImportFrom As String)
+        ' Load XML into DataSet
+        Dim ds As New DataSet()
+        Dim Path As String = "C:\nodalwin\Payroll\ExportFiles\"
+
+        GLBIRExcelDestination = ImportFrom.Replace(".xml", ".xlsx")
+
+
+        Dim xmlDoc As New XmlDocument()
+        xmlDoc.Load(ImportFrom)
+
+        Dim xlApp As New Application
+        Dim xlWorkbook As Workbook = xlApp.Workbooks.Add()
+        Dim xlWorksheet As Worksheet = CType(xlWorkbook.Sheets(1), Worksheet)
+
+        Dim employeeNodes = xmlDoc.SelectNodes("//PayeEmployee")
+        If employeeNodes.Count = 0 Then
+            MsgBox("No PayeEmployee records found.")
+            Return
+        End If
+
+        ' Step 1: Build master list of all element names
+        Dim allFields As New List(Of String)
+        For Each employee As XmlNode In employeeNodes
+            For Each childNode As XmlNode In employee.ChildNodes
+                If Not allFields.Contains(childNode.Name) Then
+                    allFields.Add(childNode.Name)
+                End If
+            Next
+        Next
+
+        ' Step 2: Write headers
+        For i As Integer = 0 To allFields.Count - 1
+            xlWorksheet.Cells(1, i + 1) = allFields(i)
+        Next
+
+        ' Step 3: Write employee data
+        Dim rowIndex As Integer = 2
+        For Each employee As XmlNode In employeeNodes
+            For colIndex As Integer = 0 To allFields.Count - 1
+                Dim fieldName = allFields(colIndex)
+                Dim fieldNode = employee.SelectSingleNode(fieldName)
+                Dim valueText As String = If(fieldNode IsNot Nothing, fieldNode.InnerText.Trim(), "")
+
+                If valueText.Contains(",") AndAlso IsNumeric(valueText.Replace(",", ".")) Then
+                    valueText = valueText.Replace(",", ".")
+                End If
+
+                xlWorksheet.Cells(rowIndex, colIndex + 1) = valueText
+            Next
+            rowIndex += 1
+        Next
+
+        ' Step 4: Auto-fit columns
+        For i As Integer = 1 To allFields.Count
+            xlWorksheet.Columns(i).AutoFit()
+        Next
+
+        ' Step 5: Add totals row
+        Dim totalRowIndex As Integer = rowIndex
+        xlWorksheet.Cells(totalRowIndex, 1) = "TOTALS"
+        Dim col As Integer
+        Dim r As Integer
+        For col = 2 To allFields.Count
+            Dim isNumericColumn As Boolean = True
+            For r = 2 To rowIndex - 1
+                Dim cellValue = xlWorksheet.Cells(r, col).Value
+                If Not IsNumeric(cellValue) Then
+                    isNumericColumn = False
+                    Exit For
+                End If
+            Next
+            If isNumericColumn Then
+                Dim sumFormula = $"=SUM({xlWorksheet.Cells(2, col).Address}:{xlWorksheet.Cells(rowIndex - 1, col).Address})"
+                xlWorksheet.Cells(totalRowIndex, col).Formula = sumFormula
+            End If
+        Next
+
+        ' Save and clean up
+        GLBIRExcelDestination = ImportFrom.Replace(".xml", ".xlsx")
+        xlWorkbook.SaveAs(GLBIRExcelDestination)
+        xlWorkbook.Close()
+        xlApp.Quit()
+
+        MsgBox("File Exported in Excel!", MsgBoxStyle.Information)
+    End Sub
+
 
 
 End Class

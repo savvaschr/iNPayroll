@@ -759,16 +759,16 @@ Public Class cBusiness
         Return MyBase.REPORT_IR61(PerGrp, SIPeriod)
 
     End Function
-    Public Shadows Function REPORT_IR61_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
-        Return MyBase.REPORT_IR61_PerEmployee(PerGrp, SIPeriod)
+    Public Shadows Function REPORT_IR61_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, ALLYear As Boolean) As DataSet
+        Return MyBase.REPORT_IR61_PerEmployee(PerGrp, SIPeriod, ALLYear)
 
     End Function
     Public Shadows Function REPORT_IR61_GetTaxableIncome(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
         Return MyBase.REPORT_IR61_GetTaxableIncome(PerGrp, SIPeriod)
 
     End Function
-    Public Shadows Function REPORT_IR61_GetTaxableIncome_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
-        Return MyBase.REPORT_IR61_GetTaxableIncome_PerEmployee(PerGrp, SIPeriod)
+    Public Shadows Function REPORT_IR61_GetTaxableIncome_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, ALLYear As Boolean) As DataSet
+        Return MyBase.REPORT_IR61_GetTaxableIncome_PerEmployee(PerGrp, SIPeriod, ALLYear)
 
     End Function
     Public Shadows Function REPORT_IR112(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
@@ -791,40 +791,56 @@ Public Class cBusiness
         Return MyBase.REPORT_IR61_Gesy_DEDUCTIONTameiosyntakseon_PerEmployee(PerGrp, SIPeriod)
 
     End Function
-    Public Shadows Function REPORT_IR61_Gesy_DEDUCTION_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
-        Return MyBase.REPORT_IR61_Gesy_DEDUCTION_PerEmployee(PerGrp, SIPeriod)
+    Public Shadows Function REPORT_IR61_Gesy_DEDUCTION_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, ALLYear As Boolean) As DataSet
+        Return MyBase.REPORT_IR61_Gesy_DEDUCTION_PerEmployee(PerGrp, SIPeriod, ALLYear)
 
     End Function
     Public Shadows Function REPORT_IR61_Gesy_CONTRIBUTION(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
         Return MyBase.REPORT_IR61_Gesy_CONTRIBUTION(PerGrp, SIPeriod)
 
     End Function
-    Public Shadows Function REPORT_IR61_Gesy_CONTRIBUTION_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
-        Return MyBase.REPORT_IR61_Gesy_CONTRIBUTION_PerEmployee(PerGrp, SIPeriod)
+    Public Shadows Function REPORT_IR61_Gesy_CONTRIBUTION_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, ALLYear As Boolean) As DataSet
+        Return MyBase.REPORT_IR61_Gesy_CONTRIBUTION_PerEmployee(PerGrp, SIPeriod, ALLYear)
+
+    End Function
+    Public Shadows Function REPORT_IR61_PensionFund_DEDUCTION_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, AllYears As Boolean) As DataSet
+        Return MyBase.REPORT_IR61_PensionFund_DEDUCTION_PerEmployee(PerGrp, SIPeriod, AllYears)
+
+    End Function
+    Public Shadows Function REPORT_IR61_WidowAndOrphans_DEDUCTION_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, ALLYears As Boolean) As DataSet
+        Return MyBase.REPORT_IR61_WidowANDOrphans_DEDUCTION_PerEmployee(PerGrp, SIPeriod, ALLYears)
+
+    End Function
+    Public Shadows Function REPORT_IR61_NotionalAmount_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, ALLYears As Boolean) As DataSet
+        Return MyBase.REPORT_IR61_NotionalAmount_PerEmployee(PerGrp, SIPeriod, ALLYears)
+
+    End Function
+    Public Shadows Function REPORT_IR61_NotionalTax_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, ALLYears As Boolean) As DataSet
+        Return MyBase.REPORT_IR61_NotionalTax_PerEmployee(PerGrp, SIPeriod, ALLYears)
 
     End Function
     Public Shadows Function REPORT_IR61_Gesy_CONTRIBUTION_LWBPen(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
         Return MyBase.REPORT_IR61_Gesy_CONTRIBUTION_LWBPen(PerGrp, SIPeriod)
 
     End Function
-    Public Shadows Function REPORT_IR61_Gesy_CONTRIBUTION_LWBPen_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
-        Return MyBase.REPORT_IR61_Gesy_CONTRIBUTION_LWBPen_PerEmployee(PerGrp, SIPeriod)
+    Public Shadows Function REPORT_IR61_Gesy_CONTRIBUTION_LWBPen_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, ALLYear As Boolean) As DataSet
+        Return MyBase.REPORT_IR61_Gesy_CONTRIBUTION_LWBPen_PerEmployee(PerGrp, SIPeriod, ALLYear)
 
     End Function
     Public Shadows Function REPORT_IR61_Gesy_CONTRIBUTION_Directors(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
         Return MyBase.REPORT_IR61_Gesy_CONTRIBUTION_Directors(PerGrp, SIPeriod)
 
     End Function
-    Public Shadows Function REPORT_IR61_Gesy_CONTRIBUTION_Directors_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
-        Return MyBase.REPORT_IR61_Gesy_CONTRIBUTION_Directors_PerEmployee(PerGrp, SIPeriod)
+    Public Shadows Function REPORT_IR61_Gesy_CONTRIBUTION_Directors_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, AllYear As Boolean) As DataSet
+        Return MyBase.REPORT_IR61_Gesy_CONTRIBUTION_Directors_PerEmployee(PerGrp, SIPeriod, AllYear)
 
     End Function
     Public Shadows Function REPORT_IR61_Gesy_DEDUCTION_Directors(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
         Return MyBase.REPORT_IR61_Gesy_DEDUCTION_Directors(PerGrp, SIPeriod)
 
     End Function
-    Public Shadows Function REPORT_IR61_Gesy_DEDUCTION_Directors_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
-        Return MyBase.REPORT_IR61_Gesy_DEDUCTION_Directors_PerEmployee(PerGrp, SIPeriod)
+    Public Shadows Function REPORT_IR61_Gesy_DEDUCTION_Directors_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, ALLYears As Boolean) As DataSet
+        Return MyBase.REPORT_IR61_Gesy_DEDUCTION_Directors_PerEmployee(PerGrp, SIPeriod, ALLYears)
 
     End Function
     Public Shadows Function REPORT_PrepareSIContributions(ByVal Per As cPrMsPeriodCodes, ByVal TemGrp As cPrMsTemplateGroup, ByVal SocInsCat As cPrAnSocialInsCategories, ByVal SocInsPeriod As cPrSsSocialInsPeriods, ByVal PerGrp As cPrMsPeriodGroups, ByVal CompanySINo As String) As DataSet
@@ -2191,6 +2207,9 @@ Public Class cBusiness
     End Function
     Public Function Upgrade_2025_04() As Boolean
         Return MyBase.Upgrade_2025_04
+    End Function
+    Public Function Upgrade_2025_05() As Boolean
+        Return MyBase.Upgrade_2025_05
     End Function
 
     Public Function FindNumberOfNormalPeriodsForThisEmployeeForThisPeriodGroup(ByVal glbcurrentperiod As cPrMsPeriodCodes, ByVal EmpCode As String) As Integer

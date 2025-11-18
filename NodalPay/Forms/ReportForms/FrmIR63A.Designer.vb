@@ -120,6 +120,7 @@ Partial Class FrmIR63A
         Me.Button6 = New System.Windows.Forms.Button()
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.btnShowXML = New System.Windows.Forms.Button()
         Me.ToolStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -862,12 +863,23 @@ Partial Class FrmIR63A
         Me.Panel2.Size = New System.Drawing.Size(386, 182)
         Me.Panel2.TabIndex = 117
         '
+        'btnShowXML
+        '
+        Me.btnShowXML.Location = New System.Drawing.Point(12, 421)
+        Me.btnShowXML.Name = "btnShowXML"
+        Me.btnShowXML.Size = New System.Drawing.Size(121, 26)
+        Me.btnShowXML.TabIndex = 118
+        Me.btnShowXML.Text = "Show XML"
+        Me.btnShowXML.UseVisualStyleBackColor = True
+        Me.btnShowXML.Visible = False
+        '
         'FrmIR63A
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.ClientSize = New System.Drawing.Size(1111, 459)
+        Me.Controls.Add(Me.btnShowXML)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.btnPeriodGroupSearch)
         Me.Controls.Add(Me.CBShowCompanyStampOnIR63)
@@ -998,4 +1010,5 @@ Partial Class FrmIR63A
     Friend WithEvents Panel2 As Panel
     Friend WithEvents ToolStripSeparator15 As ToolStripSeparator
     Friend WithEvents mnuCreateXML2024_WithExcel As ToolStripMenuItem
+    Friend WithEvents btnShowXML As Button
 End Class

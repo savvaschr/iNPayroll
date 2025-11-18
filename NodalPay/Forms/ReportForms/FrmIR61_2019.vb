@@ -5,6 +5,7 @@ Public Class FrmIR61_2019
     Dim TAXFileDir As String
     Dim InitFile As Boolean = True
     Dim GLBDisplayFilename As String = ""
+    Dim GLBMonthlyPeriod As String = ""
 
 
     Dim COLx_TaxpayerNumber As Integer = 0
@@ -512,6 +513,7 @@ Public Class FrmIR61_2019
     End Sub
     Private Sub MonthlyReportTofile(ShowExcel As Boolean)
         Me.Cursor = Cursors.WaitCursor
+
         Dim i As Integer
         Dim Ds As New DataSet
         Dim DsTax As DataSet
@@ -523,6 +525,11 @@ Public Class FrmIR61_2019
         Dim DED As Double = 0
         Dim CON As Double = 0
         Dim dTax As Double = 0
+        Dim DsNotionalAmount As DataSet
+        Dim DsNotionalTax As DataSet
+
+        Dim DsPensionFund As DataSet
+        Dim DSWidowAndOrphans As DataSet
 
         Dim DsDEDDirector As DataSet
         Dim DsCONDirector As DataSet
@@ -595,13 +602,22 @@ Public Class FrmIR61_2019
         SIPeriod = CType(Me.CmbSIPeriod.SelectedItem, cPrSsSocialInsPeriods)
         Me.txtTaxMonth.Text = SIPeriod.DescriptionL
 
-        DsTax = Global1.Business.REPORT_IR61_PerEmployee(PerGroup, SIPeriod)
-        DsTaxable = Global1.Business.REPORT_IR61_GetTaxableIncome_PerEmployee(PerGroup, SIPeriod)
-        DsDED = Global1.Business.REPORT_IR61_Gesy_DEDUCTION_PerEmployee(PerGroup, SIPeriod)
-        DsCON = Global1.Business.REPORT_IR61_Gesy_CONTRIBUTION_PerEmployee(PerGroup, SIPeriod)
-        DsCONPen = Global1.Business.REPORT_IR61_Gesy_CONTRIBUTION_LWBPen_PerEmployee(PerGroup, SIPeriod)
-        DsCONDirector = Global1.Business.REPORT_IR61_Gesy_CONTRIBUTION_Directors_PerEmployee(PerGroup, SIPeriod)
-        DsDEDDirector = Global1.Business.REPORT_IR61_Gesy_DEDUCTION_Directors_PerEmployee(PerGroup, SIPeriod)
+        DsTax = Global1.Business.REPORT_IR61_PerEmployee(PerGroup, SIPeriod, False)
+        DsTaxable = Global1.Business.REPORT_IR61_GetTaxableIncome_PerEmployee(PerGroup, SIPeriod, False)
+        DsDED = Global1.Business.REPORT_IR61_Gesy_DEDUCTION_PerEmployee(PerGroup, SIPeriod, False)
+        DsCON = Global1.Business.REPORT_IR61_Gesy_CONTRIBUTION_PerEmployee(PerGroup, SIPeriod, False)
+        DsCONPen = Global1.Business.REPORT_IR61_Gesy_CONTRIBUTION_LWBPen_PerEmployee(PerGroup, SIPeriod, False)
+        DsCONDirector = Global1.Business.REPORT_IR61_Gesy_CONTRIBUTION_Directors_PerEmployee(PerGroup, SIPeriod, False)
+        DsDEDDirector = Global1.Business.REPORT_IR61_Gesy_DEDUCTION_Directors_PerEmployee(PerGroup, SIPeriod, False)
+
+
+        DsPensionFund = Global1.Business.REPORT_IR61_PensionFund_DEDUCTION_PerEmployee(PerGroup, SIPeriod, False)
+        DSWidowAndOrphans = Global1.Business.REPORT_IR61_WidowAndOrphans_DEDUCTION_PerEmployee(PerGroup, SIPeriod, False)
+        DsNotionalAmount = Global1.Business.REPORT_IR61_NotionalAmount_PerEmployee(PerGroup, SIPeriod, False)
+        DsNotionalTax = Global1.Business.REPORT_IR61_NotionalTAX_PerEmployee(PerGroup, SIPeriod, False)
+
+
+
 
 
         Dim Total_Emoluments As Double = 0
@@ -621,6 +637,8 @@ Public Class FrmIR61_2019
         Dim Total_GhsWithheldFromEmployeeBonus As Double = 0
         Dim Total_BonusGhsEmployersContribution As Double = 0
         Dim Total_PensionableBenefitsContribution As Double = 0
+        Dim Total_NotionalAmount As Double = 0
+        Dim Total_NotionalTax As Double = 0
 
         Dim R As DataRow
 
@@ -635,6 +653,11 @@ Public Class FrmIR61_2019
             Dim IsLWBPen As Double = 0
             Dim TaxValue As Double = 0
             Dim SIPension As Double = 0
+            Dim PensionFund As Double = 0
+            Dim WidowsAndOrphans As Double = 0
+            Dim PensionableBenefits As Double = 0
+            Dim NotionalAmount As Double = 0
+            Dim NotionalTax As Double = 0
             Dim Rehire As String = ""
 
 
@@ -698,17 +721,44 @@ Public Class FrmIR61_2019
                                 DsDEDDirector.Tables(0).Rows(k).Item(0) = Rehire
                             End If
                         Next
+                        For k = 0 To DsPensionFund.Tables(0).Rows.Count - 1
+                            If DbNullToString(DsPensionFund.Tables(0).Rows(k).Item(0)) = eCode Then
+                                DsPensionFund.Tables(0).Rows(k).Item(0) = Rehire
+                            End If
+                        Next
+                        For k = 0 To DSWidowAndOrphans.Tables(0).Rows.Count - 1
+                            If DbNullToString(DSWidowAndOrphans.Tables(0).Rows(k).Item(0)) = eCode Then
+                                DSWidowAndOrphans.Tables(0).Rows(k).Item(0) = Rehire
+                            End If
+                        Next
+                        For k = 0 To DsNotionalAmount.Tables(0).Rows.Count - 1
+                            If DbNullToString(DsNotionalAmount.Tables(0).Rows(k).Item(0)) = eCode Then
+                                DsNotionalAmount.Tables(0).Rows(k).Item(0) = Rehire
+                            End If
+                        Next
+                        For k = 0 To DsNotionalTax.Tables(0).Rows.Count - 1
+                            If DbNullToString(DsNotionalTax.Tables(0).Rows(k).Item(0)) = eCode Then
+                                DsNotionalTax.Tables(0).Rows(k).Item(0) = Rehire
+                            End If
+                        Next
+
+
 
 
                     Else
-                        MsgBox("There is a wrong Rehire code on Employee with Code " & ecode & " Please correct !", MsgBoxStyle.Critical)
-                        Cursor.Current = DefaultCursor
-                        Application.DoEvents()
-                        Exit Sub
+                        Dim Ans As New MsgBoxResult
+                        Ans = MsgBox("There is a wrong Rehire code on Employee with Code " & eCode & " Continue ?", MsgBoxStyle.YesNo)
+                        If Ans = MsgBoxResult.No Then
+                            Cursor.Current = DefaultCursor
+                            Application.DoEvents()
+                            Cursor.Current = DefaultCursor
+                            Exit Sub
+                        End If
                     End If
-                End If
+                    End If
 
-
+                Cursor.Current = Cursors.WaitCursor
+                Application.DoEvents()
                 Code = DbNullToString(DsTax.Tables(0).Rows(i).Item(0))
 
                 Dim SameRow As Integer = -1
@@ -780,6 +830,10 @@ Public Class FrmIR61_2019
 
             Next
             Dim TotalRows As Integer = 0
+
+
+
+
             For i = 0 To Ds.Tables(0).Rows.Count - 1
                 TotalRows = TotalRows + 1
                 Code = DbNullToString(Ds.Tables(0).Rows(i).Item(COLx_EmpCode))
@@ -833,7 +887,54 @@ Public Class FrmIR61_2019
                         ' Exit For
                     End If
                 Next
+                For k = 0 To DsPensionFund.Tables(0).Rows.Count - 1
+                    Dim tCode As String
+                    tCode = DbNullToString(DsPensionFund.Tables(0).Rows(k).Item(0))
+                    If Code = tCode Then
+                        Ds.Tables(0).Rows(i).Item(COLx_PensionableBenefitsContribution) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_PensionableBenefitsContribution)) + DbNullToDouble(DbNullToString(DsPensionFund.Tables(0).Rows(k).Item(1)))
+                        ' Exit For
+                    End If
+                Next
+                For k = 0 To DSWidowAndOrphans.Tables(0).Rows.Count - 1
+                    Dim tCode As String
+                    tCode = DbNullToString(DSWidowAndOrphans.Tables(0).Rows(k).Item(0))
+                    If Code = tCode Then
+                        Ds.Tables(0).Rows(i).Item(COLx_PensionableBenefitsContribution) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_PensionableBenefitsContribution)) + DbNullToDouble(DbNullToString(DSWidowAndOrphans.Tables(0).Rows(k).Item(1)))
+                        ' Exit For
+                    End If
+                Next
+
+                For k = 0 To DsNotionalAmount.Tables(0).Rows.Count - 1
+                    Dim tCode As String
+                    tCode = DbNullToString(DsNotionalAmount.Tables(0).Rows(k).Item(0))
+                    If Code = tCode Then
+                        Ds.Tables(0).Rows(i).Item(COLx_BenefitFromRelatedParties) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_BenefitFromRelatedParties)) + DbNullToDouble(DbNullToString(DsNotionalAmount.Tables(0).Rows(k).Item(1)))
+                        ' Exit For
+                    End If
+                Next
+                For k = 0 To DsNotionalTax.Tables(0).Rows.Count - 1
+                    Dim tCode As String
+                    tCode = DbNullToString(DsNotionalTax.Tables(0).Rows(k).Item(0))
+                    If Code = tCode Then
+                        Ds.Tables(0).Rows(i).Item(COLx_TaxDeductedFinancialBenefitsRelatedParties) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_TaxDeductedFinancialBenefitsRelatedParties)) + DbNullToDouble(DbNullToString(DsNotionalTax.Tables(0).Rows(k).Item(1)))
+                        ' Exit For
+                    End If
+                Next
+
+
+
+
+
                 Ds.Tables(0).Rows(i).Item(COLx_GrossEmoluments) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_Emoluments)) + DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_Pensions))
+                NotionalAmount = 0
+                NotionalTax = 0
+                Dim GrossEmoluments As Double = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_GrossEmoluments))
+                Dim Tax As Double = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_TaxWithheldGrossEmoluments))
+                NotionalAmount = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_BenefitFromRelatedParties))
+                NotionalTax = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_TaxDeductedFinancialBenefitsRelatedParties))
+
+                Ds.Tables(0).Rows(i).Item(COLx_GrossEmoluments) = GrossEmoluments - NotionalAmount
+                Ds.Tables(0).Rows(i).Item(COLx_TaxWithheldGrossEmoluments) = Tax - NotionalTax
 
             Next
 
@@ -909,7 +1010,7 @@ Public Class FrmIR61_2019
             If ShowExcel Then
                 LoadDataSetToExcel(Ds)
             End If
-            PrepareXMLFiletoTAX(Ds)
+            PrepareXMLFiletoTAX(Ds, False)
             Me.Cursor = Cursors.Default
             If Error1 = "" Then
                 MsgBox("File is Created. " & GLBDisplayFilename, MsgBoxStyle.Information)
@@ -925,11 +1026,13 @@ Public Class FrmIR61_2019
         End If
 
     End Sub
-    Private Sub PrepareXMLFiletoTAX(ds As DataSet)
+    Private Sub PrepareXMLFiletoTAX(ds As DataSet, IsAnnual As Boolean)
+
         Dim TemGrp As New cPrMsTemplateGroup(TempGroupCode)
         Dim Company As New cAdMsCompany(TemGrp.CompanyCode)
-        Dim Month As String
-        glbDisplayFilename = ""
+        Dim Month As String = ""
+        GLBMonthlyPeriod = ""
+        GLBDisplayFilename = ""
 
         Dim TotalGrossEmoluments As Double = 0
         Dim Total_TaxWithheld As Double = 0
@@ -971,6 +1074,12 @@ Public Class FrmIR61_2019
             Case "12"
                 Month = "Dec"
         End Select
+        GLBMonthlyPeriod = Month
+
+        If IsAnnual Then
+            GLBMonthlyPeriod = "Annual"
+            Month = "Dec"
+        End If
 
         InitFile = True
         Dim S As String
@@ -1325,7 +1434,9 @@ Public Class FrmIR61_2019
 
         Try
             ' Dim mFile As System.IO.File
-            Dim FileName As String = TAXFileDir & Company.NameShort & "_Tax.xml"
+
+
+            Dim FileName As String = TAXFileDir & Company.NameShort & "_" & GLBMonthlyPeriod & "_PAYE.xml"
             GLBDisplayFilename = FileName
             Dim TW As System.IO.TextWriter
 
@@ -1367,4 +1478,494 @@ Public Class FrmIR61_2019
         End If
 
     End Sub
+
+    Private Sub CreateAnnualFileToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CreateAnnualFileToolStripMenuItem.Click
+        CreateAnnualFileToTAX(False)
+    End Sub
+    Private Sub CreateAnnualFileWithExcelReportToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles CreateAnnualFileWithExcelReportToolStripMenuItem.Click
+        CreateAnnualFileToTAX(True)
+    End Sub
+    Private Sub CreateAnnualFileToTAX(WithExcel As Boolean)
+        Dim Ds As DataSet
+        Ds = Global1.Business.GetParameter("SIContributions", "ExportFileDir")
+        If CheckDataSet(Ds) Then
+            Dim Par As New cPrSsParameters(Ds.Tables(0).Rows(0))
+            TAXFileDir = Replace(Par.Value1, "$", Global1.GLBUserCode)
+        Else
+            MsgBox("Missing TAX File Directory - Parameter Section 'SIContributions' Item 'ExportFileDir'", MsgBoxStyle.Critical)
+            TAXFileDir = ""
+            Exit Sub
+        End If
+
+
+        AnnualReportTofile(WithExcel)
+    End Sub
+    Private Sub AnnualReportTofile(ShowExcel As Boolean)
+        Me.Cursor = Cursors.WaitCursor
+
+        Dim i As Integer
+        Dim Ds As New DataSet
+        Dim DsTax As DataSet
+        Dim DsTaxable As DataSet
+        Dim DsDEDTameioSyntakseon As DataSet
+        Dim DsDED As DataSet
+        Dim DsCON As DataSet
+        Dim DsCONPen As DataSet
+        Dim DED As Double = 0
+        Dim CON As Double = 0
+        Dim dTax As Double = 0
+
+        Dim DsPensionFund As DataSet
+        Dim DSWidowAndOrphans As DataSet
+
+        Dim DsDEDDirector As DataSet
+        Dim DsCONDirector As DataSet
+
+
+
+
+        Dim dt As New DataTable
+
+        dt = New DataTable("TAX")
+        '0
+        dt.Columns.Add(New DataColumn("TaxpayerNumber", System.Type.GetType("System.String")))
+        '1
+        dt.Columns.Add(New DataColumn("Name", System.Type.GetType("System.String")))
+        '2
+        dt.Columns.Add(New DataColumn("EmployeeStartDate", System.Type.GetType("System.String")))
+        '3
+        dt.Columns.Add(New DataColumn("EmploymentEndDate", System.Type.GetType("System.String")))
+        '4
+        dt.Columns.Add(New DataColumn("Emoluments", System.Type.GetType("System.String")))
+        '5
+        dt.Columns.Add(New DataColumn("Pensions", System.Type.GetType("System.String")))
+        '6
+        dt.Columns.Add(New DataColumn("SocialInsurancePensions", System.Type.GetType("System.String")))
+        '7
+        dt.Columns.Add(New DataColumn("GrossEmoluments", System.Type.GetType("System.String")))
+        '8
+        dt.Columns.Add(New DataColumn("BenefitFromRelatedParties", System.Type.GetType("System.String")))
+        '9
+        dt.Columns.Add(New DataColumn("TaxWithheldGrossEmoluments", System.Type.GetType("System.String")))
+        '10
+        dt.Columns.Add(New DataColumn("TaxDeductedFinancialBenefitsRelatedParties", System.Type.GetType("System.String")))
+        '11
+        dt.Columns.Add(New DataColumn("GhsWithheldPensioners", System.Type.GetType("System.String")))
+        '12
+        dt.Columns.Add(New DataColumn("GhsWithheldEmployee", System.Type.GetType("System.String")))
+        '13
+        dt.Columns.Add(New DataColumn("IsEmployeeOfficer", System.Type.GetType("System.String")))
+        '14
+        dt.Columns.Add(New DataColumn("GhsWithheldOfficer", System.Type.GetType("System.String")))
+        '15
+        dt.Columns.Add(New DataColumn("GhsEmployersContribution", System.Type.GetType("System.String")))
+        '16
+        dt.Columns.Add(New DataColumn("IsBonusReceivedThisMonthForPreviousYear", System.Type.GetType("System.String")))
+        '17
+        dt.Columns.Add(New DataColumn("PriorYearBonusPaid", System.Type.GetType("System.String")))
+        '18
+        dt.Columns.Add(New DataColumn("PriorBonusYear", System.Type.GetType("System.String")))
+        '19
+        dt.Columns.Add(New DataColumn("WasEmployeeAnOfficerAtEndOfBonusYear", System.Type.GetType("System.String")))
+        '20
+        dt.Columns.Add(New DataColumn("TaxWithheldFrBonus", System.Type.GetType("System.String")))
+        '21
+        dt.Columns.Add(New DataColumn("BonusGhsWithheldOfficers", System.Type.GetType("System.String")))
+        '22
+        dt.Columns.Add(New DataColumn("GhsWithheldFromEmployeeBonus", System.Type.GetType("System.String")))
+        '23
+        dt.Columns.Add(New DataColumn("BonusGhsEmployersContribution", System.Type.GetType("System.String")))
+        '24
+        dt.Columns.Add(New DataColumn("PensionableBenefitsContribution", System.Type.GetType("System.String")))
+        '25
+        dt.Columns.Add(New DataColumn("EmpCode", System.Type.GetType("System.String")))
+        '26
+        dt.Columns.Add(New DataColumn("LWBPen", System.Type.GetType("System.String")))
+        '27
+        dt.Columns.Add(New DataColumn("Rehire", System.Type.GetType("System.String")))
+
+
+        Dim SIPeriod As cPrSsSocialInsPeriods
+        SIPeriod = CType(Me.CmbSIPeriod.SelectedItem, cPrSsSocialInsPeriods)
+        Me.txtTaxMonth.Text = SIPeriod.DescriptionL
+
+        DsTax = Global1.Business.REPORT_IR61_PerEmployee(PerGroup, SIPeriod, True)
+        DsTaxable = Global1.Business.REPORT_IR61_GetTaxableIncome_PerEmployee(PerGroup, SIPeriod, True)
+        DsDED = Global1.Business.REPORT_IR61_Gesy_DEDUCTION_PerEmployee(PerGroup, SIPeriod, True)
+        DsCON = Global1.Business.REPORT_IR61_Gesy_CONTRIBUTION_PerEmployee(PerGroup, SIPeriod, True)
+        DsCONPen = Global1.Business.REPORT_IR61_Gesy_CONTRIBUTION_LWBPen_PerEmployee(PerGroup, SIPeriod, True)
+        DsCONDirector = Global1.Business.REPORT_IR61_Gesy_CONTRIBUTION_Directors_PerEmployee(PerGroup, SIPeriod, True)
+        DsDEDDirector = Global1.Business.REPORT_IR61_Gesy_DEDUCTION_Directors_PerEmployee(PerGroup, SIPeriod, True)
+
+
+        DsPensionFund = Global1.Business.REPORT_IR61_PensionFund_DEDUCTION_PerEmployee(PerGroup, SIPeriod, True)
+        DSWidowAndOrphans = Global1.Business.REPORT_IR61_WidowAndOrphans_DEDUCTION_PerEmployee(PerGroup, SIPeriod, True)
+
+
+
+
+
+        Dim Total_Emoluments As Double = 0
+        Dim Total_TaxWithheldGrossEmoluments As Double = 0
+        Dim Total_Pensions As Double = 0
+        Dim Total_SocialInsurancePensions As Double = 0
+        Dim Total_GrossEmoluments As Double = 0
+        Dim Total_BenefitFromRelatedParties As Double = 0
+        Dim Total_TaxDeductedFinancialBenefitsRelatedParties As Double = 0
+        Dim Total_GhsWithheldPensioners As Double = 0
+        Dim Total_GhsWithheldEmployee As Double = 0
+        Dim Total_GhsWithheldOfficer As Double = 0
+        Dim Total_GhsEmployersContribution As Double = 0
+        Dim Total_PriorYearBonusPaid As Double = 0
+        Dim Total_TaxWithheldFrBonus As Double = 0
+        Dim Total_BonusGhsWithheldOfficers As Double = 0
+        Dim Total_GhsWithheldFromEmployeeBonus As Double = 0
+        Dim Total_BonusGhsEmployersContribution As Double = 0
+        Dim Total_PensionableBenefitsContribution As Double = 0
+
+        Dim R As DataRow
+
+        If CheckDataSet(DsTax) Then
+            Dim Code As String = ""
+            Dim Fname As String = ""
+            Dim LName As String = ""
+            Dim TIC As String = ""
+            Dim StartDate As String = ""
+            Dim EndDate As String = ""
+            Dim IsDirector As String = ""
+            Dim IsLWBPen As Double = 0
+            Dim TaxValue As Double = 0
+            Dim SIPension As Double = 0
+            Dim PensionFund As Double = 0
+            Dim WidowsAndOrphans As Double = 0
+            Dim PensionableBenefits As Double = 0
+            Dim Rehire As String = ""
+
+
+            Ds.Tables.Add(dt)
+
+            Dim Found As Boolean = False
+            Dim Error1 As String = ""
+            Dim eCode As String = ""
+            For i = 0 To DsTax.Tables(0).Rows.Count - 1
+                Rehire = DbNullToString(DsTax.Tables(0).Rows(i).Item(10))
+                eCode = DbNullToString(DsTax.Tables(0).Rows(i).Item(0))
+                If Rehire <> "" Then
+                    If CheckDataSet(DsTax) Then
+                        Dim k As Integer = 0
+                        For k = 0 To DsTax.Tables(0).Rows.Count - 1
+                            Dim tCode As String
+                            tCode = DbNullToString(DsTax.Tables(0).Rows(k).Item(0))
+                            If tCode = Rehire Then
+                                Found = True
+                                Exit For
+                            End If
+                        Next
+                    End If
+                    If Found Then
+                        DsTax.Tables(0).Rows(i).Item(0) = Rehire
+                        'Change Code to other datasets as well
+                        'DsTaxable
+                        Dim k As Integer
+                        For k = 0 To DsTaxable.Tables(0).Rows.Count - 1
+                            If DbNullToString(DsTaxable.Tables(0).Rows(k).Item(0)) = eCode Then
+                                DsTaxable.Tables(0).Rows(k).Item(0) = Rehire
+                            End If
+                        Next
+                        'DsDED 
+                        For k = 0 To DsDED.Tables(0).Rows.Count - 1
+                            If DbNullToString(DsDED.Tables(0).Rows(k).Item(0)) = eCode Then
+                                DsDED.Tables(0).Rows(k).Item(0) = Rehire
+                            End If
+                        Next
+                        'DsCON 
+                        For k = 0 To DsCON.Tables(0).Rows.Count - 1
+                            If DbNullToString(DsCON.Tables(0).Rows(k).Item(0)) = eCode Then
+                                DsCON.Tables(0).Rows(k).Item(0) = Rehire
+                            End If
+                        Next
+                        'DsCONPen
+                        For k = 0 To DsCONPen.Tables(0).Rows.Count - 1
+                            If DbNullToString(DsCONPen.Tables(0).Rows(k).Item(0)) = eCode Then
+                                DsCONPen.Tables(0).Rows(k).Item(0) = Rehire
+                            End If
+                        Next
+                        'DsCONDirector
+                        For k = 0 To DsCONDirector.Tables(0).Rows.Count - 1
+                            If DbNullToString(DsCONDirector.Tables(0).Rows(k).Item(0)) = eCode Then
+                                DsCONDirector.Tables(0).Rows(k).Item(0) = Rehire
+                            End If
+                        Next
+                        'DsDEDDirector
+                        For k = 0 To DsDEDDirector.Tables(0).Rows.Count - 1
+                            If DbNullToString(DsDEDDirector.Tables(0).Rows(k).Item(0)) = eCode Then
+                                DsDEDDirector.Tables(0).Rows(k).Item(0) = Rehire
+                            End If
+                        Next
+                        For k = 0 To DsPensionFund.Tables(0).Rows.Count - 1
+                            If DbNullToString(DsPensionFund.Tables(0).Rows(k).Item(0)) = eCode Then
+                                DsPensionFund.Tables(0).Rows(k).Item(0) = Rehire
+                            End If
+                        Next
+                        For k = 0 To DSWidowAndOrphans.Tables(0).Rows.Count - 1
+                            If DbNullToString(DSWidowAndOrphans.Tables(0).Rows(k).Item(0)) = eCode Then
+                                DSWidowAndOrphans.Tables(0).Rows(k).Item(0) = Rehire
+                            End If
+                        Next
+
+
+
+
+                    Else
+                        Dim Ans As New MsgBoxResult
+                        Ans = MsgBox("There is a wrong Rehire code on Employee with Code " & eCode & " Continue ?", MsgBoxStyle.YesNo)
+                        If Ans = MsgBoxResult.No Then
+                            Cursor.Current = DefaultCursor
+                            Application.DoEvents()
+                            Cursor.Current = DefaultCursor
+                            Exit Sub
+                        End If
+                    End If
+                End If
+
+                Cursor.Current = Cursors.WaitCursor
+                Application.DoEvents()
+                Code = DbNullToString(DsTax.Tables(0).Rows(i).Item(0))
+
+                Dim SameRow As Integer = -1
+                If CheckDataSet(Ds) Then
+                    Dim k As Integer = 0
+                    For k = 0 To Ds.Tables(0).Rows.Count - 1
+                        Dim tCode As String
+                        tCode = DbNullToString(Ds.Tables(0).Rows(k).Item(COLx_EmpCode))
+                        If tCode = Code Then
+                            SameRow = k
+                            Exit For
+                        End If
+                    Next
+                End If
+
+                Fname = DbNullToString(DsTax.Tables(0).Rows(i).Item(1))
+                LName = DbNullToString(DsTax.Tables(0).Rows(i).Item(2))
+                TIC = DbNullToString(DsTax.Tables(0).Rows(i).Item(3))
+                StartDate = DbNullToString(DsTax.Tables(0).Rows(i).Item(4))
+                EndDate = DbNullToString(DsTax.Tables(0).Rows(i).Item(5))
+                IsDirector = DbNullToString(DsTax.Tables(0).Rows(i).Item(6))
+                IsLWBPen = DbNullToString(DsTax.Tables(0).Rows(i).Item(7))
+                TaxValue = DbNullToDouble(DsTax.Tables(0).Rows(i).Item(8))
+                SIPension = DbNullToDouble(DsTax.Tables(0).Rows(i).Item(9))
+
+                If SameRow = -1 Then
+                    R = dt.NewRow
+                    R(COLx_EmpCode) = Code
+                    R(COLx_TaxpayerNumber) = TIC
+                    R(COLx_Name) = LName & " " & Fname
+                    R(COLx_EmployeeStartDate) = StartDate
+                    R(COLx_EmploymentEndDate) = EndDate
+                    R(COLx_IsEmployeeOfficer) = IsDirector
+                    R(COLx_LWBPen) = IsLWBPen
+
+                    R(COLx_TaxWithheldGrossEmoluments) = TaxValue
+                    R(COLx_Pensions) = "0,00"
+                    R(COLx_SocialInsurancePensions) = SIPension
+                    R(COLx_GrossEmoluments) = "0,00"
+                    R(COLx_BenefitFromRelatedParties) = "0,00"
+
+                    R(COLx_TaxDeductedFinancialBenefitsRelatedParties) = "0,00"
+                    R(COLx_GhsWithheldPensioners) = "0,00"
+                    R(COLx_GhsWithheldEmployee) = "0,00"
+                    R(COLx_GhsWithheldOfficer) = "0,00"
+                    R(COLx_GhsEmployersContribution) = "0,00"
+
+                    R(COLx_IsBonusReceivedThisMonthForPreviousYear) = "0"
+                    R(COLx_PriorYearBonusPaid) = "0,00"
+                    R(COLx_PriorBonusYear) = "0"
+                    R(COLx_WasEmployeeAnOfficerAtEndOfBonusYear) = "0"
+                    R(COLx_TaxWithheldFrBonus) = "0,00"
+                    R(COLx_BonusGhsWithheldOfficers) = "0,00"
+                    R(COLx_GhsWithheldFromEmployeeBonus) = "0,00"
+                    R(COLx_BonusGhsEmployersContribution) = "0,00"
+                    R(COLx_PensionableBenefitsContribution) = "0,00"
+                    If TIC = "" Then
+                        If Error1 = "" Then
+                            Error1 = "Missing TIC numbers of Employee(s):" & Chr(13)
+                        End If
+                        Error1 = Error1 & Chr(13) & Code & " - " & Fname & " " & LName
+                    End If
+                    dt.Rows.Add(R)
+                Else
+
+                    Ds.Tables(0).Rows(SameRow).Item(COLx_TaxWithheldGrossEmoluments) = DbNullToDouble(Ds.Tables(0).Rows(SameRow).Item(COLx_TaxWithheldGrossEmoluments)) + TaxValue
+                    Ds.Tables(0).Rows(SameRow).Item(COLx_SocialInsurancePensions) = DbNullToDouble(Ds.Tables(0).Rows(SameRow).Item(COLx_SocialInsurancePensions)) + SIPension
+                End If
+
+            Next
+            Dim TotalRows As Integer = 0
+            For i = 0 To Ds.Tables(0).Rows.Count - 1
+                TotalRows = TotalRows + 1
+                Code = DbNullToString(Ds.Tables(0).Rows(i).Item(COLx_EmpCode))
+                Dim k As Integer
+                For k = 0 To DsTaxable.Tables(0).Rows.Count - 1
+                    Dim tCode As String
+                    tCode = DbNullToString(DsTaxable.Tables(0).Rows(k).Item(0))
+                    If Code = tCode Then
+                        Ds.Tables(0).Rows(i).Item(COLx_Emoluments) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_Emoluments)) + DbNullToDouble(DbNullToString(DsTaxable.Tables(0).Rows(k).Item(1)))
+                        '   Exit For
+                    End If
+                Next
+
+                For k = 0 To DsDED.Tables(0).Rows.Count - 1
+                    Dim tCode As String
+                    tCode = DbNullToString(DsDED.Tables(0).Rows(k).Item(0))
+                    If Code = tCode Then
+                        Ds.Tables(0).Rows(i).Item(COLx_GhsWithheldEmployee) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_GhsWithheldEmployee)) + DbNullToDouble(DbNullToString(DsDED.Tables(0).Rows(k).Item(1)))
+                        '  Exit For
+                    End If
+                Next
+                For k = 0 To DsCON.Tables(0).Rows.Count - 1
+                    Dim tCode As String
+                    tCode = DbNullToString(DsCON.Tables(0).Rows(k).Item(0))
+                    If Code = tCode Then
+                        Ds.Tables(0).Rows(i).Item(COLx_GhsEmployersContribution) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_GhsEmployersContribution)) + DbNullToDouble(DbNullToString(DsCON.Tables(0).Rows(k).Item(1)))
+                        ' Exit For
+                    End If
+                Next
+                For k = 0 To DsCONPen.Tables(0).Rows.Count - 1
+                    Dim tCode As String
+                    tCode = DbNullToString(DsCONPen.Tables(0).Rows(k).Item(0))
+                    If Code = tCode Then
+                        Ds.Tables(0).Rows(i).Item(COLx_GhsWithheldPensioners) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_GhsWithheldPensioners)) + DbNullToDouble(DbNullToString(DsCONPen.Tables(0).Rows(k).Item(1)))
+                        'Exit For
+                    End If
+                Next
+                For k = 0 To DsDEDDirector.Tables(0).Rows.Count - 1
+                    Dim tCode As String
+                    tCode = DbNullToString(DsDEDDirector.Tables(0).Rows(k).Item(0))
+                    If Code = tCode Then
+                        Ds.Tables(0).Rows(i).Item(COLx_GhsWithheldOfficer) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_GhsWithheldOfficer)) + DbNullToDouble(DbNullToString(DsDEDDirector.Tables(0).Rows(k).Item(1)))
+                        ' Exit For
+                    End If
+                Next
+                For k = 0 To DsCONDirector.Tables(0).Rows.Count - 1
+                    Dim tCode As String
+                    tCode = DbNullToString(DsCONDirector.Tables(0).Rows(k).Item(0))
+                    If Code = tCode Then
+                        Ds.Tables(0).Rows(i).Item(COLx_GhsEmployersContribution) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_GhsEmployersContribution)) + DbNullToDouble(DbNullToString(DsCONDirector.Tables(0).Rows(k).Item(1)))
+                        ' Exit For
+                    End If
+                Next
+                For k = 0 To DsPensionFund.Tables(0).Rows.Count - 1
+                    Dim tCode As String
+                    tCode = DbNullToString(DsPensionFund.Tables(0).Rows(k).Item(0))
+                    If Code = tCode Then
+                        Ds.Tables(0).Rows(i).Item(COLx_PensionableBenefitsContribution) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_PensionableBenefitsContribution)) + DbNullToDouble(DbNullToString(DsPensionFund.Tables(0).Rows(k).Item(1)))
+                        ' Exit For
+                    End If
+                Next
+                For k = 0 To DSWidowAndOrphans.Tables(0).Rows.Count - 1
+                    Dim tCode As String
+                    tCode = DbNullToString(DSWidowAndOrphans.Tables(0).Rows(k).Item(0))
+                    If Code = tCode Then
+                        Ds.Tables(0).Rows(i).Item(COLx_PensionableBenefitsContribution) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_PensionableBenefitsContribution)) + DbNullToDouble(DbNullToString(DSWidowAndOrphans.Tables(0).Rows(k).Item(1)))
+                        ' Exit For
+                    End If
+                Next
+
+
+
+
+                Ds.Tables(0).Rows(i).Item(COLx_GrossEmoluments) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_Emoluments)) + DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_Pensions))
+
+            Next
+
+            ''''''' Calculate Totals '''''''''''
+            '--------------------------------------------------------------------------------------------------------------------------------
+            Dim j As Integer
+
+            For j = 0 To Ds.Tables(0).Rows.Count - 1
+                Total_Emoluments = Total_Emoluments + DbNullToDouble(Ds.Tables(0).Rows(j).Item(COLx_Emoluments))
+                Total_TaxWithheldGrossEmoluments = Total_TaxWithheldGrossEmoluments + DbNullToDouble(Ds.Tables(0).Rows(j).Item(COLx_TaxWithheldGrossEmoluments))
+                Total_Pensions = Total_Pensions + DbNullToDouble(Ds.Tables(0).Rows(j).Item(COLx_Pensions))
+                Total_SocialInsurancePensions = Total_SocialInsurancePensions + DbNullToDouble(Ds.Tables(0).Rows(j).Item(COLx_SocialInsurancePensions))
+                Total_GrossEmoluments = Total_GrossEmoluments + DbNullToDouble(Ds.Tables(0).Rows(j).Item(COLx_GrossEmoluments))
+                Total_BenefitFromRelatedParties = Total_BenefitFromRelatedParties + DbNullToDouble(Ds.Tables(0).Rows(j).Item(COLx_BenefitFromRelatedParties))
+                Total_TaxDeductedFinancialBenefitsRelatedParties = Total_TaxDeductedFinancialBenefitsRelatedParties + DbNullToDouble(Ds.Tables(0).Rows(j).Item(COLx_TaxDeductedFinancialBenefitsRelatedParties))
+                Total_GhsWithheldPensioners = Total_GhsWithheldPensioners + DbNullToDouble(Ds.Tables(0).Rows(j).Item(COLx_GhsWithheldPensioners))
+                Total_GhsWithheldEmployee = Total_GhsWithheldEmployee + DbNullToDouble(Ds.Tables(0).Rows(j).Item(COLx_GhsWithheldEmployee))
+                Total_GhsWithheldOfficer = Total_GhsWithheldOfficer + DbNullToDouble(Ds.Tables(0).Rows(j).Item(COLx_GhsWithheldOfficer))
+                Total_GhsEmployersContribution = Total_GhsEmployersContribution + DbNullToDouble(Ds.Tables(0).Rows(j).Item(COLx_GhsEmployersContribution))
+                Total_PriorYearBonusPaid = Total_PriorYearBonusPaid + DbNullToDouble(Ds.Tables(0).Rows(j).Item(COLx_PriorYearBonusPaid))
+                Total_TaxWithheldFrBonus = Total_TaxWithheldFrBonus + DbNullToDouble(Ds.Tables(0).Rows(j).Item(COLx_TaxWithheldFrBonus))
+                Total_BonusGhsWithheldOfficers = Total_BonusGhsWithheldOfficers + DbNullToDouble(Ds.Tables(0).Rows(j).Item(COLx_BonusGhsWithheldOfficers))
+                Total_GhsWithheldFromEmployeeBonus = Total_GhsWithheldFromEmployeeBonus + DbNullToDouble(Ds.Tables(0).Rows(j).Item(COLx_GhsWithheldFromEmployeeBonus))
+                Total_BonusGhsEmployersContribution = Total_BonusGhsEmployersContribution + DbNullToDouble(Ds.Tables(0).Rows(j).Item(COLx_BonusGhsEmployersContribution))
+                Total_PensionableBenefitsContribution = Total_PensionableBenefitsContribution + DbNullToDouble(Ds.Tables(0).Rows(j).Item(COLx_PensionableBenefitsContribution))
+            Next
+
+
+            '--------------------------------------------------------------------------------------------------------------------------------
+            'AddTotals
+            '-------------------------------------------------------------------------------------
+
+            R = dt.NewRow
+            Code = ""
+            Fname = "Total"
+            LName = TotalRows
+            TIC = ""
+            StartDate = ""
+            EndDate = ""
+            IsDirector = ""
+            IsLWBPen = 0
+            TaxValue = 0
+            R(COLx_EmpCode) = Code
+            R(COLx_TaxpayerNumber) = TIC
+            R(COLx_Name) = LName & " " & Fname
+            R(COLx_EmployeeStartDate) = StartDate
+            R(COLx_EmploymentEndDate) = EndDate
+            R(COLx_IsEmployeeOfficer) = IsDirector
+            R(COLx_LWBPen) = IsLWBPen
+
+            R(COLx_Emoluments) = Total_Emoluments
+            R(COLx_TaxWithheldGrossEmoluments) = Total_TaxWithheldGrossEmoluments
+            R(COLx_Pensions) = Total_Pensions
+            R(COLx_SocialInsurancePensions) = Total_SocialInsurancePensions
+            R(COLx_GrossEmoluments) = Total_GrossEmoluments
+            R(COLx_BenefitFromRelatedParties) = Total_BenefitFromRelatedParties
+            R(COLx_TaxDeductedFinancialBenefitsRelatedParties) = Total_TaxDeductedFinancialBenefitsRelatedParties
+            R(COLx_GhsWithheldPensioners) = Total_GhsWithheldPensioners
+            R(COLx_GhsWithheldEmployee) = Total_GhsWithheldEmployee
+            R(COLx_GhsWithheldOfficer) = Total_GhsWithheldOfficer
+            R(COLx_GhsEmployersContribution) = Total_GhsEmployersContribution
+            R(COLx_PriorYearBonusPaid) = Total_PriorYearBonusPaid
+            R(COLx_TaxWithheldFrBonus) = Total_TaxWithheldFrBonus
+            R(COLx_BonusGhsWithheldOfficers) = Total_BonusGhsWithheldOfficers
+            R(COLx_GhsWithheldFromEmployeeBonus) = Total_GhsWithheldFromEmployeeBonus
+            R(COLx_BonusGhsEmployersContribution) = Total_BonusGhsEmployersContribution
+            R(COLx_PensionableBenefitsContribution) = Total_PensionableBenefitsContribution
+            dt.Rows.Add(R)
+
+
+
+            '-------------------------------------------------------------------------------------
+            If ShowExcel Then
+                LoadDataSetToExcel(Ds)
+            End If
+            PrepareXMLFiletoTAX(Ds, True)
+            Me.Cursor = Cursors.Default
+            If Error1 = "" Then
+                MsgBox("File is Created. " & GLBDisplayFilename, MsgBoxStyle.Information)
+            Else
+                MsgBox("File is Created with ERRORS. " & GLBDisplayFilename, MsgBoxStyle.Information)
+                MsgBox(Error1)
+                My.Computer.Clipboard.SetText(Error1)
+                MsgBox("Errors are copied to  Clipboard")
+            End If
+
+        Else
+            MsgBox("No Results found", MsgBoxStyle.Information)
+        End If
+
+    End Sub
+
+
 End Class

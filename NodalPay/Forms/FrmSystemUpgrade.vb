@@ -886,7 +886,7 @@ Public Class FrmSystemUpgrade
             Par2.Value1 = "1"
             Par2.Type1 = "T"
             Par2.System1 = "Y"
-            Par2.Description = "Allocation Negative Tax"
+            Par2.Description = "Allow Negative Tax"
             If Par2.Save() Then
                 MsgBox("Set All. Negative")
             Else
@@ -919,5 +919,9 @@ Public Class FrmSystemUpgrade
 
     Private Sub Button81_Click(sender As Object, e As EventArgs) Handles Button81.Click
         Global1.Business.Upgrade_2025_04()
+    End Sub
+
+    Private Sub Button82_Click(sender As Object, e As EventArgs) Handles Button82.Click
+        Global1.Business.Upgrade_2025_05()
     End Sub
 End Class

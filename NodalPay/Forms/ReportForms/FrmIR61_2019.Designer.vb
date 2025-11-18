@@ -62,6 +62,9 @@ Partial Class FrmIR61_2019
         Me.txtVATRegNo = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.btnFindTaxable = New System.Windows.Forms.Button()
+        Me.CreateAnnualFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.CreateAnnualFileWithExcelReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
         Me.PanelLoading.SuspendLayout()
         Me.SuspendLayout()
@@ -289,7 +292,7 @@ Partial Class FrmIR61_2019
         'ToolStripDropDownButton1
         '
         Me.ToolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.ToolStripDropDownButton1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CreateMonthlyFileToolStripMenuItem, Me.CreateMonthlyFileWithExcelReportToolStripMenuItem})
+        Me.ToolStripDropDownButton1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CreateMonthlyFileToolStripMenuItem, Me.CreateMonthlyFileWithExcelReportToolStripMenuItem, Me.ToolStripSeparator1, Me.CreateAnnualFileToolStripMenuItem, Me.CreateAnnualFileWithExcelReportToolStripMenuItem})
         Me.ToolStripDropDownButton1.Image = CType(resources.GetObject("ToolStripDropDownButton1.Image"), System.Drawing.Image)
         Me.ToolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripDropDownButton1.Name = "ToolStripDropDownButton1"
@@ -409,6 +412,23 @@ Partial Class FrmIR61_2019
         Me.btnFindTaxable.Text = "Calculate Taxable Income"
         Me.btnFindTaxable.UseVisualStyleBackColor = True
         '
+        'CreateAnnualFileToolStripMenuItem
+        '
+        Me.CreateAnnualFileToolStripMenuItem.Name = "CreateAnnualFileToolStripMenuItem"
+        Me.CreateAnnualFileToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.CreateAnnualFileToolStripMenuItem.Text = "Create Annual File"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(269, 6)
+        '
+        'CreateAnnualFileWithExcelReportToolStripMenuItem
+        '
+        Me.CreateAnnualFileWithExcelReportToolStripMenuItem.Name = "CreateAnnualFileWithExcelReportToolStripMenuItem"
+        Me.CreateAnnualFileWithExcelReportToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.CreateAnnualFileWithExcelReportToolStripMenuItem.Text = "Create Annual File With Excel Report"
+        '
         'FrmIR61_2019
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -497,4 +517,7 @@ Partial Class FrmIR61_2019
     Friend WithEvents txtVATRegNo As TextBox
     Friend WithEvents Label13 As Label
     Friend WithEvents btnFindTaxable As Button
+    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents CreateAnnualFileToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CreateAnnualFileWithExcelReportToolStripMenuItem As ToolStripMenuItem
 End Class
