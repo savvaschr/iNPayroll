@@ -727,6 +727,12 @@
     <Compile Include="Forms\FrmChangeTemplateGroupInTrxnHeader.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\FrmClosePeriodEmployees.Designer.vb">
+      <DependentUpon>FrmClosePeriodEmployees.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmClosePeriodEmployees.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\FrmCompanyUsersPassword.Designer.vb">
       <DependentUpon>FrmCompanyUsersPassword.vb</DependentUpon>
     </Compile>
@@ -2985,6 +2991,9 @@
     <EmbeddedResource Include="Forms\FrmChangeTemplateGroupInTrxnHeader.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FrmChangeTemplateGroupInTrxnHeader.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmClosePeriodEmployees.resx">
+      <DependentUpon>FrmClosePeriodEmployees.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmCompanyUsersPassword.resx">
       <SubType>Designer</SubType>

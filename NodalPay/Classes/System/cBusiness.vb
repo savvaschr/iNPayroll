@@ -650,6 +650,15 @@ Public Class cBusiness
     Public Shadows Function GetAllTrxnsForPeriodByStatus(ByVal Period As cPrMsPeriodCodes, ByVal Status As String, ByVal InterStatus As String) As DataSet
         Return MyBase.GetAllTrxnsForPeriodByStatus(Period, Status, InterStatus)
     End Function
+    Public Shadows Function GetAllTrxnsForPeriodNotPOST(ByVal Period As cPrMsPeriodCodes) As DataSet
+        Return MyBase.GetAllTrxnsForPeriodNotPost(Period)
+    End Function
+    Public Shadows Function GetAllActiveEmployeesForPeriodThatDoNotHavePayroll(ByVal Period As cPrMsPeriodCodes) As DataSet
+        Return MyBase.GetAllActiveEmployeesForPeriodThatDoNotHavePayroll(Period)
+    End Function
+    Public Shadows Function GetAllPOSTButInnactiveEmployeesForPeriod(ByVal Period As cPrMsPeriodCodes) As DataSet
+        Return MyBase.GetAllPOSTButInnactiveEmployeesForPeriod(Period)
+    End Function
     Public Shadows Function OpenNextPeriodIfExist(ByVal Period As cPrMsPeriodCodes) As Boolean
         Return MyBase.OpenNextPeriodIfExist(Period)
     End Function
@@ -2210,6 +2219,9 @@ Public Class cBusiness
     End Function
     Public Function Upgrade_2025_05() As Boolean
         Return MyBase.Upgrade_2025_05
+    End Function
+    Public Function Upgrade_2025_06() As Boolean
+        Return MyBase.Upgrade_2025_06
     End Function
 
     Public Function FindNumberOfNormalPeriodsForThisEmployeeForThisPeriodGroup(ByVal glbcurrentperiod As cPrMsPeriodCodes, ByVal EmpCode As String) As Integer

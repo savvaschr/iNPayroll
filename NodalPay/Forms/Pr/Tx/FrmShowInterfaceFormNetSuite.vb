@@ -1,22 +1,40 @@
+Imports System.IO
+Imports System.Text
 Public Class FrmShowInterfaceFormNetSuite
 
 
     Dim MyDs As DataSet
     Dim Dt1 As DataTable
- 
+
     Public FileName As String
     Public NewInterface As Boolean
     Dim GLBSubsidiary As String = ""
+    Dim GLBAnalysis64 As String = ""
+    Dim GLBExportFileDir As String = ""
 
     Private Sub FrmShowInterfaceFormNetSuite_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         DG1.Visible = True
-        GLBSubsidiary = "57"
+        GLBSubsidiary = ""
+        GLBAnalysis64 = ""
         Dim P As New cPrSsParameters("NetSuite", "Subsidiary")
         If P.Id <> 0 Then
             GLBSubsidiary = P.Value1
 
         End If
+        Dim P1 As New cPrSsParameters("NetSuite", "Analysis64")
+        If P1.Id <> 0 Then
+            GLBAnalysis64 = P1.Value1
+        End If
+
+
+        Dim P2 As New cPrSsParameters("IR7", "ExportFileDir")
+        If P2.Id > 0 Then
+            glbexportfiledir = P2.Value1
+        Else
+            glbexportfiledir = "C:\Temp\"
+        End If
+
 
 
 
@@ -24,7 +42,7 @@ Public Class FrmShowInterfaceFormNetSuite
         InitDataTable()
         InitDataGrid()
         LoadFileIntoGrid()
-       
+
 
     End Sub
     Private Sub LoadFileIntoGrid()
@@ -92,13 +110,13 @@ Public Class FrmShowInterfaceFormNetSuite
                 End If
                 r(8) = Debit
                 r(9) = Credit
-                r(10) = "64"
+                r(10) = GLBAnalysis64
 
 
                 Dim Arr() As String
                 Dim EmployeeCode As String
                 Dim NetSuiteEmpCode As String = ""
-                employeeCode = Ar(60)
+                EmployeeCode = Ar(60)
                 Arr = EmployeeCode.Split("-")
                 If Arr(1) <> "" Then
                     Dim Emp As New cPrMsEmployees(Arr(1))
@@ -210,7 +228,7 @@ Public Class FrmShowInterfaceFormNetSuite
         Dt1.Columns.Add("BusinessUnit", System.Type.GetType("System.String"))
         '14
         Dt1.Columns.Add("Comments", System.Type.GetType("System.String"))
-       
+
 
 
 
@@ -268,7 +286,7 @@ Public Class FrmShowInterfaceFormNetSuite
             HeaderSize.Add(20)
             HeaderSize.Add(20)
             HeaderSize.Add(20)
-        
+
         End If
         Loader.LoadIntoExcel(MyDs, HeaderStr, HeaderSize)
 
@@ -277,7 +295,50 @@ Public Class FrmShowInterfaceFormNetSuite
 
 
     End Sub
-   
-    
 
+
+    Public Sub ExportDataSetToCsv(ds As DataSet, filePath As String)
+        If ds Is Nothing OrElse ds.Tables.Count = 0 Then
+            Throw New ArgumentException("Dataset is empty.")
+        End If
+
+        Dim dt As DataTable = ds.Tables(0)
+        Using writer As New StreamWriter(filePath, False, Encoding.UTF8)
+            ' Write column headers
+            Dim columnNames As New List(Of String)
+            For Each column As DataColumn In dt.Columns
+                columnNames.Add(QuoteValue(column.ColumnName))
+            Next
+            writer.WriteLine(String.Join(",", columnNames))
+
+            ' Write rows
+            For Each row As DataRow In dt.Rows
+                Dim fields As New List(Of String)
+                For Each field As Object In row.ItemArray
+                    fields.Add(QuoteValue(field.ToString()))
+                Next
+                writer.WriteLine(String.Join(",", fields))
+            Next
+        End Using
+    End Sub
+
+    Private Function QuoteValue(value As String) As String
+        If value.Contains(",") OrElse value.Contains("""") OrElse value.Contains(vbCr) OrElse value.Contains(vbLf) Then
+            value = value.Replace("""", """""")
+            Return $"""{value}"""
+        End If
+        Return value
+    End Function
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Try
+
+
+            Dim MyFilePath As String = GLBExportFileDir & "ExportForNetsuite.csv"
+            ExportDataSetToCsv(MyDs, MyFilePath)
+            MsgBox("File is exported " & GLBExportFileDir, MsgBoxStyle.Information)
+        Catch ex As Exception
+            MsgBox("Failed to export file in .csv ", MsgBoxStyle.Critical)
+        End Try
+    End Sub
 End Class

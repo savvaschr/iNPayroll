@@ -246,27 +246,24 @@ Public Class FrmPrTxClosePeriod
         Dim R2 As Double = 0
         Dim DoNotCheck As Boolean = False
         Dim Ans As MsgBoxResult
+        Dim DsHeaderNotPOST As DataSet
+        Dim DsEmployeesWithNoPayroll As DataSet
+        Dim DSPOSTButInnactive As DataSet
 
         DsEmp = Global1.Business.GetAllActiveEmployeesForPeriod(GLBCurrentPeriod)
         DsHeader = Global1.Business.GetAllTrxnsForPeriodByStatus(GLBCurrentPeriod, "POST", "POST")
-        R1 = -1
-        R2 = -2
-        If CheckDataSet(DsEmp) Then
-            R1 = DsEmp.Tables(0).Rows.Count - 1
-        End If
-        If CheckDataSet(DsHeader) Then
-            R2 = DsHeader.Tables(0).Rows.Count - 1
-        End If
-        If R1 = -1 Then
-            Ans = MsgBox("There are no Active Employees, Do you want to continue and Close the Period?", MsgBoxStyle.YesNoCancel)
-            If Ans = MsgBoxResult.Yes Then
-                DoNotCheck = True
-            End If
-        End If
-        If Not DoNotCheck Then
-            If R1 <> R2 Then
-                MsgBox("Cannot Close Period,Please CALCULATE and POST and Interface Payroll for All Employees that belong to this Period", MsgBoxStyle.Information)
-                Flag = False
+        DsHeaderNotPOST = Global1.Business.GetAllTrxnsForPeriodNotPOST(GLBCurrentPeriod)
+
+
+        If CheckDataSet(DsHeaderNotPOST) Then
+            MsgBox("There are Employees that have Payroll in this Period but are not POSTED and Interfaced", MsgBoxStyle.Critical)
+            Dim F As New FrmClosePeriodEmployees
+            F.DsEmployees = DsHeaderNotPOST
+            F.ShowDialog()
+
+            Flag = False
+
+            If Flag = False Then
                 If UCase(Global1.UserName) = "SA" Or UCase(Global1.UserName) = "NODAL" Or UCase(Global1.UserName) = "INSOFT" Then
                     Dim Ans2 As MsgBoxResult
                     Ans2 = MsgBox("Close Anyway ?", MsgBoxStyle.YesNoCancel)
@@ -277,7 +274,86 @@ Public Class FrmPrTxClosePeriod
                 End If
             End If
         End If
-            Return Flag
+
+        If Flag Then
+
+
+            R1 = -1
+            R2 = -2
+            If CheckDataSet(DsEmp) Then
+                R1 = DsEmp.Tables(0).Rows.Count - 1
+            End If
+            If CheckDataSet(DsHeader) Then
+                R2 = DsHeader.Tables(0).Rows.Count - 1
+            End If
+            If R1 = -1 Then
+                Ans = MsgBox("There are no Active Employees, Do you want to continue and Close the Period?", MsgBoxStyle.YesNoCancel)
+                If Ans = MsgBoxResult.Yes Then
+                    DoNotCheck = True
+                End If
+            End If
+
+            If Not DoNotCheck Then
+                If R1 <> R2 Then
+                    DsEmployeesWithNoPayroll = Global1.Business.GetAllActiveEmployeesForPeriodThatDoNotHavePayroll(GLBCurrentPeriod)
+                    If CheckDataSet(DsEmployeesWithNoPayroll) Then
+                        MsgBox("There are Active Employees with No Payroll", MsgBoxStyle.Critical)
+                        Dim F As New FrmClosePeriodEmployees
+                        F.DsEmployees = DsEmployeesWithNoPayroll
+                        F.ShowDialog()
+
+                        Flag = False
+
+                        If Flag = False Then
+                            If UCase(Global1.UserName) = "SA" Or UCase(Global1.UserName) = "NODAL" Or UCase(Global1.UserName) = "INSOFT" Then
+                                Dim Ans2 As MsgBoxResult
+                                Ans2 = MsgBox("Close Anyway ?", MsgBoxStyle.YesNoCancel)
+                                If Ans2 = MsgBoxResult.Yes Then
+                                    Flag = True
+                                End If
+
+                            End If
+                        End If
+                    End If
+                    If Flag Then
+                        dsPOSTButInnactive = Global1.Business.GetAllPOSTButInnactiveEmployeesForPeriod(GLBCurrentPeriod)
+                        If CheckDataSet(DSPOSTButInnactive) Then
+                            MsgBox("There are Employees with Payroll in the current Period that their status is Inactive", MsgBoxStyle.Critical)
+                            Dim F As New FrmClosePeriodEmployees
+                            F.DsEmployees = DSPOSTButInnactive
+                            F.ShowDialog()
+
+                            Flag = False
+
+                            If Flag = False Then
+                                If UCase(Global1.UserName) = "SA" Or UCase(Global1.UserName) = "NODAL" Or UCase(Global1.UserName) = "INSOFT" Then
+                                    Dim Ans2 As MsgBoxResult
+                                    Ans2 = MsgBox("Close Anyway ?", MsgBoxStyle.YesNoCancel)
+                                    If Ans2 = MsgBoxResult.Yes Then
+                                        Flag = True
+                                    End If
+
+                                End If
+                            End If
+                        End If
+
+                        If Flag = True Then
+                            MsgBox("Cannot Close Period,Please CALCULATE and POST and Interface Payroll for All Employees that belong to this Period", MsgBoxStyle.Information)
+                            Flag = False
+                            If UCase(Global1.UserName) = "SA" Or UCase(Global1.UserName) = "NODAL" Or UCase(Global1.UserName) = "INSOFT" Then
+                                Dim Ans2 As MsgBoxResult
+                                Ans2 = MsgBox("Close Anyway ?", MsgBoxStyle.YesNoCancel)
+                                If Ans2 = MsgBoxResult.Yes Then
+                                    Flag = True
+                                End If
+
+                            End If
+                        End If
+                    End If
+                End If
+            End If
+        End If
+        Return Flag
     End Function
 
     Private Sub BtnPeriodNormalDays_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnPeriodNormalDays.Click

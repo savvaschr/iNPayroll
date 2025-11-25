@@ -4209,12 +4209,68 @@ todo:   ' check for status in trxnheader
     Protected Function GetAllTrxnsForPeriodByStatus(ByVal Period As cPrMsPeriodCodes, ByVal Status As String, ByVal InterStatus As String) As DataSet
         Dim Str As String
         Dim PerGrp As New cPrMsPeriodGroups(Period.PrdGrpCode)
-        Str = " SELECT * FROM PrTxTrxnHeader" & _
-               " WHERE PrdGrp_Code=" & enQuoteString(Period.PrdGrpCode) & _
-               " AND PrdCod_Code=" & enQuoteString(Period.Code) & _
-               " AND TrxHdr_Status=" & enQuoteString(Status) & _
-               " AND TrxHdr_InterfaceStatus=" & enQuoteString(Status) & _
+        Str = " SELECT * FROM PrTxTrxnHeader" &
+               " WHERE PrdGrp_Code=" & enQuoteString(Period.PrdGrpCode) &
+               " AND PrdCod_Code=" & enQuoteString(Period.Code) &
+               " AND TrxHdr_Status=" & enQuoteString(Status) &
+               " AND TrxHdr_InterfaceStatus=" & enQuoteString(Status) &
                " AND TemGrp_Code =" & enQuoteString(PerGrp.TemGrpCode)
+
+        Return GetData(Str)
+    End Function
+    Protected Function GetAllActiveEmployeesForPeriodThatDoNotHavePayroll(ByVal Period As cPrMsPeriodCodes) As DataSet
+        Dim Str As String
+        Dim PerGrp As New cPrMsPeriodGroups(Period.PrdGrpCode)
+        Str = "select Emp_code, " &
+        " Emp_status, " &
+        " Emp_FullName " &
+        " from PrMsEmployees " &
+        " where TemGrp_Code =" & enQuoteString(PerGrp.TemGrpCode) &
+        " and Emp_Status ='A' " &
+        " and Emp_Code not in  " &
+        " (select emp_code from PrTxTrxnHeader " &
+        " where TemGrp_Code = " & enQuoteString(PerGrp.TemGrpCode) &
+        " and PrdGrp_Code = " & enQuoteString(PerGrp.Code) &
+        " And PrdCod_Code = " & enQuoteString(Period.Code) & " )"
+
+        Return GetData(Str)
+    End Function
+
+    Protected Function GetAllPOSTButInnactiveEmployeesForPeriod(ByVal Period As cPrMsPeriodCodes) As DataSet
+        Dim Str As String
+        Dim PerGrp As New cPrMsPeriodGroups(Period.PrdGrpCode)
+        Str = "select Emp_code, " &
+        " Emp_status, " &
+        " Emp_FullName " &
+        " from PrMsEmployees " &
+        " where TemGrp_Code =" & enQuoteString(PerGrp.TemGrpCode) &
+        " and Emp_Status ='I' " &
+        " and Emp_Code in  " &
+        " (select emp_code from PrTxTrxnHeader " &
+        " where TemGrp_Code = " & enQuoteString(PerGrp.TemGrpCode) &
+        " and PrdGrp_Code = " & enQuoteString(PerGrp.Code) &
+        " And PrdCod_Code = " & enQuoteString(Period.Code) & " )"
+
+        Return GetData(Str)
+    End Function
+
+    Protected Function GetAllTrxnsForPeriodNotPOST(ByVal Period As cPrMsPeriodCodes) As DataSet
+        Dim Str As String
+        Dim PerGrp As New cPrMsPeriodGroups(Period.PrdGrpCode)
+        Str = " Select   PrMsEmployees.Emp_Code ," &
+        " PrMsEmployees.Emp_FullName, " &
+        " PrMsEmployees.Emp_Status," &
+        " PrTxTrxnHeader.TrxHdr_Status ," &
+        " PrTxTrxnHeader.TrxHdr_Date ," &
+        " PrTxTrxnHeader.PrdGrp_Code," &
+        " PrTxTrxnHeader.PrdCod_Code" &
+        " FROM PrTxTrxnHeader INNER JOIN" &
+        " PrMsEmployees On PrTxTrxnHeader.Emp_Code = PrMsEmployees.Emp_Code" &
+        " WHERE (PrTxTrxnHeader.PrdGrp_Code = " & enQuoteString(Period.PrdGrpCode) & " ) " &
+        " And (PrTxTrxnHeader.PrdCod_Code = " & enQuoteString(Period.Code) & " ) " &
+        " And (PrTxTrxnHeader.TrxHdr_Status <> 'POST')" &
+        " And (PrTxTrxnHeader.TemGrp_Code = " & enQuoteString(PerGrp.TemGrpCode) & " )"
+
 
         Return GetData(Str)
     End Function
@@ -24583,14 +24639,16 @@ todo:   ' check for status in trxnheader
     Protected Function GetAnnualLeaveValueFromLineFor(ByVal TemGrp As cPrMsTemplateGroup, ByVal Period As cPrMsPeriodCodes, ByVal EmpCode As String) As Double
         Dim Str As String
         Dim RetValue As Double = 0
-        Str = "SELECT PrTxTrxnLines.TrxLin_PeriodValue" & _
-                   " FROM PrTxTrxnLines INNER JOIN" & _
-                   " PrTxTrxnHeader ON PrTxTrxnLines.TrxHdr_Id = PrTxTrxnHeader.TrxHdr_Id" & _
-                   " WHERE  (PrTxTrxnHeader.PrdGrp_Code = " & enQuoteString(Period.PrdGrpCode) & ") AND" & _
-                   " (PrTxTrxnHeader.Prdcod_Code = " & enQuoteString(Period.Code) & " )AND " & _
-                   " (PrTxTrxnHeader.Emp_Code = " & enQuoteString(EmpCode) & ") AND " & _
-                   " (PrTxTrxnHeader.TemGrp_Code = " & enQuoteString(TemGrp.Code) & ") AND " & _
-                   " (PrTxTrxnLines.ErnCod_Code = " & enQuoteString(PARAM_CobaltALCode) & ")"
+        Str = "SELECT sum(PrTxTrxnLines.TrxLin_PeriodValue)" &
+                   " FROM PrTxTrxnLines INNER JOIN" &
+                   " PrTxTrxnHeader ON PrTxTrxnLines.TrxHdr_Id = PrTxTrxnHeader.TrxHdr_Id" &
+                   " WHERE  (PrTxTrxnHeader.PrdGrp_Code = " & enQuoteString(Period.PrdGrpCode) & ") AND" &
+                   " (PrTxTrxnHeader.Prdcod_Code = " & enQuoteString(Period.Code) & " )AND " &
+                   " (PrTxTrxnHeader.Emp_Code = " & enQuoteString(EmpCode) & ") AND " &
+                   " (PrTxTrxnHeader.TemGrp_Code = " & enQuoteString(TemGrp.Code) & ") AND " &
+                   " (PrTxTrxnLines.ErnCod_Code = " & enQuoteString(PARAM_CobaltALCode) & " OR" &
+                   " PrTxTrxnLines.ErnCod_Code = " & enQuoteString(PARAM_CobaltALCode2) & " OR" &
+                   " PrTxTrxnLines.ErnCod_Code = " & enQuoteString(PARAM_CobaltALCode3) & ")"
         Dim ds As DataSet
         ds = GetData(Str)
         If CheckDataSet(ds) Then
@@ -26257,7 +26315,7 @@ todo:   ' check for status in trxnheader
                     'change 26/03/2020 added B2
                     If Trim(Ar2(i)) <> "3E" And Trim(Ar2(i)) <> "4E" And Ar2(i) <> "E99" And Trim(Ar2(i)) <> "LP" And Trim(Ar2(i)) <> "BK" And Trim(Ar2(i)) <> "BR" And Trim(Ar2(i)) <> "B2" Then
                         'If Ar(i) <> "E8" And Ar(i) <> "E9" And Ar(i) <> "E99" And Ar(i) <> "E16" Then
-                        If Ar(i) <> Global1.PARAM_CobaltALCode Then
+                        If Ar(i) <> Global1.PARAM_CobaltALCode And Ar(i) <> Global1.PARAM_CobaltALCode2 And Ar(i) <> Global1.PARAM_CobaltALCode3 Then
                             If S = "" Then
                                 S = " ((PrTxTrxnLines.ErnCod_Code = " & enQuoteString(Ar(i)) & ")"
                             Else
@@ -26365,7 +26423,7 @@ todo:   ' check for status in trxnheader
                 For i = 0 To Ar.Length - 1
                     If Trim(Ar2(i)) <> "3E" And Trim(Ar2(i)) <> "4E" And Ar2(i) <> "E99" And Trim(Ar2(i)) <> "LP" And Trim(Ar2(i)) <> "BK" And Trim(Ar2(i)) <> "BR" And Trim(Ar2(i)) <> "B2" Then
                         'If Ar(i) <> "E8" And Ar(i) <> "E9" And Ar(i) <> "E99" And Ar(i) <> "E16" Then
-                        If Ar(i) <> Global1.PARAM_CobaltALCode Then
+                        If Ar(i) <> Global1.PARAM_CobaltALCode And Ar(i) <> Global1.PARAM_CobaltALCode2 And Ar(i) <> Global1.PARAM_CobaltALCode3 Then
                             If S = "" Then
                                 S = "  ((PrTxTrxnLines.ErnCod_Code = " & enQuoteString(Ar(i)) & ")"
                             Else
@@ -58957,6 +59015,45 @@ todo:   ' check for status in trxnheader
             End If
 
 
+        End If
+
+    End Function
+    Protected Function Upgrade_2025_06()
+
+        Dim Par As New cPrSsParameters("PAYE", "LimitPercentage")
+        If Par.Id = 0 Then
+            Par.Id = 0
+            Par.Section = "PAYE"
+            Par.Item = "LimitPercentage"
+            Par.Value1 = "35"
+            Par.Type1 = "T"
+            Par.System1 = "Y"
+            Par.Description = "PAYE Limit Percent"
+            If Not Par.Save() Then
+                MsgBox("Error")
+            Else
+                MsgBox("Added , set to 35")
+            End If
+        Else
+            MsgBox("'PAYE' , 'LimitPercentage' Already Exist", MsgBoxStyle.Information)
+        End If
+
+        Dim Par1 As New cPrSsParameters("PAYE", "LimitMinus1")
+        If Par1.Id = 0 Then
+            Par1.Id = 0
+            Par1.Section = "PAYE"
+            Par1.Item = "LimitMinus1"
+            Par1.Value1 = "1"
+            Par1.Type1 = "T"
+            Par1.System1 = "Y"
+            Par1.Description = "PAYE Limit Minus 1"
+            If Not Par1.Save() Then
+                MsgBox("Error")
+            Else
+                MsgBox("Added , set to True")
+            End If
+        Else
+            MsgBox("'PAYE' , 'LimitMinus1' Already Exist", MsgBoxStyle.Information)
         End If
 
     End Function

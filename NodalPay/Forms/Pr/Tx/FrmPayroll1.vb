@@ -316,6 +316,30 @@ Public Class FrmPayroll1
         Else
             Global1.GLBNewTaxmethod = False
         End If
+
+        Dim PL As New cPrSsParameters("PAYE", "LimitPercentage")
+        If PL.Id > 0 Then
+            Global1.PARAM_PAYELimitPercent = PL.Value1
+        Else
+            Global1.PARAM_PAYELimitPercent = 35
+        End If
+
+        Dim PM As New cPrSsParameters("PAYE", "LimitMinus1")
+        If PM.Id > 0 Then
+            If PM.Value1 = 1 Then
+                Global1.PARAM_PAYEMinusOne = True
+            Else
+                Global1.PARAM_PAYEMinusOne = False
+            End If
+        Else
+            Global1.PARAM_PAYEMinusOne = True
+        End If
+
+
+
+
+
+
         Dim P As New cPrSsParameters("System", "AllocationStatus")
         If P.Value1 = "" Then
             MsgBox("Please define Allocation Status Variable")
@@ -2265,66 +2289,75 @@ Public Class FrmPayroll1
                     OverTime2Value = EmpTrxHeader.Overtime2
                     OverTime3Value = EmpTrxHeader.Overtime3
                     SIUnitsValue = EmpTrxHeader.SIUnits
-                    ActualUnits = EmpTrxHeader.PeriodUnits
+                    Dim ChangeUnits As Boolean = True
+
+                    If CBReloadDates.CheckState = CheckState.Checked Then
+                        If EmpTrxHeader.Status = "PREP" Then
+                            ChangeUnits = False
+                        End If
+                    End If
+                    If ChangeUnits Then
+                        ActualUnits = EmpTrxHeader.PeriodUnits
+                    End If
 
                     Sectors = EmpTrxHeader.Sectors
-                    DutyHours = EmpTrxHeader.DutyHours
-                    FlightHours = EmpTrxHeader.FlightHours
-                    Commission = EmpTrxHeader.Commission
-                    OverLay = EmpTrxHeader.OverLay
+                        DutyHours = EmpTrxHeader.DutyHours
+                        FlightHours = EmpTrxHeader.FlightHours
+                        Commission = EmpTrxHeader.Commission
+                        OverLay = EmpTrxHeader.OverLay
 
-                    PBAmount = EmpTrxHeader.PBAmount
-                    PBRate = EmpTrxHeader.PBRate
+                        PBAmount = EmpTrxHeader.PBAmount
+                        PBRate = EmpTrxHeader.PBRate
 
-                    If EmpTrxHeader.Status = "CALC" Then
-                        GridStatus = "CALC"
-                        Select Case Status
-                            Case "ALL"
-                                Include = True
-                            Case "<  >"
-                                Include = False
-                            Case "PREPARED"
-                                Include = False
-                            Case "CALCULATED"
-                                Include = True
-                            Case "POSTED"
-                                Include = False
-                        End Select
-                    ElseIf EmpTrxHeader.Status = "PREP" Then
-                        GridStatus = "PREP"
-                        Select Case Status
-                            Case "ALL"
-                                Include = True
-                            Case "<  >"
-                                Include = False
-                            Case "PREPARED"
-                                Include = True
-                            Case "CALCULATED"
-                                Include = False
-                            Case "POSTED"
-                                Include = False
-                        End Select
-                    ElseIf EmpTrxHeader.Status = "POST" Then
-                        GridStatus = "POST"
-                        Select Case Status
-                            Case "ALL"
-                                Include = True
-                            Case "<  >"
-                                Include = False
-                            Case "PREPARED"
-                                Include = False
-                            Case "CALCULATED"
-                                Include = False
-                            Case "POSTED"
-                                Include = True
-                        End Select
-                    End If
-                    If Include Then
-                        EmpTrxLines = Global1.Business.GetAllTrxnLines(EmpTrxHeader.Id)
-                    End If
-                Else
+                        If EmpTrxHeader.Status = "CALC" Then
+                            GridStatus = "CALC"
+                            Select Case Status
+                                Case "ALL"
+                                    Include = True
+                                Case "<  >"
+                                    Include = False
+                                Case "PREPARED"
+                                    Include = False
+                                Case "CALCULATED"
+                                    Include = True
+                                Case "POSTED"
+                                    Include = False
+                            End Select
+                        ElseIf EmpTrxHeader.Status = "PREP" Then
+                            GridStatus = "PREP"
+                            Select Case Status
+                                Case "ALL"
+                                    Include = True
+                                Case "<  >"
+                                    Include = False
+                                Case "PREPARED"
+                                    Include = True
+                                Case "CALCULATED"
+                                    Include = False
+                                Case "POSTED"
+                                    Include = False
+                            End Select
+                        ElseIf EmpTrxHeader.Status = "POST" Then
+                            GridStatus = "POST"
+                            Select Case Status
+                                Case "ALL"
+                                    Include = True
+                                Case "<  >"
+                                    Include = False
+                                Case "PREPARED"
+                                    Include = False
+                                Case "CALCULATED"
+                                    Include = False
+                                Case "POSTED"
+                                    Include = True
+                            End Select
+                        End If
+                        If Include Then
+                            EmpTrxLines = Global1.Business.GetAllTrxnLines(EmpTrxHeader.Id)
+                        End If
+                    Else
 
-                    GridStatus = "<  >"
+                        GridStatus = "<  >"
                     Select Case Status
                         Case "ALL"
                             Include = True

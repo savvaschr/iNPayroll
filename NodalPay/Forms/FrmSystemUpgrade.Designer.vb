@@ -103,11 +103,12 @@ Partial Class FrmSystemUpgrade
         Me.Button78 = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Button82 = New System.Windows.Forms.Button()
         Me.Button81 = New System.Windows.Forms.Button()
         Me.Button80 = New System.Windows.Forms.Button()
         Me.Button79 = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.Button82 = New System.Windows.Forms.Button()
+        Me.Button83 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -932,6 +933,7 @@ Partial Class FrmSystemUpgrade
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.Button83)
         Me.TabPage2.Controls.Add(Me.Button82)
         Me.TabPage2.Controls.Add(Me.Button81)
         Me.TabPage2.Controls.Add(Me.Button80)
@@ -963,6 +965,16 @@ Partial Class FrmSystemUpgrade
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "2025"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'Button82
+        '
+        Me.Button82.Location = New System.Drawing.Point(254, 93)
+        Me.Button82.Name = "Button82"
+        Me.Button82.Size = New System.Drawing.Size(233, 23)
+        Me.Button82.TabIndex = 82
+        Me.Button82.Text = "82. Add PAYE Method - SET to FALSE"
+        Me.Button82.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button82.UseVisualStyleBackColor = True
         '
         'Button81
         '
@@ -1063,15 +1075,15 @@ Partial Class FrmSystemUpgrade
         Me.TabPage1.Text = "2024"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
-        'Button82
+        'Button83
         '
-        Me.Button82.Location = New System.Drawing.Point(254, 93)
-        Me.Button82.Name = "Button82"
-        Me.Button82.Size = New System.Drawing.Size(233, 23)
-        Me.Button82.TabIndex = 82
-        Me.Button82.Text = "82. Add PAYE Method - SET to FALSE"
-        Me.Button82.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button82.UseVisualStyleBackColor = True
+        Me.Button83.Location = New System.Drawing.Point(254, 122)
+        Me.Button83.Name = "Button83"
+        Me.Button83.Size = New System.Drawing.Size(233, 23)
+        Me.Button83.TabIndex = 83
+        Me.Button83.Text = "83. Create PAYE Limit and Minus1 Parameters"
+        Me.Button83.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button83.UseVisualStyleBackColor = True
         '
         'FrmSystemUpgrade
         '
@@ -1173,4 +1185,5 @@ Partial Class FrmSystemUpgrade
     Friend WithEvents Button80 As Button
     Friend WithEvents Button81 As Button
     Friend WithEvents Button82 As Button
+    Friend WithEvents Button83 As Button
 End Class

@@ -6272,18 +6272,19 @@ Public Class FrmPrTxCalculatePayroll
             End If
 
             Dim Limit35 As Double
-            Limit35 = 35 * GLB_PeriodTaxable / 100
+            Limit35 = RoundMe2(PARAM_PAYELimitPercent * GLB_PeriodTaxable / 100, 2)
             If Limit35 <> 0 Then
                 If ITValue >= Limit35 Then
-
-                    Limit35 = Limit35 - 1
-                    If Limit35 < 0 Then
-                        Limit35 = 0
+                    If param_PAYEMinusOne Then
+                        Limit35 = Limit35 - 1
                     End If
-                    MsgBox("Period TAX for Employee " & Emp.Code & " - " & Emp.FullName & " is " & ITValue & " and this is greater or equal than 35% of Period Taxable amount " & GLB_PeriodTaxable & ".Please investigate !TAX will be limited to " & Limit35, MsgBoxStyle.Information)
+                    If Limit35 < 0 Then
+                            Limit35 = 0
+                        End If
+                    MsgBox("Period TAX for Employee " & Emp.Code & " - " & Emp.FullName & " is " & RoundMe2(ITValue, 2) & " and this is greater or equal than " & PARAM_PAYELimitPercent & "% of Period Taxable amount " & GLB_PeriodTaxable & ".Please investigate !TAX will be limited to " & Limit35, MsgBoxStyle.Information)
                     ITValue = Limit35
+                    End If
                 End If
-            End If
 
             For i = 0 To D_Final.Length - 1
                     If Dedu.Code = D_Final(i).Ded.DedCodCode Then

@@ -22,8 +22,9 @@ Partial Class FrmShowInterfaceFormNetSuite
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.Button1 = New System.Windows.Forms.Button
-        Me.DG1 = New System.Windows.Forms.DataGridView
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.DG1 = New System.Windows.Forms.DataGridView()
+        Me.Button2 = New System.Windows.Forms.Button()
         CType(Me.DG1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -45,12 +46,22 @@ Partial Class FrmShowInterfaceFormNetSuite
         Me.DG1.Size = New System.Drawing.Size(1173, 678)
         Me.DG1.TabIndex = 3
         '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(142, 12)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(114, 23)
+        Me.Button2.TabIndex = 5
+        Me.Button2.Text = "Export in .csv"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
         'FrmShowInterfaceFormNetSuite
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.ClientSize = New System.Drawing.Size(1197, 730)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.DG1)
         Me.Name = "FrmShowInterfaceFormNetSuite"
@@ -61,4 +72,5 @@ Partial Class FrmShowInterfaceFormNetSuite
     End Sub
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents DG1 As System.Windows.Forms.DataGridView
+    Friend WithEvents Button2 As Button
 End Class

@@ -46,6 +46,22 @@ Public Class FrmRptSIContributions
                 PARAM_CobaltALCode = Par.Value1
             End If
         End If
+        Ds = Global1.Business.GetParameter("SIContributions", "CobaltALCode2")
+        PARAM_CobaltALCode2 = ""
+        If CheckDataSet(Ds) Then
+            Dim Par As New cPrSsParameters(Ds.Tables(0).Rows(0))
+            If Par.Id > 0 Then
+                PARAM_CobaltALCode2 = Par.Value1
+            End If
+        End If
+        Ds = Global1.Business.GetParameter("SIContributions", "CobaltALCode3")
+        PARAM_CobaltALCode3 = ""
+        If CheckDataSet(Ds) Then
+            Dim Par As New cPrSsParameters(Ds.Tables(0).Rows(0))
+            If Par.Id > 0 Then
+                PARAM_CobaltALCode3 = Par.Value1
+            End If
+        End If
 
         Ds = Global1.Business.GetParameter("SIContributions", "BIKWithSCCode")
         PARAM_BIKWithSCCode = ""
@@ -1162,7 +1178,7 @@ Public Class FrmRptSIContributions
 
 
 
-                        If PARAM_CobaltALCode <> "" Then
+                        If PARAM_CobaltALCode <> "" Or PARAM_CobaltALCode2 <> "" Or PARAM_CobaltALCode3 <> "" Then
                             ALValue = Global1.Business.GetAnnualLeaveValueFromLineFor(TempTempGroup, Per, EmpCode)
                             If ALValue <> 0 Then
                                 Create_N_Record = True
@@ -1468,7 +1484,7 @@ Public Class FrmRptSIContributions
                         Dim DsGrossInsurable As DataSet
                         Dim TempTempGroup As New cPrMsTemplateGroup(Emp.TemGrp_Code)
                         Dim ALValue As Double = 0
-                        If PARAM_CobaltALCode <> "" Then
+                        If PARAM_CobaltALCode <> "" Or PARAM_CobaltALCode2 <> "" Or PARAM_CobaltALCode3 <> "" Then
                             ALValue = Global1.Business.GetAnnualLeaveValueFromLineFor(TempTempGroup, Per, EmpCode)
                             If ALValue <> 0 Then
                                 SemiTotalEmployees = SemiTotalEmployees + 1
@@ -5308,7 +5324,7 @@ Public Class FrmRptSIContributions
                         Dim ALValue As Double = 0
 
                         'xxxxxxxxxxxxxxx()
-                        If PARAM_CobaltALCode <> "" Then
+                        If PARAM_CobaltALCode <> "" Or PARAM_CobaltALCode2 <> "" Or PARAM_CobaltALCode3 <> "" Then
                             ALValue = Global1.Business.GetAnnualLeaveValueFromLineFor(Ttemgrp, TPeriod, EmpCode)
                             If ALValue <> 0 Then
                                 Create_N_Record = True
@@ -5614,7 +5630,7 @@ Public Class FrmRptSIContributions
                         Dim TPeriod As New cPrMsPeriodCodes(Per.Code, TempPeriodGroup)
 
                         Dim ALValue As Double = 0
-                        If PARAM_CobaltALCode <> "" Then
+                        If PARAM_CobaltALCode <> "" Or PARAM_CobaltALCode2 <> "" Or PARAM_CobaltALCode3 <> "" Then
                             ALValue = Global1.Business.GetAnnualLeaveValueFromLineFor(TempTempGroup, TPeriod, EmpCode)
                             If ALValue <> 0 Then
                                 SemiTotalEmployees = SemiTotalEmployees + 1
@@ -7008,7 +7024,7 @@ Public Class FrmRptSIContributions
 
 
 
-                    If PARAM_CobaltALCode <> "" Then
+                    If PARAM_CobaltALCode <> "" Or PARAM_CobaltALCode2 <> "" Or PARAM_CobaltALCode3 <> "" Then
                         ALValue = Global1.Business.GetAnnualLeaveValueFromLineFor(TempTempGroup, Per, EmpCode)
                         If ALValue <> 0 Then
                             Create_N_Record = True
@@ -7344,7 +7360,7 @@ Public Class FrmRptSIContributions
                     Dim DsGrossInsurable As DataSet
                     Dim TempTempGroup As New cPrMsTemplateGroup(Emp.TemGrp_Code)
                     Dim ALValue As Double = 0
-                    If PARAM_CobaltALCode <> "" Then
+                    If PARAM_CobaltALCode <> "" Or PARAM_CobaltALCode2 <> "" Or PARAM_CobaltALCode3 <> "" Then
                         ALValue = Global1.Business.GetAnnualLeaveValueFromLineFor(TempTempGroup, Per, EmpCode)
                         If ALValue <> 0 Then
                             SemiTotalEmployees = SemiTotalEmployees + 1
@@ -8658,7 +8674,7 @@ Public Class FrmRptSIContributions
                     Dim ALValue As Double = 0
 
                     'xxxxxxxxxxxxxxx()
-                    If PARAM_CobaltALCode <> "" Then
+                    If PARAM_CobaltALCode <> "" Or PARAM_CobaltALCode2 <> "" Or PARAM_CobaltALCode3 <> "" Then
                         ALValue = Global1.Business.GetAnnualLeaveValueFromLineFor(Ttemgrp, TPeriod, EmpCode)
                         If ALValue <> 0 Then
                             Create_N_Record = True
@@ -8994,7 +9010,7 @@ Public Class FrmRptSIContributions
                     Dim TPeriod As New cPrMsPeriodCodes(Per.Code, TempPeriodGroup)
 
                     Dim ALValue As Double = 0
-                    If PARAM_CobaltALCode <> "" Then
+                    If PARAM_CobaltALCode <> "" Or PARAM_CobaltALCode2 <> "" Or PARAM_CobaltALCode3 <> "" Then
                         ALValue = Global1.Business.GetAnnualLeaveValueFromLineFor(TempTempGroup, TPeriod, EmpCode)
                         If ALValue <> 0 Then
                             SemiTotalEmployees = SemiTotalEmployees + 1
@@ -9736,7 +9752,7 @@ Public Class FrmRptSIContributions
                     Dim ALValue As Double = 0
 
                     'xxxxxxxxxxxxxxx()
-                    If PARAM_CobaltALCode <> "" Then
+                    If PARAM_CobaltALCode <> "" Or PARAM_CobaltALCode2 <> "" Or PARAM_CobaltALCode3 <> "" Then
                         ALValue = Global1.Business.GetAnnualLeaveValueFromLineFor(Ttemgrp, TPeriod, EmpCode)
                         If ALValue <> 0 Then
                             Create_N_Record = True
@@ -10072,7 +10088,7 @@ Public Class FrmRptSIContributions
                     Dim TPeriod As New cPrMsPeriodCodes(Per.Code, TempPeriodGroup)
 
                     Dim ALValue As Double = 0
-                    If PARAM_CobaltALCode <> "" Then
+                    If PARAM_CobaltALCode <> "" Or PARAM_CobaltALCode2 <> "" Or PARAM_CobaltALCode3 <> "" Then
                         ALValue = Global1.Business.GetAnnualLeaveValueFromLineFor(TempTempGroup, TPeriod, EmpCode)
                         If ALValue <> 0 Then
                             SemiTotalEmployees = SemiTotalEmployees + 1

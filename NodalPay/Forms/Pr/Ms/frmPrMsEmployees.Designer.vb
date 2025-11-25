@@ -29,6 +29,7 @@ Private Sub InitializeComponent()
         Me.ToolStripSeparator9 = New System.Windows.Forms.ToolStripSeparator()
         Me.EmployeesReport1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EmployeesReport2ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EmployeePositionsReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator11 = New System.Windows.Forms.ToolStripSeparator()
         Me.EmployeesWithProvidentFundToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator12 = New System.Windows.Forms.ToolStripSeparator()
@@ -523,7 +524,6 @@ Private Sub InitializeComponent()
         Me.C_Emp1 = New NodalPay.C_Emp()
         Me.D_Emp1 = New NodalPay.D_Emp()
         Me.E_Emp1 = New NodalPay.E_Emp()
-        Me.EmployeePositionsReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Label72 = New System.Windows.Forms.Label()
         Me.sspStatus.SuspendLayout()
         Me.TSC1.TopToolStripPanel.SuspendLayout()
@@ -663,7 +663,7 @@ Private Sub InitializeComponent()
         Me.TS1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBNew, Me.TSBSave, Me.TSBDelete, Me.TSBExcel, Me.ExcelMenu, Me.ToolStripSplitButton1, Me.TSExelsys, Me.ToolStripDropDownButton1, Me.TSBPayroll, Me.TSBAction})
         Me.TS1.Location = New System.Drawing.Point(3, 0)
         Me.TS1.Name = "TS1"
-        Me.TS1.Size = New System.Drawing.Size(856, 25)
+        Me.TS1.Size = New System.Drawing.Size(825, 25)
         Me.TS1.TabIndex = 0
         '
         'TSBNew
@@ -744,6 +744,12 @@ Private Sub InitializeComponent()
         Me.EmployeesReport2ToolStripMenuItem.Name = "EmployeesReport2ToolStripMenuItem"
         Me.EmployeesReport2ToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
         Me.EmployeesReport2ToolStripMenuItem.Text = "Employees Report - 2"
+        '
+        'EmployeePositionsReportToolStripMenuItem
+        '
+        Me.EmployeePositionsReportToolStripMenuItem.Name = "EmployeePositionsReportToolStripMenuItem"
+        Me.EmployeePositionsReportToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
+        Me.EmployeePositionsReportToolStripMenuItem.Text = "Employee Positions Report"
         '
         'ToolStripSeparator11
         '
@@ -4989,12 +4995,6 @@ Private Sub InitializeComponent()
         Me.E_Emp1.Name = "E_Emp1"
         Me.E_Emp1.Size = New System.Drawing.Size(274, 27)
         Me.E_Emp1.TabIndex = 0
-        '
-        'EmployeePositionsReportToolStripMenuItem
-        '
-        Me.EmployeePositionsReportToolStripMenuItem.Name = "EmployeePositionsReportToolStripMenuItem"
-        Me.EmployeePositionsReportToolStripMenuItem.Size = New System.Drawing.Size(248, 22)
-        Me.EmployeePositionsReportToolStripMenuItem.Text = "Employee Positions Report"
         '
         'frmPrMsEmployees
         '

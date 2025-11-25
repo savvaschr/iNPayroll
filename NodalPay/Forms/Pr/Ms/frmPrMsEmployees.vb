@@ -6758,4 +6758,15 @@ Public Class frmPrMsEmployees
         End If
 
     End Sub
+
+    Private Sub CBForce50Percent_CheckedChanged(sender As Object, e As EventArgs) Handles CBForce50Percent.CheckedChanged
+        If CBForce50Percent.CheckState = CheckState.Checked Then
+            CBLimitTo20.CheckState = CheckState.Unchecked
+        End If
+    End Sub
+    Private Sub CBLimitTo20_CheckedChanged(sender As Object, e As EventArgs) Handles CBLimitTo20.CheckedChanged
+        If CBLimitTo20.CheckState = CheckState.Checked Then
+            CBForce50Percent.CheckState = CheckState.Unchecked
+        End If
+    End Sub
 End Class

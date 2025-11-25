@@ -924,4 +924,8 @@ Public Class FrmSystemUpgrade
     Private Sub Button82_Click(sender As Object, e As EventArgs) Handles Button82.Click
         Global1.Business.Upgrade_2025_05()
     End Sub
+
+    Private Sub Button83_Click(sender As Object, e As EventArgs) Handles Button83.Click
+        Global1.Business.Upgrade_2025_06()
+    End Sub
 End Class

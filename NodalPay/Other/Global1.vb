@@ -1,10 +1,10 @@
 Module Global1
-    Public Version As String = "2.2025.009"
+    Public Version As String = "2.2025.010"
     'YTD Report
     'Sum Annual Units for 13nth
     'Open Next Year Period Automatically
 
-    Public VersionDate As String = "17/11/2025"
+    Public VersionDate As String = "19/11/2025"
     '14th Salary
     'Payslip directory
 
@@ -228,6 +228,8 @@ Module Global1
     Public Param_DiscountLabel10 As String = "Discount 10"
 
     Public PARAM_CobaltALCode As String = ""
+    Public PARAM_CobaltALCode2 As String = ""
+    Public PARAM_CobaltALCode3 As String = ""
     Public PARAM_BIKWithSCCode As String = ""
 
     Public PARAM_IR63_ShowBonusSeparatly As Boolean = False
@@ -388,6 +390,9 @@ Module Global1
     Public GLBExelsys_WSBusinessEntity As String = ""
 
     Public TESTOUTLOOK As Boolean = False
+
+    Public PARAM_PAYELimitPercent As Double = 35
+    Public PARAM_PAYEMinusOne As Boolean = False
 
 
 
