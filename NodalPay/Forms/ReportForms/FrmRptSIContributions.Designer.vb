@@ -403,6 +403,8 @@ Partial Class FrmRptSIContributions
         'CBNoWarningsForAlienLenght
         '
         Me.CBNoWarningsForAlienLenght.AutoSize = True
+        Me.CBNoWarningsForAlienLenght.Checked = True
+        Me.CBNoWarningsForAlienLenght.CheckState = System.Windows.Forms.CheckState.Checked
         Me.CBNoWarningsForAlienLenght.Location = New System.Drawing.Point(13, 236)
         Me.CBNoWarningsForAlienLenght.Name = "CBNoWarningsForAlienLenght"
         Me.CBNoWarningsForAlienLenght.Size = New System.Drawing.Size(202, 17)

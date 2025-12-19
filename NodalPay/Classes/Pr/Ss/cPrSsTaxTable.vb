@@ -86,12 +86,24 @@ Public Sub New(ByVal Dr as DataRow)
          LoadDataRow(Dr)
     End If
 End Sub
-Public Sub New(ByVal tTaxTbl_id As Integer)
-     IF tTaxTbl_id <> 0 Then
-        Init(tTaxTbl_id)
-      End If
-End Sub
-Private Sub Init(ByVal tTaxTbl_id As Integer)
+    Public Sub New(ByVal tTaxTbl_id As Integer)
+        If tTaxTbl_id <> 0 Then
+            Init(tTaxTbl_id)
+        End If
+    End Sub
+    Public Sub New(ByVal tTaxTbl_Sequence As Integer, BySequence As Boolean)
+        If tTaxTbl_Sequence <> 0 Then
+            Try
+                Dim ds As DataSet
+                ds = MyBase.GetBySequence(tTaxTbl_Sequence)
+                If CheckDataSet(ds) Then
+                    LoadDataRow(ds.Tables(0).Rows(0))
+                End If
+            Catch ex As System.Exception
+            End Try
+        End If
+    End Sub
+    Private Sub Init(ByVal tTaxTbl_id As Integer)
    Try
         Dim ds as DataSet
         ds = MyBase.GetByPK(tTaxTbl_id)

@@ -194,11 +194,23 @@ Public Class FrmMain
             Flag = False
         End If
 
+        'If Flag Then
+        'Me.ToolStripStatusLabel.Text = "Status: Connected to Database - " & Global1.DbaseName
+        'Else
+        'Me.ToolStripStatusLabel.Text = "Status: Not Connected"
+        'End If
+
         If Flag Then
-            Me.ToolStripStatusLabel.Text = "Status: Connected to Database - " & Global1.DbaseName
+            Me.ToolStripStatusLabel.Text = "Status: Connected       Server: " & Global1.DbaseServerName & "  Database: " & Global1.DbaseName & "  User: " & UCase(Global1.UserName) & "  Connected at: " & Format(Now, "dd-MM-yyyy hh:mm:ss")
         Else
             Me.ToolStripStatusLabel.Text = "Status: Not Connected"
         End If
+
+
+
+
+
+
 
         Me.MnuLogin.Enabled = Not Flag
         Me.MnuLogout.Enabled = Flag
@@ -5694,12 +5706,14 @@ Public Class FrmMain
         Dim S As String = ""
         Dim BankCode As String = ""
         Dim Swift1 As String
-
+        SWIFT = SWIFT.Replace("XXX", "")
         If CheckDataSet(dsBanks) Then
             Dim i As Integer
             Dim Code As String = ""
             For i = 0 To dsBanks.Tables(0).Rows.Count - 1
                 Swift1 = DbNullToString(dsBanks.Tables(0).Rows(i).Item(5))
+                Swift1 = Swift1.Replace("XXX", "")
+
                 If Swift1 = SWIFT Then
                     BankCode = DbNullToString(dsBanks.Tables(0).Rows(i).Item(0))
                     Exit For
@@ -9613,6 +9627,30 @@ Public Class FrmMain
 
     Private Function FindSICatCodeFromNationality(ByVal Desc As String) As String
         Dim Code As String
+
+        If UCase(Desc) = "ARMENIAN" Then
+            Code = "A"
+        End If
+        If UCase(Desc) = "FOREIGN" Then
+            Code = "D"
+        End If
+        If UCase(Desc) = "GREEK CYPRIOT" Then
+            Code = "E"
+        End If
+        If UCase(Desc) = "EUROPEAN UNION" Then
+            Code = "K"
+        End If
+        If UCase(Desc) = "LATIN" Then
+            Code = "L"
+        End If
+        If UCase(Desc) = "MARONITE" Then
+            Code = "M"
+        End If
+        If UCase(Desc) = "TURKISH CYPRIOT" Then
+            Code = "T"
+        End If
+
+
         If UCase(Desc) = "CYPRIOT" Then
             Code = "E"
         Else

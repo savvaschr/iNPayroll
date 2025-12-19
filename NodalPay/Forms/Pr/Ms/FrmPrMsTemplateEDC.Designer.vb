@@ -19,70 +19,71 @@ Partial Class FrmPrMsTemplateEDC
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmPrMsTemplateEDC))
-        Me.TS1 = New System.Windows.Forms.ToolStrip
-        Me.TSBNew = New System.Windows.Forms.ToolStripButton
-        Me.TSBSave = New System.Windows.Forms.ToolStripButton
-        Me.TSBDelete = New System.Windows.Forms.ToolStripButton
-        Me.TSBExcel = New System.Windows.Forms.ToolStripButton
-        Me.BtnFixSequence = New System.Windows.Forms.ToolStripButton
-        Me.sspStatus = New System.Windows.Forms.StatusStrip
-        Me.lblSSStatus = New System.Windows.Forms.ToolStripStatusLabel
-        Me.TabControl1 = New System.Windows.Forms.TabControl
-        Me.TabPage1 = New System.Windows.Forms.TabPage
-        Me.D_Con15 = New NodalPay.D_Control
-        Me.D_Con14 = New NodalPay.D_Control
-        Me.D_Con13 = New NodalPay.D_Control
-        Me.D_Con12 = New NodalPay.D_Control
-        Me.D_Con11 = New NodalPay.D_Control
-        Me.D_Con10 = New NodalPay.D_Control
-        Me.D_Con9 = New NodalPay.D_Control
-        Me.D_Con8 = New NodalPay.D_Control
-        Me.D_Con7 = New NodalPay.D_Control
-        Me.D_Con6 = New NodalPay.D_Control
-        Me.D_Con5 = New NodalPay.D_Control
-        Me.D_Con4 = New NodalPay.D_Control
-        Me.D_Con3 = New NodalPay.D_Control
-        Me.D_Con2 = New NodalPay.D_Control
-        Me.D_Con1 = New NodalPay.D_Control
-        Me.D_Headline1 = New NodalPay.D_Headline
-        Me.TabPage2 = New System.Windows.Forms.TabPage
-        Me.C_Con15 = New NodalPay.C_Control
-        Me.C_Con14 = New NodalPay.C_Control
-        Me.C_Con13 = New NodalPay.C_Control
-        Me.C_Con12 = New NodalPay.C_Control
-        Me.C_Con11 = New NodalPay.C_Control
-        Me.C_Con10 = New NodalPay.C_Control
-        Me.C_Con9 = New NodalPay.C_Control
-        Me.C_Con8 = New NodalPay.C_Control
-        Me.C_Con7 = New NodalPay.C_Control
-        Me.C_Con6 = New NodalPay.C_Control
-        Me.C_Con5 = New NodalPay.C_Control
-        Me.C_Con4 = New NodalPay.C_Control
-        Me.C_Con3 = New NodalPay.C_Control
-        Me.C_Con2 = New NodalPay.C_Control
-        Me.C_Con1 = New NodalPay.C_Control
-        Me.C_HeadLine1 = New NodalPay.C_HeadLine
-        Me.ComboTemplateGroup = New System.Windows.Forms.ComboBox
-        Me.Label1 = New System.Windows.Forms.Label
+        Me.TS1 = New System.Windows.Forms.ToolStrip()
+        Me.TSBNew = New System.Windows.Forms.ToolStripButton()
+        Me.TSBSave = New System.Windows.Forms.ToolStripButton()
+        Me.TSBDelete = New System.Windows.Forms.ToolStripButton()
+        Me.TSBExcel = New System.Windows.Forms.ToolStripButton()
+        Me.BtnFixSequence = New System.Windows.Forms.ToolStripButton()
+        Me.TSBEnableEDC1 = New System.Windows.Forms.ToolStripButton()
+        Me.sspStatus = New System.Windows.Forms.StatusStrip()
+        Me.lblSSStatus = New System.Windows.Forms.ToolStripStatusLabel()
+        Me.TabControl1 = New System.Windows.Forms.TabControl()
+        Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.D_Con15 = New NodalPay.D_Control()
+        Me.D_Con14 = New NodalPay.D_Control()
+        Me.D_Con13 = New NodalPay.D_Control()
+        Me.D_Con12 = New NodalPay.D_Control()
+        Me.D_Con11 = New NodalPay.D_Control()
+        Me.D_Con10 = New NodalPay.D_Control()
+        Me.D_Con9 = New NodalPay.D_Control()
+        Me.D_Con8 = New NodalPay.D_Control()
+        Me.D_Con7 = New NodalPay.D_Control()
+        Me.D_Con6 = New NodalPay.D_Control()
+        Me.D_Con5 = New NodalPay.D_Control()
+        Me.D_Con4 = New NodalPay.D_Control()
+        Me.D_Con3 = New NodalPay.D_Control()
+        Me.D_Con2 = New NodalPay.D_Control()
+        Me.D_Con1 = New NodalPay.D_Control()
+        Me.D_Headline1 = New NodalPay.D_Headline()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.C_Con15 = New NodalPay.C_Control()
+        Me.C_Con14 = New NodalPay.C_Control()
+        Me.C_Con13 = New NodalPay.C_Control()
+        Me.C_Con12 = New NodalPay.C_Control()
+        Me.C_Con11 = New NodalPay.C_Control()
+        Me.C_Con10 = New NodalPay.C_Control()
+        Me.C_Con9 = New NodalPay.C_Control()
+        Me.C_Con8 = New NodalPay.C_Control()
+        Me.C_Con7 = New NodalPay.C_Control()
+        Me.C_Con6 = New NodalPay.C_Control()
+        Me.C_Con5 = New NodalPay.C_Control()
+        Me.C_Con4 = New NodalPay.C_Control()
+        Me.C_Con3 = New NodalPay.C_Control()
+        Me.C_Con2 = New NodalPay.C_Control()
+        Me.C_Con1 = New NodalPay.C_Control()
+        Me.C_HeadLine1 = New NodalPay.C_HeadLine()
+        Me.ComboTemplateGroup = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
         Me.Er1 = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.E_Con9 = New NodalPay.E_Control
-        Me.E_Con3 = New NodalPay.E_Control
-        Me.E_Con14 = New NodalPay.E_Control
-        Me.E_Con5 = New NodalPay.E_Control
-        Me.E_Con13 = New NodalPay.E_Control
-        Me.E_Con15 = New NodalPay.E_Control
-        Me.E_Con11 = New NodalPay.E_Control
-        Me.E_Con4 = New NodalPay.E_Control
-        Me.E_Con1 = New NodalPay.E_Control
-        Me.E_Con8 = New NodalPay.E_Control
-        Me.E_Con10 = New NodalPay.E_Control
-        Me.E_Con12 = New NodalPay.E_Control
-        Me.E_Con6 = New NodalPay.E_Control
-        Me.E_Con7 = New NodalPay.E_Control
-        Me.E_Con2 = New NodalPay.E_Control
-        Me.E_HeadLine1 = New NodalPay.E_HeadLine
+        Me.E_Con9 = New NodalPay.E_Control()
+        Me.E_Con3 = New NodalPay.E_Control()
+        Me.E_Con14 = New NodalPay.E_Control()
+        Me.E_Con5 = New NodalPay.E_Control()
+        Me.E_Con13 = New NodalPay.E_Control()
+        Me.E_Con15 = New NodalPay.E_Control()
+        Me.E_Con11 = New NodalPay.E_Control()
+        Me.E_Con4 = New NodalPay.E_Control()
+        Me.E_Con1 = New NodalPay.E_Control()
+        Me.E_Con8 = New NodalPay.E_Control()
+        Me.E_Con10 = New NodalPay.E_Control()
+        Me.E_Con12 = New NodalPay.E_Control()
+        Me.E_Con6 = New NodalPay.E_Control()
+        Me.E_Con7 = New NodalPay.E_Control()
+        Me.E_Con2 = New NodalPay.E_Control()
+        Me.E_HeadLine1 = New NodalPay.E_HeadLine()
         Me.TS1.SuspendLayout()
         Me.sspStatus.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -93,7 +94,7 @@ Partial Class FrmPrMsTemplateEDC
         '
         'TS1
         '
-        Me.TS1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBNew, Me.TSBSave, Me.TSBDelete, Me.TSBExcel, Me.BtnFixSequence})
+        Me.TS1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBNew, Me.TSBSave, Me.TSBDelete, Me.TSBExcel, Me.BtnFixSequence, Me.TSBEnableEDC1})
         Me.TS1.Location = New System.Drawing.Point(0, 0)
         Me.TS1.Name = "TS1"
         Me.TS1.Size = New System.Drawing.Size(1355, 25)
@@ -143,6 +144,15 @@ Partial Class FrmPrMsTemplateEDC
         Me.BtnFixSequence.Name = "BtnFixSequence"
         Me.BtnFixSequence.Size = New System.Drawing.Size(150, 22)
         Me.BtnFixSequence.Text = "Setup Reporting Sequence"
+        '
+        'TSBEnableEDC1
+        '
+        Me.TSBEnableEDC1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.TSBEnableEDC1.Image = CType(resources.GetObject("TSBEnableEDC1.Image"), System.Drawing.Image)
+        Me.TSBEnableEDC1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSBEnableEDC1.Name = "TSBEnableEDC1"
+        Me.TSBEnableEDC1.Size = New System.Drawing.Size(210, 22)
+        Me.TSBEnableEDC1.Text = "Enable EDC to Periods and Employees"
         '
         'sspStatus
         '
@@ -683,4 +693,5 @@ Partial Class FrmPrMsTemplateEDC
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Er1 As System.Windows.Forms.ErrorProvider
     Friend WithEvents BtnFixSequence As System.Windows.Forms.ToolStripButton
+    Friend WithEvents TSBEnableEDC1 As ToolStripButton
 End Class

@@ -757,6 +757,12 @@
     <Compile Include="Forms\FrmDisLFFE.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\FrmEnableEDC.Designer.vb">
+      <DependentUpon>FrmEnableEDC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmEnableEDC.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\FrmGmail.Designer.vb">
       <DependentUpon>FrmGmail.vb</DependentUpon>
     </Compile>
@@ -3010,6 +3016,9 @@
     <EmbeddedResource Include="Forms\FrmDisLFFE.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FrmDisLFFE.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmEnableEDC.resx">
+      <DependentUpon>FrmEnableEDC.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmGmail.resx">
       <SubType>Designer</SubType>

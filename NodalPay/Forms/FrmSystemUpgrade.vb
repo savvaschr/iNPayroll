@@ -928,4 +928,35 @@ Public Class FrmSystemUpgrade
     Private Sub Button83_Click(sender As Object, e As EventArgs) Handles Button83.Click
         Global1.Business.Upgrade_2025_06()
     End Sub
+
+    Private Sub Button84_Click(sender As Object, e As EventArgs) Handles Button84.Click
+        Try
+            Dim tPrSsLimits As New cPrSsLimits
+            With tPrSsLimits
+                .Id = 0
+                .EffectiveDate = CDate("2026/01/01")
+                .Cola = CDbl(12.56)
+                .InsurableWk = CDbl(1325)
+                .InsurableMth = CDbl(5742)
+                .InsurableAnnual = CDbl(68904)
+                .DedContrAnnual = CDbl(12127.1)
+                .IndAnnual = CDbl(344.52)
+                .UnemAnnual = CDbl(826.85)
+                .GesiD = CDbl(4770)
+                .GesiC = CDbl(5220)
+                If .Save() Then
+                    MsgBox("Succesfull Limits Change for 2026", MsgBoxStyle.Information)
+                Else
+                    MsgBox("Unable to save Changes", MsgBoxStyle.Critical)
+                End If
+            End With
+        Catch ex As Exception
+            Utils.ShowException(ex)
+            MsgBox("Unable to save Changes", MsgBoxStyle.Critical)
+        End Try
+    End Sub
+
+    Private Sub Button85_Click(sender As Object, e As EventArgs) Handles Button85.Click
+        Dim T1 As New cPrSsTaxTable()
+    End Sub
 End Class

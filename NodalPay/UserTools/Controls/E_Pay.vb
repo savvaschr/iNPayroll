@@ -24,7 +24,9 @@ Public Class E_Pay
                 Me.txtValue.ReadOnly = False
             End If
             MyType = Ern.TypeMode
-           
+            If .ErnCodCode = "E1" Or .ErnCodCode = "E01" Then 'Employee
+                Me.txtValue.ReadOnly = True
+            End If
         End With
     End Sub
 

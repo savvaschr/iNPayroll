@@ -103,12 +103,15 @@ Partial Class FrmSystemUpgrade
         Me.Button78 = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Button84 = New System.Windows.Forms.Button()
+        Me.Button83 = New System.Windows.Forms.Button()
         Me.Button82 = New System.Windows.Forms.Button()
         Me.Button81 = New System.Windows.Forms.Button()
         Me.Button80 = New System.Windows.Forms.Button()
         Me.Button79 = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.Button83 = New System.Windows.Forms.Button()
+        Me.Button85 = New System.Windows.Forms.Button()
+        Me.Button86 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -933,6 +936,9 @@ Partial Class FrmSystemUpgrade
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.Button86)
+        Me.TabPage2.Controls.Add(Me.Button85)
+        Me.TabPage2.Controls.Add(Me.Button84)
         Me.TabPage2.Controls.Add(Me.Button83)
         Me.TabPage2.Controls.Add(Me.Button82)
         Me.TabPage2.Controls.Add(Me.Button81)
@@ -965,6 +971,26 @@ Partial Class FrmSystemUpgrade
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "2025"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'Button84
+        '
+        Me.Button84.Location = New System.Drawing.Point(254, 151)
+        Me.Button84.Name = "Button84"
+        Me.Button84.Size = New System.Drawing.Size(233, 23)
+        Me.Button84.TabIndex = 84
+        Me.Button84.Text = "84. SI Limits 2026"
+        Me.Button84.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button84.UseVisualStyleBackColor = True
+        '
+        'Button83
+        '
+        Me.Button83.Location = New System.Drawing.Point(254, 122)
+        Me.Button83.Name = "Button83"
+        Me.Button83.Size = New System.Drawing.Size(233, 23)
+        Me.Button83.TabIndex = 83
+        Me.Button83.Text = "83. Create PAYE Limit and Minus1 Parameters"
+        Me.Button83.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button83.UseVisualStyleBackColor = True
         '
         'Button82
         '
@@ -1075,15 +1101,25 @@ Partial Class FrmSystemUpgrade
         Me.TabPage1.Text = "2024"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
-        'Button83
+        'Button85
         '
-        Me.Button83.Location = New System.Drawing.Point(254, 122)
-        Me.Button83.Name = "Button83"
-        Me.Button83.Size = New System.Drawing.Size(233, 23)
-        Me.Button83.TabIndex = 83
-        Me.Button83.Text = "83. Create PAYE Limit and Minus1 Parameters"
-        Me.Button83.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button83.UseVisualStyleBackColor = True
+        Me.Button85.Location = New System.Drawing.Point(254, 180)
+        Me.Button85.Name = "Button85"
+        Me.Button85.Size = New System.Drawing.Size(233, 23)
+        Me.Button85.TabIndex = 85
+        Me.Button85.Text = "85. 2026 TAx Brackets"
+        Me.Button85.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button85.UseVisualStyleBackColor = True
+        '
+        'Button86
+        '
+        Me.Button86.Location = New System.Drawing.Point(534, 6)
+        Me.Button86.Name = "Button86"
+        Me.Button86.Size = New System.Drawing.Size(233, 23)
+        Me.Button86.TabIndex = 86
+        Me.Button86.Text = "2025 TAx Brackets"
+        Me.Button86.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button86.UseVisualStyleBackColor = True
         '
         'FrmSystemUpgrade
         '
@@ -1186,4 +1222,7 @@ Partial Class FrmSystemUpgrade
     Friend WithEvents Button81 As Button
     Friend WithEvents Button82 As Button
     Friend WithEvents Button83 As Button
+    Friend WithEvents Button84 As Button
+    Friend WithEvents Button86 As Button
+    Friend WithEvents Button85 As Button
 End Class

@@ -627,4 +627,228 @@ Public Class FrmPrMsTemplateEDC
     Private Sub BtnFixSequence_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnFixSequence.Click
         FixSequence()
     End Sub
+
+    Private Sub TSBEnableEDC1_Click(sender As Object, e As EventArgs) Handles TSBEnableEDC1.Click
+
+        Dim TemplateGroup As New cPrMsTemplateGroup
+        TemplateGroup = CType(Me.ComboTemplateGroup.SelectedItem, cPrMsTemplateGroup)
+        If TemplateGroup.Code <> "" Then
+            Dim F As New FrmEnableEDC
+            F.Owner = Me
+            F.ShowDialog()
+        End If
+
+    End Sub
+    Public Function ActivateEDC(ByVal EDCCode As String, ByVal EDCType As String)
+        If ActivateOnPeriods(EDCCode, EDCType) Then
+            ActivateOnEmployees(EDCCode, EDCType)
+        End If
+
+    End Function
+    Private Function ActivateOnPeriods(ByVal EDCCode As String, ByVal EDCType As String)
+        Dim F As Boolean = True
+
+        Dim GroupCode As String
+        Dim Exx As New System.Exception
+        Dim ds As DataSet
+        Dim TemplateGroup As New cPrMsTemplateGroup
+        TemplateGroup = CType(Me.ComboTemplateGroup.SelectedItem, cPrMsTemplateGroup)
+
+        Dim NumberOfPeriods As Integer = -1
+        ds = Global1.Business.FindCurrentPeriod1(TemplateGroup.Code)
+        If CheckDataSet(ds) Then
+            Global1.Business.BeginTransaction()
+            Try
+
+                Dim GLBCurrentPeriod As New cPrMsPeriodCodes
+                GLBCurrentPeriod = New cPrMsPeriodCodes(ds.Tables(0).Rows(0))
+
+
+                GroupCode = New cPrMsPeriodGroups(GLBCurrentPeriod.PrdGrpCode).Code
+                Dim Group As New cPrMsPeriodGroups(GroupCode)
+                Dim i As Integer
+
+                Dim DsPer As DataSet = Global1.Business.GetAllPrMsPeriodsByPeriodGroup(Group.Code)
+                If CheckDataSet(DsPer) Then
+                    NumberOfPeriods = DsPer.Tables(0).Rows.Count - 1
+                    Select Case EDCType
+                        Case "E"
+                            Dim Ern As New cPrMsTemplateEarnings(Group.TemGrpCode, EDCCode)
+                            If Ern.ErnCodCode = "" Or Ern.ErnCodCode Is Nothing Then
+                                MsgBox("Invalid Earning Code", MsgBoxStyle.Critical)
+                                Exit Function
+                            End If
+                            For i = 0 To NumberOfPeriods
+
+                                Dim Per As New cPrMsPeriodCodes(DbNullToString(DsPer.Tables(0).Rows(i).Item(0)), GroupCode)
+                                Dim P As New cPrMsPeriodEarnings(Per.Code, Per.PrdGrpCode, EDCCode)
+                                If P.Id = 0 Then
+                                    P.PrdCodCode = Per.Code
+                                    P.PrdgrpCode = Per.PrdGrpCode
+                                    P.ErnCodCode = EDCCode
+                                    P.IsActive = "Y"
+                                    If Not P.Save Then
+                                        F = False
+                                        Throw Exx
+                                    End If
+                                Else
+                                    P.IsActive = "Y"
+                                    If Not P.Save Then
+                                        F = False
+                                        Throw Exx
+                                    End If
+                                End If
+                            Next
+                        Case "D"
+                            Dim Ded As New cPrMsTemplateDeductions(Group.TemGrpCode, EDCCode)
+                            If Ded.DedCodCode = "" Or Ded.DedCodCode Is Nothing Then
+                                MsgBox("Invalid Deduction Code", MsgBoxStyle.Critical)
+                                Exit Function
+                            End If
+                            For i = 0 To NumberOfPeriods
+                                Dim Per As New cPrMsPeriodCodes(DbNullToString(DsPer.Tables(0).Rows(i).Item(0)), GroupCode)
+                                Dim P As New cPrMsPeriodDeductions(Per.Code, Per.PrdGrpCode, EDCCode)
+                                If P.Id = 0 Then
+                                    P.PrdCodCode = Per.Code
+                                    P.PrdGrpCode = Per.PrdGrpCode
+                                    P.DedCodCode = EDCCode
+                                    P.IsActive = "Y"
+                                    If Not P.Save Then
+                                        F = False
+                                        Throw Exx
+                                    End If
+                                Else
+                                    P.IsActive = "Y"
+                                    If Not P.Save Then
+                                        Throw Exx
+                                        F = False
+                                    End If
+                                End If
+                            Next
+                        Case "C"
+                            Dim Con As New cPrMsTemplateContributions(Group.TemGrpCode, EDCCode)
+                            If Con.ConCodCode = "" Or Con.ConCodCode Is Nothing Then
+                                MsgBox("Invalid Contribution Code", MsgBoxStyle.Critical)
+                                Exit Function
+                            End If
+                            For i = 0 To NumberOfPeriods
+                                Dim Per As New cPrMsPeriodCodes(DbNullToString(DsPer.Tables(0).Rows(i).Item(0)), GroupCode)
+                                Dim P As New cPrMsPeriodContributions(Per.Code, Per.PrdGrpCode, EDCCode)
+                                If P.Id = 0 Then
+                                    P.PrdCodCode = Per.Code
+                                    P.PrdGrpCode = Per.PrdGrpCode
+                                    P.ConCodCode = EDCCode
+                                    P.IsActive = "Y"
+                                    If Not P.Save Then
+                                        Throw Exx
+                                        F = False
+                                    End If
+                                Else
+                                    P.IsActive = "Y"
+                                    If Not P.Save Then
+                                        Throw Exx
+                                        F = False
+                                    End If
+                                End If
+                            Next
+                    End Select
+                End If
+                If F Then
+                    Global1.Business.CommitTransaction()
+                    MsgBox("Succesfull addition on Periods", MsgBoxStyle.Information)
+                Else
+                    Global1.Business.Rollback()
+                End If
+            Catch ex As Exception
+                Global1.Business.Rollback()
+                MsgBox("Unable to Save Changes on Periods", MsgBoxStyle.Information)
+            End Try
+        End If
+        Return F
+    End Function
+    Private Function ActivateOnEmployees(ByVal EDCCode As String, ByVal EDCType As String)
+        Dim F As Boolean = True
+
+        Dim GroupCode As String
+        Dim Exx As New System.Exception
+        Dim ds As DataSet
+        Dim TemplateGroup As New cPrMsTemplateGroup
+        TemplateGroup = CType(Me.ComboTemplateGroup.SelectedItem, cPrMsTemplateGroup)
+
+        Dim NumberOfPeriods As Integer = -1
+        ds = Global1.Business.GetAllEmployeesOfTemplateGroup(TemplateGroup.Code)
+        If CheckDataSet(ds) Then
+            Global1.Business.BeginTransaction()
+            Try
+                Dim i As Integer
+                Dim EmpCode As String
+                Select Case EDCType
+                    Case "E"
+                        For i = 0 To ds.Tables(0).Rows.Count - 1
+                            EmpCode = DbNullToString(ds.Tables(0).Rows(i).Item(0))
+                            Dim EmpErn As New cPrMsEmployeeEarnings(EmpCode, EDCCode)
+                            If EmpErn.Id = 0 Then
+                                With EmpErn
+                                    .EmpCode = EmpCode
+                                    .ErnCode = EDCCode
+                                    .TemGrpCode = TemplateGroup.Code
+                                    .MyValue = 0
+                                    If Not .Save Then
+                                        F = False
+                                    End If
+                                End With
+                            End If
+                        Next
+
+                    Case "D"
+                        For i = 0 To ds.Tables(0).Rows.Count - 1
+                            EmpCode = DbNullToString(ds.Tables(0).Rows(i).Item(0))
+                            Dim EmpDed As New cPrMsEmployeeDeductions(EmpCode, EDCCode)
+                            If EmpDed.Id = 0 Then
+                                With EmpDed
+                                    .EmpCode = EmpCode
+                                    .DedCode = EDCCode
+                                    .TemGrpCode = TemplateGroup.Code
+                                    .MyValue = 0
+                                    If Not .Save Then
+                                        F = False
+                                    End If
+                                End With
+                            End If
+                        Next
+
+                    Case "C"
+                        For i = 0 To ds.Tables(0).Rows.Count - 1
+                            EmpCode = DbNullToString(ds.Tables(0).Rows(i).Item(0))
+                            Dim Empcon As New cPrMsEmployeeContributions(EmpCode, EDCCode)
+                            If Empcon.Id = 0 Then
+                                With Empcon
+                                    .EmpCode = EmpCode
+                                    .ConCode = EDCCode
+                                    .TemGrpCode = TemplateGroup.Code
+                                    .MyValue = 0
+                                    If Not .Save Then
+                                        F = False
+                                    End If
+                                End With
+                            End If
+                        Next
+
+                End Select
+
+                If F Then
+                    Global1.Business.CommitTransaction()
+                    MsgBox("Succesfull addition on Employees", MsgBoxStyle.Information)
+                Else
+                    Global1.Business.Rollback()
+                End If
+            Catch ex As Exception
+                Global1.Business.Rollback()
+                MsgBox("Unable to Save Changes on Employees", MsgBoxStyle.Information)
+            End Try
+        End If
+
+    End Function
+
+
 End Class

@@ -352,6 +352,7 @@ Public Class cBusiness
     Public Shadows Function SearchForOnlyActiveEmployees(ByVal TempGroup As String) As DataSet
         Return MyBase.SearchForOnlyActiveEmployees(TempGroup)
     End Function
+
     Public Shadows Function SearchForEmployee2(ByVal Code As String, ByVal Description As String, ByVal ActiveOnly As Boolean) As DataSet
         Return MyBase.SearchForEmployee2(Code, Description, ActiveOnly)
     End Function
@@ -753,6 +754,10 @@ Public Class cBusiness
     End Function
     Public Shadows Function REPORT_IR7_2024(ByVal PerGrp As cPrMsPeriodGroups, ByVal FromCode As String, ByVal ToCode As String, ByVal YearDate As Date, Optional ByVal showmessages As Boolean = True, Optional ByVal ShowInExcel As Boolean = False, Optional ByVal BIKOnSI As Boolean = False, Optional ByVal Dissablerehire As Boolean = False) As DataSet
         Return MyBase.REPORT_IR7_2024(PerGrp, FromCode, ToCode, YearDate, showmessages, ShowInExcel, BIKOnSI, Dissablerehire)
+
+    End Function
+    Public Shadows Function REPORT_IR7_2025(ByVal PerGrp As cPrMsPeriodGroups, ByVal FromCode As String, ByVal ToCode As String, ByVal YearDate As Date, Optional ByVal showmessages As Boolean = True, Optional ByVal ShowInExcel As Boolean = False, Optional ByVal BIKOnSI As Boolean = False, Optional ByVal Dissablerehire As Boolean = False) As DataSet
+        Return MyBase.REPORT_IR7_2025(PerGrp, FromCode, ToCode, YearDate, showmessages, ShowInExcel, BIKOnSI, Dissablerehire)
 
     End Function
     Public Shadows Function REPORT_IR7_2024_Integers(ByVal PerGrp As cPrMsPeriodGroups, ByVal FromCode As String, ByVal ToCode As String, ByVal YearDate As Date, Optional ByVal showmessages As Boolean = True, Optional ByVal ShowInExcel As Boolean = False, Optional ByVal BIKOnSI As Boolean = False, Optional ByVal Dissablerehire As Boolean = False) As DataSet

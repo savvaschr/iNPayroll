@@ -2289,9 +2289,9 @@ Partial Class FrmPayroll1
         Me.GroupBox1.Controls.Add(Me.lblNonTaPeriods)
         Me.GroupBox1.Controls.Add(Me.lblTaxabPeriods)
         Me.GroupBox1.Controls.Add(Me.lblTotalPeriods)
-        Me.GroupBox1.Location = New System.Drawing.Point(1127, 33)
+        Me.GroupBox1.Location = New System.Drawing.Point(1041, 33)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(207, 106)
+        Me.GroupBox1.Size = New System.Drawing.Size(185, 106)
         Me.GroupBox1.TabIndex = 78
         Me.GroupBox1.TabStop = False
         '
@@ -2463,7 +2463,7 @@ Partial Class FrmPayroll1
         Me.ComboNoOfRows.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
         Me.ComboNoOfRows.FormattingEnabled = True
         Me.ComboNoOfRows.Items.AddRange(New Object() {"20", "30", "40", "All"})
-        Me.ComboNoOfRows.Location = New System.Drawing.Point(1183, 171)
+        Me.ComboNoOfRows.Location = New System.Drawing.Point(1073, 171)
         Me.ComboNoOfRows.Name = "ComboNoOfRows"
         Me.ComboNoOfRows.Size = New System.Drawing.Size(45, 21)
         Me.ComboNoOfRows.TabIndex = 93
@@ -2471,7 +2471,7 @@ Partial Class FrmPayroll1
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(1114, 176)
+        Me.Label11.Location = New System.Drawing.Point(1004, 176)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(63, 13)
         Me.Label11.TabIndex = 96
@@ -2560,7 +2560,7 @@ Partial Class FrmPayroll1
         'BtnNext1
         '
         Me.BtnNext1.Image = CType(resources.GetObject("BtnNext1.Image"), System.Drawing.Image)
-        Me.BtnNext1.Location = New System.Drawing.Point(1290, 171)
+        Me.BtnNext1.Location = New System.Drawing.Point(1180, 171)
         Me.BtnNext1.Name = "BtnNext1"
         Me.BtnNext1.Size = New System.Drawing.Size(46, 23)
         Me.BtnNext1.TabIndex = 94
@@ -2569,7 +2569,7 @@ Partial Class FrmPayroll1
         'BtnPrevius1
         '
         Me.BtnPrevius1.Image = CType(resources.GetObject("BtnPrevius1.Image"), System.Drawing.Image)
-        Me.BtnPrevius1.Location = New System.Drawing.Point(1238, 171)
+        Me.BtnPrevius1.Location = New System.Drawing.Point(1128, 171)
         Me.BtnPrevius1.Name = "BtnPrevius1"
         Me.BtnPrevius1.Size = New System.Drawing.Size(46, 23)
         Me.BtnPrevius1.TabIndex = 95

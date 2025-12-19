@@ -891,7 +891,7 @@ Public Class FrmIR61_2019
                     Dim tCode As String
                     tCode = DbNullToString(DsPensionFund.Tables(0).Rows(k).Item(0))
                     If Code = tCode Then
-                        Ds.Tables(0).Rows(i).Item(COLx_PensionableBenefitsContribution) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_PensionableBenefitsContribution)) + DbNullToDouble(DbNullToString(DsPensionFund.Tables(0).Rows(k).Item(1)))
+                        Ds.Tables(0).Rows(i).Item(COLx_PensionableBenefitsContribution) = 0 ' DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_PensionableBenefitsContribution)) + DbNullToDouble(DbNullToString(DsPensionFund.Tables(0).Rows(k).Item(1)))
                         ' Exit For
                     End If
                 Next
@@ -899,7 +899,7 @@ Public Class FrmIR61_2019
                     Dim tCode As String
                     tCode = DbNullToString(DSWidowAndOrphans.Tables(0).Rows(k).Item(0))
                     If Code = tCode Then
-                        Ds.Tables(0).Rows(i).Item(COLx_PensionableBenefitsContribution) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_PensionableBenefitsContribution)) + DbNullToDouble(DbNullToString(DSWidowAndOrphans.Tables(0).Rows(k).Item(1)))
+                        Ds.Tables(0).Rows(i).Item(COLx_PensionableBenefitsContribution) = 0 ' DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_PensionableBenefitsContribution)) + DbNullToDouble(DbNullToString(DSWidowAndOrphans.Tables(0).Rows(k).Item(1)))
                         ' Exit For
                     End If
                 Next
@@ -1106,7 +1106,7 @@ Public Class FrmIR61_2019
         If PARAM_PublicSector = "No" Then
             S = "<PayeEmployerType>" & "Private Sector" & "</PayeEmployerType>"
         Else
-            S = "<PayeEmployerType>" & "Broader Public Service" & "</PayeEmployerType>"
+            S = "<PayeEmployerType>" & "Broader Public Sector" & "</PayeEmployerType>"
         End If
         'S = "<PayeEmployerType>" & "Public Sector" & "</PayeEmployerType>"
         WriteToTAXFile(S, Company)

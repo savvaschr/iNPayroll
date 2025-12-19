@@ -479,6 +479,7 @@ Private Sub InitializeComponent()
         Me.BtnNext = New System.Windows.Forms.Button()
         Me.BtnPrevius = New System.Windows.Forms.Button()
         Me.CBSearchOnlyActive = New System.Windows.Forms.CheckBox()
+        Me.Button36 = New System.Windows.Forms.Button()
         Me.C_Emp15 = New NodalPay.C_Emp()
         Me.D_Emp15 = New NodalPay.D_Emp()
         Me.E_Emp15 = New NodalPay.E_Emp()
@@ -2327,6 +2328,7 @@ Private Sub InitializeComponent()
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.Button36)
         Me.TabPage2.Controls.Add(Me.txtEmail2)
         Me.TabPage2.Controls.Add(Me.Label60)
         Me.TabPage2.Controls.Add(Me.Button34)
@@ -2487,7 +2489,6 @@ Private Sub InitializeComponent()
         Me.txtPassword.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.txtPassword.Size = New System.Drawing.Size(130, 20)
         Me.txtPassword.TabIndex = 20
-        Me.txtPassword.UseSystemPasswordChar = True
         '
         'Label44
         '
@@ -4636,6 +4637,15 @@ Private Sub InitializeComponent()
         Me.CBSearchOnlyActive.Text = "Only Active"
         Me.CBSearchOnlyActive.UseVisualStyleBackColor = False
         '
+        'Button36
+        '
+        Me.Button36.Location = New System.Drawing.Point(276, 248)
+        Me.Button36.Name = "Button36"
+        Me.Button36.Size = New System.Drawing.Size(41, 23)
+        Me.Button36.TabIndex = 106
+        Me.Button36.Text = "View"
+        Me.Button36.UseVisualStyleBackColor = True
+        '
         'C_Emp15
         '
         Me.C_Emp15.Location = New System.Drawing.Point(631, 411)
@@ -5631,4 +5641,5 @@ Private Sub InitializeComponent()
     Friend WithEvents btnFixAnalysis2 As Button
     Friend WithEvents btnFixAnalysis1 As Button
     Friend WithEvents EmployeePositionsReportToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Button36 As Button
 End Class

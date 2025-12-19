@@ -6769,4 +6769,16 @@ Public Class frmPrMsEmployees
             CBForce50Percent.CheckState = CheckState.Unchecked
         End If
     End Sub
+
+    Private Sub Button36_Click(sender As Object, e As EventArgs) Handles Button36.Click
+        If Button36.Text = "View" Then
+            Button36.Text = "Hide"
+            Me.txtPassword.PasswordChar = ""
+            Me.txtPassword.Refresh()
+        Else
+            Button36.Text = "View"
+            Me.txtPassword.PasswordChar = "*"
+            Me.txtPassword.Refresh()
+        End If
+    End Sub
 End Class

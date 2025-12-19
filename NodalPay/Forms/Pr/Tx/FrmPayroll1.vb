@@ -2454,7 +2454,7 @@ Public Class FrmPayroll1
                             If found Then
                                 r(Me.Column_E1 + C1) = E.ErnCodCode
                                 C1 = C1 + 2
-                                ChangeEarningsColumnName(E.DisplayName, DescCounter, E.FromMode)
+                                ChangeEarningsColumnName(E.DisplayName, DescCounter, E.FromMode, E.ErnCodCode)
                                 DescCounter = DescCounter + 1
                                 '''''''''''''''''''''''''''''''''''''''''''''''
                                 'Loading Eqarning In FrmPrTxCoulculatePayroll
@@ -2897,7 +2897,7 @@ Public Class FrmPayroll1
             DG1.Columns(i).DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
         Next
     End Sub
-    Private Sub ChangeEarningsColumnName(ByVal DisplayName As String, ByVal Counter As Integer, ByVal FromMode As String)
+    Private Sub ChangeEarningsColumnName(ByVal DisplayName As String, ByVal Counter As Integer, ByVal FromMode As String, EarningCode As String)
         Dim C As Integer
         Select Case Counter
             Case 0
@@ -2938,6 +2938,10 @@ Public Class FrmPayroll1
         DG1.Columns(C).DefaultCellStyle.BackColor = Color_Earnings
 
         If FromMode = "F" Or FromMode = "T" Then
+            DG1.Columns(C).ReadOnly = True
+            DG1.Columns(C).DefaultCellStyle.ForeColor = Color_NotEdit
+        End If
+        If EarningCode = "E1" Or EarningCode = "E01" Then
             DG1.Columns(C).ReadOnly = True
             DG1.Columns(C).DefaultCellStyle.ForeColor = Color_NotEdit
         End If

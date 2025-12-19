@@ -77,6 +77,8 @@ Partial Class FrmIR63A
         Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
         Me.CreateFile2010ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator13 = New System.Windows.Forms.ToolStripSeparator()
+        Me.CreateXMLFile2025ForTFAToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CreateXMLFile2025ForTFAWithExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TSBIR61 = New System.Windows.Forms.ToolStripSplitButton()
         Me.TestToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuIR61_2012 = New System.Windows.Forms.ToolStripMenuItem()
@@ -308,7 +310,7 @@ Partial Class FrmIR63A
         'MnuIR7
         '
         Me.MnuIR7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.MnuIR7.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TestToolStripMenuItem, Me.ToolStripSeparator15, Me.mnuCreateXML2024, Me.mnuCreateXML2024_WithExcel, Me.ToolStripSeparator14, Me.TestXML20182019ToolStripMenuItem, Me.CreateXMLFile20182019SettingBIKNHSOnSocialInsuranceNHSToolStripMenuItem, Me.ToolStripSeparator1, Me.TestXML20182019WithExcelToolStripMenuItem, Me.TestXMLWithExcelSettingBIKNHSOnSocialInsuranceNHSToolStripMenuItem, Me.ToolStripSeparator5, Me.MnuIR7ToScreen, Me.MnuIR7ToPrinter, Me.CreateXMLFile2017ToolStripMenuItem, Me.ToolStripSeparator4, Me.CreateXMLFile2016ToolStripMenuItem, Me.CreateXMLFileForYears2012AndAboveToolStripMenuItem, Me.ToolStripSeparator2, Me.Mnu_IR7_2012File, Me.ToolStripSeparator3, Me.TSBCreateIR7File, Me.ToolStripSeparator6, Me.CreateFile2010ToolStripMenuItem, Me.ToolStripSeparator13})
+        Me.MnuIR7.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TestToolStripMenuItem, Me.ToolStripSeparator15, Me.mnuCreateXML2024, Me.mnuCreateXML2024_WithExcel, Me.ToolStripSeparator14, Me.TestXML20182019ToolStripMenuItem, Me.CreateXMLFile20182019SettingBIKNHSOnSocialInsuranceNHSToolStripMenuItem, Me.ToolStripSeparator1, Me.TestXML20182019WithExcelToolStripMenuItem, Me.TestXMLWithExcelSettingBIKNHSOnSocialInsuranceNHSToolStripMenuItem, Me.ToolStripSeparator5, Me.MnuIR7ToScreen, Me.MnuIR7ToPrinter, Me.CreateXMLFile2017ToolStripMenuItem, Me.ToolStripSeparator4, Me.CreateXMLFile2016ToolStripMenuItem, Me.CreateXMLFileForYears2012AndAboveToolStripMenuItem, Me.ToolStripSeparator2, Me.Mnu_IR7_2012File, Me.ToolStripSeparator3, Me.TSBCreateIR7File, Me.ToolStripSeparator6, Me.CreateFile2010ToolStripMenuItem, Me.ToolStripSeparator13, Me.CreateXMLFile2025ForTFAToolStripMenuItem, Me.CreateXMLFile2025ForTFAWithExcelToolStripMenuItem})
         Me.MnuIR7.Image = CType(resources.GetObject("MnuIR7.Image"), System.Drawing.Image)
         Me.MnuIR7.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.MnuIR7.Name = "MnuIR7"
@@ -468,6 +470,20 @@ Partial Class FrmIR63A
         Me.ToolStripSeparator13.Name = "ToolStripSeparator13"
         Me.ToolStripSeparator13.Size = New System.Drawing.Size(623, 6)
         Me.ToolStripSeparator13.Visible = False
+        '
+        'CreateXMLFile2025ForTFAToolStripMenuItem
+        '
+        Me.CreateXMLFile2025ForTFAToolStripMenuItem.Name = "CreateXMLFile2025ForTFAToolStripMenuItem"
+        Me.CreateXMLFile2025ForTFAToolStripMenuItem.Size = New System.Drawing.Size(626, 22)
+        Me.CreateXMLFile2025ForTFAToolStripMenuItem.Text = "Create XML File - 2025 for TFA"
+        Me.CreateXMLFile2025ForTFAToolStripMenuItem.Visible = False
+        '
+        'CreateXMLFile2025ForTFAWithExcelToolStripMenuItem
+        '
+        Me.CreateXMLFile2025ForTFAWithExcelToolStripMenuItem.Name = "CreateXMLFile2025ForTFAWithExcelToolStripMenuItem"
+        Me.CreateXMLFile2025ForTFAWithExcelToolStripMenuItem.Size = New System.Drawing.Size(626, 22)
+        Me.CreateXMLFile2025ForTFAWithExcelToolStripMenuItem.Text = "Create XML File - 2025 for TFA With Excel"
+        Me.CreateXMLFile2025ForTFAWithExcelToolStripMenuItem.Visible = False
         '
         'TSBIR61
         '
@@ -1011,4 +1027,6 @@ Partial Class FrmIR63A
     Friend WithEvents ToolStripSeparator15 As ToolStripSeparator
     Friend WithEvents mnuCreateXML2024_WithExcel As ToolStripMenuItem
     Friend WithEvents btnShowXML As Button
+    Friend WithEvents CreateXMLFile2025ForTFAToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CreateXMLFile2025ForTFAWithExcelToolStripMenuItem As ToolStripMenuItem
 End Class
