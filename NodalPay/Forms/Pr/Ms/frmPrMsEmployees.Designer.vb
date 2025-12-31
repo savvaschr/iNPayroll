@@ -252,6 +252,7 @@ Private Sub InitializeComponent()
         Me.cmbIntMF = New System.Windows.Forms.ComboBox()
         Me.ComboStatus = New System.Windows.Forms.ComboBox()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Button36 = New System.Windows.Forms.Button()
         Me.txtEmail2 = New System.Windows.Forms.TextBox()
         Me.Label60 = New System.Windows.Forms.Label()
         Me.Button34 = New System.Windows.Forms.Button()
@@ -479,7 +480,6 @@ Private Sub InitializeComponent()
         Me.BtnNext = New System.Windows.Forms.Button()
         Me.BtnPrevius = New System.Windows.Forms.Button()
         Me.CBSearchOnlyActive = New System.Windows.Forms.CheckBox()
-        Me.Button36 = New System.Windows.Forms.Button()
         Me.C_Emp15 = New NodalPay.C_Emp()
         Me.D_Emp15 = New NodalPay.D_Emp()
         Me.E_Emp15 = New NodalPay.E_Emp()
@@ -2361,6 +2361,15 @@ Private Sub InitializeComponent()
         Me.TabPage2.Text = "Contact"
         Me.TabPage2.UseVisualStyleBackColor = True
         '
+        'Button36
+        '
+        Me.Button36.Location = New System.Drawing.Point(276, 248)
+        Me.Button36.Name = "Button36"
+        Me.Button36.Size = New System.Drawing.Size(41, 23)
+        Me.Button36.TabIndex = 106
+        Me.Button36.Text = "View"
+        Me.Button36.UseVisualStyleBackColor = True
+        '
         'txtEmail2
         '
         Me.txtEmail2.Location = New System.Drawing.Point(140, 222)
@@ -3387,7 +3396,7 @@ Private Sub InitializeComponent()
         '
         'Button23
         '
-        Me.Button23.Location = New System.Drawing.Point(373, 252)
+        Me.Button23.Location = New System.Drawing.Point(373, 300)
         Me.Button23.Name = "Button23"
         Me.Button23.Size = New System.Drawing.Size(24, 23)
         Me.Button23.TabIndex = 97
@@ -3405,7 +3414,7 @@ Private Sub InitializeComponent()
         '
         'Button8
         '
-        Me.Button8.Location = New System.Drawing.Point(350, 252)
+        Me.Button8.Location = New System.Drawing.Point(350, 300)
         Me.Button8.Name = "Button8"
         Me.Button8.Size = New System.Drawing.Size(24, 23)
         Me.Button8.TabIndex = 93
@@ -3494,7 +3503,7 @@ Private Sub InitializeComponent()
         '
         'btnPositionHistory
         '
-        Me.btnPositionHistory.Location = New System.Drawing.Point(396, 252)
+        Me.btnPositionHistory.Location = New System.Drawing.Point(396, 300)
         Me.btnPositionHistory.Name = "btnPositionHistory"
         Me.btnPositionHistory.Size = New System.Drawing.Size(24, 23)
         Me.btnPositionHistory.TabIndex = 83
@@ -3521,6 +3530,7 @@ Private Sub InitializeComponent()
         Me.GroupBox2.TabIndex = 82
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = " Airlines Functionality"
+        Me.GroupBox2.Visible = False
         '
         'ComboOverLay
         '
@@ -3643,7 +3653,7 @@ Private Sub InitializeComponent()
         '
         'txtPayslipreport
         '
-        Me.txtPayslipreport.Location = New System.Drawing.Point(154, 363)
+        Me.txtPayslipreport.Location = New System.Drawing.Point(154, 411)
         Me.txtPayslipreport.MaxLength = 50
         Me.txtPayslipreport.Name = "txtPayslipreport"
         Me.txtPayslipreport.Size = New System.Drawing.Size(190, 20)
@@ -3652,7 +3662,7 @@ Private Sub InitializeComponent()
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(20, 366)
+        Me.Label22.Location = New System.Drawing.Point(20, 414)
         Me.Label22.Name = "Label22"
         Me.Label22.Size = New System.Drawing.Size(75, 13)
         Me.Label22.TabIndex = 78
@@ -3763,7 +3773,7 @@ Private Sub InitializeComponent()
         'lblEmpPos_Code
         '
         Me.lblEmpPos_Code.AutoSize = True
-        Me.lblEmpPos_Code.Location = New System.Drawing.Point(20, 254)
+        Me.lblEmpPos_Code.Location = New System.Drawing.Point(20, 302)
         Me.lblEmpPos_Code.Name = "lblEmpPos_Code"
         Me.lblEmpPos_Code.Size = New System.Drawing.Size(93, 13)
         Me.lblEmpPos_Code.TabIndex = 49
@@ -3772,7 +3782,7 @@ Private Sub InitializeComponent()
         'lblSic_Code
         '
         Me.lblSic_Code.AutoSize = True
-        Me.lblSic_Code.Location = New System.Drawing.Point(20, 281)
+        Me.lblSic_Code.Location = New System.Drawing.Point(20, 329)
         Me.lblSic_Code.Name = "lblSic_Code"
         Me.lblSic_Code.Size = New System.Drawing.Size(94, 13)
         Me.lblSic_Code.TabIndex = 51
@@ -3781,7 +3791,7 @@ Private Sub InitializeComponent()
         'lblEmpCmm_Code
         '
         Me.lblEmpCmm_Code.AutoSize = True
-        Me.lblEmpCmm_Code.Location = New System.Drawing.Point(20, 308)
+        Me.lblEmpCmm_Code.Location = New System.Drawing.Point(20, 356)
         Me.lblEmpCmm_Code.Name = "lblEmpCmm_Code"
         Me.lblEmpCmm_Code.Size = New System.Drawing.Size(58, 13)
         Me.lblEmpCmm_Code.TabIndex = 53
@@ -3790,7 +3800,7 @@ Private Sub InitializeComponent()
         'cmbEmpPos_Code
         '
         Me.cmbEmpPos_Code.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbEmpPos_Code.Location = New System.Drawing.Point(154, 252)
+        Me.cmbEmpPos_Code.Location = New System.Drawing.Point(154, 300)
         Me.cmbEmpPos_Code.Name = "cmbEmpPos_Code"
         Me.cmbEmpPos_Code.Size = New System.Drawing.Size(190, 21)
         Me.cmbEmpPos_Code.TabIndex = 48
@@ -3798,7 +3808,7 @@ Private Sub InitializeComponent()
         'cmbSic_Code
         '
         Me.cmbSic_Code.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbSic_Code.Location = New System.Drawing.Point(154, 279)
+        Me.cmbSic_Code.Location = New System.Drawing.Point(154, 327)
         Me.cmbSic_Code.Name = "cmbSic_Code"
         Me.cmbSic_Code.Size = New System.Drawing.Size(190, 21)
         Me.cmbSic_Code.TabIndex = 50
@@ -3806,7 +3816,7 @@ Private Sub InitializeComponent()
         'cmbEmpCmm_Code
         '
         Me.cmbEmpCmm_Code.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbEmpCmm_Code.Location = New System.Drawing.Point(154, 306)
+        Me.cmbEmpCmm_Code.Location = New System.Drawing.Point(154, 354)
         Me.cmbEmpCmm_Code.Name = "cmbEmpCmm_Code"
         Me.cmbEmpCmm_Code.Size = New System.Drawing.Size(190, 21)
         Me.cmbEmpCmm_Code.TabIndex = 52
@@ -3814,7 +3824,7 @@ Private Sub InitializeComponent()
         'lblPayUni_Code
         '
         Me.lblPayUni_Code.AutoSize = True
-        Me.lblPayUni_Code.Location = New System.Drawing.Point(20, 148)
+        Me.lblPayUni_Code.Location = New System.Drawing.Point(20, 168)
         Me.lblPayUni_Code.Name = "lblPayUni_Code"
         Me.lblPayUni_Code.Size = New System.Drawing.Size(59, 13)
         Me.lblPayUni_Code.TabIndex = 55
@@ -3823,7 +3833,7 @@ Private Sub InitializeComponent()
         'cmbPayUni_Code
         '
         Me.cmbPayUni_Code.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbPayUni_Code.Location = New System.Drawing.Point(154, 146)
+        Me.cmbPayUni_Code.Location = New System.Drawing.Point(154, 166)
         Me.cmbPayUni_Code.Name = "cmbPayUni_Code"
         Me.cmbPayUni_Code.Size = New System.Drawing.Size(190, 21)
         Me.cmbPayUni_Code.TabIndex = 54
@@ -3831,7 +3841,7 @@ Private Sub InitializeComponent()
         'lblPeriodUnits
         '
         Me.lblPeriodUnits.AutoSize = True
-        Me.lblPeriodUnits.Location = New System.Drawing.Point(20, 202)
+        Me.lblPeriodUnits.Location = New System.Drawing.Point(20, 222)
         Me.lblPeriodUnits.Name = "lblPeriodUnits"
         Me.lblPeriodUnits.Size = New System.Drawing.Size(64, 13)
         Me.lblPeriodUnits.TabIndex = 57
@@ -3840,7 +3850,7 @@ Private Sub InitializeComponent()
         'cmbPmtMth_Code
         '
         Me.cmbPmtMth_Code.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbPmtMth_Code.Location = New System.Drawing.Point(154, 333)
+        Me.cmbPmtMth_Code.Location = New System.Drawing.Point(154, 381)
         Me.cmbPmtMth_Code.Name = "cmbPmtMth_Code"
         Me.cmbPmtMth_Code.Size = New System.Drawing.Size(190, 21)
         Me.cmbPmtMth_Code.TabIndex = 64
@@ -3848,7 +3858,7 @@ Private Sub InitializeComponent()
         'lblPmtMth_Code
         '
         Me.lblPmtMth_Code.AutoSize = True
-        Me.lblPmtMth_Code.Location = New System.Drawing.Point(20, 335)
+        Me.lblPmtMth_Code.Location = New System.Drawing.Point(20, 383)
         Me.lblPmtMth_Code.Name = "lblPmtMth_Code"
         Me.lblPmtMth_Code.Size = New System.Drawing.Size(77, 13)
         Me.lblPmtMth_Code.TabIndex = 65
@@ -3856,7 +3866,7 @@ Private Sub InitializeComponent()
         '
         'txtAnnualUnits
         '
-        Me.txtAnnualUnits.Location = New System.Drawing.Point(154, 173)
+        Me.txtAnnualUnits.Location = New System.Drawing.Point(154, 193)
         Me.txtAnnualUnits.MaxLength = 9
         Me.txtAnnualUnits.Name = "txtAnnualUnits"
         Me.txtAnnualUnits.Size = New System.Drawing.Size(64, 20)
@@ -3864,7 +3874,7 @@ Private Sub InitializeComponent()
         '
         'txtPeriodUnits
         '
-        Me.txtPeriodUnits.Location = New System.Drawing.Point(154, 199)
+        Me.txtPeriodUnits.Location = New System.Drawing.Point(154, 219)
         Me.txtPeriodUnits.MaxLength = 9
         Me.txtPeriodUnits.Name = "txtPeriodUnits"
         Me.txtPeriodUnits.Size = New System.Drawing.Size(64, 20)
@@ -3873,7 +3883,7 @@ Private Sub InitializeComponent()
         'lblCur_Code
         '
         Me.lblCur_Code.AutoSize = True
-        Me.lblCur_Code.Location = New System.Drawing.Point(20, 227)
+        Me.lblCur_Code.Location = New System.Drawing.Point(20, 275)
         Me.lblCur_Code.Name = "lblCur_Code"
         Me.lblCur_Code.Size = New System.Drawing.Size(49, 13)
         Me.lblCur_Code.TabIndex = 63
@@ -3882,7 +3892,7 @@ Private Sub InitializeComponent()
         'lblAnnualUnits
         '
         Me.lblAnnualUnits.AutoSize = True
-        Me.lblAnnualUnits.Location = New System.Drawing.Point(20, 175)
+        Me.lblAnnualUnits.Location = New System.Drawing.Point(20, 195)
         Me.lblAnnualUnits.Name = "lblAnnualUnits"
         Me.lblAnnualUnits.Size = New System.Drawing.Size(67, 13)
         Me.lblAnnualUnits.TabIndex = 59
@@ -3891,7 +3901,7 @@ Private Sub InitializeComponent()
         'cmbCur_Code
         '
         Me.cmbCur_Code.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbCur_Code.Location = New System.Drawing.Point(154, 225)
+        Me.cmbCur_Code.Location = New System.Drawing.Point(154, 273)
         Me.cmbCur_Code.Name = "cmbCur_Code"
         Me.cmbCur_Code.Size = New System.Drawing.Size(190, 21)
         Me.cmbCur_Code.TabIndex = 62
@@ -4636,15 +4646,6 @@ Private Sub InitializeComponent()
         Me.CBSearchOnlyActive.TabIndex = 78
         Me.CBSearchOnlyActive.Text = "Only Active"
         Me.CBSearchOnlyActive.UseVisualStyleBackColor = False
-        '
-        'Button36
-        '
-        Me.Button36.Location = New System.Drawing.Point(276, 248)
-        Me.Button36.Name = "Button36"
-        Me.Button36.Size = New System.Drawing.Size(41, 23)
-        Me.Button36.TabIndex = 106
-        Me.Button36.Text = "View"
-        Me.Button36.UseVisualStyleBackColor = True
         '
         'C_Emp15
         '

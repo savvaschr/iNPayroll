@@ -22,11 +22,14 @@ Partial Class FrmFixYTD
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.btnReCalc = New System.Windows.Forms.Button
-        Me.txtEmpCode = New System.Windows.Forms.TextBox
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.txtPeriodGroup = New System.Windows.Forms.TextBox
+        Me.btnReCalc = New System.Windows.Forms.Button()
+        Me.txtEmpCode = New System.Windows.Forms.TextBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.txtPeriodGroup = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.txtPeriodgroup2 = New System.Windows.Forms.TextBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'btnReCalc
@@ -35,7 +38,7 @@ Partial Class FrmFixYTD
         Me.btnReCalc.Name = "btnReCalc"
         Me.btnReCalc.Size = New System.Drawing.Size(115, 23)
         Me.btnReCalc.TabIndex = 0
-        Me.btnReCalc.Text = "Button1"
+        Me.btnReCalc.Text = "Fix Employee"
         Me.btnReCalc.UseVisualStyleBackColor = True
         '
         'txtEmpCode
@@ -70,11 +73,39 @@ Partial Class FrmFixYTD
         Me.txtPeriodGroup.Size = New System.Drawing.Size(115, 20)
         Me.txtPeriodGroup.TabIndex = 3
         '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(12, 204)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(69, 13)
+        Me.Label3.TabIndex = 7
+        Me.Label3.Text = "Period Group"
+        '
+        'txtPeriodgroup2
+        '
+        Me.txtPeriodgroup2.Location = New System.Drawing.Point(113, 201)
+        Me.txtPeriodgroup2.Name = "txtPeriodgroup2"
+        Me.txtPeriodgroup2.Size = New System.Drawing.Size(115, 20)
+        Me.txtPeriodgroup2.TabIndex = 6
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(113, 246)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(115, 23)
+        Me.Button1.TabIndex = 5
+        Me.Button1.Text = "Fix All Employees"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'FrmFixYTD
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(292, 213)
+        Me.ClientSize = New System.Drawing.Size(292, 392)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.txtPeriodgroup2)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.txtPeriodGroup)
         Me.Controls.Add(Me.Label1)
@@ -91,4 +122,7 @@ Partial Class FrmFixYTD
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents txtPeriodGroup As System.Windows.Forms.TextBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents txtPeriodgroup2 As TextBox
+    Friend WithEvents Button1 As Button
 End Class

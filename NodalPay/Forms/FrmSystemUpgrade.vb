@@ -957,6 +957,157 @@ Public Class FrmSystemUpgrade
     End Sub
 
     Private Sub Button85_Click(sender As Object, e As EventArgs) Handles Button85.Click
-        Dim T1 As New cPrSsTaxTable()
+        Dim F As Boolean = True
+        Dim T1 As New cPrSsTaxTable(1, True)
+        T1.TaxTbl_BracketAmount = 22000
+        If Not T1.Save Then
+            F = False
+            MsgBox("Unable to Save Taxbracket 22.000")
+        End If
+        Dim T2 As New cPrSsTaxTable(2, True)
+        T2.TaxTbl_BracketAmount = 10000
+        If Not T2.Save Then
+            F = False
+            MsgBox("Unable to Save Taxbracket 32.000")
+        End If
+        Dim T3 As New cPrSsTaxTable(3, True)
+        T3.TaxTbl_BracketAmount = 10000
+        If Not T3.Save Then
+            F = False
+            MsgBox("Unable to Save Taxbracket 42.000")
+        End If
+        Dim T4 As New cPrSsTaxTable(4, True)
+        T4.TaxTbl_BracketAmount = 30000
+        If Not T4.Save Then
+            F = False
+            MsgBox("Unable to Save Taxbracket 72.000")
+        End If
+        If F Then
+            MsgBox("Taxbrackets are updated for 2026")
+        End If
+
+    End Sub
+
+    Private Sub Button86_Click(sender As Object, e As EventArgs) Handles Button86.Click
+        Dim F As Boolean = True
+        Dim T1 As New cPrSsTaxTable(1, True)
+        T1.TaxTbl_BracketAmount = 19500
+        If Not T1.Save Then
+            F = False
+            MsgBox("Unable to Save Taxbracket 19.500")
+        End If
+        Dim T2 As New cPrSsTaxTable(2, True)
+        T2.TaxTbl_BracketAmount = 8500
+        If Not T2.Save Then
+            F = False
+            MsgBox("Unable to Save Taxbracket 8.500")
+        End If
+        Dim T3 As New cPrSsTaxTable(3, True)
+        T3.TaxTbl_BracketAmount = 8300
+        If Not T3.Save Then
+            F = False
+            MsgBox("Unable to Save Taxbracket 8.300")
+        End If
+        Dim T4 As New cPrSsTaxTable(4, True)
+        T4.TaxTbl_BracketAmount = 23700
+        If Not T4.Save Then
+            F = False
+            MsgBox("Unable to Save Taxbracket 23.700")
+        End If
+        If F Then
+            MsgBox("Taxbrackets are updated for 2025")
+        End If
+
+    End Sub
+
+    Private Sub FrmSystemUpgrade_Load(sender As Object, e As EventArgs) Handles Me.Load
+        If Global1.UserName = "sa" Or Global1.UserName = "nodal" Or Global1.UserName = "insoft" Or UCase(Global1.UserName) = UCase("HQ\nodal") Then
+            Button86.Visible = True
+        Else
+            Button86.Visible = False
+        End If
+    End Sub
+
+    Private Sub Button87_Click(sender As Object, e As EventArgs) Handles Button87.Click
+        Global1.Business.removeOtherIncome1
+    End Sub
+
+    Private Sub Button88_Click(sender As Object, e As EventArgs) Handles Button88.Click
+        Dim Par As New cPrSsParameters("system", "ShowOther1")
+        If Par.Id = 0 Then
+            Par.Id = 0
+            Par.Section = "System"
+            Par.Item = "ShowOther1"
+            Par.Value1 = "0"
+            Par.Type1 = "T"
+            Par.System1 = "Y"
+            Par.Description = "ShowOther1"
+            If Not Par.Save() Then
+                MsgBox("Error")
+            Else
+                MsgBox("Added , set to FALSE")
+            End If
+        Else
+            Par.Value1 = "0"
+            If Not Par.Save() Then
+                MsgBox("Error")
+            Else
+                MsgBox("Updated , set to FALSE")
+            End If
+
+
+        End If
+
+        Par = New cPrSsParameters("system", "ShowAirlines")
+        If Par.Id = 0 Then
+            Par.Id = 0
+            Par.Section = "System"
+            Par.Item = "ShowAirlines"
+            Par.Value1 = "0"
+            Par.Type1 = "T"
+            Par.System1 = "Y"
+            Par.Description = "ShowAirlines"
+            If Not Par.Save() Then
+                MsgBox("Error")
+            Else
+                MsgBox("Added , set to FALSE")
+            End If
+        Else
+            Par.Value1 = "0"
+            If Not Par.Save() Then
+                MsgBox("Error")
+            Else
+                MsgBox("Updated , set to FALSE")
+            End If
+
+
+        End If
+    End Sub
+
+    Private Sub Button89_Click(sender As Object, e As EventArgs) Handles Button89.Click
+        Dim Par As New cPrSsParameters("System", "AllocationStatus")
+        If Par.Id = 0 Then
+            Par.Id = 0
+            Par.Section = "System"
+            Par.Item = "AllocationStatus"
+            Par.Value1 = "MjAyNg=="
+            Par.Type1 = "T"
+            Par.System1 = "Y"
+            Par.Description = "Allocation Status 26"
+            If Par.Save() Then
+                MsgBox("Set Allocation Status")
+            Else
+                MsgBox("Error on Allocation Status")
+            End If
+        Else
+            Par.Value1 = "MjAyNg=="
+            Par.Description = "Allocation Status 26"
+            If Par.Save() Then
+                MsgBox("Set Allocation Status")
+            Else
+                MsgBox("Error on Allocation Status")
+            End If
+        End If
+
     End Sub
 End Class

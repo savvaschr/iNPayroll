@@ -1172,11 +1172,10 @@ Public Class FrmRptSIContributions
                             Str04 = Str04 & Emp.AlienNumber.PadLeft(8, "0")
                         End If
                         ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
                         Dim DsGrossInsurable As DataSet
                         Dim TempTempGroup As New cPrMsTemplateGroup(Emp.TemGrp_Code)
                         Dim ALValue As Double = 0
-
-
 
                         If PARAM_CobaltALCode <> "" Or PARAM_CobaltALCode2 <> "" Or PARAM_CobaltALCode3 <> "" Then
                             ALValue = Global1.Business.GetAnnualLeaveValueFromLineFor(TempTempGroup, Per, EmpCode)
@@ -3989,7 +3988,750 @@ Public Class FrmRptSIContributions
         Me.Cursor = Cursors.Default
 
     End Sub
+    Private Sub PrepareSIFile_MultibleSI_WITH_N()
+        Me.Cursor = Cursors.WaitCursor
+        Dim SIPer As New cPrSsSocialInsPeriods
+        Dim ds As DataSet
+        SIPer = CType(Me.CmbSIPeriod.SelectedItem, cPrSsSocialInsPeriods)
+        Dim DSPeriods As DataSet
+        Dim PerGroup As cPrMsPeriodGroups
+        PerGroup = CType(Me.cmbPeriodGroups.SelectedItem, cPrMsPeriodGroups)
 
+
+        Dim Company As New cAdMsCompany(TemGrp.CompanyCode)
+
+        InitFile = True
+        InitFile2 = True
+
+        Dim Str01 As String
+        'Kodikas eidodou 01
+        Str01 = "01"
+        Str01 = Str01 & "S.I.S. SCHEDULE".PadRight(25, " ")
+        Str01 = Str01 & "01"
+        Str01 = Str01 & Format(Now.Date, "dd/MM/yyyy")
+        Str01 = Str01 & Company.AccountantTitle.PadRight(30, " ")
+        Str01 = Str01 & Company.Tel1.PadRight(20, " ")
+        WriteToSIFile(Str01, Company)
+
+        Dim DsEmp As DataSet
+        Dim DSSocCat As DataSet
+        Dim i As Integer
+        Dim k As Integer
+        Dim j As Integer
+        Dim Str02 As String
+        Dim Str03 As String
+        Dim Str04 As String
+        Dim Str05 As String
+        Dim Str06 As String
+
+        Dim NumberOfSemiTerm As Integer = 0
+        Dim NumberOfSemiNew As Integer = 0
+        Dim SemiTotalIE As Integer = 0
+        Dim SemitotalGE As Integer = 0
+        Dim SemitotalSI As Integer = 0
+        Dim SemitotalGesyable As Integer = 0
+
+        Dim SemiTotalEmployees As Integer = 0
+
+        Dim GRAND_SemiNumberOfTerm As Integer = 0
+        Dim GRAND_SemiNumberOfNew As Integer = 0
+        Dim GRAND_SemiTotalIE As Integer = 0
+        Dim GRAND_SemitotalGE As Integer = 0
+        Dim GRAND_SemiTotalSI As Integer = 0
+        Dim GRAND_SemiTotalGesyable As Integer = 0
+
+        Dim GRAND_SemiTotalEmployees As Integer = 0
+
+
+        Dim GRAND_NumberOfTerm As Integer = 0
+        Dim GRAND_NumberOfNew As Integer = 0
+        Dim GRAND_TotalIE As Integer = 0
+        Dim GRAND_totalGE As Integer = 0
+        Dim GRAND_TotalSI As Integer = 0
+        Dim GRAND_TotalGesyable As Integer = 0
+        Dim GRAND_TotalEmployees As Integer = 0
+
+
+        Dim total02 As Integer
+        Dim total_N_02 As Integer
+
+        Dim Sign As String
+        Dim y As Integer = 0
+
+        For y = 0 To 4
+            Dim SIReg1to5 As String
+
+            Select Case y
+                Case 0
+                    SIReg1to5 = Company.SIRegNo
+                Case 1
+                    SIReg1to5 = Company.SI2
+                Case 2
+                    SIReg1to5 = Company.SI3
+                Case 3
+                    SIReg1to5 = Company.SI4
+                Case 4
+                    SIReg1to5 = Company.SI5
+            End Select
+            If SIReg1to5 <> "" Then
+                Dim StatusPrep As Boolean
+                DSSocCat = Global1.Business.AG_GetAllPrAnSocialInsCategories
+                For i = 0 To DSSocCat.Tables(0).Rows.Count - 1
+                    DSPeriods = Global1.Business.GetAllPeriodsOF_SIPeriod(SIPer.Code, TemGrp.Code, PerGroup.Code)
+                    For j = 0 To DSPeriods.Tables(0).Rows.Count - 1
+                        Dim Per As New cPrMsPeriodCodes
+                        Per = New cPrMsPeriodCodes(DSPeriods.Tables(0).Rows(j))
+                        NumberOfSemiTerm = 0
+                        NumberOfSemiNew = 0
+                        SemiTotalIE = 0
+                        SemitotalGE = 0
+                        SemitotalSI = 0
+                        SemitotalGesyable = 0
+                        SemiTotalEmployees = 0
+                        StatusPrep = True
+                        Dim SocCat As New cPrAnSocialInsCategories(DSSocCat.Tables(0).Rows(i))
+                        DsEmp = Global1.Business.SI_File_GetEmployees_2(TemGrp, Per, SocCat.Code, StatusPrep, SIReg1to5)
+                        If Not StatusPrep Then
+                            Me.Cursor = Cursors.Default
+                            Exit Sub
+                        End If
+                        Dim Create_N_Record As Boolean = False
+                        Dim Create_X_Record As Boolean = False
+
+                        If CheckDataSet(DsEmp) Then
+
+                            '-------------------------------------------------
+                            'O2 GENERAL DETAILS PER SOCIAL INSURANCE TYPE CODE
+                            '--------------------------------------------------
+                            total02 = total02 + 1
+                            Str02 = "02"
+                            'Str02 = Str02 & Company.SIRegNo.PadLeft(15)
+                            Str02 = Str02 & SIReg1to5.PadLeft(15, "0")
+                            Str02 = Str02 & SocCat.Code
+                            'Change 2016/03/02
+                            'OLD Str02 = Str02 & Per.SinPrdCode
+                            'NEW 
+                            Str02 = Str02 & Per.PayCat_Code
+
+                            If Per.PayCat_Code = "K" Then
+                                Str02 = Str02 & Format(Per.DateFrom, "MM/yyyy")
+                            Else
+                                Dim MM As Integer
+                                MM = Per.DateFrom.Month + 12
+                                Str02 = Str02 & MM & "/" & Format(Per.DateFrom, "yyyy")
+                                Str02 = Str02 & Format(Per.DateFrom, "MM/yyyy")
+                                Str02 = Str02 & Format(Per.DateTo, "MM/yyyy")
+                            End If
+                            Me.WriteToSIFile(Str02, Company)
+                            '--------------------------------------------------
+                            'END OF 02
+                            '--------------------------------------------------
+
+                            '--------------------------------------------------
+                            '03 NEW EMPLOYEES
+                            '--------------------------------------------------
+                            If Me.CBExcludeNewEmployees.CheckState = CheckState.Unchecked Then
+                                For k = 0 To DsEmp.Tables(0).Rows.Count - 1
+                                    Dim EmpCode As String
+                                    EmpCode = DbNullToString(DsEmp.Tables(0).Rows(k).Item(0))
+                                    Dim PutZeroToAlienNo As Boolean = False
+                                    Dim Emp As New cPrMsEmployees(EmpCode)
+                                    If Emp.StartDate >= Per.DateFrom And Emp.StartDate <= Per.DateTo Then
+                                        NumberOfSemiNew = NumberOfSemiNew + 1
+                                        Str03 = "03"
+                                        If Emp.SocialInsNumber.Length > 8 Then
+                                            MsgBox("SI MAX Lenght is 8 digits,Wrong SI Length for Employee " & Emp.Code & " " & Emp.FullName)
+                                            Me.Cursor = Cursors.Default
+                                            Exit Sub
+                                        End If
+                                        Str03 = Str03 & Emp.SocialInsNumber.PadLeft(8, "0")
+                                        If Emp.IdentificationCard.Length > 8 Then
+                                            MsgBox("ID Card MAX Lenght is 8 digits,Wrong ID Card Length for Employee " & Emp.Code & " " & Emp.FullName)
+                                            Me.Cursor = Cursors.Default
+                                            Exit Sub
+                                        End If
+                                        Str03 = Str03 & Emp.IdentificationCard.PadLeft(8, "0")
+                                        If CBNoWarningsForAlienLenght.CheckState = CheckState.Unchecked Then
+                                            If Emp.AlienNumber.Length > 8 Then
+                                                Dim Ans As MsgBoxResult
+                                                Ans = MsgBox("AlienNumber MAX Lenght is 8 digits,Wrong Alien No Length for Employee " & Emp.Code & " " & Emp.FullName & " Continue without Alien Number for this Employee ? ", MsgBoxStyle.YesNo)
+                                                If Ans = MsgBoxResult.No Then
+                                                    Me.Cursor = Cursors.Default
+                                                    Exit Sub
+                                                Else
+                                                    PutZeroToAlienNo = True
+                                                End If
+                                            End If
+                                        Else
+                                            If Emp.AlienNumber.Length > 8 Then
+                                                PutZeroToAlienNo = True
+                                            End If
+                                        End If
+                                        If PutZeroToAlienNo Then
+                                            Str03 = Str03 & "".PadLeft(8, "0")
+                                            PutZeroToAlienNo = False
+                                        Else
+                                            Str03 = Str03 & Emp.AlienNumber.PadLeft(8, "0")
+                                        End If
+
+                                        If Emp.PassportNumber.Length > 10 Then
+                                            MsgBox("Passport MAX Lenght is 10 digits,Wrong Passport No Length for Employee " & Emp.Code & " " & Emp.FullName)
+                                            Me.Cursor = Cursors.Default
+                                            Exit Sub
+                                        End If
+                                        'Str03 = Str03 & Emp.PassportNumber.PadRight(10, " ")
+                                        Str03 = Str03 & "".PadRight(10, " ")
+
+                                        Dim EmpFull As String
+                                        EmpFull = Emp.FirstName & " " & Emp.LastName
+                                        If EmpFull.Length > 30 Then
+                                            EmpFull = EmpFull.Substring(0, 29)
+                                        End If
+                                        Str03 = Str03 & EmpFull.PadRight(30, " ")
+                                        Str03 = Str03 & Format(Emp.BirthDate, "dd/MM/yyyy")
+                                        Str03 = Str03 & Emp.Sex
+                                        Str03 = Str03 & Emp.EmpCmm_Code
+                                        Str03 = Str03 & Format(Emp.StartDate, "dd/MM/yyyy")
+                                        Str03 = Str03 & Emp.PayTyp_Code.Substring(0, 1)
+
+                                        'If SIleave Then
+                                        If Emp.IsSI = 0 Then
+                                            Str03 = Str03 & "1"
+                                        Else
+                                            Str03 = Str03 & "0"
+                                        End If
+                                        Dim EmpPos As New cPrAnEmployeePositions(Emp.EmpPos_Code)
+                                        Dim Position As String
+                                        Position = EmpPos.DescriptionL
+                                        If Position.Length > 25 Then
+                                            Position = Position.Substring(0, 24)
+                                        End If
+                                        Str03 = Str03 & Position.PadRight(25, " ")
+                                        Me.WriteToSIFile(Str03, Company)
+                                    End If
+                                Next
+                            End If
+                            '--------------------------------------------------
+                            'END OF 03
+                            '--------------------------------------------------
+                            '--------------------------------------------------
+                            '04 EMPLOYEES EARNINGS
+                            '--------------------------------------------------
+
+                            SemiTotalEmployees = 0
+                            For k = 0 To DsEmp.Tables(0).Rows.Count - 1
+                                SemiTotalEmployees = SemiTotalEmployees + 1
+                                Dim EmpCode As String
+                                Dim GrossEarnings As Double = 0
+                                Dim InsurableEarnings As Double = 0
+                                Dim GesyableEarnings As Double = 0
+                                Dim PutZeroToAlienNo As Boolean = False
+                                Dim x As Integer
+                                Dim GE() As String
+                                Dim IE() As String
+                                Dim SI() As String
+                                Dim Gesyable() As String
+
+                                Dim TermDate As String
+                                Dim AbsentReason As String = " "
+                                EmpCode = DbNullToString(DsEmp.Tables(0).Rows(k).Item(0))
+                                Dim Emp As New cPrMsEmployees(EmpCode)
+                                Str04 = "04"
+                                If Emp.SocialInsNumber.Length > 8 Then
+                                    MsgBox("SI MAX Lenght is 8 digits,Wrong SI Length for Employee " & Emp.Code & " " & Emp.FullName)
+                                    Me.Cursor = Cursors.Default
+                                    Exit Sub
+                                End If
+                                Str04 = Str04 & Emp.SocialInsNumber.PadLeft(8, "0")
+                                '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                If Emp.IdentificationCard.Length > 8 Then
+                                    MsgBox("ID Card MAX Lenght is 8 digits,Wrong ID Card Length for Employee " & Emp.Code & " " & Emp.FullName)
+                                    Me.Cursor = Cursors.Default
+                                    Exit Sub
+                                End If
+                                Str04 = Str04 & Emp.IdentificationCard.PadLeft(8, "0")
+                                ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                If CBNoWarningsForAlienLenght.CheckState = CheckState.Unchecked Then
+                                    If Emp.AlienNumber.Length > 8 Then
+                                        Dim Ans As MsgBoxResult
+                                        Ans = MsgBox("AlienNumber MAX Lenght is 8 digits,Wrong Alien No Length for Employee " & Emp.Code & " " & Emp.FullName & " Continue without Alien Number for this Employee ? ", MsgBoxStyle.YesNo)
+                                        If Ans = MsgBoxResult.No Then
+                                            Me.Cursor = Cursors.Default
+                                            Exit Sub
+                                        Else
+                                            PutZeroToAlienNo = True
+                                        End If
+                                    End If
+                                Else
+                                    If Emp.AlienNumber.Length > 8 Then
+                                        PutZeroToAlienNo = True
+                                    End If
+                                End If
+                                If PutZeroToAlienNo Then
+                                    Str04 = Str04 & "".PadLeft(8, "0")
+                                Else
+                                    Str04 = Str04 & Emp.AlienNumber.PadLeft(8, "0")
+                                End If
+                                ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+
+                                Dim DsGrossInsurable As DataSet
+                                Dim TempTempGroup As New cPrMsTemplateGroup(Emp.TemGrp_Code)
+                                Dim ALValue As Double = 0
+
+                                If PARAM_CobaltALCode <> "" Or PARAM_CobaltALCode2 <> "" Or PARAM_CobaltALCode3 <> "" Then
+                                    ALValue = Global1.Business.GetAnnualLeaveValueFromLineFor(TempTempGroup, Per, EmpCode)
+                                    If ALValue <> 0 Then
+                                        Create_N_Record = True
+                                        total_N_02 = total_N_02 + 1
+                                    End If
+                                End If
+
+                                DsGrossInsurable = Global1.Business.SI_File_GetEmployees_Gross_Insurable(TemGrp, Per, EmpCode)
+                                If CheckDataSet(DsGrossInsurable) Then
+                                    GrossEarnings = DbNullToDouble(DsGrossInsurable.Tables(0).Rows(0).Item(0)) - ALValue
+                                    InsurableEarnings = DbNullToDouble(DsGrossInsurable.Tables(0).Rows(0).Item(1))
+                                    GesyableEarnings = DbNullToDouble(DsGrossInsurable.Tables(0).Rows(0).Item(2))
+                                End If
+                                If GrossEarnings >= 0 Then
+                                    Sign = "+"
+                                Else
+                                    Sign = "-"
+                                End If
+                                Dim DsSLeave As DataSet
+                                Dim SIvalue As Double = 0
+                                DsSLeave = Global1.Business.GetERNFromTrxnLinesFor(Per, "SI")
+                                If CheckDataSet(DsSLeave) Then
+                                    For x = 0 To DsSLeave.Tables(0).Rows.Count - 1
+                                        If DsSLeave.Tables(0).Rows(x).Item(0) = EmpCode Then
+                                            SIvalue = SIvalue + DsSLeave.Tables(0).Rows(x).Item(2)
+                                        End If
+                                    Next
+                                End If
+
+                                GrossEarnings = Utils.RoundMe3(GrossEarnings, 0)
+
+
+                                SemitotalGE = SemitotalGE + GrossEarnings
+                                GE = Math.Abs(GrossEarnings).ToString.Split(".")
+                                Str04 = Str04 & Sign & GE(0).PadLeft(10, "0")
+
+
+                                GesyableEarnings = RoundMe3(GesyableEarnings - SIvalue, 2)
+                                If GesyableEarnings >= 0 Then
+                                    Sign = "+"
+                                Else
+                                    Sign = "-"
+                                End If
+                                GesyableEarnings = Utils.RoundMe3(GesyableEarnings, 0)
+                                If Math.Abs(GesyableEarnings - GrossEarnings) = 1 Then
+                                    GesyableEarnings = GrossEarnings
+                                End If
+
+                                SemitotalGesyable = SemitotalGesyable + GesyableEarnings
+                                Gesyable = Math.Abs(GesyableEarnings).ToString.Split(".")
+                                Str04 = Str04 & Sign & Gesyable(0).PadLeft(10, "0")
+
+
+
+                                InsurableEarnings = RoundMe3(InsurableEarnings - SIvalue, 2)
+                                If InsurableEarnings >= 0 Then
+                                    Sign = "+"
+                                Else
+                                    Sign = "-"
+                                End If
+
+                                If GrossEarnings = 0 Then
+                                    MsgBox("Employee  " & Emp.Code & " " & Emp.FullName & " Total Earning are Zero, Please enter Leave Code", MsgBoxStyle.Information)
+                                    Dim F As New FrmSelectLeaveReason
+                                    F.Owner = Me
+                                    F.ShowDialog()
+                                    AbsentReason = Me.GlbAbsentReason
+                                Else
+                                    AbsentReason = " "
+                                End If
+
+                                InsurableEarnings = Utils.RoundMe3(InsurableEarnings, 0)
+                                If Math.Abs(InsurableEarnings - GrossEarnings) = 1 Then
+                                    InsurableEarnings = GrossEarnings
+                                    'MsgBox(EmpCode, InsurableEarnings, GrossEarnings)
+                                End If
+
+
+
+                                SemiTotalIE = SemiTotalIE + InsurableEarnings
+                                IE = Math.Abs(InsurableEarnings).ToString.Split(".")
+                                Str04 = Str04 & Sign & IE(0).PadLeft(10, "0")
+                                'SI ***********************************
+                                'Dim DsSLeave As DataSet
+                                'Dim SIvalue As Double = 0
+                                'DsSLeave = Global1.Business.GetERNFromTrxnLinesFor(Per, "SI")
+                                'If CheckDataSet(DsSLeave) Then
+                                '    For x = 0 To DsSLeave.Tables(0).Rows.Count - 1
+                                '        If DsSLeave.Tables(0).Rows(x).Item(0) = EmpCode Then
+                                '            SIvalue = SIvalue + DsSLeave.Tables(0).Rows(x).Item(2)
+                                '        End If
+                                '    Next
+                                'End If
+                                'DsSi = Global1.Business.GetCONFromTrxnLinesFor(Per, "SI")
+                                'If CheckDataSet(DsSi) Then
+                                '    For x = 0 To DsSi.Tables(0).Rows.Count - 1
+                                '        If DsSi.Tables(0).Rows(x).Item(0) = EmpCode Then
+                                '            SIvalue = SIvalue + DsSi.Tables(0).Rows(x).Item(2)
+                                '        End If
+                                '    Next
+                                'End If
+
+                                SI = Format(SIvalue, "0.00").ToString.Split(".")
+                                Dim S As String
+                                S = SI(0) & SI(1)
+                                SemitotalSI = SemitotalSI + CInt(S)
+
+                                S = "+" & S.PadLeft(12, "0")
+
+
+
+                                Str04 = Str04 & S
+                                Str04 = Str04 & AbsentReason
+                                Str04 = Str04 & AbsentReason
+                                Str04 = Str04 & AbsentReason
+                                Str04 = Str04 & AbsentReason
+                                Str04 = Str04 & AbsentReason
+                                TermDate = "          "
+                                If CBExcludeTerminations.CheckState = CheckState.Unchecked Then
+                                    If Trim(Emp.TerminateDate) <> "" Then
+                                        If Per.PayCat_Code = "K" Then
+                                            If CDate(Emp.TerminateDate) < Per.DateFrom Or CDate(Emp.TerminateDate) > Per.DateTo Then
+                                                TermDate = "          "
+                                            Else
+
+                                                TermDate = Format(CDate(Emp.TerminateDate), "dd/MM/yyyy")
+                                                NumberOfSemiTerm = NumberOfSemiTerm + 1
+                                            End If
+                                        Else
+                                            TermDate = "          "
+                                        End If
+                                    Else
+                                        TermDate = "          "
+                                    End If
+                                End If
+                                Str04 = Str04 & TermDate
+                                Str04 = Str04 & 1
+                                Me.WriteToSIFile(Str04, Company)
+                            Next
+
+                            '--------------------------------------------------
+                            'END OF 04
+                            '--------------------------------------------------
+                            '--------------------------------------------------
+                            '05 TOTALS PER SOCIAL INSURANCE CATEGORY
+                            '--------------------------------------------------
+                            Str05 = "05"
+                            If SemitotalGE >= 0 Then
+                                Sign = "+"
+                            Else
+                                Sign = "-"
+                            End If
+                            Str05 = Str05 & Sign & SemitotalGE.ToString.PadLeft(12, "0")
+
+
+                            If SemitotalGesyable >= 0 Then
+                                Sign = "+"
+                            Else
+                                Sign = "-"
+                            End If
+                            Str05 = Str05 & Sign & SemitotalGesyable.ToString.PadLeft(12, "0")
+
+
+
+                            If SemiTotalIE >= 0 Then
+                                Sign = "+"
+                            Else
+                                Sign = "-"
+                            End If
+                            Str05 = Str05 & Sign & SemiTotalIE.ToString.PadLeft(12, "0")
+
+                            'SI ************************
+
+                            Str05 = Str05 & "+" & SemitotalSI.ToString.PadLeft(14, "0")
+                            Str05 = Str05 & NumberOfSemiNew.ToString.PadLeft(5, "0")
+                            Str05 = Str05 & NumberOfSemiTerm.ToString.PadLeft(5, "0")
+                            Str05 = Str05 & SemiTotalEmployees.ToString.PadLeft(6, "0")
+
+                            Me.WriteToSIFile(Str05, Company)
+                            '--------------------------------------------------
+                            'END OF 05
+                            '--------------------------------------------------
+
+
+                            GRAND_NumberOfNew = GRAND_NumberOfNew + NumberOfSemiNew
+                            GRAND_NumberOfTerm = GRAND_NumberOfTerm + NumberOfSemiTerm
+                            GRAND_SemiTotalIE = GRAND_SemiTotalIE + SemiTotalIE
+                            GRAND_SemitotalGE = GRAND_SemitotalGE + SemitotalGE
+                            GRAND_SemiTotalSI = GRAND_SemiTotalSI + SemitotalSI
+                            GRAND_SemiTotalGesyable = GRAND_SemiTotalGesyable + SemitotalGesyable
+                            GRAND_SemiTotalEmployees = GRAND_SemiTotalEmployees + SemiTotalEmployees
+                        End If
+                        If Create_N_Record Then
+
+                                Dim NumberOfTerm As Double = 0
+                                Dim NumberOfNew As Double = 0
+                                SemiTotalIE = 0
+                                SemitotalGE = 0
+                                SemitotalSI = 0
+                                SemitotalGesyable = 0
+                                SemiTotalEmployees = 0
+                                '-------------------------------------------------
+                                'O2 GENERAL DETAILS PER SOCIAL INSURANCE TYPE CODE
+                                '--------------------------------------------------
+
+                                total02 = total02 + 1
+                                Str02 = "02"
+                                'Str02 = Str02 & Company.SIRegNo.PadLeft(15)
+                                Str02 = Str02 & Company.SIRegNo.PadLeft(15, "0")
+                                Str02 = Str02 & SocCat.Code
+                                'Change 2016/03/02
+                                'OLD Str02 = Str02 & Per.SinPrdCode
+                                'NEW 
+                                Str02 = Str02 & "N"
+
+
+                                Dim MM As Integer
+                                MM = Per.DateFrom.Month + 12
+                                MM = CInt(SIPer.Code) + 12
+                                Str02 = Str02 & MM & "/" & Format(Per.DateFrom, "yyyy")
+                                Str02 = Str02 & Replace(Format(Per.DateFrom, "MM/yyyy"), "-", "/")
+                                Str02 = Str02 & Replace(Format(Per.DateTo, "MM/yyyy"), "-", "/")
+                                Me.WriteToSIFile(Str02, Company)
+                                '--------------------------------------------------
+                                'END OF 02
+                                '--------------------------------------------------
+
+
+                                '--------------------------------------------------
+                                '04 EMPLOYEES EARNINGS
+                                '--------------------------------------------------
+                                SemiTotalEmployees = 0
+                                For k = 0 To DsEmp.Tables(0).Rows.Count - 1
+
+                                    Dim EmpCode As String
+                                    Dim GrossEarnings As Double = 0
+                                    Dim InsurableEarnings As Double = 0
+                                    Dim GESYableEarnings As Double = 0
+                                    Dim PutZeroToAlienNo As Boolean = False
+                                    Dim x As Integer
+                                    Dim GE() As String
+                                    Dim IE() As String
+                                    Dim SI() As String
+                                    Dim Gesyable() As String
+
+
+
+                                    Dim TermDate As String
+                                    Dim AbsentReason As String = " "
+                                    EmpCode = DbNullToString(DsEmp.Tables(0).Rows(k).Item(0))
+                                    Dim Emp As New cPrMsEmployees(EmpCode)
+                                    Str04 = "04"
+                                    If Emp.SocialInsNumber.Length > 8 Then
+                                        MsgBox("SI MAX Lenght is 8 digits,Wrong SI Length for Employee " & Emp.Code & " " & Emp.FullName)
+                                        Me.Cursor = Cursors.Default
+                                        Exit Sub
+                                    End If
+                                    Str04 = Str04 & Emp.SocialInsNumber.PadLeft(8, "0")
+                                    '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                    If Emp.IdentificationCard.Length > 8 Then
+                                        MsgBox("ID Card MAX Lenght is 8 digits,Wrong ID Card Length for Employee " & Emp.Code & " " & Emp.FullName)
+                                        Me.Cursor = Cursors.Default
+                                        Exit Sub
+                                    End If
+                                    Str04 = Str04 & Emp.IdentificationCard.PadLeft(8, "0")
+                                    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                    If CBNoWarningsForAlienLenght.CheckState = CheckState.Unchecked Then
+                                        If Emp.AlienNumber.Length > 8 Then
+                                            Dim Ans As MsgBoxResult
+                                            Ans = MsgBox("AlienNumber MAX Lenght is 8 digits,Wrong Alien No Length for Employee " & Emp.Code & " " & Emp.FullName & " Continue without Alien Number for this Employee ? ", MsgBoxStyle.YesNo)
+                                            If Ans = MsgBoxResult.No Then
+                                                Me.Cursor = Cursors.Default
+                                                Exit Sub
+                                            Else
+                                                PutZeroToAlienNo = True
+                                            End If
+                                        End If
+                                    Else
+                                        If Emp.AlienNumber.Length > 8 Then
+                                            PutZeroToAlienNo = True
+                                        End If
+                                    End If
+                                    If PutZeroToAlienNo Then
+                                        Str04 = Str04 & "".PadLeft(8, "0")
+                                    Else
+                                        Str04 = Str04 & Emp.AlienNumber.PadLeft(8, "0")
+                                    End If
+                                    ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                                    Dim DsGrossInsurable As DataSet
+                                    Dim TempTempGroup As New cPrMsTemplateGroup(Emp.TemGrp_Code)
+                                    Dim ALValue As Double = 0
+                                    If PARAM_CobaltALCode <> "" Or PARAM_CobaltALCode2 <> "" Or PARAM_CobaltALCode3 <> "" Then
+                                        ALValue = Global1.Business.GetAnnualLeaveValueFromLineFor(TempTempGroup, Per, EmpCode)
+                                        If ALValue <> 0 Then
+                                            SemiTotalEmployees = SemiTotalEmployees + 1
+                                            GrossEarnings = Utils.RoundMe3(ALValue, 0)
+                                            If GrossEarnings >= 0 Then
+                                                Sign = "+"
+                                            Else
+                                                Sign = "-"
+                                            End If
+                                            GE = Math.Abs(GrossEarnings).ToString.Split(".")
+                                            Str04 = Str04 & Sign & GE(0).PadLeft(10, "0")
+                                            SemitotalGE = SemitotalGE + GrossEarnings
+                                            GESYableEarnings = RoundMe3(0, 2)
+                                            SemitotalGesyable = SemitotalGesyable + GESYableEarnings
+                                            Gesyable = Math.Abs(GESYableEarnings).ToString.Split(".")
+                                            If GESYableEarnings >= 0 Then
+                                                Sign = "+"
+                                            Else
+                                                Sign = "-"
+                                            End If
+                                            Str04 = Str04 & Sign & Gesyable(0).PadLeft(10, "0")
+
+                                            InsurableEarnings = RoundMe3(0, 2)
+                                            SemiTotalIE = SemiTotalIE + InsurableEarnings
+                                            IE = Math.Abs(InsurableEarnings).ToString.Split(".")
+                                            If InsurableEarnings >= 0 Then
+                                                Sign = "+"
+                                            Else
+                                                Sign = "-"
+                                            End If
+                                            Str04 = Str04 & Sign & IE(0).PadLeft(10, "0")
+                                            SI = Format(0, "0.00").ToString.Split(".")
+                                            Dim S As String
+                                            S = SI(0) & SI(1)
+                                            SemitotalSI = SemitotalSI + CInt(S)
+
+                                            S = "+" & S.PadLeft(12, "0")
+                                            Str04 = Str04 & S
+                                            Str04 = Str04 & AbsentReason
+                                            Str04 = Str04 & AbsentReason
+                                            Str04 = Str04 & AbsentReason
+                                            Str04 = Str04 & AbsentReason
+                                            Str04 = Str04 & AbsentReason
+                                            TermDate = "          "
+                                            Str04 = Str04 & TermDate
+                                            Str04 = Str04 & 1
+                                            Me.WriteToSIFile(Str04, Company)
+                                        End If
+                                    End If
+                                Next
+
+                                '--------------------------------------------------
+                                'END OF 04
+                                '--------------------------------------------------
+                                '--------------------------------------------------
+                                '05 TOTALS PER SOCIAL INSURANCE CATEGORY
+                                '--------------------------------------------------
+                                Str05 = "05"
+                                If SemitotalGE >= 0 Then
+                                    Sign = "+"
+                                Else
+                                    Sign = "-"
+                                End If
+                                Str05 = Str05 & Sign & SemitotalGE.ToString.PadLeft(12, "0")
+
+
+                                If SemitotalGesyable >= 0 Then
+                                    Sign = "+"
+                                Else
+                                    Sign = "-"
+                                End If
+                                Str05 = Str05 & Sign & SemitotalGesyable.ToString.PadLeft(12, "0")
+
+
+                                If SemiTotalIE >= 0 Then
+                                    Sign = "+"
+                                Else
+                                    Sign = "-"
+                                End If
+                                Str05 = Str05 & Sign & SemiTotalIE.ToString.PadLeft(12, "0")
+
+                                'SI ************************
+
+                                Str05 = Str05 & "+" & SemitotalSI.ToString.PadLeft(14, "0")
+                                Str05 = Str05 & NumberOfNew.ToString.PadLeft(5, "0")
+                                Str05 = Str05 & NumberOfTerm.ToString.PadLeft(5, "0")
+                                Str05 = Str05 & SemiTotalEmployees.ToString.PadLeft(6, "0")
+
+                                Me.WriteToSIFile(Str05, Company)
+                                '--------------------------------------------------
+                                'END OF 05
+                                '--------------------------------------------------
+
+                                GRAND_NumberOfNew = GRAND_NumberOfNew + NumberOfNew
+                                GRAND_NumberOfTerm = GRAND_NumberOfTerm + NumberOfTerm
+                                GRAND_SemiTotalIE = GRAND_SemiTotalIE + SemiTotalIE
+                                GRAND_SemitotalGE = GRAND_SemitotalGE + SemitotalGE
+                                GRAND_SemiTotalSI = GRAND_SemiTotalSI + SemitotalSI
+                                GRAND_SemiTotalGesyable = GRAND_SemiTotalGesyable + SemitotalGesyable
+                                GRAND_SemiTotalEmployees = GRAND_SemiTotalEmployees + SemiTotalEmployees
+
+
+
+                            End If ' END OF Create_N_record
+
+                    Next
+                Next
+            End If
+        Next
+
+
+
+        '--------------------------------------------------
+        '06 TOTALS PER SOCIAL INSURANCE CATEGORY
+        '--------------------------------------------------
+        Str06 = "06"
+        If GRAND_SemitotalGE >= 0 Then
+            Sign = "+"
+        Else
+            Sign = "-"
+        End If
+        Str06 = Str06 & Sign & GRAND_SemitotalGE.ToString.PadLeft(12, "0")
+
+
+        If GRAND_SemiTotalGesyable >= 0 Then
+            Sign = "+"
+        Else
+            Sign = "-"
+        End If
+        Str06 = Str06 & Sign & GRAND_SemiTotalGesyable.ToString.PadLeft(12, "0")
+
+        If GRAND_SemiTotalIE >= 0 Then
+            Sign = "+"
+        Else
+            Sign = "-"
+        End If
+        Str06 = Str06 & Sign & GRAND_SemiTotalIE.ToString.PadLeft(12, "0")
+
+        'SI ************************
+
+        Str06 = Str06 & "+" & GRAND_SemiTotalSI.ToString.PadLeft(14, "0")
+        Str06 = Str06 & GRAND_NumberOfNew.ToString.PadLeft(5, "0")
+        Str06 = Str06 & GRAND_NumberOfTerm.ToString.PadLeft(5, "0")
+        Str06 = Str06 & GRAND_SemiTotalEmployees.ToString.PadLeft(6, "0")
+        Str06 = Str06 & total02.ToString.PadLeft(2, "0")
+
+        Me.WriteToSIFile(Str06, Company)
+        '--------------------------------------------------
+        'END OF 06
+        '--------------------------------------------------
+
+
+
+
+
+        MsgBox("File is Created", MsgBoxStyle.Information)
+
+
+        Me.Cursor = Cursors.Default
+
+    End Sub
     Private Sub PrepareSIFile_2_OLDSpecs()
         Me.Cursor = Cursors.WaitCursor
         Dim SIPer As New cPrSsSocialInsPeriods
@@ -6911,48 +7653,48 @@ Public Class FrmRptSIContributions
                                     End If
                                 End If
                                 If PutZeroToAlienNo Then
-                                        Str03 = Str03 & "".PadLeft(8, "0")
-                                        PutZeroToAlienNo = False
-                                    Else
-                                        Str03 = Str03 & Emp.AlienNumber.PadLeft(8, "0")
-                                    End If
-
-                                    If Emp.PassportNumber.Length > 10 Then
-                                        MsgBox("Passport MAX Lenght is 10 digits,Wrong Passport No Length for Employee " & Emp.Code & " " & Emp.FullName)
-                                        Me.Cursor = Cursors.Default
-                                        Exit Sub
-                                    End If
-                                    'Str03 = Str03 & Emp.PassportNumber.PadRight(10, " ")
-                                    Str03 = Str03 & "".PadRight(10, " ")
-
-                                    Dim EmpFull As String
-                                    EmpFull = Emp.FirstName & " " & Emp.LastName
-                                    If EmpFull.Length > 30 Then
-                                        EmpFull = EmpFull.Substring(0, 29)
-                                    End If
-                                    Str03 = Str03 & EmpFull.PadRight(30, " ")
-                                    Str03 = Str03 & Replace(Format(Emp.BirthDate, "dd/MM/yyyy"), "-", "/")
-                                    Str03 = Str03 & Emp.Sex
-                                    Str03 = Str03 & Emp.EmpCmm_Code
-                                    Str03 = Str03 & Replace(Format(Emp.StartDate, "dd/MM/yyyy"), "-", "/")
-                                    Str03 = Str03 & Emp.PayTyp_Code.Substring(0, 1)
-
-                                    'If SIleave Then
-                                    If Emp.IsSI = 0 Then
-                                        Str03 = Str03 & "1"
-                                    Else
-                                        Str03 = Str03 & "0"
-                                    End If
-                                    Dim EmpPos As New cPrAnEmployeePositions(Emp.EmpPos_Code)
-                                    Dim Position As String
-                                    Position = EmpPos.DescriptionL
-                                    If Position.Length > 25 Then
-                                        Position = Position.Substring(0, 24)
-                                    End If
-                                    Str03 = Str03 & Position.PadRight(25, " ")
-                                    Me.WriteToSIFile(Str03, Company)
+                                    Str03 = Str03 & "".PadLeft(8, "0")
+                                    PutZeroToAlienNo = False
+                                Else
+                                    Str03 = Str03 & Emp.AlienNumber.PadLeft(8, "0")
                                 End If
+
+                                If Emp.PassportNumber.Length > 10 Then
+                                    MsgBox("Passport MAX Lenght is 10 digits,Wrong Passport No Length for Employee " & Emp.Code & " " & Emp.FullName)
+                                    Me.Cursor = Cursors.Default
+                                    Exit Sub
+                                End If
+                                'Str03 = Str03 & Emp.PassportNumber.PadRight(10, " ")
+                                Str03 = Str03 & "".PadRight(10, " ")
+
+                                Dim EmpFull As String
+                                EmpFull = Emp.FirstName & " " & Emp.LastName
+                                If EmpFull.Length > 30 Then
+                                    EmpFull = EmpFull.Substring(0, 29)
+                                End If
+                                Str03 = Str03 & EmpFull.PadRight(30, " ")
+                                Str03 = Str03 & Replace(Format(Emp.BirthDate, "dd/MM/yyyy"), "-", "/")
+                                Str03 = Str03 & Emp.Sex
+                                Str03 = Str03 & Emp.EmpCmm_Code
+                                Str03 = Str03 & Replace(Format(Emp.StartDate, "dd/MM/yyyy"), "-", "/")
+                                Str03 = Str03 & Emp.PayTyp_Code.Substring(0, 1)
+
+                                'If SIleave Then
+                                If Emp.IsSI = 0 Then
+                                    Str03 = Str03 & "1"
+                                Else
+                                    Str03 = Str03 & "0"
+                                End If
+                                Dim EmpPos As New cPrAnEmployeePositions(Emp.EmpPos_Code)
+                                Dim Position As String
+                                Position = EmpPos.DescriptionL
+                                If Position.Length > 25 Then
+                                    Position = Position.Substring(0, 24)
+                                End If
+                                Str03 = Str03 & Position.PadRight(25, " ")
+                                Me.WriteToSIFile(Str03, Company)
                             End If
+                        End If
                     Next
                 End If
                 '--------------------------------------------------
@@ -7195,7 +7937,7 @@ Public Class FrmRptSIContributions
                             End If
                         End If
                     End If
-                        Str04 = Str04 & TermDate
+                    Str04 = Str04 & TermDate
                     Str04 = Str04 & 1
                     Me.WriteToSIFile(Str04, Company)
                 Next
@@ -7738,8 +8480,10 @@ Public Class FrmRptSIContributions
         Me.Cursor = Cursors.Default
 
     End Sub
+
     Private Sub CreateMonthlyFileMultibleSINumbersToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TSBFile_MultibleSI.Click
-        PrepareSIFile_2()
+        'PrepareSIFile_2()
+        Me.PrepareSIFile_MultibleSI_WITH_N()
     End Sub
 
     Private Sub CreateMonthlyFileMultibleSINumbersBasedOnActualYearPeriodsToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TSBFile_MultibleSI_BasedOnActual.Click
@@ -7959,47 +8703,47 @@ Public Class FrmRptSIContributions
                                         End If
                                     End If
                                     If PutZeroToAlienNo Then
-                                            Str03 = Str03 & "".PadLeft(8, "0")
-                                            PutZeroToAlienNo = False
-                                        Else
-                                            Str03 = Str03 & Emp.AlienNumber.PadLeft(8, "0")
-                                        End If
-
-                                        If Emp.PassportNumber.Length > 10 Then
-                                            MsgBox("Passport MAX Lenght is 10 digits,Wrong Passport No Length for Employee " & Emp.Code & " " & Emp.FullName)
-                                            Me.Cursor = Cursors.Default
-                                            Exit Sub
-                                        End If
-                                        'Str03 = Str03 & Emp.PassportNumber.PadRight(10, " ")
-                                        Str03 = Str03 & "".PadRight(10, " ")
-
-                                        Dim EmpFull As String
-                                        EmpFull = Emp.FirstName & " " & Emp.LastName
-                                        If EmpFull.Length > 30 Then
-                                            EmpFull = EmpFull.Substring(0, 29)
-                                        End If
-                                        Str03 = Str03 & EmpFull.PadRight(30, " ")
-                                        Str03 = Str03 & Format(Emp.BirthDate, "dd/MM/yyyy")
-                                        Str03 = Str03 & Emp.Sex
-                                        Str03 = Str03 & Emp.EmpCmm_Code
-                                        Str03 = Str03 & Format(Emp.StartDate, "dd/MM/yyyy")
-                                        Str03 = Str03 & Emp.PayTyp_Code.Substring(0, 1)
-
-                                        'If SIleave Then
-                                        If Emp.IsSI = 0 Then
-                                            Str03 = Str03 & "1"
-                                        Else
-                                            Str03 = Str03 & "0"
-                                        End If
-                                        Dim EmpPos As New cPrAnEmployeePositions(Emp.EmpPos_Code)
-                                        Dim Position As String
-                                        Position = EmpPos.DescriptionL
-                                        If Position.Length > 25 Then
-                                            Position = Position.Substring(0, 24)
-                                        End If
-                                        Str03 = Str03 & Position.PadRight(25, " ")
-                                        Me.WriteToSIFile(Str03, Company)
+                                        Str03 = Str03 & "".PadLeft(8, "0")
+                                        PutZeroToAlienNo = False
+                                    Else
+                                        Str03 = Str03 & Emp.AlienNumber.PadLeft(8, "0")
                                     End If
+
+                                    If Emp.PassportNumber.Length > 10 Then
+                                        MsgBox("Passport MAX Lenght is 10 digits,Wrong Passport No Length for Employee " & Emp.Code & " " & Emp.FullName)
+                                        Me.Cursor = Cursors.Default
+                                        Exit Sub
+                                    End If
+                                    'Str03 = Str03 & Emp.PassportNumber.PadRight(10, " ")
+                                    Str03 = Str03 & "".PadRight(10, " ")
+
+                                    Dim EmpFull As String
+                                    EmpFull = Emp.FirstName & " " & Emp.LastName
+                                    If EmpFull.Length > 30 Then
+                                        EmpFull = EmpFull.Substring(0, 29)
+                                    End If
+                                    Str03 = Str03 & EmpFull.PadRight(30, " ")
+                                    Str03 = Str03 & Format(Emp.BirthDate, "dd/MM/yyyy")
+                                    Str03 = Str03 & Emp.Sex
+                                    Str03 = Str03 & Emp.EmpCmm_Code
+                                    Str03 = Str03 & Format(Emp.StartDate, "dd/MM/yyyy")
+                                    Str03 = Str03 & Emp.PayTyp_Code.Substring(0, 1)
+
+                                    'If SIleave Then
+                                    If Emp.IsSI = 0 Then
+                                        Str03 = Str03 & "1"
+                                    Else
+                                        Str03 = Str03 & "0"
+                                    End If
+                                    Dim EmpPos As New cPrAnEmployeePositions(Emp.EmpPos_Code)
+                                    Dim Position As String
+                                    Position = EmpPos.DescriptionL
+                                    If Position.Length > 25 Then
+                                        Position = Position.Substring(0, 24)
+                                    End If
+                                    Str03 = Str03 & Position.PadRight(25, " ")
+                                    Me.WriteToSIFile(Str03, Company)
+                                End If
                             Next
                         End If
                         '--------------------------------------------------
@@ -8211,7 +8955,7 @@ Public Class FrmRptSIContributions
                                     End If
                                 End If
                             End If
-                                Str04 = Str04 & TermDate
+                            Str04 = Str04 & TermDate
                             Str04 = Str04 & 1
                             Me.WriteToSIFile(Str04, Company)
                         Next
@@ -8268,6 +9012,818 @@ Public Class FrmRptSIContributions
                         GRAND_SemiTotalEmployees = GRAND_SemiTotalEmployees + SemiTotalEmployees
 
                     End If
+                Next
+
+            End If
+        Next
+
+
+
+        '--------------------------------------------------
+        '06 TOTALS PER SOCIAL INSURANCE CATEGORY
+        '--------------------------------------------------
+        Str06 = "06"
+        If GRAND_SemitotalGE >= 0 Then
+            Sign = "+"
+        Else
+            Sign = "-"
+        End If
+        Str06 = Str06 & Sign & GRAND_SemitotalGE.ToString.PadLeft(12, "0")
+
+
+        If GRAND_SemiTotalGesyable >= 0 Then
+            Sign = "+"
+        Else
+            Sign = "-"
+        End If
+        Str06 = Str06 & Sign & GRAND_SemiTotalGesyable.ToString.PadLeft(12, "0")
+
+        If GRAND_SemiTotalIE >= 0 Then
+            Sign = "+"
+        Else
+            Sign = "-"
+        End If
+        Str06 = Str06 & Sign & GRAND_SemiTotalIE.ToString.PadLeft(12, "0")
+
+        'SI ************************
+
+        Str06 = Str06 & "+" & GRAND_SemiTotalSI.ToString.PadLeft(14, "0")
+        Str06 = Str06 & GRAND_NumberOfNew.ToString.PadLeft(5, "0")
+        Str06 = Str06 & GRAND_NumberOfTerm.ToString.PadLeft(5, "0")
+        Str06 = Str06 & GRAND_SemiTotalEmployees.ToString.PadLeft(6, "0")
+        Str06 = Str06 & total02.ToString.PadLeft(2, "0")
+
+        Me.WriteToSIFile(Str06, Company)
+        '--------------------------------------------------
+        'END OF 06
+        '--------------------------------------------------
+
+
+
+
+
+        MsgBox("File is Created", MsgBoxStyle.Information)
+
+
+        Me.Cursor = Cursors.Default
+
+    End Sub
+    Private Sub PrepareSIFile_MultibleSINos_BasedOnActualPeriods_WITH_N()
+        Me.Cursor = Cursors.WaitCursor
+        Dim SIPer As New cPrSsSocialInsPeriods
+        Dim ds As DataSet
+
+        Dim DSPeriods As DataSet
+        Dim PerGroup As cPrMsPeriodGroups
+        PerGroup = CType(Me.cmbPeriodGroups.SelectedItem, cPrMsPeriodGroups)
+
+
+        Dim Company As New cAdMsCompany(TemGrp.CompanyCode)
+
+        InitFile = True
+        InitFile2 = True
+
+        Dim Str01 As String
+        'Kodikas eidodou 01
+        Str01 = "01"
+        Str01 = Str01 & "S.I.S. SCHEDULE".PadRight(25, " ")
+        Str01 = Str01 & "01"
+        Str01 = Str01 & Format(Now.Date, "dd/MM/yyyy")
+        Str01 = Str01 & Company.AccountantTitle.PadRight(30, " ")
+        Str01 = Str01 & Company.Tel1.PadRight(20, " ")
+        WriteToSIFile(Str01, Company)
+
+        Dim DsEmp As DataSet
+        Dim DSSocCat As DataSet
+        Dim i As Integer
+        Dim k As Integer
+        Dim j As Integer
+        Dim Str02 As String
+        Dim Str03 As String
+        Dim Str04 As String
+        Dim Str05 As String
+        Dim Str06 As String
+
+        Dim NumberOfSemiTerm As Integer = 0
+        Dim NumberOfSemiNew As Integer = 0
+        Dim SemiTotalIE As Integer = 0
+        Dim SemitotalGE As Integer = 0
+        Dim SemitotalSI As Integer = 0
+        Dim SemitotalGesyable As Integer = 0
+
+        Dim SemiTotalEmployees As Integer = 0
+
+        Dim GRAND_SemiNumberOfTerm As Integer = 0
+        Dim GRAND_SemiNumberOfNew As Integer = 0
+        Dim GRAND_SemiTotalIE As Integer = 0
+        Dim GRAND_SemitotalGE As Integer = 0
+        Dim GRAND_SemiTotalSI As Integer = 0
+        Dim GRAND_SemiTotalGesyable As Integer = 0
+
+        Dim GRAND_SemiTotalEmployees As Integer = 0
+
+
+        Dim GRAND_NumberOfTerm As Integer = 0
+        Dim GRAND_NumberOfNew As Integer = 0
+        Dim GRAND_TotalIE As Integer = 0
+        Dim GRAND_totalGE As Integer = 0
+        Dim GRAND_TotalSI As Integer = 0
+        Dim GRAND_TotalGesyable As Integer = 0
+        Dim GRAND_TotalEmployees As Integer = 0
+
+
+        Dim total02 As Integer
+        Dim total_N_02 As Integer
+        Dim Sign As String
+        Dim y As Integer = 0
+
+
+
+        Dim Per As New cPrMsPeriodCodes
+        Per = CType(Me.ComboPeriod.SelectedItem, cPrMsPeriodCodes)
+        Dim Reverse1213 As Boolean = False
+        SIPer = New cPrSsSocialInsPeriods(Per.SinPrdCode)
+
+
+        If Per.SinPrdCode = "12" Then
+            Dim TotalPeriods As Integer
+            TotalPeriods = Per.NumberOfTotalPeriodsFORDisplayONLY
+            If TotalPeriods > 12 Then
+                Dim Ans As MsgBoxResult
+                Ans = MsgBox("Declare 12 as 13 Period and vice versa for SISNET system purpose?", MsgBoxStyle.YesNo)
+                If Ans = MsgBoxResult.Yes Then
+                    Reverse1213 = True
+                End If
+            End If
+        End If
+
+
+        For y = 0 To 4
+            Dim SIReg1to5 As String
+
+            Select Case y
+                Case 0
+                    SIReg1to5 = Company.SIRegNo
+                Case 1
+                    SIReg1to5 = Company.SI2
+                Case 2
+                    SIReg1to5 = Company.SI3
+                Case 3
+                    SIReg1to5 = Company.SI4
+                Case 4
+                    SIReg1to5 = Company.SI5
+            End Select
+            If SIReg1to5 <> "" Then
+                Dim StatusPrep As Boolean
+                DSSocCat = Global1.Business.AG_GetAllPrAnSocialInsCategories
+                For i = 0 To DSSocCat.Tables(0).Rows.Count - 1
+
+
+
+                    NumberOfSemiTerm = 0
+                    NumberOfSemiNew = 0
+                    SemiTotalIE = 0
+                    SemitotalGE = 0
+                    SemitotalSI = 0
+                    SemitotalGesyable = 0
+                    SemiTotalEmployees = 0
+                    StatusPrep = True
+                    Dim SocCat As New cPrAnSocialInsCategories(DSSocCat.Tables(0).Rows(i))
+                    DsEmp = Global1.Business.SI_File_GetEmployees_2(TemGrp, Per, SocCat.Code, StatusPrep, SIReg1to5)
+                    If Not StatusPrep Then
+                        Me.Cursor = Cursors.Default
+                        Exit Sub
+                    End If
+
+                    Dim Create_N_Record As Boolean = False
+                    Dim Create_X_Record As Boolean = False
+
+                    If CheckDataSet(DsEmp) Then
+                        '-------------------------------------------------
+                        'O2 GENERAL DETAILS PER SOCIAL INSURANCE TYPE CODE
+                        '--------------------------------------------------
+                        total02 = total02 + 1
+                        Str02 = "02"
+                        'Str02 = Str02 & Company.SIRegNo.PadLeft(15)
+                        Str02 = Str02 & SIReg1to5.PadLeft(15, "0")
+                        Str02 = Str02 & SocCat.Code
+                        'Change 2016/03/02
+                        'OLD Str02 = Str02 & Per.SinPrdCode
+                        'NEW 
+
+                        If Not Reverse1213 Then
+                            If Per.PayCat_Code = "K" Then
+                                Str02 = Str02 & Per.PayCat_Code
+                                Str02 = Str02 & Format(Per.DateFrom, "MM/yyyy")
+                            Else
+                                Str02 = Str02 & Per.PayCat_Code
+                                Dim MM As Integer
+                                MM = Per.DateFrom.Month + 12
+                                Str02 = Str02 & MM & "/" & Format(Per.DateFrom, "yyyy")
+                                Str02 = Str02 & Format(Per.DateFrom, "MM/yyyy")
+                                Str02 = Str02 & Format(Per.DateTo, "MM/yyyy")
+                            End If
+                        Else
+                            If Per.PayCat_Code <> "K" Then
+                                Str02 = Str02 & "K"
+                                Str02 = Str02 & Replace(Format(Per.DateTo, "MM/yyyy"), "-", "/")
+                            Else
+                                Dim MM As Integer
+                                Str02 = Str02 & "3"
+                                MM = Per.DateFrom.Month + 12
+                                MM = CInt(SIPer.Code) + 12
+                                Str02 = Str02 & MM & "/" & Format(Per.DateFrom, "yyyy")
+                                Str02 = Str02 & "01" & "/" & Format(Per.DateFrom, "yyyy")
+                                Str02 = Str02 & Replace(Format(Per.DateTo, "MM/yyyy"), "-", "/")
+                            End If
+                        End If
+                        Me.WriteToSIFile(Str02, Company)
+                        '--------------------------------------------------
+                        'END OF 02
+                        '--------------------------------------------------
+
+                        '--------------------------------------------------
+                        '03 NEW EMPLOYEES
+                        '--------------------------------------------------
+                        If Me.CBExcludeNewEmployees.CheckState = CheckState.Unchecked Then
+                            For k = 0 To DsEmp.Tables(0).Rows.Count - 1
+                                Dim EmpCode As String
+                                EmpCode = DbNullToString(DsEmp.Tables(0).Rows(k).Item(0))
+                                Dim PutZeroToAlienNo As Boolean = False
+                                Dim Emp As New cPrMsEmployees(EmpCode)
+                                If Emp.StartDate >= Per.DateFrom And Emp.StartDate <= Per.DateTo Then
+                                    NumberOfSemiNew = NumberOfSemiNew + 1
+                                    Str03 = "03"
+                                    If Emp.SocialInsNumber.Length > 8 Then
+                                        MsgBox("SI MAX Lenght is 8 digits,Wrong SI Length for Employee " & Emp.Code & " " & Emp.FullName)
+                                        Me.Cursor = Cursors.Default
+                                        Exit Sub
+                                    End If
+                                    Str03 = Str03 & Emp.SocialInsNumber.PadLeft(8, "0")
+                                    If Emp.IdentificationCard.Length > 8 Then
+                                        MsgBox("ID Card MAX Lenght is 8 digits,Wrong ID Card Length for Employee " & Emp.Code & " " & Emp.FullName)
+                                        Me.Cursor = Cursors.Default
+                                        Exit Sub
+                                    End If
+                                    Str03 = Str03 & Emp.IdentificationCard.PadLeft(8, "0")
+                                    If CBNoWarningsForAlienLenght.CheckState = CheckState.Unchecked Then
+                                        If Emp.AlienNumber.Length > 8 Then
+                                            Dim Ans As MsgBoxResult
+                                            Ans = MsgBox("AlienNumber MAX Lenght is 8 digits,Wrong Alien No Length for Employee " & Emp.Code & " " & Emp.FullName & " Continue without Alien Number for this Employee ? ", MsgBoxStyle.YesNo)
+                                            If Ans = MsgBoxResult.No Then
+                                                Me.Cursor = Cursors.Default
+                                                Exit Sub
+                                            Else
+                                                PutZeroToAlienNo = True
+                                            End If
+                                        End If
+                                    Else
+                                        If Emp.AlienNumber.Length > 8 Then
+                                            PutZeroToAlienNo = True
+                                        End If
+                                    End If
+                                    If PutZeroToAlienNo Then
+                                        Str03 = Str03 & "".PadLeft(8, "0")
+                                        PutZeroToAlienNo = False
+                                    Else
+                                        Str03 = Str03 & Emp.AlienNumber.PadLeft(8, "0")
+                                    End If
+
+                                    If Emp.PassportNumber.Length > 10 Then
+                                        MsgBox("Passport MAX Lenght is 10 digits,Wrong Passport No Length for Employee " & Emp.Code & " " & Emp.FullName)
+                                        Me.Cursor = Cursors.Default
+                                        Exit Sub
+                                    End If
+                                    'Str03 = Str03 & Emp.PassportNumber.PadRight(10, " ")
+                                    Str03 = Str03 & "".PadRight(10, " ")
+
+                                    Dim EmpFull As String
+                                    EmpFull = Emp.FirstName & " " & Emp.LastName
+                                    If EmpFull.Length > 30 Then
+                                        EmpFull = EmpFull.Substring(0, 29)
+                                    End If
+                                    Str03 = Str03 & EmpFull.PadRight(30, " ")
+                                    Str03 = Str03 & Format(Emp.BirthDate, "dd/MM/yyyy")
+                                    Str03 = Str03 & Emp.Sex
+                                    Str03 = Str03 & Emp.EmpCmm_Code
+                                    Str03 = Str03 & Format(Emp.StartDate, "dd/MM/yyyy")
+                                    Str03 = Str03 & Emp.PayTyp_Code.Substring(0, 1)
+
+                                    'If SIleave Then
+                                    If Emp.IsSI = 0 Then
+                                        Str03 = Str03 & "1"
+                                    Else
+                                        Str03 = Str03 & "0"
+                                    End If
+                                    Dim EmpPos As New cPrAnEmployeePositions(Emp.EmpPos_Code)
+                                    Dim Position As String
+                                    Position = EmpPos.DescriptionL
+                                    If Position.Length > 25 Then
+                                        Position = Position.Substring(0, 24)
+                                    End If
+                                    Str03 = Str03 & Position.PadRight(25, " ")
+                                    Me.WriteToSIFile(Str03, Company)
+                                End If
+                            Next
+                        End If
+                        '--------------------------------------------------
+                        'END OF 03
+                        '--------------------------------------------------
+                        '--------------------------------------------------
+                        '04 EMPLOYEES EARNINGS
+                        '--------------------------------------------------
+                        SemiTotalEmployees = 0
+                        For k = 0 To DsEmp.Tables(0).Rows.Count - 1
+
+                            SemiTotalEmployees = SemiTotalEmployees + 1
+                            Dim EmpCode As String
+                            Dim GrossEarnings As Double = 0
+                            Dim InsurableEarnings As Double = 0
+                            Dim GesyableEarnings As Double = 0
+                            Dim PutZeroToAlienNo As Boolean = False
+                            Dim x As Integer
+                            Dim GE() As String
+                            Dim IE() As String
+                            Dim SI() As String
+                            Dim Gesyable() As String
+
+                            Dim TermDate As String
+                            Dim AbsentReason As String = " "
+                            EmpCode = DbNullToString(DsEmp.Tables(0).Rows(k).Item(0))
+                            Dim Emp As New cPrMsEmployees(EmpCode)
+                            Str04 = "04"
+                            If Emp.SocialInsNumber.Length > 8 Then
+                                MsgBox("SI MAX Lenght is 8 digits,Wrong SI Length for Employee " & Emp.Code & " " & Emp.FullName)
+                                Me.Cursor = Cursors.Default
+                                Exit Sub
+                            End If
+                            Str04 = Str04 & Emp.SocialInsNumber.PadLeft(8, "0")
+                            '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                            If Emp.IdentificationCard.Length > 8 Then
+                                MsgBox("ID Card MAX Lenght is 8 digits,Wrong ID Card Length for Employee " & Emp.Code & " " & Emp.FullName)
+                                Me.Cursor = Cursors.Default
+                                Exit Sub
+                            End If
+                            Str04 = Str04 & Emp.IdentificationCard.PadLeft(8, "0")
+                            ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                            If CBNoWarningsForAlienLenght.CheckState = CheckState.Unchecked Then
+                                If Emp.AlienNumber.Length > 8 Then
+                                    Dim Ans As MsgBoxResult
+                                    Ans = MsgBox("AlienNumber MAX Lenght is 8 digits,Wrong Alien No Length for Employee " & Emp.Code & " " & Emp.FullName & " Continue without Alien Number for this Employee ? ", MsgBoxStyle.YesNo)
+                                    If Ans = MsgBoxResult.No Then
+                                        Me.Cursor = Cursors.Default
+                                        Exit Sub
+                                    Else
+                                        PutZeroToAlienNo = True
+                                    End If
+                                End If
+                            Else
+                                If Emp.AlienNumber.Length > 8 Then
+                                    PutZeroToAlienNo = True
+                                End If
+                            End If
+                            If PutZeroToAlienNo Then
+                                Str04 = Str04 & "".PadLeft(8, "0")
+                            Else
+                                Str04 = Str04 & Emp.AlienNumber.PadLeft(8, "0")
+                            End If
+                            ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                            Dim DsGrossInsurable As DataSet
+
+                            Dim TempTempGroup As New cPrMsTemplateGroup(Emp.TemGrp_Code)
+                            Dim ALValue As Double = 0
+                            If PARAM_CobaltALCode <> "" Or PARAM_CobaltALCode2 <> "" Or PARAM_CobaltALCode3 <> "" Then
+                                ALValue = Global1.Business.GetAnnualLeaveValueFromLineFor(TempTempGroup, Per, EmpCode)
+                                If ALValue <> 0 Then
+                                    Create_N_Record = True
+                                    total_N_02 = total_N_02 + 1
+                                End If
+                            End If
+                            DsGrossInsurable = Global1.Business.SI_File_GetEmployees_Gross_Insurable(TemGrp, Per, EmpCode)
+                            If CheckDataSet(DsGrossInsurable) Then
+                                GrossEarnings = DbNullToDouble(DsGrossInsurable.Tables(0).Rows(0).Item(0)) - ALValue
+                                InsurableEarnings = DbNullToDouble(DsGrossInsurable.Tables(0).Rows(0).Item(1))
+                                GesyableEarnings = DbNullToDouble(DsGrossInsurable.Tables(0).Rows(0).Item(2))
+                            End If
+                            If GrossEarnings >= 0 Then
+                                Sign = "+"
+                            Else
+                                Sign = "-"
+                            End If
+                            Dim DsSLeave As DataSet
+                            Dim SIvalue As Double = 0
+                            DsSLeave = Global1.Business.GetERNFromTrxnLinesFor(Per, "SI")
+                            If CheckDataSet(DsSLeave) Then
+                                For x = 0 To DsSLeave.Tables(0).Rows.Count - 1
+                                    If DsSLeave.Tables(0).Rows(x).Item(0) = EmpCode Then
+                                        SIvalue = SIvalue + DsSLeave.Tables(0).Rows(x).Item(2)
+                                    End If
+                                Next
+                            End If
+
+                            GrossEarnings = Utils.RoundMe3(GrossEarnings, 0)
+
+
+                            SemitotalGE = SemitotalGE + GrossEarnings
+                            GE = Math.Abs(GrossEarnings).ToString.Split(".")
+                            Str04 = Str04 & Sign & GE(0).PadLeft(10, "0")
+
+
+                            GesyableEarnings = RoundMe3(GesyableEarnings - SIvalue, 2)
+                            If GesyableEarnings >= 0 Then
+                                Sign = "+"
+                            Else
+                                Sign = "-"
+                            End If
+                            GesyableEarnings = Utils.RoundMe3(GesyableEarnings, 0)
+                            If Math.Abs(GesyableEarnings - GrossEarnings) = 1 Then
+                                GesyableEarnings = GrossEarnings
+                            End If
+
+                            SemitotalGesyable = SemitotalGesyable + GesyableEarnings
+                            Gesyable = Math.Abs(GesyableEarnings).ToString.Split(".")
+                            Str04 = Str04 & Sign & Gesyable(0).PadLeft(10, "0")
+
+
+
+                            InsurableEarnings = RoundMe3(InsurableEarnings - SIvalue, 2)
+                            If InsurableEarnings >= 0 Then
+                                Sign = "+"
+                            Else
+                                Sign = "-"
+                            End If
+
+                            If GrossEarnings = 0 Then
+                                MsgBox("Employee  " & Emp.Code & " " & Emp.FullName & " Total Earning are Zero, Please enter Leave Code", MsgBoxStyle.Information)
+                                Dim F As New FrmSelectLeaveReason
+                                F.Owner = Me
+                                F.ShowDialog()
+                                AbsentReason = Me.GlbAbsentReason
+                            Else
+                                AbsentReason = " "
+                            End If
+
+                            InsurableEarnings = Utils.RoundMe3(InsurableEarnings, 0)
+                            If Math.Abs(InsurableEarnings - GrossEarnings) = 1 Then
+                                InsurableEarnings = GrossEarnings
+                                'MsgBox(EmpCode, InsurableEarnings, GrossEarnings)
+                            End If
+
+
+
+                            SemiTotalIE = SemiTotalIE + InsurableEarnings
+                            IE = Math.Abs(InsurableEarnings).ToString.Split(".")
+                            Str04 = Str04 & Sign & IE(0).PadLeft(10, "0")
+                            'SI ***********************************
+                            'Dim DsSLeave As DataSet
+                            'Dim SIvalue As Double = 0
+                            'DsSLeave = Global1.Business.GetERNFromTrxnLinesFor(Per, "SI")
+                            'If CheckDataSet(DsSLeave) Then
+                            '    For x = 0 To DsSLeave.Tables(0).Rows.Count - 1
+                            '        If DsSLeave.Tables(0).Rows(x).Item(0) = EmpCode Then
+                            '            SIvalue = SIvalue + DsSLeave.Tables(0).Rows(x).Item(2)
+                            '        End If
+                            '    Next
+                            'End If
+                            'DsSi = Global1.Business.GetCONFromTrxnLinesFor(Per, "SI")
+                            'If CheckDataSet(DsSi) Then
+                            '    For x = 0 To DsSi.Tables(0).Rows.Count - 1
+                            '        If DsSi.Tables(0).Rows(x).Item(0) = EmpCode Then
+                            '            SIvalue = SIvalue + DsSi.Tables(0).Rows(x).Item(2)
+                            '        End If
+                            '    Next
+                            'End If
+
+                            SI = Format(SIvalue, "0.00").ToString.Split(".")
+                            Dim S As String
+                            S = SI(0) & SI(1)
+                            SemitotalSI = SemitotalSI + CInt(S)
+
+                            S = "+" & S.PadLeft(12, "0")
+
+
+
+                            Str04 = Str04 & S
+                            Str04 = Str04 & AbsentReason
+                            Str04 = Str04 & AbsentReason
+                            Str04 = Str04 & AbsentReason
+                            Str04 = Str04 & AbsentReason
+                            Str04 = Str04 & AbsentReason
+                            If Not Reverse1213 Then
+                                TermDate = "          "
+                                If CBExcludeTerminations.CheckState = CheckState.Unchecked Then
+                                    If Trim(Emp.TerminateDate) <> "" Then
+                                        If Per.PayCat_Code = "K" Then
+                                            If CDate(Emp.TerminateDate) < Per.DateFrom Or CDate(Emp.TerminateDate) > Per.DateTo Then
+                                                TermDate = "          "
+                                            Else
+                                                TermDate = Format(CDate(Emp.TerminateDate), "dd/MM/yyyy")
+                                                NumberOfSemiTerm = NumberOfSemiTerm + 1
+                                            End If
+                                        Else
+                                            TermDate = "          "
+                                        End If
+                                    Else
+                                        TermDate = "          "
+                                    End If
+                                End If
+                            Else
+                                TermDate = "          "
+                                If CBExcludeTerminations.CheckState = CheckState.Unchecked Then
+                                    If Trim(Emp.TerminateDate) <> "" Then
+                                        If Per.PayCat_Code <> "K" Then
+                                            If CDate(Emp.TerminateDate) < Per.DateFrom Or CDate(Emp.TerminateDate) > Per.DateTo Then
+                                                TermDate = "          "
+                                            Else
+                                                TermDate = Format(CDate(Emp.TerminateDate), "dd/MM/yyyy")
+                                                NumberOfSemiTerm = NumberOfSemiTerm + 1
+                                            End If
+                                        Else
+                                            TermDate = "          "
+                                        End If
+                                    Else
+                                        TermDate = "          "
+                                    End If
+                                End If
+                            End If
+                            Str04 = Str04 & TermDate
+                            Str04 = Str04 & 1
+                            Me.WriteToSIFile(Str04, Company)
+                        Next
+
+                        '--------------------------------------------------
+                        'END OF 04
+                        '--------------------------------------------------
+                        '--------------------------------------------------
+                        '05 TOTALS PER SOCIAL INSURANCE CATEGORY
+                        '--------------------------------------------------
+                        Str05 = "05"
+                        If SemitotalGE >= 0 Then
+                            Sign = "+"
+                        Else
+                            Sign = "-"
+                        End If
+                        Str05 = Str05 & Sign & SemitotalGE.ToString.PadLeft(12, "0")
+
+
+                        If SemitotalGesyable >= 0 Then
+                            Sign = "+"
+                        Else
+                            Sign = "-"
+                        End If
+                        Str05 = Str05 & Sign & SemitotalGesyable.ToString.PadLeft(12, "0")
+
+
+
+                        If SemiTotalIE >= 0 Then
+                            Sign = "+"
+                        Else
+                            Sign = "-"
+                        End If
+                        Str05 = Str05 & Sign & SemiTotalIE.ToString.PadLeft(12, "0")
+
+                        'SI ************************
+
+                        Str05 = Str05 & "+" & SemitotalSI.ToString.PadLeft(14, "0")
+                        Str05 = Str05 & NumberOfSemiNew.ToString.PadLeft(5, "0")
+                        Str05 = Str05 & NumberOfSemiTerm.ToString.PadLeft(5, "0")
+                        Str05 = Str05 & SemiTotalEmployees.ToString.PadLeft(6, "0")
+
+                        Me.WriteToSIFile(Str05, Company)
+                        '--------------------------------------------------
+                        'END OF 05
+                        '--------------------------------------------------
+
+                        GRAND_NumberOfNew = GRAND_NumberOfNew + NumberOfSemiNew
+                        GRAND_NumberOfTerm = GRAND_NumberOfTerm + NumberOfSemiTerm
+                        GRAND_SemiTotalIE = GRAND_SemiTotalIE + SemiTotalIE
+                        GRAND_SemitotalGE = GRAND_SemitotalGE + SemitotalGE
+                        GRAND_SemiTotalSI = GRAND_SemiTotalSI + SemitotalSI
+                        GRAND_SemiTotalGesyable = GRAND_SemiTotalGesyable + SemitotalGesyable
+                        GRAND_SemiTotalEmployees = GRAND_SemiTotalEmployees + SemiTotalEmployees
+
+                    End If
+
+                    If Create_N_Record Then
+
+
+
+
+
+                        Dim NumberOfTerm As Double = 0
+                        Dim NumberOfNew As Double = 0
+                        SemiTotalIE = 0
+                        SemitotalGE = 0
+                        SemitotalSI = 0
+                        SemitotalGesyable = 0
+                        SemiTotalEmployees = 0
+                        '-------------------------------------------------
+                        'O2 GENERAL DETAILS PER SOCIAL INSURANCE TYPE CODE
+                        '--------------------------------------------------
+
+                        total02 = total02 + 1
+                        Str02 = "02"
+                        'Str02 = Str02 & Company.SIRegNo.PadLeft(15)
+                        Str02 = Str02 & Company.SIRegNo.PadLeft(15, "0")
+                        Str02 = Str02 & SocCat.Code
+                        'Change 2016/03/02
+                        'OLD Str02 = Str02 & Per.SinPrdCode
+                        'NEW 
+                        Str02 = Str02 & "N"
+
+                        If Not Reverse1213 Then
+                            Dim MM As Integer
+                            MM = Per.DateFrom.Month + 12
+                            MM = CInt(SIPer.Code) + 12
+                            Str02 = Str02 & MM & "/" & Format(Per.DateFrom, "yyyy")
+                            Str02 = Str02 & Replace(Format(Per.DateFrom, "MM/yyyy"), "-", "/")
+                            Str02 = Str02 & Replace(Format(Per.DateTo, "MM/yyyy"), "-", "/")
+                            Me.WriteToSIFile(Str02, Company)
+                        Else
+                            Dim MM As Integer
+                            MM = Per.DateFrom.Month + 12
+                            MM = CInt(SIPer.Code) + 12
+                            Str02 = Str02 & MM & "/" & Format(Per.DateFrom, "yyyy")
+                            Str02 = Str02 & Replace(Format(Per.DateTo, "MM/yyyy"), "-", "/")
+                            Str02 = Str02 & Replace(Format(Per.DateTo, "MM/yyyy"), "-", "/")
+                            Me.WriteToSIFile(Str02, Company)
+
+                        End If
+
+                        '--------------------------------------------------
+                        'END OF 02
+                        '--------------------------------------------------
+
+
+                        '--------------------------------------------------
+                        '04 EMPLOYEES EARNINGS
+                        '--------------------------------------------------
+                        SemiTotalEmployees = 0
+                        For k = 0 To DsEmp.Tables(0).Rows.Count - 1
+
+                            Dim EmpCode As String
+                            Dim GrossEarnings As Double = 0
+                            Dim InsurableEarnings As Double = 0
+                            Dim GESYableEarnings As Double = 0
+                            Dim PutZeroToAlienNo As Boolean = False
+                            Dim x As Integer
+                            Dim GE() As String
+                            Dim IE() As String
+                            Dim SI() As String
+                            Dim Gesyable() As String
+
+
+
+                            Dim TermDate As String
+                            Dim AbsentReason As String = " "
+                            EmpCode = DbNullToString(DsEmp.Tables(0).Rows(k).Item(0))
+                            Dim Emp As New cPrMsEmployees(EmpCode)
+                            Str04 = "04"
+                            If Emp.SocialInsNumber.Length > 8 Then
+                                MsgBox("SI MAX Lenght is 8 digits,Wrong SI Length for Employee " & Emp.Code & " " & Emp.FullName)
+                                Me.Cursor = Cursors.Default
+                                Exit Sub
+                            End If
+                            Str04 = Str04 & Emp.SocialInsNumber.PadLeft(8, "0")
+                            '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                            If Emp.IdentificationCard.Length > 8 Then
+                                MsgBox("ID Card MAX Lenght is 8 digits,Wrong ID Card Length for Employee " & Emp.Code & " " & Emp.FullName)
+                                Me.Cursor = Cursors.Default
+                                Exit Sub
+                            End If
+                            Str04 = Str04 & Emp.IdentificationCard.PadLeft(8, "0")
+                            ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                            If CBNoWarningsForAlienLenght.CheckState = CheckState.Unchecked Then
+                                If Emp.AlienNumber.Length > 8 Then
+                                    Dim Ans As MsgBoxResult
+                                    Ans = MsgBox("AlienNumber MAX Lenght is 8 digits,Wrong Alien No Length for Employee " & Emp.Code & " " & Emp.FullName & " Continue without Alien Number for this Employee ? ", MsgBoxStyle.YesNo)
+                                    If Ans = MsgBoxResult.No Then
+                                        Me.Cursor = Cursors.Default
+                                        Exit Sub
+                                    Else
+                                        PutZeroToAlienNo = True
+                                    End If
+                                End If
+                            Else
+                                If Emp.AlienNumber.Length > 8 Then
+                                    PutZeroToAlienNo = True
+                                End If
+                            End If
+                            If PutZeroToAlienNo Then
+                                Str04 = Str04 & "".PadLeft(8, "0")
+                            Else
+                                Str04 = Str04 & Emp.AlienNumber.PadLeft(8, "0")
+                            End If
+                            ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+                            Dim DsGrossInsurable As DataSet
+                            Dim TempTempGroup As New cPrMsTemplateGroup(Emp.TemGrp_Code)
+                            Dim ALValue As Double = 0
+                            If PARAM_CobaltALCode <> "" Or PARAM_CobaltALCode2 <> "" Or PARAM_CobaltALCode3 <> "" Then
+                                ALValue = Global1.Business.GetAnnualLeaveValueFromLineFor(TempTempGroup, Per, EmpCode)
+                                If ALValue <> 0 Then
+                                    SemiTotalEmployees = SemiTotalEmployees + 1
+                                    GrossEarnings = Utils.RoundMe3(ALValue, 0)
+                                    If GrossEarnings >= 0 Then
+                                        Sign = "+"
+                                    Else
+                                        Sign = "-"
+                                    End If
+                                    GE = Math.Abs(GrossEarnings).ToString.Split(".")
+                                    Str04 = Str04 & Sign & GE(0).PadLeft(10, "0")
+                                    SemitotalGE = SemitotalGE + GrossEarnings
+                                    GESYableEarnings = RoundMe3(0, 2)
+                                    SemitotalGesyable = SemitotalGesyable + GESYableEarnings
+                                    Gesyable = Math.Abs(GESYableEarnings).ToString.Split(".")
+                                    If GESYableEarnings >= 0 Then
+                                        Sign = "+"
+                                    Else
+                                        Sign = "-"
+                                    End If
+                                    Str04 = Str04 & Sign & Gesyable(0).PadLeft(10, "0")
+
+                                    InsurableEarnings = RoundMe3(0, 2)
+                                    SemiTotalIE = SemiTotalIE + InsurableEarnings
+                                    IE = Math.Abs(InsurableEarnings).ToString.Split(".")
+                                    If InsurableEarnings >= 0 Then
+                                        Sign = "+"
+                                    Else
+                                        Sign = "-"
+                                    End If
+                                    Str04 = Str04 & Sign & IE(0).PadLeft(10, "0")
+                                    SI = Format(0, "0.00").ToString.Split(".")
+                                    Dim S As String
+                                    S = SI(0) & SI(1)
+                                    SemitotalSI = SemitotalSI + CInt(S)
+
+                                    S = "+" & S.PadLeft(12, "0")
+                                    Str04 = Str04 & S
+                                    Str04 = Str04 & AbsentReason
+                                    Str04 = Str04 & AbsentReason
+                                    Str04 = Str04 & AbsentReason
+                                    Str04 = Str04 & AbsentReason
+                                    Str04 = Str04 & AbsentReason
+                                    TermDate = "          "
+                                    Str04 = Str04 & TermDate
+                                    Str04 = Str04 & 1
+                                    Me.WriteToSIFile(Str04, Company)
+                                End If
+                            End If
+                        Next
+
+                        '--------------------------------------------------
+                        'END OF 04
+                        '--------------------------------------------------
+                        '--------------------------------------------------
+                        '05 TOTALS PER SOCIAL INSURANCE CATEGORY
+                        '--------------------------------------------------
+                        Str05 = "05"
+                        If SemitotalGE >= 0 Then
+                            Sign = "+"
+                        Else
+                            Sign = "-"
+                        End If
+                        Str05 = Str05 & Sign & SemitotalGE.ToString.PadLeft(12, "0")
+
+
+                        If SemitotalGesyable >= 0 Then
+                            Sign = "+"
+                        Else
+                            Sign = "-"
+                        End If
+                        Str05 = Str05 & Sign & SemitotalGesyable.ToString.PadLeft(12, "0")
+
+
+                        If SemiTotalIE >= 0 Then
+                            Sign = "+"
+                        Else
+                            Sign = "-"
+                        End If
+                        Str05 = Str05 & Sign & SemiTotalIE.ToString.PadLeft(12, "0")
+
+                        'SI ************************
+
+                        Str05 = Str05 & "+" & SemitotalSI.ToString.PadLeft(14, "0")
+                        Str05 = Str05 & NumberOfNew.ToString.PadLeft(5, "0")
+                        Str05 = Str05 & NumberOfTerm.ToString.PadLeft(5, "0")
+                        Str05 = Str05 & SemiTotalEmployees.ToString.PadLeft(6, "0")
+
+                        Me.WriteToSIFile(Str05, Company)
+                        '--------------------------------------------------
+                        'END OF 05
+                        '--------------------------------------------------
+
+                        GRAND_NumberOfNew = GRAND_NumberOfNew + NumberOfNew
+                        GRAND_NumberOfTerm = GRAND_NumberOfTerm + NumberOfTerm
+                        GRAND_SemiTotalIE = GRAND_SemiTotalIE + SemiTotalIE
+                        GRAND_SemitotalGE = GRAND_SemitotalGE + SemitotalGE
+                        GRAND_SemiTotalSI = GRAND_SemiTotalSI + SemitotalSI
+                        GRAND_SemiTotalGesyable = GRAND_SemiTotalGesyable + SemitotalGesyable
+                        GRAND_SemiTotalEmployees = GRAND_SemiTotalEmployees + SemiTotalEmployees
+
+
+
+                    End If ' END OF Create_N_record
+
                 Next
 
             End If

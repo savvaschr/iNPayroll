@@ -2107,6 +2107,11 @@ Public Class cBusiness
         Return MyBase.getmaximumyearofperiodgroups
 
     End Function
+    Public Shadows Function RemoveOtherIncome1() As DataSet
+        Return MyBase.RemoveOtherIncome1
+
+    End Function
+
 #Region "Locii"
     Public Shadows Function LociiExport_PrAnBanks() As DataSet
         Return MyBase.LociiExport_PrAnBanks

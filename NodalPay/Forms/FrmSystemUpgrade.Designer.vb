@@ -103,6 +103,10 @@ Partial Class FrmSystemUpgrade
         Me.Button78 = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Button88 = New System.Windows.Forms.Button()
+        Me.Button87 = New System.Windows.Forms.Button()
+        Me.Button86 = New System.Windows.Forms.Button()
+        Me.Button85 = New System.Windows.Forms.Button()
         Me.Button84 = New System.Windows.Forms.Button()
         Me.Button83 = New System.Windows.Forms.Button()
         Me.Button82 = New System.Windows.Forms.Button()
@@ -110,8 +114,7 @@ Partial Class FrmSystemUpgrade
         Me.Button80 = New System.Windows.Forms.Button()
         Me.Button79 = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.Button85 = New System.Windows.Forms.Button()
-        Me.Button86 = New System.Windows.Forms.Button()
+        Me.Button89 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -936,6 +939,9 @@ Partial Class FrmSystemUpgrade
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.Button89)
+        Me.TabPage2.Controls.Add(Me.Button88)
+        Me.TabPage2.Controls.Add(Me.Button87)
         Me.TabPage2.Controls.Add(Me.Button86)
         Me.TabPage2.Controls.Add(Me.Button85)
         Me.TabPage2.Controls.Add(Me.Button84)
@@ -971,6 +977,46 @@ Partial Class FrmSystemUpgrade
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "2025"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'Button88
+        '
+        Me.Button88.Location = New System.Drawing.Point(254, 238)
+        Me.Button88.Name = "Button88"
+        Me.Button88.Size = New System.Drawing.Size(233, 23)
+        Me.Button88.TabIndex = 88
+        Me.Button88.Text = "88. Create Param Other1 and Airlines"
+        Me.Button88.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button88.UseVisualStyleBackColor = True
+        '
+        'Button87
+        '
+        Me.Button87.Location = New System.Drawing.Point(254, 209)
+        Me.Button87.Name = "Button87"
+        Me.Button87.Size = New System.Drawing.Size(233, 23)
+        Me.Button87.TabIndex = 87
+        Me.Button87.Text = "87. Check For OtherIncome1"
+        Me.Button87.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button87.UseVisualStyleBackColor = True
+        '
+        'Button86
+        '
+        Me.Button86.Location = New System.Drawing.Point(534, 6)
+        Me.Button86.Name = "Button86"
+        Me.Button86.Size = New System.Drawing.Size(233, 23)
+        Me.Button86.TabIndex = 86
+        Me.Button86.Text = "2025 TAx Brackets"
+        Me.Button86.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button86.UseVisualStyleBackColor = True
+        '
+        'Button85
+        '
+        Me.Button85.Location = New System.Drawing.Point(254, 180)
+        Me.Button85.Name = "Button85"
+        Me.Button85.Size = New System.Drawing.Size(233, 23)
+        Me.Button85.TabIndex = 85
+        Me.Button85.Text = "85. 2026 TAx Brackets"
+        Me.Button85.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button85.UseVisualStyleBackColor = True
         '
         'Button84
         '
@@ -1101,25 +1147,15 @@ Partial Class FrmSystemUpgrade
         Me.TabPage1.Text = "2024"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
-        'Button85
+        'Button89
         '
-        Me.Button85.Location = New System.Drawing.Point(254, 180)
-        Me.Button85.Name = "Button85"
-        Me.Button85.Size = New System.Drawing.Size(233, 23)
-        Me.Button85.TabIndex = 85
-        Me.Button85.Text = "85. 2026 TAx Brackets"
-        Me.Button85.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button85.UseVisualStyleBackColor = True
-        '
-        'Button86
-        '
-        Me.Button86.Location = New System.Drawing.Point(534, 6)
-        Me.Button86.Name = "Button86"
-        Me.Button86.Size = New System.Drawing.Size(233, 23)
-        Me.Button86.TabIndex = 86
-        Me.Button86.Text = "2025 TAx Brackets"
-        Me.Button86.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button86.UseVisualStyleBackColor = True
+        Me.Button89.Location = New System.Drawing.Point(254, 267)
+        Me.Button89.Name = "Button89"
+        Me.Button89.Size = New System.Drawing.Size(233, 23)
+        Me.Button89.TabIndex = 89
+        Me.Button89.Text = "89. Allocation Status 2026"
+        Me.Button89.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button89.UseVisualStyleBackColor = True
         '
         'FrmSystemUpgrade
         '
@@ -1225,4 +1261,7 @@ Partial Class FrmSystemUpgrade
     Friend WithEvents Button84 As Button
     Friend WithEvents Button86 As Button
     Friend WithEvents Button85 As Button
+    Friend WithEvents Button87 As Button
+    Friend WithEvents Button88 As Button
+    Friend WithEvents Button89 As Button
 End Class

@@ -245,7 +245,23 @@ Public Class frmPrMsEmployees
         LoadCombos()
         ClearMe()
         PutDecimalValidationOnTxts()
+        If Global1.PARAM_showOtherIncome1 Then
+            Me.lblOtherIncome3.Visible = True
+            Me.Label28.Visible = True
+            Me.txtOtherIncome1.Visible = True
+        Else
+            Me.lblOtherIncome3.Visible = False
+            Me.Label28.Visible = False
+            Me.txtOtherIncome1.Visible = False
 
+        End If
+        If Global1.PARAM_ShowAirlines Then
+            Me.GroupBox2.Visible = True
+
+        Else
+            Me.GroupBox2.Visible = False
+
+        End If
     End Sub
     Private Sub InitArray_Ern()
         Ern(0) = Me.E_Emp1

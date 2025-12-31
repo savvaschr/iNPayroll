@@ -347,7 +347,7 @@ Public Class FrmPayroll1
         Else
             GLBMaximumYear = P.Value1
             'GLBMaximumYear = Encryption.MakePassword(P.Value1, 653)
-            GLBMaximumYear = Utils.Encrypt("2025")
+            GLBMaximumYear = Utils.Encrypt("2026")
             GLBMaximumYear = Utils.Decrypt(P.Value1)
 
         End If

@@ -9,4 +9,12 @@ Public Class FrmFixYTD
         Global1.Business.FixEmployeeYTD(EmpCode, periodGroup)
         MsgBox("Finish")
     End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim PeriodGroup As String
+        PeriodGroup = Me.txtPeriodgroup2.Text
+
+        Global1.Business.FixPeriodGroupContributionsYTD(PeriodGroup)
+        MsgBox("Finish")
+    End Sub
 End Class

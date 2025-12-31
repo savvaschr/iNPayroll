@@ -27117,15 +27117,15 @@ todo:   ' check for status in trxnheader
     Public Shadows Function FixEmployeeYTD(ByVal EmpCode As String, ByVal PeriodGroup As String) As DataSet
         Dim Ds As DataSet
         Dim Str As String
-        Str = "select Trxhdr_id," & _
-                " TrxLin_id," & _
-                " erncod_code," & _
-                " TrxLin_PeriodValue" & _
-                " from PrTxTrxnLines " & _
-                " where TrxHdr_Id in" & _
-                " (Select Trxhdr_id from PrTxTrxnHeader where Emp_Code=" & enQuoteString(EmpCode) & _
-                 " And PrdGrp_code=" & enQuoteString(PeriodGroup) & ")" & _
-                " and TrxLin_Type ='E'" & _
+        Str = "select Trxhdr_id," &
+                " TrxLin_id," &
+                " erncod_code," &
+                " TrxLin_PeriodValue" &
+                " from PrTxTrxnLines " &
+                " where TrxHdr_Id in" &
+                " (Select Trxhdr_id from PrTxTrxnHeader where Emp_Code=" & enQuoteString(EmpCode) &
+                 " And PrdGrp_code=" & enQuoteString(PeriodGroup) & ")" &
+                " and TrxLin_Type ='E'" &
                 " Order by TrxHdr_Id,TrxLin_Id  asc"
         Ds = GetData(Str)
         Dim i As Integer
@@ -27141,16 +27141,16 @@ todo:   ' check for status in trxnheader
                 LinId = Ds.Tables(0).Rows(i).Item(1)
                 Code = Ds.Tables(0).Rows(i).Item(2)
                 Value = Ds.Tables(0).Rows(i).Item(3)
-                Str = "select Trxhdr_id," & _
-                " TrxLin_id," & _
-                " erncod_code," & _
-                " TrxLin_PeriodValue" & _
-                " from PrTxTrxnLines " & _
-                " where TrxHdr_Id in" & _
-                " (Select Trxhdr_id from PrTxTrxnHeader where Emp_Code=" & enQuoteString(EmpCode) & _
-                " And PrdGrp_code=" & enQuoteString(PeriodGroup) & ")" & _
-                " and TrxLin_Type ='E'" & _
-                " and ErnCod_Code =" & enQuoteString(Code) & _
+                Str = "select Trxhdr_id," &
+                " TrxLin_id," &
+                " erncod_code," &
+                " TrxLin_PeriodValue" &
+                " from PrTxTrxnLines " &
+                " where TrxHdr_Id in" &
+                " (Select Trxhdr_id from PrTxTrxnHeader where Emp_Code=" & enQuoteString(EmpCode) &
+                " And PrdGrp_code=" & enQuoteString(PeriodGroup) & ")" &
+                " and TrxLin_Type ='E'" &
+                " and ErnCod_Code =" & enQuoteString(Code) &
                 " and TrxHdr_Id < " & HdrId
                 DsI = GetData(Str)
                 Dim Total As Double = 0
@@ -27160,9 +27160,9 @@ todo:   ' check for status in trxnheader
                     Next
                 End If
                 Value = Value + Total
-                Str = "update PrTxTrxnLines SET " & _
-                " TrxLin_YTDValue = " & Value & _
-                " where TrxHdr_Id = " & HdrId & _
+                Str = "update PrTxTrxnLines SET " &
+                " TrxLin_YTDValue = " & Value &
+                " where TrxHdr_Id = " & HdrId &
                 " and TrxLin_Id=" & LinId
                 MyBase.ExecuteNonQuery(Str)
 
@@ -27173,15 +27173,15 @@ todo:   ' check for status in trxnheader
         '''''''''''''''''''''''''''
         'DEDUCTIONS
         '''''''''''''''''''''''''''
-        Str = "select Trxhdr_id," & _
-                " TrxLin_id," & _
-                " dedcod_code," & _
-                " TrxLin_PeriodValue" & _
-                " from PrTxTrxnLines " & _
-                " where TrxHdr_Id in" & _
-                " (Select Trxhdr_id from PrTxTrxnHeader where Emp_Code=" & enQuoteString(EmpCode) & _
-                " And PrdGrp_code=" & enQuoteString(PeriodGroup) & ")" & _
-                " and TrxLin_Type ='D'" & _
+        Str = "select Trxhdr_id," &
+                " TrxLin_id," &
+                " dedcod_code," &
+                " TrxLin_PeriodValue" &
+                " from PrTxTrxnLines " &
+                " where TrxHdr_Id in" &
+                " (Select Trxhdr_id from PrTxTrxnHeader where Emp_Code=" & enQuoteString(EmpCode) &
+                " And PrdGrp_code=" & enQuoteString(PeriodGroup) & ")" &
+                " and TrxLin_Type ='D'" &
                 " Order by TrxHdr_Id,TrxLin_Id  asc"
         Ds = GetData(Str)
 
@@ -27191,16 +27191,16 @@ todo:   ' check for status in trxnheader
                 LinId = Ds.Tables(0).Rows(i).Item(1)
                 Code = Ds.Tables(0).Rows(i).Item(2)
                 Value = Ds.Tables(0).Rows(i).Item(3)
-                Str = "select Trxhdr_id," & _
-                " TrxLin_id," & _
-                " dedcod_code," & _
-                " TrxLin_PeriodValue" & _
-                " from PrTxTrxnLines " & _
-                " where TrxHdr_Id in" & _
-                " (Select Trxhdr_id from PrTxTrxnHeader where Emp_Code=" & enQuoteString(EmpCode) & _
-                " And PrdGrp_code=" & enQuoteString(PeriodGroup) & ")" & _
-                " and TrxLin_Type ='D'" & _
-                " and DedCod_Code =" & enQuoteString(Code) & _
+                Str = "select Trxhdr_id," &
+                " TrxLin_id," &
+                " dedcod_code," &
+                " TrxLin_PeriodValue" &
+                " from PrTxTrxnLines " &
+                " where TrxHdr_Id in" &
+                " (Select Trxhdr_id from PrTxTrxnHeader where Emp_Code=" & enQuoteString(EmpCode) &
+                " And PrdGrp_code=" & enQuoteString(PeriodGroup) & ")" &
+                " and TrxLin_Type ='D'" &
+                " and DedCod_Code =" & enQuoteString(Code) &
                 " and TrxHdr_Id < " & HdrId
                 DsI = GetData(Str)
                 Dim Total As Double = 0
@@ -27210,9 +27210,9 @@ todo:   ' check for status in trxnheader
                     Next
                 End If
                 Value = Value + Total
-                Str = "update PrTxTrxnLines SET " & _
-                " TrxLin_YTDValue = " & Value & _
-                " where TrxHdr_Id = " & HdrId & _
+                Str = "update PrTxTrxnLines SET " &
+                " TrxLin_YTDValue = " & Value &
+                " where TrxHdr_Id = " & HdrId &
                 " and TrxLin_Id=" & LinId
                 MyBase.ExecuteNonQuery(Str)
 
@@ -27222,15 +27222,15 @@ todo:   ' check for status in trxnheader
         '''''''''''''''''''''''''''''''''
         'Contributions
         '''''''''''''''''''''''''''''''''
-        Str = "select Trxhdr_id," & _
-             " TrxLin_id," & _
-             " concod_code," & _
-             " TrxLin_PeriodValue" & _
-             " from PrTxTrxnLines " & _
-             " where TrxHdr_Id in" & _
-             " (Select Trxhdr_id from PrTxTrxnHeader where Emp_Code=" & enQuoteString(EmpCode) & _
-             " And PrdGrp_code=" & enQuoteString(PeriodGroup) & ")" & _
-             " and TrxLin_Type ='C'" & _
+        Str = "select Trxhdr_id," &
+             " TrxLin_id," &
+             " concod_code," &
+             " TrxLin_PeriodValue" &
+             " from PrTxTrxnLines " &
+             " where TrxHdr_Id in" &
+             " (Select Trxhdr_id from PrTxTrxnHeader where Emp_Code=" & enQuoteString(EmpCode) &
+             " And PrdGrp_code=" & enQuoteString(PeriodGroup) & ")" &
+             " and TrxLin_Type ='C'" &
              " Order by TrxHdr_Id,TrxLin_Id  asc"
         Ds = GetData(Str)
 
@@ -27240,16 +27240,16 @@ todo:   ' check for status in trxnheader
                 LinId = Ds.Tables(0).Rows(i).Item(1)
                 Code = Ds.Tables(0).Rows(i).Item(2)
                 Value = Ds.Tables(0).Rows(i).Item(3)
-                Str = "select Trxhdr_id," & _
-                " TrxLin_id," & _
-                " concod_code," & _
-                " TrxLin_PeriodValue" & _
-                " from PrTxTrxnLines " & _
-                " where TrxHdr_Id in" & _
-                " (Select Trxhdr_id from PrTxTrxnHeader where Emp_Code=" & enQuoteString(EmpCode) & _
-                " And PrdGrp_code=" & enQuoteString(PeriodGroup) & ")" & _
-                " and TrxLin_Type ='C'" & _
-                " and ConCod_Code =" & enQuoteString(Code) & _
+                Str = "select Trxhdr_id," &
+                " TrxLin_id," &
+                " concod_code," &
+                " TrxLin_PeriodValue" &
+                " from PrTxTrxnLines " &
+                " where TrxHdr_Id in" &
+                " (Select Trxhdr_id from PrTxTrxnHeader where Emp_Code=" & enQuoteString(EmpCode) &
+                " And PrdGrp_code=" & enQuoteString(PeriodGroup) & ")" &
+                " and TrxLin_Type ='C'" &
+                " and ConCod_Code =" & enQuoteString(Code) &
                 " and TrxHdr_Id < " & HdrId
                 DsI = GetData(Str)
                 Dim Total As Double = 0
@@ -27259,9 +27259,9 @@ todo:   ' check for status in trxnheader
                     Next
                 End If
                 Value = Value + Total
-                Str = "update PrTxTrxnLines SET " & _
-                " TrxLin_YTDValue = " & Value & _
-                " where TrxHdr_Id = " & HdrId & _
+                Str = "update PrTxTrxnLines SET " &
+                " TrxLin_YTDValue = " & Value &
+                " where TrxHdr_Id = " & HdrId &
                 " and TrxLin_Id=" & LinId
                 MyBase.ExecuteNonQuery(Str)
 
@@ -27269,12 +27269,12 @@ todo:   ' check for status in trxnheader
 
         End If
 
-        Str = "select Trxhdr_id," & _
-              " TrxHdr_TotalErnPeriod, " & _
-              " TrxHdr_TotaldedPeriod ," & _
-              " TrxHdr_TotalConPeriod " & _
-              " from PrTxTrxnheader" & _
-              " where Emp_Code=" & enQuoteString(EmpCode) & _
+        Str = "select Trxhdr_id," &
+              " TrxHdr_TotalErnPeriod, " &
+              " TrxHdr_TotaldedPeriod ," &
+              " TrxHdr_TotalConPeriod " &
+              " from PrTxTrxnheader" &
+              " where Emp_Code=" & enQuoteString(EmpCode) &
              " And PrdGrp_code=" & enQuoteString(PeriodGroup)
         Ds = GetData(Str)
         Dim ValErn As Double
@@ -27287,13 +27287,13 @@ todo:   ' check for status in trxnheader
                 ValErn = Ds.Tables(0).Rows(i).Item(1)
                 ValDed = Ds.Tables(0).Rows(i).Item(2)
                 ValCon = Ds.Tables(0).Rows(i).Item(3)
-                Str = "select Trxhdr_id," & _
-                " TrxHdr_TotalErnPeriod, " & _
-                " TrxHdr_TotaldedPeriod ," & _
-                " TrxHdr_TotalConPeriod " & _
-                " from PrTxTrxnheader" & _
-                " where Emp_Code=" & enQuoteString(EmpCode) & _
-                " And PrdGrp_code=" & enQuoteString(PeriodGroup) & _
+                Str = "select Trxhdr_id," &
+                " TrxHdr_TotalErnPeriod, " &
+                " TrxHdr_TotaldedPeriod ," &
+                " TrxHdr_TotalConPeriod " &
+                " from PrTxTrxnheader" &
+                " where Emp_Code=" & enQuoteString(EmpCode) &
+                " And PrdGrp_code=" & enQuoteString(PeriodGroup) &
                 " and TrxHdr_Id < " & HdrId
                 DsI = GetData(Str)
                 Dim TotalErn As Double = 0
@@ -27309,14 +27309,152 @@ todo:   ' check for status in trxnheader
                 ValErn = ValErn + TotalErn
                 ValDed = ValDed + TotalDed
                 ValCon = ValCon + TotalCon
-                Str = "update PrTxTrxnheader SET " & _
-                " TrxHdr_TotalernYTD = " & ValErn & _
-                " ,TrxHdr_TotaldedYTD = " & ValDed & _
-                " ,TrxHdr_TotalConYTD = " & ValCon & _
+                Str = "update PrTxTrxnheader SET " &
+                " TrxHdr_TotalernYTD = " & ValErn &
+                " ,TrxHdr_TotaldedYTD = " & ValDed &
+                " ,TrxHdr_TotalConYTD = " & ValCon &
                 " where TrxHdr_Id = " & HdrId
 
                 MyBase.ExecuteNonQuery(Str)
 
+            Next
+        End If
+
+    End Function
+    Public Shadows Function FixPeriodGroupContributionsYTD(ByVal PeriodGroup As String) As DataSet
+        Dim DsEmp As DataSet
+        Dim str1 As String
+        Dim x As Integer
+        str1 = "Select Emp_code from prtxtrxnheader where prdgrp_code=" & enQuoteString(PeriodGroup) & " Order by trxhdr_id asc"
+        DsEmp = GetData(str1)
+        If CheckDataSet(DsEmp) Then
+            Dim EmpCode As String = ""
+            For x = 0 To DsEmp.Tables(0).Rows.Count - 1
+                EmpCode = DbNullToString(DsEmp.Tables(0).Rows(x).Item(0))
+
+                Dim Str As String
+                Dim Ds As DataSet
+
+                '''''''''''''''''''''''''''''''''
+                'Contributions
+                '''''''''''''''''''''''''''''''''
+                Str = "select Trxhdr_id," &
+                 " TrxLin_id," &
+                 " concod_code," &
+                 " TrxLin_PeriodValue" &
+                 " from PrTxTrxnLines " &
+                 " where TrxHdr_Id in" &
+                 " (Select Trxhdr_id from PrTxTrxnHeader where Emp_Code=" & enQuoteString(EmpCode) &
+                 " And PrdGrp_code=" & enQuoteString(PeriodGroup) & ")" &
+                 " and TrxLin_Type ='C'" &
+                 " Order by TrxHdr_Id,TrxLin_Id  asc"
+                Ds = GetData(Str)
+
+                If CheckDataSet(Ds) Then
+                    Dim i As Integer
+                    Dim HdrId As Integer
+                    Dim LinId As Integer
+                    Dim Code As String
+                    Dim Value As Double
+                    Dim DsI As DataSet
+                    Dim k As Integer
+                    Dim TotalCon As Double = 0
+
+                    For i = 0 To Ds.Tables(0).Rows.Count - 1
+                        HdrId = Ds.Tables(0).Rows(i).Item(0)
+                        LinId = Ds.Tables(0).Rows(i).Item(1)
+                        Code = Ds.Tables(0).Rows(i).Item(2)
+                        Value = Ds.Tables(0).Rows(i).Item(3)
+                        Str = "select Trxhdr_id," &
+                        " TrxLin_id," &
+                        " concod_code," &
+                        " TrxLin_PeriodValue" &
+                        " from PrTxTrxnLines " &
+                        " where TrxHdr_Id in" &
+                        " (Select Trxhdr_id from PrTxTrxnHeader where Emp_Code=" & enQuoteString(EmpCode) &
+                        " And PrdGrp_code=" & enQuoteString(PeriodGroup) & ")" &
+                        " and TrxLin_Type ='C'" &
+                        " and ConCod_Code =" & enQuoteString(Code) &
+                        " and TrxHdr_Id < " & HdrId
+                        DsI = GetData(Str)
+                        Dim Total As Double = 0
+                        If CheckDataSet(DsI) Then
+                            For k = 0 To DsI.Tables(0).Rows.Count - 1
+                                Total = Total + DsI.Tables(0).Rows(k).Item(3)
+                            Next
+                        End If
+                        Value = Value + Total
+                        Str = "update PrTxTrxnLines SET " &
+                         " TrxLin_YTDValue = " & Value &
+                         " where TrxHdr_Id = " & HdrId &
+                         " and TrxLin_Id=" & LinId
+                        MyBase.ExecuteNonQuery(Str)
+
+
+
+                        Dim StrSum As String
+                        StrSum = "Select sum(trxlin_Periodvalue) from PrTxTrxnLines where TrxHdr_id=" & HdrId & " and TrxLin_Type ='C'"
+                        Dim DsSum As DataSet = GetData(StrSum)
+                        TotalCon = DbNullToDouble(DsSum.Tables(0).Rows(0).Item(0))
+                        Dim StrX As String
+                        StrX = "Update PrTxTrxnHeader set TrxHdr_TotalConPeriod=" & TotalCon & " Where TrxHdr_id=" & HdrId
+                        MyBase.ExecuteNonQuery(StrX)
+                    Next
+
+                End If
+
+
+                Str = "Select Trxhdr_id," &
+                  " TrxHdr_TotalErnPeriod, " &
+                  " TrxHdr_TotaldedPeriod ," &
+                  " TrxHdr_TotalConPeriod " &
+                  " from PrTxTrxnheader" &
+                  " where Emp_Code=" & enQuoteString(EmpCode) &
+                 " And PrdGrp_code=" & enQuoteString(PeriodGroup)
+                Ds = GetData(Str)
+                Dim ValErn As Double
+                Dim ValDed As Double
+                Dim ValCon As Double
+
+                If CheckDataSet(Ds) Then
+                    Dim i As Integer
+                    Dim HdrId As Integer
+                    Dim DsI As DataSet
+
+                    For i = 0 To Ds.Tables(0).Rows.Count - 1
+                        HdrId = Ds.Tables(0).Rows(i).Item(0)
+                        ValErn = Ds.Tables(0).Rows(i).Item(1)
+                        ValDed = Ds.Tables(0).Rows(i).Item(2)
+                        ValCon = Ds.Tables(0).Rows(i).Item(3)
+                        Str = "Select Trxhdr_id," &
+                        " TrxHdr_TotalErnPeriod, " &
+                        " TrxHdr_TotaldedPeriod ," &
+                        " TrxHdr_TotalConPeriod " &
+                        " from PrTxTrxnheader" &
+                        " where Emp_Code=" & enQuoteString(EmpCode) &
+                        " And PrdGrp_code=" & enQuoteString(PeriodGroup) &
+                        " And TrxHdr_Id < " & HdrId
+                        DsI = GetData(Str)
+                        Dim TotalErn As Double = 0
+                        Dim TotalDed As Double = 0
+                        Dim TotalCon As Double = 0
+                        If CheckDataSet(DsI) Then
+                            Dim k As Integer
+                            For k = 0 To DsI.Tables(0).Rows.Count - 1
+                                TotalCon = TotalCon + DsI.Tables(0).Rows(k).Item(3)
+                            Next
+                        End If
+                        ValErn = ValErn + TotalErn
+                        ValDed = ValDed + TotalDed
+                        ValCon = ValCon + TotalCon
+                        Str = "update PrTxTrxnheader Set " &
+                        " TrxHdr_TotalConYTD = " & ValCon &
+                        " where TrxHdr_Id = " & HdrId
+
+                        MyBase.ExecuteNonQuery(Str)
+
+                    Next
+                End If
             Next
         End If
 
@@ -27329,12 +27467,12 @@ todo:   ' check for status in trxnheader
         Dim S As String
         Dim k As Integer
         Dim NonInsurable As Double = 0
-        Str = " SELECT PrMsTemplateDeductions.TemDed_CalcFormula" & _
+        Str = " Select PrMsTemplateDeductions.TemDed_CalcFormula" & _
                 " FROM PrMsTemplateDeductions INNER JOIN" & _
-                " PrMsDeductionCodes ON " & _
+                " PrMsDeductionCodes On " & _
                 " PrMsTemplateDeductions.DedCod_Code = PrMsDeductionCodes.DedCod_Code" & _
                 " WHERE (PrMsTemplateDeductions.TemGrp_Code = " & enQuoteString(TemGrp) & ") " & _
-                " AND (PrMsDeductionCodes.DedTyp_Code = 'SI')"
+                " And (PrMsDeductionCodes.DedTyp_Code = 'SI')"
 
         Ds = GetData(Str)
         If CheckDataSet(Ds) Then
@@ -52236,6 +52374,27 @@ todo:   ' check for status in trxnheader
         " AND PrMsTemplateGroup.TemGrp_IsActive ='Y'"
 
         Return GetData(Str)
+    End Function
+    Protected Function RemoveOtherIncome1() As DataSet
+        Dim Str As String
+        Dim Ds As DataSet
+        Dim i As Integer
+        Str = "select Emp_status,Emp_Code,Emp_Fullname,Emp_Otherincome1 from PrMsEmployees where  Emp_OtherIncome1 <>0"
+        Ds = GetData(Str)
+        Dim s As String = ""
+        If CheckDataSet(Ds) Then
+            For i = 0 To Ds.Tables(0).Rows.Count - 1
+                s = s & DbNullToString(Ds.Tables(0).Rows(i).Item(0)) & " " & DbNullToString(Ds.Tables(0).Rows(i).Item(1)) & " " & DbNullToString(Ds.Tables(0).Rows(i).Item(2)) & " " & DbNullToDouble(Ds.Tables(0).Rows(i).Item(3)) & Chr(10)
+            Next
+        End If
+        If s <> "" Then
+            MsgBox("The following Employees have values in OtherIncome1")
+            MsgBox(s)
+            My.Computer.Clipboard.SetText(s)
+        End If
+        '' Str="Update PrMsEmployees set Emp_OtherIncome1=0 "
+
+
     End Function
 
 #Region "Locii"

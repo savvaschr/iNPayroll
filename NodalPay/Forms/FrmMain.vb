@@ -418,6 +418,24 @@ Public Class FrmMain
                 Param_Exelsys = True
             End If
         End If
+        Ds = Global1.Business.GetParameter("System", "ShowOther1")
+        If CheckDataSet(Ds) Then
+            Dim Par As New cPrSsParameters(Ds.Tables(0).Rows(0))
+            If Par.Value1 = 1 Then
+                PARAM_ShowOtherincome1 = True
+            Else
+                PARAM_ShowOtherincome1 = False
+            End If
+        End If
+        Ds = Global1.Business.GetParameter("System", "ShowAirlines")
+        If CheckDataSet(Ds) Then
+            Dim Par As New cPrSsParameters(Ds.Tables(0).Rows(0))
+            If Par.Value1 = 1 Then
+                PARAM_ShowAirlines = True
+            Else
+                PARAM_ShowAirlines = False
+            End If
+        End If
 
 
 
@@ -12923,5 +12941,10 @@ Public Class FrmMain
         Dim F As New frmPrAnScales3
         F.MdiParent = Me
         F.Show()
+    End Sub
+
+    Private Sub FixContributionYTDToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FixContributionYTDToolStripMenuItem.Click
+        Dim F As New FrmFixYTD
+        F.ShowDialog()
     End Sub
 End Class

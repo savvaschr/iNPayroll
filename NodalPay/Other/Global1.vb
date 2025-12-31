@@ -325,6 +325,9 @@ Module Global1
     Public PARAM_PublicSector As String = ""
 
     Public PARAM_ShowEmpNameOnInterface As Boolean = False
+    Public PARAM_ShowOtherincome1 As Boolean = True
+    Public PARAM_ShowAirlines As Boolean = True
+
 
     Public GLBDedtorsInterface As Boolean = False
     Public GLBDedtorsControl As String

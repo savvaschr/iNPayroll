@@ -78,6 +78,7 @@ Partial Class FrmMain
         Me.ToolStripSeparator30 = New System.Windows.Forms.ToolStripSeparator()
         Me.mnuScale1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuScale2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Scale3ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuPayroll = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuDoPayroll = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuSystem = New System.Windows.Forms.ToolStripMenuItem()
@@ -267,7 +268,7 @@ Partial Class FrmMain
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.PanelJira = New System.Windows.Forms.Panel()
         Me.LabelJirastatus = New System.Windows.Forms.Label()
-        Me.Scale3ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FixContributionYTDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.ToolStrip.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
@@ -460,7 +461,7 @@ Partial Class FrmMain
         '
         Me.EDCToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuPrMsEarningCodes, Me.MnuPrMsDeductionCodes, Me.MnuPrMsContributionCodes, Me.ToolStripSeparator10, Me.MnuPrMsPeriodGroups, Me.MnuPrMsTemplateGroups, Me.MnuInterfaceTemplate, Me.MnuInterfaceCodes})
         Me.EDCToolStripMenuItem.Name = "EDCToolStripMenuItem"
-        Me.EDCToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
+        Me.EDCToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
         Me.EDCToolStripMenuItem.Text = "EDC"
         '
         'MnuPrMsEarningCodes
@@ -513,20 +514,20 @@ Partial Class FrmMain
         'MnuTemplate
         '
         Me.MnuTemplate.Name = "MnuTemplate"
-        Me.MnuTemplate.Size = New System.Drawing.Size(196, 22)
+        Me.MnuTemplate.Size = New System.Drawing.Size(197, 22)
         Me.MnuTemplate.Text = "EDC Template"
         '
         'MnuEDCInterfaceTemplate
         '
         Me.MnuEDCInterfaceTemplate.Name = "MnuEDCInterfaceTemplate"
-        Me.MnuEDCInterfaceTemplate.Size = New System.Drawing.Size(196, 22)
+        Me.MnuEDCInterfaceTemplate.Size = New System.Drawing.Size(197, 22)
         Me.MnuEDCInterfaceTemplate.Text = "EDC Interface Template"
         '
         'MnuPeriodMenu
         '
         Me.MnuPeriodMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuPeriods, Me.MnuClosePeriod})
         Me.MnuPeriodMenu.Name = "MnuPeriodMenu"
-        Me.MnuPeriodMenu.Size = New System.Drawing.Size(196, 22)
+        Me.MnuPeriodMenu.Size = New System.Drawing.Size(197, 22)
         Me.MnuPeriodMenu.Text = "Periods"
         '
         'MnuPeriods
@@ -546,19 +547,19 @@ Partial Class FrmMain
         '
         Me.EmployeeCardToolStripMenuItem.BackColor = System.Drawing.Color.Gold
         Me.EmployeeCardToolStripMenuItem.Name = "EmployeeCardToolStripMenuItem"
-        Me.EmployeeCardToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
+        Me.EmployeeCardToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
         Me.EmployeeCardToolStripMenuItem.Text = "Employee"
         '
         'ToolStripSeparator9
         '
         Me.ToolStripSeparator9.Name = "ToolStripSeparator9"
-        Me.ToolStripSeparator9.Size = New System.Drawing.Size(193, 6)
+        Me.ToolStripSeparator9.Size = New System.Drawing.Size(194, 6)
         '
         'AnalysisToolStripMenuItem1
         '
         Me.AnalysisToolStripMenuItem1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuPrAnEmployeeAnalysis1, Me.MnuPrAnEmployeeAnalysis2, Me.MnuPrAnEmployeeAnalysis3, Me.MnuPrAnEmployeeAnalysis4, Me.MnuPrAnEmployeeAnalysis5})
         Me.AnalysisToolStripMenuItem1.Name = "AnalysisToolStripMenuItem1"
-        Me.AnalysisToolStripMenuItem1.Size = New System.Drawing.Size(196, 22)
+        Me.AnalysisToolStripMenuItem1.Size = New System.Drawing.Size(197, 22)
         Me.AnalysisToolStripMenuItem1.Text = "Analysis"
         '
         'MnuPrAnEmployeeAnalysis1
@@ -594,37 +595,43 @@ Partial Class FrmMain
         'MnPrAnBanks
         '
         Me.MnPrAnBanks.Name = "MnPrAnBanks"
-        Me.MnPrAnBanks.Size = New System.Drawing.Size(196, 22)
+        Me.MnPrAnBanks.Size = New System.Drawing.Size(197, 22)
         Me.MnPrAnBanks.Text = "Banks"
         '
         'MnuPrAnUnions
         '
         Me.MnuPrAnUnions.Name = "MnuPrAnUnions"
-        Me.MnuPrAnUnions.Size = New System.Drawing.Size(196, 22)
+        Me.MnuPrAnUnions.Size = New System.Drawing.Size(197, 22)
         Me.MnuPrAnUnions.Text = "Unions"
         '
         'UsersToolStripMenuItem
         '
         Me.UsersToolStripMenuItem.Name = "UsersToolStripMenuItem"
-        Me.UsersToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
+        Me.UsersToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
         Me.UsersToolStripMenuItem.Text = "Users"
         '
         'ToolStripSeparator30
         '
         Me.ToolStripSeparator30.Name = "ToolStripSeparator30"
-        Me.ToolStripSeparator30.Size = New System.Drawing.Size(193, 6)
+        Me.ToolStripSeparator30.Size = New System.Drawing.Size(194, 6)
         '
         'mnuScale1
         '
         Me.mnuScale1.Name = "mnuScale1"
-        Me.mnuScale1.Size = New System.Drawing.Size(196, 22)
+        Me.mnuScale1.Size = New System.Drawing.Size(197, 22)
         Me.mnuScale1.Text = "Scale 1"
         '
         'mnuScale2
         '
         Me.mnuScale2.Name = "mnuScale2"
-        Me.mnuScale2.Size = New System.Drawing.Size(196, 22)
+        Me.mnuScale2.Size = New System.Drawing.Size(197, 22)
         Me.mnuScale2.Text = "Scale 2"
+        '
+        'Scale3ToolStripMenuItem
+        '
+        Me.Scale3ToolStripMenuItem.Name = "Scale3ToolStripMenuItem"
+        Me.Scale3ToolStripMenuItem.Size = New System.Drawing.Size(197, 22)
+        Me.Scale3ToolStripMenuItem.Text = "Scale 3"
         '
         'MnuPayroll
         '
@@ -824,13 +831,13 @@ Partial Class FrmMain
         'MnuPrSsPayrollTypes
         '
         Me.MnuPrSsPayrollTypes.Name = "MnuPrSsPayrollTypes"
-        Me.MnuPrSsPayrollTypes.Size = New System.Drawing.Size(142, 22)
+        Me.MnuPrSsPayrollTypes.Size = New System.Drawing.Size(143, 22)
         Me.MnuPrSsPayrollTypes.Text = "Payroll Types"
         '
         'MnuPrSsPayrollUnits
         '
         Me.MnuPrSsPayrollUnits.Name = "MnuPrSsPayrollUnits"
-        Me.MnuPrSsPayrollUnits.Size = New System.Drawing.Size(142, 22)
+        Me.MnuPrSsPayrollUnits.Size = New System.Drawing.Size(143, 22)
         Me.MnuPrSsPayrollUnits.Text = "Payroll Units"
         '
         'SocialInsuranceToolStripMenuItem
@@ -868,13 +875,13 @@ Partial Class FrmMain
         'MnuPrSsTaxTable
         '
         Me.MnuPrSsTaxTable.Name = "MnuPrSsTaxTable"
-        Me.MnuPrSsTaxTable.Size = New System.Drawing.Size(146, 22)
+        Me.MnuPrSsTaxTable.Size = New System.Drawing.Size(147, 22)
         Me.MnuPrSsTaxTable.Text = "Tax Table"
         '
         'MnuPrAnTaxCardType
         '
         Me.MnuPrAnTaxCardType.Name = "MnuPrAnTaxCardType"
-        Me.MnuPrAnTaxCardType.Size = New System.Drawing.Size(146, 22)
+        Me.MnuPrAnTaxCardType.Size = New System.Drawing.Size(147, 22)
         Me.MnuPrAnTaxCardType.Text = "Tax Card Type"
         '
         'MnuExtraTax
@@ -946,40 +953,40 @@ Partial Class FrmMain
         '
         Me.MnuPayrollAnalysis.BackColor = System.Drawing.Color.Gold
         Me.MnuPayrollAnalysis.Name = "MnuPayrollAnalysis"
-        Me.MnuPayrollAnalysis.Size = New System.Drawing.Size(202, 22)
+        Me.MnuPayrollAnalysis.Size = New System.Drawing.Size(201, 22)
         Me.MnuPayrollAnalysis.Text = "Payroll Analysis"
         '
         'ToolStripSeparator4
         '
         Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-        Me.ToolStripSeparator4.Size = New System.Drawing.Size(199, 6)
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(198, 6)
         '
         'MnuRptSIContributions
         '
         Me.MnuRptSIContributions.Name = "MnuRptSIContributions"
-        Me.MnuRptSIContributions.Size = New System.Drawing.Size(202, 22)
+        Me.MnuRptSIContributions.Size = New System.Drawing.Size(201, 22)
         Me.MnuRptSIContributions.Text = "S.I. Contributions"
         '
         'MnuRptIR63A
         '
         Me.MnuRptIR63A.Name = "MnuRptIR63A"
-        Me.MnuRptIR63A.Size = New System.Drawing.Size(202, 22)
+        Me.MnuRptIR63A.Size = New System.Drawing.Size(201, 22)
         Me.MnuRptIR63A.Text = "I.R. Reports"
         '
         'ToolStripSeparator12
         '
         Me.ToolStripSeparator12.Name = "ToolStripSeparator12"
-        Me.ToolStripSeparator12.Size = New System.Drawing.Size(199, 6)
+        Me.ToolStripSeparator12.Size = New System.Drawing.Size(198, 6)
         '
         'ExportToLociiReportingToolStripMenuItem
         '
         Me.ExportToLociiReportingToolStripMenuItem.Name = "ExportToLociiReportingToolStripMenuItem"
-        Me.ExportToLociiReportingToolStripMenuItem.Size = New System.Drawing.Size(202, 22)
+        Me.ExportToLociiReportingToolStripMenuItem.Size = New System.Drawing.Size(201, 22)
         Me.ExportToLociiReportingToolStripMenuItem.Text = "Export to Locii reporting"
         '
         'MnuLoadFileX
         '
-        Me.MnuLoadFileX.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadExcelTemplateToolStripMenuItem, Me.mnuLoadInterfaceTemplate, Me.LoadSalary12ToolStripMenuItem, Me.LoadSalary12PartTimersToolStripMenuItem, Me.LoadAnnualLeaveToolStripMenuItem, Me.LoadPositionsToolStripMenuItem, Me.ToolStripSeparator14, Me.MnuLoadFile, Me.MnuLoadFile2, Me.MnuLoadEmployees, Me.MnuLoadTransactions, Me.LoadDiscountsToolStripMenuItem, Me.LoadEmployeesFromNODALToolStripMenuItem, Me.LoadEmployeeIBANToolStripMenuItem, Me.LoadAnalysis2ToolStripMenuItem})
+        Me.MnuLoadFileX.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.LoadExcelTemplateToolStripMenuItem, Me.mnuLoadInterfaceTemplate, Me.LoadSalary12ToolStripMenuItem, Me.LoadSalary12PartTimersToolStripMenuItem, Me.LoadAnnualLeaveToolStripMenuItem, Me.LoadPositionsToolStripMenuItem, Me.ToolStripSeparator14, Me.MnuLoadFile, Me.MnuLoadFile2, Me.MnuLoadEmployees, Me.MnuLoadTransactions, Me.LoadDiscountsToolStripMenuItem, Me.LoadEmployeesFromNODALToolStripMenuItem, Me.LoadEmployeeIBANToolStripMenuItem, Me.LoadAnalysis2ToolStripMenuItem, Me.FixContributionYTDToolStripMenuItem})
         Me.MnuLoadFileX.Enabled = False
         Me.MnuLoadFileX.Name = "MnuLoadFileX"
         Me.MnuLoadFileX.Size = New System.Drawing.Size(66, 20)
@@ -1079,30 +1086,30 @@ Partial Class FrmMain
         Me.MnuTimeAttendance.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuSchedule, Me.MnuActuall, Me.ToolStripSeparator29, Me.mnuImportExcelFromJIRA})
         Me.MnuTimeAttendance.Enabled = False
         Me.MnuTimeAttendance.Name = "MnuTimeAttendance"
-        Me.MnuTimeAttendance.Size = New System.Drawing.Size(109, 20)
+        Me.MnuTimeAttendance.Size = New System.Drawing.Size(110, 20)
         Me.MnuTimeAttendance.Text = "Time Attendance"
         '
         'mnuSchedule
         '
         Me.mnuSchedule.Name = "mnuSchedule"
-        Me.mnuSchedule.Size = New System.Drawing.Size(196, 22)
+        Me.mnuSchedule.Size = New System.Drawing.Size(195, 22)
         Me.mnuSchedule.Text = "Schedule"
         '
         'MnuActuall
         '
         Me.MnuActuall.Name = "MnuActuall"
-        Me.MnuActuall.Size = New System.Drawing.Size(196, 22)
+        Me.MnuActuall.Size = New System.Drawing.Size(195, 22)
         Me.MnuActuall.Text = "Actuall"
         '
         'ToolStripSeparator29
         '
         Me.ToolStripSeparator29.Name = "ToolStripSeparator29"
-        Me.ToolStripSeparator29.Size = New System.Drawing.Size(193, 6)
+        Me.ToolStripSeparator29.Size = New System.Drawing.Size(192, 6)
         '
         'mnuImportExcelFromJIRA
         '
         Me.mnuImportExcelFromJIRA.Name = "mnuImportExcelFromJIRA"
-        Me.mnuImportExcelFromJIRA.Size = New System.Drawing.Size(196, 22)
+        Me.mnuImportExcelFromJIRA.Size = New System.Drawing.Size(195, 22)
         Me.mnuImportExcelFromJIRA.Text = "Import Excel From JIRA"
         '
         'mnuWindow
@@ -1354,7 +1361,7 @@ Partial Class FrmMain
         Me.TempToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SalesToolStripMenuItem, Me.ReceiptsToolStripMenuItem, Me.CustomerADJToolStripMenuItem, Me.AllocationToolStripMenuItem, Me.InvoicesToolStripMenuItem, Me.PaymentsToolStripMenuItem, Me.AdjustmentsToolStripMenuItem, Me.AllocationsToolStripMenuItem})
         Me.TempToolStripMenuItem.Enabled = False
         Me.TempToolStripMenuItem.Name = "TempToolStripMenuItem"
-        Me.TempToolStripMenuItem.Size = New System.Drawing.Size(48, 20)
+        Me.TempToolStripMenuItem.Size = New System.Drawing.Size(49, 20)
         Me.TempToolStripMenuItem.Text = "Temp"
         Me.TempToolStripMenuItem.Visible = False
         '
@@ -1410,7 +1417,7 @@ Partial Class FrmMain
         '
         Me.mnuImportFromExcelNew.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportEmployeesFromExcelToolStripMenuItem1, Me.ImportEmployeesFromExcelTemplate2ToolStripMenuItem, Me.ImportEmployeesFromExcelTemplate2ToolStripMenuItem1, Me.TestToolStripMenuItem1, Me.ToolStripSeparator22, Me.mnuImportEmails, Me.mnuImportIBANs, Me.mnuImportAccountNo, Me.ImportAnalysisWithCodesToolStripMenuItem, Me.ImportAnalysisWithDescriptionsToolStripMenuItem, Me.ImportGL1ToolStripMenuItem, Me.ToolStripSeparator23, Me.ImportLeaveFromBetaBiz, Me.ChangeEmployeeToolStripMenuItem, Me.ImportLeaversDateAndEmailToolStripMenuItem, Me.ToolStripSeparator24, Me.AdminImportToolStripMenuItem, Me.AdminImport2ToolStripMenuItem, Me.ToolStripSeparator25, Me.ImportSalariesToolStripMenuItem, Me.DOBToolStripMenuItem, Me.EmailsToolStripMenuItem, Me.ToolStripSeparator26, Me.TestToolStripMenuItem2})
         Me.mnuImportFromExcelNew.Name = "mnuImportFromExcelNew"
-        Me.mnuImportFromExcelNew.Size = New System.Drawing.Size(116, 20)
+        Me.mnuImportFromExcelNew.Size = New System.Drawing.Size(115, 20)
         Me.mnuImportFromExcelNew.Text = "Import From Excel"
         '
         'ImportEmployeesFromExcelToolStripMenuItem1
@@ -1620,30 +1627,30 @@ Partial Class FrmMain
         '
         Me.mnuExelsys.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportDataFromExelsysToolStripMenuItem, Me.ImportDataFromExcelsysOnlyNEWEmployeesToolStripMenuItem, Me.ToolStripSeparator18, Me.DeleteRecordsFromHCMToolStripMenuItem})
         Me.mnuExelsys.Name = "mnuExelsys"
-        Me.mnuExelsys.Size = New System.Drawing.Size(56, 20)
+        Me.mnuExelsys.Size = New System.Drawing.Size(55, 20)
         Me.mnuExelsys.Text = "Exelsys"
         '
         'ImportDataFromExelsysToolStripMenuItem
         '
         Me.ImportDataFromExelsysToolStripMenuItem.Name = "ImportDataFromExelsysToolStripMenuItem"
-        Me.ImportDataFromExelsysToolStripMenuItem.Size = New System.Drawing.Size(339, 22)
+        Me.ImportDataFromExelsysToolStripMenuItem.Size = New System.Drawing.Size(338, 22)
         Me.ImportDataFromExelsysToolStripMenuItem.Text = "Import Data from Exelsys"
         '
         'ImportDataFromExcelsysOnlyNEWEmployeesToolStripMenuItem
         '
         Me.ImportDataFromExcelsysOnlyNEWEmployeesToolStripMenuItem.Name = "ImportDataFromExcelsysOnlyNEWEmployeesToolStripMenuItem"
-        Me.ImportDataFromExcelsysOnlyNEWEmployeesToolStripMenuItem.Size = New System.Drawing.Size(339, 22)
+        Me.ImportDataFromExcelsysOnlyNEWEmployeesToolStripMenuItem.Size = New System.Drawing.Size(338, 22)
         Me.ImportDataFromExcelsysOnlyNEWEmployeesToolStripMenuItem.Text = "Import Data From Excelsys (Only NEW employees)"
         '
         'ToolStripSeparator18
         '
         Me.ToolStripSeparator18.Name = "ToolStripSeparator18"
-        Me.ToolStripSeparator18.Size = New System.Drawing.Size(336, 6)
+        Me.ToolStripSeparator18.Size = New System.Drawing.Size(335, 6)
         '
         'DeleteRecordsFromHCMToolStripMenuItem
         '
         Me.DeleteRecordsFromHCMToolStripMenuItem.Name = "DeleteRecordsFromHCMToolStripMenuItem"
-        Me.DeleteRecordsFromHCMToolStripMenuItem.Size = New System.Drawing.Size(339, 22)
+        Me.DeleteRecordsFromHCMToolStripMenuItem.Size = New System.Drawing.Size(338, 22)
         Me.DeleteRecordsFromHCMToolStripMenuItem.Text = "Delete Records From HCM"
         '
         'AboutToolStripMenuItem
@@ -1794,7 +1801,7 @@ Partial Class FrmMain
         Me.PanelJira.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.PanelJira.Controls.Add(Me.LabelJirastatus)
         Me.PanelJira.Location = New System.Drawing.Point(478, 106)
-        Me.PanelJira.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.PanelJira.Margin = New System.Windows.Forms.Padding(2)
         Me.PanelJira.Name = "PanelJira"
         Me.PanelJira.Size = New System.Drawing.Size(269, 81)
         Me.PanelJira.TabIndex = 19
@@ -1810,11 +1817,11 @@ Partial Class FrmMain
         Me.LabelJirastatus.TabIndex = 0
         Me.LabelJirastatus.Text = "Please wait ..."
         '
-        'Scale3ToolStripMenuItem
+        'FixContributionYTDToolStripMenuItem
         '
-        Me.Scale3ToolStripMenuItem.Name = "Scale3ToolStripMenuItem"
-        Me.Scale3ToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
-        Me.Scale3ToolStripMenuItem.Text = "Scale 3"
+        Me.FixContributionYTDToolStripMenuItem.Name = "FixContributionYTDToolStripMenuItem"
+        Me.FixContributionYTDToolStripMenuItem.Size = New System.Drawing.Size(234, 22)
+        Me.FixContributionYTDToolStripMenuItem.Text = "Fix Contribution YTD"
         '
         'FrmMain
         '
@@ -2099,4 +2106,5 @@ Partial Class FrmMain
     Friend WithEvents mnuScale1 As ToolStripMenuItem
     Friend WithEvents mnuScale2 As ToolStripMenuItem
     Friend WithEvents Scale3ToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents FixContributionYTDToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -579,8 +579,9 @@ Public Class FrmExcelsysWebServices
                         '.Email2 = NothingToEmpty(Emp(k).eMail)
                         If ThisIsNewEmployee Then
                             .Email2 = ""
+                            .Password = ""
                         End If
-                        .Password = ""
+                        ' .Password = ""
 
                         .SocialInsNumber = NothingToEmpty(Emp(k).SocialSecurityNo)
                         .IdentificationCard = NothingToEmpty(Emp(k).IdentityCardNo)
