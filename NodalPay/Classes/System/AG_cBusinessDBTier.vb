@@ -647,7 +647,11 @@ Partial Public Class cBusinessDBTier
             " PrTxEmployeeDiscounts.EmpDis_Discount10,  " &
             " PrTxEmployeeDiscounts.EmpDis_LifeInsurance, " &
             " PrTxEmployeeDiscounts.EmpDis_Medical, " &
-            " PrTxEmployeeDiscounts.EmpDis_Pensionfund " &
+            " PrTxEmployeeDiscounts.EmpDis_Pensionfund, " &
+            " PrTxEmployeeDiscounts.EmpDis_sDis1, " &
+            " PrTxEmployeeDiscounts.EmpDis_sDis2, " &
+            " PrTxEmployeeDiscounts.EmpDis_sDis3, " &
+            " PrTxEmployeeDiscounts.EmpDis_sDis4 " &
             " FROM PrMsEmployees INNER JOIN  " &
             " PrTxEmployeeDiscounts ON PrMsEmployees.Emp_Code = PrTxEmployeeDiscounts.Emp_Code" &
             " where PrTxEmployeeDiscounts.PrdGrp_Code = " & enQuoteString(PeriodGroupCode)

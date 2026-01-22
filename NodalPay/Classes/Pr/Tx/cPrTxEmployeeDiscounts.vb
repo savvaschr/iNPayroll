@@ -26,6 +26,10 @@ Public Class cPrTxEmployeeDiscounts
     Private mAmendDate As Date
     Private mMedical As Double
     Private mPensionfund As Double
+    Private msDis1 As Double
+    Private msDis2 As Double
+    Private msDis3 As Double
+    Private msDis4 As Double
     Public Property Id() As Integer
         Get
             Return mId
@@ -178,6 +182,38 @@ Public Class cPrTxEmployeeDiscounts
             mPensionfund = Value
         End Set
     End Property
+    Public Property sDis1() As Double
+        Get
+            Return msDis1
+        End Get
+        Set(ByVal Value As Double)
+            msDis1 = Value
+        End Set
+    End Property
+    Public Property sDis2() As Double
+        Get
+            Return msDis2
+        End Get
+        Set(ByVal Value As Double)
+            msDis2 = Value
+        End Set
+    End Property
+    Public Property sDis3() As Double
+        Get
+            Return msDis3
+        End Get
+        Set(ByVal Value As Double)
+            msDis3 = Value
+        End Set
+    End Property
+    Public Property sDis4() As Double
+        Get
+            Return msDis4
+        End Get
+        Set(ByVal Value As Double)
+            msDis4 = Value
+        End Set
+    End Property
     Public ReadOnly Property TotalDiscounts() As Double
         Get
             Return Discount1 + Discount2 + Discount3 + Discount4 + Discount5 + Discount6 + Discount7 + Discount8 + Discount9 + Discount10
@@ -235,6 +271,10 @@ Public Class cPrTxEmployeeDiscounts
         mAmendDate = DbNullToDate(dr.Item(16))
         mMedical = DbNullToDouble(dr.Item(17))
         mPensionfund = DbNullToDouble(dr.Item(18))
+        msDis1 = DbNullToDouble(dr.Item(19))
+        msDis2 = DbNullToDouble(dr.Item(20))
+        msDis3 = DbNullToDouble(dr.Item(21))
+        msDis4 = DbNullToDouble(dr.Item(22))
     End Sub
     Public Shadows Function Delete(ByVal tId As Integer) As Boolean
         Try

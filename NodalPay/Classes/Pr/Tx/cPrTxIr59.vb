@@ -96,6 +96,19 @@ Public Class cPrTxIr59
     Private mAPer_Split As Double
     Private mTPer_Split As Double
 
+    Private mRec_sDis1 As Double
+    Private mAct_sDis1 As Double
+    Private mRec_sDis2 As Double
+    Private mAct_sDis2 As Double
+    Private mRec_sDis3 As Double
+    Private mAct_sDis3 As Double
+    Private mRec_sDis4 As Double
+    Private mAct_sDis4 As Double
+    Private mRec_NewTaxable As Double
+    Private mAct_NewTaxable As Double
+    Private mRec_Limit1 As Double
+    Private mAct_Limit1 As Double
+
 
     Public Property Pay_Id() As Integer
         Get
@@ -836,6 +849,105 @@ Public Class cPrTxIr59
             mTPer_Split = value
         End Set
     End Property
+
+    Public Property Rec_sDis1 As Double
+        Get
+            Return mRec_sDis1
+        End Get
+        Set(ByVal value As Double)
+            mRec_sDis1 = value
+        End Set
+    End Property
+    Public Property Act_sDis1 As Double
+        Get
+            Return mAct_sDis1
+        End Get
+        Set(ByVal value As Double)
+            mAct_sDis1 = value
+        End Set
+    End Property
+    Public Property Rec_sDis2 As Double
+        Get
+            Return mRec_sDis2
+        End Get
+        Set(ByVal value As Double)
+            mRec_sDis2 = value
+        End Set
+    End Property
+    Public Property Act_sDis2 As Double
+        Get
+            Return mAct_sDis2
+        End Get
+        Set(ByVal value As Double)
+            mAct_sDis2 = value
+        End Set
+    End Property
+    Public Property Rec_sDis3 As Double
+        Get
+            Return mRec_sDis3
+        End Get
+        Set(ByVal value As Double)
+            mRec_sDis3 = value
+        End Set
+    End Property
+    Public Property Act_sDis3 As Double
+        Get
+            Return mAct_sDis3
+        End Get
+        Set(ByVal value As Double)
+            mAct_sDis3 = value
+        End Set
+    End Property
+    Public Property Rec_sDis4 As Double
+        Get
+            Return mRec_sDis4
+        End Get
+        Set(ByVal value As Double)
+            mRec_sDis4 = value
+        End Set
+    End Property
+    Public Property Act_sDis4 As Double
+        Get
+            Return mAct_sDis4
+        End Get
+        Set(ByVal value As Double)
+            mAct_sDis4 = value
+        End Set
+    End Property
+    Public Property Rec_NewTaxable As Double
+        Get
+            Return mRec_NewTaxable
+        End Get
+        Set(ByVal value As Double)
+            mRec_NewTaxable = value
+        End Set
+    End Property
+    Public Property Act_NewTaxable As Double
+        Get
+            Return mAct_NewTaxable
+        End Get
+        Set(ByVal value As Double)
+            mAct_NewTaxable = value
+        End Set
+    End Property
+
+    Public Property Rec_Limit1 As Double
+        Get
+            Return mRec_Limit1
+        End Get
+        Set(ByVal value As Double)
+            mRec_Limit1 = value
+        End Set
+    End Property
+    Public Property Act_Limit1 As Double
+        Get
+            Return mAct_Limit1
+        End Get
+        Set(ByVal value As Double)
+            mAct_Limit1 = value
+        End Set
+    End Property
+
     Public Sub New()
 
     End Sub
@@ -951,6 +1063,20 @@ Public Class cPrTxIr59
         mTRec_Split = DbNullToDouble(dr.Item(89))
         mAPer_Split = DbNullToDouble(dr.Item(90))
         mTPer_Split = DbNullToDouble(dr.Item(91))
+
+
+        mRec_sDis1 = DbNullToDouble(dr.Item(92))
+        mAct_sDis1 = DbNullToDouble(dr.Item(93))
+        mRec_sDis2 = DbNullToDouble(dr.Item(94))
+        mAct_sDis2 = DbNullToDouble(dr.Item(95))
+        mRec_sDis3 = DbNullToDouble(dr.Item(96))
+        mAct_sDis3 = DbNullToDouble(dr.Item(97))
+        mRec_sDis4 = DbNullToDouble(dr.Item(98))
+        mAct_sDis4 = DbNullToDouble(dr.Item(99))
+        mRec_NewTaxable = DbNullToDouble(dr.Item(100))
+        mAct_NewTaxable = DbNullToDouble(dr.Item(101))
+        mRec_Limit1 = DbNullToDouble(dr.Item(102))
+        mAct_Limit1 = DbNullToDouble(dr.Item(103))
     End Sub
 
     '

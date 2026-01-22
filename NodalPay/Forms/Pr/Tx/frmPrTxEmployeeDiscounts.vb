@@ -79,6 +79,10 @@ Public Class frmPrTxEmployeeDiscounts
         Me.txtLifeInsurance.Text = "0.00"
         Me.txtMedical.Text = "0.00"
         Me.txtPensionfund.Text = "0.00"
+        Me.txtsDis1.Text = "0.00"
+        Me.txtsDis2.Text = "0.00"
+        Me.txtsDis3.Text = "0.00"
+        Me.txtsDis4.Text = "0.00"
         Try
             Me.cmbUsr_Id.SelectedIndex = 0
         Catch ex As Exception
@@ -157,6 +161,16 @@ Public Class frmPrTxEmployeeDiscounts
         AddHandler txtLifeInsurance.Leave, AddressOf NumericOnLeave
         AddHandler txtMedical.KeyPress, AddressOf NumericKeyPress
         AddHandler txtMedical.Leave, AddressOf NumericOnLeave
+        AddHandler txtPensionfund.KeyPress, AddressOf NumericKeyPress
+        AddHandler txtPensionfund.Leave, AddressOf NumericOnLeave
+        AddHandler txtsDis1.KeyPress, AddressOf NumericKeyPress
+        AddHandler txtsDis1.Leave, AddressOf NumericOnLeave
+        AddHandler txtsDis2.KeyPress, AddressOf NumericKeyPress
+        AddHandler txtsDis2.Leave, AddressOf NumericOnLeave
+        AddHandler txtsDis3.KeyPress, AddressOf NumericKeyPress
+        AddHandler txtsDis3.Leave, AddressOf NumericOnLeave
+        AddHandler txtsDis4.KeyPress, AddressOf NumericKeyPress
+        AddHandler txtsDis4.Leave, AddressOf NumericOnLeave
     End Sub
     '
     Private Sub ClearErrors()
@@ -228,7 +242,11 @@ Public Class frmPrTxEmployeeDiscounts
                     .Discount10 = CDbl(Me.txtDiscount10.Text)
                     .LifeInsurance = CDbl(Me.txtLifeInsurance.Text)
                     .Medical = CDbl(Me.txtMedical.Text)
-                    .PensionFund = CDbl(Me.txtpensionfund.Text)
+                    .PensionFund = CDbl(Me.txtPensionfund.Text)
+                    .sdis1 = CDbl(Me.txtsDis1.Text)
+                    .sDis2 = CDbl(Me.txtsDis2.Text)
+                    .sDis3 = CDbl(Me.txtsDis3.Text)
+                    .sDis4 = CDbl(Me.txtsDis4.Text)
                     .Usr_Id = CType(Me.cmbUsr_Id.SelectedItem, cAaSsUsers).Id
                     If .Id = 0 Then
                         .CreationDate = Now.Date
@@ -277,6 +295,11 @@ Public Class frmPrTxEmployeeDiscounts
         HeaderStr.Add("Discount 10")
         HeaderStr.Add("Life Insurance")
         HeaderStr.Add("Medical")
+        HeaderStr.Add("PenFund")
+        HeaderStr.Add("Dis1")
+        HeaderStr.Add("Dis2")
+        HeaderStr.Add("Dis3")
+        HeaderStr.Add("Dis4")
         HeaderStr.Add("User Id")
         HeaderStr.Add("Creation Date")
         HeaderStr.Add("Amend Date")
@@ -296,6 +319,10 @@ Public Class frmPrTxEmployeeDiscounts
         HeaderSize.Add(18)
         HeaderSize.Add(18)
         HeaderSize.Add(15)
+        HeaderSize.Add(12)
+        HeaderSize.Add(12)
+        HeaderSize.Add(12)
+        HeaderSize.Add(12)
         HeaderSize.Add(12)
         HeaderSize.Add(12)
         Loader.LoadIntoExcel(ds, HeaderStr, HeaderSize)
@@ -322,7 +349,11 @@ Public Class frmPrTxEmployeeDiscounts
                 Me.txtDiscount10.Text = Format(.Discount10, "0.00")
                 Me.txtLifeInsurance.Text = Format(.LifeInsurance, "0.00")
                 Me.txtMedical.Text = Format(.Medical, "0.00")
-                Me.txtpensionfund.Text = Format(.PensionFund, "0.00")
+                Me.txtPensionfund.Text = Format(.PensionFund, "0.00")
+                Me.txtsDis1.Text = Format(.sdis1, "0.00")
+                Me.txtsDis2.Text = Format(.sdis2, "0.00")
+                Me.txtsDis3.Text = Format(.sdis3, "0.00")
+                Me.txtsDis4.Text = Format(.sdis4, "0.00")
                 ' Need to decide what to do with a combo in the load sub Property = Usr_Id
                 Me.txtCreationDate.Text = CStr(.CreationDate)
                 Me.txtAmendDate.Text = CStr(.AmendDate)
@@ -389,7 +420,11 @@ Public Class frmPrTxEmployeeDiscounts
         Me.txtCreationDate.Text = DbNullToString(DG1.Item(15, i).Value)
         Me.txtAmendDate.Text = DbNullToString(DG1.Item(16, i).Value)
         Me.txtMedical.Text = DbNullToString(DG1.Item(17, i).Value)
-        Me.txtpensionfund.Text = DbNullToString(DG1.Item(18, i).Value)
+        Me.txtPensionfund.Text = DbNullToString(DG1.Item(18, i).Value)
+        Me.txtsDis1.Text = DbNullToString(DG1.Item(19, i).Value)
+        Me.txtsDis2.Text = DbNullToString(DG1.Item(20, i).Value)
+        Me.txtsDis3.Text = DbNullToString(DG1.Item(21, i).Value)
+        Me.txtsDis4.Text = DbNullToString(DG1.Item(22, i).Value)
         PKInputReadOnly(True)
     End Sub
     Private Sub PKInputReadOnly(ByVal RO As Boolean)

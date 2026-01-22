@@ -123,6 +123,7 @@ Partial Class FrmIR63A
         Me.Button7 = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.btnShowXML = New System.Windows.Forms.Button()
+        Me.ToolStripSeparator16 = New System.Windows.Forms.ToolStripSeparator()
         Me.ToolStrip1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         Me.Panel2.SuspendLayout()
@@ -310,7 +311,7 @@ Partial Class FrmIR63A
         'MnuIR7
         '
         Me.MnuIR7.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.MnuIR7.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TestToolStripMenuItem, Me.ToolStripSeparator15, Me.mnuCreateXML2024, Me.mnuCreateXML2024_WithExcel, Me.ToolStripSeparator14, Me.TestXML20182019ToolStripMenuItem, Me.CreateXMLFile20182019SettingBIKNHSOnSocialInsuranceNHSToolStripMenuItem, Me.ToolStripSeparator1, Me.TestXML20182019WithExcelToolStripMenuItem, Me.TestXMLWithExcelSettingBIKNHSOnSocialInsuranceNHSToolStripMenuItem, Me.ToolStripSeparator5, Me.MnuIR7ToScreen, Me.MnuIR7ToPrinter, Me.CreateXMLFile2017ToolStripMenuItem, Me.ToolStripSeparator4, Me.CreateXMLFile2016ToolStripMenuItem, Me.CreateXMLFileForYears2012AndAboveToolStripMenuItem, Me.ToolStripSeparator2, Me.Mnu_IR7_2012File, Me.ToolStripSeparator3, Me.TSBCreateIR7File, Me.ToolStripSeparator6, Me.CreateFile2010ToolStripMenuItem, Me.ToolStripSeparator13, Me.CreateXMLFile2025ForTFAToolStripMenuItem, Me.CreateXMLFile2025ForTFAWithExcelToolStripMenuItem})
+        Me.MnuIR7.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TestToolStripMenuItem, Me.ToolStripSeparator15, Me.CreateXMLFile2025ForTFAToolStripMenuItem, Me.CreateXMLFile2025ForTFAWithExcelToolStripMenuItem, Me.ToolStripSeparator13, Me.mnuCreateXML2024, Me.mnuCreateXML2024_WithExcel, Me.ToolStripSeparator14, Me.TestXML20182019ToolStripMenuItem, Me.CreateXMLFile20182019SettingBIKNHSOnSocialInsuranceNHSToolStripMenuItem, Me.ToolStripSeparator1, Me.TestXML20182019WithExcelToolStripMenuItem, Me.TestXMLWithExcelSettingBIKNHSOnSocialInsuranceNHSToolStripMenuItem, Me.ToolStripSeparator5, Me.MnuIR7ToScreen, Me.MnuIR7ToPrinter, Me.CreateXMLFile2017ToolStripMenuItem, Me.ToolStripSeparator4, Me.CreateXMLFile2016ToolStripMenuItem, Me.CreateXMLFileForYears2012AndAboveToolStripMenuItem, Me.ToolStripSeparator2, Me.Mnu_IR7_2012File, Me.ToolStripSeparator3, Me.TSBCreateIR7File, Me.ToolStripSeparator6, Me.CreateFile2010ToolStripMenuItem, Me.ToolStripSeparator16})
         Me.MnuIR7.Image = CType(resources.GetObject("MnuIR7.Image"), System.Drawing.Image)
         Me.MnuIR7.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.MnuIR7.Name = "MnuIR7"
@@ -332,13 +333,13 @@ Partial Class FrmIR63A
         '
         Me.mnuCreateXML2024.Name = "mnuCreateXML2024"
         Me.mnuCreateXML2024.Size = New System.Drawing.Size(626, 22)
-        Me.mnuCreateXML2024.Text = "Create XML File - 2024 for TFA"
+        Me.mnuCreateXML2024.Text = "Create XML File - for TFA - 2024 Specifications"
         '
         'mnuCreateXML2024_WithExcel
         '
         Me.mnuCreateXML2024_WithExcel.Name = "mnuCreateXML2024_WithExcel"
         Me.mnuCreateXML2024_WithExcel.Size = New System.Drawing.Size(626, 22)
-        Me.mnuCreateXML2024_WithExcel.Text = "Create XML File - 2024 for TFA With Excel"
+        Me.mnuCreateXML2024_WithExcel.Text = "Create XML File - for TFA With Excel - 2024 Specifications"
         '
         'ToolStripSeparator14
         '
@@ -475,15 +476,13 @@ Partial Class FrmIR63A
         '
         Me.CreateXMLFile2025ForTFAToolStripMenuItem.Name = "CreateXMLFile2025ForTFAToolStripMenuItem"
         Me.CreateXMLFile2025ForTFAToolStripMenuItem.Size = New System.Drawing.Size(626, 22)
-        Me.CreateXMLFile2025ForTFAToolStripMenuItem.Text = "Create XML File - 2025 for TFA"
-        Me.CreateXMLFile2025ForTFAToolStripMenuItem.Visible = False
+        Me.CreateXMLFile2025ForTFAToolStripMenuItem.Text = "Create XML File - for TFA - 2025 Specifications"
         '
         'CreateXMLFile2025ForTFAWithExcelToolStripMenuItem
         '
         Me.CreateXMLFile2025ForTFAWithExcelToolStripMenuItem.Name = "CreateXMLFile2025ForTFAWithExcelToolStripMenuItem"
         Me.CreateXMLFile2025ForTFAWithExcelToolStripMenuItem.Size = New System.Drawing.Size(626, 22)
-        Me.CreateXMLFile2025ForTFAWithExcelToolStripMenuItem.Text = "Create XML File - 2025 for TFA With Excel"
-        Me.CreateXMLFile2025ForTFAWithExcelToolStripMenuItem.Visible = False
+        Me.CreateXMLFile2025ForTFAWithExcelToolStripMenuItem.Text = "Create XML File - for TFA With Excel - 2025 Specifications"
         '
         'TSBIR61
         '
@@ -889,6 +888,11 @@ Partial Class FrmIR63A
         Me.btnShowXML.UseVisualStyleBackColor = True
         Me.btnShowXML.Visible = False
         '
+        'ToolStripSeparator16
+        '
+        Me.ToolStripSeparator16.Name = "ToolStripSeparator16"
+        Me.ToolStripSeparator16.Size = New System.Drawing.Size(623, 6)
+        '
         'FrmIR63A
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1029,4 +1033,5 @@ Partial Class FrmIR63A
     Friend WithEvents btnShowXML As Button
     Friend WithEvents CreateXMLFile2025ForTFAToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CreateXMLFile2025ForTFAWithExcelToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator16 As ToolStripSeparator
 End Class

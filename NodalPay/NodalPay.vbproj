@@ -1760,6 +1760,12 @@
       <DependentUpon>IR63GR_Stamp.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\Pay12.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Pay12.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\PensionFund7.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -3676,6 +3682,10 @@
     <EmbeddedResource Include="Reports\IR63GR_Stamp.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>IR63GR_Stamp.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Pay12.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>Pay12.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\PensionFund7.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

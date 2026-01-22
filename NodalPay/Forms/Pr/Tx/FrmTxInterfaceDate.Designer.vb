@@ -22,10 +22,10 @@ Partial Class FrmTxInterfaceDate
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.DateNavPost = New System.Windows.Forms.DateTimePicker
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.BtnContinue = New System.Windows.Forms.Button
-        Me.CBIncludeEmployees = New System.Windows.Forms.CheckBox
+        Me.DateNavPost = New System.Windows.Forms.DateTimePicker()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.BtnContinue = New System.Windows.Forms.Button()
+        Me.CBIncludeEmployees = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'DateNavPost
@@ -64,6 +64,7 @@ Partial Class FrmTxInterfaceDate
         Me.CBIncludeEmployees.TabIndex = 3
         Me.CBIncludeEmployees.Text = "Include Employees            "
         Me.CBIncludeEmployees.UseVisualStyleBackColor = True
+        Me.CBIncludeEmployees.Visible = False
         '
         'FrmTxInterfaceDate
         '

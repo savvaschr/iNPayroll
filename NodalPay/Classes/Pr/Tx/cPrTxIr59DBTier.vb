@@ -93,7 +93,19 @@ Public Class cPrTxIr59DBTier
             " ARec_Split, " &
             " TRec_Split,  " &
             " APer_Split, " &
-            " TPer_Split " &
+            " TPer_Split, " &
+            " Rec_sDis1, " &
+            " Act_sDis1, " &
+            " Rec_sDis2, " &
+            " Act_sDis2, " &
+            " Rec_sDis3, " &
+            " Act_sDis3, " &
+            " Rec_sDis4, " &
+            " Act_sDis4, " &
+            " Rec_NewTaxable, " &
+            " Act_NewTaxable, " &
+            " Rec_Limit1, " &
+            " Act_Limit1 " &
             " FROM PrTxIr59 " &
             " WHERE Trxhdr_id = " & TrxHdr_Id
 
@@ -197,7 +209,19 @@ Public Class cPrTxIr59DBTier
                 ", TRec_Split=   " & .TRec_Split &
                 ", APer_Split = " & .APer_Split &
                 ", TPer_Split = " & .APer_Split &
-                "  WHERE Trxhdr_id = " & enQuoteString(.Trxhdr_id)
+                ", Rec_sDis1 = " & .Rec_sDis1 &
+                ", Act_sDis1 = " & .Act_sDis1 &
+                ", Rec_sDis2 = " & .Rec_sDis2 &
+                ", Act_sDis2 = " & .Act_sDis2 &
+                ", Rec_sDis3 = " & .Rec_sDis3 &
+                ", Act_sDis3 = " & .Act_sDis3 &
+                ", Rec_sDis4 = " & .Rec_sDis4 &
+                ", Act_sDis4 = " & .Act_sDis4 &
+                ", Rec_NewTaxable = " & .Rec_NewTaxable &
+                ", Act_NewTaxable = " & .Rec_NewTaxable &
+                ", Rec_Limit1 = " & .Rec_Limit1 &
+                ", Act_Limit1 = " & .Rec_Limit1 &
+                 "  WHERE Trxhdr_id = " & enQuoteString(.Trxhdr_id)
 
 
             End With
@@ -295,7 +319,19 @@ Public Class cPrTxIr59DBTier
                     " ARec_Split, " &
                     " TRec_Split, " &
                     " APer_Split, " &
-                    " TPer_Split " &
+                    " TPer_Split, " &
+                    " Rec_sDis1, " &
+                    " Act_sDis1, " &
+                    " Rec_sDis2, " &
+                    " Act_sDis2, " &
+                    " Rec_sDis3, " &
+                    " Act_sDis3, " &
+                    " Rec_sDis4, " &
+                    " Act_sDis4, " &
+                    " Rec_NewTaxable, " &
+                    " Act_NewTaxable, " &
+                    " Rec_Limit1, " &
+                    " Act_Limit1 " &
                     " )" &
                     " Values (" & .Trxhdr_id & "," &
                     enQuoteString(.TemGrp_Code) & "," &
@@ -384,10 +420,23 @@ Public Class cPrTxIr59DBTier
                     .Per_TotalCurSINot & "," &
                     .Per_NewRemaining & "," &
                     enQuoteString(.Per_MethodUsed) & "," &
-                    .aRec_Split & "," &
+                    .ARec_Split & "," &
                     .TRec_Split & "," &
                     .APer_Split & "," &
-                    .TPer_Split & ")"
+                    .TPer_Split & "," &
+                    .Rec_sDis1 & "," &
+                     .Act_sDis1 & "," &
+                     .Rec_sDis2 & "," &
+                     .Act_sDis2 & "," &
+                     .Rec_sDis3 & "," &
+                     .Act_sDis3 & "," &
+                     .Rec_sDis4 & "," &
+                     .Act_sDis4 & "," &
+                     .Rec_NewTaxable & "," &
+                     .Act_NewTaxable & "," &
+                     .Rec_Limit1 & "," &
+                     .Act_Limit1 & ")"
+
 
             End With
         End If

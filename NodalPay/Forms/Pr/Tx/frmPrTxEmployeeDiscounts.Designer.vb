@@ -36,6 +36,10 @@ Private Sub InitializeComponent()
         Me.dgcEmpDis_AmendDate = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.MedicalFund = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.PensionFund = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.sDis1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.sDis2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.sDis3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.sDis4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TSC1 = New System.Windows.Forms.ToolStripContainer()
         Me.TS1 = New System.Windows.Forms.ToolStrip()
         Me.TSBNew = New System.Windows.Forms.ToolStripButton()
@@ -44,6 +48,7 @@ Private Sub InitializeComponent()
         Me.TSBExcel = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripDropDownButton1 = New System.Windows.Forms.ToolStripDropDownButton()
         Me.RemoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RemoveFirstEmployementFromALLActiveEmployeesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
         Me.lblId = New System.Windows.Forms.Label()
@@ -113,7 +118,15 @@ Private Sub InitializeComponent()
         Me.txtEmployeeName = New System.Windows.Forms.TextBox()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.txtPensionfund = New System.Windows.Forms.TextBox()
-        Me.RemoveFirstEmployementFromALLActiveEmployeesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.txtsDis1 = New System.Windows.Forms.TextBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.txtsDis2 = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.txtsDis3 = New System.Windows.Forms.TextBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.txtsDis4 = New System.Windows.Forms.TextBox()
+        Me.Label12 = New System.Windows.Forms.Label()
         Me.sspStatus.SuspendLayout()
         CType(Me.DG1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TSC1.TopToolStripPanel.SuspendLayout()
@@ -143,9 +156,9 @@ Private Sub InitializeComponent()
         '
         Me.sspStatus.BackColor = System.Drawing.SystemColors.Control
         Me.sspStatus.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.lblSSStatus})
-        Me.sspStatus.Location = New System.Drawing.Point(0, 481)
+        Me.sspStatus.Location = New System.Drawing.Point(0, 527)
         Me.sspStatus.Name = "sspStatus"
-        Me.sspStatus.Size = New System.Drawing.Size(872, 22)
+        Me.sspStatus.Size = New System.Drawing.Size(938, 22)
         Me.sspStatus.TabIndex = 3
         Me.sspStatus.Text = "StatusStrip"
         '
@@ -160,12 +173,12 @@ Private Sub InitializeComponent()
         Me.DG1.AllowUserToDeleteRows = False
         Me.DG1.BackgroundColor = System.Drawing.SystemColors.Window
         Me.DG1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DG1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.dgcEmpDis_id, Me.dgcEmp_Code, Me.dgcPrdGrp_Code, Me.dgcEmpDis_Discount1, Me.dgcEmpDis_Discount2, Me.dgcEmpDis_Discount3, Me.dgcEmpDis_Discount4, Me.dgcEmpDis_Discount5, Me.dgcEmpDis_Discount6, Me.dgcEmpDis_Discount7, Me.dgcEmpDis_Discount8, Me.dgcEmpDis_Discount9, Me.dgcEmpDis_Discount10, Me.dgcEmpDis_LifeInsurance, Me.dgcUsr_Id, Me.dgcEmpDis_CreationDate, Me.dgcEmpDis_AmendDate, Me.MedicalFund, Me.PensionFund})
-        Me.DG1.Location = New System.Drawing.Point(12, 340)
+        Me.DG1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.dgcEmpDis_id, Me.dgcEmp_Code, Me.dgcPrdGrp_Code, Me.dgcEmpDis_Discount1, Me.dgcEmpDis_Discount2, Me.dgcEmpDis_Discount3, Me.dgcEmpDis_Discount4, Me.dgcEmpDis_Discount5, Me.dgcEmpDis_Discount6, Me.dgcEmpDis_Discount7, Me.dgcEmpDis_Discount8, Me.dgcEmpDis_Discount9, Me.dgcEmpDis_Discount10, Me.dgcEmpDis_LifeInsurance, Me.dgcUsr_Id, Me.dgcEmpDis_CreationDate, Me.dgcEmpDis_AmendDate, Me.MedicalFund, Me.PensionFund, Me.sDis1, Me.sDis2, Me.sDis3, Me.sDis4})
+        Me.DG1.Location = New System.Drawing.Point(0, 425)
         Me.DG1.Name = "DG1"
         Me.DG1.ReadOnly = True
         Me.DG1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.DG1.Size = New System.Drawing.Size(848, 138)
+        Me.DG1.Size = New System.Drawing.Size(938, 99)
         Me.DG1.TabIndex = 10
         '
         'dgcEmpDis_id
@@ -324,19 +337,47 @@ Private Sub InitializeComponent()
         Me.PensionFund.Name = "PensionFund"
         Me.PensionFund.ReadOnly = True
         '
+        'sDis1
+        '
+        Me.sDis1.DataPropertyName = "EmpDis_sDis1"
+        Me.sDis1.HeaderText = "sDis1"
+        Me.sDis1.Name = "sDis1"
+        Me.sDis1.ReadOnly = True
+        '
+        'sDis2
+        '
+        Me.sDis2.DataPropertyName = "EmpDis_sDis2"
+        Me.sDis2.HeaderText = "sDis2"
+        Me.sDis2.Name = "sDis2"
+        Me.sDis2.ReadOnly = True
+        '
+        'sDis3
+        '
+        Me.sDis3.DataPropertyName = "EmpDis_sDis3"
+        Me.sDis3.HeaderText = "sDis3"
+        Me.sDis3.Name = "sDis3"
+        Me.sDis3.ReadOnly = True
+        '
+        'sDis4
+        '
+        Me.sDis4.DataPropertyName = "EmpDis_sDis4"
+        Me.sDis4.HeaderText = "sDis4"
+        Me.sDis4.Name = "sDis4"
+        Me.sDis4.ReadOnly = True
+        '
         'TSC1
         '
         Me.TSC1.BottomToolStripPanelVisible = False
         '
         'TSC1.ContentPanel
         '
-        Me.TSC1.ContentPanel.Size = New System.Drawing.Size(872, 0)
+        Me.TSC1.ContentPanel.Size = New System.Drawing.Size(938, 0)
         Me.TSC1.Dock = System.Windows.Forms.DockStyle.Top
         Me.TSC1.LeftToolStripPanelVisible = False
         Me.TSC1.Location = New System.Drawing.Point(0, 0)
         Me.TSC1.Name = "TSC1"
         Me.TSC1.RightToolStripPanelVisible = False
-        Me.TSC1.Size = New System.Drawing.Size(872, 25)
+        Me.TSC1.Size = New System.Drawing.Size(938, 25)
         Me.TSC1.TabIndex = 12
         Me.TSC1.Text = "TSC1"
         '
@@ -350,7 +391,7 @@ Private Sub InitializeComponent()
         Me.TS1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBNew, Me.TSBSave, Me.TSBDelete, Me.TSBExcel, Me.ToolStripDropDownButton1, Me.ToolStripButton3, Me.ToolStripButton4})
         Me.TS1.Location = New System.Drawing.Point(3, 0)
         Me.TS1.Name = "TS1"
-        Me.TS1.Size = New System.Drawing.Size(869, 25)
+        Me.TS1.Size = New System.Drawing.Size(935, 25)
         Me.TS1.TabIndex = 0
         '
         'TSBNew
@@ -411,13 +452,19 @@ Private Sub InitializeComponent()
         Me.RemoToolStripMenuItem.Text = "Delete ALL Discounts, Life insurance, Private Medical Fund , Private Pension Fund" &
     " of the Selected Period Group"
         '
+        'RemoveFirstEmployementFromALLActiveEmployeesToolStripMenuItem
+        '
+        Me.RemoveFirstEmployementFromALLActiveEmployeesToolStripMenuItem.Name = "RemoveFirstEmployementFromALLActiveEmployeesToolStripMenuItem"
+        Me.RemoveFirstEmployementFromALLActiveEmployeesToolStripMenuItem.Size = New System.Drawing.Size(655, 22)
+        Me.RemoveFirstEmployementFromALLActiveEmployeesToolStripMenuItem.Text = "Remove First Employement from ALL Active Employees"
+        '
         'ToolStripButton3
         '
         Me.ToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.ToolStripButton3.Image = CType(resources.GetObject("ToolStripButton3.Image"), System.Drawing.Image)
         Me.ToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton3.Name = "ToolStripButton3"
-        Me.ToolStripButton3.Size = New System.Drawing.Size(612, 19)
+        Me.ToolStripButton3.Size = New System.Drawing.Size(612, 22)
         Me.ToolStripButton3.Text = "Delete Discounts/Life Insurance/PrivateMedical/Private Pension from ALL employees" &
     " of the Selected Period Group"
         '
@@ -427,13 +474,13 @@ Private Sub InitializeComponent()
         Me.ToolStripButton4.Image = CType(resources.GetObject("ToolStripButton4.Image"), System.Drawing.Image)
         Me.ToolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripButton4.Name = "ToolStripButton4"
-        Me.ToolStripButton4.Size = New System.Drawing.Size(304, 19)
+        Me.ToolStripButton4.Size = New System.Drawing.Size(304, 22)
         Me.ToolStripButton4.Text = "Remove First Employement from ALL Active Employees"
         '
         'lblId
         '
         Me.lblId.AutoSize = True
-        Me.lblId.Location = New System.Drawing.Point(580, 291)
+        Me.lblId.Location = New System.Drawing.Point(824, 305)
         Me.lblId.Name = "lblId"
         Me.lblId.Size = New System.Drawing.Size(15, 13)
         Me.lblId.TabIndex = 0
@@ -442,7 +489,7 @@ Private Sub InitializeComponent()
         '
         'txtId
         '
-        Me.txtId.Location = New System.Drawing.Point(596, 261)
+        Me.txtId.Location = New System.Drawing.Point(818, 340)
         Me.txtId.MaxLength = 9
         Me.txtId.Name = "txtId"
         Me.txtId.Size = New System.Drawing.Size(64, 20)
@@ -469,7 +516,7 @@ Private Sub InitializeComponent()
         'cmbPrdGrp_Code
         '
         Me.cmbPrdGrp_Code.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.cmbPrdGrp_Code.Location = New System.Drawing.Point(138, 118)
+        Me.cmbPrdGrp_Code.Location = New System.Drawing.Point(192, 115)
         Me.cmbPrdGrp_Code.Name = "cmbPrdGrp_Code"
         Me.cmbPrdGrp_Code.Size = New System.Drawing.Size(195, 21)
         Me.cmbPrdGrp_Code.TabIndex = 3
@@ -481,7 +528,7 @@ Private Sub InitializeComponent()
         'lblDiscount1
         '
         Me.lblDiscount1.AutoSize = True
-        Me.lblDiscount1.Location = New System.Drawing.Point(18, 138)
+        Me.lblDiscount1.Location = New System.Drawing.Point(18, 142)
         Me.lblDiscount1.Name = "lblDiscount1"
         Me.lblDiscount1.Size = New System.Drawing.Size(58, 13)
         Me.lblDiscount1.TabIndex = 4
@@ -489,7 +536,7 @@ Private Sub InitializeComponent()
         '
         'txtDiscount1
         '
-        Me.txtDiscount1.Location = New System.Drawing.Point(138, 139)
+        Me.txtDiscount1.Location = New System.Drawing.Point(192, 139)
         Me.txtDiscount1.MaxLength = 15
         Me.txtDiscount1.Name = "txtDiscount1"
         Me.txtDiscount1.Size = New System.Drawing.Size(100, 20)
@@ -502,7 +549,7 @@ Private Sub InitializeComponent()
         'lblDiscount2
         '
         Me.lblDiscount2.AutoSize = True
-        Me.lblDiscount2.Location = New System.Drawing.Point(18, 158)
+        Me.lblDiscount2.Location = New System.Drawing.Point(18, 162)
         Me.lblDiscount2.Name = "lblDiscount2"
         Me.lblDiscount2.Size = New System.Drawing.Size(58, 13)
         Me.lblDiscount2.TabIndex = 5
@@ -510,7 +557,7 @@ Private Sub InitializeComponent()
         '
         'txtDiscount2
         '
-        Me.txtDiscount2.Location = New System.Drawing.Point(138, 159)
+        Me.txtDiscount2.Location = New System.Drawing.Point(192, 159)
         Me.txtDiscount2.MaxLength = 15
         Me.txtDiscount2.Name = "txtDiscount2"
         Me.txtDiscount2.Size = New System.Drawing.Size(100, 20)
@@ -523,7 +570,7 @@ Private Sub InitializeComponent()
         'lblDiscount3
         '
         Me.lblDiscount3.AutoSize = True
-        Me.lblDiscount3.Location = New System.Drawing.Point(18, 178)
+        Me.lblDiscount3.Location = New System.Drawing.Point(18, 182)
         Me.lblDiscount3.Name = "lblDiscount3"
         Me.lblDiscount3.Size = New System.Drawing.Size(58, 13)
         Me.lblDiscount3.TabIndex = 6
@@ -531,7 +578,7 @@ Private Sub InitializeComponent()
         '
         'txtDiscount3
         '
-        Me.txtDiscount3.Location = New System.Drawing.Point(138, 179)
+        Me.txtDiscount3.Location = New System.Drawing.Point(192, 179)
         Me.txtDiscount3.MaxLength = 15
         Me.txtDiscount3.Name = "txtDiscount3"
         Me.txtDiscount3.Size = New System.Drawing.Size(100, 20)
@@ -544,7 +591,7 @@ Private Sub InitializeComponent()
         'lblDiscount4
         '
         Me.lblDiscount4.AutoSize = True
-        Me.lblDiscount4.Location = New System.Drawing.Point(18, 198)
+        Me.lblDiscount4.Location = New System.Drawing.Point(18, 202)
         Me.lblDiscount4.Name = "lblDiscount4"
         Me.lblDiscount4.Size = New System.Drawing.Size(58, 13)
         Me.lblDiscount4.TabIndex = 7
@@ -552,7 +599,7 @@ Private Sub InitializeComponent()
         '
         'txtDiscount4
         '
-        Me.txtDiscount4.Location = New System.Drawing.Point(138, 199)
+        Me.txtDiscount4.Location = New System.Drawing.Point(192, 199)
         Me.txtDiscount4.MaxLength = 15
         Me.txtDiscount4.Name = "txtDiscount4"
         Me.txtDiscount4.Size = New System.Drawing.Size(100, 20)
@@ -565,7 +612,7 @@ Private Sub InitializeComponent()
         'lblDiscount5
         '
         Me.lblDiscount5.AutoSize = True
-        Me.lblDiscount5.Location = New System.Drawing.Point(18, 218)
+        Me.lblDiscount5.Location = New System.Drawing.Point(18, 222)
         Me.lblDiscount5.Name = "lblDiscount5"
         Me.lblDiscount5.Size = New System.Drawing.Size(58, 13)
         Me.lblDiscount5.TabIndex = 8
@@ -573,7 +620,7 @@ Private Sub InitializeComponent()
         '
         'txtDiscount5
         '
-        Me.txtDiscount5.Location = New System.Drawing.Point(138, 219)
+        Me.txtDiscount5.Location = New System.Drawing.Point(192, 219)
         Me.txtDiscount5.MaxLength = 15
         Me.txtDiscount5.Name = "txtDiscount5"
         Me.txtDiscount5.Size = New System.Drawing.Size(100, 20)
@@ -586,7 +633,7 @@ Private Sub InitializeComponent()
         'lblDiscount6
         '
         Me.lblDiscount6.AutoSize = True
-        Me.lblDiscount6.Location = New System.Drawing.Point(18, 238)
+        Me.lblDiscount6.Location = New System.Drawing.Point(18, 242)
         Me.lblDiscount6.Name = "lblDiscount6"
         Me.lblDiscount6.Size = New System.Drawing.Size(58, 13)
         Me.lblDiscount6.TabIndex = 9
@@ -594,7 +641,7 @@ Private Sub InitializeComponent()
         '
         'txtDiscount6
         '
-        Me.txtDiscount6.Location = New System.Drawing.Point(138, 239)
+        Me.txtDiscount6.Location = New System.Drawing.Point(192, 239)
         Me.txtDiscount6.MaxLength = 15
         Me.txtDiscount6.Name = "txtDiscount6"
         Me.txtDiscount6.Size = New System.Drawing.Size(100, 20)
@@ -607,7 +654,7 @@ Private Sub InitializeComponent()
         'lblDiscount7
         '
         Me.lblDiscount7.AutoSize = True
-        Me.lblDiscount7.Location = New System.Drawing.Point(18, 264)
+        Me.lblDiscount7.Location = New System.Drawing.Point(18, 262)
         Me.lblDiscount7.Name = "lblDiscount7"
         Me.lblDiscount7.Size = New System.Drawing.Size(58, 13)
         Me.lblDiscount7.TabIndex = 10
@@ -615,7 +662,7 @@ Private Sub InitializeComponent()
         '
         'txtDiscount7
         '
-        Me.txtDiscount7.Location = New System.Drawing.Point(138, 259)
+        Me.txtDiscount7.Location = New System.Drawing.Point(192, 259)
         Me.txtDiscount7.MaxLength = 15
         Me.txtDiscount7.Name = "txtDiscount7"
         Me.txtDiscount7.Size = New System.Drawing.Size(100, 20)
@@ -628,7 +675,7 @@ Private Sub InitializeComponent()
         'lblDiscount8
         '
         Me.lblDiscount8.AutoSize = True
-        Me.lblDiscount8.Location = New System.Drawing.Point(355, 139)
+        Me.lblDiscount8.Location = New System.Drawing.Point(18, 282)
         Me.lblDiscount8.Name = "lblDiscount8"
         Me.lblDiscount8.Size = New System.Drawing.Size(58, 13)
         Me.lblDiscount8.TabIndex = 11
@@ -636,7 +683,7 @@ Private Sub InitializeComponent()
         '
         'txtDiscount8
         '
-        Me.txtDiscount8.Location = New System.Drawing.Point(487, 136)
+        Me.txtDiscount8.Location = New System.Drawing.Point(192, 279)
         Me.txtDiscount8.MaxLength = 15
         Me.txtDiscount8.Name = "txtDiscount8"
         Me.txtDiscount8.Size = New System.Drawing.Size(100, 20)
@@ -649,7 +696,7 @@ Private Sub InitializeComponent()
         'lblDiscount9
         '
         Me.lblDiscount9.AutoSize = True
-        Me.lblDiscount9.Location = New System.Drawing.Point(355, 159)
+        Me.lblDiscount9.Location = New System.Drawing.Point(18, 301)
         Me.lblDiscount9.Name = "lblDiscount9"
         Me.lblDiscount9.Size = New System.Drawing.Size(58, 13)
         Me.lblDiscount9.TabIndex = 12
@@ -657,7 +704,7 @@ Private Sub InitializeComponent()
         '
         'txtDiscount9
         '
-        Me.txtDiscount9.Location = New System.Drawing.Point(487, 156)
+        Me.txtDiscount9.Location = New System.Drawing.Point(192, 298)
         Me.txtDiscount9.MaxLength = 15
         Me.txtDiscount9.Name = "txtDiscount9"
         Me.txtDiscount9.Size = New System.Drawing.Size(100, 20)
@@ -670,7 +717,7 @@ Private Sub InitializeComponent()
         'lblDiscount10
         '
         Me.lblDiscount10.AutoSize = True
-        Me.lblDiscount10.Location = New System.Drawing.Point(355, 179)
+        Me.lblDiscount10.Location = New System.Drawing.Point(18, 321)
         Me.lblDiscount10.Name = "lblDiscount10"
         Me.lblDiscount10.Size = New System.Drawing.Size(64, 13)
         Me.lblDiscount10.TabIndex = 13
@@ -678,7 +725,7 @@ Private Sub InitializeComponent()
         '
         'txtDiscount10
         '
-        Me.txtDiscount10.Location = New System.Drawing.Point(487, 176)
+        Me.txtDiscount10.Location = New System.Drawing.Point(192, 318)
         Me.txtDiscount10.MaxLength = 15
         Me.txtDiscount10.Name = "txtDiscount10"
         Me.txtDiscount10.Size = New System.Drawing.Size(100, 20)
@@ -691,7 +738,7 @@ Private Sub InitializeComponent()
         'lblLifeInsurance
         '
         Me.lblLifeInsurance.AutoSize = True
-        Me.lblLifeInsurance.Location = New System.Drawing.Point(355, 199)
+        Me.lblLifeInsurance.Location = New System.Drawing.Point(392, 142)
         Me.lblLifeInsurance.Name = "lblLifeInsurance"
         Me.lblLifeInsurance.Size = New System.Drawing.Size(74, 13)
         Me.lblLifeInsurance.TabIndex = 14
@@ -699,7 +746,7 @@ Private Sub InitializeComponent()
         '
         'txtLifeInsurance
         '
-        Me.txtLifeInsurance.Location = New System.Drawing.Point(487, 196)
+        Me.txtLifeInsurance.Location = New System.Drawing.Point(584, 139)
         Me.txtLifeInsurance.MaxLength = 15
         Me.txtLifeInsurance.Name = "txtLifeInsurance"
         Me.txtLifeInsurance.Size = New System.Drawing.Size(100, 20)
@@ -712,7 +759,7 @@ Private Sub InitializeComponent()
         'lblUsr_Id
         '
         Me.lblUsr_Id.AutoSize = True
-        Me.lblUsr_Id.Location = New System.Drawing.Point(355, 267)
+        Me.lblUsr_Id.Location = New System.Drawing.Point(392, 347)
         Me.lblUsr_Id.Name = "lblUsr_Id"
         Me.lblUsr_Id.Size = New System.Drawing.Size(29, 13)
         Me.lblUsr_Id.TabIndex = 15
@@ -720,7 +767,7 @@ Private Sub InitializeComponent()
         '
         'cmbUsr_Id
         '
-        Me.cmbUsr_Id.Location = New System.Drawing.Point(487, 261)
+        Me.cmbUsr_Id.Location = New System.Drawing.Point(584, 339)
         Me.cmbUsr_Id.Name = "cmbUsr_Id"
         Me.cmbUsr_Id.Size = New System.Drawing.Size(100, 21)
         Me.cmbUsr_Id.TabIndex = 15
@@ -732,7 +779,7 @@ Private Sub InitializeComponent()
         'lblCreationDate
         '
         Me.lblCreationDate.AutoSize = True
-        Me.lblCreationDate.Location = New System.Drawing.Point(355, 291)
+        Me.lblCreationDate.Location = New System.Drawing.Point(392, 371)
         Me.lblCreationDate.Name = "lblCreationDate"
         Me.lblCreationDate.Size = New System.Drawing.Size(72, 13)
         Me.lblCreationDate.TabIndex = 16
@@ -740,11 +787,11 @@ Private Sub InitializeComponent()
         '
         'txtCreationDate
         '
-        Me.txtCreationDate.Location = New System.Drawing.Point(487, 285)
+        Me.txtCreationDate.Location = New System.Drawing.Point(584, 363)
         Me.txtCreationDate.MaxLength = 10
         Me.txtCreationDate.Name = "txtCreationDate"
         Me.txtCreationDate.ReadOnly = True
-        Me.txtCreationDate.Size = New System.Drawing.Size(70, 20)
+        Me.txtCreationDate.Size = New System.Drawing.Size(100, 20)
         Me.txtCreationDate.TabIndex = 16
         '
         'ErrCreationDate
@@ -754,7 +801,7 @@ Private Sub InitializeComponent()
         'lblAmendDate
         '
         Me.lblAmendDate.AutoSize = True
-        Me.lblAmendDate.Location = New System.Drawing.Point(355, 314)
+        Me.lblAmendDate.Location = New System.Drawing.Point(392, 394)
         Me.lblAmendDate.Name = "lblAmendDate"
         Me.lblAmendDate.Size = New System.Drawing.Size(66, 13)
         Me.lblAmendDate.TabIndex = 17
@@ -762,11 +809,11 @@ Private Sub InitializeComponent()
         '
         'txtAmendDate
         '
-        Me.txtAmendDate.Location = New System.Drawing.Point(487, 308)
+        Me.txtAmendDate.Location = New System.Drawing.Point(584, 386)
         Me.txtAmendDate.MaxLength = 10
         Me.txtAmendDate.Name = "txtAmendDate"
         Me.txtAmendDate.ReadOnly = True
-        Me.txtAmendDate.Size = New System.Drawing.Size(70, 20)
+        Me.txtAmendDate.Size = New System.Drawing.Size(100, 20)
         Me.txtAmendDate.TabIndex = 17
         '
         'ErrAmendDate
@@ -775,9 +822,9 @@ Private Sub InitializeComponent()
         '
         'Button1
         '
-        Me.Button1.Location = New System.Drawing.Point(12, 287)
+        Me.Button1.Location = New System.Drawing.Point(21, 384)
         Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(215, 23)
+        Me.Button1.Size = New System.Drawing.Size(217, 23)
         Me.Button1.TabIndex = 18
         Me.Button1.Text = "First Employment Discount"
         Me.Button1.UseVisualStyleBackColor = True
@@ -786,7 +833,7 @@ Private Sub InitializeComponent()
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(593, 199)
+        Me.Label1.Location = New System.Drawing.Point(690, 139)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(176, 13)
         Me.Label1.TabIndex = 19
@@ -822,7 +869,7 @@ Private Sub InitializeComponent()
         Me.GroupBox1.Controls.Add(Me.txtCopyPeriodGroup)
         Me.GroupBox1.Controls.Add(Me.txtCopyFrom)
         Me.GroupBox1.Controls.Add(Me.Button3)
-        Me.GroupBox1.Location = New System.Drawing.Point(660, 106)
+        Me.GroupBox1.Location = New System.Drawing.Point(672, 28)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(200, 91)
         Me.GroupBox1.TabIndex = 27
@@ -849,7 +896,7 @@ Private Sub InitializeComponent()
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(355, 219)
+        Me.Label4.Location = New System.Drawing.Point(392, 162)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(130, 13)
         Me.Label4.TabIndex = 29
@@ -857,7 +904,7 @@ Private Sub InitializeComponent()
         '
         'txtMedical
         '
-        Me.txtMedical.Location = New System.Drawing.Point(487, 216)
+        Me.txtMedical.Location = New System.Drawing.Point(584, 159)
         Me.txtMedical.MaxLength = 15
         Me.txtMedical.Name = "txtMedical"
         Me.txtMedical.Size = New System.Drawing.Size(100, 20)
@@ -920,7 +967,7 @@ Private Sub InitializeComponent()
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(355, 239)
+        Me.Label7.Location = New System.Drawing.Point(392, 182)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(105, 13)
         Me.Label7.TabIndex = 72
@@ -928,24 +975,104 @@ Private Sub InitializeComponent()
         '
         'txtPensionfund
         '
-        Me.txtPensionfund.Location = New System.Drawing.Point(487, 236)
+        Me.txtPensionfund.Location = New System.Drawing.Point(584, 179)
         Me.txtPensionfund.MaxLength = 15
         Me.txtPensionfund.Name = "txtPensionfund"
         Me.txtPensionfund.Size = New System.Drawing.Size(100, 20)
         Me.txtPensionfund.TabIndex = 71
         '
-        'RemoveFirstEmployementFromALLActiveEmployeesToolStripMenuItem
+        'Label8
         '
-        Me.RemoveFirstEmployementFromALLActiveEmployeesToolStripMenuItem.Name = "RemoveFirstEmployementFromALLActiveEmployeesToolStripMenuItem"
-        Me.RemoveFirstEmployementFromALLActiveEmployeesToolStripMenuItem.Size = New System.Drawing.Size(655, 22)
-        Me.RemoveFirstEmployementFromALLActiveEmployeesToolStripMenuItem.Text = "Remove First Employement from ALL Active Employees"
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(392, 222)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(144, 13)
+        Me.Label8.TabIndex = 73
+        Me.Label8.Text = "Dependent Children discount"
+        '
+        'txtsDis1
+        '
+        Me.txtsDis1.Location = New System.Drawing.Point(584, 219)
+        Me.txtsDis1.MaxLength = 15
+        Me.txtsDis1.Name = "txtsDis1"
+        Me.txtsDis1.Size = New System.Drawing.Size(100, 20)
+        Me.txtsDis1.TabIndex = 74
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(392, 242)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(183, 13)
+        Me.Label9.TabIndex = 75
+        Me.Label9.Text = "Primary residence rent or loan interest"
+        '
+        'txtsDis2
+        '
+        Me.txtsDis2.Location = New System.Drawing.Point(584, 239)
+        Me.txtsDis2.MaxLength = 15
+        Me.txtsDis2.Name = "txtsDis2"
+        Me.txtsDis2.Size = New System.Drawing.Size(100, 20)
+        Me.txtsDis2.TabIndex = 76
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(392, 261)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(187, 13)
+        Me.Label10.TabIndex = 77
+        Me.Label10.Text = "Ånergy upgrade of a primary residence"
+        '
+        'txtsDis3
+        '
+        Me.txtsDis3.Location = New System.Drawing.Point(584, 258)
+        Me.txtsDis3.MaxLength = 15
+        Me.txtsDis3.Name = "txtsDis3"
+        Me.txtsDis3.Size = New System.Drawing.Size(100, 20)
+        Me.txtsDis3.TabIndex = 78
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(392, 277)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(152, 13)
+        Me.Label11.TabIndex = 79
+        Me.Label11.Text = "Or Purchase of electric vehicle"
+        '
+        'txtsDis4
+        '
+        Me.txtsDis4.Location = New System.Drawing.Point(584, 299)
+        Me.txtsDis4.MaxLength = 15
+        Me.txtsDis4.Name = "txtsDis4"
+        Me.txtsDis4.Size = New System.Drawing.Size(100, 20)
+        Me.txtsDis4.TabIndex = 80
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(392, 302)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(176, 13)
+        Me.Label12.TabIndex = 81
+        Me.Label12.Text = "Énvestment in innovative businesses"
         '
         'frmPrTxEmployeeDiscounts
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        Me.ClientSize = New System.Drawing.Size(872, 503)
+        Me.ClientSize = New System.Drawing.Size(938, 549)
+        Me.Controls.Add(Me.Label12)
+        Me.Controls.Add(Me.Label8)
+        Me.Controls.Add(Me.txtsDis1)
+        Me.Controls.Add(Me.Label9)
+        Me.Controls.Add(Me.txtsDis2)
+        Me.Controls.Add(Me.Label10)
+        Me.Controls.Add(Me.txtsDis3)
+        Me.Controls.Add(Me.Label11)
+        Me.Controls.Add(Me.txtsDis4)
         Me.Controls.Add(Me.Label7)
         Me.Controls.Add(Me.txtPensionfund)
         Me.Controls.Add(Me.Label6)
@@ -1104,28 +1231,41 @@ Private Sub InitializeComponent()
     Friend WithEvents BtnPrevius As System.Windows.Forms.Button
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents txtPensionfund As System.Windows.Forms.TextBox
-    Friend WithEvents dgcEmpDis_id As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dgcEmp_Code As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dgcPrdGrp_Code As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dgcEmpDis_Discount1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dgcEmpDis_Discount2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dgcEmpDis_Discount3 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dgcEmpDis_Discount4 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dgcEmpDis_Discount5 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dgcEmpDis_Discount6 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dgcEmpDis_Discount7 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dgcEmpDis_Discount8 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dgcEmpDis_Discount9 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dgcEmpDis_Discount10 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dgcEmpDis_LifeInsurance As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dgcUsr_Id As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dgcEmpDis_CreationDate As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents dgcEmpDis_AmendDate As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents MedicalFund As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents PensionFund As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ToolStripDropDownButton1 As ToolStripDropDownButton
     Friend WithEvents ToolStripButton3 As ToolStripButton
     Friend WithEvents ToolStripButton4 As ToolStripButton
     Friend WithEvents RemoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RemoveFirstEmployementFromALLActiveEmployeesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents Label8 As Label
+    Friend WithEvents txtsDis1 As TextBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents txtsDis2 As TextBox
+    Friend WithEvents Label10 As Label
+    Friend WithEvents txtsDis3 As TextBox
+    Friend WithEvents Label11 As Label
+    Friend WithEvents txtsDis4 As TextBox
+    Friend WithEvents dgcEmpDis_id As DataGridViewTextBoxColumn
+    Friend WithEvents dgcEmp_Code As DataGridViewTextBoxColumn
+    Friend WithEvents dgcPrdGrp_Code As DataGridViewTextBoxColumn
+    Friend WithEvents dgcEmpDis_Discount1 As DataGridViewTextBoxColumn
+    Friend WithEvents dgcEmpDis_Discount2 As DataGridViewTextBoxColumn
+    Friend WithEvents dgcEmpDis_Discount3 As DataGridViewTextBoxColumn
+    Friend WithEvents dgcEmpDis_Discount4 As DataGridViewTextBoxColumn
+    Friend WithEvents dgcEmpDis_Discount5 As DataGridViewTextBoxColumn
+    Friend WithEvents dgcEmpDis_Discount6 As DataGridViewTextBoxColumn
+    Friend WithEvents dgcEmpDis_Discount7 As DataGridViewTextBoxColumn
+    Friend WithEvents dgcEmpDis_Discount8 As DataGridViewTextBoxColumn
+    Friend WithEvents dgcEmpDis_Discount9 As DataGridViewTextBoxColumn
+    Friend WithEvents dgcEmpDis_Discount10 As DataGridViewTextBoxColumn
+    Friend WithEvents dgcEmpDis_LifeInsurance As DataGridViewTextBoxColumn
+    Friend WithEvents dgcUsr_Id As DataGridViewTextBoxColumn
+    Friend WithEvents dgcEmpDis_CreationDate As DataGridViewTextBoxColumn
+    Friend WithEvents dgcEmpDis_AmendDate As DataGridViewTextBoxColumn
+    Friend WithEvents MedicalFund As DataGridViewTextBoxColumn
+    Friend WithEvents PensionFund As DataGridViewTextBoxColumn
+    Friend WithEvents sDis1 As DataGridViewTextBoxColumn
+    Friend WithEvents sDis2 As DataGridViewTextBoxColumn
+    Friend WithEvents sDis3 As DataGridViewTextBoxColumn
+    Friend WithEvents sDis4 As DataGridViewTextBoxColumn
+    Friend WithEvents Label12 As Label
 End Class

@@ -102,7 +102,7 @@ Partial Class FrmFixYTD
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(292, 392)
+        Me.ClientSize = New System.Drawing.Size(515, 443)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.txtPeriodgroup2)
         Me.Controls.Add(Me.Button1)

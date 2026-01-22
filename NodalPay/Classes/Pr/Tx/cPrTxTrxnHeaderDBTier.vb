@@ -88,7 +88,15 @@ Public Class cPrTxTrxnHeaderDbTier
                " TrxHdr_GovPension, " &
                " TrxHdr_PeriodNotional, " &
                 " TrxHdr_PeriodTaxOnNotional, " &
-                " TrxHdr_PeriodGESYOnNotional " &
+                " TrxHdr_PeriodGESYOnNotional, " &
+                " TrxHdr_sDis1, " &
+                " TrxHdr_sDis2, " &
+                " TrxHdr_sDis3, " &
+                " TrxHdr_sDis4, " &
+                " Trxhdr_sDis1Period, " &
+                " Trxhdr_sDis2Period, " &
+                " Trxhdr_sDis3Period, " &
+                " Trxhdr_sDis4Period " &
                 "  FROM PrTxTrxnHeader" &
                 "  WHERE TrxHdr_Id = " & tTrxHdr_Id
         Return MyBase.GetData(Str)
@@ -174,7 +182,15 @@ Public Class cPrTxTrxnHeaderDbTier
                 " TrxHdr_GovPension, " &
                 " TrxHdr_PeriodNotional, " &
                 " TrxHdr_PeriodTaxOnNotional, " &
-                " TrxHdr_PeriodGESYOnNotional " &
+                " TrxHdr_PeriodGESYOnNotional, " &
+                " TrxHdr_sDis1, " &
+                " TrxHdr_sDis2, " &
+                " TrxHdr_sDis3, " &
+                " TrxHdr_sDis4, " &
+                " Trxhdr_sDis1Period, " &
+                " Trxhdr_sDis2Period, " &
+                " Trxhdr_sDis3Period, " &
+                " Trxhdr_sDis4Period " &
             "  FROM PrTxTrxnHeader" &
             "  WHERE  Emp_Code=" & enQuoteString(tEmpCode) &
             "  AND PrdCod_Code=" & enQuoteString(tPeriodCode)
@@ -330,7 +346,7 @@ Public Class cPrTxTrxnHeaderDbTier
             SpParams.Add(.BIK_GESIAble)         '(68)
             SpNames.Add("TrxHdr_BIK_GESIAble")  '(68)
 
-            SpParams.Add(.analgen1)         '(69)
+            SpParams.Add(.AnalGen1)         '(69)
             SpNames.Add("TrxHdr_AnalGen1")  '(69)
 
 
@@ -352,24 +368,49 @@ Public Class cPrTxTrxnHeaderDbTier
             SpParams.Add(.GOVPension)         '(75)
             SpNames.Add("TrxHdr_GovPension")  '(75)
 
-            SpParams.Add(.periodnotional)         '(76)
+            SpParams.Add(.PeriodNotional)         '(76)
             SpNames.Add("TrxHdr_PeriodNotional")  '(76)
 
 
-            SpParams.Add(.PeriodTaxOnNotional)         '(77)
+            SpParams.Add(.PeriodTAXOnNotional)         '(77)
             SpNames.Add("TrxHdr_PeriodTaxOnNotional")  '(77)
 
             SpParams.Add(.PeriodGESYOnNotional)         '(78)
             SpNames.Add("TrxHdr_periodgesyOnNotional")  '(78)
 
+            SpParams.Add(.sDis1)         '(79)
+            SpNames.Add("TrxHdr_sDis1")  '(79)
+
+            SpParams.Add(.sDis2)         '(80)
+            SpNames.Add("TrxHdr_sDis2")  '(80)
+
+            SpParams.Add(.sDis3)         '(81)
+            SpNames.Add("TrxHdr_sDis3")  '(81)
+
+            SpParams.Add(.sDis4)         '(82)
+            SpNames.Add("TrxHdr_sDis4")  '(82)
+
+
+            SpParams.Add(.sDis1Period)         '(83)
+            SpNames.Add("Trxhdr_sDis1Period")  '(83)
+
+            SpParams.Add(.sDis2Period)         '(84)
+            SpNames.Add("Trxhdr_sDis2Period")  '(84)
+
+            SpParams.Add(.sDis3Period)         '(85)
+            SpNames.Add("Trxhdr_sDis3Period")  '(85)
+
+            SpParams.Add(.sDis4Period)         '(86)
+            SpNames.Add("Trxhdr_sDis4Period")  '(86)
+
 
 
         End With
-        SpNames.Add("NewId")                                                 '(79)
-        SpParams.Add(CInt(0))                                                '(79)
-        If Me.StoredProcedure("AG_PrTxTrxnHeader_Save_Update", SpParams, SpNames, 79) Then
+        SpNames.Add("NewId")                                                 '(87)
+        SpParams.Add(CInt(0))                                                '(87)
+        If Me.StoredProcedure("AG_PrTxTrxnHeader_Save_Update", SpParams, SpNames, 87) Then
             If _cPrTxTrxnHeader.Id = 0 Then
-                _cPrTxTrxnHeader.Id = DbNullToInt(SpParams(79))
+                _cPrTxTrxnHeader.Id = DbNullToInt(SpParams(87))
             End If
             Return True
         Else

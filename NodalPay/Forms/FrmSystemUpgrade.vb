@@ -935,7 +935,7 @@ Public Class FrmSystemUpgrade
             With tPrSsLimits
                 .Id = 0
                 .EffectiveDate = CDate("2026/01/01")
-                .Cola = CDbl(12.56)
+                .Cola = CDbl(12.67)
                 .InsurableWk = CDbl(1325)
                 .InsurableMth = CDbl(5742)
                 .InsurableAnnual = CDbl(68904)
@@ -1109,5 +1109,27 @@ Public Class FrmSystemUpgrade
             End If
         End If
 
+    End Sub
+
+    Private Sub Button90_Click(sender As Object, e As EventArgs) Handles Button90.Click
+        Global1.Business.Upgrade_2026_01_Discounts()
+
+    End Sub
+
+    Private Sub Button91_Click(sender As Object, e As EventArgs) Handles Button91.Click
+        Global1.Business.Upgrade_2026_02_Ir59_Discounts()
+    End Sub
+
+    Private Sub Button92_Click(sender As Object, e As EventArgs) Handles Button92.Click
+        Global1.Business.Upgrade_2026_03_DiscountLabels()
+    End Sub
+
+    Private Sub Button93_Click(sender As Object, e As EventArgs) Handles Button93.Click
+        Global1.Business.Upgrade_2026_04_PAYEMethod()
+
+    End Sub
+
+    Private Sub Button94_Click(sender As Object, e As EventArgs) Handles Button94.Click
+        Global1.Business.Upgrade_2026_05_HeaderExtraFields()
     End Sub
 End Class

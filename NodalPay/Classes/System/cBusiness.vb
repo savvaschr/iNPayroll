@@ -2234,6 +2234,24 @@ Public Class cBusiness
         Return MyBase.Upgrade_2025_06
     End Function
 
+    Public Function Upgrade_2026_01_Discounts() As Boolean
+        Return MyBase.Upgrade_2026_01_discounts
+    End Function
+    Public Function Upgrade_2026_02_Ir59_Discounts() As Boolean
+        Return MyBase.Upgrade_2026_02_IR59_Discounts()
+    End Function
+    Public Function Upgrade_2026_03_DiscountLabels() As Boolean
+        Return MyBase.Upgrade_2026_03_DiscountLabels()
+    End Function
+    Public Function Upgrade_2026_04_PAYEMethod() As Boolean
+        Return MyBase.Upgrade_2026_04_PAYEMethod()
+    End Function
+    Public Function Upgrade_2026_05_HeaderExtraFields() As Boolean
+        Return MyBase.Upgrade_2026_05_HeaderExtraFields
+    End Function
+
+
+
     Public Function FindNumberOfNormalPeriodsForThisEmployeeForThisPeriodGroup(ByVal glbcurrentperiod As cPrMsPeriodCodes, ByVal EmpCode As String) As Integer
         Return MyBase.FindNumberOfNormalPeriodsForThisEmployeeForThisPeriodGroup(glbcurrentperiod, EmpCode)
     End Function

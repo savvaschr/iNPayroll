@@ -11613,7 +11613,7 @@ Public Class FrmIR63A
         'Else
 
         IR7_2025(False, True, True, ShowAsExcel, SetBIKonSI)
-
+        '   xxx
         If GLB_XMLOriginFile <> "" Then
             CreateXMLFile_2025(False)
             Cursor.Current = Cursors.WaitCursor
@@ -12057,33 +12057,33 @@ Public Class FrmIR63A
         ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
         WL("<PayeEmployee>")
         '<!-- One entry per employee, all Employees must be Unique -->
-        If Trim(Ar(2)) <> "" Then 'If <>"" then it has TIC number
-            WL("<EmployeeHasTIN>1</EmployeeHasTIN>")
+        ' If Trim(Ar(2)) <> "" Then 'If <>"" then it has TIC number
+        WL("<EmployeeHasTIN>1</EmployeeHasTIN>")
             '<!--  Q1 Does the employee have a TIN? - 1=Yes, 0=No -->
             WL("<TaxpayerNumber>" & Trim(Ar(2)) & "</TaxpayerNumber>")
             Dim FullName As String = Trim(Ar(6)) & " " & Trim(Ar(7))
             WL("<Name>" & FullName & "</Name>")
-            '<!--  Q4 Name (XML): Mandatory-Entering an employee without TIN  -->
-        Else
-            WL("<EmployeeHasTIN>0</EmployeeHasTIN>")
-            '<!--  Q1 Does the employee have a TIN? - 1=Yes, 0=No -->
-            Dim FullName As String = Trim(Ar(6)) & " " & Trim(Ar(7))
-            WL("<Name>" & FullName & "</Name>")
-            '<!--  Q4 Name (XML): Mandatory-Entering an employee without TIN  -->
-            WL("<Identification>" & Trim(Ar(4)) & "</Identification>")
-            '<!--  Q5 Identification (CY Identity Card No Or Alien Registration Card Or (TAX) Identification No of ANOTHER Country): Mandatory If Q1 Is 0 -->
-            WL("<SocialInsuranceNumber>" & Trim(Ar(5)) & "</SocialInsuranceNumber>")
-            '<!--  Q6 Social Insurance Number on the Republic of Cyprus: Mandatory If Q1 Is 0 -->
-            WL("<ResidentialAddress>" & Trim(Ar(8)) & "</ResidentialAddress>")
-            '<!--  Q7 Residential Address - Street And Number: Mandatory If Q1 Is 0 -->
-            WL("<TownVillage>" & Trim(Ar(9)) & "</TownVillage>")
-            '<!--  Q8 Town/Village: Mandatory If Q1 Is 0 -->
-            WL("<PostCode>" & Trim(Ar(10)) & "</PostCode>")
-            '<!--  Q9 Post Code: Mandatory If Q1 Is 0 -->
+        '<!--  Q4 Name (XML): Mandatory-Entering an employee without TIN  -->
+        'Else
+        '    WL("<EmployeeHasTIN>0</EmployeeHasTIN>")
+        '    '<!--  Q1 Does the employee have a TIN? - 1=Yes, 0=No -->
+        '    Dim FullName As String = Trim(Ar(6)) & " " & Trim(Ar(7))
+        '    WL("<Name>" & FullName & "</Name>")
+        '    '<!--  Q4 Name (XML): Mandatory-Entering an employee without TIN  -->
+        '    WL("<Identification>" & Trim(Ar(4)) & "</Identification>")
+        '    '<!--  Q5 Identification (CY Identity Card No Or Alien Registration Card Or (TAX) Identification No of ANOTHER Country): Mandatory If Q1 Is 0 -->
+        '    WL("<SocialInsuranceNumber>" & Trim(Ar(5)) & "</SocialInsuranceNumber>")
+        '    '<!--  Q6 Social Insurance Number on the Republic of Cyprus: Mandatory If Q1 Is 0 -->
+        '    WL("<ResidentialAddress>" & Trim(Ar(8)) & "</ResidentialAddress>")
+        '    '<!--  Q7 Residential Address - Street And Number: Mandatory If Q1 Is 0 -->
+        '    WL("<TownVillage>" & Trim(Ar(9)) & "</TownVillage>")
+        '    '<!--  Q8 Town/Village: Mandatory If Q1 Is 0 -->
+        '    WL("<PostCode>" & Trim(Ar(10)) & "</PostCode>")
+        '    '<!--  Q9 Post Code: Mandatory If Q1 Is 0 -->
 
-            WL("<EmailAddress>" & Trim(Ar(69)) & "</EmailAddress>")
-            '<!-- Q10 Email Address: Mandatory If Q1 Is 0, Must be a valid Email -->
-        End If
+        '    WL("<EmailAddress>" & Trim(Ar(69)) & "</EmailAddress>")
+        '    '<!-- Q10 Email Address: Mandatory If Q1 Is 0, Must be a valid Email -->
+        'End If
         Dim BIKWithSI As Double = StringtoDecimal2ReturnDouble(Ar(51))
         Dim BIKWithoutSI As Double = StringtoDecimal2ReturnDouble(Ar(52))
 
@@ -12278,21 +12278,21 @@ Public Class FrmIR63A
         WL("<PensionableBenefitsContribution>" & FWC(Q34) & "</PensionableBenefitsContribution>")
         MT_ContributionsPensionableBenefits = MT_ContributionsPensionableBenefits + Q34
         '<!-- Q34 Contribution Towards Pensionable Benefits (3%) Deducted from Emoluments -->
-        Q35 = 0
-        WL("<SpecialContributionPublic>" & FWC(Q35) & "</SpecialContributionPublic>")
-        MT_SpecialContributionPublic = MT_SpecialContributionPublic + Q35
+        ' Q35 = 0
+        ' WL("<SpecialContributionPublic>" & FWC(Q35) & "</SpecialContributionPublic>")
+        'MT_SpecialContributionPublic = MT_SpecialContributionPublic + Q35
         '<!-- Q35 Special Contribution withheld from Public Sector Officers -->
-        Q36 = 0
-        WL("<SpecialContributionPrivate>" & FWC(Q36) & "</SpecialContributionPrivate>")
+        'Q36 = 0
+        'WL("<SpecialContributionPrivate>" & FWC(Q36) & "</SpecialContributionPrivate>")
         '<!-- Q36 Special Contribution withheld from Private Sector Employees -->
-        Q37 = 0
-        WL("<SpecialContributionEmployer>" & FWC(Q37) & "</SpecialContributionEmployer>")
+        'Q37 = 0
+        'WL("<SpecialContributionEmployer>" & FWC(Q37) & "</SpecialContributionEmployer>")
         '<!-- Q37 Special Contribution of Employer for Employees in the Private Sector -->
-        MT_SpecialContributionPrivate = MT_SpecialContributionPrivate + Q36 + Q37
+        'MT_SpecialContributionPrivate = MT_SpecialContributionPrivate + Q36 + Q37
 
-        Q38 = StringtoDecimal2ReturnDouble(Ar(48))
-        WL("<ReductionOfEmolumentsAndPensions>" & FWC(Q38) & "</ReductionOfEmolumentsAndPensions>")
-        MT_ReductionOfEmolumentsandPensions = MT_ReductionOfEmolumentsandPensions + Q38
+        'Q38 = StringtoDecimal2ReturnDouble(Ar(48))
+        'WL("<ReductionOfEmolumentsAndPensions>" & FWC(Q38) & "</ReductionOfEmolumentsAndPensions>")
+        'MT_ReductionOfEmolumentsandPensions = MT_ReductionOfEmolumentsandPensions + Q38
 
         '<!-- Q38 Broader Public Sector Reduction of Emoluments And Pensions -->
         Q39 = StringtoDecimal2ReturnDouble(Ar(54))
@@ -12307,6 +12307,16 @@ Public Class FrmIR63A
             Q42 = 0
         End If
 
+        WL("<GhsWithheldPensionersNormalRate>" & FWC(Q42) & "</GhsWithheldPensionersNormalRate>")
+        '<!-- Q42 GHS withheld from pensioners for income subject to normal rate tax -->
+        Q43 = 0
+        WL("<GhsWithheldPensionersSpecialRate>" & FWC(Q43) & "</GhsWithheldPensionersSpecialRate>")
+        '<!-- Q43 GHS withheld from widows' pension -->
+        Q44 = Q42 + Q43
+        WL("<GhsWithheldPensioners>" & FWC(Q44) & "</GhsWithheldPensioners>")
+        MT_GHSWithHeldPensioners = MT_GHSWithHeldPensioners + Q44
+        '<!-- Q44 GHS withheld from Pensioners: Sum of Q42 & Q43 -->
+
 
         WL("<GhsWithheldEmployeesNormalRate>" & FWC(Q39) & "</GhsWithheldEmployeesNormalRate>")
         '<!-- Q39 GHS withheld from employees for income subject to normal rate tax -->
@@ -12318,15 +12328,7 @@ Public Class FrmIR63A
         '<!-- Q41 GHS withheld from employees: Sum of Q39 & Q40 -->
         MT_GHSWithHeldEmployee = MT_GHSWithHeldEmployee + Q41
 
-        WL("<GhsWithheldPensionersNormalRate>" & FWC(Q42) & "</GhsWithheldPensionersNormalRate>")
-        '<!-- Q42 GHS withheld from pensioners for income subject to normal rate tax -->
-        Q43 = 0
-        WL("<GhsWithheldPensionersWidow>" & FWC(Q43) & "</GhsWithheldPensionersWidow>")
-        '<!-- Q43 GHS withheld from widows' pension -->
-        Q44 = Q42 + Q43
-        WL("<GhsWithheldPensioners>" & FWC(Q44) & "</GhsWithheldPensioners>")
-        MT_GHSWithHeldPensioners = MT_GHSWithHeldPensioners + Q44
-        '<!-- Q44 GHS withheld from Pensioners: Sum of Q42 & Q43 -->
+
 
         If employeeType = 3 Then
             WL("<IsEmployeeAnOfficer>" & 1 & "</IsEmployeeAnOfficer>")
@@ -12361,12 +12363,20 @@ Public Class FrmIR63A
         WL("<TaxWithheldPensionsNormalRate>" & FWC(Q52) & "</TaxWithheldPensionsNormalRate>")
         '<!-- Q52 Tax withheld from pensions with normal rates -->
         Q53 = 0
-        WL("<TaxWithheldPensionsWidow>" & FWC(Q53) & "</TaxWithheldPensionsWidow>")
+        WL("<TaxWithheldPensionsSpecialRate>" & FWC(Q53) & "</TaxWithheldPensionsSpecialRate>")
         '<!-- Q53 Tax withheld from widows' pension -->
         Q54 = Q50 + Q51 + Q52 + Q53
-        WL("<TaxWithheld>" & FWC(Q54) & "</TaxWithheld>")
+        WL("<TaxWithheldForYear>" & FWC(Q54) & "</TaxWithheld>")
         '<!-- Q54 Tax Withheld: Sum of Q50, Q51, Q52, Q53 - ->
         Q55 = 0
+
+        'xxxxxxx
+        Dim NotionalIncomeTax As Double = StringtoDecimal2ReturnDouble(Trim(Ar(72)))
+
+        WL("<FinancialBenefitDeductions>" & FWC(NotionalIncomeTax) & "</FinancialBenefitDeductions>")
+
+
+
         WL("<TaxWithheldPriorYearBonus>" & FWC(Q55) & "</TaxWithheldPriorYearBonus>")
         MT_TaxWithheld = MT_TaxWithheld + Q55 + Q54
         '<!-- Q55 Tax withheld from prior year bonus -->
@@ -12378,29 +12388,42 @@ Public Class FrmIR63A
             Q56 = StringtoDecimal2ReturnDouble(Ar(55))
         End If
 
-        WL("<GhsEmployersContributionPayable>" & FWC(Q56) & "</GhsEmployersContributionPayable>")
+        WL("<BonusGhsWithheldOfficers>0,00</BonusGhsWithheldOfficers>")
+        '<!-- q44 GHS Withheld from Officers (Prior Year Bonus)  - sum of all monthly employee Q21 - MANDATORY  -->
+        WL("<BonusGhsWithheldEmployees>0,00</BonusGhsWithheldEmployees>")
+        '<!-- q45 GHS Withheld from employees (Prior Year Bonus)  - sum of all monthly employee Q22 - MANDATORY  -->
+        WL("<BonusGhsEmployersContribution>0,00</BonusGhsEmployersContribution>")
+        '<!-- q46 GHS Employer's Contribution (Prior Year Bonus)  - sum of all monthly employee Q23 - MANDATORY  -->
+
+
+
+
+
+
+
+        WL("<GhsEmployersContribution>" & FWC(Q56) & "</GhsEmployersContribution>")
         '<!-- Q56 GHS Employer's Contribution Payable to Tax Department -->
         MT_GHSEmployersContribution = MT_GHSEmployersContribution + Q56
 
 
-        Dim salaryPeriods As Integer = Ar(42)
-        WL("<SalaryPaymentMethod>" & salaryPeriods & "</SalaryPaymentMethod>")
-        '<!-- Q57 Method of salary payment  Monthly (12 Or 13) Or Weekly (52 Or 53) -->
-        If Trim(Ar(26)) <> "" Then
-            Dim S As String
+        'Dim salaryPeriods As Integer = Ar(42)
+        'WL("<SalaryPaymentMethod>" & salaryPeriods & "</SalaryPaymentMethod>")
+        ''<!-- Q57 Method of salary payment  Monthly (12 Or 13) Or Weekly (52 Or 53) -->
+        'If Trim(Ar(26)) <> "" Then
+        '    Dim S As String
 
-            S = changeformtatodate2(Trim(Ar(26)))
-            WL("<EmploymentCommencementDate>" & S & "</EmploymentCommencementDate>")
-            '<!-- Q58 Commencement of Employment Date during the current year: Dates must be in format YYYY-MM-DD -->
-            'R(31) = S
-        End If
-        If Trim(Ar(27)) <> "" Then
-            Dim S As String
-            S = changeformtatodate2(Trim(Ar(27)))
-            WL("<EmploymentTerminationDate>" & S & "</EmploymentTerminationDate>")
-            '<!-- Q59 Termination of Employment Date during the current year -->
-            '  R(32) = S
-        End If
+        '    S = changeformtatodate2(Trim(Ar(26)))
+        '    WL("<EmploymentCommencementDate>" & S & "</EmploymentCommencementDate>")
+        '    '<!-- Q58 Commencement of Employment Date during the current year: Dates must be in format YYYY-MM-DD -->
+        '    'R(31) = S
+        'End If
+        'If Trim(Ar(27)) <> "" Then
+        '    Dim S As String
+        '    S = changeformtatodate2(Trim(Ar(27)))
+        '    WL("<EmploymentTerminationDate>" & S & "</EmploymentTerminationDate>")
+        '    '<!-- Q59 Termination of Employment Date during the current year -->
+        '    '  R(32) = S
+        'End If
 
         WL("</PayeEmployee>")
         ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''

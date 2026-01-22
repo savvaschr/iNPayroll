@@ -93,6 +93,17 @@ Public Class cPrTxTrxnHeader
     Private mPeriodTAXonNotional As Double
     Private mPeriodGESYonNotional As Double
 
+    Private msDis1 As Double
+    Private msDis2 As Double
+    Private msDis3 As Double
+    Private msDis4 As Double
+
+
+    Private msDis1Period As Double
+    Private msDis2Period As Double
+    Private msDis3Period As Double
+    Private msDis4Period As Double
+
     Public Property Id() As Integer
         Get
             Return mId
@@ -737,6 +748,72 @@ Public Class cPrTxTrxnHeader
             mPeriodGESYonNotional = value
         End Set
     End Property
+    Public Property sDis1 As Double
+        Get
+            Return msDis1
+        End Get
+        Set(ByVal value As Double)
+            msDis1 = value
+        End Set
+    End Property
+    Public Property sDis2 As Double
+        Get
+            Return msDis2
+        End Get
+        Set(ByVal value As Double)
+            msDis2 = value
+        End Set
+    End Property
+    Public Property sDis3 As Double
+        Get
+            Return msDis3
+        End Get
+        Set(ByVal value As Double)
+            msDis3 = value
+        End Set
+    End Property
+    Public Property sDis4 As Double
+        Get
+            Return msDis4
+        End Get
+        Set(ByVal value As Double)
+            msDis4 = value
+        End Set
+    End Property
+
+
+    Public Property sDis1Period As Double
+        Get
+            Return msDis1Period
+        End Get
+        Set(ByVal value As Double)
+            msDis1Period = value
+        End Set
+    End Property
+    Public Property sDis2Period As Double
+        Get
+            Return msDis2Period
+        End Get
+        Set(ByVal value As Double)
+            msDis2Period = value
+        End Set
+    End Property
+    Public Property sDis3Period As Double
+        Get
+            Return msDis3Period
+        End Get
+        Set(ByVal value As Double)
+            msDis3Period = value
+        End Set
+    End Property
+    Public Property sDis4Period As Double
+        Get
+            Return msDis4Period
+        End Get
+        Set(ByVal value As Double)
+            msDis4Period = value
+        End Set
+    End Property
 
     'end Savvas RND
     Public Sub New()
@@ -858,6 +935,16 @@ Public Class cPrTxTrxnHeader
         mPeriodNotional = DbNullToDouble(dr.Item(76))
         mPeriodTAXonNotional = DbNullToDouble(dr.Item(77))
         mPeriodGESYonNotional = DbNullToDouble(dr.Item(78))
+
+        msDis1 = DbNullToDouble(dr.Item(79))
+        msDis2 = DbNullToDouble(dr.Item(80))
+        msDis3 = DbNullToDouble(dr.Item(81))
+        msDis4 = DbNullToDouble(dr.Item(82))
+
+        msDis1Period = DbNullToDouble(dr.Item(83))
+        msDis2Period = DbNullToDouble(dr.Item(84))
+        msDis3Period = DbNullToDouble(dr.Item(85))
+        msDis4Period = DbNullToDouble(dr.Item(86))
 
 
 

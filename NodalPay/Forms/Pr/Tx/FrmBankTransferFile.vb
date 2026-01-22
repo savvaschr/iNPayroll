@@ -1608,6 +1608,7 @@ Public Class FrmBankTransferFile
 
         Return Ds
     End Function
+
     Private Function PrepareDSForReport_ForSEPAGA(ByVal IncludeInactive As Boolean, ByVal EmployeeBankCode As String) As DataSet
         Dim Ds As DataSet
         Dim Bank As cPrAnBanks
@@ -7821,5 +7822,286 @@ Public Class FrmBankTransferFile
         Return Flag
     End Function
 
+    Private Sub Button15_Click(sender As Object, e As EventArgs) Handles Button15.Click
+        Dim Bank As cPrAnBanks
+        Dim FileBankCode As String
 
+        Bank = Me.cmbBnk_CodeCo.SelectedItem
+
+        If Me.ComboBankFileCode.Items.Count = 0 Then
+            MsgBox("Bank file Code is missing,Please add it on Company Record", MsgBoxStyle.Critical)
+            Exit Sub
+        End If
+
+        FileBankCode = Me.ComboBankFileCode.SelectedItem
+
+        Dim EmployeeBankCode As String = ""
+        If Me.ComboOnlyBank.SelectedIndex = 0 Then
+            EmployeeBankCode = ""
+        Else
+            EmployeeBankCode = CType(Me.ComboOnlyBank.SelectedItem, cPrAnBanks).Code
+        End If
+
+        CreateTXTFile_Eurobank_Text(Bank, "EurobankTextFile.txt", 0, False, False, FileBankCode, True, EmployeeBankCode)
+
+    End Sub
+    Private Function CreateTXTFile_Eurobank_Text(ByVal Bank As cPrAnBanks, ByVal BankFilename As String, ByVal DaysBack As Integer, ByVal Create2Files As Boolean, ByVal ThisIsCompanyBankFile As Boolean, ByVal FileBankCode As String, ByVal IsEurobank As Boolean, ByVal EmployeeBankCode As String) As String
+        InitFile = True
+        Dim Ds As DataSet
+
+        Dim CompanyBankAcc As String
+
+        CompanyBankAcc = Me.ComboBankAcc.Text
+        Dim i As Integer
+        Dim TotalDebitAmount As Double = 0
+
+
+        Dim Includeinactive As Boolean = False
+        If Me.CBInactive.CheckState = CheckState.Checked Then
+            Includeinactive = True
+        End If
+        Dim Count As Integer
+
+        Ds = Global1.Business.GetAllPrTxHeader_InterfacedBankPayedCONSOL(TemGrp, Period, Bank, CompanyBankAcc, False, Includeinactive, Create2Files, ThisIsCompanyBankFile, GLBAnalysis, GLBAnalysisCode, EmployeeBankCode)
+
+
+        If CBSelectEmployees.CheckState = CheckState.Checked Then
+            'If Not HellenicToOther Then
+            '    RunSelection = False
+            '    Dim F As New FrmSelectEmployeesForBankFile
+            '    F.ForHellenic = False
+            '    F.Ds = Ds
+            '    F.Owner = Me
+            '    F.ShowDialog()
+            '    If Me.RunSelection Then
+            '        Dim k As Integer
+            '        For k = 0 To Ds.Tables(0).Rows.Count - 1
+            '            Ds.Tables(0).Rows(k).Item(11) = DsSelection.Tables(0).Rows(k).Item(11)
+            '        Next
+            '    End If
+            'Else
+            If Me.RunSelection Then
+                    Dim k As Integer
+                    For k = 0 To Ds.Tables(0).Rows.Count - 1
+                        Ds.Tables(0).Rows(k).Item(11) = DsSelection.Tables(0).Rows(k).Item(10)
+                    Next
+                End If
+            ' End If
+        End If
+
+        If CheckDataSet(Ds) Then
+            For i = 0 To Ds.Tables(0).Rows.Count - 1
+                With Ds.Tables(0).Rows(i)
+                    If DbNullToString(.Item(11)) = "1" Then
+                        TotalDebitAmount = TotalDebitAmount + DbNullToDouble(.Item(1))
+                        Count = Count + 1
+                    End If
+                End With
+            Next
+            Dim AmountS As String
+            Dim Comp As New cAdMsCompany
+            Dim CompDesc As String
+            Comp = Me.CmbCompany.SelectedItem
+            CompDesc = Comp.Name
+            If CompDesc.Length > 30 Then
+                CompDesc = CompDesc.Substring(0, 29)
+            End If
+            Dim Header As String = ""
+            Dim Trailer As String = ""
+            Dim SHT As String = ""
+            Dim CompIBAN As String
+            CompIBAN = Me.ComboBankAcc.Text
+
+            Dim counter As Integer
+            Dim totalValue As Double = 0
+            Dim SalaryValue As Double = 0
+            For i = 0 To Ds.Tables(0).Rows.Count - 1
+                With Ds.Tables(0).Rows(i)
+                    If DbNullToString(.Item(11)) = "1" Then
+                        counter = counter + 1
+                        SalaryValue = DbNullToDouble(.Item(1))
+                        totalValue = totalValue + SalaryValue
+                    End If
+                End With
+            Next
+
+            'Define Header/Trailer
+            If FileBankCode = "" Then
+                MsgBox("company Bank Code is Missing cannot Proceed")
+                Exit Function
+            End If
+            SHT = "P" & "|"
+            SHT = SHT & counter & "|"
+            Dim formatted1 As String = totalValue.ToString("N2", New System.Globalization.CultureInfo("el-GR"))
+            SHT = SHT & formatted1 & "|"
+            Dim D As Date = DatePay.Value
+            Dim THEDATE As String = Format(D, "yyyyMMdd")
+            SHT = SHT & THEDATE & "|"
+            SHT = SHT & CompIBAN
+
+
+            WriteToBankFile(SHT, BankFilename)
+
+            'Define Lines
+            Dim Line As String = ""
+            Dim Bnk As New cPrAnBanks
+            Dim BankAcc As String
+            Dim BankAccNoDash As String
+            Dim Salary As Double
+            Dim EmpName As String
+            Dim EmpCode As String
+            Dim BankSwift As String = ""
+            Dim EmpId As String
+            Dim BankBenName As String = ""
+            'Dim Count As Integer
+            Dim DetailsOfTransfer As String
+            DetailsOfTransfer = "PAYROLL " & Period.DescriptionL
+
+
+            Dim IBAN As String = ""
+            Count = 0
+            Dim ii As Integer
+            For i = 0 To Ds.Tables(0).Rows.Count - 1
+
+                With Ds.Tables(0).Rows(i)
+                    If DbNullToString(.Item(11)) = "1" Then
+                        EmpCode = DbNullToString(.Item(0))
+                        Salary = DbNullToDouble(.Item(1))
+                        EmpName = DbNullToString(.Item(2))
+                        Bnk = New cPrAnBanks(DbNullToString(.Item(3)))
+                        BankAcc = DbNullToString(.Item(4))
+                        BankAccNoDash = BankAcc.Replace("-", "")
+                        BankAccNoDash = BankAccNoDash.Replace(" ", "")
+                        IBAN = DbNullToString(.Item(8))
+                        BankBenName = DbNullToString(.Item(10))
+
+                        Dim SwiftCode As String
+                        SwiftCode = FindSwiftCode(Bnk, False)
+
+                        If BankAccNoDash.Length > 13 Then
+                            MsgBox("ERROR - Bank Account (" & BankAcc & ") of Employee " & EmpCode & " - " & EmpName & " Is invalid.Max Lenght without Dashes must be 13 digits.", MsgBoxStyle.Critical)
+                            Exit Function
+                        End If
+                        If EmpName.Length > 35 Then
+                            EmpName = EmpName.Substring(1, 35)
+                        End If
+                        'BankSwift = FindEmployeeBankSwift(Bnk)
+                        Dim ContinueWithNormal As Boolean = True
+
+                        'Dim MyLimit As Double = 0
+                        'If IsEurobank Then
+                        '    MyLimit = Me.txtLimitPerEmployee.Text
+                        '    If MyLimit <> 0 Then
+                        '        Salary = DbNullToDouble(.Item(1))
+                        '        If Salary > Me.txtLimitPerEmployee.Text Then
+                        '            ContinueWithNormal = False
+                        '        End If
+                        '    End If
+                        'End If
+
+                        'If Not ContinueWithNormal Then
+                        '    Dim XSalary As Double
+                        '    XSalary = Salary
+                        '    Do While XSalary > 0
+                        '        If XSalary > MyLimit Then
+                        '            Salary = MyLimit
+                        '            XSalary = XSalary - MyLimit
+                        '            If XSalary < 0 Then
+                        '                XSalary = 0
+                        '            End If
+                        '        Else
+                        '            Salary = XSalary
+                        '            XSalary = 0
+                        '        End If
+                        '        Line = "02"
+                        '        Line = Line & "EUR"
+                        '        AmountS = Format(Salary, "0.00")
+                        '        Line = Line & AmountS.Replace(".", "").ToString.PadLeft(15, "0")
+                        '        Line = Line & SwiftCode.PadLeft(11, "0")
+                        '        Line = Line & IBAN.PadRight(34, " ")
+                        '        If BankBenName <> "" Then
+                        '            EmpName = BankBenName
+                        '        End If
+                        '        Line = Line & EmpName.PadRight(70, " ")
+                        '        Line = Line & "SALA"
+                        '        Line = Line & "CY"
+                        '        Line = Line & DetailsOfTransfer.PadRight(140, " ")
+                        '        Line = Line & "".PadLeft(35, " ")
+                        '        Line = Line & "".PadLeft(184, " ")
+                        '        WriteToBankFile(Line, BankFilename)
+                        '        Count = Count + 1
+                        '    Loop
+                        'Else
+                        If Bank.Code = Bnk.Code Then
+                            Line = "B" & "|"
+                            Line = Line & CompIBAN & "|"
+                            Line = Line & IBAN & "|"
+                            AmountS = Format(Salary, "0.00")
+                            Dim formatted As String = Salary.ToString("N2", New System.Globalization.CultureInfo("el-GR"))
+                            Line = Line & formatted & "|"
+                            Line = Line & "EUR" & "|"
+                            Line = Line & THEDATE & "|"
+                            Line = Line & THEDATE & "|"
+
+                            If BankBenName <> "" Then
+                                EmpName = BankBenName
+                                If EmpName.Length > 35 Then
+                                    EmpName = EmpName.Substring(1, 35)
+                                End If
+                            End If
+                            Line = Line & EmpName & "|"
+                            Line = Line & "" & "|"
+                            Line = Line & "" & "|"
+                            Line = Line & "" & "|"
+                            Line = Line & DetailsOfTransfer
+                            WriteToBankFile(Line, BankFilename)
+                        Else
+                            Line = "S" & "|"
+                            Line = Line & CompIBAN & "|"
+                            Line = Line & IBAN & "|"
+
+                            Dim formatted As String = Salary.ToString("N2", New System.Globalization.CultureInfo("el-GR"))
+
+                            Line = Line & formatted & "|"
+                            Line = Line & "EUR" & "|"
+                            If BankBenName <> "" Then
+                                EmpName = BankBenName
+                                If EmpName.Length > 35 Then
+                                    EmpName = EmpName.Substring(1, 35)
+                                End If
+                            End If
+                            Line = Line & THEDATE & "|"
+                            Line = Line & THEDATE & "|"
+
+                            Line = Line & EmpName & "|"
+                            Line = Line & "" & "|"
+                            Line = Line & "" & "|"
+
+                            Line = Line & SwiftCode & "|"
+                            Line = Line & "N" & "|"
+                            Line = Line & "" & "|"
+                            Line = Line & "" & "|"
+
+                            Line = Line & DetailsOfTransfer
+
+                            WriteToBankFile(Line, BankFilename)
+
+                        End If
+                    End If
+                End With
+            Next
+
+
+
+            If BankFilename = "" Then
+                MsgBox("File " & BankFiledir & "TRANASCI.TXT" & " Is Created ", MsgBoxStyle.Information)
+            Else
+                MsgBox("File " & BankFiledir & BankFilename & " Is Created ", MsgBoxStyle.Information)
+            End If
+
+        Else
+            MsgBox("No data to Send", MsgBoxStyle.Information)
+        End If
+
+    End Function
 End Class

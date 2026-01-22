@@ -9,55 +9,63 @@ Public Class cPrTxEmployeeDiscountsDbTier
     '
     Protected Function GetByPK(ByVal tId As Integer) As DataSet
         Dim Str As String
-        Str = " SELECT" & _
-                " EmpDis_id," & _
-                " Emp_Code," & _
-                " PrdGrp_Code," & _
-                " EmpDis_Discount1," & _
-                " EmpDis_Discount2," & _
-                " EmpDis_Discount3," & _
-                " EmpDis_Discount4," & _
-                " EmpDis_Discount5," & _
-                " EmpDis_Discount6," & _
-                " EmpDis_Discount7," & _
-                " EmpDis_Discount8," & _
-                " EmpDis_Discount9," & _
-                " EmpDis_Discount10," & _
-                " EmpDis_LifeInsurance," & _
-                " Usr_Id," & _
-                " EmpDis_CreationDate," & _
-                " EmpDis_AmendDate," & _
-                " EmpDis_Medical, " & _
-                " EmpDis_Pensionfund " & _
-            "  FROM PrTxEmployeeDiscounts" & _
+        Str = " SELECT" &
+                " EmpDis_id," &
+                " Emp_Code," &
+                " PrdGrp_Code," &
+                " EmpDis_Discount1," &
+                " EmpDis_Discount2," &
+                " EmpDis_Discount3," &
+                " EmpDis_Discount4," &
+                " EmpDis_Discount5," &
+                " EmpDis_Discount6," &
+                " EmpDis_Discount7," &
+                " EmpDis_Discount8," &
+                " EmpDis_Discount9," &
+                " EmpDis_Discount10," &
+                " EmpDis_LifeInsurance," &
+                " Usr_Id," &
+                " EmpDis_CreationDate," &
+                " EmpDis_AmendDate," &
+                " EmpDis_Medical, " &
+                " EmpDis_Pensionfund, " &
+                " EmpDis_sDis1," &
+                " EmpDis_sDis2," &
+                " EmpDis_sDis3," &
+                " EmpDis_sDis4" &
+                "  FROM PrTxEmployeeDiscounts" &
             "  WHERE EmpDis_id = " & tId
         Return MyBase.GetData(Str)
     End Function
 
     Protected Function GetByEmpCodePeriodGroupCode(ByVal tEmpcode As String, ByVal tPeriodGroup As String) As DataSet
         Dim Str As String
-        Str = " SELECT" & _
-                " EmpDis_id," & _
-                " Emp_Code," & _
-                " PrdGrp_Code," & _
-                " EmpDis_Discount1," & _
-                " EmpDis_Discount2," & _
-                " EmpDis_Discount3," & _
-                " EmpDis_Discount4," & _
-                " EmpDis_Discount5," & _
-                " EmpDis_Discount6," & _
-                " EmpDis_Discount7," & _
-                " EmpDis_Discount8," & _
-                " EmpDis_Discount9," & _
-                " EmpDis_Discount10," & _
-                " EmpDis_LifeInsurance," & _
-                " Usr_Id," & _
-                " EmpDis_CreationDate," & _
-                " EmpDis_AmendDate," & _
-                " EmpDis_Medical, " & _
-                " EmpDis_PensionFund " & _
-            "  FROM PrTxEmployeeDiscounts" & _
-            "  WHERE Emp_Code = " & enQuoteString(tEmpcode) & _
+        Str = " SELECT" &
+                " EmpDis_id," &
+                " Emp_Code," &
+                " PrdGrp_Code," &
+                " EmpDis_Discount1," &
+                " EmpDis_Discount2," &
+                " EmpDis_Discount3," &
+                " EmpDis_Discount4," &
+                " EmpDis_Discount5," &
+                " EmpDis_Discount6," &
+                " EmpDis_Discount7," &
+                " EmpDis_Discount8," &
+                " EmpDis_Discount9," &
+                " EmpDis_Discount10," &
+                " EmpDis_LifeInsurance," &
+                " Usr_Id," &
+                " EmpDis_CreationDate," &
+                " EmpDis_AmendDate," &
+                " EmpDis_Medical, " &
+                " EmpDis_PensionFund, " &
+                " EmpDis_sDis1," &
+                " EmpDis_sDis2," &
+                " EmpDis_sDis3," &
+                " EmpDis_sDis4" &
+            "  FROM PrTxEmployeeDiscounts" &
+            "  WHERE Emp_Code = " & enQuoteString(tEmpcode) &
              " AND PrdGrp_Code =" & enQuoteString(tPeriodGroup)
         Return MyBase.GetData(Str)
     End Function
@@ -104,12 +112,21 @@ Public Class cPrTxEmployeeDiscountsDbTier
             SpNames.Add("EmpDis_Medical")                                    '(17)
             SpParams.Add(.PensionFund)                                       '(18)
             SpNames.Add("EmpDis_PensionFund")                                 '(18)
+            SpParams.Add(.sDis1)                                             '(19)
+            SpNames.Add("EmpDis_sDis1")                                      '(19)
+            SpParams.Add(.sDis2)                                             '(20)
+            SpNames.Add("EmpDis_sDis2")                                      '(20)
+            SpParams.Add(.sDis3)                                             '(21)
+            SpNames.Add("EmpDis_sDis3")                                      '(21)
+            SpParams.Add(.sDis4)                                             '(22)
+            SpNames.Add("EmpDis_sDis4")                                      '(22)
+
         End With
-        SpNames.Add("NewId")                                             '(19)
-        SpParams.Add(CInt(0))                                            '(19)
-        If Me.StoredProcedure("AG_PrTxEmployeeDiscounts_Save_Update", SpParams, SpNames, 19) Then
+        SpNames.Add("NewId")                                             '(23)
+        SpParams.Add(CInt(0))                                            '(23)
+        If Me.StoredProcedure("AG_PrTxEmployeeDiscounts_Save_Update", SpParams, SpNames, 23) Then
             If _cPrTxEmployeeDiscounts.Id = 0 Then
-                _cPrTxEmployeeDiscounts.Id = DbNullToInt(SpParams(19))
+                _cPrTxEmployeeDiscounts.Id = DbNullToInt(SpParams(23))
             End If
             Return True
         Else

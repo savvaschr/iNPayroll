@@ -15,6 +15,8 @@ Public Class FrmFixYTD
         PeriodGroup = Me.txtPeriodgroup2.Text
 
         Global1.Business.FixPeriodGroupContributionsYTD(PeriodGroup)
+
         MsgBox("Finish")
     End Sub
+
 End Class

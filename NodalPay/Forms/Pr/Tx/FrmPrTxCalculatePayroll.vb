@@ -229,6 +229,18 @@ Public Class FrmPrTxCalculatePayroll
 
     Dim GLBGESIOnNotional As Double = 0
 
+    Dim GLBsDis1 As Double = 0
+    Dim GLBsDis2 As Double = 0
+    Dim GLBsDis3 As Double = 0
+    Dim GLBsDis4 As Double = 0
+
+    Dim GLBsDis1Period As Double = 0
+    Dim GLBsDis2Period As Double = 0
+    Dim GLBsDis3Period As Double = 0
+    Dim GLBsDis4Period As Double = 0
+
+
+
     Const _Tls12 As SslProtocols = DirectCast(&HC00, SslProtocols)
     Const Tls12 As SecurityProtocolType = DirectCast(_Tls12, SecurityProtocolType)
 
@@ -559,7 +571,17 @@ Public Class FrmPrTxCalculatePayroll
         Me.txtAA_PER_Split.Text = "0.00"
         Me.txtTA_PER_Split.Text = "0.00"
 
+        Me.txtROsDis1.Text = "0.00"
+        Me.txtROsDis2.Text = "0.00"
+        Me.txtROsDis3.Text = "0.00"
+        Me.txtROsDis4.Text = "0.00"
+        Me.txtCPsDis1.Text = "0.00"
+        Me.txtCPsDis2.Text = "0.00"
+        Me.txtCPsDis3.Text = "0.00"
+        Me.txtCPsDis4.Text = "0.00"
 
+        Me.txtROInvestmentLimit.Text = "0.00"
+        Me.txtCPInvestmentLimit.Text = "0.00"
 
 
 
@@ -4885,7 +4907,11 @@ Public Class FrmPrTxCalculatePayroll
         S_TaxEarnPrevious = 0
         S_GESID_Previous = 0
         S_Union_Previous = 0
-
+        '''''''''''''''''''''''''''''''''''''''''''''''''''
+        GLBsDis1 = 0
+        GLBsDis2 = 0
+        GLBsDis3 = 0
+        GLBsDis4 = 0
 
         Dim FixedItValue As Double = 0
         'Dim UseFixedItValue As Boolean = False
@@ -4908,6 +4934,11 @@ Public Class FrmPrTxCalculatePayroll
 
         Dim AnnualPrivateMedical As Double = 0
         Dim AnnualPrivatePensionfund As Double = 0
+
+        Dim Annual_Children = 0
+        Dim Annual_RentLoanInterest = 0
+        Dim Annual_EnergyUpgrade = 0
+        Dim Annual_Investments = 0
 
         For i = 0 To Ded.Length - 1
             If Dedu.Code = Ded(i).Ded.DedCodCode Then
@@ -5436,6 +5467,15 @@ Public Class FrmPrTxCalculatePayroll
             AnnualPrivatePensionfund = EmpDis.PensionFund
             PeriodExtraPensionFundValue = AnnualPrivatePensionfund
 
+            Annual_Children = EmpDis.sDis1
+            Annual_RentLoanInterest = EmpDis.sDis2
+            Annual_EnergyUpgrade = EmpDis.sDis3
+            Annual_Investments = EmpDis.sDis4
+
+
+
+
+
         End If
         Discounts = Discounts + FirstEmploymentDiscount
 
@@ -5614,15 +5654,19 @@ Public Class FrmPrTxCalculatePayroll
 
         S_TaxableEarningToDate = S_TaxableEarningToDate + Me.txt_Split_Total.Text '- Me.txt_Split_ToDate.Text
 
+
+
+
+
+
+
+
+
         GLB_NEWTax_RentsAndIncomeFromOtherSources = Emp.OtherIncome2
         GLB_NEWTax_SocialInsurancePension = PensionByTheendOftheYear + Emp.OtherIncome3
         GLB_NEWTax_Total = S_TaxableEarningToDate
         GLB_NEWTax_TotalSPLIT = Me.txt_Split_Total.Text
         GLB_NEWTax_TotalEarningsFromME = S_TaxableEarningToDate - Me.txt_Split_Total.Text - GLB_NEWTax_RentsAndIncomeFromOtherSources - GLB_NEWTax_EarningsFromPreviousEmployment
-
-
-
-
 
         ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
@@ -5809,7 +5853,33 @@ Public Class FrmPrTxCalculatePayroll
         ' CALCULATION OF TAX
         ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
-        Dim AmountToCheck = S_TaxableEarningToDate - S_Period_SI_PF_MF_LI
+
+        Dim S_Annual_Dis123 As Double = 0
+        S_Annual_Dis123 = Annual_Children + Annual_RentLoanInterest + Annual_EnergyUpgrade
+        Dim tempAmountToCheck As Double = S_TaxableEarningToDate - S_Period_SI_PF_MF_LI - S_Annual_Dis123
+        Dim TempAmountTocheck50Perc As Double = 50 / 100 * tempAmountToCheck
+
+        Dim Annual_investmentslimit As Double = Annual_Investments
+        If Annual_Investments > TempAmountTocheck50Perc Then
+            Annual_InvestmentsLimit = TempAmountTocheck50Perc
+        End If
+
+        GLBsDis1 = Annual_Children
+        GLBsDis2 = Annual_RentLoanInterest
+        GLBsDis3 = Annual_EnergyUpgrade
+        GLBsDis4 = Annual_investmentslimit
+
+        GLBsDis1Period = RoundMe2(Annual_Children / GLBCurrentPeriod.NumberOfTaxablePeriods, 2)
+        GLBsDis2Period = RoundMe2(Annual_RentLoanInterest / GLBCurrentPeriod.NumberOfTaxablePeriods, 2)
+        GLBsDis3Period = RoundMe2(Annual_EnergyUpgrade / GLBCurrentPeriod.NumberOfTaxablePeriods, 2)
+        GLBsDis4Period = RoundMe2(Annual_investmentslimit / GLBCurrentPeriod.NumberOfTaxablePeriods, 2)
+
+
+
+        Dim AmountToCheck = S_TaxableEarningToDate - S_Period_SI_PF_MF_LI - S_Annual_Dis123 - Annual_InvestmentsLimit
+        If AmountToCheck < 0 Then
+            AmountToCheck = 0
+        End If
         Me.txtSumAmountToCheck.Text = AmountToCheck
         Dim DsTax As DataSet
         DsTax = Global1.Business.GetAllPrSsTaxTable
@@ -6072,6 +6142,11 @@ Public Class FrmPrTxCalculatePayroll
             If Me.txtROonesixt.Text <> "0.00" Then
                 Me.txtROonesixt.BackColor = Color.Tomato
             End If
+            Me.txtROsDis1.Text = Format(Annual_Children, "0.00")
+            Me.txtROsDis2.Text = Format(Annual_RentLoanInterest, "0.00")
+            Me.txtROsDis3.Text = Format(Annual_EnergyUpgrade, "0.00")
+            Me.txtROsDis4.Text = Format(Annual_Investments, "0.00")
+            Me.txtroInvestmentLimit.text = Format(Annual_investmentslimit, "0.00")
         Else
             Me.txtCPSI.Text = Format(SI_Display, "0.00")
             Me.txtCPPF.Text = Format(PF_display, "0.00")
@@ -6113,7 +6188,11 @@ Public Class FrmPrTxCalculatePayroll
                 Me.txtCPOnesixt.BackColor = Color.Tomato
             End If
 
-
+            Me.txtCPsDis1.Text = Format(Annual_Children, "0.00")
+            Me.txtCPsDis2.Text = Format(Annual_RentLoanInterest, "0.00")
+            Me.txtCPsDis3.Text = Format(Annual_EnergyUpgrade, "0.00")
+            Me.txtCPsDis4.Text = Format(Annual_Investments, "0.00")
+            Me.txtcpInvestmentLimit.text = Format(Annual_investmentslimit, "0.00")
 
         End If
 
@@ -10758,6 +10837,17 @@ Public Class FrmPrTxCalculatePayroll
                     .BIK_GESID = Period_BIK_GesiDValue
                     .BIK_GESIC = Period_BIK_GesiCValue
                     .BIK_GESIAble = BIK_GLBGesiAmount
+
+                    .sDis1 = GLBsDis1
+                    .sDis2 = GLBsDis2
+                    .sDis3 = GLBsDis3
+                    .sDis4 = GLBsDis4
+
+                    .sDis1period = GLBsDis1Period
+                    .sDis2period = GLBsDis2Period
+                    .sDis3period = GLBsDis3Period
+                    .sDis4period = GLBsDis4Period
+
                     Debug.WriteLine(Me.GLBBenefitsRecurringEarning) 'current Month
 
 
@@ -13304,6 +13394,7 @@ Public Class FrmPrTxCalculatePayroll
                     .Per_NewPeriodTax = Me.txtNewPeriodTax.Text
                     .Per_TotalCurSINot = Me.txtPERCurrent_SI_Notional.Text
                     .Per_NewRemaining = Me.txtPerRemaining.Text
+
                     If Global1.GLBNewTaxmethod Then
                         .Per_MethodUsed = 1
                     Else
@@ -13314,6 +13405,19 @@ Public Class FrmPrTxCalculatePayroll
                     .TRec_Split = Me.txtTA_REC_Split.Text
                     .APer_Split = Me.txtAA_PER_Split.Text
                     .TPer_Split = Me.txtTA_PER_Split.Text
+
+                    .Rec_sDis1 = Me.txtROsDis1.Text
+                    .Act_sDis1 = Me.txtCPsDis1.Text
+                    .Rec_sDis2 = Me.txtROsDis2.Text
+                    .Act_sDis2 = Me.txtCPsDis2.Text
+                    .Rec_sDis3 = Me.txtROsDis3.Text
+                    .Act_sDis3 = Me.txtCPsDis3.Text
+                    .Rec_sDis4 = Me.txtROsDis4.Text
+                    .Act_sDis4 = Me.txtCPsDis4.Text
+
+                    .Rec_Limit1 = Me.txtROInvestmentLimit.Text
+                    .Act_Limit1 = Me.txtCPInvestmentLimit.Text
+
 
                     If Not .Save Then
                         Throw Exx
@@ -13435,6 +13539,18 @@ Public Class FrmPrTxCalculatePayroll
                         Me.txtTA_REC_Split.Text = Format(.TRec_Split, "0.00")
                         Me.txtAA_PER_Split.Text = Format(.APer_Split, "0.00")
                         Me.txtTA_PER_Split.Text = Format(.TPer_Split, "0.00")
+
+                        Me.txtROsDis1.Text = Format(.Rec_sDis1, "0.00")
+                        Me.txtCPsDis1.Text = Format(.Act_sDis1, "0.00")
+                        Me.txtROsDis2.Text = Format(.Rec_sDis2, "0.00")
+                        Me.txtCPsDis2.Text = Format(.Act_sDis2, "0.00")
+                        Me.txtROsDis3.Text = Format(.Rec_sDis3, "0.00")
+                        Me.txtCPsDis3.Text = Format(.Act_sDis3, "0.00")
+                        Me.txtROsDis4.Text = Format(.Rec_sDis4, "0.00")
+                        Me.txtCPsDis4.Text = Format(.Act_sDis4, "0.00")
+                        Me.txtROInvestmentLimit.Text = Format(.Rec_Limit1, "0.00")
+                        Me.txtCPInvestmentLimit.Text = Format(.Act_Limit1, "0.00")
+
 
 
 
