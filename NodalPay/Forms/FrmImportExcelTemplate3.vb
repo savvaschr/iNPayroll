@@ -10,6 +10,7 @@
         Dim EDCCode As String
         If OpenFile.FileName <> "" Then
 
+
             CType(Me.Owner, FrmPayroll1).ET3_FirstLine = Me.txtFirstLineInExcel.Text
             CType(Me.Owner, FrmPayroll1).ET3_EmpCode = Me.txtEmployeeCode.Text
             CType(Me.Owner, FrmPayroll1).ET3_MonthlyUnits = Me.txtMonthlyUnits.Text
