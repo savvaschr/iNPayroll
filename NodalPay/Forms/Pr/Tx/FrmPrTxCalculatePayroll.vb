@@ -6008,18 +6008,18 @@ Public Class FrmPrTxCalculatePayroll
             End If
 
             Me.txtTA_REC_TotalTaxable.Text = Format(ITValue, "0.00")
-                Me.txtTA_REC_CurrentEmployment.Text = Format(Tax_OnCurrentEmployment, "0.00")
-                Me.txtTA_REC_SIPension.Text = Format(Tax_OnSIPension, "0.00")
-                Me.txtTA_REC_FromOthersources.Text = Format(Tax_OnOtherIncome, "0.00")
-                Me.txtTA_REC_PreviousEmployment.Text = Format(Tax_OnPreviousEmployment, "0.00")
-                Me.txtTA_REC_NotionalIncome.Text = Format(Tax_OnNotionalIncome, "0.00")
-                Me.txtTA_REC_Split.Text = Format(Tax_OnSplit, "0.00")
+            Me.txtTA_REC_CurrentEmployment.Text = Format(Tax_OnCurrentEmployment, "0.00")
+            Me.txtTA_REC_SIPension.Text = Format(Tax_OnSIPension, "0.00")
+            Me.txtTA_REC_FromOthersources.Text = Format(Tax_OnOtherIncome, "0.00")
+            Me.txtTA_REC_PreviousEmployment.Text = Format(Tax_OnPreviousEmployment, "0.00")
+            Me.txtTA_REC_NotionalIncome.Text = Format(Tax_OnNotionalIncome, "0.00")
+            Me.txtTA_REC_Split.Text = Format(Tax_OnSplit, "0.00")
 
-                Dim REMTaxPeriods As Integer = GLBCurrentPeriod.NumberOfTaxablePeriods - NumberOfTaxablePeriodsTodate + 1
-                Dim MonthlyTAX As Double = (Tax_OnCurrentEmployment + Tax_OnSIPension + Tax_OnNotionalIncome - TAXValueToDateForCurrentIncome) / REMTaxPeriods
-                Me.txt_REC_TempPAYE.Text = Format(MonthlyTAX, "0.00")
-            Else
-                GLB_NEWTax_NotionalIncome = GLB_NEWTax_NotionalIncome + NotionalIncome_ToDate
+            Dim REMTaxPeriods As Integer = GLBCurrentPeriod.NumberOfTaxablePeriods - NumberOfTaxablePeriodsTodate + 1
+            Dim MonthlyTAX As Double = (Tax_OnCurrentEmployment + Tax_OnSIPension + Tax_OnNotionalIncome - TAXValueToDateForCurrentIncome) / REMTaxPeriods
+            Me.txt_REC_TempPAYE.Text = Format(MonthlyTAX, "0.00")
+        Else
+            GLB_NEWTax_NotionalIncome = GLB_NEWTax_NotionalIncome + NotionalIncome_ToDate
 
             Me.txtAA_PER_CurrentEmployment.Text = Format(GLB_NEWTax_TotalEarningsFromME - GLB_NEWTax_SocialInsurancePension - GLB_NEWTax_NotionalIncome, "0.00")
             Me.txtAA_PER_SIPension.Text = Format(GLB_NEWTax_SocialInsurancePension, "0.00")
@@ -6049,40 +6049,41 @@ Public Class FrmPrTxCalculatePayroll
             End If
 
             Me.txtTA_PER_TotalTaxable.Text = Format(ITValue, "0.00")
-                Me.txtTA_PER_CurrentEmployment.Text = Format(Tax_OnCurrentEmployment, "0.00")
-                Me.txtTA_PER_SIPension.Text = Format(Tax_OnSIPension, "0.00")
-                Me.txtTA_PER_FromOthersources.Text = Format(Tax_OnOtherIncome, "0.00")
-                Me.txtTA_PER_PreviousEmployment.Text = Format(Tax_OnPreviousEmployment, "0.00")
-                Me.txtTA_PER_NotionalIncome.Text = Format(Tax_OnNotionalIncome, "0.00")
-                Me.txtTA_PER_Split.Text = Format(Tax_Onsplit, "0.00")
+            Me.txtTA_PER_CurrentEmployment.Text = Format(Tax_OnCurrentEmployment, "0.00")
+            Me.txtTA_PER_SIPension.Text = Format(Tax_OnSIPension, "0.00")
+            Me.txtTA_PER_FromOthersources.Text = Format(Tax_OnOtherIncome, "0.00")
+            Me.txtTA_PER_PreviousEmployment.Text = Format(Tax_OnPreviousEmployment, "0.00")
+            Me.txtTA_PER_NotionalIncome.Text = Format(Tax_OnNotionalIncome, "0.00")
+            Me.txtTA_PER_Split.Text = Format(Tax_Onsplit, "0.00")
 
-                Dim REMTaxPeriods As Integer = GLBCurrentPeriod.NumberOfTaxablePeriods - NumberOfTaxablePeriodsTodate + 1
-                Dim MonthlyTAX As Double = (Tax_OnCurrentEmployment + Tax_OnSIPension + Tax_OnNotionalIncome - TAXValueToDateForCurrentIncome) / REMTaxPeriods
+            Dim REMTaxPeriods As Integer = GLBCurrentPeriod.NumberOfTaxablePeriods - NumberOfTaxablePeriodsTodate + 1
+            Dim MonthlyTAX As Double = (Tax_OnCurrentEmployment + Tax_OnSIPension + Tax_OnNotionalIncome - TAXValueToDateForCurrentIncome) / REMTaxPeriods
 
-                Dim Tax_OnNotionalIncomePAID As Double = 0
-                Dim NotionalIncomePeriodTAX As Double = (Tax_OnNotionalIncome - Tax_OnNotionalIncomePAID) / REMTaxPeriods
-
-
-                Me.txtNotionalPeriodTax.Text = Format(NotionalIncomePeriodTAX, "0.00")
-                Me.txt_PER_TempPAYE.Text = Format(MonthlyTAX, "0.00")
-
-                Dim TaxDifference As Double = 0
-                TaxDifference = CDbl(Me.txtTA_PER_CurrentEmployment.Text) - CDbl(Me.txtTA_REC_CurrentEmployment.Text)
-
-                Me.txtTaxDifference.Text = Format(TaxDifference, "0.00")
-                Dim NewTax As Double = 0
-                NewTax = CDbl(Me.txt_REC_TempPAYE.Text) + TaxDifference
-                Me.txtNewPeriodTax.Text = Format(NewTax, "0.00")
-                Dim NewPaid As Double = S_ITValueToDate
-                Me.txtNewPaid.Text = Format(S_ITValueToDate, "0.00")
-                Dim CurrentSINotional As Double = Tax_OnCurrentEmployment + Tax_OnSIPension + Tax_OnNotionalIncome ' Tax_OnNotionalIncome is included in Current
-                Me.txtPERCurrent_SI_Notional.Text = Format(CurrentSINotional, "0.00")
-                Dim NewRemaining As Double = Format(CurrentSINotional - NewPaid, "0.00")
-                Me.txtPerRemaining.Text = Format(NewRemaining, "0.00")
+            Dim Tax_OnNotionalIncomePAID As Double = 0
+            Dim NotionalIncomePeriodTAX As Double = (Tax_OnNotionalIncome - Tax_OnNotionalIncomePAID) / REMTaxPeriods
 
 
+            Me.txtNotionalPeriodTax.Text = Format(NotionalIncomePeriodTAX, "0.00")
+            Me.txt_PER_TempPAYE.Text = Format(MonthlyTAX, "0.00")
 
-            End If
+            Dim TaxDifference As Double = 0
+            TaxDifference = CDbl(Me.txtTA_PER_CurrentEmployment.Text) - CDbl(Me.txtTA_REC_CurrentEmployment.Text)
+
+            Me.txtTaxDifference.Text = Format(TaxDifference, "0.00")
+            Dim NewTax As Double = 0
+
+            NewTax = CDbl(Me.txt_REC_TempPAYE.Text) + TaxDifference
+            Me.txtNewPeriodTax.Text = Format(NewTax, "0.00")
+            Dim NewPaid As Double = S_ITValueToDate
+            Me.txtNewPaid.Text = Format(S_ITValueToDate, "0.00")
+            Dim CurrentSINotional As Double = Tax_OnCurrentEmployment + Tax_OnSIPension + Tax_OnNotionalIncome ' Tax_OnNotionalIncome is included in Current
+            Me.txtPERCurrent_SI_Notional.Text = Format(CurrentSINotional, "0.00")
+            Dim NewRemaining As Double = Format(CurrentSINotional - NewPaid, "0.00")
+            Me.txtPerRemaining.Text = Format(NewRemaining, "0.00")
+
+
+
+        End If
             ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
             ''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
@@ -6341,6 +6342,10 @@ Public Class FrmPrTxCalculatePayroll
             If Not UseFixedITValue Then
                 If Global1.GLBNewTaxmethod Then
                     ITValue = CDbl(Me.txtNewPeriodTax.Text)
+                    If Emp.TerminateDate <> "" Then
+                        ITValue = CDbl(Me.txtPerRemaining.Text)
+                        Me.txtNewPeriodTax.Text = Format(ITValue, "0.00")
+                    End If
                     If Me.GLB_PeriodTaxable = 0 Then
                         ITValue = 0
                     End If
@@ -6354,24 +6359,24 @@ Public Class FrmPrTxCalculatePayroll
             Limit35 = RoundMe2(PARAM_PAYELimitPercent * GLB_PeriodTaxable / 100, 2)
             If Limit35 <> 0 Then
                 If ITValue >= Limit35 Then
-                    If param_PAYEMinusOne Then
+                    If PARAM_PAYEMinusOne Then
                         Limit35 = Limit35 - 1
                     End If
                     If Limit35 < 0 Then
-                            Limit35 = 0
-                        End If
+                        Limit35 = 0
+                    End If
                     MsgBox("Period TAX for Employee " & Emp.Code & " - " & Emp.FullName & " is " & RoundMe2(ITValue, 2) & " and this is greater or equal than " & PARAM_PAYELimitPercent & "% of Period Taxable amount " & GLB_PeriodTaxable & ".Please investigate !TAX will be limited to " & Limit35, MsgBoxStyle.Information)
                     ITValue = Limit35
-                    End If
                 End If
+            End If
 
             For i = 0 To D_Final.Length - 1
-                    If Dedu.Code = D_Final(i).Ded.DedCodCode Then
-                        D_Final(i).MyValue = ITValue
-                        Exit For
-                    End If
-                Next
-            End If
+                If Dedu.Code = D_Final(i).Ded.DedCodCode Then
+                    D_Final(i).MyValue = ITValue
+                    Exit For
+                End If
+            Next
+        End If
 
 
     End Sub
@@ -14328,15 +14333,18 @@ Public Class FrmPrTxCalculatePayroll
         Else
             TF = True
         End If
+
         Label60.Visible = TF
         Label65.Visible = TF
         Label64.Visible = TF
+
         txtORPaidTax.Visible = TF
         txtORRemainingTax.Visible = TF
         txtORPeriodTax.Visible = TF
         txtCPPaidTax.Visible = TF
         txtCPRemainingTax.Visible = TF
         txtCPPeriodTax.Visible = TF
+
         Label61.Visible = TF
         txtORDifference.Visible = TF
         txtFinalPeriodTax.Visible = TF

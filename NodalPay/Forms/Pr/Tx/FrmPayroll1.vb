@@ -309,6 +309,31 @@ Public Class FrmPayroll1
     Public ET2_Proceed As Boolean = False
 
 
+
+    Public ET3_FirstLine As Integer = 0
+    Public ET3_EmpCode As Integer = 0
+    Public ET3_MonthlyUnits As Integer = 0
+    Public ET3_Overtime1 As Integer = 0
+    Public ET3_E33 As Integer = 0
+    Public ET3_E34 As Integer = 0
+    Public ET3_E35 As Integer = 0
+    Public ET3_E11 As Integer = 0
+    Public ET3_E80 As Integer = 0
+    Public ET3_E81 As Integer = 0
+    Public ET3_E37 As Integer = 0
+    Public ET3_E38 As Integer = 0
+    Public ET3_E39 As Integer = 0
+    Public ET3_E30 As Integer = 0
+
+    Public ET3_D1 As Integer = 0
+    Public ET3_D12 As Integer = 0
+    Public ET3_D23 As Integer = 0
+    Public ET3_D24 As Integer = 0
+
+    Public ET3_File As String
+    Public ET3_Proceed As Boolean = False
+
+
     Private Sub FrmPayroll1_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         Dim Px As New cPrSsParameters("PAYE", "NEWMethod")
         If Px.Value1 = 1 Then
@@ -20670,4 +20695,443 @@ Public Class FrmPayroll1
         Cursor.Current = Cursors.Default
 
     End Sub
+
+
+    Private Sub FixToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FixToolStripMenuItem.Click
+        Dim i As Integer
+        Dim tEmpCode As String
+        For i = 0 To MyDs.Tables(0).Rows.Count - 1
+            tEmpCode = DbNullToString(MyDs.Tables(0).Rows(i).Item(Me.Column_EmpCode))
+            Dim Hdr As New cPrTxTrxnHeader(tEmpCode, Me.GLBCurrentPeriod.Code)
+            If Hdr.Status = "CALC" Or Hdr.Status = "POST" Then
+                Dim Emp As New cPrMsEmployees(tEmpCode)
+                If Emp.Code <> "" Then
+                    Global1.Business.UpdateTrxnHeaderPosition(Emp.EmpPos_Code, Hdr.Id)
+                End If
+            End If
+        Next
+        MsgBox("Finish")
+    End Sub
+
+    Private Sub FixPFToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles FixPFToolStripMenuItem.Click
+        Dim i As Integer
+        Dim tEmpCode As String
+
+        Dim DedCode As String = ""
+        DedCode = InputBox("Please enter Deduction Code of PF:", "Enter Value")
+        Dim ConCode As String = ""
+        ConCode = InputBox("Please enter Contribution Code of PF:", "Enter Value")
+        If DedCode = "" Or ConCode = "" Then
+            MsgBox("Please enter valid values for Deduction and Contribution Code")
+        Else
+            For i = 0 To MyDs.Tables(0).Rows.Count - 1
+                tEmpCode = DbNullToString(MyDs.Tables(0).Rows(i).Item(Me.Column_EmpCode))
+                Dim Hdr As New cPrTxTrxnHeader(tEmpCode, Me.GLBCurrentPeriod.Code)
+                If Hdr.Status = "PREP" Then
+                    Dim Emp As New cPrMsEmployees(tEmpCode)
+                    If Emp.Code <> "" Then
+                        Global1.Business.UpdatePRFonPrep(Emp, Hdr.Id, DedCode, ConCode)
+                    End If
+                End If
+            Next
+            MsgBox("Finish")
+        End If
+    End Sub
+
+    Private Sub ImportFileTemplate3ExcelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ImportFileTemplate3ExcelToolStripMenuItem.Click
+
+        If CheckDataSet(MyDs) Then
+            Dim F As New FrmImportExcelTemplate3
+            F.Owner = Me
+
+            Me.ET3_Proceed = False
+
+            F.ShowDialog()
+            If ET3_Proceed Then
+                SelectExcelTemplate3ImportFromExcel()
+            End If
+        Else
+            MsgBox("Please select Employees first for this action", MsgBoxStyle.Information)
+        End If
+    End Sub
+
+    Private Sub SelectExcelTemplate3ImportFromExcel()
+        Cursor.Current = Cursors.WaitCursor
+        If CheckDataSet(MyDs) Then
+            If ET3_File <> "" Then
+                '''''''''''''
+                Dim xlApp As Excel.Application
+                Dim xlWorkBook As Excel.Workbook
+                Dim xlWorkSheet As Excel.Worksheet
+
+                xlApp = New Excel.ApplicationClass
+
+                Try
+
+
+                    'on form load instantiate the connection object
+                    Dim FileDir As String
+                    Dim Exx As New Exception
+                    'param_file = IO.File.OpenText("Data\Excel\Employees.txt")
+                    'xlWorkBook = xlApp.Workbooks.Open("c:\NodalWin\Payroll\Data\Excel\Excel1.xlsx")
+
+                    xlWorkBook = xlApp.Workbooks.Open(ET3_File)
+                    xlWorkSheet = xlWorkBook.Worksheets(1)
+
+
+
+
+                    Dim Line As String
+                    Dim Ar() As String
+                    'Do While param_file.Peek <> -1
+                    Dim Counter As Integer
+                    Counter = 0
+                    Dim StopInput As Boolean = False
+                    Counter = Me.ET3_FirstLine
+                    Dim ErrorM As String = ""
+
+                    Dim EmpCode As String
+                    Dim vMonthlyUnits As Double = 0
+                    Dim vOvertime1 As Double = 0
+                    Dim vE33 As Double = 0
+                    Dim vE34 As Double = 0
+                    Dim vE35 As Double = 0
+                    Dim vE11 As Double = 0
+                    Dim vE80 As Double = 0
+                    Dim vE81 As Double = 0
+                    Dim vE37 As Double = 0
+                    Dim vE38 As Double = 0
+                    Dim vE39 As Double = 0
+                    Dim vE30 As Double = 0
+
+                    Dim vD1 As Double = 0
+                    Dim vD12 As Double = 0
+                    Dim vD23 As Double = 0
+                    Dim vD24 As Double = 0
+
+
+                    Dim sMonthlyUnits As String
+                    Dim sOvertime1 As String
+
+                    Dim sE33 As String
+                    Dim sE34 As String
+                    Dim sE35 As String
+                    Dim sE11 As String
+                    Dim sE80 As String
+                    Dim sE81 As String
+                    Dim sE37 As String
+                    Dim sE38 As String
+                    Dim sE39 As String
+                    Dim sE30 As String
+
+                    Dim sD1 As String
+                    Dim sD12 As String
+                    Dim sD23 As String
+                    Dim sD24 As String
+
+
+
+
+                    Counter = Me.ET3_FirstLine
+
+                    Dim MontlyUnitsIndex As Integer = -1
+                    Dim OverTime1Index As Integer = -1
+                    Dim E33Index As Integer = -1
+                    Dim E34Index As Integer = -1
+                    Dim E35Index As Integer = -1
+                    Dim E11Index As Integer = -1
+                    Dim E80Index As Integer = -1
+                    Dim E81Index As Integer = -1
+                    Dim E37Index As Integer = -1
+                    Dim E38Index As Integer = -1
+                    Dim E39Index As Integer = -1
+                    Dim E30Index As Integer = -1
+
+                    Dim D1Index As Integer = -1
+                    Dim D12Index As Integer = -1
+                    Dim D23Index As Integer = -1
+                    Dim D24Index As Integer = -1
+
+
+
+
+
+
+                    Dim codeE33 As String = "E33"
+                    Dim codeE34 As String = "E34"
+                    Dim codeE35 As String = "E35"
+                    Dim codeE11 As String = "E11"
+                    Dim codeE80 As String = "E80"
+                    Dim codeE81 As String = "E81"
+                    Dim codeE37 As String = "E37"
+                    Dim codeE38 As String = "E38"
+                    Dim codeE39 As String = "E39"
+                    Dim codeE30 As String = "E30"
+
+                    Dim codeD1 As String = "D1"
+                    Dim codeD12 As String = "D12"
+                    Dim codeD23 As String = "E23"
+                    Dim codeD24 As String = "E24"
+
+
+                    Do While StopInput = False
+
+                        Application.DoEvents()
+
+                        EmpCode = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.ET3_EmpCode).value)
+                        If EmpCode = "" Then
+                            Exit Do
+                        End If
+
+
+                        sMonthlyUnits = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.ET3_MonthlyUnits).value)
+                        If IsNumeric(sMonthlyUnits) Then
+                            vMonthlyUnits = CDbl(sMonthlyUnits)
+                        Else
+                            vMonthlyUnits = 0
+                        End If
+
+                        sOvertime1 = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.ET3_Overtime1).value)
+                        If IsNumeric(sOvertime1) Then
+                            vOvertime1 = CDbl(sOvertime1)
+                        Else
+                            vOvertime1 = 0
+                        End If
+
+
+                        sE33 = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.ET3_E33).value)
+                        If IsNumeric(sE33) Then
+                            vE33 = CDbl(sE33)
+                        Else
+                            vE33 = 0
+                        End If
+
+                        sE34 = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.ET3_E34).value)
+                        If IsNumeric(sE34) Then
+                            vE34 = CDbl(sE34)
+                        Else
+                            vE34 = 0
+                        End If
+
+                        sE35 = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.ET3_E35).value)
+                        If IsNumeric(sE35) Then
+                            vE35 = CDbl(sE35)
+                        Else
+                            vE35 = 0
+                        End If
+
+                        sE11 = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.ET3_E11).value)
+                        If IsNumeric(sE11) Then
+                            vE11 = CDbl(sE11)
+                        Else
+                            vE11 = 0
+                        End If
+
+                        sE80 = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.ET3_E80).value)
+                        If IsNumeric(sE80) Then
+                            vE80 = CDbl(sE80)
+                        Else
+                            vE80 = 0
+                        End If
+
+                        sE81 = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.ET3_E81).value)
+                        If IsNumeric(sE81) Then
+                            vE81 = CDbl(sE81)
+                        Else
+                            vE81 = 0
+                        End If
+
+                        sE37 = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.ET3_E37).value)
+                        If IsNumeric(sE37) Then
+                            vE37 = CDbl(sE37)
+                        Else
+                            vE37 = 0
+                        End If
+
+                        sE38 = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.ET3_E38).value)
+                        If IsNumeric(sE38) Then
+                            vE38 = CDbl(sE38)
+                        Else
+                            vE38 = 0
+                        End If
+
+                        sE39 = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.ET3_E39).value)
+                        If IsNumeric(sE39) Then
+                            vE39 = CDbl(sE39)
+                        Else
+                            vE39 = 0
+                        End If
+
+                        sE30 = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.ET3_E30).value)
+                        If IsNumeric(sE30) Then
+                            vE30 = CDbl(sE30)
+                        Else
+                            vE30 = 0
+                        End If
+
+
+                        sD1 = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.ET3_D1).value)
+                        If IsNumeric(sD1) Then
+                            vD1 = CDbl(sD1)
+                        Else
+                            vD1 = 0
+                        End If
+
+                        sD12 = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.ET3_D12).value)
+                        If IsNumeric(sD12) Then
+                            vD12 = CDbl(sD12)
+                        Else
+                            vD12 = 0
+                        End If
+
+                        sD23 = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.ET3_D23).value)
+                        If IsNumeric(sD23) Then
+                            vD23 = CDbl(sD23)
+                        Else
+                            vD23 = 0
+                        End If
+
+                        sD24 = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.ET3_D24).value)
+                        If IsNumeric(sD24) Then
+                            vD24 = CDbl(sD24)
+                        Else
+                            vD24 = 0
+                        End If
+
+
+
+                        Dim k As Integer
+                        Dim j As Integer = 0
+                        Dim C1 As Integer = 0
+                        Dim C2 As Integer = 0
+
+                        For k = 0 To MyDs.Tables(0).Rows.Count - 1
+                            If MyDs.Tables(0).Rows(k).Item(2) = EmpCode Then
+                                If MyDs.Tables(0).Rows(k).Item(0) <> "CALC" And MyDs.Tables(0).Rows(k).Item(0) <> "POST" Then
+
+                                    If E33Index = -1 Then
+                                        'If Me.LFE_EDCType = "E" Then
+                                        For j = 0 To 14
+                                            If DbNullToString(MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1)) = "" Then
+                                                Exit For
+                                            End If
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = codeE33 Then
+                                                E33Index = Me.Column_EV1 + C1
+                                            End If
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = codeE34 Then
+                                                E34Index = Me.Column_EV1 + C1
+                                            End If
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = codeE35 Then
+                                                E35Index = Me.Column_EV1 + C1
+                                            End If
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = codeE11 Then
+                                                E11Index = Me.Column_EV1 + C1
+                                            End If
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = codeE80 Then
+                                                E80Index = Me.Column_EV1 + C1
+                                            End If
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = codeE81 Then
+                                                E81Index = Me.Column_EV1 + C1
+                                            End If
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = codeE37 Then
+                                                E37Index = Me.Column_EV1 + C1
+                                            End If
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = codeE38 Then
+                                                E38Index = Me.Column_EV1 + C1
+                                            End If
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = codeE39 Then
+                                                E39Index = Me.Column_EV1 + C1
+                                            End If
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_E1 + C1) = codeE30 Then
+                                                E30Index = Me.Column_EV1 + C1
+                                            End If
+
+                                            C1 = C1 + 2
+                                        Next
+                                    End If
+
+                                    C1 = 0
+                                    C2 = 0
+                                    If D1Index = -1 Then
+                                        'If Me.LFE_EDCType = "E" Then
+                                        For j = 0 To 14
+                                            If DbNullToString(MyDs.Tables(0).Rows(k).Item(Me.Column_D1 + C1)) = "" Then
+                                                Exit For
+                                            End If
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_D1 + C1) = codeD1 Then
+                                                D1Index = Me.Column_DV1 + C1
+                                            End If
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_D1 + C1) = codeD12 Then
+                                                D12Index = Me.Column_DV1 + C1
+                                            End If
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_D1 + C1) = codeD23 Then
+                                                D23Index = Me.Column_DV1 + C1
+                                            End If
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_D1 + C1) = codeD24 Then
+                                                D24Index = Me.Column_DV1 + C1
+                                            End If
+                                            C1 = C1 + 2
+                                        Next
+                                    End If
+
+                                    MyDs.Tables(0).Rows(k).Item(Column_Overtime1) = vOvertime1
+                                    MyDs.Tables(0).Rows(k).Item(Column_ActualUnits) = vMonthlyUnits
+                                    MyDs.Tables(0).Rows(k).Item(E33Index) = vE33
+                                    MyDs.Tables(0).Rows(k).Item(E34Index) = vE34
+                                    MyDs.Tables(0).Rows(k).Item(E35Index) = vE35
+                                    MyDs.Tables(0).Rows(k).Item(E11Index) = vE11
+                                    MyDs.Tables(0).Rows(k).Item(E80Index) = vE80
+                                    MyDs.Tables(0).Rows(k).Item(E81Index) = vE81
+                                    MyDs.Tables(0).Rows(k).Item(E37Index) = vE37
+                                    MyDs.Tables(0).Rows(k).Item(E38Index) = vE38
+                                    MyDs.Tables(0).Rows(k).Item(E39Index) = vE39
+                                    MyDs.Tables(0).Rows(k).Item(E30Index) = vE30
+
+
+
+                                    MyDs.Tables(0).Rows(k).Item(D1Index) = vD1
+                                    MyDs.Tables(0).Rows(k).Item(D12Index) = vD12
+                                    MyDs.Tables(0).Rows(k).Item(D23Index) = vD23
+                                    MyDs.Tables(0).Rows(k).Item(D24Index) = vD24
+
+                                End If
+                            End If
+
+                        Next
+                        Counter = Counter + 1
+
+
+                    Loop
+
+                    MsgBox("File is uploaded", MsgBoxStyle.Information)
+
+                    xlWorkBook.Close()
+                    xlApp.Quit()
+                    releaseObject(xlApp)
+                    releaseObject(xlWorkBook)
+                    releaseObject(xlWorkSheet)
+
+
+                Catch ex As Exception
+                    Utils.ShowException(ex)
+                    MsgBox("Unable to Load Template File", MsgBoxStyle.Critical)
+                    xlWorkBook.Close()
+                    xlApp.Quit()
+                    releaseObject(xlApp)
+                    releaseObject(xlWorkBook)
+                    releaseObject(xlWorkSheet)
+                End Try
+            End If
+        End If
+
+        Cursor.Current = Cursors.Default
+
+    End Sub
+
+
+
+
+
+
+
 End Class

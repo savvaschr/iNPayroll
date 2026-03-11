@@ -1851,6 +1851,14 @@ Public Class cBusiness
     Public Shadows Function GetIr59ForPrinting(ByVal HeaderId As Integer)
         Return MyBase.GetIr59ForPrinting(HeaderId)
     End Function
+    Public Shadows Function UpdateTrxnHeaderPosition(ByVal Position As String, ByVal HeaderID As Integer)
+        Return MyBase.UpdateTrxnHeaderPosition(Position, HeaderID)
+    End Function
+    Public Shadows Function UpdatePRFonPrep(tEmp As cPrMsEmployees, HdrId As Integer, DedCode As String, ConCode As String)
+        Return MyBase.UpdatePRFonPrep(tEmp, HdrId, DedCode, ConCode)
+    End Function
+
+
     Public Shadows Function UpdateTrxnHeaderAnalysis(ByVal Analysis As String, ByVal HeaderID As Integer, ByVal Index As Integer)
         Return MyBase.UpdateTrxnHeaderAnalysis(Analysis, HeaderID, Index)
     End Function

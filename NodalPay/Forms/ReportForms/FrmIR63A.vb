@@ -42,6 +42,11 @@ Public Class FrmIR63A
     Dim MT_SpecialContributionPrivate As Double = 0
     Dim MT_ReductionOfEmolumentsandPensions As Double = 0
     Dim MT_TaxWithheld As Double = 0
+    Dim MT_TaxWithheldPriorYearBonus As Double = 0
+    Dim MT_FinancialBenefitDeduction As Double = 0
+    Dim MT_TotalPensionableBenefitsContribution As Double = 0
+    Dim MT_TotalGhsEmployersContribution = 0
+    Dim MT_TotalGhsEmployeesContribution As Double = 0
     Dim MT_GHSWithHeldEmployee As Double = 0
     Dim MT_GHSWithHeldPensioners As Double = 0
     Dim MT_GHSWithHeldOfficers As Double = 0
@@ -11593,6 +11598,12 @@ Public Class FrmIR63A
         MT_SpecialContributionPrivate = 0
         MT_ReductionOfEmolumentsandPensions = 0
         MT_TaxWithheld = 0
+        MT_TaxWithheldPriorYearBonus = 0
+        MT_FinancialBenefitDeduction = 0
+        MT_TotalPensionableBenefitsContribution = 0
+        MT_TotalGhsEmployersContribution = 0
+
+
         MT_GHSWithHeldEmployee = 0
         MT_GHSWithHeldPensioners = 0
         MT_GHSWithHeldOfficers = 0
@@ -11910,6 +11921,7 @@ Public Class FrmIR63A
         WL("<Year>" & Year & "</Year>")
         WL("<Period>Annual</Period>")
         WL("</PayeReturnHeader>")
+
         WL("<PayeReturnBody>")
 
         If Global1.PARAM_PublicSector = "No" Then
@@ -11934,18 +11946,53 @@ Public Class FrmIR63A
         'Dim MT_GHSWithHeldOfficers As Double = 0
         'Dim MT_GHSWithHeldEmployee As Double = 0
         'Dim MT_GHSEmployersContribution As Double = 0
+        '<TotalGrossEmoluments>100020,33</TotalGrossEmoluments>
+        '<!-- Q1 Gross Emoluments: Must be SUM of all q3 -->
+        '<TaxWithheld>28000,00</TaxWithheld>
+        '<!-- Q2 Tax Withheld : Must be SUM of all q42 -->
+        '<TaxWithheldFromBonus>600,00</TaxWithheldFromBonus>
+        '<!-- Q3 Tax Withheld from Prior Year Bonus : Must be SUM of all q43 -->
+        '<TotalTaxWithheld>28600,00</TotalTaxWithheld>
+        '<!-- Q4 Total Tax Withheld (Q2 + Q3) -->
+        '<TotalFinancialBenefitDeductions>1000,00</TotalFinancialBenefitDeductions>
+        '<!-- Q4a Tax deducted for financial benefits of directors Or shareholders Or related parties thereof : Must be SUM of all q42a -->
+        '<TotalPensionableBenefitsContribution>136,00</TotalPensionableBenefitsContribution>
+        '<!-- Q5 Contribution Towards Pensionable Benefits (3%) Deducted from Emoluments : Must be SUM of all q26 -->
+        '<TotalGhsEmployeesContribution>699,00</TotalGhsEmployeesContribution>
+        '<!-- Q6 GHS Contribution of Employees Payable to Tax Department (including prior year bonuses) : Must be SUM of all q35+q44+q45 -->
+        '<TotalGhsEmployersContribution>1622,00</TotalGhsEmployersContribution>
+        '<!-- Q7 GHS Employer's Contribution Payable to Tax Department : Must be SUM of all q46+q47 -->
+
 
         WL("</PayeEmployees>")
         WL("<TotalGrossEmoluments>" & FWC(MT_TotalGrossEmoluments) & "</TotalGrossEmoluments>")
-        WL("<TotalTaxWithheld>" & FWC(MT_TaxWithheld) & "</TotalTaxWithheld>")
+        'Q43
+        WL("<TaxWithheld>" & FWC(MT_TaxWithheld) & "</TaxWithheld>")
+        'Q42a
+        WL("<TaxWithheldFromBonus>" & FWC(MT_TaxWithheldPriorYearBonus) & "</TaxWithheldFromBonus>")
+
+        Dim TotalTax As Double = MT_TaxWithheld + MT_TaxWithheldPriorYearBonus
+        WL("<TotalTaxWithheld>" & FWC(TotalTax) & "</TotalTaxWithheld>")
+
+        WL("<TotalFinancialBenefitDeductions>" & FWC(MT_FinancialBenefitDeduction) & "</TotalFinancialBenefitDeductions>")
+        'Q25
         WL("<TotalPensionableBenefitsContribution>" & FWC(MT_ContributionsPensionableBenefits) & "</TotalPensionableBenefitsContribution>")
-        WL("<TotalSpecialContributionOfficers>" & FWC(MT_SpecialContributionPublic) & "</TotalSpecialContributionOfficers>")
-        WL("<TotalSpecialContributionPrivate>" & FWC(MT_SpecialContributionPrivate) & "</TotalSpecialContributionPrivate>")
-        WL("<TotalReductionOfEmolumentsAndPensions>" & FWC(MT_ReductionOfEmolumentsandPensions) & "</TotalReductionOfEmolumentsAndPensions>")
-        WL("<TotalGhsWithheldPensioners>" & FWC(MT_GHSWithHeldPensioners) & "</TotalGhsWithheldPensioners>")
-        WL("<TotalGhsWithheldOfficers>" & FWC(MT_GHSWithHeldOfficers) & "</TotalGhsWithheldOfficers>")
-        WL("<TotalGhsWithheldEmployees>" & FWC(MT_GHSWithHeldEmployee) & "</TotalGhsWithheldEmployees>")
-        WL("<TotalGhsEmployersContribution>" & FWC(MT_GHSEmployersContribution) & "</TotalGhsEmployersContribution>")
+        'Q35+Q44+Q45
+        WL("<TotalGhsEmployeesContribution>" & FWC(MT_TotalGhsEmployeesContribution) & "</TotalGhsEmployeesContribution>")
+        'Q47+Q45
+        WL("<TotalGhsEmployersContribution>" & FWC(MT_TotalGhsEmployersContribution) & "</TotalGhsEmployersContribution>")
+
+
+        ' WL("<TotalPensionableBenefitsContribution>" & FWC(MT_ContributionsPensionableBenefits) & "</TotalPensionableBenefitsContribution>")
+        ' WL("<TotalSpecialContributionOfficers>" & FWC(MT_SpecialContributionPublic) & "</TotalSpecialContributionOfficers>")
+        ' WL("<TotalSpecialContributionPrivate>" & FWC(MT_SpecialContributionPrivate) & "</TotalSpecialContributionPrivate>")
+        ' WL("<TotalReductionOfEmolumentsAndPensions>" & FWC(MT_ReductionOfEmolumentsandPensions) & "</TotalReductionOfEmolumentsAndPensions>")
+        ' WL("<TotalGhsWithheldPensioners>" & FWC(MT_GHSWithHeldPensioners) & "</TotalGhsWithheldPensioners>")
+        ' WL("<TotalGhsWithheldOfficers>" & FWC(MT_GHSWithHeldOfficers) & "</TotalGhsWithheldOfficers>")
+        ' WL("<TotalGhsWithheldEmployees>" & FWC(MT_GHSWithHeldEmployee) & "</TotalGhsWithheldEmployees>")
+        ' WL("<TotalGhsEmployersContribution>" & FWC(MT_GHSEmployersContribution) & "</TotalGhsEmployersContribution>")
+
+
         WL("</PayeReturnBody>")
         WL("</PayeReturn>")
 
@@ -12058,9 +12105,9 @@ Public Class FrmIR63A
         WL("<PayeEmployee>")
         '<!-- One entry per employee, all Employees must be Unique -->
         ' If Trim(Ar(2)) <> "" Then 'If <>"" then it has TIC number
-        WL("<EmployeeHasTIN>1</EmployeeHasTIN>")
-            '<!--  Q1 Does the employee have a TIN? - 1=Yes, 0=No -->
-            WL("<TaxpayerNumber>" & Trim(Ar(2)) & "</TaxpayerNumber>")
+        ' WL("<EmployeeHasTIN>1</EmployeeHasTIN>")
+        '<!--  Q1 Does the employee have a TIN? - 1=Yes, 0=No -->
+        WL("<TaxpayerNumber>" & Trim(Ar(2)) & "</TaxpayerNumber>")
             Dim FullName As String = Trim(Ar(6)) & " " & Trim(Ar(7))
             WL("<Name>" & FullName & "</Name>")
         '<!--  Q4 Name (XML): Mandatory-Entering an employee without TIN  -->
@@ -12201,7 +12248,7 @@ Public Class FrmIR63A
         WL("<EmolumentsWithinCyprus>" & FWC(Q12) & "</EmolumentsWithinCyprus>")
         '<!-- Q12 Emoluments within Cyprus -->
         Q13 = 0
-        WL("<EmolumentsWithinCyprusSpecialRate >" & FWC(Q13) & "</EmolumentsWithinCyprusSpecialRate>")
+        WL("<EmolumentsWithinCyprusSpecialRate>" & FWC(Q13) & "</EmolumentsWithinCyprusSpecialRate>")
         '<!-- Q13 Emoluments within Cyprus (special rate 8%) -->
         Q14 = StringtoDecimal2ReturnDouble(Trim(Ar(13)))
         WL("<EmolumentsOutsideCyprus>" & FWC(Q14) & "</EmolumentsOutsideCyprus>")
@@ -12215,7 +12262,7 @@ Public Class FrmIR63A
         '<!-- Q15b Tax residence country of Director -->
         '''''''''''WL("<TaxNumberOfDirector>111111</TaxNumberOfDirector>")
         '<!-- Q15c Tax number of Director (when tax residence country Is Not Cyprus) -->
-        WL("<AllowancesWithSocialInsurance >" & FWC(Q16) & "</AllowancesWithSocialInsurance>")
+        WL("<AllowancesWithSocialInsurance>" & FWC(Q16) & "</AllowancesWithSocialInsurance>")
         '<!-- Q16 Allowances, Benefits/Commissions, And Benefits in Kind with Social Insurance Fund Contributions -->
         WL("<AllowancesWithoutSocialInsurance>" & FWC(Q17) & "</AllowancesWithoutSocialInsurance>")
         '<!-- Q17 Allowances, Benefits/Commissions, And Benefits in Kind without Social Insurance Fund Contributions -->
@@ -12225,7 +12272,7 @@ Public Class FrmIR63A
         Q19 = 0
         WL("<Pensions>" & FWC(Q19) & "</Pensions>")
         '<!-- Q19 Pensions -->
-        WL("<IsWidowPensionTaxed >1</IsWidowPensionTaxed>")
+        WL("<IsWidowPensionTaxed>1</IsWidowPensionTaxed>")
         '<!-- Q20 Is Widow's Pension taxed with normal rates? YES=1, No=0 -->
         Q21 = 0
         WL("<WidowsPension>" & FWC(Q21) & "</WidowsPension>")
@@ -12273,6 +12320,9 @@ Public Class FrmIR63A
         '<!-- Q32 Other Deductions as per form IR59 (part B2, 6 & 7) -->
         Q33 = StringtoDecimal2ReturnDouble(Ar(53))
         WL("<GhsEmployeesContributionToOtherDepartments>" & FWC(Q33) & "</GhsEmployeesContributionToOtherDepartments>")
+        ' MT_TotalPensionableBenefitsContribution = MT_TotalPensionableBenefitsContribution + Q33
+
+
         '<!-- Q33 GHS - Contribution of Employees Payable to Other Departments -->
         Q34 = StringtoDecimal2ReturnDouble(Ar(47))
         WL("<PensionableBenefitsContribution>" & FWC(Q34) & "</PensionableBenefitsContribution>")
@@ -12345,7 +12395,12 @@ Public Class FrmIR63A
         '<!-- Q46 GHS withheld from officers -->
 
         Q47 = Q41 + Q44 + Q46
-        WL("<GhsEmployeesContributionToTaxDepartment>" & FWC(Q47) & "</GhsEmployeesContributionToTaxDepartment>")
+        'WL("<GhsEmployeesContributionToTaxDepartment>" & FWC(Q47) & "</GhsEmployeesContributionToTaxDepartment>")
+
+        WL("<GhsContributionWithheld>" & FWC(Q47) & "</GhsContributionWithheld>")
+        MT_TotalGhsEmployeesContribution = MT_TotalGhsEmployeesContribution + Q47
+
+
         '<!-- Q47 GHS Contribution of Employees Payable to Tax Department: Sum of Q41, 44, 46 - ->
         Q48 = Q26 + Q27 + Q28 + Q29 + Q30 + Q31 + Q32 + Q33 + Q34 + Q38 + Q41 + Q44 + Q46
         WL("<TotalDeductions>" & FWC(Q48) & "</TotalDeductions>")
@@ -12366,7 +12421,7 @@ Public Class FrmIR63A
         WL("<TaxWithheldPensionsSpecialRate>" & FWC(Q53) & "</TaxWithheldPensionsSpecialRate>")
         '<!-- Q53 Tax withheld from widows' pension -->
         Q54 = Q50 + Q51 + Q52 + Q53
-        WL("<TaxWithheldForYear>" & FWC(Q54) & "</TaxWithheld>")
+        WL("<TaxWithheldForYear>" & FWC(Q54) & "</TaxWithheldForYear>")
         '<!-- Q54 Tax Withheld: Sum of Q50, Q51, Q52, Q53 - ->
         Q55 = 0
 
@@ -12375,9 +12430,12 @@ Public Class FrmIR63A
 
         WL("<FinancialBenefitDeductions>" & FWC(NotionalIncomeTax) & "</FinancialBenefitDeductions>")
 
+        MT_FinancialBenefitDeduction = MT_FinancialBenefitDeduction + NotionalIncomeTax
+
+        WL("<TaxWithheldFromPriorYearBonus>" & FWC(Q55) & "</TaxWithheldFromPriorYearBonus>")
+        MT_TaxWithheldPriorYearBonus = MT_TaxWithheldPriorYearBonus + Q55
 
 
-        WL("<TaxWithheldPriorYearBonus>" & FWC(Q55) & "</TaxWithheldPriorYearBonus>")
         MT_TaxWithheld = MT_TaxWithheld + Q55 + Q54
         '<!-- Q55 Tax withheld from prior year bonus -->
         If employeeType = "3" Then
@@ -12389,8 +12447,13 @@ Public Class FrmIR63A
         End If
 
         WL("<BonusGhsWithheldOfficers>0,00</BonusGhsWithheldOfficers>")
+        MT_TotalGhsEmployeesContribution = MT_TotalGhsEmployeesContribution + 0
         '<!-- q44 GHS Withheld from Officers (Prior Year Bonus)  - sum of all monthly employee Q21 - MANDATORY  -->
         WL("<BonusGhsWithheldEmployees>0,00</BonusGhsWithheldEmployees>")
+        MT_TotalGhsEmployeesContribution = MT_TotalGhsEmployeesContribution + 0
+        MT_TotalGhsEmployersContribution = MT_TotalGhsEmployersContribution + 0
+
+
         '<!-- q45 GHS Withheld from employees (Prior Year Bonus)  - sum of all monthly employee Q22 - MANDATORY  -->
         WL("<BonusGhsEmployersContribution>0,00</BonusGhsEmployersContribution>")
         '<!-- q46 GHS Employer's Contribution (Prior Year Bonus)  - sum of all monthly employee Q23 - MANDATORY  -->
@@ -12402,8 +12465,11 @@ Public Class FrmIR63A
 
 
         WL("<GhsEmployersContribution>" & FWC(Q56) & "</GhsEmployersContribution>")
+        MT_TotalGhsEmployersContribution = MT_TotalGhsEmployersContribution + Q56
         '<!-- Q56 GHS Employer's Contribution Payable to Tax Department -->
-        MT_GHSEmployersContribution = MT_GHSEmployersContribution + Q56
+
+
+
 
 
         'Dim salaryPeriods As Integer = Ar(42)

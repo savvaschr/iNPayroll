@@ -7866,30 +7866,30 @@ Public Class FrmBankTransferFile
 
 
         If CBSelectEmployees.CheckState = CheckState.Checked Then
-            'If Not HellenicToOther Then
-            '    RunSelection = False
-            '    Dim F As New FrmSelectEmployeesForBankFile
-            '    F.ForHellenic = False
-            '    F.Ds = Ds
-            '    F.Owner = Me
-            '    F.ShowDialog()
-            '    If Me.RunSelection Then
-            '        Dim k As Integer
-            '        For k = 0 To Ds.Tables(0).Rows.Count - 1
-            '            Ds.Tables(0).Rows(k).Item(11) = DsSelection.Tables(0).Rows(k).Item(11)
-            '        Next
-            '    End If
-            'Else
-            If Me.RunSelection Then
+            If Not HellenicToOther Then
+                RunSelection = False
+                Dim F As New FrmSelectEmployeesForBankFile
+                F.ForHellenic = False
+                F.Ds = Ds
+                F.Owner = Me
+                F.ShowDialog()
+                If Me.RunSelection Then
+                    Dim k As Integer
+                    For k = 0 To Ds.Tables(0).Rows.Count - 1
+                        Ds.Tables(0).Rows(k).Item(11) = DsSelection.Tables(0).Rows(k).Item(11)
+                    Next
+                End If
+            Else
+                If Me.RunSelection Then
                     Dim k As Integer
                     For k = 0 To Ds.Tables(0).Rows.Count - 1
                         Ds.Tables(0).Rows(k).Item(11) = DsSelection.Tables(0).Rows(k).Item(10)
                     Next
                 End If
-            ' End If
+            End If
         End If
 
-        If CheckDataSet(Ds) Then
+                If CheckDataSet(Ds) Then
             For i = 0 To Ds.Tables(0).Rows.Count - 1
                 With Ds.Tables(0).Rows(i)
                     If DbNullToString(.Item(11)) = "1" Then
@@ -8103,5 +8103,430 @@ Public Class FrmBankTransferFile
             MsgBox("No data to Send", MsgBoxStyle.Information)
         End If
 
+    End Function
+
+    Private Sub Button16_Click(sender As Object, e As EventArgs) Handles Button16.Click
+        Dim USDRate As Double = 0
+        Dim Input As String = InputBox("Please enter EUR to USD rate:", "Value Needed")
+
+        Dim value As Decimal
+        If Not Decimal.TryParse(Input, value) Then
+            MessageBox.Show("Invalid decimal value.")
+        Else
+            Create_WalletsExcelFile(value)
+        End If
+
+
+    End Sub
+    Private Sub Create_WalletsExcelFile(USDRate As Decimal)
+        InitFile = True
+        Dim Includeinactive As Boolean = False
+        Dim EmployeeBankCode As String = ""
+
+        Dim MyFileName As String = BankFiledir & "Wallets.xlsx"
+
+        If Me.CBInactive.CheckState = CheckState.Checked Then
+            Includeinactive = True
+        End If
+        Dim ds As DataSet
+
+
+        ds = PrepareDSForReport_ForSEPAGA(Includeinactive, EmployeeBankCode)
+
+        Dim ExecutionDate As String = ""
+        ExecutionDate = Format(Me.DatePay.Value.Date, "MM/dd/yyyy")
+
+
+
+        If CBSelectEmployees.CheckState = CheckState.Checked Then
+            If Not HellenicToOther Then
+                RunSelection = False
+                Dim F As New FrmSelectEmployeesForBankFile
+                F.ForHellenic = False
+                F.Ds = ds
+                F.Owner = Me
+                F.ShowDialog()
+                If Me.RunSelection Then
+                    Dim k As Integer
+                    For k = 0 To ds.Tables(0).Rows.Count - 1
+                        ds.Tables(0).Rows(k).Item(11) = DsSelection.Tables(0).Rows(k).Item(11)
+                    Next
+                End If
+            Else
+                If Me.RunSelection Then
+                    Dim k As Integer
+                    For k = 0 To ds.Tables(0).Rows.Count - 1
+                        ds.Tables(0).Rows(k).Item(11) = DsSelection.Tables(0).Rows(k).Item(10)
+                    Next
+                End If
+            End If
+        End If
+
+
+        If CheckDataSet(ds) Then
+            Dim Header As String = ""
+            Dim Line As String
+            Dim Separator As String = ","
+
+
+
+            Dim c1_BenIBAN As String
+            Dim c2_BenName As String
+            Dim c3_BenAddr As String
+
+            Dim c4_BenCity As String
+            Dim c5_BenCountry As String
+            Dim c6_BenBankBIC As String
+            Dim c7_Details1 As String
+            Dim c8_Amount As String
+
+
+            Dim i As Integer
+            Dim TrxnCode As String = "K90"
+            Dim EmpCode As String
+            Dim EmpName As String
+            Dim Salary As Double
+            Dim BankCode As String
+            Dim BankAccount As String
+            Dim BankDesc As String
+            Dim IBAN As String
+            Dim EmpID As String
+            Dim BenefName As String
+            Dim CompanyBankAcc As String = Me.ComboBankAcc.Text
+            Dim BANKcountry As String
+            Dim BenCountry As String
+            Dim CompanyBank As New cPrAnBanks
+            CompanyBank = CType(cmbBnk_CodeCo.SelectedItem, cPrAnBanks)
+
+            Dim xls As Microsoft.Office.Interop.Excel.Application
+            Dim xlsWorkBook As Microsoft.Office.Interop.Excel.Workbook
+            Dim xlsWorkSheet As Microsoft.Office.Interop.Excel.Worksheet
+            Dim misValue As Object = System.Reflection.Missing.Value
+
+            xls = New Microsoft.Office.Interop.Excel.Application
+            'xlsWorkBook = xlsWorkBook.("c:\bookl.xlsx")
+            xlsWorkBook = xls.Workbooks.Add(misValue)
+            xlsWorkSheet = xlsWorkBook.Sheets("sheet1")
+
+            xlsWorkSheet.Cells(1, 1) = "Currency"
+            xlsWorkSheet.Cells(1, 2) = "Network Code"
+            xlsWorkSheet.Cells(1, 3) = "Destination Address"
+            xlsWorkSheet.Cells(1, 4) = "Destination Tag"
+            xlsWorkSheet.Cells(1, 5) = "Amount"
+            xlsWorkSheet.Cells(1, 6) = "Customer Comment"
+            xlsWorkSheet.Cells(1, 7) = "Customer Reference Id"
+            xlsWorkSheet.Cells(1, 8) = "Beneficiary First Name"
+            xlsWorkSheet.Cells(1, 9) = "Beneficiary Last Name	"
+            xlsWorkSheet.Cells(1, 10) = "Beneficiary Country of Birth Code"
+            xlsWorkSheet.Cells(1, 11) = "Beneficiary Date of Birth"
+            xlsWorkSheet.Cells(1, 12) = "Beneficiary Type"
+            xlsWorkSheet.Cells(1, 13) = "Beneficiary Destination Platform"
+            xlsWorkSheet.Cells(1, 14) = "Beneficiary Company Name"
+            xlsWorkSheet.Cells(1, 15) = "Beneficiary Company Address"
+
+
+            Dim Counter As Integer = 1
+            For i = 0 To ds.Tables(0).Rows.Count - 1
+                If DbNullToString(ds.Tables(0).Rows(i).Item(11)) = "1" Then
+                    Counter = Counter + 1
+                    Line = ""
+                    EmpCode = DbNullToString(ds.Tables(0).Rows(i).Item(0))
+                    Salary = DbNullToString(ds.Tables(0).Rows(i).Item(1))
+                    EmpName = DbNullToString(ds.Tables(0).Rows(i).Item(2))
+                    BankCode = DbNullToString(ds.Tables(0).Rows(i).Item(3))
+                    BankAccount = DbNullToString(ds.Tables(0).Rows(i).Item(4))
+                    ' BankDesc = DbNullToString(ds.Tables(0).Rows(i).Item(5))
+                    IBAN = DbNullToString(ds.Tables(0).Rows(i).Item(8))
+                    EmpID = DbNullToString(ds.Tables(0).Rows(i).Item(9))
+                    BenefName = DbNullToString(ds.Tables(0).Rows(i).Item(10))
+                    If BenefName <> "" Then
+                        EmpName = BenefName
+                    End If
+                    If IBAN = "" Then
+                        MsgBox("Employee with Code " & EmpCode & " does not have an IBAN Number, Please correct, cannot proceed!", MsgBoxStyle.Critical)
+                        Exit Sub
+                    End If
+
+                    BANKcountry = IBAN.Substring(0, 2)
+                    BenCountry = IBAN.Substring(0, 2)
+
+
+                    Dim Bank As New cPrAnBanks(BankCode)
+                    Dim Emp As New cPrMsEmployees(EmpCode)
+
+
+                    Dim Swift As String
+                    Swift = FindSwiftCode(Bank, False)
+
+
+                    c1_BenIBAN = IBAN
+                    c2_BenName = EmpName
+                    c3_BenAddr = Emp.Address1.Replace(",", " ")
+
+                    c4_BenCity = Emp.Address2.Replace(",", " ")
+                    c5_BenCountry = BenCountry
+                    c6_BenBankBIC = Swift
+                    c7_Details1 = "Payroll " & Period.DescriptionL
+                    c8_Amount = Salary
+
+                    Dim AmountinUSD As Double = 0
+                    AmountinUSD = RoundMe2(Salary * USDRate, 2)
+
+
+                    xlsWorkSheet.Cells(Counter, 1) = "USDT"
+                    xlsWorkSheet.Cells(Counter, 2) = "ERC20"
+                    xlsWorkSheet.Cells(Counter, 3) = IBAN
+                    xlsWorkSheet.Cells(Counter, 4) = ""
+                    xlsWorkSheet.Cells(Counter, 5) = AmountinUSD
+                    xlsWorkSheet.Cells(Counter, 6) = ""
+                    xlsWorkSheet.Cells(Counter, 7) = ""
+                    xlsWorkSheet.Cells(Counter, 8) = ""
+                    xlsWorkSheet.Cells(Counter, 9) = ""
+                    xlsWorkSheet.Cells(Counter, 10) = ""
+                    xlsWorkSheet.Cells(Counter, 11) = ""
+                    xlsWorkSheet.Cells(Counter, 12) = ""
+                    xlsWorkSheet.Cells(Counter, 13) = ""
+                    xlsWorkSheet.Cells(Counter, 14) = ""
+                    xlsWorkSheet.Cells(Counter, 15) = ""
+
+
+
+
+                End If
+            Next
+
+            xlsWorkBook.SaveAs(MyFileName)
+            xlsWorkBook.Close()
+            xls.Quit()
+            MsgBox("File is created", MsgBoxStyle.Information)
+        Else
+            MsgBox("There are no Employees maching the Criteria", MsgBoxStyle.Information)
+        End If
+
+
+    End Sub
+
+    Private Sub Button17_Click(sender As Object, e As EventArgs) Handles Button17.Click
+        Dim USDRate As Double = 0
+        Dim Input As String = InputBox("Please enter EUR to USD rate:", "Value Needed")
+
+        Dim value As Decimal
+        If Not Decimal.TryParse(Input, value) Then
+            MessageBox.Show("Invalid decimal value.")
+        Else
+            Create_Wallets(value)
+        End If
+
+    End Sub
+    Private Sub Create_Wallets(USDRate As Decimal)
+        InitFile = True
+        Dim Includeinactive As Boolean = False
+        Dim EmployeeBankCode As String = ""
+
+        '  Dim MyFileName As String = BankFiledir & "kyribaFile.csv"
+
+        If Me.CBInactive.CheckState = CheckState.Checked Then
+            Includeinactive = True
+        End If
+        Dim ds As DataSet
+
+
+        ds = PrepareDSForReport_ForSEPAGA(Includeinactive, EmployeeBankCode)
+
+        Dim ExecutionDate As String = ""
+        ExecutionDate = Format(Me.DatePay.Value.Date, "MM/dd/yyyy")
+
+
+
+        If CBSelectEmployees.CheckState = CheckState.Checked Then
+            If Not HellenicToOther Then
+                RunSelection = False
+                Dim F As New FrmSelectEmployeesForBankFile
+                F.ForHellenic = False
+                F.Ds = ds
+                F.Owner = Me
+                F.ShowDialog()
+                If Me.RunSelection Then
+                    Dim k As Integer
+                    For k = 0 To ds.Tables(0).Rows.Count - 1
+                        ds.Tables(0).Rows(k).Item(11) = DsSelection.Tables(0).Rows(k).Item(11)
+                    Next
+                End If
+            Else
+                If Me.RunSelection Then
+                    Dim k As Integer
+                    For k = 0 To ds.Tables(0).Rows.Count - 1
+                        ds.Tables(0).Rows(k).Item(11) = DsSelection.Tables(0).Rows(k).Item(10)
+                    Next
+                End If
+            End If
+        End If
+
+
+        If CheckDataSet(ds) Then
+            Dim Header As String = ""
+            Dim Line As String
+            Dim Separator As String = ","
+
+
+
+            Dim c1_BenIBAN As String
+            Dim c2_BenName As String
+            Dim c3_BenAddr As String
+
+            Dim c4_BenCity As String
+            Dim c5_BenCountry As String
+            Dim c6_BenBankBIC As String
+            Dim c7_Details1 As String
+            Dim c8_Amount As String
+
+
+            Dim i As Integer
+            Dim TrxnCode As String = "K90"
+            Dim EmpCode As String
+            Dim EmpName As String
+            Dim Salary As Double
+            Dim BankCode As String
+            Dim BankAccount As String
+            Dim BankDesc As String
+            Dim IBAN As String
+            Dim EmpID As String
+            Dim BenefName As String
+            Dim CompanyBankAcc As String = Me.ComboBankAcc.Text
+            Dim BANKcountry As String
+            Dim BenCountry As String
+            Dim CompanyBank As New cPrAnBanks
+            CompanyBank = CType(cmbBnk_CodeCo.SelectedItem, cPrAnBanks)
+
+            Header = "Currency" & Separator
+            Header = Header & "Network Code" & Separator
+            Header = Header & "Destination Address" & Separator
+            Header = Header & "Destination Tag" & Separator
+            Header = Header & "Amount" & Separator
+            Header = Header & "Customer Comment" & Separator
+            Header = Header & "Customer Reference Id" & Separator
+            Header = Header & "Beneficiary First Name" & Separator
+            Header = Header & "Beneficiary Last Name" & Separator
+            Header = Header & "Beneficiary Country of Birth Code" & Separator
+            Header = Header & "Beneficiary Date of Birth" & Separator
+            Header = Header & "Beneficiary Type" & Separator
+            Header = Header & "Beneficiary Destination Platform" & Separator
+            Header = Header & "Beneficiary Company Name" & Separator
+            Header = Header & "Beneficiary Company Address" & Separator
+
+
+
+
+            WriteToCSVFile_Wallets(Header, "")
+
+            Dim Counter As Integer = 1
+            For i = 0 To ds.Tables(0).Rows.Count - 1
+                If DbNullToString(ds.Tables(0).Rows(i).Item(11)) = "1" Then
+                    Counter = Counter + 1
+                    Line = ""
+                    EmpCode = DbNullToString(ds.Tables(0).Rows(i).Item(0))
+                    Salary = DbNullToString(ds.Tables(0).Rows(i).Item(1))
+                    EmpName = DbNullToString(ds.Tables(0).Rows(i).Item(2))
+                    BankCode = DbNullToString(ds.Tables(0).Rows(i).Item(3))
+                    BankAccount = DbNullToString(ds.Tables(0).Rows(i).Item(4))
+                    ' BankDesc = DbNullToString(ds.Tables(0).Rows(i).Item(5))
+                    IBAN = DbNullToString(ds.Tables(0).Rows(i).Item(8))
+                    EmpID = DbNullToString(ds.Tables(0).Rows(i).Item(9))
+                    BenefName = DbNullToString(ds.Tables(0).Rows(i).Item(10))
+                    If BenefName <> "" Then
+                        EmpName = BenefName
+                    End If
+                    If IBAN = "" Then
+                        MsgBox("Employee with Code " & EmpCode & " does not have an IBAN Number, Please correct, cannot proceed!", MsgBoxStyle.Critical)
+                        Exit Sub
+                    End If
+
+                    BANKcountry = IBAN.Substring(0, 2)
+                    BenCountry = IBAN.Substring(0, 2)
+
+
+                    Dim Bank As New cPrAnBanks(BankCode)
+                    Dim Emp As New cPrMsEmployees(EmpCode)
+
+
+                    Dim Swift As String
+                    Swift = FindSwiftCode(Bank, False)
+
+
+                    c1_BenIBAN = IBAN
+                    c2_BenName = EmpName
+                    c3_BenAddr = Emp.Address1.Replace(",", " ")
+
+                    c4_BenCity = Emp.Address2.Replace(",", " ")
+                    c5_BenCountry = BenCountry
+                    c6_BenBankBIC = Swift
+                    c7_Details1 = "Payroll " & Period.DescriptionL
+                    c8_Amount = Salary
+
+                    Dim AmountinUSD As Double = 0
+                    AmountinUSD = RoundMe2(Salary * USDRate, 2)
+
+
+                    Line = "USDT" & Separator
+                    Line = Line & "ERC20" & Separator
+                    Line = Line & IBAN & Separator
+                    Line = Line & "" & Separator
+                    Line = Line & AmountinUSD & Separator
+                    Line = Line & "" & Separator
+                    Line = Line & "" & Separator
+                    Line = Line & "" & Separator
+                    Line = Line & "" & Separator
+                    Line = Line & "" & Separator
+                    Line = Line & "" & Separator
+                    Line = Line & "" & Separator
+                    Line = Line & "" & Separator
+                    Line = Line & "" & Separator
+                    Line = Line & ""
+
+
+
+                    WriteToCSVFile_Wallets(Line, "")
+
+                End If
+            Next
+
+            'xlsWorkBook.SaveAs(MyFileName)
+            'xlsWorkBook.Close()
+            'xls.Quit()
+            MsgBox("File is created", MsgBoxStyle.Information)
+        Else
+            MsgBox("There are no Employees maching the Criteria", MsgBoxStyle.Information)
+        End If
+
+    End Sub
+    Private Function WriteToCSVFile_Wallets(ByVal Line As String, ByVal fName As String) As Boolean
+        Dim Flag As Boolean = True
+        Try
+            ' Dim mFile As System.IO.File
+            Dim FileName As String
+
+            FileName = BankFiledir & "Wallets.csv"
+
+            Dim TW As System.IO.TextWriter
+
+            If InitFile Then
+                TW = System.IO.File.CreateText(FileName)
+                InitFile = False
+            Else
+                If IO.File.Exists(FileName) Then
+                    TW = System.IO.File.AppendText(FileName)
+                Else
+                    TW = System.IO.File.CreateText(FileName)
+                End If
+            End If
+            With TW
+                .Write(Line)
+                .WriteLine()
+                .Close()
+            End With
+        Catch ex As Exception
+            Flag = False
+        End Try
+        Return Flag
     End Function
 End Class

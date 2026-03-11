@@ -12,6 +12,7 @@ Public Class frmPrTxEmployeeSalary
     Dim OnlyNewIsenable As Boolean = False
 
     Public GrossFromCalc As Double = 0
+    Dim GLBMinimumCOLA As Double = 0
     Private Sub frmPrTxEmployeeSalary_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
 
         LoadMe()
@@ -23,6 +24,13 @@ Public Class frmPrTxEmployeeSalary
                 NewClick()
                 Me.txtSalaryValue.Text = GrossFromCalc
             End If
+        End If
+
+        Dim P As New cPrSsParameters("Cola", "Minimum")
+        If P.Id <> 0 Then
+            GLBMinimumCOLA = P.Value1
+        Else
+            GLBMinimumCOLA = P.Value1
         End If
     End Sub
     Public Sub LoadMe()
@@ -469,6 +477,11 @@ Public Class frmPrTxEmployeeSalary
         If ColaIsEnabled Then
             Gross = RoundMe3(Basic * (1 + (COLAPercentage / 100)), 2)
             Cola = Gross - Basic
+            'If Cola < GLBminimumcola And glbminimumcola <> 0 Then
+            'Cola = glbminimumcola
+            'Gross = RoundMe3(Cola + Basic, 2)
+            'MsgBox("COLA for Employee " & EmpCode & " is set minimum", MsgBoxStyle.Information)
+            'End If
         Else
             Basic = Me.txtBasic.Text
             Gross = Basic
@@ -531,8 +544,8 @@ Public Class frmPrTxEmployeeSalary
                         FixSalary(True)
                         Me.txtId.Text = "0"
                         Me.DateCreation.Value = Now.Date
-                        Me.DatePay.Value = tEffDate.Date
-                        Me.DateArrears.Value = tEffDate.Date
+                        Me.DatePay.Value = Now.Date
+                        Me.DateArrears.Value = Now.Date
                         Me.TryToSave(True)
                     End If
                 End If

@@ -68,6 +68,8 @@ Partial Class FrmBankTransferFile
         Me.BtnCreateKyribaExcelFile = New System.Windows.Forms.Button()
         Me.Button14 = New System.Windows.Forms.Button()
         Me.Button15 = New System.Windows.Forms.Button()
+        Me.Button16 = New System.Windows.Forms.Button()
+        Me.Button17 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Button1
@@ -160,7 +162,7 @@ Partial Class FrmBankTransferFile
         'CBInactive
         '
         Me.CBInactive.AutoSize = True
-        Me.CBInactive.Location = New System.Drawing.Point(38, 270)
+        Me.CBInactive.Location = New System.Drawing.Point(35, 270)
         Me.CBInactive.Name = "CBInactive"
         Me.CBInactive.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.CBInactive.Size = New System.Drawing.Size(201, 17)
@@ -272,7 +274,7 @@ Partial Class FrmBankTransferFile
         'CBSelectEmployees
         '
         Me.CBSelectEmployees.AutoSize = True
-        Me.CBSelectEmployees.Location = New System.Drawing.Point(127, 362)
+        Me.CBSelectEmployees.Location = New System.Drawing.Point(126, 362)
         Me.CBSelectEmployees.Name = "CBSelectEmployees"
         Me.CBSelectEmployees.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.CBSelectEmployees.Size = New System.Drawing.Size(110, 17)
@@ -413,6 +415,7 @@ Partial Class FrmBankTransferFile
         Me.BtnCreateEWallet.Size = New System.Drawing.Size(225, 23)
         Me.BtnCreateEWallet.TabIndex = 85
         Me.BtnCreateEWallet.Text = "Create E-Wallet File - With Names"
+        Me.BtnCreateEWallet.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BtnCreateEWallet.UseVisualStyleBackColor = True
         '
         'BtnCreateEWalletNoNames
@@ -422,6 +425,7 @@ Partial Class FrmBankTransferFile
         Me.BtnCreateEWalletNoNames.Size = New System.Drawing.Size(225, 23)
         Me.BtnCreateEWalletNoNames.TabIndex = 86
         Me.BtnCreateEWalletNoNames.Text = "Create E-Wallet File - Without Names"
+        Me.BtnCreateEWalletNoNames.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BtnCreateEWalletNoNames.UseVisualStyleBackColor = True
         '
         'BtniSXMoney
@@ -451,6 +455,7 @@ Partial Class FrmBankTransferFile
         Me.btnGURUPay.Size = New System.Drawing.Size(225, 23)
         Me.btnGURUPay.TabIndex = 89
         Me.btnGURUPay.Text = "Create GURU Pay .xml file"
+        Me.btnGURUPay.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.btnGURUPay.UseVisualStyleBackColor = True
         '
         'BtnMoneyGate
@@ -460,6 +465,7 @@ Partial Class FrmBankTransferFile
         Me.BtnMoneyGate.Size = New System.Drawing.Size(225, 23)
         Me.BtnMoneyGate.TabIndex = 90
         Me.BtnMoneyGate.Text = "Create Money Gate .csv file"
+        Me.BtnMoneyGate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BtnMoneyGate.UseVisualStyleBackColor = True
         '
         'Button13
@@ -479,6 +485,7 @@ Partial Class FrmBankTransferFile
         Me.BtnCreateKyribaExcelFile.Size = New System.Drawing.Size(225, 23)
         Me.BtnCreateKyribaExcelFile.TabIndex = 92
         Me.BtnCreateKyribaExcelFile.Text = "Create .CSV File - Kyriba"
+        Me.BtnCreateKyribaExcelFile.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.BtnCreateKyribaExcelFile.UseVisualStyleBackColor = True
         '
         'Button14
@@ -501,12 +508,34 @@ Partial Class FrmBankTransferFile
         Me.Button15.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Button15.UseVisualStyleBackColor = True
         '
+        'Button16
+        '
+        Me.Button16.Location = New System.Drawing.Point(827, 217)
+        Me.Button16.Name = "Button16"
+        Me.Button16.Size = New System.Drawing.Size(225, 23)
+        Me.Button16.TabIndex = 95
+        Me.Button16.Text = "Create Wallet Excel File"
+        Me.Button16.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button16.UseVisualStyleBackColor = True
+        '
+        'Button17
+        '
+        Me.Button17.Location = New System.Drawing.Point(825, 246)
+        Me.Button17.Name = "Button17"
+        Me.Button17.Size = New System.Drawing.Size(225, 23)
+        Me.Button17.TabIndex = 96
+        Me.Button17.Text = "Create Wallet .csv File"
+        Me.Button17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button17.UseVisualStyleBackColor = True
+        '
         'FrmBankTransferFile
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.ClientSize = New System.Drawing.Size(1062, 679)
+        Me.Controls.Add(Me.Button17)
+        Me.Controls.Add(Me.Button16)
         Me.Controls.Add(Me.Button15)
         Me.Controls.Add(Me.Button14)
         Me.Controls.Add(Me.BtnCreateKyribaExcelFile)
@@ -605,4 +634,6 @@ Partial Class FrmBankTransferFile
     Friend WithEvents BtnCreateKyribaExcelFile As Button
     Friend WithEvents Button14 As Button
     Friend WithEvents Button15 As Button
+    Friend WithEvents Button16 As Button
+    Friend WithEvents Button17 As Button
 End Class

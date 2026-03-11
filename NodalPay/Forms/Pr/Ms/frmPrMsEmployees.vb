@@ -1,4 +1,4 @@
-
+Imports Excel = Microsoft.Office.Interop.Excel
 Public Class frmPrMsEmployees
     Dim GLBTempGroup As New cPrMsTemplateGroup
     Dim tPrMsEmployees As New cPrMsEmployees
@@ -24,6 +24,10 @@ Public Class frmPrMsEmployees
     Dim IsImageChanged As Boolean = False
     Dim DsTemplateGroups As DataSet
     Dim GLBLockForExelsys As Boolean = False
+
+    Public GLBProceedWithExcel_Loading As Boolean = False
+    Public GLBLoadingFromExcel_ExcelFileToOpen As String = ""
+    Public GLBLoadingFromExcel_FirstRow As Integer = 2
 
 
 
@@ -6796,5 +6800,127 @@ Public Class frmPrMsEmployees
             Me.txtPassword.PasswordChar = "*"
             Me.txtPassword.Refresh()
         End If
+    End Sub
+
+    Private Sub LoadPFValuesFromExcelToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LoadPFValuesFromExcelToolStripMenuItem.Click
+        Dim F As New FrmLoadGeneralImportForm
+        GLBProceedWithExcel_Loading = False
+        F.Owner = Me
+        F.LoadingType = "10"
+        F.ShowDialog()
+        If GLBProceedWithExcel_Loading Then
+            Import_From_Excel_ProvidentFundValues()
+
+        End If
+    End Sub
+
+    Private Sub Import_From_Excel_ProvidentFundValues()
+
+        Dim xlApp As Excel.Application
+        Dim xlWorkBook As Excel.Workbook
+        Dim xlWorkSheet As Excel.Worksheet
+
+        xlApp = New Excel.ApplicationClass
+
+        Dim Ern(14) As E_Emp
+        Dim Ded(14) As D_Emp
+        Dim Con(14) As C_Emp
+        Dim EmpCode As String = ""
+        Dim Data As String = ""
+        Dim Counter As Integer = 0
+
+        Try
+            Dim FileDir As String
+            Dim Exx As New Exception
+            Global1.Business.BeginTransaction()
+            xlWorkBook = xlApp.Workbooks.Open(GLBLoadingFromExcel_ExcelFileToOpen)
+            xlWorkSheet = xlWorkBook.Worksheets(1)
+
+
+            Dim Line As String
+            Dim Ar() As String
+
+            Dim StopInput As Boolean = False
+            Dim ErrorM As String = ""
+            Counter = Me.GLBLoadingFromExcel_FirstRow
+
+            Do While StopInput = False
+                Me.Refresh()
+
+
+
+                EmpCode = NothingToEmpty(xlWorkSheet.Cells(Counter, 1).value)
+
+                If EmpCode = "" Then
+                    StopInput = True
+                    Exit Do
+                End If
+                Dim Emp As New cPrMsEmployees(EmpCode)
+                If Emp.Code = "" Then
+                    MsgBox("Invalid Employee Code " & EmpCode & " at row " & Counter, MsgBoxStyle.Critical)
+                    Throw Exx
+                End If
+
+                Dim Deduction As String = ""
+                Dim Contribution As String = ""
+                Deduction = NothingToEmpty(xlWorkSheet.Cells(Counter, 3).value)
+                Contribution = NothingToEmpty(xlWorkSheet.Cells(Counter, 4).value)
+
+                If Not IsNumeric(Deduction) Then
+                    MsgBox("Deduction Value cannot be empty at employee Code " & EmpCode & " at row " & Counter, MsgBoxStyle.Critical)
+                    Throw Exx
+                End If
+                If Not IsNumeric(Contribution) Then
+                    MsgBox("Contribution Value cannot be empty at employee Code " & EmpCode & " at row " & Counter, MsgBoxStyle.Critical)
+                    Throw Exx
+                End If
+
+                Dim PFCode As String = ""
+                PFCode = FindPFCodeFromRates(CDbl(Deduction), CDbl(Contribution))
+                If PFCode = "" Then
+                    MsgBox("Deduction or Contribution cannot be found in Provident fund Table, Employee Code " & EmpCode & " at row " & Counter, MsgBoxStyle.Critical)
+                    Throw Exx
+                Else
+                    Emp.ProFnd_Code = PFCode
+                    If Not Emp.Save Then
+
+                        Throw Exx
+                    End If
+                End If
+
+
+                Counter = Counter + 1
+            Loop
+
+            Global1.Business.CommitTransaction()
+            MsgBox("Loading from Excel has finish", MsgBoxStyle.Information)
+        Catch ex As Exception
+            Global1.Business.Rollback()
+            Utils.ShowException(ex)
+            MsgBox("Error loading employee with Code " & EmpCode & " at line " & Counter, MsgBoxStyle.Critical)
+        End Try
+
+        xlWorkBook.Close()
+        xlApp.Quit()
+        releaseObject(xlApp)
+        releaseObject(xlWorkBook)
+        releaseObject(xlWorkSheet)
+    End Sub
+    Private Function FindPFCodeFromRates(DedValue As Double, ConValue As Double) As String
+
+        Dim Code As String
+        Code = Global1.Business.FindProvFundCodeFromDedValueConValue(DedValue, ConValue)
+        Return Code
+
+    End Function
+    Private Sub releaseObject(ByVal obj As Object)
+        Try
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(obj)
+            obj = Nothing
+        Catch ex As Exception
+            obj = Nothing
+        Finally
+            GC.Collect()
+        End Try
     End Sub
 End Class

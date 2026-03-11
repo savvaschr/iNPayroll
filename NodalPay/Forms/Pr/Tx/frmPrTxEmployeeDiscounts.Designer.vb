@@ -49,7 +49,6 @@ Private Sub InitializeComponent()
         Me.ToolStripDropDownButton1 = New System.Windows.Forms.ToolStripDropDownButton()
         Me.RemoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RemoveFirstEmployementFromALLActiveEmployeesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripButton3 = New System.Windows.Forms.ToolStripButton()
         Me.ToolStripButton4 = New System.Windows.Forms.ToolStripButton()
         Me.lblId = New System.Windows.Forms.Label()
         Me.txtId = New System.Windows.Forms.TextBox()
@@ -388,10 +387,10 @@ Private Sub InitializeComponent()
         'TS1
         '
         Me.TS1.Dock = System.Windows.Forms.DockStyle.None
-        Me.TS1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBNew, Me.TSBSave, Me.TSBDelete, Me.TSBExcel, Me.ToolStripDropDownButton1, Me.ToolStripButton3, Me.ToolStripButton4})
+        Me.TS1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBNew, Me.TSBSave, Me.TSBDelete, Me.TSBExcel, Me.ToolStripDropDownButton1, Me.ToolStripButton4})
         Me.TS1.Location = New System.Drawing.Point(3, 0)
         Me.TS1.Name = "TS1"
-        Me.TS1.Size = New System.Drawing.Size(935, 25)
+        Me.TS1.Size = New System.Drawing.Size(635, 25)
         Me.TS1.TabIndex = 0
         '
         'TSBNew
@@ -457,16 +456,6 @@ Private Sub InitializeComponent()
         Me.RemoveFirstEmployementFromALLActiveEmployeesToolStripMenuItem.Name = "RemoveFirstEmployementFromALLActiveEmployeesToolStripMenuItem"
         Me.RemoveFirstEmployementFromALLActiveEmployeesToolStripMenuItem.Size = New System.Drawing.Size(655, 22)
         Me.RemoveFirstEmployementFromALLActiveEmployeesToolStripMenuItem.Text = "Remove First Employement from ALL Active Employees"
-        '
-        'ToolStripButton3
-        '
-        Me.ToolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.ToolStripButton3.Image = CType(resources.GetObject("ToolStripButton3.Image"), System.Drawing.Image)
-        Me.ToolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripButton3.Name = "ToolStripButton3"
-        Me.ToolStripButton3.Size = New System.Drawing.Size(612, 22)
-        Me.ToolStripButton3.Text = "Delete Discounts/Life Insurance/PrivateMedical/Private Pension from ALL employees" &
-    " of the Selected Period Group"
         '
         'ToolStripButton4
         '
@@ -1232,7 +1221,6 @@ Private Sub InitializeComponent()
     Friend WithEvents Label7 As System.Windows.Forms.Label
     Friend WithEvents txtPensionfund As System.Windows.Forms.TextBox
     Friend WithEvents ToolStripDropDownButton1 As ToolStripDropDownButton
-    Friend WithEvents ToolStripButton3 As ToolStripButton
     Friend WithEvents ToolStripButton4 As ToolStripButton
     Friend WithEvents RemoToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RemoveFirstEmployementFromALLActiveEmployeesToolStripMenuItem As ToolStripMenuItem

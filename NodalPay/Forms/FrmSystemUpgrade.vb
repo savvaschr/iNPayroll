@@ -1132,4 +1132,192 @@ Public Class FrmSystemUpgrade
     Private Sub Button94_Click(sender As Object, e As EventArgs) Handles Button94.Click
         Global1.Business.Upgrade_2026_05_HeaderExtraFields()
     End Sub
+    Private Sub CreatePFValues()
+        Dim pf1 As New cPrSsProvidentFund
+        With pf1
+            .Code = "P001"
+            .Desc = "PF Ded 1.00 - Con 3.00"
+            .DedValue = CDbl(1.0)
+            .ConValue = CDbl(3.0)
+            .Limit = CDbl(0)
+            .NextCode = ""
+            If Not .Save() Then
+                MsgBox("Unable to Save 1-3")
+            End If
+
+        End With
+        pf1 = New cPrSsProvidentFund
+        With pf1
+            .Code = "P002"
+            .Desc = "PF Ded 2.00 - Con 3.00"
+            .DedValue = CDbl(2.0)
+            .ConValue = CDbl(3.0)
+            .Limit = CDbl(0)
+            .NextCode = ""
+            If Not .Save() Then
+                MsgBox("Unable to Save 2-3")
+            End If
+        End With
+        pf1 = New cPrSsProvidentFund
+        With pf1
+            .Code = "P003"
+            .Desc = "PF Ded 3.00 - Con 3.00"
+            .DedValue = CDbl(3.0)
+            .ConValue = CDbl(3.0)
+            .Limit = CDbl(0)
+            .NextCode = ""
+            If Not .Save() Then
+                MsgBox("Unable to Save 3-3")
+            End If
+        End With
+        pf1 = New cPrSsProvidentFund
+        With pf1
+            .Code = "P004"
+            .Desc = "PF Ded 4.00 - Con 3.00"
+            .DedValue = CDbl(4.0)
+            .ConValue = CDbl(3.0)
+            .Limit = CDbl(0)
+            .NextCode = ""
+            If Not .Save() Then
+                MsgBox("Unable to Save 4-3")
+            End If
+        End With
+        pf1 = New cPrSsProvidentFund
+        With pf1
+            .Code = "P005"
+            .Desc = "PF Ded 5.00 - Con 3.00"
+            .DedValue = CDbl(5.0)
+            .ConValue = CDbl(3.0)
+            .Limit = CDbl(0)
+            .NextCode = ""
+            If Not .Save() Then
+                MsgBox("Unable to Save 5-3")
+            End If
+        End With
+        pf1 = New cPrSsProvidentFund
+        With pf1
+            .Code = "P006"
+            .Desc = "PF Ded 6.00 - Con 3.00"
+            .DedValue = CDbl(6.0)
+            .ConValue = CDbl(3.0)
+            .Limit = CDbl(0)
+            .NextCode = ""
+            If Not .Save() Then
+                MsgBox("Unable to Save 6-3")
+            End If
+        End With
+        pf1 = New cPrSsProvidentFund
+        With pf1
+            .Code = "P007"
+            .Desc = "PF Ded 7.00 - Con 3.00"
+            .DedValue = CDbl(7.0)
+            .ConValue = CDbl(3.0)
+            .Limit = CDbl(0)
+            .NextCode = ""
+            If Not .Save() Then
+                MsgBox("Unable to Save 7-3")
+            End If
+        End With
+        pf1 = New cPrSsProvidentFund
+        With pf1
+            .Code = "P008"
+            .Desc = "PF Ded 8.00 - Con 3.00"
+            .DedValue = CDbl(8.0)
+            .ConValue = CDbl(3.0)
+            .Limit = CDbl(0)
+            .NextCode = ""
+            If Not .Save() Then
+                MsgBox("Unable to Save 8-3")
+            End If
+        End With
+        pf1 = New cPrSsProvidentFund
+        With pf1
+            .Code = "P009"
+            .Desc = "PF Ded 9.00 - Con 3.00"
+            .DedValue = CDbl(9.0)
+            .ConValue = CDbl(3.0)
+            .Limit = CDbl(0)
+            .NextCode = ""
+            If Not .Save() Then
+                MsgBox("Unable to Save 9-3")
+            End If
+        End With
+        pf1 = New cPrSsProvidentFund
+        With pf1
+            .Code = "P010"
+            .Desc = "PF Ded 10.00 - Con 3.00"
+            .DedValue = CDbl(10.0)
+            .ConValue = CDbl(3.0)
+            .Limit = CDbl(0)
+            .NextCode = ""
+            If Not .Save() Then
+                MsgBox("Unable to Save 10-3")
+            End If
+        End With
+        pf1 = New cPrSsProvidentFund
+        With pf1
+            .Code = "P011"
+            .Desc = "PF Ded 11.00 - Con 3.00"
+            .DedValue = CDbl(11.0)
+            .ConValue = CDbl(3.0)
+            .Limit = CDbl(0)
+            .NextCode = ""
+            If Not .Save() Then
+                MsgBox("Unable to Save 11-3")
+            End If
+        End With
+        pf1 = New cPrSsProvidentFund
+        With pf1
+            .Code = "P012"
+            .Desc = "PF Ded 12.00 - Con 3.00"
+            .DedValue = CDbl(12.0)
+            .ConValue = CDbl(3.0)
+            .Limit = CDbl(0)
+            .NextCode = ""
+            If Not .Save() Then
+                MsgBox("Unable to Save 12-3")
+            End If
+        End With
+        pf1 = New cPrSsProvidentFund
+        With pf1
+            .Code = "P013"
+            .Desc = "PF Ded 13.00 - Con 3.00"
+            .DedValue = CDbl(13.0)
+            .ConValue = CDbl(3.0)
+            .Limit = CDbl(0)
+            .NextCode = ""
+            If Not .Save() Then
+                MsgBox("Unable to Save 13-3")
+            End If
+        End With
+        pf1 = New cPrSsProvidentFund
+        With pf1
+            .Code = "P014"
+            .Desc = "PF Ded 14.00 - Con 3.00"
+            .DedValue = CDbl(14.0)
+            .ConValue = CDbl(3.0)
+            .Limit = CDbl(0)
+            .NextCode = ""
+            If Not .Save() Then
+                MsgBox("Unable to Save 14-3")
+            End If
+        End With
+        pf1 = New cPrSsProvidentFund
+        With pf1
+            .Code = "P015"
+            .Desc = "PF Ded 15.00 - Con 3.00"
+            .DedValue = CDbl(15.0)
+            .ConValue = CDbl(3.0)
+            .Limit = CDbl(0)
+            .NextCode = ""
+            If Not .Save() Then
+                MsgBox("Unable to Save 15-3")
+            End If
+        End With
+        MsgBox("Finish")
+    End Sub
+
+    Private Sub Button95_Click(sender As Object, e As EventArgs) Handles Button95.Click
+        CreatePFValues()
+    End Sub
 End Class

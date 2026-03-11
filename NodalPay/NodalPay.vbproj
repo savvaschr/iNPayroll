@@ -913,6 +913,12 @@
     <Compile Include="Forms\FrmSelectEmailMethod.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\FrmImportExcelTemplate3.Designer.vb">
+      <DependentUpon>FrmImportExcelTemplate3.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FrmImportExcelTemplate3.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\FrmSelectLeaveReason.Designer.vb">
       <DependentUpon>FrmSelectLeaveReason.vb</DependentUpon>
     </Compile>
@@ -1764,6 +1770,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Pay12.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\PayWithLogo6.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PayWithLogo6.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\PensionFund7.vb">
@@ -3123,6 +3135,9 @@
     <EmbeddedResource Include="Forms\FrmSelectEmailMethod.resx">
       <DependentUpon>FrmSelectEmailMethod.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FrmImportExcelTemplate3.resx">
+      <DependentUpon>FrmImportExcelTemplate3.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FrmSelectLeaveReason.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FrmSelectLeaveReason.vb</DependentUpon>
@@ -3686,6 +3701,10 @@
     <EmbeddedResource Include="Reports\Pay12.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Pay12.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PayWithLogo6.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PayWithLogo6.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\PensionFund7.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

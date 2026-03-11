@@ -28077,6 +28077,42 @@ todo:   ' check for status in trxnheader
         If CheckDataSet(Ds) Then
             Formula = DbNullToString(Ds.Tables(0).Rows(0).Item(0))
         End If
+
+        Dim StrNew As String
+        StrNew = " SELECT PrMsTemplateDeductions.TemDed_CalcFormula" &
+                " FROM PrMsTemplateDeductions INNER JOIN" &
+                " PrMsDeductionCodes ON " &
+                " PrMsTemplateDeductions.DedCod_Code = PrMsDeductionCodes.DedCod_Code" &
+                " WHERE (PrMsTemplateDeductions.TemGrp_Code = " & enQuoteString(TemGrp) & ") " &
+                " AND (PrMsDeductionCodes.DedTyp_Code = 'GT')"
+
+        Dim DsNew As DataSet
+        DsNew = GetData(StrNew)
+        Dim FormulaNew As String = ""
+        If CheckDataSet(DsNew) Then
+            FormulaNew = DbNullToString(DsNew.Tables(0).Rows(0).Item(0))
+        End If
+
+        Dim ElementNotinTAXbutInNHSToTax As String = ""
+        If FormulaNew <> "" Then
+            Dim x As Integer
+            Dim y As Integer
+            Dim Digit As String
+            For x = 0 To FormulaNew.Length - 1
+                Digit = FormulaNew.Substring(x, 1)
+                If Not Formula.Contains(Digit) Then
+                    If ElementNotinTAXbutInNHSToTax = "" Then
+                        ElementNotinTAXbutInNHSToTax = Digit
+                    Else
+                        ElementNotinTAXbutInNHSToTax = ElementNotinTAXbutInNHSToTax & "|" & Digit
+                    End If
+                End If
+            Next
+        End If
+
+
+
+
         'Str = "select TemErn_Sequence," & _
         '" ErnCod_Code " & _
         '" FROM PrMsTemplateEarnings" & _
@@ -28107,12 +28143,15 @@ todo:   ' check for status in trxnheader
                     End If
                 Next
                 If Not Found Then
-                    If StrNonIns = "" Then
-                        StrNonIns = DsEarn.Tables(0).Rows(k).Item(1)
-                        StrNonIns2 = DsEarn.Tables(0).Rows(k).Item(2)
-                    Else
-                        StrNonIns = StrNonIns & "|" & DsEarn.Tables(0).Rows(k).Item(1)
-                        StrNonIns2 = StrNonIns2 & "|" & DsEarn.Tables(0).Rows(k).Item(2)
+                    If Not ElementNotinTAXbutInNHSToTax.Contains(Seq) Then
+
+                        If StrNonIns = "" Then
+                            StrNonIns = DsEarn.Tables(0).Rows(k).Item(1)
+                            StrNonIns2 = DsEarn.Tables(0).Rows(k).Item(2)
+                        Else
+                            StrNonIns = StrNonIns & "|" & DsEarn.Tables(0).Rows(k).Item(1)
+                            StrNonIns2 = StrNonIns2 & "|" & DsEarn.Tables(0).Rows(k).Item(2)
+                        End If
                     End If
 
                 End If
@@ -28169,6 +28208,154 @@ todo:   ' check for status in trxnheader
         End If
 
         Return NonTaxable
+    End Function
+    Public Function FindNonTaxable_BUT_GesiableToTax_TotalForTemplateGroupForEmployee(ByVal TemGrp As String, ByVal PeriodGroup As String, ByVal EmpCode As String) As Double
+        Dim Str As String
+        Dim Ds As DataSet
+        Dim Formula As String = ""
+        Dim i As Integer
+        Dim S As String
+        Dim k As Integer
+        Dim NonTaxableButGesiableToTax As Double = 0
+        Str = " SELECT PrMsTemplateDeductions.TemDed_CalcFormula" &
+                " FROM PrMsTemplateDeductions INNER JOIN" &
+                " PrMsDeductionCodes ON " &
+                " PrMsTemplateDeductions.DedCod_Code = PrMsDeductionCodes.DedCod_Code" &
+                " WHERE (PrMsTemplateDeductions.TemGrp_Code = " & enQuoteString(TemGrp) & ") " &
+                " AND (PrMsDeductionCodes.DedTyp_Code = 'IT')"
+
+        Ds = GetData(Str)
+        If CheckDataSet(Ds) Then
+            Formula = DbNullToString(Ds.Tables(0).Rows(0).Item(0))
+        End If
+
+        Dim StrNew As String
+        StrNew = " SELECT PrMsTemplateDeductions.TemDed_CalcFormula" &
+                " FROM PrMsTemplateDeductions INNER JOIN" &
+                " PrMsDeductionCodes ON " &
+                " PrMsTemplateDeductions.DedCod_Code = PrMsDeductionCodes.DedCod_Code" &
+                " WHERE (PrMsTemplateDeductions.TemGrp_Code = " & enQuoteString(TemGrp) & ") " &
+                " AND (PrMsDeductionCodes.DedTyp_Code = 'GT')"
+
+        Dim DsNew As DataSet
+        DsNew = GetData(StrNew)
+        Dim FormulaNew As String = ""
+        If CheckDataSet(DsNew) Then
+            FormulaNew = DbNullToString(DsNew.Tables(0).Rows(0).Item(0))
+        End If
+
+        Dim ElementNotinTAXbutInNHSToTax As String = ""
+        If FormulaNew <> "" Then
+            Dim x As Integer
+            Dim y As Integer
+            Dim Digit As String
+            For x = 0 To FormulaNew.Length - 1
+                Digit = FormulaNew.Substring(x, 1)
+                If Not Formula.Contains(Digit) Then
+                    If ElementNotinTAXbutInNHSToTax = "" Then
+                        ElementNotinTAXbutInNHSToTax = Digit
+                    Else
+                        ElementNotinTAXbutInNHSToTax = ElementNotinTAXbutInNHSToTax & "|" & Digit
+                    End If
+                End If
+            Next
+        End If
+
+
+
+
+        'Str = "select TemErn_Sequence," & _
+        '" ErnCod_Code " & _
+        '" FROM PrMsTemplateEarnings" & _
+        '" WHERE TemGrp_Code=" & enQuoteString(TemGrp)
+
+        Str = " SELECT  PrMsTemplateEarnings.TemErn_Sequence," &
+            " PrMsTemplateEarnings.ErnCod_Code," &
+            " PrMsEarningCodes.ErnTyp_Code" &
+            " FROM PrMsTemplateEarnings INNER JOIN" &
+            " PrMsEarningCodes ON PrMsTemplateEarnings.ErnCod_Code = PrMsEarningCodes.ErnCod_Code" &
+            " WHERE (PrMsTemplateEarnings.TemGrp_Code = " & enQuoteString(TemGrp) & ")"
+
+        Dim DsEarn As DataSet
+        Dim Seq As String
+        Dim Found As Boolean = False
+        Dim StrNonIns As String = ""
+
+        Dim StrNonIns2 As String = ""
+        DsEarn = GetData(Str)
+        If CheckDataSet(DsEarn) Then
+            For k = 0 To DsEarn.Tables(0).Rows.Count - 1
+                Seq = DsEarn.Tables(0).Rows(k).Item(0)
+                For i = 0 To Formula.Length - 1
+                    S = Formula.Substring(i, 1)
+                    If S = Seq Then
+                        Found = True
+                        Exit For
+                    End If
+                Next
+                If Not Found Then
+                    If ElementNotinTAXbutInNHSToTax.Contains(Seq) Then
+
+                        If StrNonIns = "" Then
+                            StrNonIns = DsEarn.Tables(0).Rows(k).Item(1)
+                            StrNonIns2 = DsEarn.Tables(0).Rows(k).Item(2)
+                        Else
+                            StrNonIns = StrNonIns & "|" & DsEarn.Tables(0).Rows(k).Item(1)
+                            StrNonIns2 = StrNonIns2 & "|" & DsEarn.Tables(0).Rows(k).Item(2)
+                        End If
+                    End If
+
+                End If
+                Found = False
+            Next
+            S = ""
+            If StrNonIns <> "" Then
+                S = ""
+                Dim Ar() As String
+                Ar = StrNonIns.Split("|")
+                Dim Ar2() As String
+                Ar2 = StrNonIns2.Split("|")
+
+                For i = 0 To Ar.Length - 1
+                    'E16 is Annual leave provision
+                    'Dim ErnCod As New cPrMsEarningCodes(Ar(i))
+                    'Dim ErnTyp As New cPrSsEarningTypes(ErnCod.ErnTypCode)
+
+                    'If Ar(i) <> "E8" And Ar(i) <> "E9" And Ar(i) <> "E6" And Ar(i) <> "E7" And Ar(i) <> "E99" And Ar(i) <> "E16" Then
+                    'If Ar(i) <> "E8" And Ar(i) <> "E9" And Ar(i) <> "E99" And Ar(i) <> "E16" Then
+                    If Trim(Ar2(i)) <> "3E" And Trim(Ar2(i)) <> "4E" And Ar2(i) <> "E99" And Trim(Ar2(i)) <> "LP" And Trim(Ar2(i)) <> "BK" And Trim(Ar2(i)) <> "BR" And Trim(Ar2(i)) <> "B2" Then
+
+                        If S = "" Then
+                            S = " ((PrTxTrxnLines.ErnCod_Code = " & enQuoteString(Ar(i)) & ")"
+                        Else
+
+                            S = S & " OR " & " (PrTxTrxnLines.ErnCod_Code = " & enQuoteString(Ar(i)) & ")"
+                        End If
+
+                    End If
+                Next
+            End If
+            If S <> "" Then
+                S = S & " )"
+                Str = "SELECT sum(PrTxTrxnLines.TrxLin_PeriodValue)" &
+                    " FROM PrTxTrxnLines INNER JOIN" &
+                    " PrTxTrxnHeader ON PrTxTrxnLines.TrxHdr_Id = PrTxTrxnHeader.TrxHdr_Id" &
+                    " WHERE  (PrTxTrxnHeader.PrdGrp_Code = " & enQuoteString(PeriodGroup) & ") AND" &
+                    " (PrTxTrxnHeader.Emp_Code = " & enQuoteString(EmpCode) & ") AND " &
+                    " (PrTxTrxnHeader.TemGrp_Code = " & enQuoteString(TemGrp) & ") AND "
+
+                Str = Str & S
+
+
+                Dim Ds2 As DataSet
+                Ds2 = GetData(Str)
+                If CheckDataSet(Ds2) Then
+                    NonTaxableButGesiableToTax = DbNullToDouble(Ds2.Tables(0).Rows(0).Item(0))
+                End If
+            End If
+        End If
+
+        Return NonTaxableButGesiableToTax
     End Function
     Public Function FindNonTaxableTotalForTemplateGroupForEmployee_JanAndFeb(ByVal TemGrp As String, ByVal PeriodGroup As String, ByVal EmpCode As String, ByVal JanPeriod As String, ByVal FebPeriod As String) As Double
         Dim Str As String
@@ -29093,7 +29280,8 @@ todo:   ' check for status in trxnheader
         Dim Total As Double = 0
         Str = " select sum(trxhdr_periodinsurable) from prtxtrxnHeader " &
               " where emp_code=" & enQuoteString(EmpCode) &
-              " and prdgrp_code=" & enQuoteString(PeriodGroup)
+              " and prdgrp_code=" & enQuoteString(PeriodGroup) &
+              " And trxhdr_status<>'PREP' "
         Dim Ds As DataSet
         Ds = GetData(Str)
         If CheckDataSet(Ds) Then
@@ -37887,6 +38075,29 @@ todo:   ' check for status in trxnheader
 
 
         Dim i As Integer = MyBase.ExecuteNonQuery(Str)
+
+    End Function
+    Protected Function UpdateTrxnHeaderPosition(ByVal Position As String, ByVal HeaderID As Integer)
+
+        Dim Str As String
+
+        Str = "Update PrTxTrxnHeader set TrxHdr_Position=" & enQuoteString(Position) &
+                    " where trxhdr_id=" & HeaderID
+
+
+
+        Dim i As Integer = MyBase.ExecuteNonQuery(Str)
+
+    End Function
+    Protected Shadows Function UpdatePRFonPrep(tEmp As cPrMsEmployees, HdrId As Integer, DedCode As String, ConCode As String)
+        Dim Str As String
+
+        Dim PF As New cPrSsProvidentFund(tEmp.ProFnd_Code)
+        Str = "Update PrTxTrxnlines set trxlin_EDC =" & PF.DedValue & " where DedCod_Code =" & enQuoteString(DedCode) & " and trxhdr_id=" & HdrId
+        Dim i As Integer = MyBase.ExecuteNonQuery(Str)
+
+        Str = "Update PrTxTrxnlines set trxlin_EDC =" & PF.ConValue & " where ConCod_Code =" & enQuoteString(ConCode) & " and trxhdr_id=" & HdrId
+        Dim k As Integer = MyBase.ExecuteNonQuery(Str)
 
     End Function
     Public Function UpdateTrxnHeaderYTDNet(ByVal HeaderID As Integer)
