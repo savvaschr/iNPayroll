@@ -781,6 +781,9 @@ Public Class cBusiness
         Return MyBase.REPORT_IR61_GetTaxableIncome(PerGrp, SIPeriod)
 
     End Function
+    Public Shadows Function FindNonTaxable_BUT_GesiableToTax_TotalForTemplateGroupForEmployee(ByVal TemGrp As String, ByVal PeriodGroup As String, ByVal EmpCode As String, periodcodesstring As String) As Double
+        Return MyBase.FindNonTaxable_BUT_GesiableToTax_TotalForTemplateGroupForEmployeeForSIPeriod(TemGrp, PeriodGroup, EmpCode, periodcodesstring)
+    End Function
     Public Shadows Function REPORT_IR61_GetTaxableIncome_PerEmployee(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, ALLYear As Boolean) As DataSet
         Return MyBase.REPORT_IR61_GetTaxableIncome_PerEmployee(PerGrp, SIPeriod, ALLYear)
 

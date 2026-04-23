@@ -64,6 +64,8 @@ Public Class FrmIR61_2019
 
     Dim COLx_Rehire As Integer = 27
 
+    Dim COLx_OriginalCode As Integer = 28
+
     Private Sub FrmIR61_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         LoadSIPeriods()
         IR61()
@@ -596,6 +598,8 @@ Public Class FrmIR61_2019
         dt.Columns.Add(New DataColumn("LWBPen", System.Type.GetType("System.String")))
         '27
         dt.Columns.Add(New DataColumn("Rehire", System.Type.GetType("System.String")))
+        '28
+        ' dt.Columns.Add(New DataColumn("OriginalCode", System.Type.GetType("System.String")))
 
 
         Dim SIPeriod As cPrSsSocialInsPeriods
@@ -603,6 +607,8 @@ Public Class FrmIR61_2019
         Me.txtTaxMonth.Text = SIPeriod.DescriptionL
 
         DsTax = Global1.Business.REPORT_IR61_PerEmployee(PerGroup, SIPeriod, False)
+        Global1.GLB_StringForTemplateGroupPeriodGroupSIPeriods = ""
+
         DsTaxable = Global1.Business.REPORT_IR61_GetTaxableIncome_PerEmployee(PerGroup, SIPeriod, False)
         DsDED = Global1.Business.REPORT_IR61_Gesy_DEDUCTION_PerEmployee(PerGroup, SIPeriod, False)
         DsCON = Global1.Business.REPORT_IR61_Gesy_CONTRIBUTION_PerEmployee(PerGroup, SIPeriod, False)
@@ -659,6 +665,7 @@ Public Class FrmIR61_2019
             Dim NotionalAmount As Double = 0
             Dim NotionalTax As Double = 0
             Dim Rehire As String = ""
+            Dim OriginalCode As String = ""
 
 
             Ds.Tables.Add(dt)
@@ -668,6 +675,7 @@ Public Class FrmIR61_2019
             Dim eCode As String = ""
             For i = 0 To DsTax.Tables(0).Rows.Count - 1
                 Rehire = DbNullToString(DsTax.Tables(0).Rows(i).Item(10))
+                OriginalCode = DbNullToString(DsTax.Tables(0).Rows(i).Item(11))
                 eCode = DbNullToString(DsTax.Tables(0).Rows(i).Item(0))
                 If Rehire <> "" Then
                     If CheckDataSet(DsTax) Then
@@ -683,6 +691,7 @@ Public Class FrmIR61_2019
                     End If
                     If Found Then
                         DsTax.Tables(0).Rows(i).Item(0) = Rehire
+
                         'Change Code to other datasets as well
                         'DsTaxable
                         Dim k As Integer
@@ -783,6 +792,7 @@ Public Class FrmIR61_2019
                 IsLWBPen = DbNullToString(DsTax.Tables(0).Rows(i).Item(7))
                 TaxValue = DbNullToDouble(DsTax.Tables(0).Rows(i).Item(8))
                 SIPension = DbNullToDouble(DsTax.Tables(0).Rows(i).Item(9))
+                ' OriginalCode = DbNullToString(DsTax.Tables(0).Rows(i).Item(11))
 
                 If SameRow = -1 Then
                     R = dt.NewRow
@@ -815,6 +825,7 @@ Public Class FrmIR61_2019
                     R(COLx_GhsWithheldFromEmployeeBonus) = "0,00"
                     R(COLx_BonusGhsEmployersContribution) = "0,00"
                     R(COLx_PensionableBenefitsContribution) = "0,00"
+                    '  R(COLx_OriginalCode) = originalcode
                     If TIC = "" Then
                         If Error1 = "" Then
                             Error1 = "Missing TIC numbers of Employee(s):" & Chr(13)
@@ -837,13 +848,23 @@ Public Class FrmIR61_2019
             For i = 0 To Ds.Tables(0).Rows.Count - 1
                 TotalRows = TotalRows + 1
                 Code = DbNullToString(Ds.Tables(0).Rows(i).Item(COLx_EmpCode))
+
                 Dim k As Integer
                 For k = 0 To DsTaxable.Tables(0).Rows.Count - 1
                     Dim tCode As String
+
                     tCode = DbNullToString(DsTaxable.Tables(0).Rows(k).Item(0))
+                    OriginalCode = DbNullToString(DsTaxable.Tables(0).Rows(k).Item(3))
                     If Code = tCode Then
+
+                        Dim cc As Double
                         Ds.Tables(0).Rows(i).Item(COLx_Emoluments) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_Emoluments)) + DbNullToDouble(DbNullToString(DsTaxable.Tables(0).Rows(k).Item(1)))
                         '   Exit For
+                        Dim XX As Double
+                        XX = Global1.Business.FindNonTaxable_BUT_GesiableToTax_TotalForTemplateGroupForEmployee(PerGroup.TemGrpCode, PerGroup.Code, OriginalCode, GLB_StringForTemplateGroupPeriodGroupSIPeriods)
+                        cc = Ds.Tables(0).Rows(i).Item(COLx_Emoluments)
+                        Ds.Tables(0).Rows(i).Item(COLx_Emoluments) = Ds.Tables(0).Rows(i).Item(COLx_Emoluments) + XX
+
                     End If
                 Next
 
@@ -1590,7 +1611,11 @@ Public Class FrmIR61_2019
         Me.txtTaxMonth.Text = SIPeriod.DescriptionL
 
         DsTax = Global1.Business.REPORT_IR61_PerEmployee(PerGroup, SIPeriod, True)
+
+        Global1.GLB_StringForTemplateGroupPeriodGroupSIPeriods = ""
         DsTaxable = Global1.Business.REPORT_IR61_GetTaxableIncome_PerEmployee(PerGroup, SIPeriod, True)
+
+
         DsDED = Global1.Business.REPORT_IR61_Gesy_DEDUCTION_PerEmployee(PerGroup, SIPeriod, True)
         DsCON = Global1.Business.REPORT_IR61_Gesy_CONTRIBUTION_PerEmployee(PerGroup, SIPeriod, True)
         DsCONPen = Global1.Business.REPORT_IR61_Gesy_CONTRIBUTION_LWBPen_PerEmployee(PerGroup, SIPeriod, True)
@@ -1807,10 +1832,16 @@ Public Class FrmIR61_2019
                 Dim k As Integer
                 For k = 0 To DsTaxable.Tables(0).Rows.Count - 1
                     Dim tCode As String
+                    Dim OriginalCode As String
                     tCode = DbNullToString(DsTaxable.Tables(0).Rows(k).Item(0))
+                    OriginalCode = DbNullToString(DsTaxable.Tables(0).Rows(k).Item(3))
                     If Code = tCode Then
                         Ds.Tables(0).Rows(i).Item(COLx_Emoluments) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_Emoluments)) + DbNullToDouble(DbNullToString(DsTaxable.Tables(0).Rows(k).Item(1)))
                         '   Exit For
+                        Dim XX As Double
+                        XX = Global1.Business.FindNonTaxable_BUT_GesiableToTax_TotalForTemplateGroupForEmployee(PerGroup.TemGrpCode, PerGroup.Code, OriginalCode, GLB_StringForTemplateGroupPeriodGroupSIPeriods)
+
+                        Ds.Tables(0).Rows(i).Item(COLx_Emoluments) = Ds.Tables(0).Rows(i).Item(COLx_Emoluments) + XX
                     End If
                 Next
 

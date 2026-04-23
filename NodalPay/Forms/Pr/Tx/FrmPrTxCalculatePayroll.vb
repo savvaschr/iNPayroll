@@ -11053,6 +11053,10 @@ Public Class FrmPrTxCalculatePayroll
 
             End If
         Next
+        If Math.Abs(Value) < 0.0000001 Then
+            Value = 0
+        End If
+
         Return Value
     End Function
     Private Function CalculateTotalDeductions() As Double

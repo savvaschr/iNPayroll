@@ -153,6 +153,7 @@ Partial Class FrmMain
         Me.LoadEmployeesFromNODALToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoadEmployeeIBANToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LoadAnalysis2ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.FixContributionYTDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuTimeAttendance = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuSchedule = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuActuall = New System.Windows.Forms.ToolStripMenuItem()
@@ -268,7 +269,6 @@ Partial Class FrmMain
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.PanelJira = New System.Windows.Forms.Panel()
         Me.LabelJirastatus = New System.Windows.Forms.Label()
-        Me.FixContributionYTDToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.ToolStrip.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
@@ -280,7 +280,7 @@ Partial Class FrmMain
         'MenuStrip
         '
         Me.MenuStrip.ImageScalingSize = New System.Drawing.Size(20, 20)
-        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileMenu, Me.MnuAdministration, Me.MnuMaintenance, Me.MnuPayroll, Me.MnuSystem, Me.MnuApplicationSetup, Me.MnuReports, Me.MnuLoadFileX, Me.MnuTimeAttendance, Me.mnuWindow, Me.MnuAdminUtils, Me.TempToolStripMenuItem, Me.mnuImportFromExcelNew, Me.mnuExelsys, Me.AboutToolStripMenuItem})
+        Me.MenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileMenu, Me.MnuAdministration, Me.MnuMaintenance, Me.MnuPayroll, Me.MnuSystem, Me.MnuApplicationSetup, Me.MnuReports, Me.MnuLoadFileX, Me.MnuTimeAttendance, Me.mnuWindow, Me.MnuAdminUtils, Me.TempToolStripMenuItem, Me.mnuImportFromExcelNew, Me.AboutToolStripMenuItem, Me.mnuExelsys})
         Me.MenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip.MdiWindowListItem = Me.mnuWindow
         Me.MenuStrip.Name = "MenuStrip"
@@ -1081,6 +1081,12 @@ Partial Class FrmMain
         Me.LoadAnalysis2ToolStripMenuItem.Size = New System.Drawing.Size(234, 22)
         Me.LoadAnalysis2ToolStripMenuItem.Text = "Load Analysis2"
         '
+        'FixContributionYTDToolStripMenuItem
+        '
+        Me.FixContributionYTDToolStripMenuItem.Name = "FixContributionYTDToolStripMenuItem"
+        Me.FixContributionYTDToolStripMenuItem.Size = New System.Drawing.Size(234, 22)
+        Me.FixContributionYTDToolStripMenuItem.Text = "Fix Contribution YTD"
+        '
         'MnuTimeAttendance
         '
         Me.MnuTimeAttendance.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuSchedule, Me.MnuActuall, Me.ToolStripSeparator29, Me.mnuImportExcelFromJIRA})
@@ -1816,12 +1822,6 @@ Partial Class FrmMain
         Me.LabelJirastatus.Size = New System.Drawing.Size(73, 13)
         Me.LabelJirastatus.TabIndex = 0
         Me.LabelJirastatus.Text = "Please wait ..."
-        '
-        'FixContributionYTDToolStripMenuItem
-        '
-        Me.FixContributionYTDToolStripMenuItem.Name = "FixContributionYTDToolStripMenuItem"
-        Me.FixContributionYTDToolStripMenuItem.Size = New System.Drawing.Size(234, 22)
-        Me.FixContributionYTDToolStripMenuItem.Text = "Fix Contribution YTD"
         '
         'FrmMain
         '

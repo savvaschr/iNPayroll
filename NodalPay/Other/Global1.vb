@@ -1,14 +1,15 @@
 Module Global1
-    Public Version As String = "2.2026.001"
+    Public Version As String = "2.2026.003"
     'YTD Report
     'Sum Annual Units for 13nth
     'Open Next Year Period Automatically
 
-    Public VersionDate As String = "12/01/2026"
+    Public VersionDate As String = "18/03/2026"
     '14th Salary
     'Payslip directory
 
     Public GLBNewTaxmethod As Boolean = False
+    Public GLB_StringForTemplateGroupPeriodGroupSIPeriods As String = ""
 
     Public ConnectionTimeoutValue As Integer = 180
     Public IsConnected As Boolean

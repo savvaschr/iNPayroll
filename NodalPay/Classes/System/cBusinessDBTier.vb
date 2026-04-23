@@ -20508,40 +20508,49 @@ todo:   ' check for status in trxnheader
                 R(C_Rehire) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(22))
                 R(C_email) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(33))
 
-                If Adr1 = "" Then
-                    If ShowMessages Then
-                        HasErrors = True
-                        'MsgBox("Employee with Code " & EmpCode & " has a Tax Identification Type of " & IDType & " with an empty Value,Please correct", MsgBoxStyle.Critical)
-                        MainError = MainError & Chr(10) & "Employee with Code " & EmpCode & " has no Address Line 1"
-                        'Ds.Tables.Clear()
-                        'Exit Function
-                    End If
-                End If
+                'If Adr1 = "" Then
+                '    If ShowMessages Then
+                '        HasErrors = True
+                '        'MsgBox("Employee with Code " & EmpCode & " has a Tax Identification Type of " & IDType & " with an empty Value,Please correct", MsgBoxStyle.Critical)
+                '        MainError = MainError & Chr(10) & "Employee with Code " & EmpCode & " has no Address Line 1"
+                '        'Ds.Tables.Clear()
+                '        'Exit Function
+                '    End If
+                'End If
 
-                If DbNullToString(DsEmp.Tables(0).Rows(i).Item(3)) = "" Then
-                    If ShowMessages Then
-                        HasErrors = True
-                        'MsgBox("Employee with Code " & EmpCode & " has a Tax Identification Type of " & IDType & " with an empty Value,Please correct", MsgBoxStyle.Critical)
-                        MainError = MainError & Chr(10) & "Employee with Code " & EmpCode & " has no CITY"
-                        'Ds.Tables.Clear()
-                        'Exit Function
-                    End If
-                End If
+                'If DbNullToString(DsEmp.Tables(0).Rows(i).Item(3)) = "" Then
+                '    If ShowMessages Then
+                '        HasErrors = True
+                '        'MsgBox("Employee with Code " & EmpCode & " has a Tax Identification Type of " & IDType & " with an empty Value,Please correct", MsgBoxStyle.Critical)
+                '        MainError = MainError & Chr(10) & "Employee with Code " & EmpCode & " has no CITY"
+                '        'Ds.Tables.Clear()
+                '        'Exit Function
+                '    End If
+                'End If
 
-                If DbNullToString(DsEmp.Tables(0).Rows(i).Item(5)) = "" Then
-                    If ShowMessages Then
-                        HasErrors = True
-                        'MsgBox("Employee with Code " & EmpCode & " has a Tax Identification Type of " & IDType & " with an empty Value,Please correct", MsgBoxStyle.Critical)
-                        MainError = MainError & Chr(10) & "Employee with Code " & EmpCode & " has no POST CODE"
-                        'Ds.Tables.Clear()
-                        'Exit Function
-                    End If
-                End If
+                'If DbNullToString(DsEmp.Tables(0).Rows(i).Item(5)) = "" Then
+                '    If ShowMessages Then
+                '        HasErrors = True
+                '        'MsgBox("Employee with Code " & EmpCode & " has a Tax Identification Type of " & IDType & " with an empty Value,Please correct", MsgBoxStyle.Critical)
+                '        MainError = MainError & Chr(10) & "Employee with Code " & EmpCode & " has no POST CODE"
+                '        'Ds.Tables.Clear()
+                '        'Exit Function
+                '    End If
+                'End If
                 If DbNullToString(DsEmp.Tables(0).Rows(i).Item(14)) = "" Then
                     If ShowMessages Then
                         HasErrors = True
                         'MsgBox("Employee with Code " & EmpCode & " has a Tax Identification Type of " & IDType & " with an empty Value,Please correct", MsgBoxStyle.Critical)
                         MainError = MainError & Chr(10) & "Employee with Code " & EmpCode & " has no Social Insurance Number"
+                        'Ds.Tables.Clear()
+                        'Exit Function
+                    End If
+                End If
+                If DbNullToString(DsEmp.Tables(0).Rows(i).Item(6)) = "" Then
+                    If ShowMessages Then
+                        HasErrors = True
+                        'MsgBox("Employee with Code " & EmpCode & " has a Tax Identification Type of " & IDType & " with an empty Value,Please correct", MsgBoxStyle.Critical)
+                        MainError = MainError & Chr(10) & "Employee with Code " & EmpCode & " has no TIC Number"
                         'Ds.Tables.Clear()
                         'Exit Function
                     End If
@@ -23328,7 +23337,8 @@ todo:   ' check for status in trxnheader
         " PrMsEmployees.Emp_LWBPen," &
         " PrTxTrxnLines.TrxLin_PeriodValue," &
         " PrMsEmployees.Emp_OtherIncome3, " &
-        " PrMsEmployees.Emp_Rehire " &
+        " PrMsEmployees.Emp_Rehire, " &
+        " PrMsEmployees.Emp_Code as OriginalCode " &
         " FROM PrTxTrxnHeader INNER JOIN" &
         " PrTxTrxnLines ON PrTxTrxnHeader.TrxHdr_Id = PrTxTrxnLines.TrxHdr_Id INNER JOIN" &
         " PrMsDeductionCodes ON PrTxTrxnLines.DedCod_Code = PrMsDeductionCodes.DedCod_Code INNER JOIN" &
@@ -23430,17 +23440,28 @@ todo:   ' check for status in trxnheader
             Next
         End If
 
+        GLB_StringForTemplateGroupPeriodGroupSIPeriods = Str
+
+
 
 
 
         StrX = " Select PrTxTrxnheader.Emp_Code," &
             " PrTxTrxnheader.Trxhdr_TaxableIncome ," &
-        "  PrTxTrxnheader.Trxhdr_NetSalary " &
+        "  PrTxTrxnheader.Trxhdr_NetSalary, " &
+        "  PrTxTrxnheader.Emp_Code as OriginalCode " &
             " FROM  PrTxTrxnHeader "
         ' " And (PrTxTrxnHeader.TemGrp_Code = " & enQuoteString(PerGrp.TemGrpCode) & ")"
 
         'StrX = StrX & Str2X & Str & StrZ
         StrX = StrX & Str & " Order by PrTxtrxnHeader.emp_Code ASC"
+
+        ' Dim XXX As Double
+
+
+
+
+
 
         Return GetData(StrX)
 
@@ -28209,7 +28230,8 @@ todo:   ' check for status in trxnheader
 
         Return NonTaxable
     End Function
-    Public Function FindNonTaxable_BUT_GesiableToTax_TotalForTemplateGroupForEmployee(ByVal TemGrp As String, ByVal PeriodGroup As String, ByVal EmpCode As String) As Double
+    Public Function FindNonTaxable_BUT_GesiableToTax_TotalForTemplateGroupForEmployeeForSIPeriod(ByVal TemGrp As String, ByVal PeriodGroup As String, ByVal EmpCode As String, PeriodCodesString As String) As Double
+        'SAVVAS 17/03/2026
         Dim Str As String
         Dim Ds As DataSet
         Dim Formula As String = ""
@@ -28263,11 +28285,6 @@ todo:   ' check for status in trxnheader
 
 
 
-
-        'Str = "select TemErn_Sequence," & _
-        '" ErnCod_Code " & _
-        '" FROM PrMsTemplateEarnings" & _
-        '" WHERE TemGrp_Code=" & enQuoteString(TemGrp)
 
         Str = " SELECT  PrMsTemplateEarnings.TemErn_Sequence," &
             " PrMsTemplateEarnings.ErnCod_Code," &
@@ -28336,15 +28353,27 @@ todo:   ' check for status in trxnheader
                 Next
             End If
             If S <> "" Then
+                'S = S & " )"
+                'Str = "SELECT sum(PrTxTrxnLines.TrxLin_PeriodValue)" &
+                '    " FROM PrTxTrxnLines INNER JOIN" &
+                '    " PrTxTrxnHeader ON PrTxTrxnLines.TrxHdr_Id = PrTxTrxnHeader.TrxHdr_Id" &
+                '    " WHERE  (PrTxTrxnHeader.PrdGrp_Code = " & enQuoteString(PeriodGroup) & ") AND" &
+                '    " (PrTxTrxnHeader.Emp_Code = " & enQuoteString(EmpCode) & ") AND " &
+                '    " (PrTxTrxnHeader.TemGrp_Code = " & enQuoteString(TemGrp) & ") AND "
+
+                'Str = Str & S
+
+
                 S = S & " )"
                 Str = "SELECT sum(PrTxTrxnLines.TrxLin_PeriodValue)" &
                     " FROM PrTxTrxnLines INNER JOIN" &
                     " PrTxTrxnHeader ON PrTxTrxnLines.TrxHdr_Id = PrTxTrxnHeader.TrxHdr_Id" &
-                    " WHERE  (PrTxTrxnHeader.PrdGrp_Code = " & enQuoteString(PeriodGroup) & ") AND" &
-                    " (PrTxTrxnHeader.Emp_Code = " & enQuoteString(EmpCode) & ") AND " &
-                    " (PrTxTrxnHeader.TemGrp_Code = " & enQuoteString(TemGrp) & ") AND "
+                    " WHERE (PrTxTrxnHeader.Emp_Code = " & enQuoteString(EmpCode) & ") AND "
+                Dim StrX As String
+                StrX = Replace(Global1.GLB_StringForTemplateGroupPeriodGroupSIPeriods, "Where", " AND ")
 
-                Str = Str & S
+
+                Str = Str & S & StrX
 
 
                 Dim Ds2 As DataSet

@@ -20870,8 +20870,8 @@ Public Class FrmPayroll1
 
                     Dim codeD1 As String = "D1"
                     Dim codeD12 As String = "D12"
-                    Dim codeD23 As String = "E23"
-                    Dim codeD24 As String = "E24"
+                    Dim codeD23 As String = "D23"
+                    Dim codeD24 As String = "D24"
 
 
                     Do While StopInput = False
@@ -21076,23 +21076,51 @@ Public Class FrmPayroll1
 
                                     MyDs.Tables(0).Rows(k).Item(Column_Overtime1) = vOvertime1
                                     MyDs.Tables(0).Rows(k).Item(Column_ActualUnits) = vMonthlyUnits
-                                    MyDs.Tables(0).Rows(k).Item(E33Index) = vE33
-                                    MyDs.Tables(0).Rows(k).Item(E34Index) = vE34
-                                    MyDs.Tables(0).Rows(k).Item(E35Index) = vE35
-                                    MyDs.Tables(0).Rows(k).Item(E11Index) = vE11
-                                    MyDs.Tables(0).Rows(k).Item(E80Index) = vE80
-                                    MyDs.Tables(0).Rows(k).Item(E81Index) = vE81
-                                    MyDs.Tables(0).Rows(k).Item(E37Index) = vE37
-                                    MyDs.Tables(0).Rows(k).Item(E38Index) = vE38
-                                    MyDs.Tables(0).Rows(k).Item(E39Index) = vE39
-                                    MyDs.Tables(0).Rows(k).Item(E30Index) = vE30
+
+                                    If E33Index <> -1 Then
+                                        MyDs.Tables(0).Rows(k).Item(E33Index) = vE33
+                                    End If
+                                    If E34Index <> -1 Then
+                                        MyDs.Tables(0).Rows(k).Item(E34Index) = vE34
+                                    End If
+                                    If E35Index <> -1 Then
+                                        MyDs.Tables(0).Rows(k).Item(E35Index) = vE35
+                                    End If
+                                    If E11Index <> -1 Then
+                                        MyDs.Tables(0).Rows(k).Item(E11Index) = vE11
+                                    End If
+                                    If E80Index <> -1 Then
+                                        MyDs.Tables(0).Rows(k).Item(E80Index) = vE80
+                                    End If
+                                    If E81Index <> -1 Then
+                                        MyDs.Tables(0).Rows(k).Item(E81Index) = vE81
+                                    End If
+                                    If E37Index <> -1 Then
+                                        MyDs.Tables(0).Rows(k).Item(E37Index) = vE37
+                                    End If
+                                    If E38Index <> -1 Then
+                                        MyDs.Tables(0).Rows(k).Item(E38Index) = vE38
+                                    End If
+                                    If E39Index <> -1 Then
+                                        MyDs.Tables(0).Rows(k).Item(E39Index) = vE39
+                                    End If
+                                    If E30Index <> -1 Then
+                                        MyDs.Tables(0).Rows(k).Item(E30Index) = vE30
+                                    End If
 
 
-
-                                    MyDs.Tables(0).Rows(k).Item(D1Index) = vD1
-                                    MyDs.Tables(0).Rows(k).Item(D12Index) = vD12
-                                    MyDs.Tables(0).Rows(k).Item(D23Index) = vD23
-                                    MyDs.Tables(0).Rows(k).Item(D24Index) = vD24
+                                    If D1Index <> -1 Then
+                                        MyDs.Tables(0).Rows(k).Item(D1Index) = vD1
+                                    End If
+                                    If D12Index <> -1 Then
+                                        MyDs.Tables(0).Rows(k).Item(D12Index) = vD12
+                                    End If
+                                    If D23Index <> -1 Then
+                                        MyDs.Tables(0).Rows(k).Item(D23Index) = vD23
+                                    End If
+                                    If D24Index <> -1 Then
+                                        MyDs.Tables(0).Rows(k).Item(D24Index) = vD24
+                                    End If
 
                                 End If
                             End If

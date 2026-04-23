@@ -22,60 +22,60 @@ Partial Class FrmPayroll1
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle55 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle107 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle108 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle56 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle57 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle58 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle59 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle60 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle61 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle62 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle63 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle64 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle65 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle66 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle67 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle68 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle69 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle70 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle71 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle72 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle73 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle74 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle75 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle76 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle77 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle78 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle79 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle80 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle81 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle82 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle83 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle84 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle85 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle86 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle87 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle88 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle89 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle90 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle91 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle92 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle93 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle94 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle95 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle96 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle97 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle98 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle99 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle100 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle101 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle102 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle103 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle104 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle105 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle106 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle53 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle54 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle31 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle32 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle33 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle34 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle35 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle36 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle37 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle38 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle39 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle40 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle41 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle42 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle43 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle44 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle45 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle46 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle47 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle48 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle49 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle50 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle51 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle52 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmPayroll1))
         Me.ComboTempGroups = New System.Windows.Forms.ComboBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -215,60 +215,6 @@ Partial Class FrmPayroll1
         Me.TSBDeleteSelected = New System.Windows.Forms.ToolStripMenuItem()
         Me.TSBDeleteALL = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteALLLinesNOWarningsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSplitButton2 = New System.Windows.Forms.ToolStripSplitButton()
-        Me.mnuPayrollAnalysis = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuSIReports = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuIRReports = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator15 = New System.Windows.Forms.ToolStripSeparator()
-        Me.EmployeesEDCReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.ComboStatus = New System.Windows.Forms.ComboBox()
-        Me.PanelLoading = New System.Windows.Forms.Panel()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.ComboAnal = New System.Windows.Forms.ComboBox()
-        Me.ComboSelectAnal = New System.Windows.Forms.ComboBox()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.CBBank = New System.Windows.Forms.CheckBox()
-        Me.CBCheque = New System.Windows.Forms.CheckBox()
-        Me.CBCash = New System.Windows.Forms.CheckBox()
-        Me.LblCount = New System.Windows.Forms.Label()
-        Me.RadioCode = New System.Windows.Forms.RadioButton()
-        Me.RadioName = New System.Windows.Forms.RadioButton()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.txtNonTaxable = New System.Windows.Forms.TextBox()
-        Me.txtTaxablePeriods = New System.Windows.Forms.TextBox()
-        Me.txtTotalPeriods = New System.Windows.Forms.TextBox()
-        Me.lblNonTaPeriods = New System.Windows.Forms.Label()
-        Me.lblTaxabPeriods = New System.Windows.Forms.Label()
-        Me.lblTotalPeriods = New System.Windows.Forms.Label()
-        Me.btnGoToEmployeeCard = New System.Windows.Forms.Button()
-        Me.btncalcSelectedLine = New System.Windows.Forms.Button()
-        Me.btnPrepareSelected = New System.Windows.Forms.Button()
-        Me.btnDeleteLine = New System.Windows.Forms.Button()
-        Me.CBSelectGrid = New System.Windows.Forms.CheckBox()
-        Me.btnUndoCalculation = New System.Windows.Forms.Button()
-        Me.btnSCP = New System.Windows.Forms.Button()
-        Me.LabelStatus = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.CBOnlyLeavers = New System.Windows.Forms.CheckBox()
-        Me.txtGenanal1 = New System.Windows.Forms.TextBox()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.ComboNoOfRows = New System.Windows.Forms.ComboBox()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.RadioAnalysis = New System.Windows.Forms.RadioButton()
-        Me.CBReloadsalary = New System.Windows.Forms.CheckBox()
-        Me.BtnGoToemployeeSalary = New System.Windows.Forms.Button()
-        Me.btnShowTotals = New System.Windows.Forms.Button()
-        Me.RadioTA = New System.Windows.Forms.RadioButton()
-        Me.CBEwallet = New System.Windows.Forms.CheckBox()
-        Me.CBUseEmail2 = New System.Windows.Forms.CheckBox()
-        Me.btnTemplateSearch = New System.Windows.Forms.Button()
-        Me.CBReloadDates = New System.Windows.Forms.CheckBox()
-        Me.BtnNext1 = New System.Windows.Forms.Button()
-        Me.BtnPrevius1 = New System.Windows.Forms.Button()
         Me.ToolStripDropDownButton3 = New System.Windows.Forms.ToolStripDropDownButton()
         Me.CALCToPREPToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.POSTToCALCToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -347,9 +293,63 @@ Partial Class FrmPayroll1
         Me.ImportCCFile1ExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportCCFile1TextToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportFileTemplate2ExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ImportFileTemplate3ExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSplitButton2 = New System.Windows.Forms.ToolStripSplitButton()
+        Me.mnuPayrollAnalysis = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuSIReports = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuIRReports = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator15 = New System.Windows.Forms.ToolStripSeparator()
+        Me.EmployeesEDCReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.btnMyReminders = New System.Windows.Forms.ToolStripSplitButton()
         Me.BtnOpenExportFiles = New System.Windows.Forms.ToolStripButton()
-        Me.ImportFileTemplate3ExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.ComboStatus = New System.Windows.Forms.ComboBox()
+        Me.PanelLoading = New System.Windows.Forms.Panel()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.ComboAnal = New System.Windows.Forms.ComboBox()
+        Me.ComboSelectAnal = New System.Windows.Forms.ComboBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.CBBank = New System.Windows.Forms.CheckBox()
+        Me.CBCheque = New System.Windows.Forms.CheckBox()
+        Me.CBCash = New System.Windows.Forms.CheckBox()
+        Me.LblCount = New System.Windows.Forms.Label()
+        Me.RadioCode = New System.Windows.Forms.RadioButton()
+        Me.RadioName = New System.Windows.Forms.RadioButton()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.txtNonTaxable = New System.Windows.Forms.TextBox()
+        Me.txtTaxablePeriods = New System.Windows.Forms.TextBox()
+        Me.txtTotalPeriods = New System.Windows.Forms.TextBox()
+        Me.lblNonTaPeriods = New System.Windows.Forms.Label()
+        Me.lblTaxabPeriods = New System.Windows.Forms.Label()
+        Me.lblTotalPeriods = New System.Windows.Forms.Label()
+        Me.btnGoToEmployeeCard = New System.Windows.Forms.Button()
+        Me.btncalcSelectedLine = New System.Windows.Forms.Button()
+        Me.btnPrepareSelected = New System.Windows.Forms.Button()
+        Me.btnDeleteLine = New System.Windows.Forms.Button()
+        Me.CBSelectGrid = New System.Windows.Forms.CheckBox()
+        Me.btnUndoCalculation = New System.Windows.Forms.Button()
+        Me.btnSCP = New System.Windows.Forms.Button()
+        Me.LabelStatus = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.CBOnlyLeavers = New System.Windows.Forms.CheckBox()
+        Me.txtGenanal1 = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.ComboNoOfRows = New System.Windows.Forms.ComboBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.RadioAnalysis = New System.Windows.Forms.RadioButton()
+        Me.CBReloadsalary = New System.Windows.Forms.CheckBox()
+        Me.BtnGoToemployeeSalary = New System.Windows.Forms.Button()
+        Me.btnShowTotals = New System.Windows.Forms.Button()
+        Me.RadioTA = New System.Windows.Forms.RadioButton()
+        Me.CBEwallet = New System.Windows.Forms.CheckBox()
+        Me.CBUseEmail2 = New System.Windows.Forms.CheckBox()
+        Me.btnTemplateSearch = New System.Windows.Forms.Button()
+        Me.CBReloadDates = New System.Windows.Forms.CheckBox()
+        Me.BtnNext1 = New System.Windows.Forms.Button()
+        Me.BtnPrevius1 = New System.Windows.Forms.Button()
         CType(Me.DG1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.PanelLoading.SuspendLayout()
@@ -383,34 +383,34 @@ Partial Class FrmPayroll1
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.DG1.BackgroundColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle55.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle55.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle55.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
-        DataGridViewCellStyle55.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle55.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle55.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle55.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DG1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle55
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DG1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.DG1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DG1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Status, Me.Enabled1, Me.EmpCode, Me.EmpName, Me.ActualUnits, Me.OverTime1, Me.OverTime2, Me.OverTime3, Me.SIUnits, Me.Sectors, Me.DutyHours, Me.FlightHours, Me.Commission, Me.OverLay, Me.PBAmount, Me.PBRate, Me.Ern1, Me.Eval1, Me.Ern2, Me.EVal2, Me.Ern3, Me.EVal3, Me.Ern4, Me.Eval4, Me.Ern5, Me.Eval5, Me.Ern6, Me.Eval6, Me.Ern7, Me.Eval7, Me.Ern8, Me.Eval8, Me.Ern9, Me.Eval9, Me.Ern10, Me.Eval10, Me.Ern11, Me.Eval11, Me.Ern12, Me.Eval12, Me.Ern13, Me.Eval13, Me.Ern14, Me.Eval14, Me.Ern15, Me.Eval15, Me.Ded1, Me.DVal1, Me.Ded2, Me.DVal2, Me.Ded3, Me.DVal3, Me.Ded4, Me.DVal4, Me.Ded5, Me.DVal5, Me.Ded6, Me.DVal6, Me.Ded7, Me.DVal7, Me.Ded8, Me.DVal8, Me.Ded9, Me.DVal9, Me.Ded10, Me.DVal10, Me.Ded11, Me.DVal11, Me.Ded12, Me.DVal12, Me.Ded13, Me.DVal13, Me.Ded14, Me.DVal14, Me.Ded15, Me.DVal15, Me.Con1, Me.CVal1, Me.Con2, Me.CVal2, Me.Con3, Me.CVal3, Me.Con4, Me.CVal4, Me.Con5, Me.CVal5, Me.Con6, Me.CVal6, Me.Con7, Me.CVal7, Me.Con8, Me.CVal8, Me.Con9, Me.CVal9, Me.Con10, Me.CVal10, Me.Con11, Me.CVal11, Me.Con12, Me.CVal12, Me.Con13, Me.CVal13, Me.Con14, Me.CVal14, Me.Con15, Me.CVal15})
-        DataGridViewCellStyle107.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle107.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle107.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
-        DataGridViewCellStyle107.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle107.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle107.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle107.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DG1.DefaultCellStyle = DataGridViewCellStyle107
+        DataGridViewCellStyle53.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle53.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle53.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        DataGridViewCellStyle53.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle53.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle53.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle53.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DG1.DefaultCellStyle = DataGridViewCellStyle53
         Me.DG1.Location = New System.Drawing.Point(12, 210)
         Me.DG1.Name = "DG1"
-        DataGridViewCellStyle108.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle108.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle108.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
-        DataGridViewCellStyle108.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle108.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle108.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle108.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DG1.RowHeadersDefaultCellStyle = DataGridViewCellStyle108
+        DataGridViewCellStyle54.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle54.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle54.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        DataGridViewCellStyle54.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle54.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle54.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle54.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DG1.RowHeadersDefaultCellStyle = DataGridViewCellStyle54
         Me.DG1.Size = New System.Drawing.Size(1332, 461)
         Me.DG1.TabIndex = 2
         '
@@ -427,10 +427,10 @@ Partial Class FrmPayroll1
         'Enabled1
         '
         Me.Enabled1.DataPropertyName = "Enabled"
-        DataGridViewCellStyle56.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle56.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
-        DataGridViewCellStyle56.NullValue = False
-        Me.Enabled1.DefaultCellStyle = DataGridViewCellStyle56
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        DataGridViewCellStyle2.NullValue = False
+        Me.Enabled1.DefaultCellStyle = DataGridViewCellStyle2
         Me.Enabled1.FalseValue = "0"
         Me.Enabled1.Frozen = True
         Me.Enabled1.HeaderText = "Selected"
@@ -460,9 +460,9 @@ Partial Class FrmPayroll1
         'ActualUnits
         '
         Me.ActualUnits.DataPropertyName = "ActualUnits"
-        DataGridViewCellStyle57.Format = "0.00"
-        DataGridViewCellStyle57.NullValue = "0.00"
-        Me.ActualUnits.DefaultCellStyle = DataGridViewCellStyle57
+        DataGridViewCellStyle3.Format = "0.00"
+        DataGridViewCellStyle3.NullValue = "0.00"
+        Me.ActualUnits.DefaultCellStyle = DataGridViewCellStyle3
         Me.ActualUnits.Frozen = True
         Me.ActualUnits.HeaderText = "Actual Units"
         Me.ActualUnits.Name = "ActualUnits"
@@ -472,9 +472,9 @@ Partial Class FrmPayroll1
         'OverTime1
         '
         Me.OverTime1.DataPropertyName = "OverTime1"
-        DataGridViewCellStyle58.Format = "0.00"
-        DataGridViewCellStyle58.NullValue = "0.00"
-        Me.OverTime1.DefaultCellStyle = DataGridViewCellStyle58
+        DataGridViewCellStyle4.Format = "0.00"
+        DataGridViewCellStyle4.NullValue = "0.00"
+        Me.OverTime1.DefaultCellStyle = DataGridViewCellStyle4
         Me.OverTime1.Frozen = True
         Me.OverTime1.HeaderText = "OverTime1"
         Me.OverTime1.Name = "OverTime1"
@@ -484,9 +484,9 @@ Partial Class FrmPayroll1
         'OverTime2
         '
         Me.OverTime2.DataPropertyName = "OverTime2"
-        DataGridViewCellStyle59.Format = "0.00"
-        DataGridViewCellStyle59.NullValue = "0.00"
-        Me.OverTime2.DefaultCellStyle = DataGridViewCellStyle59
+        DataGridViewCellStyle5.Format = "0.00"
+        DataGridViewCellStyle5.NullValue = "0.00"
+        Me.OverTime2.DefaultCellStyle = DataGridViewCellStyle5
         Me.OverTime2.Frozen = True
         Me.OverTime2.HeaderText = "OverTime2"
         Me.OverTime2.Name = "OverTime2"
@@ -496,9 +496,9 @@ Partial Class FrmPayroll1
         'OverTime3
         '
         Me.OverTime3.DataPropertyName = "OverTime3"
-        DataGridViewCellStyle60.Format = "0.00"
-        DataGridViewCellStyle60.NullValue = "0.00"
-        Me.OverTime3.DefaultCellStyle = DataGridViewCellStyle60
+        DataGridViewCellStyle6.Format = "0.00"
+        DataGridViewCellStyle6.NullValue = "0.00"
+        Me.OverTime3.DefaultCellStyle = DataGridViewCellStyle6
         Me.OverTime3.Frozen = True
         Me.OverTime3.HeaderText = "OverTime3"
         Me.OverTime3.Name = "OverTime3"
@@ -508,9 +508,9 @@ Partial Class FrmPayroll1
         'SIUnits
         '
         Me.SIUnits.DataPropertyName = "SIUnits"
-        DataGridViewCellStyle61.Format = "0.00"
-        DataGridViewCellStyle61.NullValue = "0.00"
-        Me.SIUnits.DefaultCellStyle = DataGridViewCellStyle61
+        DataGridViewCellStyle7.Format = "0.00"
+        DataGridViewCellStyle7.NullValue = "0.00"
+        Me.SIUnits.DefaultCellStyle = DataGridViewCellStyle7
         Me.SIUnits.Frozen = True
         Me.SIUnits.HeaderText = "SIUnits"
         Me.SIUnits.Name = "SIUnits"
@@ -575,8 +575,8 @@ Partial Class FrmPayroll1
         'Eval1
         '
         Me.Eval1.DataPropertyName = "Eval1"
-        DataGridViewCellStyle62.BackColor = System.Drawing.Color.LemonChiffon
-        Me.Eval1.DefaultCellStyle = DataGridViewCellStyle62
+        DataGridViewCellStyle8.BackColor = System.Drawing.Color.LemonChiffon
+        Me.Eval1.DefaultCellStyle = DataGridViewCellStyle8
         Me.Eval1.HeaderText = "Eval1"
         Me.Eval1.Name = "Eval1"
         Me.Eval1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -593,8 +593,8 @@ Partial Class FrmPayroll1
         'EVal2
         '
         Me.EVal2.DataPropertyName = "EVal2"
-        DataGridViewCellStyle63.BackColor = System.Drawing.Color.LemonChiffon
-        Me.EVal2.DefaultCellStyle = DataGridViewCellStyle63
+        DataGridViewCellStyle9.BackColor = System.Drawing.Color.LemonChiffon
+        Me.EVal2.DefaultCellStyle = DataGridViewCellStyle9
         Me.EVal2.HeaderText = "Eval2"
         Me.EVal2.Name = "EVal2"
         Me.EVal2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -611,8 +611,8 @@ Partial Class FrmPayroll1
         'EVal3
         '
         Me.EVal3.DataPropertyName = "EVal3"
-        DataGridViewCellStyle64.BackColor = System.Drawing.Color.LemonChiffon
-        Me.EVal3.DefaultCellStyle = DataGridViewCellStyle64
+        DataGridViewCellStyle10.BackColor = System.Drawing.Color.LemonChiffon
+        Me.EVal3.DefaultCellStyle = DataGridViewCellStyle10
         Me.EVal3.HeaderText = "EVal3"
         Me.EVal3.Name = "EVal3"
         Me.EVal3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -629,8 +629,8 @@ Partial Class FrmPayroll1
         'Eval4
         '
         Me.Eval4.DataPropertyName = "Eval4"
-        DataGridViewCellStyle65.BackColor = System.Drawing.Color.LemonChiffon
-        Me.Eval4.DefaultCellStyle = DataGridViewCellStyle65
+        DataGridViewCellStyle11.BackColor = System.Drawing.Color.LemonChiffon
+        Me.Eval4.DefaultCellStyle = DataGridViewCellStyle11
         Me.Eval4.HeaderText = "Eval4"
         Me.Eval4.Name = "Eval4"
         Me.Eval4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -647,8 +647,8 @@ Partial Class FrmPayroll1
         'Eval5
         '
         Me.Eval5.DataPropertyName = "Eval5"
-        DataGridViewCellStyle66.BackColor = System.Drawing.Color.LemonChiffon
-        Me.Eval5.DefaultCellStyle = DataGridViewCellStyle66
+        DataGridViewCellStyle12.BackColor = System.Drawing.Color.LemonChiffon
+        Me.Eval5.DefaultCellStyle = DataGridViewCellStyle12
         Me.Eval5.HeaderText = "Eval5"
         Me.Eval5.Name = "Eval5"
         Me.Eval5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -665,8 +665,8 @@ Partial Class FrmPayroll1
         'Eval6
         '
         Me.Eval6.DataPropertyName = "Eval6"
-        DataGridViewCellStyle67.BackColor = System.Drawing.Color.LemonChiffon
-        Me.Eval6.DefaultCellStyle = DataGridViewCellStyle67
+        DataGridViewCellStyle13.BackColor = System.Drawing.Color.LemonChiffon
+        Me.Eval6.DefaultCellStyle = DataGridViewCellStyle13
         Me.Eval6.HeaderText = "Eval6"
         Me.Eval6.Name = "Eval6"
         Me.Eval6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -683,8 +683,8 @@ Partial Class FrmPayroll1
         'Eval7
         '
         Me.Eval7.DataPropertyName = "Eval7"
-        DataGridViewCellStyle68.BackColor = System.Drawing.Color.LemonChiffon
-        Me.Eval7.DefaultCellStyle = DataGridViewCellStyle68
+        DataGridViewCellStyle14.BackColor = System.Drawing.Color.LemonChiffon
+        Me.Eval7.DefaultCellStyle = DataGridViewCellStyle14
         Me.Eval7.HeaderText = "Eval7"
         Me.Eval7.Name = "Eval7"
         Me.Eval7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -701,8 +701,8 @@ Partial Class FrmPayroll1
         'Eval8
         '
         Me.Eval8.DataPropertyName = "Eval8"
-        DataGridViewCellStyle69.BackColor = System.Drawing.Color.LemonChiffon
-        Me.Eval8.DefaultCellStyle = DataGridViewCellStyle69
+        DataGridViewCellStyle15.BackColor = System.Drawing.Color.LemonChiffon
+        Me.Eval8.DefaultCellStyle = DataGridViewCellStyle15
         Me.Eval8.HeaderText = "Eval8"
         Me.Eval8.Name = "Eval8"
         Me.Eval8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -719,8 +719,8 @@ Partial Class FrmPayroll1
         'Eval9
         '
         Me.Eval9.DataPropertyName = "Eval9"
-        DataGridViewCellStyle70.BackColor = System.Drawing.Color.LemonChiffon
-        Me.Eval9.DefaultCellStyle = DataGridViewCellStyle70
+        DataGridViewCellStyle16.BackColor = System.Drawing.Color.LemonChiffon
+        Me.Eval9.DefaultCellStyle = DataGridViewCellStyle16
         Me.Eval9.HeaderText = "Eval9"
         Me.Eval9.Name = "Eval9"
         Me.Eval9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -737,8 +737,8 @@ Partial Class FrmPayroll1
         'Eval10
         '
         Me.Eval10.DataPropertyName = "Eval10"
-        DataGridViewCellStyle71.BackColor = System.Drawing.Color.LemonChiffon
-        Me.Eval10.DefaultCellStyle = DataGridViewCellStyle71
+        DataGridViewCellStyle17.BackColor = System.Drawing.Color.LemonChiffon
+        Me.Eval10.DefaultCellStyle = DataGridViewCellStyle17
         Me.Eval10.HeaderText = "Eval10"
         Me.Eval10.Name = "Eval10"
         Me.Eval10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -755,8 +755,8 @@ Partial Class FrmPayroll1
         'Eval11
         '
         Me.Eval11.DataPropertyName = "Eval11"
-        DataGridViewCellStyle72.BackColor = System.Drawing.Color.LemonChiffon
-        Me.Eval11.DefaultCellStyle = DataGridViewCellStyle72
+        DataGridViewCellStyle18.BackColor = System.Drawing.Color.LemonChiffon
+        Me.Eval11.DefaultCellStyle = DataGridViewCellStyle18
         Me.Eval11.HeaderText = "Eval11"
         Me.Eval11.Name = "Eval11"
         Me.Eval11.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -773,8 +773,8 @@ Partial Class FrmPayroll1
         'Eval12
         '
         Me.Eval12.DataPropertyName = "Eval12"
-        DataGridViewCellStyle73.BackColor = System.Drawing.Color.LemonChiffon
-        Me.Eval12.DefaultCellStyle = DataGridViewCellStyle73
+        DataGridViewCellStyle19.BackColor = System.Drawing.Color.LemonChiffon
+        Me.Eval12.DefaultCellStyle = DataGridViewCellStyle19
         Me.Eval12.HeaderText = "Eval12"
         Me.Eval12.Name = "Eval12"
         Me.Eval12.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -791,8 +791,8 @@ Partial Class FrmPayroll1
         'Eval13
         '
         Me.Eval13.DataPropertyName = "Eval13"
-        DataGridViewCellStyle74.BackColor = System.Drawing.Color.LemonChiffon
-        Me.Eval13.DefaultCellStyle = DataGridViewCellStyle74
+        DataGridViewCellStyle20.BackColor = System.Drawing.Color.LemonChiffon
+        Me.Eval13.DefaultCellStyle = DataGridViewCellStyle20
         Me.Eval13.HeaderText = "Eval13"
         Me.Eval13.Name = "Eval13"
         Me.Eval13.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -809,8 +809,8 @@ Partial Class FrmPayroll1
         'Eval14
         '
         Me.Eval14.DataPropertyName = "Eval14"
-        DataGridViewCellStyle75.BackColor = System.Drawing.Color.LemonChiffon
-        Me.Eval14.DefaultCellStyle = DataGridViewCellStyle75
+        DataGridViewCellStyle21.BackColor = System.Drawing.Color.LemonChiffon
+        Me.Eval14.DefaultCellStyle = DataGridViewCellStyle21
         Me.Eval14.HeaderText = "Eval14"
         Me.Eval14.Name = "Eval14"
         Me.Eval14.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -827,8 +827,8 @@ Partial Class FrmPayroll1
         'Eval15
         '
         Me.Eval15.DataPropertyName = "Eval15"
-        DataGridViewCellStyle76.BackColor = System.Drawing.Color.LemonChiffon
-        Me.Eval15.DefaultCellStyle = DataGridViewCellStyle76
+        DataGridViewCellStyle22.BackColor = System.Drawing.Color.LemonChiffon
+        Me.Eval15.DefaultCellStyle = DataGridViewCellStyle22
         Me.Eval15.HeaderText = "Eval15"
         Me.Eval15.Name = "Eval15"
         Me.Eval15.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -845,8 +845,8 @@ Partial Class FrmPayroll1
         'DVal1
         '
         Me.DVal1.DataPropertyName = "DVal1"
-        DataGridViewCellStyle77.BackColor = System.Drawing.Color.Khaki
-        Me.DVal1.DefaultCellStyle = DataGridViewCellStyle77
+        DataGridViewCellStyle23.BackColor = System.Drawing.Color.Khaki
+        Me.DVal1.DefaultCellStyle = DataGridViewCellStyle23
         Me.DVal1.HeaderText = "DVal1"
         Me.DVal1.Name = "DVal1"
         Me.DVal1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -863,8 +863,8 @@ Partial Class FrmPayroll1
         'DVal2
         '
         Me.DVal2.DataPropertyName = "DVal2"
-        DataGridViewCellStyle78.BackColor = System.Drawing.Color.Khaki
-        Me.DVal2.DefaultCellStyle = DataGridViewCellStyle78
+        DataGridViewCellStyle24.BackColor = System.Drawing.Color.Khaki
+        Me.DVal2.DefaultCellStyle = DataGridViewCellStyle24
         Me.DVal2.HeaderText = "DVal2"
         Me.DVal2.Name = "DVal2"
         Me.DVal2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -881,8 +881,8 @@ Partial Class FrmPayroll1
         'DVal3
         '
         Me.DVal3.DataPropertyName = "DVal3"
-        DataGridViewCellStyle79.BackColor = System.Drawing.Color.Khaki
-        Me.DVal3.DefaultCellStyle = DataGridViewCellStyle79
+        DataGridViewCellStyle25.BackColor = System.Drawing.Color.Khaki
+        Me.DVal3.DefaultCellStyle = DataGridViewCellStyle25
         Me.DVal3.HeaderText = "DVal3"
         Me.DVal3.Name = "DVal3"
         Me.DVal3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -899,8 +899,8 @@ Partial Class FrmPayroll1
         'DVal4
         '
         Me.DVal4.DataPropertyName = "DVal4"
-        DataGridViewCellStyle80.BackColor = System.Drawing.Color.Khaki
-        Me.DVal4.DefaultCellStyle = DataGridViewCellStyle80
+        DataGridViewCellStyle26.BackColor = System.Drawing.Color.Khaki
+        Me.DVal4.DefaultCellStyle = DataGridViewCellStyle26
         Me.DVal4.HeaderText = "DVal4"
         Me.DVal4.Name = "DVal4"
         Me.DVal4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -917,8 +917,8 @@ Partial Class FrmPayroll1
         'DVal5
         '
         Me.DVal5.DataPropertyName = "DVal5"
-        DataGridViewCellStyle81.BackColor = System.Drawing.Color.Khaki
-        Me.DVal5.DefaultCellStyle = DataGridViewCellStyle81
+        DataGridViewCellStyle27.BackColor = System.Drawing.Color.Khaki
+        Me.DVal5.DefaultCellStyle = DataGridViewCellStyle27
         Me.DVal5.HeaderText = "DVal5"
         Me.DVal5.Name = "DVal5"
         Me.DVal5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -935,8 +935,8 @@ Partial Class FrmPayroll1
         'DVal6
         '
         Me.DVal6.DataPropertyName = "DVal6"
-        DataGridViewCellStyle82.BackColor = System.Drawing.Color.Khaki
-        Me.DVal6.DefaultCellStyle = DataGridViewCellStyle82
+        DataGridViewCellStyle28.BackColor = System.Drawing.Color.Khaki
+        Me.DVal6.DefaultCellStyle = DataGridViewCellStyle28
         Me.DVal6.HeaderText = "DVal6"
         Me.DVal6.Name = "DVal6"
         Me.DVal6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -953,8 +953,8 @@ Partial Class FrmPayroll1
         'DVal7
         '
         Me.DVal7.DataPropertyName = "DVal7"
-        DataGridViewCellStyle83.BackColor = System.Drawing.Color.Khaki
-        Me.DVal7.DefaultCellStyle = DataGridViewCellStyle83
+        DataGridViewCellStyle29.BackColor = System.Drawing.Color.Khaki
+        Me.DVal7.DefaultCellStyle = DataGridViewCellStyle29
         Me.DVal7.HeaderText = "DVal7"
         Me.DVal7.Name = "DVal7"
         Me.DVal7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -971,8 +971,8 @@ Partial Class FrmPayroll1
         'DVal8
         '
         Me.DVal8.DataPropertyName = "DVal8"
-        DataGridViewCellStyle84.BackColor = System.Drawing.Color.Khaki
-        Me.DVal8.DefaultCellStyle = DataGridViewCellStyle84
+        DataGridViewCellStyle30.BackColor = System.Drawing.Color.Khaki
+        Me.DVal8.DefaultCellStyle = DataGridViewCellStyle30
         Me.DVal8.HeaderText = "DVal8"
         Me.DVal8.Name = "DVal8"
         Me.DVal8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -989,8 +989,8 @@ Partial Class FrmPayroll1
         'DVal9
         '
         Me.DVal9.DataPropertyName = "DVal9"
-        DataGridViewCellStyle85.BackColor = System.Drawing.Color.Khaki
-        Me.DVal9.DefaultCellStyle = DataGridViewCellStyle85
+        DataGridViewCellStyle31.BackColor = System.Drawing.Color.Khaki
+        Me.DVal9.DefaultCellStyle = DataGridViewCellStyle31
         Me.DVal9.HeaderText = "DVal9"
         Me.DVal9.Name = "DVal9"
         Me.DVal9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -1007,8 +1007,8 @@ Partial Class FrmPayroll1
         'DVal10
         '
         Me.DVal10.DataPropertyName = "DVal10"
-        DataGridViewCellStyle86.BackColor = System.Drawing.Color.Khaki
-        Me.DVal10.DefaultCellStyle = DataGridViewCellStyle86
+        DataGridViewCellStyle32.BackColor = System.Drawing.Color.Khaki
+        Me.DVal10.DefaultCellStyle = DataGridViewCellStyle32
         Me.DVal10.HeaderText = "DVal10"
         Me.DVal10.Name = "DVal10"
         Me.DVal10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -1025,8 +1025,8 @@ Partial Class FrmPayroll1
         'DVal11
         '
         Me.DVal11.DataPropertyName = "DVal11"
-        DataGridViewCellStyle87.BackColor = System.Drawing.Color.Khaki
-        Me.DVal11.DefaultCellStyle = DataGridViewCellStyle87
+        DataGridViewCellStyle33.BackColor = System.Drawing.Color.Khaki
+        Me.DVal11.DefaultCellStyle = DataGridViewCellStyle33
         Me.DVal11.HeaderText = "DVal11"
         Me.DVal11.Name = "DVal11"
         Me.DVal11.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -1043,8 +1043,8 @@ Partial Class FrmPayroll1
         'DVal12
         '
         Me.DVal12.DataPropertyName = "DVal12"
-        DataGridViewCellStyle88.BackColor = System.Drawing.Color.Khaki
-        Me.DVal12.DefaultCellStyle = DataGridViewCellStyle88
+        DataGridViewCellStyle34.BackColor = System.Drawing.Color.Khaki
+        Me.DVal12.DefaultCellStyle = DataGridViewCellStyle34
         Me.DVal12.HeaderText = "DVal12"
         Me.DVal12.Name = "DVal12"
         Me.DVal12.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -1061,8 +1061,8 @@ Partial Class FrmPayroll1
         'DVal13
         '
         Me.DVal13.DataPropertyName = "DVal13"
-        DataGridViewCellStyle89.BackColor = System.Drawing.Color.Khaki
-        Me.DVal13.DefaultCellStyle = DataGridViewCellStyle89
+        DataGridViewCellStyle35.BackColor = System.Drawing.Color.Khaki
+        Me.DVal13.DefaultCellStyle = DataGridViewCellStyle35
         Me.DVal13.HeaderText = "DVal13"
         Me.DVal13.Name = "DVal13"
         Me.DVal13.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -1079,8 +1079,8 @@ Partial Class FrmPayroll1
         'DVal14
         '
         Me.DVal14.DataPropertyName = "DVal14"
-        DataGridViewCellStyle90.BackColor = System.Drawing.Color.Khaki
-        Me.DVal14.DefaultCellStyle = DataGridViewCellStyle90
+        DataGridViewCellStyle36.BackColor = System.Drawing.Color.Khaki
+        Me.DVal14.DefaultCellStyle = DataGridViewCellStyle36
         Me.DVal14.HeaderText = "DVal14"
         Me.DVal14.Name = "DVal14"
         Me.DVal14.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -1097,8 +1097,8 @@ Partial Class FrmPayroll1
         'DVal15
         '
         Me.DVal15.DataPropertyName = "DVal15"
-        DataGridViewCellStyle91.BackColor = System.Drawing.Color.Khaki
-        Me.DVal15.DefaultCellStyle = DataGridViewCellStyle91
+        DataGridViewCellStyle37.BackColor = System.Drawing.Color.Khaki
+        Me.DVal15.DefaultCellStyle = DataGridViewCellStyle37
         Me.DVal15.HeaderText = "DVal15"
         Me.DVal15.Name = "DVal15"
         Me.DVal15.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -1115,8 +1115,8 @@ Partial Class FrmPayroll1
         'CVal1
         '
         Me.CVal1.DataPropertyName = "CVal1"
-        DataGridViewCellStyle92.BackColor = System.Drawing.Color.DarkKhaki
-        Me.CVal1.DefaultCellStyle = DataGridViewCellStyle92
+        DataGridViewCellStyle38.BackColor = System.Drawing.Color.DarkKhaki
+        Me.CVal1.DefaultCellStyle = DataGridViewCellStyle38
         Me.CVal1.HeaderText = "CVal1"
         Me.CVal1.Name = "CVal1"
         Me.CVal1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -1133,8 +1133,8 @@ Partial Class FrmPayroll1
         'CVal2
         '
         Me.CVal2.DataPropertyName = "CVal2"
-        DataGridViewCellStyle93.BackColor = System.Drawing.Color.DarkKhaki
-        Me.CVal2.DefaultCellStyle = DataGridViewCellStyle93
+        DataGridViewCellStyle39.BackColor = System.Drawing.Color.DarkKhaki
+        Me.CVal2.DefaultCellStyle = DataGridViewCellStyle39
         Me.CVal2.HeaderText = "CVal2"
         Me.CVal2.Name = "CVal2"
         Me.CVal2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -1151,8 +1151,8 @@ Partial Class FrmPayroll1
         'CVal3
         '
         Me.CVal3.DataPropertyName = "CVal3"
-        DataGridViewCellStyle94.BackColor = System.Drawing.Color.DarkKhaki
-        Me.CVal3.DefaultCellStyle = DataGridViewCellStyle94
+        DataGridViewCellStyle40.BackColor = System.Drawing.Color.DarkKhaki
+        Me.CVal3.DefaultCellStyle = DataGridViewCellStyle40
         Me.CVal3.HeaderText = "CVal3"
         Me.CVal3.Name = "CVal3"
         Me.CVal3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -1169,8 +1169,8 @@ Partial Class FrmPayroll1
         'CVal4
         '
         Me.CVal4.DataPropertyName = "CVal4"
-        DataGridViewCellStyle95.BackColor = System.Drawing.Color.DarkKhaki
-        Me.CVal4.DefaultCellStyle = DataGridViewCellStyle95
+        DataGridViewCellStyle41.BackColor = System.Drawing.Color.DarkKhaki
+        Me.CVal4.DefaultCellStyle = DataGridViewCellStyle41
         Me.CVal4.HeaderText = "CVal4"
         Me.CVal4.Name = "CVal4"
         Me.CVal4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -1187,8 +1187,8 @@ Partial Class FrmPayroll1
         'CVal5
         '
         Me.CVal5.DataPropertyName = "CVal5"
-        DataGridViewCellStyle96.BackColor = System.Drawing.Color.DarkKhaki
-        Me.CVal5.DefaultCellStyle = DataGridViewCellStyle96
+        DataGridViewCellStyle42.BackColor = System.Drawing.Color.DarkKhaki
+        Me.CVal5.DefaultCellStyle = DataGridViewCellStyle42
         Me.CVal5.HeaderText = "CVal5"
         Me.CVal5.Name = "CVal5"
         Me.CVal5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -1205,8 +1205,8 @@ Partial Class FrmPayroll1
         'CVal6
         '
         Me.CVal6.DataPropertyName = "CVal6"
-        DataGridViewCellStyle97.BackColor = System.Drawing.Color.DarkKhaki
-        Me.CVal6.DefaultCellStyle = DataGridViewCellStyle97
+        DataGridViewCellStyle43.BackColor = System.Drawing.Color.DarkKhaki
+        Me.CVal6.DefaultCellStyle = DataGridViewCellStyle43
         Me.CVal6.HeaderText = "CVal6"
         Me.CVal6.Name = "CVal6"
         Me.CVal6.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -1223,8 +1223,8 @@ Partial Class FrmPayroll1
         'CVal7
         '
         Me.CVal7.DataPropertyName = "CVal7"
-        DataGridViewCellStyle98.BackColor = System.Drawing.Color.DarkKhaki
-        Me.CVal7.DefaultCellStyle = DataGridViewCellStyle98
+        DataGridViewCellStyle44.BackColor = System.Drawing.Color.DarkKhaki
+        Me.CVal7.DefaultCellStyle = DataGridViewCellStyle44
         Me.CVal7.HeaderText = "CVal7"
         Me.CVal7.Name = "CVal7"
         Me.CVal7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -1241,8 +1241,8 @@ Partial Class FrmPayroll1
         'CVal8
         '
         Me.CVal8.DataPropertyName = "CVal8"
-        DataGridViewCellStyle99.BackColor = System.Drawing.Color.DarkKhaki
-        Me.CVal8.DefaultCellStyle = DataGridViewCellStyle99
+        DataGridViewCellStyle45.BackColor = System.Drawing.Color.DarkKhaki
+        Me.CVal8.DefaultCellStyle = DataGridViewCellStyle45
         Me.CVal8.HeaderText = "CVal8"
         Me.CVal8.Name = "CVal8"
         Me.CVal8.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -1259,8 +1259,8 @@ Partial Class FrmPayroll1
         'CVal9
         '
         Me.CVal9.DataPropertyName = "CVal9"
-        DataGridViewCellStyle100.BackColor = System.Drawing.Color.DarkKhaki
-        Me.CVal9.DefaultCellStyle = DataGridViewCellStyle100
+        DataGridViewCellStyle46.BackColor = System.Drawing.Color.DarkKhaki
+        Me.CVal9.DefaultCellStyle = DataGridViewCellStyle46
         Me.CVal9.HeaderText = "CVal9"
         Me.CVal9.Name = "CVal9"
         Me.CVal9.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -1277,8 +1277,8 @@ Partial Class FrmPayroll1
         'CVal10
         '
         Me.CVal10.DataPropertyName = "CVal10"
-        DataGridViewCellStyle101.BackColor = System.Drawing.Color.DarkKhaki
-        Me.CVal10.DefaultCellStyle = DataGridViewCellStyle101
+        DataGridViewCellStyle47.BackColor = System.Drawing.Color.DarkKhaki
+        Me.CVal10.DefaultCellStyle = DataGridViewCellStyle47
         Me.CVal10.HeaderText = "CVal10"
         Me.CVal10.Name = "CVal10"
         Me.CVal10.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -1295,8 +1295,8 @@ Partial Class FrmPayroll1
         'CVal11
         '
         Me.CVal11.DataPropertyName = "CVal11"
-        DataGridViewCellStyle102.BackColor = System.Drawing.Color.DarkKhaki
-        Me.CVal11.DefaultCellStyle = DataGridViewCellStyle102
+        DataGridViewCellStyle48.BackColor = System.Drawing.Color.DarkKhaki
+        Me.CVal11.DefaultCellStyle = DataGridViewCellStyle48
         Me.CVal11.HeaderText = "CVal11"
         Me.CVal11.Name = "CVal11"
         Me.CVal11.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -1313,8 +1313,8 @@ Partial Class FrmPayroll1
         'CVal12
         '
         Me.CVal12.DataPropertyName = "CVal12"
-        DataGridViewCellStyle103.BackColor = System.Drawing.Color.DarkKhaki
-        Me.CVal12.DefaultCellStyle = DataGridViewCellStyle103
+        DataGridViewCellStyle49.BackColor = System.Drawing.Color.DarkKhaki
+        Me.CVal12.DefaultCellStyle = DataGridViewCellStyle49
         Me.CVal12.HeaderText = "CVal12"
         Me.CVal12.Name = "CVal12"
         Me.CVal12.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -1331,8 +1331,8 @@ Partial Class FrmPayroll1
         'CVal13
         '
         Me.CVal13.DataPropertyName = "CVal13"
-        DataGridViewCellStyle104.BackColor = System.Drawing.Color.DarkKhaki
-        Me.CVal13.DefaultCellStyle = DataGridViewCellStyle104
+        DataGridViewCellStyle50.BackColor = System.Drawing.Color.DarkKhaki
+        Me.CVal13.DefaultCellStyle = DataGridViewCellStyle50
         Me.CVal13.HeaderText = "CVal13"
         Me.CVal13.Name = "CVal13"
         Me.CVal13.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -1349,8 +1349,8 @@ Partial Class FrmPayroll1
         'CVal14
         '
         Me.CVal14.DataPropertyName = "CVal14"
-        DataGridViewCellStyle105.BackColor = System.Drawing.Color.DarkKhaki
-        Me.CVal14.DefaultCellStyle = DataGridViewCellStyle105
+        DataGridViewCellStyle51.BackColor = System.Drawing.Color.DarkKhaki
+        Me.CVal14.DefaultCellStyle = DataGridViewCellStyle51
         Me.CVal14.HeaderText = "CVal14"
         Me.CVal14.Name = "CVal14"
         Me.CVal14.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -1367,8 +1367,8 @@ Partial Class FrmPayroll1
         'CVal15
         '
         Me.CVal15.DataPropertyName = "CVal15"
-        DataGridViewCellStyle106.BackColor = System.Drawing.Color.DarkKhaki
-        Me.CVal15.DefaultCellStyle = DataGridViewCellStyle106
+        DataGridViewCellStyle52.BackColor = System.Drawing.Color.DarkKhaki
+        Me.CVal15.DefaultCellStyle = DataGridViewCellStyle52
         Me.CVal15.HeaderText = "CVal15"
         Me.CVal15.Name = "CVal15"
         Me.CVal15.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable
@@ -1588,499 +1588,6 @@ Partial Class FrmPayroll1
         Me.DeleteALLLinesNOWarningsToolStripMenuItem.Name = "DeleteALLLinesNOWarningsToolStripMenuItem"
         Me.DeleteALLLinesNOWarningsToolStripMenuItem.Size = New System.Drawing.Size(242, 22)
         Me.DeleteALLLinesNOWarningsToolStripMenuItem.Text = "Delete ALL Lines - NO Warnings"
-        '
-        'ToolStripSplitButton2
-        '
-        Me.ToolStripSplitButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.ToolStripSplitButton2.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuPayrollAnalysis, Me.mnuSIReports, Me.mnuIRReports, Me.ToolStripSeparator15, Me.EmployeesEDCReportToolStripMenuItem})
-        Me.ToolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripSplitButton2.Name = "ToolStripSplitButton2"
-        Me.ToolStripSplitButton2.Size = New System.Drawing.Size(63, 22)
-        Me.ToolStripSplitButton2.Text = "Reports"
-        '
-        'mnuPayrollAnalysis
-        '
-        Me.mnuPayrollAnalysis.Name = "mnuPayrollAnalysis"
-        Me.mnuPayrollAnalysis.Size = New System.Drawing.Size(194, 22)
-        Me.mnuPayrollAnalysis.Text = "Payroll Analysis"
-        '
-        'mnuSIReports
-        '
-        Me.mnuSIReports.Name = "mnuSIReports"
-        Me.mnuSIReports.Size = New System.Drawing.Size(194, 22)
-        Me.mnuSIReports.Text = "S.I. Reports"
-        '
-        'mnuIRReports
-        '
-        Me.mnuIRReports.Name = "mnuIRReports"
-        Me.mnuIRReports.Size = New System.Drawing.Size(194, 22)
-        Me.mnuIRReports.Text = "I.R. Reports"
-        '
-        'ToolStripSeparator15
-        '
-        Me.ToolStripSeparator15.Name = "ToolStripSeparator15"
-        Me.ToolStripSeparator15.Size = New System.Drawing.Size(191, 6)
-        '
-        'EmployeesEDCReportToolStripMenuItem
-        '
-        Me.EmployeesEDCReportToolStripMenuItem.Name = "EmployeesEDCReportToolStripMenuItem"
-        Me.EmployeesEDCReportToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
-        Me.EmployeesEDCReportToolStripMenuItem.Text = "Employees EDC Report"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(12, 126)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(37, 13)
-        Me.Label5.TabIndex = 66
-        Me.Label5.Text = "Status"
-        '
-        'ComboStatus
-        '
-        Me.ComboStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboStatus.FormattingEnabled = True
-        Me.ComboStatus.Location = New System.Drawing.Point(97, 123)
-        Me.ComboStatus.Name = "ComboStatus"
-        Me.ComboStatus.Size = New System.Drawing.Size(111, 21)
-        Me.ComboStatus.TabIndex = 67
-        '
-        'PanelLoading
-        '
-        Me.PanelLoading.BackColor = System.Drawing.Color.Red
-        Me.PanelLoading.Controls.Add(Me.Panel1)
-        Me.PanelLoading.Location = New System.Drawing.Point(564, 89)
-        Me.PanelLoading.Name = "PanelLoading"
-        Me.PanelLoading.Size = New System.Drawing.Size(413, 100)
-        Me.PanelLoading.TabIndex = 68
-        Me.PanelLoading.Visible = False
-        '
-        'Panel1
-        '
-        Me.Panel1.BackColor = System.Drawing.SystemColors.Control
-        Me.Panel1.Controls.Add(Me.Label12)
-        Me.Panel1.Controls.Add(Me.Label6)
-        Me.Panel1.Controls.Add(Me.Label7)
-        Me.Panel1.Location = New System.Drawing.Point(15, 10)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(383, 79)
-        Me.Panel1.TabIndex = 0
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(53, 58)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(0, 13)
-        Me.Label12.TabIndex = 3
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(47, 33)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(0, 13)
-        Me.Label6.TabIndex = 2
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
-        Me.Label7.Location = New System.Drawing.Point(47, 9)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(201, 16)
-        Me.Label7.TabIndex = 0
-        Me.Label7.Text = "Loading File in Progress . . ."
-        '
-        'ComboAnal
-        '
-        Me.ComboAnal.FormattingEnabled = True
-        Me.ComboAnal.Location = New System.Drawing.Point(346, 80)
-        Me.ComboAnal.Name = "ComboAnal"
-        Me.ComboAnal.Size = New System.Drawing.Size(293, 21)
-        Me.ComboAnal.TabIndex = 69
-        '
-        'ComboSelectAnal
-        '
-        Me.ComboSelectAnal.FormattingEnabled = True
-        Me.ComboSelectAnal.Location = New System.Drawing.Point(293, 80)
-        Me.ComboSelectAnal.Name = "ComboSelectAnal"
-        Me.ComboSelectAnal.Size = New System.Drawing.Size(47, 21)
-        Me.ComboSelectAnal.TabIndex = 70
-        '
-        'Label9
-        '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(231, 83)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(45, 13)
-        Me.Label9.TabIndex = 71
-        Me.Label9.Text = "Analysis"
-        '
-        'CBBank
-        '
-        Me.CBBank.AutoSize = True
-        Me.CBBank.Location = New System.Drawing.Point(395, 150)
-        Me.CBBank.Name = "CBBank"
-        Me.CBBank.Size = New System.Drawing.Size(93, 17)
-        Me.CBBank.TabIndex = 72
-        Me.CBBank.Text = "Bank Transfer"
-        Me.CBBank.UseVisualStyleBackColor = True
-        '
-        'CBCheque
-        '
-        Me.CBCheque.AutoSize = True
-        Me.CBCheque.Location = New System.Drawing.Point(309, 150)
-        Me.CBCheque.Name = "CBCheque"
-        Me.CBCheque.Size = New System.Drawing.Size(63, 17)
-        Me.CBCheque.TabIndex = 73
-        Me.CBCheque.Text = "Cheque"
-        Me.CBCheque.UseVisualStyleBackColor = True
-        '
-        'CBCash
-        '
-        Me.CBCash.AutoSize = True
-        Me.CBCash.Location = New System.Drawing.Point(219, 150)
-        Me.CBCash.Name = "CBCash"
-        Me.CBCash.Size = New System.Drawing.Size(50, 17)
-        Me.CBCash.TabIndex = 74
-        Me.CBCash.Text = "Cash"
-        Me.CBCash.UseVisualStyleBackColor = True
-        '
-        'LblCount
-        '
-        Me.LblCount.AutoSize = True
-        Me.LblCount.Location = New System.Drawing.Point(12, 161)
-        Me.LblCount.Name = "LblCount"
-        Me.LblCount.Size = New System.Drawing.Size(0, 13)
-        Me.LblCount.TabIndex = 75
-        '
-        'RadioCode
-        '
-        Me.RadioCode.AutoSize = True
-        Me.RadioCode.Location = New System.Drawing.Point(219, 127)
-        Me.RadioCode.Name = "RadioCode"
-        Me.RadioCode.Size = New System.Drawing.Size(87, 17)
-        Me.RadioCode.TabIndex = 76
-        Me.RadioCode.TabStop = True
-        Me.RadioCode.Text = "Sort By Code"
-        Me.RadioCode.UseVisualStyleBackColor = True
-        '
-        'RadioName
-        '
-        Me.RadioName.AutoSize = True
-        Me.RadioName.Location = New System.Drawing.Point(309, 127)
-        Me.RadioName.Name = "RadioName"
-        Me.RadioName.Size = New System.Drawing.Size(90, 17)
-        Me.RadioName.TabIndex = 77
-        Me.RadioName.TabStop = True
-        Me.RadioName.Text = "Sort By Name"
-        Me.RadioName.UseVisualStyleBackColor = True
-        '
-        'GroupBox1
-        '
-        Me.GroupBox1.Controls.Add(Me.txtNonTaxable)
-        Me.GroupBox1.Controls.Add(Me.txtTaxablePeriods)
-        Me.GroupBox1.Controls.Add(Me.txtTotalPeriods)
-        Me.GroupBox1.Controls.Add(Me.lblNonTaPeriods)
-        Me.GroupBox1.Controls.Add(Me.lblTaxabPeriods)
-        Me.GroupBox1.Controls.Add(Me.lblTotalPeriods)
-        Me.GroupBox1.Location = New System.Drawing.Point(1041, 33)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(185, 106)
-        Me.GroupBox1.TabIndex = 78
-        Me.GroupBox1.TabStop = False
-        '
-        'txtNonTaxable
-        '
-        Me.txtNonTaxable.BackColor = System.Drawing.SystemColors.Info
-        Me.txtNonTaxable.Location = New System.Drawing.Point(134, 72)
-        Me.txtNonTaxable.Name = "txtNonTaxable"
-        Me.txtNonTaxable.ReadOnly = True
-        Me.txtNonTaxable.Size = New System.Drawing.Size(43, 20)
-        Me.txtNonTaxable.TabIndex = 5
-        '
-        'txtTaxablePeriods
-        '
-        Me.txtTaxablePeriods.BackColor = System.Drawing.SystemColors.Info
-        Me.txtTaxablePeriods.Location = New System.Drawing.Point(134, 46)
-        Me.txtTaxablePeriods.Name = "txtTaxablePeriods"
-        Me.txtTaxablePeriods.ReadOnly = True
-        Me.txtTaxablePeriods.Size = New System.Drawing.Size(43, 20)
-        Me.txtTaxablePeriods.TabIndex = 4
-        '
-        'txtTotalPeriods
-        '
-        Me.txtTotalPeriods.BackColor = System.Drawing.SystemColors.Info
-        Me.txtTotalPeriods.Location = New System.Drawing.Point(134, 21)
-        Me.txtTotalPeriods.Name = "txtTotalPeriods"
-        Me.txtTotalPeriods.ReadOnly = True
-        Me.txtTotalPeriods.Size = New System.Drawing.Size(43, 20)
-        Me.txtTotalPeriods.TabIndex = 3
-        '
-        'lblNonTaPeriods
-        '
-        Me.lblNonTaPeriods.AutoSize = True
-        Me.lblNonTaPeriods.Location = New System.Drawing.Point(6, 75)
-        Me.lblNonTaPeriods.Name = "lblNonTaPeriods"
-        Me.lblNonTaPeriods.Size = New System.Drawing.Size(120, 13)
-        Me.lblNonTaPeriods.TabIndex = 2
-        Me.lblNonTaPeriods.Text = "NON TAXABLE Periods"
-        '
-        'lblTaxabPeriods
-        '
-        Me.lblTaxabPeriods.AutoSize = True
-        Me.lblTaxabPeriods.Location = New System.Drawing.Point(6, 49)
-        Me.lblTaxabPeriods.Name = "lblTaxabPeriods"
-        Me.lblTaxabPeriods.Size = New System.Drawing.Size(93, 13)
-        Me.lblTaxabPeriods.TabIndex = 1
-        Me.lblTaxabPeriods.Text = "TAXABLE Periods"
-        '
-        'lblTotalPeriods
-        '
-        Me.lblTotalPeriods.AutoSize = True
-        Me.lblTotalPeriods.Location = New System.Drawing.Point(6, 24)
-        Me.lblTotalPeriods.Name = "lblTotalPeriods"
-        Me.lblTotalPeriods.Size = New System.Drawing.Size(80, 13)
-        Me.lblTotalPeriods.TabIndex = 0
-        Me.lblTotalPeriods.Text = "TOTAL Periods"
-        '
-        'btnGoToEmployeeCard
-        '
-        Me.btnGoToEmployeeCard.Location = New System.Drawing.Point(657, 171)
-        Me.btnGoToEmployeeCard.Name = "btnGoToEmployeeCard"
-        Me.btnGoToEmployeeCard.Size = New System.Drawing.Size(128, 23)
-        Me.btnGoToEmployeeCard.TabIndex = 79
-        Me.btnGoToEmployeeCard.Text = "Go to Employee Card"
-        Me.btnGoToEmployeeCard.UseVisualStyleBackColor = True
-        '
-        'btncalcSelectedLine
-        '
-        Me.btncalcSelectedLine.Location = New System.Drawing.Point(99, 171)
-        Me.btncalcSelectedLine.Name = "btncalcSelectedLine"
-        Me.btncalcSelectedLine.Size = New System.Drawing.Size(100, 23)
-        Me.btncalcSelectedLine.TabIndex = 80
-        Me.btncalcSelectedLine.Text = "CALCULATE line"
-        Me.btncalcSelectedLine.UseVisualStyleBackColor = True
-        '
-        'btnPrepareSelected
-        '
-        Me.btnPrepareSelected.Location = New System.Drawing.Point(205, 171)
-        Me.btnPrepareSelected.Name = "btnPrepareSelected"
-        Me.btnPrepareSelected.Size = New System.Drawing.Size(100, 23)
-        Me.btnPrepareSelected.TabIndex = 81
-        Me.btnPrepareSelected.Text = "PREPARE Line"
-        Me.btnPrepareSelected.UseVisualStyleBackColor = True
-        '
-        'btnDeleteLine
-        '
-        Me.btnDeleteLine.Location = New System.Drawing.Point(311, 171)
-        Me.btnDeleteLine.Name = "btnDeleteLine"
-        Me.btnDeleteLine.Size = New System.Drawing.Size(100, 23)
-        Me.btnDeleteLine.TabIndex = 82
-        Me.btnDeleteLine.Text = "DELETE Line"
-        Me.btnDeleteLine.UseVisualStyleBackColor = True
-        '
-        'CBSelectGrid
-        '
-        Me.CBSelectGrid.AutoSize = True
-        Me.CBSelectGrid.Location = New System.Drawing.Point(78, 176)
-        Me.CBSelectGrid.Name = "CBSelectGrid"
-        Me.CBSelectGrid.Size = New System.Drawing.Size(15, 14)
-        Me.CBSelectGrid.TabIndex = 83
-        Me.CBSelectGrid.UseVisualStyleBackColor = True
-        '
-        'btnUndoCalculation
-        '
-        Me.btnUndoCalculation.Location = New System.Drawing.Point(417, 171)
-        Me.btnUndoCalculation.Name = "btnUndoCalculation"
-        Me.btnUndoCalculation.Size = New System.Drawing.Size(100, 23)
-        Me.btnUndoCalculation.TabIndex = 84
-        Me.btnUndoCalculation.Text = "CALC to PREP"
-        Me.btnUndoCalculation.UseVisualStyleBackColor = True
-        '
-        'btnSCP
-        '
-        Me.btnSCP.Location = New System.Drawing.Point(645, 98)
-        Me.btnSCP.Name = "btnSCP"
-        Me.btnSCP.Size = New System.Drawing.Size(111, 23)
-        Me.btnSCP.TabIndex = 85
-        Me.btnSCP.Text = "Search/Calc/Post"
-        Me.btnSCP.UseVisualStyleBackColor = True
-        '
-        'LabelStatus
-        '
-        Me.LabelStatus.AutoSize = True
-        Me.LabelStatus.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
-        Me.LabelStatus.ForeColor = System.Drawing.Color.Blue
-        Me.LabelStatus.Location = New System.Drawing.Point(481, 40)
-        Me.LabelStatus.Name = "LabelStatus"
-        Me.LabelStatus.Size = New System.Drawing.Size(0, 15)
-        Me.LabelStatus.TabIndex = 86
-        '
-        'Button1
-        '
-        Me.Button1.Location = New System.Drawing.Point(645, 57)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(111, 23)
-        Me.Button1.TabIndex = 87
-        Me.Button1.Text = "Close Period"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'CBOnlyLeavers
-        '
-        Me.CBOnlyLeavers.AutoSize = True
-        Me.CBOnlyLeavers.Location = New System.Drawing.Point(573, 150)
-        Me.CBOnlyLeavers.Name = "CBOnlyLeavers"
-        Me.CBOnlyLeavers.Size = New System.Drawing.Size(88, 17)
-        Me.CBOnlyLeavers.TabIndex = 88
-        Me.CBOnlyLeavers.Text = "Only Leavers"
-        Me.CBOnlyLeavers.UseVisualStyleBackColor = True
-        '
-        'txtGenanal1
-        '
-        Me.txtGenanal1.Location = New System.Drawing.Point(346, 102)
-        Me.txtGenanal1.MaxLength = 20
-        Me.txtGenanal1.Name = "txtGenanal1"
-        Me.txtGenanal1.Size = New System.Drawing.Size(293, 20)
-        Me.txtGenanal1.TabIndex = 89
-        '
-        'Label10
-        '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(231, 105)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(94, 13)
-        Me.Label10.TabIndex = 90
-        Me.Label10.Text = "General Analysis 1"
-        '
-        'ComboNoOfRows
-        '
-        Me.ComboNoOfRows.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.ComboNoOfRows.FormattingEnabled = True
-        Me.ComboNoOfRows.Items.AddRange(New Object() {"20", "30", "40", "All"})
-        Me.ComboNoOfRows.Location = New System.Drawing.Point(1073, 171)
-        Me.ComboNoOfRows.Name = "ComboNoOfRows"
-        Me.ComboNoOfRows.Size = New System.Drawing.Size(45, 21)
-        Me.ComboNoOfRows.TabIndex = 93
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(1004, 176)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(63, 13)
-        Me.Label11.TabIndex = 96
-        Me.Label11.Text = "No of Rows"
-        '
-        'RadioAnalysis
-        '
-        Me.RadioAnalysis.AutoSize = True
-        Me.RadioAnalysis.Location = New System.Drawing.Point(395, 127)
-        Me.RadioAnalysis.Name = "RadioAnalysis"
-        Me.RadioAnalysis.Size = New System.Drawing.Size(109, 17)
-        Me.RadioAnalysis.TabIndex = 97
-        Me.RadioAnalysis.TabStop = True
-        Me.RadioAnalysis.Text = "Sort By Analysis 2"
-        Me.RadioAnalysis.UseVisualStyleBackColor = True
-        '
-        'CBReloadsalary
-        '
-        Me.CBReloadsalary.AutoSize = True
-        Me.CBReloadsalary.Location = New System.Drawing.Point(801, 60)
-        Me.CBReloadsalary.Name = "CBReloadsalary"
-        Me.CBReloadsalary.Size = New System.Drawing.Size(143, 17)
-        Me.CBReloadsalary.TabIndex = 98
-        Me.CBReloadsalary.Text = "Reload Salary on 'PREP'"
-        Me.CBReloadsalary.UseVisualStyleBackColor = True
-        '
-        'BtnGoToemployeeSalary
-        '
-        Me.BtnGoToemployeeSalary.Location = New System.Drawing.Point(523, 171)
-        Me.BtnGoToemployeeSalary.Name = "BtnGoToemployeeSalary"
-        Me.BtnGoToemployeeSalary.Size = New System.Drawing.Size(128, 23)
-        Me.BtnGoToemployeeSalary.TabIndex = 99
-        Me.BtnGoToemployeeSalary.Text = "Go to Employee Salary"
-        Me.BtnGoToemployeeSalary.UseVisualStyleBackColor = True
-        '
-        'btnShowTotals
-        '
-        Me.btnShowTotals.Location = New System.Drawing.Point(685, 146)
-        Me.btnShowTotals.Name = "btnShowTotals"
-        Me.btnShowTotals.Size = New System.Drawing.Size(100, 23)
-        Me.btnShowTotals.TabIndex = 100
-        Me.btnShowTotals.Text = "ShowTotals"
-        Me.btnShowTotals.UseVisualStyleBackColor = True
-        Me.btnShowTotals.Visible = False
-        '
-        'RadioTA
-        '
-        Me.RadioTA.AutoSize = True
-        Me.RadioTA.Location = New System.Drawing.Point(509, 128)
-        Me.RadioTA.Name = "RadioTA"
-        Me.RadioTA.Size = New System.Drawing.Size(107, 17)
-        Me.RadioTA.TabIndex = 101
-        Me.RadioTA.TabStop = True
-        Me.RadioTA.Text = " Sort By TA Code"
-        Me.RadioTA.UseVisualStyleBackColor = True
-        '
-        'CBEwallet
-        '
-        Me.CBEwallet.AutoSize = True
-        Me.CBEwallet.Location = New System.Drawing.Point(501, 150)
-        Me.CBEwallet.Name = "CBEwallet"
-        Me.CBEwallet.Size = New System.Drawing.Size(66, 17)
-        Me.CBEwallet.TabIndex = 102
-        Me.CBEwallet.Text = "E-Wallet"
-        Me.CBEwallet.UseVisualStyleBackColor = True
-        '
-        'CBUseEmail2
-        '
-        Me.CBUseEmail2.AutoSize = True
-        Me.CBUseEmail2.Location = New System.Drawing.Point(801, 103)
-        Me.CBUseEmail2.Name = "CBUseEmail2"
-        Me.CBUseEmail2.Size = New System.Drawing.Size(163, 17)
-        Me.CBUseEmail2.TabIndex = 103
-        Me.CBUseEmail2.Text = "Use Email 2 to Send Payslips"
-        Me.CBUseEmail2.UseVisualStyleBackColor = True
-        '
-        'btnTemplateSearch
-        '
-        Me.btnTemplateSearch.Location = New System.Drawing.Point(448, 36)
-        Me.btnTemplateSearch.Name = "btnTemplateSearch"
-        Me.btnTemplateSearch.Size = New System.Drawing.Size(27, 20)
-        Me.btnTemplateSearch.TabIndex = 104
-        Me.btnTemplateSearch.Text = "..."
-        Me.btnTemplateSearch.UseVisualStyleBackColor = True
-        '
-        'CBReloadDates
-        '
-        Me.CBReloadDates.AutoSize = True
-        Me.CBReloadDates.Location = New System.Drawing.Point(801, 80)
-        Me.CBReloadDates.Name = "CBReloadDates"
-        Me.CBReloadDates.Size = New System.Drawing.Size(234, 17)
-        Me.CBReloadDates.TabIndex = 105
-        Me.CBReloadDates.Text = "Reload Start && Termination Dates on 'PREP'"
-        Me.CBReloadDates.UseVisualStyleBackColor = True
-        '
-        'BtnNext1
-        '
-        Me.BtnNext1.Image = CType(resources.GetObject("BtnNext1.Image"), System.Drawing.Image)
-        Me.BtnNext1.Location = New System.Drawing.Point(1180, 171)
-        Me.BtnNext1.Name = "BtnNext1"
-        Me.BtnNext1.Size = New System.Drawing.Size(46, 23)
-        Me.BtnNext1.TabIndex = 94
-        Me.BtnNext1.UseVisualStyleBackColor = True
-        '
-        'BtnPrevius1
-        '
-        Me.BtnPrevius1.Image = CType(resources.GetObject("BtnPrevius1.Image"), System.Drawing.Image)
-        Me.BtnPrevius1.Location = New System.Drawing.Point(1128, 171)
-        Me.BtnPrevius1.Name = "BtnPrevius1"
-        Me.BtnPrevius1.Size = New System.Drawing.Size(46, 23)
-        Me.BtnPrevius1.TabIndex = 95
-        Me.BtnPrevius1.Tag = "Works Only when From To Employee are empty"
-        Me.BtnPrevius1.UseVisualStyleBackColor = True
         '
         'ToolStripDropDownButton3
         '
@@ -2576,13 +2083,57 @@ Partial Class FrmPayroll1
         Me.ImportFileTemplate2ExcelToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
         Me.ImportFileTemplate2ExcelToolStripMenuItem.Text = "Import File Template 2 (Excel)"
         '
+        'ImportFileTemplate3ExcelToolStripMenuItem
+        '
+        Me.ImportFileTemplate3ExcelToolStripMenuItem.Name = "ImportFileTemplate3ExcelToolStripMenuItem"
+        Me.ImportFileTemplate3ExcelToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
+        Me.ImportFileTemplate3ExcelToolStripMenuItem.Text = "Import File Template 3 (Excel)"
+        '
+        'ToolStripSplitButton2
+        '
+        Me.ToolStripSplitButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripSplitButton2.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.mnuPayrollAnalysis, Me.mnuSIReports, Me.mnuIRReports, Me.ToolStripSeparator15, Me.EmployeesEDCReportToolStripMenuItem})
+        Me.ToolStripSplitButton2.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripSplitButton2.Name = "ToolStripSplitButton2"
+        Me.ToolStripSplitButton2.Size = New System.Drawing.Size(63, 22)
+        Me.ToolStripSplitButton2.Text = "Reports"
+        '
+        'mnuPayrollAnalysis
+        '
+        Me.mnuPayrollAnalysis.Name = "mnuPayrollAnalysis"
+        Me.mnuPayrollAnalysis.Size = New System.Drawing.Size(194, 22)
+        Me.mnuPayrollAnalysis.Text = "Payroll Analysis"
+        '
+        'mnuSIReports
+        '
+        Me.mnuSIReports.Name = "mnuSIReports"
+        Me.mnuSIReports.Size = New System.Drawing.Size(194, 22)
+        Me.mnuSIReports.Text = "S.I. Reports"
+        '
+        'mnuIRReports
+        '
+        Me.mnuIRReports.Name = "mnuIRReports"
+        Me.mnuIRReports.Size = New System.Drawing.Size(194, 22)
+        Me.mnuIRReports.Text = "I.R. Reports"
+        '
+        'ToolStripSeparator15
+        '
+        Me.ToolStripSeparator15.Name = "ToolStripSeparator15"
+        Me.ToolStripSeparator15.Size = New System.Drawing.Size(191, 6)
+        '
+        'EmployeesEDCReportToolStripMenuItem
+        '
+        Me.EmployeesEDCReportToolStripMenuItem.Name = "EmployeesEDCReportToolStripMenuItem"
+        Me.EmployeesEDCReportToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
+        Me.EmployeesEDCReportToolStripMenuItem.Text = "Employees EDC Report"
+        '
         'btnMyReminders
         '
         Me.btnMyReminders.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
         Me.btnMyReminders.Image = CType(resources.GetObject("btnMyReminders.Image"), System.Drawing.Image)
         Me.btnMyReminders.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnMyReminders.Name = "btnMyReminders"
-        Me.btnMyReminders.Size = New System.Drawing.Size(99, 19)
+        Me.btnMyReminders.Size = New System.Drawing.Size(99, 22)
         Me.btnMyReminders.Text = "My Reminders"
         '
         'BtnOpenExportFiles
@@ -2591,14 +2142,463 @@ Partial Class FrmPayroll1
         Me.BtnOpenExportFiles.Image = CType(resources.GetObject("BtnOpenExportFiles.Image"), System.Drawing.Image)
         Me.BtnOpenExportFiles.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.BtnOpenExportFiles.Name = "BtnOpenExportFiles"
-        Me.BtnOpenExportFiles.Size = New System.Drawing.Size(102, 19)
+        Me.BtnOpenExportFiles.Size = New System.Drawing.Size(102, 22)
         Me.BtnOpenExportFiles.Text = "Open Export Files"
         '
-        'ImportFileTemplate3ExcelToolStripMenuItem
+        'Label5
         '
-        Me.ImportFileTemplate3ExcelToolStripMenuItem.Name = "ImportFileTemplate3ExcelToolStripMenuItem"
-        Me.ImportFileTemplate3ExcelToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
-        Me.ImportFileTemplate3ExcelToolStripMenuItem.Text = "Import File Template 3 (Excel)"
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(12, 126)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(37, 13)
+        Me.Label5.TabIndex = 66
+        Me.Label5.Text = "Status"
+        '
+        'ComboStatus
+        '
+        Me.ComboStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboStatus.FormattingEnabled = True
+        Me.ComboStatus.Location = New System.Drawing.Point(97, 123)
+        Me.ComboStatus.Name = "ComboStatus"
+        Me.ComboStatus.Size = New System.Drawing.Size(111, 21)
+        Me.ComboStatus.TabIndex = 67
+        '
+        'PanelLoading
+        '
+        Me.PanelLoading.BackColor = System.Drawing.Color.Red
+        Me.PanelLoading.Controls.Add(Me.Panel1)
+        Me.PanelLoading.Location = New System.Drawing.Point(564, 89)
+        Me.PanelLoading.Name = "PanelLoading"
+        Me.PanelLoading.Size = New System.Drawing.Size(413, 100)
+        Me.PanelLoading.TabIndex = 68
+        Me.PanelLoading.Visible = False
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.SystemColors.Control
+        Me.Panel1.Controls.Add(Me.Label12)
+        Me.Panel1.Controls.Add(Me.Label6)
+        Me.Panel1.Controls.Add(Me.Label7)
+        Me.Panel1.Location = New System.Drawing.Point(15, 10)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(383, 79)
+        Me.Panel1.TabIndex = 0
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(53, 58)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(0, 13)
+        Me.Label12.TabIndex = 3
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(47, 33)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(0, 13)
+        Me.Label6.TabIndex = 2
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        Me.Label7.Location = New System.Drawing.Point(47, 9)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(201, 16)
+        Me.Label7.TabIndex = 0
+        Me.Label7.Text = "Loading File in Progress . . ."
+        '
+        'ComboAnal
+        '
+        Me.ComboAnal.FormattingEnabled = True
+        Me.ComboAnal.Location = New System.Drawing.Point(346, 80)
+        Me.ComboAnal.Name = "ComboAnal"
+        Me.ComboAnal.Size = New System.Drawing.Size(293, 21)
+        Me.ComboAnal.TabIndex = 69
+        '
+        'ComboSelectAnal
+        '
+        Me.ComboSelectAnal.FormattingEnabled = True
+        Me.ComboSelectAnal.Location = New System.Drawing.Point(293, 80)
+        Me.ComboSelectAnal.Name = "ComboSelectAnal"
+        Me.ComboSelectAnal.Size = New System.Drawing.Size(47, 21)
+        Me.ComboSelectAnal.TabIndex = 70
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Location = New System.Drawing.Point(231, 83)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(45, 13)
+        Me.Label9.TabIndex = 71
+        Me.Label9.Text = "Analysis"
+        '
+        'CBBank
+        '
+        Me.CBBank.AutoSize = True
+        Me.CBBank.Location = New System.Drawing.Point(395, 150)
+        Me.CBBank.Name = "CBBank"
+        Me.CBBank.Size = New System.Drawing.Size(93, 17)
+        Me.CBBank.TabIndex = 72
+        Me.CBBank.Text = "Bank Transfer"
+        Me.CBBank.UseVisualStyleBackColor = True
+        '
+        'CBCheque
+        '
+        Me.CBCheque.AutoSize = True
+        Me.CBCheque.Location = New System.Drawing.Point(309, 150)
+        Me.CBCheque.Name = "CBCheque"
+        Me.CBCheque.Size = New System.Drawing.Size(63, 17)
+        Me.CBCheque.TabIndex = 73
+        Me.CBCheque.Text = "Cheque"
+        Me.CBCheque.UseVisualStyleBackColor = True
+        '
+        'CBCash
+        '
+        Me.CBCash.AutoSize = True
+        Me.CBCash.Location = New System.Drawing.Point(219, 150)
+        Me.CBCash.Name = "CBCash"
+        Me.CBCash.Size = New System.Drawing.Size(50, 17)
+        Me.CBCash.TabIndex = 74
+        Me.CBCash.Text = "Cash"
+        Me.CBCash.UseVisualStyleBackColor = True
+        '
+        'LblCount
+        '
+        Me.LblCount.AutoSize = True
+        Me.LblCount.Location = New System.Drawing.Point(12, 161)
+        Me.LblCount.Name = "LblCount"
+        Me.LblCount.Size = New System.Drawing.Size(0, 13)
+        Me.LblCount.TabIndex = 75
+        '
+        'RadioCode
+        '
+        Me.RadioCode.AutoSize = True
+        Me.RadioCode.Location = New System.Drawing.Point(219, 127)
+        Me.RadioCode.Name = "RadioCode"
+        Me.RadioCode.Size = New System.Drawing.Size(87, 17)
+        Me.RadioCode.TabIndex = 76
+        Me.RadioCode.TabStop = True
+        Me.RadioCode.Text = "Sort By Code"
+        Me.RadioCode.UseVisualStyleBackColor = True
+        '
+        'RadioName
+        '
+        Me.RadioName.AutoSize = True
+        Me.RadioName.Location = New System.Drawing.Point(309, 127)
+        Me.RadioName.Name = "RadioName"
+        Me.RadioName.Size = New System.Drawing.Size(90, 17)
+        Me.RadioName.TabIndex = 77
+        Me.RadioName.TabStop = True
+        Me.RadioName.Text = "Sort By Name"
+        Me.RadioName.UseVisualStyleBackColor = True
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.txtNonTaxable)
+        Me.GroupBox1.Controls.Add(Me.txtTaxablePeriods)
+        Me.GroupBox1.Controls.Add(Me.txtTotalPeriods)
+        Me.GroupBox1.Controls.Add(Me.lblNonTaPeriods)
+        Me.GroupBox1.Controls.Add(Me.lblTaxabPeriods)
+        Me.GroupBox1.Controls.Add(Me.lblTotalPeriods)
+        Me.GroupBox1.Location = New System.Drawing.Point(1041, 33)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(185, 106)
+        Me.GroupBox1.TabIndex = 78
+        Me.GroupBox1.TabStop = False
+        '
+        'txtNonTaxable
+        '
+        Me.txtNonTaxable.BackColor = System.Drawing.SystemColors.Info
+        Me.txtNonTaxable.Location = New System.Drawing.Point(134, 72)
+        Me.txtNonTaxable.Name = "txtNonTaxable"
+        Me.txtNonTaxable.ReadOnly = True
+        Me.txtNonTaxable.Size = New System.Drawing.Size(43, 20)
+        Me.txtNonTaxable.TabIndex = 5
+        '
+        'txtTaxablePeriods
+        '
+        Me.txtTaxablePeriods.BackColor = System.Drawing.SystemColors.Info
+        Me.txtTaxablePeriods.Location = New System.Drawing.Point(134, 46)
+        Me.txtTaxablePeriods.Name = "txtTaxablePeriods"
+        Me.txtTaxablePeriods.ReadOnly = True
+        Me.txtTaxablePeriods.Size = New System.Drawing.Size(43, 20)
+        Me.txtTaxablePeriods.TabIndex = 4
+        '
+        'txtTotalPeriods
+        '
+        Me.txtTotalPeriods.BackColor = System.Drawing.SystemColors.Info
+        Me.txtTotalPeriods.Location = New System.Drawing.Point(134, 21)
+        Me.txtTotalPeriods.Name = "txtTotalPeriods"
+        Me.txtTotalPeriods.ReadOnly = True
+        Me.txtTotalPeriods.Size = New System.Drawing.Size(43, 20)
+        Me.txtTotalPeriods.TabIndex = 3
+        '
+        'lblNonTaPeriods
+        '
+        Me.lblNonTaPeriods.AutoSize = True
+        Me.lblNonTaPeriods.Location = New System.Drawing.Point(6, 75)
+        Me.lblNonTaPeriods.Name = "lblNonTaPeriods"
+        Me.lblNonTaPeriods.Size = New System.Drawing.Size(120, 13)
+        Me.lblNonTaPeriods.TabIndex = 2
+        Me.lblNonTaPeriods.Text = "NON TAXABLE Periods"
+        '
+        'lblTaxabPeriods
+        '
+        Me.lblTaxabPeriods.AutoSize = True
+        Me.lblTaxabPeriods.Location = New System.Drawing.Point(6, 49)
+        Me.lblTaxabPeriods.Name = "lblTaxabPeriods"
+        Me.lblTaxabPeriods.Size = New System.Drawing.Size(93, 13)
+        Me.lblTaxabPeriods.TabIndex = 1
+        Me.lblTaxabPeriods.Text = "TAXABLE Periods"
+        '
+        'lblTotalPeriods
+        '
+        Me.lblTotalPeriods.AutoSize = True
+        Me.lblTotalPeriods.Location = New System.Drawing.Point(6, 24)
+        Me.lblTotalPeriods.Name = "lblTotalPeriods"
+        Me.lblTotalPeriods.Size = New System.Drawing.Size(80, 13)
+        Me.lblTotalPeriods.TabIndex = 0
+        Me.lblTotalPeriods.Text = "TOTAL Periods"
+        '
+        'btnGoToEmployeeCard
+        '
+        Me.btnGoToEmployeeCard.Location = New System.Drawing.Point(657, 171)
+        Me.btnGoToEmployeeCard.Name = "btnGoToEmployeeCard"
+        Me.btnGoToEmployeeCard.Size = New System.Drawing.Size(128, 23)
+        Me.btnGoToEmployeeCard.TabIndex = 79
+        Me.btnGoToEmployeeCard.Text = "Go to Employee Card"
+        Me.btnGoToEmployeeCard.UseVisualStyleBackColor = True
+        '
+        'btncalcSelectedLine
+        '
+        Me.btncalcSelectedLine.Location = New System.Drawing.Point(99, 171)
+        Me.btncalcSelectedLine.Name = "btncalcSelectedLine"
+        Me.btncalcSelectedLine.Size = New System.Drawing.Size(100, 23)
+        Me.btncalcSelectedLine.TabIndex = 80
+        Me.btncalcSelectedLine.Text = "CALCULATE line"
+        Me.btncalcSelectedLine.UseVisualStyleBackColor = True
+        '
+        'btnPrepareSelected
+        '
+        Me.btnPrepareSelected.Location = New System.Drawing.Point(205, 171)
+        Me.btnPrepareSelected.Name = "btnPrepareSelected"
+        Me.btnPrepareSelected.Size = New System.Drawing.Size(100, 23)
+        Me.btnPrepareSelected.TabIndex = 81
+        Me.btnPrepareSelected.Text = "PREPARE Line"
+        Me.btnPrepareSelected.UseVisualStyleBackColor = True
+        '
+        'btnDeleteLine
+        '
+        Me.btnDeleteLine.Location = New System.Drawing.Point(311, 171)
+        Me.btnDeleteLine.Name = "btnDeleteLine"
+        Me.btnDeleteLine.Size = New System.Drawing.Size(100, 23)
+        Me.btnDeleteLine.TabIndex = 82
+        Me.btnDeleteLine.Text = "DELETE Line"
+        Me.btnDeleteLine.UseVisualStyleBackColor = True
+        '
+        'CBSelectGrid
+        '
+        Me.CBSelectGrid.AutoSize = True
+        Me.CBSelectGrid.Location = New System.Drawing.Point(78, 176)
+        Me.CBSelectGrid.Name = "CBSelectGrid"
+        Me.CBSelectGrid.Size = New System.Drawing.Size(15, 14)
+        Me.CBSelectGrid.TabIndex = 83
+        Me.CBSelectGrid.UseVisualStyleBackColor = True
+        '
+        'btnUndoCalculation
+        '
+        Me.btnUndoCalculation.Location = New System.Drawing.Point(417, 171)
+        Me.btnUndoCalculation.Name = "btnUndoCalculation"
+        Me.btnUndoCalculation.Size = New System.Drawing.Size(100, 23)
+        Me.btnUndoCalculation.TabIndex = 84
+        Me.btnUndoCalculation.Text = "CALC to PREP"
+        Me.btnUndoCalculation.UseVisualStyleBackColor = True
+        '
+        'btnSCP
+        '
+        Me.btnSCP.Location = New System.Drawing.Point(645, 98)
+        Me.btnSCP.Name = "btnSCP"
+        Me.btnSCP.Size = New System.Drawing.Size(111, 23)
+        Me.btnSCP.TabIndex = 85
+        Me.btnSCP.Text = "Search/Calc/Post"
+        Me.btnSCP.UseVisualStyleBackColor = True
+        '
+        'LabelStatus
+        '
+        Me.LabelStatus.AutoSize = True
+        Me.LabelStatus.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        Me.LabelStatus.ForeColor = System.Drawing.Color.Blue
+        Me.LabelStatus.Location = New System.Drawing.Point(481, 40)
+        Me.LabelStatus.Name = "LabelStatus"
+        Me.LabelStatus.Size = New System.Drawing.Size(0, 15)
+        Me.LabelStatus.TabIndex = 86
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(645, 57)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(111, 23)
+        Me.Button1.TabIndex = 87
+        Me.Button1.Text = "Close Period"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'CBOnlyLeavers
+        '
+        Me.CBOnlyLeavers.AutoSize = True
+        Me.CBOnlyLeavers.Location = New System.Drawing.Point(573, 150)
+        Me.CBOnlyLeavers.Name = "CBOnlyLeavers"
+        Me.CBOnlyLeavers.Size = New System.Drawing.Size(88, 17)
+        Me.CBOnlyLeavers.TabIndex = 88
+        Me.CBOnlyLeavers.Text = "Only Leavers"
+        Me.CBOnlyLeavers.UseVisualStyleBackColor = True
+        '
+        'txtGenanal1
+        '
+        Me.txtGenanal1.Location = New System.Drawing.Point(346, 102)
+        Me.txtGenanal1.MaxLength = 20
+        Me.txtGenanal1.Name = "txtGenanal1"
+        Me.txtGenanal1.Size = New System.Drawing.Size(293, 20)
+        Me.txtGenanal1.TabIndex = 89
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(231, 105)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(94, 13)
+        Me.Label10.TabIndex = 90
+        Me.Label10.Text = "General Analysis 1"
+        '
+        'ComboNoOfRows
+        '
+        Me.ComboNoOfRows.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.ComboNoOfRows.FormattingEnabled = True
+        Me.ComboNoOfRows.Items.AddRange(New Object() {"20", "30", "40", "All"})
+        Me.ComboNoOfRows.Location = New System.Drawing.Point(1073, 171)
+        Me.ComboNoOfRows.Name = "ComboNoOfRows"
+        Me.ComboNoOfRows.Size = New System.Drawing.Size(45, 21)
+        Me.ComboNoOfRows.TabIndex = 93
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(1004, 176)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(63, 13)
+        Me.Label11.TabIndex = 96
+        Me.Label11.Text = "No of Rows"
+        '
+        'RadioAnalysis
+        '
+        Me.RadioAnalysis.AutoSize = True
+        Me.RadioAnalysis.Location = New System.Drawing.Point(395, 127)
+        Me.RadioAnalysis.Name = "RadioAnalysis"
+        Me.RadioAnalysis.Size = New System.Drawing.Size(109, 17)
+        Me.RadioAnalysis.TabIndex = 97
+        Me.RadioAnalysis.TabStop = True
+        Me.RadioAnalysis.Text = "Sort By Analysis 2"
+        Me.RadioAnalysis.UseVisualStyleBackColor = True
+        '
+        'CBReloadsalary
+        '
+        Me.CBReloadsalary.AutoSize = True
+        Me.CBReloadsalary.Location = New System.Drawing.Point(801, 60)
+        Me.CBReloadsalary.Name = "CBReloadsalary"
+        Me.CBReloadsalary.Size = New System.Drawing.Size(143, 17)
+        Me.CBReloadsalary.TabIndex = 98
+        Me.CBReloadsalary.Text = "Reload Salary on 'PREP'"
+        Me.CBReloadsalary.UseVisualStyleBackColor = True
+        '
+        'BtnGoToemployeeSalary
+        '
+        Me.BtnGoToemployeeSalary.Location = New System.Drawing.Point(523, 171)
+        Me.BtnGoToemployeeSalary.Name = "BtnGoToemployeeSalary"
+        Me.BtnGoToemployeeSalary.Size = New System.Drawing.Size(128, 23)
+        Me.BtnGoToemployeeSalary.TabIndex = 99
+        Me.BtnGoToemployeeSalary.Text = "Go to Employee Salary"
+        Me.BtnGoToemployeeSalary.UseVisualStyleBackColor = True
+        '
+        'btnShowTotals
+        '
+        Me.btnShowTotals.Location = New System.Drawing.Point(685, 146)
+        Me.btnShowTotals.Name = "btnShowTotals"
+        Me.btnShowTotals.Size = New System.Drawing.Size(100, 23)
+        Me.btnShowTotals.TabIndex = 100
+        Me.btnShowTotals.Text = "ShowTotals"
+        Me.btnShowTotals.UseVisualStyleBackColor = True
+        Me.btnShowTotals.Visible = False
+        '
+        'RadioTA
+        '
+        Me.RadioTA.AutoSize = True
+        Me.RadioTA.Location = New System.Drawing.Point(509, 128)
+        Me.RadioTA.Name = "RadioTA"
+        Me.RadioTA.Size = New System.Drawing.Size(107, 17)
+        Me.RadioTA.TabIndex = 101
+        Me.RadioTA.TabStop = True
+        Me.RadioTA.Text = " Sort By TA Code"
+        Me.RadioTA.UseVisualStyleBackColor = True
+        '
+        'CBEwallet
+        '
+        Me.CBEwallet.AutoSize = True
+        Me.CBEwallet.Location = New System.Drawing.Point(501, 150)
+        Me.CBEwallet.Name = "CBEwallet"
+        Me.CBEwallet.Size = New System.Drawing.Size(66, 17)
+        Me.CBEwallet.TabIndex = 102
+        Me.CBEwallet.Text = "E-Wallet"
+        Me.CBEwallet.UseVisualStyleBackColor = True
+        '
+        'CBUseEmail2
+        '
+        Me.CBUseEmail2.AutoSize = True
+        Me.CBUseEmail2.Location = New System.Drawing.Point(801, 103)
+        Me.CBUseEmail2.Name = "CBUseEmail2"
+        Me.CBUseEmail2.Size = New System.Drawing.Size(163, 17)
+        Me.CBUseEmail2.TabIndex = 103
+        Me.CBUseEmail2.Text = "Use Email 2 to Send Payslips"
+        Me.CBUseEmail2.UseVisualStyleBackColor = True
+        '
+        'btnTemplateSearch
+        '
+        Me.btnTemplateSearch.Location = New System.Drawing.Point(448, 36)
+        Me.btnTemplateSearch.Name = "btnTemplateSearch"
+        Me.btnTemplateSearch.Size = New System.Drawing.Size(27, 20)
+        Me.btnTemplateSearch.TabIndex = 104
+        Me.btnTemplateSearch.Text = "..."
+        Me.btnTemplateSearch.UseVisualStyleBackColor = True
+        '
+        'CBReloadDates
+        '
+        Me.CBReloadDates.AutoSize = True
+        Me.CBReloadDates.Location = New System.Drawing.Point(801, 80)
+        Me.CBReloadDates.Name = "CBReloadDates"
+        Me.CBReloadDates.Size = New System.Drawing.Size(234, 17)
+        Me.CBReloadDates.TabIndex = 105
+        Me.CBReloadDates.Text = "Reload Start && Termination Dates on 'PREP'"
+        Me.CBReloadDates.UseVisualStyleBackColor = True
+        '
+        'BtnNext1
+        '
+        Me.BtnNext1.Image = CType(resources.GetObject("BtnNext1.Image"), System.Drawing.Image)
+        Me.BtnNext1.Location = New System.Drawing.Point(1180, 171)
+        Me.BtnNext1.Name = "BtnNext1"
+        Me.BtnNext1.Size = New System.Drawing.Size(46, 23)
+        Me.BtnNext1.TabIndex = 94
+        Me.BtnNext1.UseVisualStyleBackColor = True
+        '
+        'BtnPrevius1
+        '
+        Me.BtnPrevius1.Image = CType(resources.GetObject("BtnPrevius1.Image"), System.Drawing.Image)
+        Me.BtnPrevius1.Location = New System.Drawing.Point(1128, 171)
+        Me.BtnPrevius1.Name = "BtnPrevius1"
+        Me.BtnPrevius1.Size = New System.Drawing.Size(46, 23)
+        Me.BtnPrevius1.TabIndex = 95
+        Me.BtnPrevius1.Tag = "Works Only when From To Employee are empty"
+        Me.BtnPrevius1.UseVisualStyleBackColor = True
         '
         'FrmPayroll1
         '
