@@ -1,10 +1,10 @@
 Module Global1
-    Public Version As String = "2.2026.003"
+    Public Version As String = "2.2026.006"
     'YTD Report
     'Sum Annual Units for 13nth
     'Open Next Year Period Automatically
 
-    Public VersionDate As String = "18/03/2026"
+    Public VersionDate As String = "08/06/2026"
     '14th Salary
     'Payslip directory
 

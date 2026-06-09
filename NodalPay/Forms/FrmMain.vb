@@ -12943,4 +12943,11 @@ Public Class FrmMain
         Dim F As New FrmFixYTD
         F.ShowDialog()
     End Sub
+
+
+    Private Sub TEST1ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TEST1ToolStripMenuItem.Click
+        Dim F As New FrmTest1
+        F.MdiParent = Me
+        F.Show
+    End Sub
 End Class

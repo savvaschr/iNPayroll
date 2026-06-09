@@ -242,12 +242,13 @@ Partial Class FrmMain
         Me.EmailsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator26 = New System.Windows.Forms.ToolStripSeparator()
         Me.TestToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TEST1ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.mnuExelsys = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportDataFromExelsysToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportDataFromExcelsysOnlyNEWEmployeesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator18 = New System.Windows.Forms.ToolStripSeparator()
         Me.DeleteRecordsFromHCMToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AboutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip = New System.Windows.Forms.ToolStrip()
         Me.TSUrlSI = New System.Windows.Forms.ToolStripLabel()
         Me.ToolStripSeparator2 = New System.Windows.Forms.ToolStripSeparator()
@@ -1421,7 +1422,7 @@ Partial Class FrmMain
         '
         'mnuImportFromExcelNew
         '
-        Me.mnuImportFromExcelNew.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportEmployeesFromExcelToolStripMenuItem1, Me.ImportEmployeesFromExcelTemplate2ToolStripMenuItem, Me.ImportEmployeesFromExcelTemplate2ToolStripMenuItem1, Me.TestToolStripMenuItem1, Me.ToolStripSeparator22, Me.mnuImportEmails, Me.mnuImportIBANs, Me.mnuImportAccountNo, Me.ImportAnalysisWithCodesToolStripMenuItem, Me.ImportAnalysisWithDescriptionsToolStripMenuItem, Me.ImportGL1ToolStripMenuItem, Me.ToolStripSeparator23, Me.ImportLeaveFromBetaBiz, Me.ChangeEmployeeToolStripMenuItem, Me.ImportLeaversDateAndEmailToolStripMenuItem, Me.ToolStripSeparator24, Me.AdminImportToolStripMenuItem, Me.AdminImport2ToolStripMenuItem, Me.ToolStripSeparator25, Me.ImportSalariesToolStripMenuItem, Me.DOBToolStripMenuItem, Me.EmailsToolStripMenuItem, Me.ToolStripSeparator26, Me.TestToolStripMenuItem2})
+        Me.mnuImportFromExcelNew.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportEmployeesFromExcelToolStripMenuItem1, Me.ImportEmployeesFromExcelTemplate2ToolStripMenuItem, Me.ImportEmployeesFromExcelTemplate2ToolStripMenuItem1, Me.TestToolStripMenuItem1, Me.ToolStripSeparator22, Me.mnuImportEmails, Me.mnuImportIBANs, Me.mnuImportAccountNo, Me.ImportAnalysisWithCodesToolStripMenuItem, Me.ImportAnalysisWithDescriptionsToolStripMenuItem, Me.ImportGL1ToolStripMenuItem, Me.ToolStripSeparator23, Me.ImportLeaveFromBetaBiz, Me.ChangeEmployeeToolStripMenuItem, Me.ImportLeaversDateAndEmailToolStripMenuItem, Me.ToolStripSeparator24, Me.AdminImportToolStripMenuItem, Me.AdminImport2ToolStripMenuItem, Me.ToolStripSeparator25, Me.ImportSalariesToolStripMenuItem, Me.DOBToolStripMenuItem, Me.EmailsToolStripMenuItem, Me.ToolStripSeparator26, Me.TestToolStripMenuItem2, Me.TEST1ToolStripMenuItem})
         Me.mnuImportFromExcelNew.Name = "mnuImportFromExcelNew"
         Me.mnuImportFromExcelNew.Size = New System.Drawing.Size(115, 20)
         Me.mnuImportFromExcelNew.Text = "Import From Excel"
@@ -1629,6 +1630,19 @@ Partial Class FrmMain
         Me.TestToolStripMenuItem2.Text = "Test"
         Me.TestToolStripMenuItem2.Visible = False
         '
+        'TEST1ToolStripMenuItem
+        '
+        Me.TEST1ToolStripMenuItem.Name = "TEST1ToolStripMenuItem"
+        Me.TEST1ToolStripMenuItem.Size = New System.Drawing.Size(307, 22)
+        Me.TEST1ToolStripMenuItem.Text = "TEST1"
+        Me.TEST1ToolStripMenuItem.Visible = False
+        '
+        'AboutToolStripMenuItem
+        '
+        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
+        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(52, 20)
+        Me.AboutToolStripMenuItem.Text = "About"
+        '
         'mnuExelsys
         '
         Me.mnuExelsys.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportDataFromExelsysToolStripMenuItem, Me.ImportDataFromExcelsysOnlyNEWEmployeesToolStripMenuItem, Me.ToolStripSeparator18, Me.DeleteRecordsFromHCMToolStripMenuItem})
@@ -1658,12 +1672,6 @@ Partial Class FrmMain
         Me.DeleteRecordsFromHCMToolStripMenuItem.Name = "DeleteRecordsFromHCMToolStripMenuItem"
         Me.DeleteRecordsFromHCMToolStripMenuItem.Size = New System.Drawing.Size(338, 22)
         Me.DeleteRecordsFromHCMToolStripMenuItem.Text = "Delete Records From HCM"
-        '
-        'AboutToolStripMenuItem
-        '
-        Me.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem"
-        Me.AboutToolStripMenuItem.Size = New System.Drawing.Size(52, 20)
-        Me.AboutToolStripMenuItem.Text = "About"
         '
         'ToolStrip
         '
@@ -2107,4 +2115,5 @@ Partial Class FrmMain
     Friend WithEvents mnuScale2 As ToolStripMenuItem
     Friend WithEvents Scale3ToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents FixContributionYTDToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents TEST1ToolStripMenuItem As ToolStripMenuItem
 End Class

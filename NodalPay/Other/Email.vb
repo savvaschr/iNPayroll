@@ -58,13 +58,18 @@ Module Email
 
             oMsg.Subject = Subject
             oMsg.Body = Message
-            oMsg.To = MailTO
+            '''---------------------------------------------
+            oMsg.To = enQuoteString(MailTO)
+            ' Dim rec = oMsg.Recipients.Add(MailTO)
+            ' rec.Type = Microsoft.Office.Interop.Outlook.OlMailRecipientType.olTo
+            'rec.Resolve()
+            '''''----------------------------------------------------------------------------
 
             'Dim sAttaSource As String = "C:\Temp\Hello.txt"
             ' TODO: Replace with attachment name
             'Dim sDisplayName As String = "Hello.txt"
             If AttachmentFile <> "" Then
-                Dim sBodyLen As String = oMsg.Body.Length
+                Dim sBodyLen As Integer = oMsg.Body.Length
                 Dim oAttachs As Microsoft.Office.Interop.Outlook.Attachments = oMsg.Attachments
                 Dim oAttach As Microsoft.Office.Interop.Outlook.Attachment
                 oAttach = oAttachs.Add(AttachmentFile, , sBodyLen + 1, AttachmentName)
@@ -78,7 +83,7 @@ Module Email
                 If SendDateTime >= DateTime.Now Then
                     oMsg.DeferredDeliveryTime = SendDateTime
                     ' System.Threading.Thread.Sleep(1000) ' 1 second delay to allow Outlook to process
-                    'oMsg.Save()
+                    oMsg.Save()
                     'System.Threading.Thread.Sleep(500)
                     oMsg.Send()
                 Else

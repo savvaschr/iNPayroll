@@ -61764,5 +61764,234 @@ todo:   ' check for status in trxnheader
 
         Return f
     End Function
+    Protected Function Upgrade_2026_06()
+
+
+        Dim Str As String
+        Dim i As Integer
+        Dim F As Boolean = True
+
+
+        Str = "ALTER TABLE AdMsCompany " &
+        " ALTER COLUMN [Com_BankCode] varchar(50) "
+
+
+
+
+        i = ExecuteNonQuery(Str)
+        If i >= 0 Then
+            MsgBox("New columns Added in AdMsCompany", MsgBoxStyle.Information)
+        Else
+            MsgBox("Fail to add New columns in AdMsCompany", MsgBoxStyle.Critical)
+        End If
+
+
+        ' Alter SPs                                     
+
+        Str = "ALTER PROCEDURE [dbo].[AG_AdMsCompany_SAVE_UPDATE] " &
+             "@Com_Id integer, " &
+             "@Com_Code char(8), " &
+             "@Com_Name varchar(100), " &
+             "@Com_NameS varchar(30), " &
+             "@Com_TIC varchar(12), " &
+             "@Com_TaxCard  varchar(50), " &
+             "@Com_SIRegNo  varchar(50), " &
+             "@Com_CurSymbol  varchar(5), " &
+             "@Com_Address1  varchar(100), " &
+             "@Com_Address2  varchar(100), " &
+             "@Com_Address3  varchar(100), " &
+             "@Com_Address4  varchar(100), " &
+             "@Com_Tel1  varchar(20), " &
+             "@Com_Tel2  varchar(20), " &
+             "@Com_Fax1  varchar(20), " &
+             "@Com_Fax2  varchar(20), " &
+             "@Com_AccountantPostCode  varchar(50), " &
+             "@Com_AccountantPOBox  varchar(50), " &
+             "@Com_AccountantTitle  varchar(50), " &
+             "@Com_AccTIC  varchar(9), " &
+             "@Com_AccIdentity int, " &
+             "@Com_TICCategory int, " &
+             "@Com_TICType  int, " &
+             "@Com_BankCode varchar(50), " &
+             "@Com_GLAnal1 varchar(20), " &
+             "@Com_GLAnal2 varchar(20), " &
+             "@Com_GLAnal3 varchar(20), " &
+             "@Com_GLAnal4 varchar(20), " &
+             "@Com_GLAnal5 varchar(20), " &
+             "@Com_TSAccount varchar(50), " &
+             "@Com_TSAccountType varchar(2), " &
+             "@Com_TSBalAccount varchar(50), " &
+             "@Com_TSBalAccountType varchar(2), " &
+             "@Com_TSDefaultJob varchar(50), " &
+             "@Com_SI2 varchar(50), " &
+             "@Com_SI3 varchar(50), " &
+             "@Com_SI4 varchar(50), " &
+             "@Com_SI5 varchar(50), " &
+             "@Com_BankCode2 varchar(50), " &
+             "@Com_BankCode3 varchar(50), " &
+             "@Com_BankCode4 varchar(50), " &
+             "@Com_Logo image, " &
+             "@Com_Stamp image " &
+             " " &
+             "AS " &
+             "DECLARE @Result as Int " &
+             "  Set @Result = 0 " &
+             "  SELECT @Result = Count(*) " &
+             "  FROM AdMsCompany " &
+             "  WHERE Com_Id = @Com_Id " &
+             "  IF(@Result IS NULL) OR (@Result=0) " &
+             "    BEGIN " &
+             "      INSERT INTO AdMsCompany " &
+             "      (Com_Id,   " &
+             "	    Com_Code, " &
+             "		Com_Name, " &
+             "		Com_NameS, " &
+             "		Com_TIC, " &
+             "		Com_TaxCard, " &
+             "		Com_SIRegNo, " &
+             "		Com_CurSymbol, " &
+             "		Com_Address1, " &
+             "		Com_Address2, " &
+             "		Com_Address3, " &
+             "		Com_Address4, " &
+             "		Com_Tel1, " &
+             "		Com_Tel2, " &
+             "		Com_Fax1, " &
+             "		Com_Fax2, " &
+             "		Com_AccountantPostCode, " &
+             "		Com_AccountantPOBox, " &
+             "		Com_AccountantTitle, " &
+             "       Com_AccTIC, " &
+             "		Com_AccIdentity, " &
+             "		Com_TICCategory, " &
+             "		Com_TICType, " &
+             "		Com_BankCode, " &
+             "        Com_GLAnal1,  " &
+             "		Com_GLAnal2,  " &
+             "		Com_GLAnal3,  " &
+             "		Com_GLAnal4,   " &
+             "		Com_GLAnal5, " &
+             "		Com_TSAccount, " &
+             "		Com_TSAccountType, " &
+             "		Com_TSBalAccount, " &
+             "		Com_TSBalAccountType, " &
+             "		Com_TSDefaultJob, " &
+             "		Com_SI2, " &
+             "		Com_SI3, " &
+             "		Com_SI4, " &
+             "		Com_SI5, " &
+             "		Com_BankCode2, " &
+             " 		Com_BankCode3, " &
+             "      Com_BankCode4, " &
+             "      Com_Logo, " &
+             "      Com_Stamp " &
+             "     ) " &
+             "    VALUES ( " &
+             "		@Com_Id, " &
+             "		@Com_Code, " &
+             "		@Com_Name, " &
+             "		@Com_NameS, " &
+             "		@Com_TIC, " &
+             "		@Com_TaxCard, " &
+             "		@Com_SIRegNo, " &
+             "		@Com_CurSymbol, " &
+             "		@Com_Address1, " &
+             "		@Com_Address2, " &
+             "		@Com_Address3, " &
+             "		@Com_Address4, " &
+             "		@Com_Tel1, " &
+             "		@Com_Tel2, " &
+             "		@Com_Fax1, " &
+             "		@Com_Fax2, " &
+             "		@Com_AccountantPostCode, " &
+             "		@Com_AccountantPOBox, " &
+             "		@Com_AccountantTitle, " &
+             "		@Com_AccTIC, " &
+             "		@Com_AccIdentity, " &
+             "		@Com_TICCategory, " &
+             "		@Com_TICType, " &
+             "		@Com_BankCode, " &
+             "		@Com_GLAnal1,  " &
+             "		@Com_GLAnal2,  " &
+             "		@Com_GLAnal3,  " &
+             "		@Com_GLAnal4,  " &
+             "		@Com_GLAnal5, " &
+             "		@Com_TSAccount, " &
+             "		@Com_TSAccountType, " &
+             "		@Com_TSBalAccount, " &
+             "		@Com_TSBalAccountType, " &
+             "		@Com_TSDefaultJob, " &
+             "		@Com_SI2, " &
+             "		@Com_SI3, " &
+             "		@Com_SI4, " &
+             "		@Com_SI5, " &
+             "		@Com_BankCode2, " &
+             "		@Com_BankCode3, " &
+             "		@Com_BankCode4, " &
+             "		@Com_Logo, " &
+             "      @Com_Stamp " &
+             "     ) " &
+             "      End " &
+             " ELSE " &
+             "       BEGIN " &
+             "       UPDATE AdMsCompany " &
+             "    SET  " &
+             "	    Com_Code=@Com_Code, " &
+             "		Com_Name=@Com_Name, " &
+             "		Com_NameS=@Com_NameS, " &
+             "		Com_TIC=@Com_TIC, " &
+             "		Com_TaxCard=@Com_TaxCard, " &
+             "		Com_SIRegNo=@Com_SIRegNo, " &
+             "		Com_CurSymbol=@Com_CurSymbol, " &
+             "		Com_Address1=@Com_Address1, " &
+             "		Com_Address2=@Com_Address2, " &
+             "		Com_Address3=@Com_Address3, " &
+             "		Com_Address4=@Com_Address4, " &
+             "		Com_Tel1=@Com_Tel1, " &
+             "		Com_Tel2=@Com_Tel2, " &
+             "		Com_Fax1=@Com_Fax1, " &
+             "		Com_Fax2=@Com_Fax2, " &
+             "		Com_AccountantPostCode=@Com_AccountantPostCode, " &
+             "		Com_AccountantPOBox=@Com_AccountantPOBox, " &
+             "		Com_AccountantTitle=@Com_AccountantTitle, " &
+             "       Com_AccTIC=@Com_AccTIC, " &
+             "		Com_AccIdentity=@Com_AccIdentity, " &
+             "		Com_TICCategory=@Com_TICCategory, " &
+             "		Com_TICType=@Com_TICType, " &
+             "		Com_BankCode=@Com_BankCode, " &
+             "		Com_GLAnal1=@Com_GLAnal1,  " &
+             "		Com_GLAnal2=@Com_GLAnal2,  " &
+             "		Com_GLAnal3=@Com_GLAnal3,  " &
+             "		Com_GLAnal4=@Com_GLAnal4,  " &
+             "		Com_GLAnal5=@Com_GLAnal5, " &
+             "		Com_TSAccount=@Com_TSAccount, " &
+             "		Com_TSAccountType=@Com_TSAccountType, " &
+             "		Com_TSBalAccount=@Com_TSBalAccount, " &
+             "		Com_TSBalAccountType=@Com_TSBalAccountType, " &
+             "		Com_TSDefaultJob=@Com_TSDefaultJob, " &
+             "		Com_SI2=@Com_SI2, " &
+             "		Com_SI3=@Com_SI3, " &
+             "		Com_SI4=@Com_SI4, " &
+             "		Com_SI5=@Com_SI5, " &
+             "		Com_BankCode2=@Com_BankCode2, " &
+             "		Com_BankCode3=@Com_BankCode3, " &
+             "		Com_BankCode4=@Com_BankCode4, " &
+             "		Com_Logo=@Com_Logo, " &
+             "		Com_Stamp=@Com_Stamp " &
+             "     WHERE Com_Id = @Com_Id " &
+             "      End "
+
+        i = MyBase.ExecuteNonQuery(Str)
+        If i < 0 Then
+            F = False
+        End If
+
+
+        Return F
+
+
+
+
+    End Function
 End Class
 

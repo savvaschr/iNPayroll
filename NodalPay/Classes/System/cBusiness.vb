@@ -2260,6 +2260,9 @@ Public Class cBusiness
     Public Function Upgrade_2026_05_HeaderExtraFields() As Boolean
         Return MyBase.Upgrade_2026_05_HeaderExtraFields
     End Function
+    Public Function Upgrade_2026_06() As Boolean
+        Return MyBase.Upgrade_2026_06
+    End Function
 
 
 

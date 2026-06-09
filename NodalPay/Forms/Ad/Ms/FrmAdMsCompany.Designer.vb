@@ -20,8 +20,8 @@ Partial Class FrmAdMsCompany
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmAdMsCompany))
         Me.DG1 = New System.Windows.Forms.DataGridView()
         Me.Com_Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -166,24 +166,24 @@ Partial Class FrmAdMsCompany
         Me.DG1.AllowUserToAddRows = False
         Me.DG1.AllowUserToDeleteRows = False
         Me.DG1.BackgroundColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DG1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DG1.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.DG1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DG1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Com_Id, Me.Com_Code, Me.Com_Name, Me.Com_NameS, Me.Com_VAT, Me.Com_Reg, Me.Adr_Code, Me.Com_CurMode, Me.Com_CurRate, Me.Com_CurSymbol1, Me.Com_CurSymbol2, Me.Com_CurrentDate})
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
-        Me.DG1.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[False]
+        Me.DG1.DefaultCellStyle = DataGridViewCellStyle2
         Me.DG1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically
         Me.DG1.Location = New System.Drawing.Point(12, 297)
         Me.DG1.MultiSelect = False
@@ -748,7 +748,7 @@ Partial Class FrmAdMsCompany
         'txtbankcode4
         '
         Me.txtbankcode4.Location = New System.Drawing.Point(677, 85)
-        Me.txtbankcode4.MaxLength = 5
+        Me.txtbankcode4.MaxLength = 6
         Me.txtbankcode4.Name = "txtbankcode4"
         Me.txtbankcode4.Size = New System.Drawing.Size(100, 20)
         Me.txtbankcode4.TabIndex = 56
@@ -781,7 +781,7 @@ Partial Class FrmAdMsCompany
         'txtbankcode3
         '
         Me.txtbankcode3.Location = New System.Drawing.Point(677, 62)
-        Me.txtbankcode3.MaxLength = 5
+        Me.txtbankcode3.MaxLength = 6
         Me.txtbankcode3.Name = "txtbankcode3"
         Me.txtbankcode3.Size = New System.Drawing.Size(100, 20)
         Me.txtbankcode3.TabIndex = 52
@@ -814,7 +814,7 @@ Partial Class FrmAdMsCompany
         'txtbankcode2
         '
         Me.txtbankcode2.Location = New System.Drawing.Point(677, 39)
-        Me.txtbankcode2.MaxLength = 5
+        Me.txtbankcode2.MaxLength = 6
         Me.txtbankcode2.Name = "txtbankcode2"
         Me.txtbankcode2.Size = New System.Drawing.Size(100, 20)
         Me.txtbankcode2.TabIndex = 48
@@ -847,7 +847,7 @@ Partial Class FrmAdMsCompany
         'txtbankcode
         '
         Me.txtbankcode.Location = New System.Drawing.Point(677, 16)
-        Me.txtbankcode.MaxLength = 5
+        Me.txtbankcode.MaxLength = 6
         Me.txtbankcode.Name = "txtbankcode"
         Me.txtbankcode.Size = New System.Drawing.Size(100, 20)
         Me.txtbankcode.TabIndex = 44

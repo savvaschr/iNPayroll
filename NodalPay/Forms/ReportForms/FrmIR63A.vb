@@ -11602,12 +11602,14 @@ Public Class FrmIR63A
         MT_FinancialBenefitDeduction = 0
         MT_TotalPensionableBenefitsContribution = 0
         MT_TotalGhsEmployersContribution = 0
+        MT_TotalGhsEmployeesContribution = 0
 
 
         MT_GHSWithHeldEmployee = 0
         MT_GHSWithHeldPensioners = 0
         MT_GHSWithHeldOfficers = 0
         MT_GHSEmployersContribution = 0
+        'MT_GHSEmployeesContribution = 0
 
 
         XmlFile2025(ShowExcel, False)
@@ -12367,6 +12369,9 @@ Public Class FrmIR63A
         MT_GHSWithHeldPensioners = MT_GHSWithHeldPensioners + Q44
         '<!-- Q44 GHS withheld from Pensioners: Sum of Q42 & Q43 -->
 
+        '''''''' GESY CORRECTION FOR 2025 xml
+        Q39 = Q39 + Q33
+        '''''''' END OF GESY CORRECTION FOR 2025 xml
 
         WL("<GhsWithheldEmployeesNormalRate>" & FWC(Q39) & "</GhsWithheldEmployeesNormalRate>")
         '<!-- Q39 GHS withheld from employees for income subject to normal rate tax -->
@@ -12374,6 +12379,7 @@ Public Class FrmIR63A
         WL("<GhsWithheldEmployeesSpecialRate>" & FWC(Q40) & "</GhsWithheldEmployeesSpecialRate>")
         '<!-- Q40 GHS withheld from employees for income subject to special rate tax (8%) -->
         Q41 = Q39 + Q40
+
         WL("<GhsWithheldEmployees>" & FWC(Q41) & "</GhsWithheldEmployees>")
         '<!-- Q41 GHS withheld from employees: Sum of Q39 & Q40 -->
         MT_GHSWithHeldEmployee = MT_GHSWithHeldEmployee + Q41
@@ -12393,8 +12399,9 @@ Public Class FrmIR63A
         WL("<GhsWithheldOfficers>" & FWC(Q46) & "</GhsWithheldOfficers>")
         MT_GHSWithHeldOfficers = MT_GHSWithHeldOfficers + Q46
         '<!-- Q46 GHS withheld from officers -->
-
-        Q47 = Q41 + Q44 + Q46
+        'GESY CORRECTION FOR XML 2025 , AFERESI GESY TO OTHER DEPARTMENTS
+        Q47 = Q41 + Q44 + Q46 - Q33
+        'END OF GESY CORRECTION FOR XML 2025 , AFERESI GESY TO OTHER DEPARTMENTS
         'WL("<GhsEmployeesContributionToTaxDepartment>" & FWC(Q47) & "</GhsEmployeesContributionToTaxDepartment>")
 
         WL("<GhsContributionWithheld>" & FWC(Q47) & "</GhsContributionWithheld>")
@@ -12402,7 +12409,7 @@ Public Class FrmIR63A
 
 
         '<!-- Q47 GHS Contribution of Employees Payable to Tax Department: Sum of Q41, 44, 46 - ->
-        Q48 = Q26 + Q27 + Q28 + Q29 + Q30 + Q31 + Q32 + Q33 + Q34 + Q38 + Q41 + Q44 + Q46
+        Q48 = Q26 + Q27 + Q28 + Q29 + Q30 + Q31 + Q32 + Q33 + Q34 + Q38 + Q41 + Q44 + Q46 - Q33
         WL("<TotalDeductions>" & FWC(Q48) & "</TotalDeductions>")
         '<!-- Q48 Total Deductions: Sum of Q26, 27, 28, 29, 30, 31, 32, 33, 34, 38, 41, 44, 46 - ->
         Q49 = Q23 - Q48

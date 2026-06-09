@@ -103,6 +103,7 @@ Partial Class FrmSystemUpgrade
         Me.Button78 = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.Button95 = New System.Windows.Forms.Button()
         Me.Button94 = New System.Windows.Forms.Button()
         Me.Button93 = New System.Windows.Forms.Button()
         Me.Button92 = New System.Windows.Forms.Button()
@@ -120,7 +121,7 @@ Partial Class FrmSystemUpgrade
         Me.Button80 = New System.Windows.Forms.Button()
         Me.Button79 = New System.Windows.Forms.Button()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.Button95 = New System.Windows.Forms.Button()
+        Me.Button96 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
         Me.TabPage1.SuspendLayout()
@@ -945,6 +946,7 @@ Partial Class FrmSystemUpgrade
         '
         'TabPage2
         '
+        Me.TabPage2.Controls.Add(Me.Button96)
         Me.TabPage2.Controls.Add(Me.Button95)
         Me.TabPage2.Controls.Add(Me.Button94)
         Me.TabPage2.Controls.Add(Me.Button93)
@@ -989,6 +991,16 @@ Partial Class FrmSystemUpgrade
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "2025"
         Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'Button95
+        '
+        Me.Button95.Location = New System.Drawing.Point(534, 35)
+        Me.Button95.Name = "Button95"
+        Me.Button95.Size = New System.Drawing.Size(233, 23)
+        Me.Button95.TabIndex = 95
+        Me.Button95.Text = "Create PF Values"
+        Me.Button95.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button95.UseVisualStyleBackColor = True
         '
         'Button94
         '
@@ -1219,15 +1231,15 @@ Partial Class FrmSystemUpgrade
         Me.TabPage1.Text = "2024"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
-        'Button95
+        'Button96
         '
-        Me.Button95.Location = New System.Drawing.Point(534, 35)
-        Me.Button95.Name = "Button95"
-        Me.Button95.Size = New System.Drawing.Size(233, 23)
-        Me.Button95.TabIndex = 95
-        Me.Button95.Text = "Create PF Values"
-        Me.Button95.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Button95.UseVisualStyleBackColor = True
+        Me.Button96.Location = New System.Drawing.Point(254, 471)
+        Me.Button96.Name = "Button96"
+        Me.Button96.Size = New System.Drawing.Size(233, 23)
+        Me.Button96.TabIndex = 96
+        Me.Button96.Text = "95. Alter Company BankCode "
+        Me.Button96.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button96.UseVisualStyleBackColor = True
         '
         'FrmSystemUpgrade
         '
@@ -1342,4 +1354,5 @@ Partial Class FrmSystemUpgrade
     Friend WithEvents Button93 As Button
     Friend WithEvents Button94 As Button
     Friend WithEvents Button95 As Button
+    Friend WithEvents Button96 As Button
 End Class

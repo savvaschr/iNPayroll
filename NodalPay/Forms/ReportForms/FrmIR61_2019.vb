@@ -950,10 +950,12 @@ Public Class FrmIR61_2019
                 NotionalAmount = 0
                 NotionalTax = 0
                 Dim GrossEmoluments As Double = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_GrossEmoluments))
+                Dim Emoluments As Double = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_Emoluments))
                 Dim Tax As Double = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_TaxWithheldGrossEmoluments))
                 NotionalAmount = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_BenefitFromRelatedParties))
                 NotionalTax = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_TaxDeductedFinancialBenefitsRelatedParties))
 
+                Ds.Tables(0).Rows(i).Item(COLx_Emoluments) = Emoluments - NotionalAmount
                 Ds.Tables(0).Rows(i).Item(COLx_GrossEmoluments) = GrossEmoluments - NotionalAmount
                 Ds.Tables(0).Rows(i).Item(COLx_TaxWithheldGrossEmoluments) = Tax - NotionalTax
 

@@ -70,6 +70,7 @@ Partial Class FrmBankTransferFile
         Me.Button15 = New System.Windows.Forms.Button()
         Me.Button16 = New System.Windows.Forms.Button()
         Me.Button17 = New System.Windows.Forms.Button()
+        Me.CBShowReportOnSelection = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'Button1
@@ -528,12 +529,24 @@ Partial Class FrmBankTransferFile
         Me.Button17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         Me.Button17.UseVisualStyleBackColor = True
         '
+        'CBShowReportOnSelection
+        '
+        Me.CBShowReportOnSelection.AutoSize = True
+        Me.CBShowReportOnSelection.Location = New System.Drawing.Point(99, 384)
+        Me.CBShowReportOnSelection.Name = "CBShowReportOnSelection"
+        Me.CBShowReportOnSelection.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.CBShowReportOnSelection.Size = New System.Drawing.Size(137, 17)
+        Me.CBShowReportOnSelection.TabIndex = 97
+        Me.CBShowReportOnSelection.Text = "Show Employees report"
+        Me.CBShowReportOnSelection.UseVisualStyleBackColor = True
+        '
         'FrmBankTransferFile
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.ClientSize = New System.Drawing.Size(1062, 679)
+        Me.Controls.Add(Me.CBShowReportOnSelection)
         Me.Controls.Add(Me.Button17)
         Me.Controls.Add(Me.Button16)
         Me.Controls.Add(Me.Button15)
@@ -636,4 +649,5 @@ Partial Class FrmBankTransferFile
     Friend WithEvents Button15 As Button
     Friend WithEvents Button16 As Button
     Friend WithEvents Button17 As Button
+    Friend WithEvents CBShowReportOnSelection As CheckBox
 End Class

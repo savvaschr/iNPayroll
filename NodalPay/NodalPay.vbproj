@@ -1081,6 +1081,12 @@
     <Compile Include="Forms\Pr\An\frmPrAnUnions.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Pr\FrmTest1.Designer.vb">
+      <DependentUpon>FrmTest1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Pr\FrmTest1.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Pr\Ms\FrmPrMsEmployeeDocuments.Designer.vb">
       <DependentUpon>FrmPrMsEmployeeDocuments.vb</DependentUpon>
     </Compile>
@@ -3254,6 +3260,9 @@
     <EmbeddedResource Include="Forms\Pr\An\frmPrAnUnions.resx">
       <SubType>Designer</SubType>
       <DependentUpon>frmPrAnUnions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Pr\FrmTest1.resx">
+      <DependentUpon>FrmTest1.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Pr\Ms\FrmPrMsEmployeeDocuments.resx">
       <SubType>Designer</SubType>

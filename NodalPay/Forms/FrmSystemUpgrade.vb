@@ -1320,4 +1320,8 @@ Public Class FrmSystemUpgrade
     Private Sub Button95_Click(sender As Object, e As EventArgs) Handles Button95.Click
         CreatePFValues()
     End Sub
+
+    Private Sub Button96_Click(sender As Object, e As EventArgs) Handles Button96.Click
+        Global1.Business.Upgrade_2026_06()
+    End Sub
 End Class
