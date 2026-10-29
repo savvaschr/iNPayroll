@@ -1,10 +1,10 @@
 Module Global1
-    Public Version As String = "2.2026.006"
+    Public Version As String = "2.2026.008"
     'YTD Report
     'Sum Annual Units for 13nth
     'Open Next Year Period Automatically
 
-    Public VersionDate As String = "08/06/2026"
+    Public VersionDate As String = "21/07/2026"
     '14th Salary
     'Payslip directory
 
@@ -190,6 +190,8 @@ Module Global1
     'Public PARAM_SystemIsLocked As Boolean = False
 
     Public PARAM_HideEmpWithBlanksSIR As Boolean = True
+
+    Public PARAM_CompanyNameOnEmailSubject As Boolean = True
 
     Public GmailAccount As String
     Public GmailPassword As String

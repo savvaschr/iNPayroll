@@ -139,12 +139,9 @@ Public Class cPrMsEmployees
     Private mMaternity As String
     Private mFEControlAmount As Double
     Private mPrevUnion As Double
+    Private mElegibleFor25 As String
 
     ' Private mPreviousInsurableForGESY As Double
-
-
-
-
 
     Public Property Code() As String
         Get
@@ -1140,6 +1137,14 @@ Public Class cPrMsEmployees
             mPrevUnion = value
         End Set
     End Property
+    Public Property ElegibleFor25() As String
+        Get
+            Return mElegibleFor25
+        End Get
+        Set(ByVal value As String)
+            mElegibleFor25 = value
+        End Set
+    End Property
 
 
     Public Sub New()
@@ -1306,6 +1311,7 @@ Public Class cPrMsEmployees
         mMaternity = DbNullToString(dr.Item(118))
         mFEControlAmount = DbNullToString(dr.Item(119))
         mPrevUnion = DbNullToDouble(dr.Item(120))
+        mElegibleFor25 = DbNullToString(dr.Item(121))
 
         '   mPreviousInsurableForGESY = DbNullToDouble(dr.Item(112))
 

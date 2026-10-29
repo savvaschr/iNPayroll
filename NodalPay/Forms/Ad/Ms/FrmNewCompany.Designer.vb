@@ -308,6 +308,7 @@ Partial Class FrmNewCompany
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.ClientSize = New System.Drawing.Size(693, 480)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.txtNewInterfaceGroupDesc)

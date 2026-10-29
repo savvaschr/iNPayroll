@@ -1324,4 +1324,12 @@ Public Class FrmSystemUpgrade
     Private Sub Button96_Click(sender As Object, e As EventArgs) Handles Button96.Click
         Global1.Business.Upgrade_2026_06()
     End Sub
+
+    Private Sub Button97_Click(sender As Object, e As EventArgs) Handles Button97.Click
+        Global1.Business.Upgrade_2026_07
+    End Sub
+
+    Private Sub Button98_Click(sender As Object, e As EventArgs) Handles Button98.Click
+        Global1.Business.Upgrade_2026_08()
+    End Sub
 End Class

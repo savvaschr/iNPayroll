@@ -721,6 +721,10 @@ Public Class frmPrMsEmployees
         Me.txtFEControlAmount.Text = "0.00"
         Me.CBForce50Percent.CheckState = CheckState.Unchecked
         Me.CBLimitTo20.CheckState = CheckState.Unchecked
+        Me.CBEligibleFor25.CheckState = CheckState.Unchecked
+        Me.CBForce50Percent.Enabled = False
+        Me.CBLimitTo20.Enabled = False
+        Me.CBEligibleFor25.Enabled = False
 
         Me.txtNotes.Text = ""
         Me.txtBankBenName.Text = ""
@@ -740,6 +744,8 @@ Public Class frmPrMsEmployees
         Me.txtOhterCountryTIC.Text = ""
 
         EmpPhoto.Image = My.Resources.photo
+
+
         Try
             Me.cmbCreatedBy.SelectedIndex = 0
         Catch ex As Exception
@@ -1900,6 +1906,11 @@ Public Class frmPrMsEmployees
                     Else
                         .Maternity = "0"
                     End If
+                    If Me.CBEligibleFor25.CheckState = CheckState.Checked Then
+                        .elegiblefor25 = "1"
+                    Else
+                        .elegiblefor25 = "0"
+                    End If
 
                     .ProFnd_Code = CType(Me.ComboProFund.SelectedItem, cPrSsProvidentFund).Code
                     .MedFnd_Code = CType(Me.ComboMedicalFund.SelectedItem, cPrSsMedicalFund).Code
@@ -2793,6 +2804,13 @@ Public Class frmPrMsEmployees
 
             Me.txtOhterCountryTIC.Text = .DrivingLicense
             Me.txtPensionNo.Text = .PensionNo
+            If .ElegibleFor25 = "0" Then
+                CBEligibleFor25.Checked = False
+            Else
+                CBEligibleFor25.Checked = True
+            End If
+
+
             If .IsSI = 0 Then
                 CBIsSI.Checked = False
             Else
@@ -5781,7 +5799,8 @@ Public Class frmPrMsEmployees
             P = Me.txtCode.Text
             TemplateGroup = CType(Me.cmbTemGrp_Code.SelectedItem, cPrMsTemplateGroup).Code
 
-            NextCode = Global1.Business.GetNextAvailableCode(P, TemplateGroup)
+            'NextCode = Global1.Business.GetNextAvailableCode(P, TemplateGroup)
+            NextCode = Global1.Business.GetNextAvailableCode2(P, TemplateGroup)
             If NextCode <> "" Then
                 Me.txtCode.Text = NextCode
             End If
@@ -6380,6 +6399,7 @@ Public Class frmPrMsEmployees
         If CBFirstEmployment.CheckState = CheckState.Checked Then
             Me.CBControlAmount100.Enabled = True
             Me.CBControlAmount55.Enabled = True
+            Me.CBEligibleFor25.Enabled = True
             Me.CBControlAmount55.CheckState = CheckState.Checked
             Me.CBControlAmount100.CheckState = CheckState.Unchecked
 
@@ -6388,8 +6408,11 @@ Public Class frmPrMsEmployees
         Else
             Me.CBControlAmount100.Enabled = False
             Me.CBControlAmount55.Enabled = False
+            Me.CBEligibleFor25.Enabled = False
+
             Me.CBControlAmount55.CheckState = CheckState.Unchecked
             Me.CBControlAmount100.CheckState = CheckState.Unchecked
+            Me.CBEligibleFor25.CheckState = CheckState.Unchecked
             Me.txtFEControlAmount.Text = "0.00"
 
             Me.CBLimitTo20.CheckState = CheckState.Unchecked
@@ -6421,6 +6444,7 @@ Public Class frmPrMsEmployees
             End If
         End If
     End Sub
+
 
     Private Sub btnTemplateSearch_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnTemplateSearch.Click
         Dim F As New FrmTemplateSearch
@@ -6782,14 +6806,21 @@ Public Class frmPrMsEmployees
     Private Sub CBForce50Percent_CheckedChanged(sender As Object, e As EventArgs) Handles CBForce50Percent.CheckedChanged
         If CBForce50Percent.CheckState = CheckState.Checked Then
             CBLimitTo20.CheckState = CheckState.Unchecked
+            CBEligibleFor25.CheckState = CheckState.Unchecked
         End If
     End Sub
     Private Sub CBLimitTo20_CheckedChanged(sender As Object, e As EventArgs) Handles CBLimitTo20.CheckedChanged
         If CBLimitTo20.CheckState = CheckState.Checked Then
             CBForce50Percent.CheckState = CheckState.Unchecked
+            CBEligibleFor25.CheckState = CheckState.Unchecked
         End If
     End Sub
-
+    Private Sub CBEligibleFor25_CheckedChanged(sender As Object, e As EventArgs) Handles CBEligibleFor25.CheckedChanged
+        If CBEligibleFor25.CheckState = CheckState.Checked Then
+            CBForce50Percent.CheckState = CheckState.Unchecked
+            CBLimitTo20.CheckState = CheckState.Unchecked
+        End If
+    End Sub
     Private Sub Button36_Click(sender As Object, e As EventArgs) Handles Button36.Click
         If Button36.Text = "View" Then
             Button36.Text = "Hide"
@@ -6923,4 +6954,6 @@ Public Class frmPrMsEmployees
             GC.Collect()
         End Try
     End Sub
+
+
 End Class

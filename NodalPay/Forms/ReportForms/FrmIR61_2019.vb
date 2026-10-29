@@ -509,11 +509,15 @@ Public Class FrmIR61_2019
             TAXFileDir = ""
             Exit Sub
         End If
+        Dim ShowPensioners As Boolean = False
+        If CBPensionersFile.CheckState = CheckState.Checked Then
+            ShowPensioners = True
+        End If
+        MonthlyReportTofile(WithExcel, ShowPensioners)
 
 
-        MonthlyReportTofile(WithExcel)
     End Sub
-    Private Sub MonthlyReportTofile(ShowExcel As Boolean)
+    Private Sub MonthlyReportTofile(ShowExcel As Boolean, ShowPensioners As Boolean)
         Me.Cursor = Cursors.WaitCursor
 
         Dim i As Integer
@@ -610,6 +614,37 @@ Public Class FrmIR61_2019
         Global1.GLB_StringForTemplateGroupPeriodGroupSIPeriods = ""
 
         DsTaxable = Global1.Business.REPORT_IR61_GetTaxableIncome_PerEmployee(PerGroup, SIPeriod, False)
+
+        If CheckDataSet(DsTax) Then
+            If CheckDataSet(DsTaxable) Then
+                Dim TempCode As String = ""
+                Dim TempCode2 As String = ""
+                Dim TempSIPension As Double = 0
+                Dim Found As Boolean = False
+                Dim k As Integer
+                Dim AlreadyFound As Integer
+                For i = 0 To DsTax.Tables(0).Rows.Count - 1
+                    TempSIPension = 0
+                    Found = False
+                    TempCode = DbNullToString(DsTax.Tables(0).Rows(i).Item(0))
+                   
+                    For k = 0 To DsTaxable.Tables(0).Rows.Count - 1
+                        TempCode2 = DbNullToString(DsTaxable.Tables(0).Rows(k).Item(0))
+                        AlreadyFound = DbNullToInt(DsTaxable.Tables(0).Rows(k).Item(5))
+                        If TempCode = TempCode2 And AlreadyFound = 0 Then
+                            TempSIPension = DbNullToDouble(DsTaxable.Tables(0).Rows(k).Item(4))
+                            DsTaxable.Tables(0).Rows(k).Item(5) = 1
+                            Found = True
+                            Exit For
+                        End If
+                    Next
+                    If Found Then
+                        DsTax.Tables(0).Rows(i).Item(9) = TempSIPension
+                    End If
+                Next
+            End If
+        End If
+
         DsDED = Global1.Business.REPORT_IR61_Gesy_DEDUCTION_PerEmployee(PerGroup, SIPeriod, False)
         DsCON = Global1.Business.REPORT_IR61_Gesy_CONTRIBUTION_PerEmployee(PerGroup, SIPeriod, False)
         DsCONPen = Global1.Business.REPORT_IR61_Gesy_CONTRIBUTION_LWBPen_PerEmployee(PerGroup, SIPeriod, False)
@@ -620,7 +655,7 @@ Public Class FrmIR61_2019
         DsPensionFund = Global1.Business.REPORT_IR61_PensionFund_DEDUCTION_PerEmployee(PerGroup, SIPeriod, False)
         DSWidowAndOrphans = Global1.Business.REPORT_IR61_WidowAndOrphans_DEDUCTION_PerEmployee(PerGroup, SIPeriod, False)
         DsNotionalAmount = Global1.Business.REPORT_IR61_NotionalAmount_PerEmployee(PerGroup, SIPeriod, False)
-        DsNotionalTax = Global1.Business.REPORT_IR61_NotionalTAX_PerEmployee(PerGroup, SIPeriod, False)
+        DsNotionalTax = Global1.Business.REPORT_IR61_NotionalTax_PerEmployee(PerGroup, SIPeriod, False)
 
 
 
@@ -684,7 +719,7 @@ Public Class FrmIR61_2019
                             Dim tCode As String
                             tCode = DbNullToString(DsTax.Tables(0).Rows(k).Item(0))
                             If tCode = Rehire Then
-                                found = True
+                                Found = True
                                 Exit For
                             End If
                         Next
@@ -764,7 +799,7 @@ Public Class FrmIR61_2019
                             Exit Sub
                         End If
                     End If
-                    End If
+                End If
 
                 Cursor.Current = Cursors.WaitCursor
                 Application.DoEvents()
@@ -784,6 +819,7 @@ Public Class FrmIR61_2019
                 End If
 
                 Fname = DbNullToString(DsTax.Tables(0).Rows(i).Item(1))
+
                 LName = DbNullToString(DsTax.Tables(0).Rows(i).Item(2))
                 TIC = DbNullToString(DsTax.Tables(0).Rows(i).Item(3))
                 StartDate = DbNullToString(DsTax.Tables(0).Rows(i).Item(4))
@@ -834,9 +870,13 @@ Public Class FrmIR61_2019
                     End If
                     dt.Rows.Add(R)
                 Else
-
+                    Dim TempGE As Double = Ds.Tables(0).Rows(SameRow).Item(COLx_TaxWithheldGrossEmoluments)
+                    Dim TempSIPen As Double = Ds.Tables(0).Rows(SameRow).Item(COLx_SocialInsurancePensions)
                     Ds.Tables(0).Rows(SameRow).Item(COLx_TaxWithheldGrossEmoluments) = DbNullToDouble(Ds.Tables(0).Rows(SameRow).Item(COLx_TaxWithheldGrossEmoluments)) + TaxValue
                     Ds.Tables(0).Rows(SameRow).Item(COLx_SocialInsurancePensions) = DbNullToDouble(Ds.Tables(0).Rows(SameRow).Item(COLx_SocialInsurancePensions)) + SIPension
+                    TempGE = Ds.Tables(0).Rows(SameRow).Item(COLx_TaxWithheldGrossEmoluments)
+                    TempSIPen = Ds.Tables(0).Rows(SameRow).Item(COLx_SocialInsurancePensions)
+
                 End If
 
             Next
@@ -947,6 +987,7 @@ Public Class FrmIR61_2019
 
 
                 Ds.Tables(0).Rows(i).Item(COLx_GrossEmoluments) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_Emoluments)) + DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_Pensions))
+                'Ds.Tables(0).Rows(i).Item(COLx_GrossEmoluments) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_Emoluments)) '+ DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_Pensions))
                 NotionalAmount = 0
                 NotionalTax = 0
                 Dim GrossEmoluments As Double = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_GrossEmoluments))
@@ -954,9 +995,10 @@ Public Class FrmIR61_2019
                 Dim Tax As Double = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_TaxWithheldGrossEmoluments))
                 NotionalAmount = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_BenefitFromRelatedParties))
                 NotionalTax = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_TaxDeductedFinancialBenefitsRelatedParties))
+                Dim SocialInsurancePension As Double = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_SocialInsurancePensions))
 
-                Ds.Tables(0).Rows(i).Item(COLx_Emoluments) = Emoluments - NotionalAmount
-                Ds.Tables(0).Rows(i).Item(COLx_GrossEmoluments) = GrossEmoluments - NotionalAmount
+                Ds.Tables(0).Rows(i).Item(COLx_Emoluments) = Emoluments - NotionalAmount - SocialInsurancePension
+                Ds.Tables(0).Rows(i).Item(COLx_GrossEmoluments) = GrossEmoluments - NotionalAmount - SocialInsurancePension
                 Ds.Tables(0).Rows(i).Item(COLx_TaxWithheldGrossEmoluments) = Tax - NotionalTax
 
             Next
@@ -1034,6 +1076,13 @@ Public Class FrmIR61_2019
                 LoadDataSetToExcel(Ds)
             End If
             PrepareXMLFiletoTAX(Ds, False)
+            If ShowPensioners Then
+                Dim TemGrp As New cPrMsTemplateGroup(TempGroupCode)
+                Dim Company As New cAdMsCompany(TemGrp.CompanyCode)
+                Dim TextOutputFile As String
+                TextOutputFile = TAXFileDir & Company.NameShort & "_" & GLBMonthlyPeriod & "_Pensioners_PAYE.txt"
+                ExportSocialInsuranceRows(Ds, TextOutputFile)
+            End If
             Me.Cursor = Cursors.Default
             If Error1 = "" Then
                 MsgBox("File is Created. " & GLBDisplayFilename, MsgBoxStyle.Information)
@@ -1045,10 +1094,48 @@ Public Class FrmIR61_2019
             End If
 
         Else
-                MsgBox("No Results found", MsgBoxStyle.Information)
+            MsgBox("No Results found", MsgBoxStyle.Information)
         End If
 
     End Sub
+    Public Sub ExportSocialInsuranceRows(ds As DataSet, outputFile As String)
+
+        Dim dt As DataTable = ds.Tables("TAX")
+
+        Using sw As New IO.StreamWriter(outputFile, False, System.Text.Encoding.UTF8)
+
+            ' Optional header
+            sw.WriteLine("TaxpayerNumber|Name|Emoluments|SocialInsurancePensions")
+
+            For Each dr As DataRow In dt.Rows
+
+                Dim sip As Double = 0
+
+                ' Safely convert to Double
+                If Not IsDBNull(dr("SocialInsurancePensions")) Then
+                    Double.TryParse(dr("SocialInsurancePensions").ToString(), sip)
+                End If
+
+                ' Keep only rows where SocialInsurancePensions is NOT zero
+                If sip <> 0 Then
+
+                    Dim line As String =
+                    dr("TaxpayerNumber").ToString() & "|" &
+                    dr("Name").ToString() & "|" &
+                    dr("Emoluments").ToString() & "|" &
+                    sip.ToString()
+
+                    sw.WriteLine(line)
+                End If
+
+            Next
+
+        End Using
+        Process.Start(outputFile)
+
+    End Sub
+
+
     Private Sub PrepareXMLFiletoTAX(ds As DataSet, IsAnnual As Boolean)
 
         Dim TemGrp As New cPrMsTemplateGroup(TempGroupCode)
@@ -1541,6 +1628,9 @@ Public Class FrmIR61_2019
         Dim DsPensionFund As DataSet
         Dim DSWidowAndOrphans As DataSet
 
+        Dim DSNotionalAmount As DataSet
+        Dim DSNotionalTax As DataSet
+
         Dim DsDEDDirector As DataSet
         Dim DsCONDirector As DataSet
 
@@ -1613,9 +1703,47 @@ Public Class FrmIR61_2019
         Me.txtTaxMonth.Text = SIPeriod.DescriptionL
 
         DsTax = Global1.Business.REPORT_IR61_PerEmployee(PerGroup, SIPeriod, True)
+        'DsTax = Global1.Business.REPORT_IR61_PerEmployee_Annual(PerGroup, SIPeriod, True)
 
         Global1.GLB_StringForTemplateGroupPeriodGroupSIPeriods = ""
         DsTaxable = Global1.Business.REPORT_IR61_GetTaxableIncome_PerEmployee(PerGroup, SIPeriod, True)
+
+
+        If CheckDataSet(DsTax) Then
+            If CheckDataSet(DsTaxable) Then
+                Dim TempCode As String = ""
+                Dim TempCode2 As String = ""
+                Dim TempSIPension As Double = 0
+                Dim Found As Boolean = False
+                Dim k As Integer
+                For i = 0 To DsTax.Tables(0).Rows.Count - 1
+                    TempSIPension = 0
+                    Found = False
+                    TempCode = DbNullToString(DsTax.Tables(0).Rows(i).Item(0))
+                    For k = 0 To DsTaxable.Tables(0).Rows.Count - 1
+                        TempCode2 = DbNullToString(DsTaxable.Tables(0).Rows(k).Item(0))
+                        If TempCode = TempCode2 Then
+                            TempSIPension = DbNullToDouble(DsTaxable.Tables(0).Rows(k).Item(4))
+                            Found = True
+                            Exit For
+                        End If
+                    Next
+                    If Found Then
+                        DsTax.Tables(0).Rows(i).Item(9) = TempSIPension
+                    End If
+                Next
+            End If
+        End If
+
+
+
+
+
+
+
+
+
+
 
 
         DsDED = Global1.Business.REPORT_IR61_Gesy_DEDUCTION_PerEmployee(PerGroup, SIPeriod, True)
@@ -1628,7 +1756,8 @@ Public Class FrmIR61_2019
         DsPensionFund = Global1.Business.REPORT_IR61_PensionFund_DEDUCTION_PerEmployee(PerGroup, SIPeriod, True)
         DSWidowAndOrphans = Global1.Business.REPORT_IR61_WidowAndOrphans_DEDUCTION_PerEmployee(PerGroup, SIPeriod, True)
 
-
+        DsNotionalAmount = Global1.Business.REPORT_IR61_NotionalAmount_PerEmployee(PerGroup, SIPeriod, True)
+        DsNotionalTax = Global1.Business.REPORT_IR61_NotionalTax_PerEmployee(PerGroup, SIPeriod, True)
 
 
 
@@ -1649,6 +1778,9 @@ Public Class FrmIR61_2019
         Dim Total_GhsWithheldFromEmployeeBonus As Double = 0
         Dim Total_BonusGhsEmployersContribution As Double = 0
         Dim Total_PensionableBenefitsContribution As Double = 0
+        Dim Total_NotionalAmount As Double = 0
+        Dim Total_NotionalTax As Double = 0
+
 
         Dim R As DataRow
 
@@ -1666,6 +1798,8 @@ Public Class FrmIR61_2019
             Dim PensionFund As Double = 0
             Dim WidowsAndOrphans As Double = 0
             Dim PensionableBenefits As Double = 0
+            Dim NotionalAmount As Double = 0
+            Dim NotionalTax As Double = 0
             Dim Rehire As String = ""
 
 
@@ -1674,9 +1808,11 @@ Public Class FrmIR61_2019
             Dim Found As Boolean = False
             Dim Error1 As String = ""
             Dim eCode As String = ""
+            Dim xTemp As Integer = DsTax.Tables(0).Rows.Count - 1
             For i = 0 To DsTax.Tables(0).Rows.Count - 1
                 Rehire = DbNullToString(DsTax.Tables(0).Rows(i).Item(10))
                 eCode = DbNullToString(DsTax.Tables(0).Rows(i).Item(0))
+
                 If Rehire <> "" Then
                     If CheckDataSet(DsTax) Then
                         Dim k As Integer = 0
@@ -1739,6 +1875,17 @@ Public Class FrmIR61_2019
                                 DSWidowAndOrphans.Tables(0).Rows(k).Item(0) = Rehire
                             End If
                         Next
+                        For k = 0 To DSNotionalAmount.Tables(0).Rows.Count - 1
+                            If DbNullToString(DSNotionalAmount.Tables(0).Rows(k).Item(0)) = eCode Then
+                                DSNotionalAmount.Tables(0).Rows(k).Item(0) = Rehire
+                            End If
+                        Next
+                        For k = 0 To DSNotionalTax.Tables(0).Rows.Count - 1
+                            If DbNullToString(DSNotionalTax.Tables(0).Rows(k).Item(0)) = eCode Then
+                                DSNotionalTax.Tables(0).Rows(k).Item(0) = Rehire
+                            End If
+                        Next
+
 
 
 
@@ -1828,9 +1975,11 @@ Public Class FrmIR61_2019
 
             Next
             Dim TotalRows As Integer = 0
+            Dim cTemp As Integer = Ds.Tables(0).Rows.Count - 1
             For i = 0 To Ds.Tables(0).Rows.Count - 1
                 TotalRows = TotalRows + 1
                 Code = DbNullToString(Ds.Tables(0).Rows(i).Item(COLx_EmpCode))
+
                 Dim k As Integer
                 For k = 0 To DsTaxable.Tables(0).Rows.Count - 1
                     Dim tCode As String
@@ -1844,6 +1993,7 @@ Public Class FrmIR61_2019
                         XX = Global1.Business.FindNonTaxable_BUT_GesiableToTax_TotalForTemplateGroupForEmployee(PerGroup.TemGrpCode, PerGroup.Code, OriginalCode, GLB_StringForTemplateGroupPeriodGroupSIPeriods)
 
                         Ds.Tables(0).Rows(i).Item(COLx_Emoluments) = Ds.Tables(0).Rows(i).Item(COLx_Emoluments) + XX
+                        Dim YY As Double = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_Emoluments))
                     End If
                 Next
 
@@ -1904,10 +2054,60 @@ Public Class FrmIR61_2019
                     End If
                 Next
 
+                For k = 0 To DSNotionalAmount.Tables(0).Rows.Count - 1
+                    Dim tCode As String
+                    tCode = DbNullToString(DSNotionalAmount.Tables(0).Rows(k).Item(0))
+                    If Code = tCode Then
+                        Ds.Tables(0).Rows(i).Item(COLx_BenefitFromRelatedParties) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_BenefitFromRelatedParties)) + DbNullToDouble(DbNullToString(DSNotionalAmount.Tables(0).Rows(k).Item(1)))
+                        ' Exit For
+                    End If
+                Next
+                For k = 0 To DSNotionalTax.Tables(0).Rows.Count - 1
+                    Dim tCode As String
+                    tCode = DbNullToString(DSNotionalTax.Tables(0).Rows(k).Item(0))
+                    If Code = tCode Then
+                        Ds.Tables(0).Rows(i).Item(COLx_TaxDeductedFinancialBenefitsRelatedParties) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_TaxDeductedFinancialBenefitsRelatedParties)) + DbNullToDouble(DbNullToString(DSNotionalTax.Tables(0).Rows(k).Item(1)))
+                        ' Exit For
+                    End If
+                Next
 
 
 
+
+
+                '''xxxxxxxxxxxxx
                 Ds.Tables(0).Rows(i).Item(COLx_GrossEmoluments) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_Emoluments)) + DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_Pensions))
+                'Ds.Tables(0).Rows(i).Item(COLx_GrossEmoluments) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_Emoluments)) '+ DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_Pensions))
+                Dim TT1 As Double
+                Dim TT2 As Double
+                Dim TT3 As Double
+                TT1 = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_GrossEmoluments))
+                TT2 = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_Emoluments))
+                TT3 = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_Pensions))
+
+                NotionalAmount = 0
+                NotionalTax = 0
+
+
+
+                Dim GrossEmoluments As Double = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_GrossEmoluments))
+                Dim Emoluments As Double = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_Emoluments))
+                Dim Tax As Double = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_TaxWithheldGrossEmoluments))
+                NotionalAmount = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_BenefitFromRelatedParties))
+                NotionalTax = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_TaxDeductedFinancialBenefitsRelatedParties))
+                Dim SocialInsurancePension As Double = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_SocialInsurancePensions))
+
+                Ds.Tables(0).Rows(i).Item(COLx_Emoluments) = Emoluments - NotionalAmount - SocialInsurancePension
+                Ds.Tables(0).Rows(i).Item(COLx_GrossEmoluments) = GrossEmoluments - NotionalAmount - SocialInsurancePension
+                Ds.Tables(0).Rows(i).Item(COLx_TaxWithheldGrossEmoluments) = Tax - NotionalTax
+
+
+
+
+                ''''''''''''''''''''''''''''xxxxxxxxxxxxxxxxx
+
+                '  Ds.Tables(0).Rows(i).Item(COLx_Emoluments) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_Emoluments)) - DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_SocialInsurancePensions))
+                ' Ds.Tables(0).Rows(i).Item(COLx_GrossEmoluments) = DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_Emoluments)) + DbNullToDouble(Ds.Tables(0).Rows(i).Item(COLx_Pensions))
 
             Next
 

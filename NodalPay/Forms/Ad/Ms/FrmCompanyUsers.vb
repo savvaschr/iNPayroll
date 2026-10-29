@@ -146,4 +146,15 @@ Public Class FrmCompanyUsers
             Utils.ShowException(ex)
         End Try
     End Sub
+
+    Private Sub btnSaveWithPermissions_Click(sender As Object, e As EventArgs) Handles btnSaveWithPermissions.Click
+        AddUserOnCompany()
+        Dim F As New frmPrSsPermitions
+        F.User = CType(Me.ComboUser.SelectedItem, cUsers).UserName
+        F.Company = "" ' ComCode
+        F.Show()
+        F.SaveMe(True)
+        F.Close()
+
+    End Sub
 End Class

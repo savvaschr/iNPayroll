@@ -10233,6 +10233,14 @@ Public Class FrmPayrollTotalsX
     End Sub
 
     Private Sub mnuTemplatePayslip_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles mnuTemplatePayslip.Click
+        Dim ReportToUse As String = "PayslipTotals.rpt"
+        ShowAsPayslip(ReportToUse)
+    End Sub
+    Private Sub tsmShowAsPayslip2_Click(sender As Object, e As EventArgs) Handles tsmShowAsPayslip2.Click
+        Dim ReportToUse As String = "PayslipTotals2.rpt"
+        ShowAsPayslip(ReportToUse)
+    End Sub
+    Private Sub ShowAsPayslip(ReportToUse As String)
         MyDsPayslip.Tables(0).Rows.Clear()
         Dim TotalEmployees As String = ""
 
@@ -10377,7 +10385,7 @@ Public Class FrmPayrollTotalsX
                 'End If
 
 
-                Dim ReportToUse As String = "PayslipTotals.rpt"
+
                 'Utils.WriteSchemaWithXmlTextWriter(MyDs2, "C:\Users\Admin\Documents\Visual Studio 2015\Projects\NodalPay - 2019\XML\Paysliptotals")
                 'Utils.WriteSchemaWithXmlTextWriter(MyDs2, "C:\Users\Administrator\Documents\Visual Studio 2005\Projects\NodalPay - 2019\NodalPay\XML\Paysliptotals")
                 Utils.ShowReport(ReportToUse, MyDs2, FrmReport, "", False, "", False, False, "", False)
@@ -12397,6 +12405,15 @@ Public Class FrmPayrollTotalsX
     End Sub
 
     Private Sub ShowAsPayslipToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ShowAsPayslipToolStripMenuItem.Click
+        Dim ReportToUse As String = "PayslipTotals.rpt"
+        ShowAsPayslip_YTD(ReportToUse)
+
+    End Sub
+    Private Sub ShowAsPayslipVersion2ToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ShowAsPayslipVersion2ToolStripMenuItem.Click
+        Dim ReportToUse As String = "PayslipTotals2.rpt"
+        ShowAsPayslip_YTD(ReportToUse)
+    End Sub
+    Private Sub ShowAsPayslip_YTD(ReportToUse As String)
         MyDsPayslip.Tables(0).Rows.Clear()
         Dim TotalEmployees As String = ""
 
@@ -12542,7 +12559,7 @@ Public Class FrmPayrollTotalsX
 
 
 
-                Dim ReportToUse As String = "PayslipTotals.rpt"
+
 
 
 

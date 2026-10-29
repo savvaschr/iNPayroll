@@ -50,8 +50,8 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DocumentationFile>iNPayroll.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
-    <PlatformTarget>x86</PlatformTarget>
-    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -220,6 +220,8 @@
     <Compile Include="Classes\Pr\Tx\cPrTxEmployeeLeaveDBTier.vb" />
     <Compile Include="Classes\Pr\Tx\cPrTxEmployeeLoan.vb" />
     <Compile Include="Classes\Pr\Tx\cPrTxEmployeeLoanDBTier.vb" />
+    <Compile Include="Classes\Pr\Tx\cPrTxEmployeesPayments.vb" />
+    <Compile Include="Classes\Pr\Tx\cPrTxEmployeesPaymentsDBTier.vb" />
     <Compile Include="Classes\Pr\Tx\cPrTxIr59.vb" />
     <Compile Include="Classes\Pr\Tx\cPrTxIr59DBTier.vb" />
     <Compile Include="Classes\Pr\Tx\cPrTxLoanComments.vb" />
@@ -1519,6 +1521,12 @@
     <Compile Include="Forms\Pr\Tx\FrmPrTxNavisionTimesheets.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Forms\Pr\Tx\FrmPrTxPaymentTool.Designer.vb">
+      <DependentUpon>FrmPrTxPaymentTool.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\Pr\Tx\FrmPrTxPaymentTool.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Forms\Pr\Tx\FrmSelectEDCToImport.Designer.vb">
       <DependentUpon>FrmSelectEDCToImport.vb</DependentUpon>
     </Compile>
@@ -1766,6 +1774,12 @@
       <DependentUpon>CrystalReport1.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\PayslipG72.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PayslipG72.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\IR63GR_Stamp.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1776,6 +1790,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Pay12.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\PayslipTotals2.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PayslipTotals2.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\PayWithLogo4c.vb">
@@ -3551,6 +3571,9 @@
       <SubType>Designer</SubType>
       <DependentUpon>FrmPrTxNavisionTimesheets.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Pr\Tx\FrmPrTxPaymentTool.resx">
+      <DependentUpon>FrmPrTxPaymentTool.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\Pr\Tx\FrmSelectEDCToImport.resx">
       <SubType>Designer</SubType>
       <DependentUpon>FrmSelectEDCToImport.vb</DependentUpon>
@@ -3715,6 +3738,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>CrystalReport1.vb</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PayslipG72.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PayslipG72.vb</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\IR63GR_Stamp.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>IR63GR_Stamp.vb</LastGenOutput>
@@ -3722,6 +3749,10 @@
     <EmbeddedResource Include="Reports\Pay12.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>Pay12.vb</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PayslipTotals2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PayslipTotals2.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\PayWithLogo4c.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

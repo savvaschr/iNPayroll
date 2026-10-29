@@ -1,9 +1,9 @@
-<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FrmBankTransferFile
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class FrmBankTransferFile
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.lblBnk_CodeCo = New System.Windows.Forms.Label()
@@ -71,6 +71,9 @@ Partial Class FrmBankTransferFile
         Me.Button16 = New System.Windows.Forms.Button()
         Me.Button17 = New System.Windows.Forms.Button()
         Me.CBShowReportOnSelection = New System.Windows.Forms.CheckBox()
+        Me.CBEurobankV3 = New System.Windows.Forms.CheckBox()
+        Me.Button18 = New System.Windows.Forms.Button()
+        Me.Button19 = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Button1
@@ -163,7 +166,7 @@ Partial Class FrmBankTransferFile
         'CBInactive
         '
         Me.CBInactive.AutoSize = True
-        Me.CBInactive.Location = New System.Drawing.Point(35, 270)
+        Me.CBInactive.Location = New System.Drawing.Point(33, 304)
         Me.CBInactive.Name = "CBInactive"
         Me.CBInactive.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.CBInactive.Size = New System.Drawing.Size(201, 17)
@@ -183,7 +186,7 @@ Partial Class FrmBankTransferFile
         'CBAutopay
         '
         Me.CBAutopay.AutoSize = True
-        Me.CBAutopay.Location = New System.Drawing.Point(35, 293)
+        Me.CBAutopay.Location = New System.Drawing.Point(33, 327)
         Me.CBAutopay.Name = "CBAutopay"
         Me.CBAutopay.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.CBAutopay.Size = New System.Drawing.Size(201, 17)
@@ -194,7 +197,7 @@ Partial Class FrmBankTransferFile
         'CBConsolidate
         '
         Me.CBConsolidate.AutoSize = True
-        Me.CBConsolidate.Location = New System.Drawing.Point(36, 316)
+        Me.CBConsolidate.Location = New System.Drawing.Point(34, 350)
         Me.CBConsolidate.Name = "CBConsolidate"
         Me.CBConsolidate.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.CBConsolidate.Size = New System.Drawing.Size(200, 17)
@@ -275,7 +278,7 @@ Partial Class FrmBankTransferFile
         'CBSelectEmployees
         '
         Me.CBSelectEmployees.AutoSize = True
-        Me.CBSelectEmployees.Location = New System.Drawing.Point(126, 362)
+        Me.CBSelectEmployees.Location = New System.Drawing.Point(124, 396)
         Me.CBSelectEmployees.Name = "CBSelectEmployees"
         Me.CBSelectEmployees.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.CBSelectEmployees.Size = New System.Drawing.Size(110, 17)
@@ -532,7 +535,7 @@ Partial Class FrmBankTransferFile
         'CBShowReportOnSelection
         '
         Me.CBShowReportOnSelection.AutoSize = True
-        Me.CBShowReportOnSelection.Location = New System.Drawing.Point(99, 384)
+        Me.CBShowReportOnSelection.Location = New System.Drawing.Point(97, 418)
         Me.CBShowReportOnSelection.Name = "CBShowReportOnSelection"
         Me.CBShowReportOnSelection.RightToLeft = System.Windows.Forms.RightToLeft.Yes
         Me.CBShowReportOnSelection.Size = New System.Drawing.Size(137, 17)
@@ -540,12 +543,46 @@ Partial Class FrmBankTransferFile
         Me.CBShowReportOnSelection.Text = "Show Employees report"
         Me.CBShowReportOnSelection.UseVisualStyleBackColor = True
         '
+        'CBEurobankV3
+        '
+        Me.CBEurobankV3.AutoSize = True
+        Me.CBEurobankV3.Location = New System.Drawing.Point(228, 233)
+        Me.CBEurobankV3.Name = "CBEurobankV3"
+        Me.CBEurobankV3.RightToLeft = System.Windows.Forms.RightToLeft.Yes
+        Me.CBEurobankV3.Size = New System.Drawing.Size(106, 17)
+        Me.CBEurobankV3.TabIndex = 98
+        Me.CBEurobankV3.Text = "Eurobank V3 xml"
+        Me.CBEurobankV3.UseVisualStyleBackColor = True
+        '
+        'Button18
+        '
+        Me.Button18.Location = New System.Drawing.Point(825, 298)
+        Me.Button18.Name = "Button18"
+        Me.Button18.Size = New System.Drawing.Size(225, 23)
+        Me.Button18.TabIndex = 99
+        Me.Button18.Text = "Create EMONI Excel File"
+        Me.Button18.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button18.UseVisualStyleBackColor = True
+        '
+        'Button19
+        '
+        Me.Button19.Location = New System.Drawing.Point(825, 323)
+        Me.Button19.Name = "Button19"
+        Me.Button19.Size = New System.Drawing.Size(225, 23)
+        Me.Button19.TabIndex = 100
+        Me.Button19.Text = "Create EMONI .csv File"
+        Me.Button19.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.Button19.UseVisualStyleBackColor = True
+        '
         'FrmBankTransferFile
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.ClientSize = New System.Drawing.Size(1062, 679)
+        Me.Controls.Add(Me.Button19)
+        Me.Controls.Add(Me.Button18)
+        Me.Controls.Add(Me.CBEurobankV3)
         Me.Controls.Add(Me.CBShowReportOnSelection)
         Me.Controls.Add(Me.Button17)
         Me.Controls.Add(Me.Button16)
@@ -650,4 +687,7 @@ Partial Class FrmBankTransferFile
     Friend WithEvents Button16 As Button
     Friend WithEvents Button17 As Button
     Friend WithEvents CBShowReportOnSelection As CheckBox
+    Friend WithEvents CBEurobankV3 As CheckBox
+    Friend WithEvents Button18 As Button
+    Friend WithEvents Button19 As Button
 End Class

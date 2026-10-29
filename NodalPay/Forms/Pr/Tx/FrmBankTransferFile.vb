@@ -189,23 +189,38 @@ Public Class FrmBankTransferFile
             'CreateUniversalBankFile_Consolidate(Bank, "DPS002DCI6.txt", 0, False, False)
         ElseIf UCase(Bank.Code) = "HELLENIC" Then
             HellenicToOther = True
-
+            '  ccc
             Me.CreateBankFile_HELLENICToOtherBanks(Bank, FileBankCode, EmployeeBankCode)
             If CompanyFilecodeLength = 3 Then
-                CreateUniversalBankFile_Consolidate(Bank, "DPS002DCI6.txt", 0, False, False, FileBankCode, False, EmployeeBankCode)
-                CorvertBankFileToXML(BankFiledir & "DPS002DCI6.txt", BankFiledir, False, False)
-            ElseIf CompanyFilecodeLength = 6 Then
-                CreateUniversalBankFile_Consolidate_H2_E2(Bank, "DPS002DCI6_H2.txt", 0, False, False, FileBankCode, False, EmployeeBankCode)
-                CorvertBankFileToXML_Hellenic2(BankFiledir & "DPS002DCI6_H2.txt", BankFiledir, False, True)
+                If CBEurobankV3.CheckState = CheckState.Checked Then
+                    CreateUniversalBankFile_Consolidate(Bank, "DPS002DCI6.txt", 0, False, False, FileBankCode, False, EmployeeBankCode)
+                    CorvertBankFileToXML_V3(BankFiledir & "DPS002DCI6.txt", BankFiledir, False, False)
+                Else
+                    CreateUniversalBankFile_Consolidate(Bank, "DPS002DCI6.txt", 0, False, False, FileBankCode, False, EmployeeBankCode)
+                    CorvertBankFileToXML(BankFiledir & "DPS002DCI6.txt", BankFiledir, False, False)
+                End If
+            ElseIf CompanyFilecodeLength > 3 And CompanyFilecodeLength <= 6 Then
+                If CBEurobankV3.CheckState = CheckState.Checked Then
+                    CreateUniversalBankFile_Consolidate_H2_E2(Bank, "DPS002DCI6_H2.txt", 0, False, False, FileBankCode, False, EmployeeBankCode)
+                    CorvertBankFileToXML_Hellenic2_V3(BankFiledir & "DPS002DCI6_H2.txt", BankFiledir, False, True)
+                Else
+                    CreateUniversalBankFile_Consolidate_H2_E2(Bank, "DPS002DCI6_H2.txt", 0, False, False, FileBankCode, False, EmployeeBankCode)
+                    CorvertBankFileToXML_Hellenic2(BankFiledir & "DPS002DCI6_H2.txt", BankFiledir, False, True)
+                End If
             End If
-            HellenicToOther = False
+                HellenicToOther = False
 
         ElseIf UCase(Bank.Code) = "EUROBANK" Or UCase(Bank.Code) = "EURO" Then
             If CompanyFilecodeLength = 3 Then
-                CreateUniversalBankFile_Consolidate(Bank, "DPS002DCI6.txt", 0, False, False, FileBankCode, True, EmployeeBankCode)
-                CorvertBankFileToXML(BankFiledir & "DPS002DCI6.txt", BankFiledir, False, True)
-            ElseIf CompanyFilecodeLength = 6 Then
-                CreateUniversalBankFile_Consolidate_H2_E2(Bank, "DPS002DCI6_E2.txt", 0, False, False, FileBankCode, True, EmployeeBankCode)
+                If CBEurobankV3.CheckState = CheckState.Checked Then
+                    CreateUniversalBankFile_Consolidate(Bank, "DPS002DCI6.txt", 0, False, False, FileBankCode, True, EmployeeBankCode)
+                    CorvertBankFileToXML_V3(BankFiledir & "DPS002DCI6.txt", BankFiledir, False, True)
+                Else
+                    CreateUniversalBankFile_Consolidate(Bank, "DPS002DCI6.txt", 0, False, False, FileBankCode, True, EmployeeBankCode)
+                    CorvertBankFileToXML(BankFiledir & "DPS002DCI6.txt", BankFiledir, False, True)
+                End If
+            ElseIf CompanyFilecodeLength > 3 And CompanyFilecodeLength <= 6 Then
+                    CreateUniversalBankFile_Consolidate_H2_E2(Bank, "DPS002DCI6_E2.txt", 0, False, False, FileBankCode, True, EmployeeBankCode)
                 CorvertBankFileToXML_Eurobank2(BankFiledir & "DPS002DCI6_E2.txt", BankFiledir, False, True)
             End If
             'CorvertBankFileToXML_Eurobank2(BankFiledir & "DPS002DCI6.txt", BankFiledir, False, True)
@@ -644,6 +659,8 @@ Public Class FrmBankTransferFile
                             Line = Line & DetailsOfTransfer.PadRight(140, " ")
                             Line = Line & "".PadLeft(35, " ")
                             Line = Line & "".PadLeft(184, " ")
+                            Line = Line & "".PadLeft(184, " ")
+                            Line = Line & BankAcc.PadLeft(30, " ")
                             WriteToBankFile(Line, BankFilename)
 
                             Count = Count + 1
@@ -1940,6 +1957,118 @@ Public Class FrmBankTransferFile
         Dim DD As String = Trim(Line.Substring(111, 2))
         Dim sExecutionDate As String = YY & "-" & MM & "-" & DD
         Dim sIBAN As String = Trim(Line.Substring(77, 34))
+        Dim SBIC As String = ""
+
+        ' Addition for Eurobank
+        'If IsEurobank Then
+        ' SBIC = Trim(Line.Substring(500, 8))
+        ' End If
+
+        Debug.WriteLine(Line)
+
+
+
+
+
+        '''''''''''
+        WL(" <Document xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns=""urn:iso:std:iso:20022:tech:xsd:pain.001.001.03"" xsi:schemaLocation=""urn:iso:std:iso:20022:tech:xsd:pain.001.001.03 pain.001.001.03.xsd"">")
+        WL("<CstmrCdtTrfInitn>")
+        WL("<GrpHdr>")
+        WL("<MsgId>MsgId1</MsgId>")
+        WL("<CreDtTm>" & sCreationDateTime & "</CreDtTm>")
+        WL("<NbOfTxs>" & sTotalTransactions & "</NbOfTxs>")
+        WL("<CtrlSum>" & sTotalAmount & "</CtrlSum>")
+        WL("<InitgPty>")
+        'WL("<Nm>" & Replace(sCompanyName, "&", "&amp;") & "</Nm>")
+        WL("<Nm>" & Replace(sCompanyName, "&", " ") & "</Nm>")
+        WL("<Id>")
+        WL("<OrgId>")
+        WL("<Othr>")
+        WL("<Id>" & sCompanyDigitCode & "</Id>")
+        WL("</Othr>")
+        WL("</OrgId>")
+        WL("</Id>")
+        WL("</InitgPty>")
+        WL("</GrpHdr>")
+        ''''''''''
+        '  If IsEurobank Then
+        'WL("<PmtInf>Payroll Payment</PmtInf>")
+        'Else
+        WL("<PmtInf>")
+        'End If
+        '''''''''''
+        WL("<PmtInfId>PmtInfId</PmtInfId>")
+        WL("<PmtMtd>TRF</PmtMtd>")
+        If IsEurobank Then
+            WL("<BtchBookg>true</BtchBookg>")
+        Else
+            WL("<BtchBookg>1</BtchBookg>")
+        End If
+        WL("<PmtTpInf>")
+        WL("<SvcLvl>")
+        WL("<Cd>SEPA</Cd>")
+        WL("</SvcLvl>")
+        WL("</PmtTpInf>")
+        WL("<ReqdExctnDt>" & sExecutionDate & "</ReqdExctnDt>")
+        WL("<Dbtr>")
+        'WL("<Nm>" & Replace(sCompanyName, "&", "&amp;") & "</Nm>")
+        WL("<Nm>" & Replace(sCompanyName, "&", " ") & "</Nm>")
+        WL("<PstlAdr>")
+        WL("<Ctry>CY</Ctry>")
+        WL("</PstlAdr>")
+        WL("<Id>")
+        WL("<OrgId>")
+        'Addition for EUROBANK
+        'If IsEurobank Then
+        '    WL("<BICOrBEI>" & SBIC & "</BICOrBEI>")
+        'End If
+        ''''''''''''''''''''''''
+
+        WL("<Othr>")
+        WL("<Id>" & sCompanyDigitCode & "</Id>")
+        WL("</Othr>")
+        WL("</OrgId>")
+        WL("</Id>")
+        WL("</Dbtr>")
+        WL("<DbtrAcct>")
+        WL("<Id>")
+        WL("<IBAN>" & UCase(sIBAN) & "</IBAN>")
+        WL("</Id>")
+        WL("<Ccy>EUR</Ccy>")
+        WL("</DbtrAcct>")
+        WL("<DbtrAgt>")
+        WL("<FinInstnId>")
+        '  WL("<BIC>" & sBIC & "</BIC>")
+        If IsEurobank Then
+            WL("<BIC>ERBKCY2N</BIC>")
+        End If
+        WL("</FinInstnId>")
+        WL("</DbtrAgt>")
+        WL("<ChrgBr>SLEV</ChrgBr>")
+        ''''''''''
+
+
+
+    End Sub
+    Public Sub Write_SEPA_Header_E2(ByVal Line As String, ByVal Totalemployees As String, ByVal TotalAmount As String, ByVal IsEurobank As Boolean)
+
+
+
+        Dim sCreationDateTime As String = Format(Now.Date, "yyyy-MM-dd")
+        sCreationDateTime = sCreationDateTime & "T" & Now.Hour.ToString.PadLeft(2, "0")
+        sCreationDateTime = sCreationDateTime & ":" & Now.Minute.ToString.PadLeft(2, "0")
+        sCreationDateTime = sCreationDateTime & ":" & Now.Second.ToString.PadLeft(2, "0")
+
+        Dim sTotalTransactions As String = Totalemployees
+        Dim sTotalAmount As String = TotalAmount
+        Dim sCompanyName As String = Trim(Line.Substring(8, 70))
+        Dim sCompanyDigitCode As String = Trim(Line.Substring(2, 6))
+
+        Dim YY As String = Trim(Line.Substring(116, 4))
+        Dim MM As String = Trim(Line.Substring(114, 2))
+        Dim DD As String = Trim(Line.Substring(112, 2))
+        Dim sExecutionDate As String = YY & "-" & MM & "-" & DD
+        Dim sIBAN As String = Trim(Line.Substring(78, 34))
         Dim SBIC As String = ""
 
         ' Addition for Eurobank
@@ -8804,7 +8933,7 @@ Public Class FrmBankTransferFile
             Header = Header & "Beneficiary Type" & Separator
             Header = Header & "Beneficiary Destination Platform" & Separator
             Header = Header & "Beneficiary Company Name" & Separator
-            Header = Header & "Beneficiary Company Address" & Separator
+            Header = Header & "Beneficiary Company Address"
 
 
 
@@ -8921,6 +9050,36 @@ Public Class FrmBankTransferFile
         End Try
         Return Flag
     End Function
+    Private Function WriteToCSVFile_Emoni(ByVal Line As String, ByVal fName As String) As Boolean
+        Dim Flag As Boolean = True
+        Try
+            ' Dim mFile As System.IO.File
+            Dim FileName As String
+
+            FileName = BankFiledir & "Emoni.csv"
+
+            Dim TW As System.IO.TextWriter
+
+            If InitFile Then
+                TW = System.IO.File.CreateText(FileName)
+                InitFile = False
+            Else
+                If IO.File.Exists(FileName) Then
+                    TW = System.IO.File.AppendText(FileName)
+                Else
+                    TW = System.IO.File.CreateText(FileName)
+                End If
+            End If
+            With TW
+                .Write(Line)
+                .WriteLine()
+                .Close()
+            End With
+        Catch ex As Exception
+            Flag = False
+        End Try
+        Return Flag
+    End Function
 
     Private Sub CorvertBankFileToXML_Eurobank2(ByVal txtFineNameAndPath As String, ByVal FilePath As String, ByVal ChangeName As Boolean, ByVal IsEurobank As Boolean)
 
@@ -8988,7 +9147,11 @@ Public Class FrmBankTransferFile
                 Ar = Line.Substring(0, 2)
                 Select Case Ar
                     Case "01"
-                        Write_SEPA_Header(Line, totalEmployees, sTotalAmount, IsEurobank)
+                        If IsEurobank Then
+                            Write_SEPA_Header_E2(Line, totalEmployees, sTotalAmount, IsEurobank)
+                        Else
+                            Write_SEPA_Header(Line, totalEmployees, sTotalAmount, IsEurobank)
+                        End If
                     Case "02"
                         Lines = Lines + 1
                         Write_SEPA_LINE(Line, Lines.ToString, IsEurobank)
@@ -9592,5 +9755,1038 @@ Public Class FrmBankTransferFile
             obj = Nothing
         End Try
     End Sub
+    '''''''''
+    Private Sub CorvertBankFileToXML_V3(ByVal txtFineNameAndPath As String, ByVal FilePath As String, ByVal ChangeName As Boolean, ByVal IsEurobank As Boolean)
+
+        Cursor = Cursors.WaitCursor
+        Application.DoEvents()
+        Try
+
+
+
+
+            Dim Line As String = ""
+            Dim counter As Integer = 0
+            Dim LoadedOK As Boolean = False
+            Dim param_file As IO.StreamReader
+            Dim FileName As String
+
+            FileName = txtFineNameAndPath
+            If Not ChangeName Then
+                Me.XMLGlobalFileName = FilePath & "DPSXMLDCI6_V3.xml"
+            Else
+                Me.XMLGlobalFileName = FilePath & "DPSXMLDCI6_OtherBanks_V3.xml"
+            End If
+
+            InitFile = True
+            Dim Exx As New Exception
+            Dim Ar As String
+
+
+            '------------------------------------------------------------------
+            'Open for reading in order to Read Total employees and Total Amount'
+            '------------------------------------------------------------------
+            param_file = IO.File.OpenText(FileName)
+
+            Dim Lines As Integer = 0
+            Dim TotalAmount As Double = 0
+            Dim sTotalAmount As String = ""
+            Dim totalEmployees As String = ""
+
+            Do While param_file.Peek <> -1
+                Me.Refresh()
+                Line = param_file.ReadLine
+                Ar = Line.Substring(0, 2)
+                Select Case Ar
+                    Case "02"
+                        Lines = Lines + 1
+                        TotalAmount = TotalAmount + Trim(Line.Substring(5, 15))
+                End Select
+            Loop
+            sTotalAmount = StringtoDecimal2(TotalAmount.ToString)
+            totalEmployees = Lines.ToString
+            param_file.Close()
+            '------------------------------------------------------------------
+            'Close
+            '------------------------------------------------------------------
+
+
+            '------------------------------------------------------------------
+            'Open for reading in order to Write XML File
+            '------------------------------------------------------------------
+            param_file = IO.File.OpenText(FileName)
+
+            Lines = 0
+            Do While param_file.Peek <> -1
+
+                Me.Refresh()
+                Line = param_file.ReadLine
+                Ar = Line.Substring(0, 2)
+                Select Case Ar
+                    Case "01"
+                        Write_SEPA_Header_V3(Line, totalEmployees, sTotalAmount, IsEurobank)
+                    Case "02"
+                        Lines = Lines + 1
+                        Write_SEPA_LINE_V3(Line, Lines.ToString, IsEurobank)
+                End Select
+                Application.DoEvents()
+            Loop
+
+            WL("</PmtInf>")
+            WL("</CstmrCdtTrfInitn>")
+            WL("</Document>")
+
+            param_file.Close()
+
+            '------------------------------------------------------------------
+            'Close
+            '------------------------------------------------------------------
+
+            MsgBox("Bank File is Converted to .xml (" & Me.XMLGlobalFileName & ")", MsgBoxStyle.Information)
+        Catch ex As Exception
+            MsgBox("Failed to create .xml File")
+        End Try
+        Cursor = Cursors.Default
+
+
+
+    End Sub
+    Public Sub Write_SEPA_Header_V3(ByVal Line As String, ByVal Totalemployees As String, ByVal TotalAmount As String, ByVal IsEurobank As Boolean)
+
+
+
+        Dim sCreationDateTime As String = Format(Now.Date, "yyyy-MM-dd")
+        sCreationDateTime = sCreationDateTime & "T" & Now.Hour.ToString.PadLeft(2, "0")
+        sCreationDateTime = sCreationDateTime & ":" & Now.Minute.ToString.PadLeft(2, "0")
+        sCreationDateTime = sCreationDateTime & ":" & Now.Second.ToString.PadLeft(2, "0")
+
+        Dim sTotalTransactions As String = Totalemployees
+        Dim sTotalAmount As String = TotalAmount
+        Dim sCompanyName As String = Trim(Line.Substring(7, 70))
+        Dim sCompanyDigitCode As String = Trim(Line.Substring(2, 5))
+
+        Dim YY As String = Trim(Line.Substring(115, 4))
+        Dim MM As String = Trim(Line.Substring(113, 2))
+        Dim DD As String = Trim(Line.Substring(111, 2))
+        Dim sExecutionDate As String = YY & "-" & MM & "-" & DD
+        Dim sIBAN As String = Trim(Line.Substring(77, 34))
+        Dim SBIC As String = ""
+        Dim Temp As cPrAnBanks
+        Temp = Me.cmbBnk_CodeCo.SelectedItem
+
+        SBIC = Me.FindSwiftCode(Temp, True)
+        SBIC = SBIC.Replace(" ", "")
+        ' Addition for Eurobank
+        'If IsEurobank Then
+        ' SBIC = Trim(Line.Substring(500, 8))
+        ' End If
+
+        Debug.WriteLine(Line)
+
+
+
+
+
+        '''''''''''
+        WL("<?xml version=""1.0"" encoding=""utf-8""?>")
+        WL("<Document xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns=""urn:iso:std:iso:20022:tech:xsd:pain.001.001.03"" xsi:schemaLocation=""urn:iso:std:iso:20022:tech:xsd:pain.001.001.03 pain.001.001.03.xsd"">")
+        WL("<CstmrCdtTrfInitn>")
+        WL("<GrpHdr>")
+        WL("<MsgId>MsgId1</MsgId>")
+        WL("<CreDtTm>" & sCreationDateTime & "</CreDtTm>")
+        WL("<NbOfTxs>" & sTotalTransactions & "</NbOfTxs>")
+        WL("<CtrlSum>" & sTotalAmount & "</CtrlSum>")
+        WL("<InitgPty>")
+        WL("<Nm>" & Replace(sCompanyName, "&", " ") & "</Nm>")
+        WL("</InitgPty>")
+        'WL("<Id>")
+        'WL("<OrgId>")
+        'WL("<Othr>")
+        'WL("<Id>" & sCompanyDigitCode & "</Id>")
+        'WL("</Othr>")
+        'WL("</OrgId>")
+        'WL("</Id>")
+
+        WL("</GrpHdr>")
+        WL("<PmtInf>")
+        WL("<PmtInfId>PmtInfId</PmtInfId>")
+        WL("<PmtMtd>TRF</PmtMtd>")
+        WL("<BtchBookg>false</BtchBookg>")
+        WL("<PmtTpInf>")
+        WL("<SvcLvl>")
+        WL("<Cd>SEPA</Cd>")
+        WL("</SvcLvl>")
+        WL("</PmtTpInf>")
+        WL("<ReqdExctnDt>" & sExecutionDate & "</ReqdExctnDt>")
+        WL("<Dbtr>")
+        WL("<Nm>" & Replace(sCompanyName, "&", " ") & "</Nm>")
+        WL("<PstlAdr>")
+        WL("<Ctry>CY</Ctry>")
+        WL("</PstlAdr>")
+        WL("<Id>")
+        WL("<OrgId>")
+        WL("<BICOrBEI>" & SBIC & "</BICOrBEI>")
+        WL("<Othr>")
+        WL("<Id>" & sCompanyDigitCode & "</Id>")
+        WL("</Othr>")
+        WL("</OrgId>")
+        WL("</Id>")
+        WL("</Dbtr>")
+        WL("<DbtrAcct>")
+        WL("<Id>")
+        WL("<IBAN>" & UCase(sIBAN) & "</IBAN>")
+        WL("</Id>")
+        WL("<Ccy>EUR</Ccy>")
+        WL("</DbtrAcct>")
+        WL("<DbtrAgt>")
+        WL("<FinInstnId>")
+        WL("<BIC>" & SBIC & "</BIC>")
+        WL("</FinInstnId>")
+        WL("</DbtrAgt>")
+        WL("<ChrgBr>SHAR</ChrgBr>")
+        ''''''''''
+
+
+
+    End Sub
+
+
+
+    Public Sub Write_SEPA_LINE_V3(ByVal Line As String, ByVal sLineNo As String, ByVal IsEurobank As Boolean)
+
+        Dim sAmount As String = Trim(Line.Substring(5, 15))
+        sAmount = StringtoDecimal2(sAmount)
+
+
+        Dim sBIC As String = Trim(Line.Substring(20, 11))
+        Dim semployeename As String = Trim(Line.Substring(65, 70))
+        Dim sIBAN As String = Trim(Line.Substring(31, 34))
+        Dim sCountryCode As String = Trim(Line.Substring(139, 2))
+        Dim sPaymentDesc As String = Trim(Line.Substring(141, 140))
+        Dim sAccountNumber As String = Trim(Line.Substring(684, 30))
+
+        WL("<CdtTrfTxInf>")
+
+        WL("<PmtId>")
+        WL("<InstrId>" & sLineNo & "</InstrId>")
+        WL("<EndToEndId>" & sLineNo & "</EndToEndId>")
+        WL("</PmtId>")
+
+        WL("<PmtTpInf>")
+        WL("<SvcLvl>")
+        WL("<Cd>SEPA</Cd>")
+        WL("</SvcLvl>")
+
+        WL("<CtgyPurp>")
+        WL("<Cd>SALA</Cd>")
+        WL("</CtgyPurp>")
+        WL("</PmtTpInf>")
+
+        WL("<Amt>")
+        WL("<InstdAmt Ccy=""EUR"">" & sAmount & "</InstdAmt>")
+        WL("</Amt>")
+
+        WL("<ChrgBr>SHAR</ChrgBr>")
+
+        WL("<CdtrAgt>")
+        WL("<FinInstnId>")
+        WL("<BIC>" & sBIC & "</BIC>")
+        WL("</FinInstnId>")
+        WL("</CdtrAgt>")
+
+        WL("<Cdtr>")
+        WL("<Nm>" & semployeename & "</Nm>")
+        WL("<PstlAdr>")
+        WL("<Ctry>" & sCountryCode & "</Ctry>")
+            'WL("<AdrLine>address line1</AdrLine>")
+            'WL("<AdrLine>address line2</AdrLine>")
+            WL("</PstlAdr>")
+
+        'WL("<Id>")
+        'WL("<PrvtId>")
+        'WL("<DtAndPlcOfBirth>")
+        'WL("<BirthDt>1998-03-30</BirthDt>")
+        'WL("<PrvcOfBirth>Nicosia</PrvcOfBirth>")
+        'WL("<CityOfBirth>Nicosia</CityOfBirth>")
+        'WL("<CtryOfBirth>CY</CtryOfBirth>")
+        'WL("</DtAndPlcOfBirth>")
+        'WL("</PrvtId>")
+        'WL("</Id>")
+        WL("</Cdtr>")
+        WL("<CdtrAcct>")
+        WL("<Id>")
+        If sIBAN <> "" Then
+            WL("<IBAN>" & UCase(sIBAN) & "</IBAN>")
+        Else
+            WL("<Othr>")
+            WL("<Id>" & UCase(sAccountNumber) & "</Id>")
+            WL("</Othr>")
+        End If
+        WL("</Id>")
+        WL("</CdtrAcct>")
+        WL("<RmtInf>")
+        WL("<Ustrd>" & sPaymentDesc & "</Ustrd>")
+        WL("</RmtInf>")
+        WL("</CdtTrfTxInf>")
+        '''''''''''''''''''''''''''''''''''''''''''
+        '        <CdtTrfTxInf>
+        '<PmtId>
+        '<InstrId>InstrId 3</InstrId>
+        '<EndToEndId>EndToEndId 3</EndToEndId>
+        '</PmtId>
+        '<PmtTpInf>
+        '<SvcLvl>
+        '<Cd>SEPA</Cd>
+        '</SvcLvl>
+        '<CtgyPurp>
+        '<Cd>SALA</Cd>
+        '</CtgyPurp>
+        '</PmtTpInf>
+        '<Amt>
+        '<InstdAmt Ccy="EUR">1100.00</InstdAmt>
+        '</Amt>
+        '<ChrgBr>SLEV</ChrgBr>
+        '<CdtrAgt>
+        '<FinInstnId>
+        '<BIC>CCBKCY2N</BIC>
+        '</FinInstnId>
+        '</CdtrAgt>
+        '<Cdtr>
+        '<Nm>Creditor 3</Nm>
+        '<PstlAdr>
+        '<Ctry>CY</Ctry>
+        '<AdrLine>address line 1 for customer3</AdrLine>
+        '</PstlAdr>
+        '<Id>
+        '<PrvtId>
+        '<Othr>
+        '<Id>U1234</Id>
+        '</Othr>
+        '</PrvtId>
+        '</Id>
+        '</Cdtr>
+        '<CdtrAcct>
+        '<Id>
+        '<IBAN>CY38007101100000000020333607</IBAN>
+        '</Id>
+        '</CdtrAcct>
+        'If IsEurobank Then
+        '    WL("<RmtInf>")
+        '    WL("<Ustrd>" & sPaymentDesc & "</Ustrd>")
+        '    WL("</RmtInf>")
+        'End If
+        '</CdtTrfTxInf>
+
+
+    End Sub
+
+    Private Sub CBEurobankV3_CheckedChanged(sender As Object, e As EventArgs) Handles CBEurobankV3.CheckedChanged
+        'If CBEurobankV3.CheckState = CheckState.Checked Then
+
+        '    If CBEurobankV9.Checked = False Then
+
+        '    End If
+        'End If
+
+    End Sub
+    Private Sub CorvertBankFileToXML_Hellenic2_V3(ByVal txtFineNameAndPath As String, ByVal FilePath As String, ByVal ChangeName As Boolean, ByVal IsEurobank As Boolean)
+
+        Cursor = Cursors.WaitCursor
+        Application.DoEvents()
+        Try
+
+
+
+
+            Dim Line As String = ""
+            Dim counter As Integer = 0
+            Dim LoadedOK As Boolean = False
+            Dim param_file As IO.StreamReader
+            Dim FileName As String
+
+            FileName = txtFineNameAndPath
+            If Not ChangeName Then
+                Me.XMLGlobalFileName = FilePath & "DPSXMLDCI6_Hellenic2_V3.xml"
+
+            End If
+
+            InitFile = True
+            Dim Exx As New Exception
+            Dim Ar As String
+
+
+            '------------------------------------------------------------------
+            'Open for reading in order to Read Total employees and Total Amount'
+            '------------------------------------------------------------------
+            param_file = IO.File.OpenText(FileName)
+
+            Dim Lines As Integer = 0
+            Dim TotalAmount As Double = 0
+            Dim sTotalAmount As String = ""
+            Dim totalEmployees As String = ""
+
+            Do While param_file.Peek <> -1
+                Me.Refresh()
+                Line = param_file.ReadLine
+                Ar = Line.Substring(0, 2)
+                Select Case Ar
+                    Case "02"
+                        Lines = Lines + 1
+                        TotalAmount = TotalAmount + Trim(Line.Substring(5, 15))
+                End Select
+            Loop
+            sTotalAmount = StringtoDecimal2(TotalAmount.ToString)
+            totalEmployees = Lines.ToString
+            param_file.Close()
+            '------------------------------------------------------------------
+            'Close
+            '------------------------------------------------------------------
+
+
+            '------------------------------------------------------------------
+            'Open for reading in order to Write XML File
+            '------------------------------------------------------------------
+            param_file = IO.File.OpenText(FileName)
+
+            Lines = 0
+            Do While param_file.Peek <> -1
+
+                Me.Refresh()
+                Line = param_file.ReadLine
+                Ar = Line.Substring(0, 2)
+                Select Case Ar
+                    Case "01"
+                        Write_SEPA_Header_Hellenic2_V3(Line, totalEmployees, sTotalAmount, IsEurobank)
+                    Case "02"
+                        Lines = Lines + 1
+                        Write_SEPA_LINE_Hellenic2_V3(Line, Lines.ToString, IsEurobank)
+                End Select
+                Application.DoEvents()
+            Loop
+
+            WL("</PmtInf>")
+            WL("</CstmrCdtTrfInitn>")
+
+            WL("</Document>")
+
+
+            param_file.Close()
+
+            '------------------------------------------------------------------
+            'Close
+            '------------------------------------------------------------------
+
+            MsgBox("Bank File is Converted to .xml (" & Me.XMLGlobalFileName & ")", MsgBoxStyle.Information)
+        Catch ex As Exception
+            MsgBox("Failed to create .xml File")
+        End Try
+        Cursor = Cursors.Default
+
+
+
+    End Sub
+    Public Sub Write_SEPA_Header_Hellenic2_V3(ByVal Line As String, ByVal Totalemployees As String, ByVal TotalAmount As String, ByVal IsEurobank As Boolean)
+
+
+
+        Dim sCreationDateTime As String = Format(Now.Date, "yyyy-MM-dd")
+        sCreationDateTime = sCreationDateTime & "T" & Now.Hour.ToString.PadLeft(2, "0")
+        sCreationDateTime = sCreationDateTime & ":" & Now.Minute.ToString.PadLeft(2, "0")
+        sCreationDateTime = sCreationDateTime & ":" & Now.Second.ToString.PadLeft(2, "0")
+
+        Dim sTotalTransactions As String = Totalemployees
+        Dim sTotalAmount As String = TotalAmount
+        Dim sCompanyName As String = Trim(Line.Substring(8, 70))
+        Dim sCompanyDigitCode As String = Trim(Line.Substring(2, 6))
+
+        Dim YY As String = Trim(Line.Substring(116, 4))
+        Dim MM As String = Trim(Line.Substring(114, 2))
+        Dim DD As String = Trim(Line.Substring(112, 2))
+        Dim sExecutionDate As String = YY & "-" & MM & "-" & DD
+        Dim sIBAN As String = Trim(Line.Substring(78, 34))
+        Dim SBIC As String = ""
+
+        Dim Temp As cPrAnBanks
+        Temp = Me.cmbBnk_CodeCo.SelectedItem
+
+        SBIC = Me.FindSwiftCode(Temp, True)
+        SBIC = SBIC.Replace(" ", "")
+
+        ' Addition for Eurobank
+        'If IsEurobank Then
+        ' SBIC = Trim(Line.Substring(500, 8))
+        ' End If
+
+        Debug.WriteLine(Line)
+
+
+
+
+
+        '''''''''''
+        WL("<?xml version=""1.0"" encoding=""utf-8""?>")
+        WL("<Document xmlns:xsi=""http://www.w3.org/2001/XMLSchema-instance"" xmlns=""urn:iso:std:iso:20022:tech:xsd:pain.001.001.03"" xsi:schemaLocation=""urn:iso:std:iso:20022:tech:xsd:pain.001.001.03 pain.001.001.03.xsd"">")
+        WL("<CstmrCdtTrfInitn>")
+        WL("<GrpHdr>")
+        WL("<MsgId>MsgId1</MsgId>")
+        WL("<CreDtTm>" & sCreationDateTime & "</CreDtTm>")
+        WL("<NbOfTxs>" & sTotalTransactions & "</NbOfTxs>")
+        WL("<CtrlSum>" & sTotalAmount & "</CtrlSum>")
+        WL("<InitgPty>")
+        WL("<Nm>" & Replace(sCompanyName, "&", " ") & "</Nm>")
+        WL("</InitgPty>")
+        'WL("<Id>")
+        'WL("<OrgId>")
+        'WL("<Othr>")
+        'WL("<Id>" & sCompanyDigitCode & "</Id>")
+        'WL("</Othr>")
+        'WL("</OrgId>")
+        'WL("</Id>")
+
+        WL("</GrpHdr>")
+        WL("<PmtInf>")
+        WL("<PmtInfId>PmtInfId</PmtInfId>")
+        WL("<PmtMtd>TRF</PmtMtd>")
+        WL("<BtchBookg>false</BtchBookg>")
+        WL("<PmtTpInf>")
+        WL("<SvcLvl>")
+        WL("<Cd>SEPA</Cd>")
+        WL("</SvcLvl>")
+        WL("</PmtTpInf>")
+        WL("<ReqdExctnDt>" & sExecutionDate & "</ReqdExctnDt>")
+        WL("<Dbtr>")
+        WL("<Nm>" & Replace(sCompanyName, "&", " ") & "</Nm>")
+        WL("<PstlAdr>")
+        WL("<Ctry>CY</Ctry>")
+        WL("</PstlAdr>")
+        WL("<Id>")
+        WL("<OrgId>")
+        WL("<BICOrBEI>" & SBIC & "</BICOrBEI>")
+        WL("<Othr>")
+        WL("<Id>" & sCompanyDigitCode & "</Id>")
+        WL("</Othr>")
+        WL("</OrgId>")
+        WL("</Id>")
+        WL("</Dbtr>")
+        WL("<DbtrAcct>")
+        WL("<Id>")
+        WL("<IBAN>" & UCase(sIBAN) & "</IBAN>")
+        WL("</Id>")
+        WL("<Ccy>EUR</Ccy>")
+        WL("</DbtrAcct>")
+        WL("<DbtrAgt>")
+        WL("<FinInstnId>")
+        WL("<BIC>" & SBIC & "</BIC>")
+        WL("</FinInstnId>")
+        WL("</DbtrAgt>")
+        WL("<ChrgBr>SHAR</ChrgBr>")
+        ''''''''''
+
+
+
+    End Sub
+
+
+    Public Sub Write_SEPA_LINE_Hellenic2_V3(ByVal Line As String, ByVal sLineNo As String, ByVal IsEurobank As Boolean)
+
+        Dim sAmount As String = Trim(Line.Substring(5, 15))
+        sAmount = StringtoDecimal2(sAmount)
+
+
+        Dim sBIC As String = Trim(Line.Substring(20, 11))
+        Dim semployeename As String = Trim(Line.Substring(65, 70))
+        Dim sIBAN As String = Trim(Line.Substring(31, 34))
+        Dim sCountryCode As String = Trim(Line.Substring(139, 2))
+        Dim sPaymentDesc As String = Trim(Line.Substring(141, 140))
+
+        Dim sAccountNo As String = ""
+        WL("<CdtTrfTxInf>")
+
+        WL("<PmtId>")
+        WL("<InstrId>" & sLineNo & "</InstrId>")
+        WL("<EndToEndId>" & sLineNo & "</EndToEndId>")
+        WL("</PmtId>")
+
+        WL("<PmtTpInf>")
+        WL("<SvcLvl>")
+        WL("<Cd>SEPA</Cd>")
+        WL("</SvcLvl>")
+
+        WL("<CtgyPurp>")
+        WL("<Cd>SALA</Cd>")
+        WL("</CtgyPurp>")
+        WL("</PmtTpInf>")
+
+        WL("<Amt>")
+        WL("<InstdAmt Ccy=""EUR"">" & sAmount & "</InstdAmt>")
+        WL("</Amt>")
+
+        WL("<ChrgBr>SHAR</ChrgBr>")
+
+        WL("<CdtrAgt>")
+        WL("<FinInstnId>")
+        WL("<BIC>" & sBIC & "</BIC>")
+        WL("</FinInstnId>")
+        WL("</CdtrAgt>")
+
+        WL("<Cdtr>")
+        WL("<Nm>" & semployeename & "</Nm>")
+        WL("<PstlAdr>")
+        WL("<Ctry>" & sCountryCode & "</Ctry>")
+        'WL("<AdrLine>address line1</AdrLine>")
+        'WL("<AdrLine>address line2</AdrLine>")
+        WL("</PstlAdr>")
+
+        'WL("<Id>")
+        'WL("<PrvtId>")
+        'WL("<DtAndPlcOfBirth>")
+        'WL("<BirthDt>1998-03-30</BirthDt>")
+        'WL("<PrvcOfBirth>Nicosia</PrvcOfBirth>")
+        'WL("<CityOfBirth>Nicosia</CityOfBirth>")
+        'WL("<CtryOfBirth>CY</CtryOfBirth>")
+        'WL("</DtAndPlcOfBirth>")
+        'WL("</PrvtId>")
+        'WL("</Id>")
+        WL("</Cdtr>")
+        WL("<CdtrAcct>")
+        WL("<Id>")
+        If sIBAN <> "" Then
+            WL("<IBAN>" & UCase(sIBAN) & "</IBAN>")
+        Else
+            WL("<Othr>")
+            WL("<Id>" & UCase(sAccountNo) & "</Id>")
+            WL("</Othr>")
+        End If
+        WL("</Id>")
+        WL("</CdtrAcct>")
+        WL("<RmtInf>")
+        WL("<Ustrd>" & sPaymentDesc & "</Ustrd>")
+        WL("</RmtInf>")
+        WL("</CdtTrfTxInf>")
+        '''''''''''''''''''''''''''''''''''''''''''
+        '        <CdtTrfTxInf>
+        '<PmtId>
+        '<InstrId>InstrId 3</InstrId>
+        '<EndToEndId>EndToEndId 3</EndToEndId>
+        '</PmtId>
+        '<PmtTpInf>
+        '<SvcLvl>
+        '<Cd>SEPA</Cd>
+        '</SvcLvl>
+        '<CtgyPurp>
+        '<Cd>SALA</Cd>
+        '</CtgyPurp>
+        '</PmtTpInf>
+        '<Amt>
+        '<InstdAmt Ccy="EUR">1100.00</InstdAmt>
+        '</Amt>
+        '<ChrgBr>SLEV</ChrgBr>
+        '<CdtrAgt>
+        '<FinInstnId>
+        '<BIC>CCBKCY2N</BIC>
+        '</FinInstnId>
+        '</CdtrAgt>
+        '<Cdtr>
+        '<Nm>Creditor 3</Nm>
+        '<PstlAdr>
+        '<Ctry>CY</Ctry>
+        '<AdrLine>address line 1 for customer3</AdrLine>
+        '</PstlAdr>
+        '<Id>
+        '<PrvtId>
+        '<Othr>
+        '<Id>U1234</Id>
+        '</Othr>
+        '</PrvtId>
+        '</Id>
+        '</Cdtr>
+        '<CdtrAcct>
+        '<Id>
+        '<IBAN>CY38007101100000000020333607</IBAN>
+        '</Id>
+        '</CdtrAcct>
+        'If IsEurobank Then
+        '    WL("<RmtInf>")
+        '    WL("<Ustrd>" & sPaymentDesc & "</Ustrd>")
+        '    WL("</RmtInf>")
+        'End If
+        '</CdtTrfTxInf>
+
+
+
+    End Sub
+
+    Private Sub Button18_Click(sender As Object, e As EventArgs) Handles Button18.Click
+
+        Create_EMONIExcelFile()
+
+
+
+    End Sub
+    Private Sub Create_EMONIExcelFile()
+        InitFile = True
+        Dim Includeinactive As Boolean = False
+        Dim EmployeeBankCode As String = ""
+
+        Dim MyFileName As String = BankFiledir & "Emoni.xlsx"
+
+        If Me.CBInactive.CheckState = CheckState.Checked Then
+            Includeinactive = True
+        End If
+        Dim ds As DataSet
+
+
+        ds = PrepareDSForReport_ForSEPAGA(Includeinactive, EmployeeBankCode)
+
+        Dim ExecutionDate As String = ""
+        ExecutionDate = Format(Me.DatePay.Value.Date, "MM/dd/yyyy")
+
+
+
+        If CBSelectEmployees.CheckState = CheckState.Checked Then
+            If Not HellenicToOther Then
+                RunSelection = False
+                Dim F As New FrmSelectEmployeesForBankFile
+                F.ForHellenic = False
+                F.Ds = ds
+                F.Owner = Me
+                F.ShowDialog()
+                If Me.RunSelection Then
+                    Dim k As Integer
+                    For k = 0 To ds.Tables(0).Rows.Count - 1
+                        ds.Tables(0).Rows(k).Item(11) = DsSelection.Tables(0).Rows(k).Item(11)
+                    Next
+                End If
+            Else
+                If Me.RunSelection Then
+                    Dim k As Integer
+                    For k = 0 To ds.Tables(0).Rows.Count - 1
+                        ds.Tables(0).Rows(k).Item(11) = DsSelection.Tables(0).Rows(k).Item(10)
+                    Next
+                End If
+            End If
+        End If
+
+
+        If CheckDataSet(ds) Then
+            Dim Header As String = ""
+            Dim Line As String
+            Dim Separator As String = ","
+
+            Dim C1_Amount As String
+            Dim C2_Currency As String
+            Dim C3_Beneficiary_type As String
+            Dim C4_Recipients_bank_country As String
+            Dim C5_IBAN As String
+            Dim C6_SWIFT_BIC As String
+            Dim C7_Recipient_name As String
+            Dim C8_Beneficiary_city As String
+            Dim C9_Beneficiary_postal_code As String
+            Dim C10_Beneficiary_country As String
+            Dim C11_Description As String
+
+
+            Dim i As Integer
+            Dim TrxnCode As String = "K90"
+            Dim EmpCode As String
+            Dim EmpName As String
+            Dim Salary As Double
+            Dim BankCode As String
+            Dim BankAccount As String
+            Dim BankDesc As String
+            Dim IBAN As String
+            Dim EmpID As String
+            Dim BenefName As String
+            Dim CompanyBankAcc As String = Me.ComboBankAcc.Text
+            Dim BANKcountry As String
+            Dim BenCountry As String
+            Dim CompanyBank As New cPrAnBanks
+            CompanyBank = CType(cmbBnk_CodeCo.SelectedItem, cPrAnBanks)
+
+            Dim xls As Microsoft.Office.Interop.Excel.Application
+            Dim xlsWorkBook As Microsoft.Office.Interop.Excel.Workbook
+            Dim xlsWorkSheet As Microsoft.Office.Interop.Excel.Worksheet
+            Dim misValue As Object = System.Reflection.Missing.Value
+
+            xls = New Microsoft.Office.Interop.Excel.Application
+            'xlsWorkBook = xlsWorkBook.("c:\bookl.xlsx")
+            xlsWorkBook = xls.Workbooks.Add(misValue)
+            xlsWorkSheet = xlsWorkBook.Sheets("sheet1")
+
+            xlsWorkSheet.Cells(1, 1) = "Amount"
+            xlsWorkSheet.Cells(1, 2) = "Currency"
+            xlsWorkSheet.Cells(1, 3) = "Beneficiary type"
+            xlsWorkSheet.Cells(1, 4) = "Recipient's bank country [bankCountryCode]"
+            xlsWorkSheet.Cells(1, 5) = "IBAN [recipientIban]"
+            xlsWorkSheet.Cells(1, 6) = "SWIFT/BIC [recipientSwift]"
+            xlsWorkSheet.Cells(1, 7) = "Recipient name"
+            xlsWorkSheet.Cells(1, 8) = "Beneficiary city"
+            xlsWorkSheet.Cells(1, 9) = "Beneficiary postal code"
+            xlsWorkSheet.Cells(1, 10) = "Beneficiary country [beneficiaryCountryCode]"
+            xlsWorkSheet.Cells(1, 11) = "Description [details]"
+
+
+            Dim Counter As Integer = 1
+            For i = 0 To ds.Tables(0).Rows.Count - 1
+                If DbNullToString(ds.Tables(0).Rows(i).Item(11)) = "1" Then
+                    Counter = Counter + 1
+                    Line = ""
+                    EmpCode = DbNullToString(ds.Tables(0).Rows(i).Item(0))
+                    Salary = DbNullToString(ds.Tables(0).Rows(i).Item(1))
+                    EmpName = DbNullToString(ds.Tables(0).Rows(i).Item(2))
+                    BankCode = DbNullToString(ds.Tables(0).Rows(i).Item(3))
+                    BankAccount = DbNullToString(ds.Tables(0).Rows(i).Item(4))
+                    ' BankDesc = DbNullToString(ds.Tables(0).Rows(i).Item(5))
+                    IBAN = DbNullToString(ds.Tables(0).Rows(i).Item(8))
+                    EmpID = DbNullToString(ds.Tables(0).Rows(i).Item(9))
+                    BenefName = DbNullToString(ds.Tables(0).Rows(i).Item(10))
+                    If BenefName <> "" Then
+                        EmpName = BenefName
+                    End If
+                    If IBAN = "" Then
+                        MsgBox("Employee with Code " & EmpCode & " does not have an IBAN Number, Please correct, cannot proceed!", MsgBoxStyle.Critical)
+                        Exit Sub
+                    End If
+
+                    BANKcountry = IBAN.Substring(0, 2)
+                    BenCountry = IBAN.Substring(0, 2)
+
+
+                    Dim Bank As New cPrAnBanks(BankCode)
+                    Dim Emp As New cPrMsEmployees(EmpCode)
+
+
+                    Dim Swift As String
+                    Swift = FindSwiftCode(Bank, False)
+
+                    C1_Amount = Salary
+                    C2_Currency = "EUR"
+                    C3_Beneficiary_type = "person"
+                    C4_Recipients_bank_country = BenCountry
+                    C5_IBAN = IBAN
+                    C6_SWIFT_BIC = Swift
+                    C7_Recipient_name = EmpName
+                    C8_Beneficiary_city = Emp.Address2.Replace(",", " ")
+                    C9_Beneficiary_postal_code = Emp.PostCode
+                    C10_Beneficiary_country = emp.Cou_Code
+                    C11_Description = "Payroll " & Period.DescriptionL
+
+
+
+
+                    xlsWorkSheet.Cells(Counter, 1) = C1_Amount
+                    xlsWorkSheet.Cells(Counter, 2) = C2_Currency
+                    xlsWorkSheet.Cells(Counter, 3) = C3_Beneficiary_type
+                    xlsWorkSheet.Cells(Counter, 4) = C4_Recipients_bank_country
+                    xlsWorkSheet.Cells(Counter, 5) = C5_IBAN
+                    xlsWorkSheet.Cells(Counter, 6) = C6_SWIFT_BIC
+                    xlsWorkSheet.Cells(Counter, 7) = C7_Recipient_name
+                    xlsWorkSheet.Cells(Counter, 8) = C8_Beneficiary_city
+                    xlsWorkSheet.Cells(Counter, 9) = C9_Beneficiary_postal_code
+                    xlsWorkSheet.Cells(Counter, 10) = C10_Beneficiary_country
+                    xlsWorkSheet.Cells(Counter, 11) = C11_Description
+
+
+
+
+
+                End If
+            Next
+
+            xlsWorkBook.SaveAs(MyFileName)
+            xlsWorkBook.Close()
+            xls.Quit()
+            MsgBox("File is created", MsgBoxStyle.Information)
+        Else
+            MsgBox("There are no Employees maching the Criteria", MsgBoxStyle.Information)
+        End If
+
+
+    End Sub
+    Private Sub Button19_Click(sender As Object, e As EventArgs) Handles Button19.Click
+
+        Create_EMONI_CSVFile()
+
+
+
+    End Sub
+    Private Sub Create_EMONI_CSVFile()
+        InitFile = True
+        Dim Includeinactive As Boolean = False
+        Dim EmployeeBankCode As String = ""
+
+        Dim MyFileName As String = BankFiledir & "Emoni.xlsx"
+
+        If Me.CBInactive.CheckState = CheckState.Checked Then
+            Includeinactive = True
+        End If
+        Dim ds As DataSet
+
+
+        ds = PrepareDSForReport_ForSEPAGA(Includeinactive, EmployeeBankCode)
+
+        Dim ExecutionDate As String = ""
+        ExecutionDate = Format(Me.DatePay.Value.Date, "MM/dd/yyyy")
+
+
+
+        If CBSelectEmployees.CheckState = CheckState.Checked Then
+            If Not HellenicToOther Then
+                RunSelection = False
+                Dim F As New FrmSelectEmployeesForBankFile
+                F.ForHellenic = False
+                F.Ds = ds
+                F.Owner = Me
+                F.ShowDialog()
+                If Me.RunSelection Then
+                    Dim k As Integer
+                    For k = 0 To ds.Tables(0).Rows.Count - 1
+                        ds.Tables(0).Rows(k).Item(11) = DsSelection.Tables(0).Rows(k).Item(11)
+                    Next
+                End If
+            Else
+                If Me.RunSelection Then
+                    Dim k As Integer
+                    For k = 0 To ds.Tables(0).Rows.Count - 1
+                        ds.Tables(0).Rows(k).Item(11) = DsSelection.Tables(0).Rows(k).Item(10)
+                    Next
+                End If
+            End If
+        End If
+
+
+        If CheckDataSet(ds) Then
+            Dim Header As String = ""
+            Dim Line As String
+            Dim Separator As String = ","
+
+            Dim C1_Amount As String
+            Dim C2_Currency As String
+            Dim C3_Beneficiary_type As String
+            Dim C4_Recipients_bank_country As String
+            Dim C5_IBAN As String
+            Dim C6_SWIFT_BIC As String
+            Dim C7_Recipient_name As String
+            Dim C8_Beneficiary_city As String
+            Dim C9_Beneficiary_postal_code As String
+            Dim C10_Beneficiary_country As String
+            Dim C11_Description As String
+
+
+            Dim i As Integer
+            Dim TrxnCode As String = "K90"
+            Dim EmpCode As String
+            Dim EmpName As String
+            Dim Salary As Double
+            Dim BankCode As String
+            Dim BankAccount As String
+            Dim BankDesc As String
+            Dim IBAN As String
+            Dim EmpID As String
+            Dim BenefName As String
+            Dim CompanyBankAcc As String = Me.ComboBankAcc.Text
+            Dim BANKcountry As String
+            Dim BenCountry As String
+            Dim CompanyBank As New cPrAnBanks
+            CompanyBank = CType(cmbBnk_CodeCo.SelectedItem, cPrAnBanks)
+
+            Dim xls As Microsoft.Office.Interop.Excel.Application
+            Dim xlsWorkBook As Microsoft.Office.Interop.Excel.Workbook
+            Dim xlsWorkSheet As Microsoft.Office.Interop.Excel.Worksheet
+            Dim misValue As Object = System.Reflection.Missing.Value
+
+            '   xls = New Microsoft.Office.Interop.Excel.Application
+            'xlsWorkBook = xlsWorkBook.("c:\bookl.xlsx")
+            '  xlsWorkBook = xls.Workbooks.Add(misValue)
+            ' xlsWorkSheet = xlsWorkBook.Sheets("sheet1")
+
+            Header = "Amount" & Separator
+            Header = Header & "Currency" & Separator
+            Header = Header & "Beneficiary type" & Separator
+            Header = Header & "Recipient's bank country [bankCountryCode]" & Separator
+            Header = Header & "IBAN [recipientIban]" & Separator
+            Header = Header & "SWIFT/BIC [recipientSwift]" & Separator
+            Header = Header & "Recipient name" & Separator
+            Header = Header & "Beneficiary city" & Separator
+            Header = Header & "Beneficiary postal code" & Separator
+            Header = Header & "Beneficiary country [beneficiaryCountryCode]" & Separator
+            Header = Header & "Description [details]"
+            WriteToCSVFile_Emoni(Header, "")
+            Dim Counter As Integer = 1
+            For i = 0 To ds.Tables(0).Rows.Count - 1
+                If DbNullToString(ds.Tables(0).Rows(i).Item(11)) = "1" Then
+                    Counter = Counter + 1
+                    Line = ""
+                    EmpCode = DbNullToString(ds.Tables(0).Rows(i).Item(0))
+                    Salary = DbNullToString(ds.Tables(0).Rows(i).Item(1))
+                    EmpName = DbNullToString(ds.Tables(0).Rows(i).Item(2))
+                    BankCode = DbNullToString(ds.Tables(0).Rows(i).Item(3))
+                    BankAccount = DbNullToString(ds.Tables(0).Rows(i).Item(4))
+                    ' BankDesc = DbNullToString(ds.Tables(0).Rows(i).Item(5))
+                    IBAN = DbNullToString(ds.Tables(0).Rows(i).Item(8))
+                    EmpID = DbNullToString(ds.Tables(0).Rows(i).Item(9))
+                    BenefName = DbNullToString(ds.Tables(0).Rows(i).Item(10))
+                    If BenefName <> "" Then
+                        EmpName = BenefName
+                    End If
+                    If IBAN = "" Then
+                        MsgBox("Employee with Code " & EmpCode & " does not have an IBAN Number, Please correct, cannot proceed!", MsgBoxStyle.Critical)
+                        Exit Sub
+                    End If
+
+                    BANKcountry = IBAN.Substring(0, 2)
+                    BenCountry = IBAN.Substring(0, 2)
+
+
+                    Dim Bank As New cPrAnBanks(BankCode)
+                    Dim Emp As New cPrMsEmployees(EmpCode)
+
+
+                    Dim Swift As String
+                    Swift = FindSwiftCode(Bank, False)
+
+                    C1_Amount = Salary
+                    C2_Currency = "EUR"
+                    C3_Beneficiary_type = "person"
+                    C4_Recipients_bank_country = BenCountry
+                    C5_IBAN = IBAN
+                    C6_SWIFT_BIC = Swift
+                    C7_Recipient_name = EmpName
+                    C8_Beneficiary_city = Emp.Address2.Replace(",", " ")
+                    C9_Beneficiary_postal_code = Emp.PostCode
+                    C10_Beneficiary_country = Emp.Cou_Code
+                    C11_Description = "Payroll " & Period.DescriptionL
+
+
+
+
+                    Line = C1_Amount & Separator
+                    Line = Line & C2_Currency & Separator
+                    Line = Line & C3_Beneficiary_type & Separator
+                    Line = Line & C4_Recipients_bank_country & Separator
+                    Line = Line & C5_IBAN & Separator
+                    Line = Line & C6_SWIFT_BIC & Separator
+                    Line = Line & C7_Recipient_name & Separator
+                    Line = Line & C8_Beneficiary_city & Separator
+                    Line = Line & C9_Beneficiary_postal_code & Separator
+                    Line = Line & C10_Beneficiary_country & Separator
+                    Line = Line & C11_Description & Separator
+
+                    WriteToCSVFile_Emoni(Line, "")
+
+
+
+                End If
+            Next
+
+
+            MsgBox("File is created", MsgBoxStyle.Information)
+        Else
+            MsgBox("There are no Employees maching the Criteria", MsgBoxStyle.Information)
+        End If
+
+
+    End Sub
+
 
 End Class

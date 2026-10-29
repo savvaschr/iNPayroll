@@ -59,7 +59,7 @@ Module Email
             oMsg.Subject = Subject
             oMsg.Body = Message
             '''---------------------------------------------
-            oMsg.To = enQuoteString(MailTO)
+            oMsg.To = MailTO
             ' Dim rec = oMsg.Recipients.Add(MailTO)
             ' rec.Type = Microsoft.Office.Interop.Outlook.OlMailRecipientType.olTo
             'rec.Resolve()

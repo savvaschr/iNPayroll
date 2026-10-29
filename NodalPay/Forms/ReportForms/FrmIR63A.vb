@@ -409,8 +409,8 @@ Public Class FrmIR63A
         PARAM_HideEmpWithBlanksSIR = True
         Dim DsHB As DataSet
         DsHB = Global1.Business.GetParameter("IR7", "HideBlankSIR")
-        If CheckDataSet(DsSep) Then
-            Dim Par As New cPrSsParameters(DsSep.Tables(0).Rows(0))
+        If CheckDataSet(DsHB) Then
+            Dim Par As New cPrSsParameters(DsHB.Tables(0).Rows(0))
             If Par.Value1 = "1" Then
                 Global1.PARAM_HideEmpWithBlanksSIR = True
             Else
@@ -12348,12 +12348,14 @@ Public Class FrmIR63A
 
         '<!-- Q38 Broader Public Sector Reduction of Emoluments And Pensions -->
         Q39 = StringtoDecimal2ReturnDouble(Ar(54))
+        Dim EOAPensinersGESY As Double = 0
+        EOAPensinersGESY = StringtoDecimal2ReturnDouble(Ar(55))
         employeeType = Ar(56)
         If employeeType = "3" Then
             Q39 = 0
         End If
-        If Ar(70) = 1 Then
-            Q42 = Q39
+        If Ar(70) = 1 Then 'Ar(70) = is Employee EOA Pensioner
+            Q42 = EOAPensinersGESY
             Q39 = 0
         Else
             Q42 = 0
@@ -12367,6 +12369,9 @@ Public Class FrmIR63A
         Q44 = Q42 + Q43
         WL("<GhsWithheldPensioners>" & FWC(Q44) & "</GhsWithheldPensioners>")
         MT_GHSWithHeldPensioners = MT_GHSWithHeldPensioners + Q44
+        ' If Ar(70) = 1 Then 'Ar(70) = is Employee EOA Pensioner
+        'Q44 = 0
+        'End If
         '<!-- Q44 GHS withheld from Pensioners: Sum of Q42 & Q43 -->
 
         '''''''' GESY CORRECTION FOR 2025 xml
@@ -12451,6 +12456,9 @@ Public Class FrmIR63A
         Else
             'Contribution of NON Officer is on Ar(55)
             Q56 = StringtoDecimal2ReturnDouble(Ar(55))
+            If Ar(70) = 1 Then
+                Q56 = 0
+            End If
         End If
 
         WL("<BonusGhsWithheldOfficers>0,00</BonusGhsWithheldOfficers>")
@@ -12676,4 +12684,6 @@ Public Class FrmIR63A
         MyDsxl.Tables(0).Rows.Add(R)
 
     End Sub
+
+
 End Class

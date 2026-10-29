@@ -1,4 +1,4 @@
-Public Class cBusinessDBTier
+ï»¿Public Class cBusinessDBTier
     Inherits cDataTier
 
 #Region "FIN"
@@ -2671,7 +2671,8 @@ todo:   ' check for status in trxnheader
                 " Emp_Email2, " &
                 " Emp_Maternity, " &
                 " Emp_FEControlAmount, " &
-                " Emp_PrevUnion " &
+                " Emp_PrevUnion, " &
+                " Emp_ElegibleFor25 " &
                 "  FROM PrMsEmployees" &
                 " Where TemGrp_Code=" & enQuoteString(TempGroupCode) &
                 " AND Emp_Status='A'" &
@@ -3250,7 +3251,8 @@ todo:   ' check for status in trxnheader
              " SUM(TrxHdr_PeriodInsurable), " &
              " SUM(TrxHdr_FE), " &
              " SUM(TrxHdr_PeriodNotional), " &
-             " SUM(TrxHdr_PeriodTaxOnNotional) " &
+             " SUM(TrxHdr_PeriodTaxOnNotional), " &
+             " SUM(TrxHdr_SIPension) " &
              " FROM PrTxTrxnHeader" &
              " WHERE (Emp_Code = " & enQuoteString(Emp.Code) & ")" &
              " AND (PrdGrp_Code = " & enQuoteString(CurrentPeriod.PrdGrpCode) & ")" &
@@ -9693,9 +9695,18 @@ todo:   ' check for status in trxnheader
               " Com_Address4," &
               " Com_Tel1," &
               " Com_Logo," &
-              " Com_Stamp " &
+              " Com_Stamp, " &
+              " '' as Over1Rate, " &
+              " '' as Over2Rate, " &
+              " '' as Over3Rate " &
               " FROM AdMsCompany where com_code=" & enQuoteString(TempGrp.CompanyCode)
         DsCompany = GetData(Str)
+
+        If CheckDataSet(DsCompany) Then
+            DsCompany.Tables(0).Rows(0).Item(9) = "Overtime1 (x " & Format(OverTime_Rate1, "0.00") & ")"
+            DsCompany.Tables(0).Rows(0).Item(10) = "Overtime2 (x " & Format(OverTime_Rate2, "0.00") & ")"
+            DsCompany.Tables(0).Rows(0).Item(11) = "Overtime3 (x " & Format(OverTime_Rate3, "0.00") & ")"
+        End If
         ds.Tables.Add(DsCompany.Tables(0).Copy)
         ds.Tables(1).TableName = "Company"
 
@@ -16756,22 +16767,22 @@ todo:   ' check for status in trxnheader
                     R(C_EmpIDType) = " "
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(6))
                 ElseIf IDType = "2" Then
-                    R(C_EmpIDType) = "Ä"
+                    R(C_EmpIDType) = "Î”"
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(11))
                 ElseIf IDType = "3" Then
-                    R(C_EmpIDType) = "Ô"
+                    R(C_EmpIDType) = "Î¤"
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(12))
                 ElseIf IDType = "4" Then
-                    R(C_EmpIDType) = "Ö"
+                    R(C_EmpIDType) = "Î¦"
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(16))
                 ElseIf IDType = "5" Then
-                    R(C_EmpIDType) = "Ê"
+                    R(C_EmpIDType) = "Îš"
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(14))
                 ElseIf IDType = "6" Then
-                    R(C_EmpIDType) = "Á"
+                    R(C_EmpIDType) = "Î‘"
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(16))
                 ElseIf IDType = "7" Then
-                    R(C_EmpIDType) = "Á"
+                    R(C_EmpIDType) = "Î‘"
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(13))
                 End If
 
@@ -17103,12 +17114,12 @@ todo:   ' check for status in trxnheader
                     R(C_EmpIDType) = " "
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(6))
                     'ElseIf IDType = "2" Then
-                    '    R(C_EmpIDType) = "Ä"
+                    '    R(C_EmpIDType) = "Î”"
                     '    R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(11))
                 ElseIf IDType = "3" Then
                     Found = True
-                    R(C_EmpIDType) = "Ô"
-                    'R(C_EmpIDType) = "Ô"
+                    R(C_EmpIDType) = "Î¤"
+                    'R(C_EmpIDType) = "Î¤"
                     If DbNullToString(DsEmp.Tables(0).Rows(i).Item(12)) <> "" Then
                         Dim S As String
                         S = DsEmp.Tables(0).Rows(i).Item(12)
@@ -17120,17 +17131,17 @@ todo:   ' check for status in trxnheader
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(12))
                 ElseIf IDType = "4" Then
                     Found = True
-                    R(C_EmpIDType) = "Ö"
+                    R(C_EmpIDType) = "Î¦"
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(16))
                     'ElseIf IDType = "5" Then
-                    '    R(C_EmpIDType) = "Ê"
+                    '    R(C_EmpIDType) = "Îš"
                     '    R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(14))
                     'ElseIf IDType = "6" Then
-                    '    R(C_EmpIDType) = "Á"
+                    '    R(C_EmpIDType) = "Î‘"
                     '    R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(16))
                 ElseIf IDType = "7" Then
                     Found = True
-                    R(C_EmpIDType) = "Á"
+                    R(C_EmpIDType) = "Î‘"
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(13))
                 End If
                 If Not Found Then
@@ -17689,12 +17700,12 @@ todo:   ' check for status in trxnheader
                     R(C_EmpIDType) = " "
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(6))
                     'ElseIf IDType = "2" Then
-                    '    R(C_EmpIDType) = "Ä"
+                    '    R(C_EmpIDType) = "Î”"
                     '    R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(11))
                 ElseIf IDType = "3" Then
                     Found = True
-                    R(C_EmpIDType) = "Ô"
-                    'R(C_EmpIDType) = "Ô"
+                    R(C_EmpIDType) = "Î¤"
+                    'R(C_EmpIDType) = "Î¤"
                     If DbNullToString(DsEmp.Tables(0).Rows(i).Item(12)) <> "" Then
                         Dim S As String
                         S = DsEmp.Tables(0).Rows(i).Item(12)
@@ -17706,17 +17717,17 @@ todo:   ' check for status in trxnheader
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(12))
                 ElseIf IDType = "4" Then
                     Found = True
-                    R(C_EmpIDType) = "Ö"
+                    R(C_EmpIDType) = "Î¦"
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(16))
                     'ElseIf IDType = "5" Then
-                    '    R(C_EmpIDType) = "Ê"
+                    '    R(C_EmpIDType) = "Îš"
                     '    R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(14))
                     'ElseIf IDType = "6" Then
-                    '    R(C_EmpIDType) = "Á"
+                    '    R(C_EmpIDType) = "Î‘"
                     '    R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(16))
                 ElseIf IDType = "7" Then
                     Found = True
-                    R(C_EmpIDType) = "Á"
+                    R(C_EmpIDType) = "Î‘"
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(13))
                 End If
                 If Not Found Then
@@ -18459,12 +18470,12 @@ todo:   ' check for status in trxnheader
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(6))
                     IDValue = DbNullToString(DsEmp.Tables(0).Rows(i).Item(6))
                     'ElseIf IDType = "2" Then
-                    '    R(C_EmpIDType) = "Ä"
+                    '    R(C_EmpIDType) = "Î”"
                     '    R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(11))
                 ElseIf IDType = "3" Then
                     Found = True
-                    R(C_EmpIDType) = "Ô"
-                    'R(C_EmpIDType) = "Ô"
+                    R(C_EmpIDType) = "Î¤"
+                    'R(C_EmpIDType) = "Î¤"
                     If DbNullToString(DsEmp.Tables(0).Rows(i).Item(12)) <> "" Then
                         Dim S As String
                         S = DsEmp.Tables(0).Rows(i).Item(12)
@@ -18477,18 +18488,18 @@ todo:   ' check for status in trxnheader
                     IDValue = DbNullToString(DsEmp.Tables(0).Rows(i).Item(12))
                 ElseIf IDType = "4" Then
                     Found = True
-                    R(C_EmpIDType) = "Ö"
+                    R(C_EmpIDType) = "Î¦"
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(16))
                     IDValue = DbNullToString(DsEmp.Tables(0).Rows(i).Item(16))
                     'ElseIf IDType = "5" Then
-                    '    R(C_EmpIDType) = "Ê"
+                    '    R(C_EmpIDType) = "Îš"
                     '    R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(14))
                     'ElseIf IDType = "6" Then
-                    '    R(C_EmpIDType) = "Á"
+                    '    R(C_EmpIDType) = "Î‘"
                     '    R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(16))
                 ElseIf IDType = "7" Then
                     Found = True
-                    R(C_EmpIDType) = "Á"
+                    R(C_EmpIDType) = "Î‘"
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(13))
                     IDValue = DbNullToString(DsEmp.Tables(0).Rows(i).Item(13))
                 End If
@@ -19502,12 +19513,12 @@ todo:   ' check for status in trxnheader
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(6))
                     IDValue = DbNullToString(DsEmp.Tables(0).Rows(i).Item(6))
                     'ElseIf IDType = "2" Then
-                    '    R(C_EmpIDType) = "Ä"
+                    '    R(C_EmpIDType) = "Î”"
                     '    R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(11))
                 ElseIf IDType = "3" Then
                     Found = True
-                    R(C_EmpIDType) = "Ô"
-                    'R(C_EmpIDType) = "Ô"
+                    R(C_EmpIDType) = "Î¤"
+                    'R(C_EmpIDType) = "Î¤"
                     If DbNullToString(DsEmp.Tables(0).Rows(i).Item(12)) <> "" Then
                         Dim S As String
                         S = DsEmp.Tables(0).Rows(i).Item(12)
@@ -19520,18 +19531,18 @@ todo:   ' check for status in trxnheader
                     IDValue = DbNullToString(DsEmp.Tables(0).Rows(i).Item(12))
                 ElseIf IDType = "4" Then
                     Found = True
-                    R(C_EmpIDType) = "Ö"
+                    R(C_EmpIDType) = "Î¦"
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(16))
                     IDValue = DbNullToString(DsEmp.Tables(0).Rows(i).Item(16))
                     'ElseIf IDType = "5" Then
-                    '    R(C_EmpIDType) = "Ê"
+                    '    R(C_EmpIDType) = "Îš"
                     '    R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(14))
                     'ElseIf IDType = "6" Then
-                    '    R(C_EmpIDType) = "Á"
+                    '    R(C_EmpIDType) = "Î‘"
                     '    R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(16))
                 ElseIf IDType = "7" Then
                     Found = True
-                    R(C_EmpIDType) = "Á"
+                    R(C_EmpIDType) = "Î‘"
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(13))
                     IDValue = DbNullToString(DsEmp.Tables(0).Rows(i).Item(13))
                 End If
@@ -20594,12 +20605,12 @@ todo:   ' check for status in trxnheader
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(6))
                     IDValue = DbNullToString(DsEmp.Tables(0).Rows(i).Item(6))
                     'ElseIf IDType = "2" Then
-                    '    R(C_EmpIDType) = "Ä"
+                    '    R(C_EmpIDType) = "Î”"
                     '    R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(11))
                 ElseIf IDType = "3" Then
                     Found = True
-                    R(C_EmpIDType) = "Ô"
-                    'R(C_EmpIDType) = "Ô"
+                    R(C_EmpIDType) = "Î¤"
+                    'R(C_EmpIDType) = "Î¤"
                     If DbNullToString(DsEmp.Tables(0).Rows(i).Item(12)) <> "" Then
                         Dim S As String
                         S = DsEmp.Tables(0).Rows(i).Item(12)
@@ -20612,18 +20623,18 @@ todo:   ' check for status in trxnheader
                     IDValue = DbNullToString(DsEmp.Tables(0).Rows(i).Item(12))
                 ElseIf IDType = "4" Then
                     Found = True
-                    R(C_EmpIDType) = "Ö"
+                    R(C_EmpIDType) = "Î¦"
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(16))
                     IDValue = DbNullToString(DsEmp.Tables(0).Rows(i).Item(16))
                     'ElseIf IDType = "5" Then
-                    '    R(C_EmpIDType) = "Ê"
+                    '    R(C_EmpIDType) = "Îš"
                     '    R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(14))
                     'ElseIf IDType = "6" Then
-                    '    R(C_EmpIDType) = "Á"
+                    '    R(C_EmpIDType) = "Î‘"
                     '    R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(16))
                 ElseIf IDType = "7" Then
                     Found = True
-                    R(C_EmpIDType) = "Á"
+                    R(C_EmpIDType) = "Î‘"
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(13))
                     IDValue = DbNullToString(DsEmp.Tables(0).Rows(i).Item(13))
                 End If
@@ -21653,12 +21664,12 @@ todo:   ' check for status in trxnheader
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(6))
                     IDValue = DbNullToString(DsEmp.Tables(0).Rows(i).Item(6))
                     'ElseIf IDType = "2" Then
-                    '    R(C_EmpIDType) = "Ä"
+                    '    R(C_EmpIDType) = "Î”"
                     '    R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(11))
                 ElseIf IDType = "3" Then
                     Found = True
-                    R(C_EmpIDType) = "Ô"
-                    'R(C_EmpIDType) = "Ô"
+                    R(C_EmpIDType) = "Î¤"
+                    'R(C_EmpIDType) = "Î¤"
                     If DbNullToString(DsEmp.Tables(0).Rows(i).Item(12)) <> "" Then
                         Dim S As String
                         S = DsEmp.Tables(0).Rows(i).Item(12)
@@ -21671,18 +21682,18 @@ todo:   ' check for status in trxnheader
                     IDValue = DbNullToString(DsEmp.Tables(0).Rows(i).Item(12))
                 ElseIf IDType = "4" Then
                     Found = True
-                    R(C_EmpIDType) = "Ö"
+                    R(C_EmpIDType) = "Î¦"
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(16))
                     IDValue = DbNullToString(DsEmp.Tables(0).Rows(i).Item(16))
                     'ElseIf IDType = "5" Then
-                    '    R(C_EmpIDType) = "Ê"
+                    '    R(C_EmpIDType) = "Îš"
                     '    R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(14))
                     'ElseIf IDType = "6" Then
-                    '    R(C_EmpIDType) = "Á"
+                    '    R(C_EmpIDType) = "Î‘"
                     '    R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(16))
                 ElseIf IDType = "7" Then
                     Found = True
-                    R(C_EmpIDType) = "Á"
+                    R(C_EmpIDType) = "Î‘"
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(13))
                     IDValue = DbNullToString(DsEmp.Tables(0).Rows(i).Item(13))
                 End If
@@ -22731,12 +22742,12 @@ todo:   ' check for status in trxnheader
                     R(C_EmpIDType) = " "
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(6))
                     'ElseIf IDType = "2" Then
-                    '    R(C_EmpIDType) = "Ä"
+                    '    R(C_EmpIDType) = "Î”"
                     '    R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(11))
                 ElseIf IDType = "3" Then
                     Found = True
-                    R(C_EmpIDType) = "Ô"
-                    'R(C_EmpIDType) = "Ô"
+                    R(C_EmpIDType) = "Î¤"
+                    'R(C_EmpIDType) = "Î¤"
                     If DbNullToString(DsEmp.Tables(0).Rows(i).Item(12)) <> "" Then
                         Dim S As String
                         S = DsEmp.Tables(0).Rows(i).Item(12)
@@ -22748,17 +22759,17 @@ todo:   ' check for status in trxnheader
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(12))
                 ElseIf IDType = "4" Then
                     Found = True
-                    R(C_EmpIDType) = "Ö"
+                    R(C_EmpIDType) = "Î¦"
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(16))
                     'ElseIf IDType = "5" Then
-                    '    R(C_EmpIDType) = "Ê"
+                    '    R(C_EmpIDType) = "Îš"
                     '    R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(14))
                     'ElseIf IDType = "6" Then
-                    '    R(C_EmpIDType) = "Á"
+                    '    R(C_EmpIDType) = "Î‘"
                     '    R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(16))
                 ElseIf IDType = "7" Then
                     Found = True
-                    R(C_EmpIDType) = "Á"
+                    R(C_EmpIDType) = "Î‘"
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(13))
                 End If
                 If Not Found Then
@@ -23325,7 +23336,7 @@ todo:   ' check for status in trxnheader
             Next
         End If
 
-
+        Dim Str2 As String = ""
 
         StrX = " SELECT PrMsEmployees.Emp_Code," &
         " PrMsEmployees.Emp_FirstName," &
@@ -23344,8 +23355,85 @@ todo:   ' check for status in trxnheader
         " PrMsDeductionCodes ON PrTxTrxnLines.DedCod_Code = PrMsDeductionCodes.DedCod_Code INNER JOIN" &
         " PrMsEmployees ON PrTxTrxnHeader.Emp_Code = PrMsEmployees.Emp_Code" &
         " WHERE  (PrMsDeductionCodes.DedTyp_Code = 'IT')"
+
         If Global1.PARAM_HideEmpWithBlanksSIR Then
             StrX = StrX & "  AND (PrMsEmployees.ComSin_EmpSocialInsNo <>'')"
+        End If
+
+
+        StrX = StrX & Str & " Order by PrTxtrxnHeader.emp_Code ASC"
+
+        Return GetData(StrX)
+
+    End Function
+    Protected Function REPORT_IR61_PerEmployee_ANNUAL(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, Allyear As Boolean) As DataSet
+        Dim Str As String = ""
+        Dim StrX As String
+        Dim Last As Integer
+        Dim Ds As DataSet
+        Dim i As Integer
+        Dim PerCode As String
+
+        '''''''''''''''''''''''''''' NEW PART ''''''''''''''''''''''''''''''''''''''''''''
+        Dim strPerGroupCode As String
+        Dim strTempGroupCode As String
+        Dim strPerCode As String
+
+        Dim TemGrp As New cPrMsTemplateGroup(PerGrp.TemGrpCode)
+        Ds = Me.GetAll_Templates_PeriodGroups_Periods_OfSIPeriod(SIPeriod.Code, TemGrp.CompanyCode, PerGrp.Year)
+        If CheckDataSet(Ds) Then
+            Last = Ds.Tables(0).Rows.Count - 1
+            For i = 0 To Ds.Tables(0).Rows.Count - 1
+                strTempGroupCode = enQuoteString(DbNullToString(Ds.Tables(0).Rows(i).Item(0)))
+                strPerGroupCode = enQuoteString(DbNullToString(Ds.Tables(0).Rows(i).Item(1)))
+                strPerCode = enQuoteString(DbNullToString(Ds.Tables(0).Rows(i).Item(2)))
+                If i = 0 Then
+                    Str = Str & " WHERE ( "
+                Else
+                    Str = Str & " OR "
+                End If
+                If Not Allyear Then
+                    Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " AND  PrTxTrxnHeader.PrdCod_Code = " & strPerCode & " )"
+                Else
+                    Str = Str & "( PrTxTrxnHeader.TemGrp_Code = " & strTempGroupCode & " AND  PrTxTrxnHeader.PrdGrp_Code = " & strPerGroupCode & " )"
+                End If
+                If i = Last Then
+                    Str = Str & " )"
+                End If
+
+            Next
+        End If
+
+        Dim Str2 As String = ""
+
+        StrX = " SELECT PrMsEmployees.Emp_Code," &
+        " PrMsEmployees.Emp_FirstName," &
+        " PrMsEmployees.Emp_LastName," &
+        " PrMsEmployees.Emp_TaxID," &
+        " PrMsEmployees.Emp_StartDate, " &
+        " PrMsEmployees.Emp_TerminateDate," &
+        " PrMsEmployees.Emp_IsDirector," &
+        " PrMsEmployees.Emp_LWBPen," &
+        " PrTxTrxnLines.TrxLin_PeriodValue," &
+        " PrMsEmployees.Emp_OtherIncome3, " &
+        " PrMsEmployees.Emp_Rehire, " &
+        " PrMsEmployees.Emp_Code as OriginalCode " &
+        " From PrMsPeriodCodes " &
+        " INNER Join PrTxTrxnHeader  " &
+        " On PrMsPeriodCodes.PrdGrp_Code = PrTxTrxnHeader.PrdGrp_Code " &
+        " And PrMsPeriodCodes.PrdCod_Code = PrTxTrxnHeader.PrdCod_Code " &
+        " INNER Join PrMsEmployees " &
+        " On PrTxTrxnHeader.Emp_Code = PrMsEmployees.Emp_Code " &
+        " Left Join PrTxTrxnLines " &
+        " On PrTxTrxnHeader.TrxHdr_Id = PrTxTrxnLines.TrxHdr_Id " &
+        " And PrTxTrxnLines.DedCod_Code IN ( " &
+        " SELECT DedCod_Code " &
+        " From PrMsDeductionCodes" &
+        " Where DedTyp_Code = 'IT'" &
+        " ) "
+
+        If Global1.PARAM_HideEmpWithBlanksSIR Then
+            StrX = StrX & "  And (PrMsEmployees.ComSin_EmpSocialInsNo <>'')"
         End If
 
 
@@ -23449,7 +23537,9 @@ todo:   ' check for status in trxnheader
         StrX = " Select PrTxTrxnheader.Emp_Code," &
             " PrTxTrxnheader.Trxhdr_TaxableIncome ," &
         "  PrTxTrxnheader.Trxhdr_NetSalary, " &
-        "  PrTxTrxnheader.Emp_Code as OriginalCode " &
+        "  PrTxTrxnheader.Emp_Code as OriginalCode, " &
+        "  PrTxTrxnheader.TrxHdr_SIPension, " &
+        "  0 as AlreadyFound " &
             " FROM  PrTxTrxnHeader "
         ' " And (PrTxTrxnHeader.TemGrp_Code = " & enQuoteString(PerGrp.TemGrpCode) & ")"
 
@@ -51299,6 +51389,39 @@ todo:   ' check for status in trxnheader
         Return N
 
     End Function
+    Public Function GetNextAvailableCode2(ByVal Prefix As String, ByVal TemplateGroup As String) As String
+        Dim sql As String = "SELECT MAX(Emp_Code) FROM prmsEmployees WHERE temGrp_Code=" & enQuoteString(TemplateGroup)
+        Dim Ds As DataSet = GetData(sql)
+
+        Dim lastCode As String = DbNullToString(Ds.Tables(0).Rows(0).Item(0))
+        Dim numericPart As String = ""
+        Dim nextNumber As Integer
+
+        ' === If no records exist ===
+        If lastCode = "" Then
+            numericPart = "00001"
+            Return Prefix & numericPart
+        End If
+
+        ' === Remove prefix ONLY if it is at the beginning ===
+        If Prefix <> "" AndAlso lastCode.StartsWith(Prefix) Then
+            numericPart = lastCode.Substring(Prefix.Length)
+        Else
+            numericPart = lastCode
+        End If
+
+        ' === Validate numeric part ===
+        If IsNumeric(numericPart) Then
+            nextNumber = CInt(numericPart) + 1
+            numericPart = nextNumber.ToString().PadLeft(numericPart.Length, "0")
+            Return Prefix & numericPart
+        Else
+            ' If the last code is not numeric â†’ start fresh
+            Return Prefix & "00001"
+        End If
+
+    End Function
+
     Public Shadows Function CheckForLicence(ByVal EncryptedSerialNo As String) As DataSet
         Dim Str As String
 
@@ -52664,11 +52787,46 @@ todo:   ' check for status in trxnheader
 
 
     End Function
+    Protected Function GetAllEmployeePayments(TempGroupCode As String, PeriodGroupCode As String, PeriodCode As String) As DataSet
+        Dim Str As String
+        Str = "Select EmpPay_Id," &
+      "Com_Code, " &
+      "TemGrp_Code," &
+      "PrdGrp_Code," &
+      "PrdCod_Code," &
+      "EmpPay_Year," &
+      "Emp_Code,   " &
+      "Emp_FullName,  " &
+      "EmpPay_Amount " &
+      "From PrTxEmployeesPayments Where " &
+      "TemGrp_Code = " & enQuoteString(TempGroupCode) &
+      " AND PrdGrp_Code = " & enQuoteString(PeriodGroupCode) &
+      " AND PrdCod_Code =  " & enQuoteString(PeriodCode)
+
+        Return GetData(Str)
+    End Function
+    Protected Function DeleteEmployeePayments(TempGroupCode As String, PeriodGroupCode As String, PeriodCode As String) As Boolean
+        Dim Str As String
+        Dim i As Integer
+        Dim Flag As Boolean = False
+        Str = "Delete " &
+      " From PrTxEmployeesPayments Where " &
+      " TemGrp_Code = " & enQuoteString(TempGroupCode) &
+      " AND PrdGrp_Code = " & enQuoteString(PeriodGroupCode) &
+      " AND PrdCod_Code =  " & enQuoteString(PeriodCode)
+
+        i = ExecuteNonQuery(Str)
+        If i >= 0 Then
+            Flag = True
+        End If
+        Return Flag
+
+    End Function
 
 #Region "Locii"
     Protected Function LociiExport_PrAnBanks() As DataSet
         Dim Str As String
-        Str = "SELECT " &
+        Str = "Select " &
         " Bnk_Code," &
         " Bnk_DescriptionL " &
         " FROM" &
@@ -52678,7 +52836,7 @@ todo:   ' check for status in trxnheader
     End Function
     Protected Function LociiExport_PrAnEmployeeAnalysis1() As DataSet
         Dim Str As String
-        Str = "SELECT " &
+        Str = "Select " &
         " EmpAn1_Code " &
         ",EmpAn1_DescriptionL " &
         ",EmpAn1_GLAnal1 " &
@@ -58899,12 +59057,12 @@ todo:   ' check for status in trxnheader
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(6))
                     IDValue = DbNullToString(DsEmp.Tables(0).Rows(i).Item(6))
                     'ElseIf IDType = "2" Then
-                    '    R(C_EmpIDType) = "Ä"
+                    '    R(C_EmpIDType) = "Î”"
                     '    R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(11))
                 ElseIf IDType = "3" Then
                     Found = True
-                    R(C_EmpIDType) = "Ô"
-                    'R(C_EmpIDType) = "Ô"
+                    R(C_EmpIDType) = "Î¤"
+                    'R(C_EmpIDType) = "Î¤"
                     If DbNullToString(DsEmp.Tables(0).Rows(i).Item(12)) <> "" Then
                         Dim S As String
                         S = DsEmp.Tables(0).Rows(i).Item(12)
@@ -58917,18 +59075,18 @@ todo:   ' check for status in trxnheader
                     IDValue = DbNullToString(DsEmp.Tables(0).Rows(i).Item(12))
                 ElseIf IDType = "4" Then
                     Found = True
-                    R(C_EmpIDType) = "Ö"
+                    R(C_EmpIDType) = "Î¦"
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(16))
                     IDValue = DbNullToString(DsEmp.Tables(0).Rows(i).Item(16))
                     'ElseIf IDType = "5" Then
-                    '    R(C_EmpIDType) = "Ê"
+                    '    R(C_EmpIDType) = "Îš"
                     '    R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(14))
                     'ElseIf IDType = "6" Then
-                    '    R(C_EmpIDType) = "Á"
+                    '    R(C_EmpIDType) = "Î‘"
                     '    R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(16))
                 ElseIf IDType = "7" Then
                     Found = True
-                    R(C_EmpIDType) = "Á"
+                    R(C_EmpIDType) = "Î‘"
                     R(C_EmpIDCard) = DbNullToString(DsEmp.Tables(0).Rows(i).Item(13))
                     IDValue = DbNullToString(DsEmp.Tables(0).Rows(i).Item(13))
                 End If
@@ -61992,6 +62150,569 @@ todo:   ' check for status in trxnheader
 
 
 
+    End Function
+
+    Protected Function Upgrade_2026_07()
+        Dim Str As String
+        Dim Exx As New System.Exception
+
+        Str = "ALTER TABLE PrMsEmployees " &
+        " ADD [Emp_ElegibleFor25] char(1) NULL "
+        Dim i As Integer
+        i = ExecuteNonQuery(Str)
+
+        If i >= 0 Then
+            MsgBox("1 New columns Added in PrTxTrxnheader", MsgBoxStyle.Information)
+            Str = " Update PrMsEmployees " &
+                  " set Emp_elegibleFor25='0'"
+
+            i = ExecuteNonQuery(Str)
+        Else
+            MsgBox("Fail to add New columns in PrTxTrxnheader", MsgBoxStyle.Critical)
+        End If
+
+
+
+
+        ' Alter SPs                                     
+
+        Str = " ALTER PROCEDURE [dbo].[PrMsEmployees_SAVE_UPDATE]" &
+        " @Emp_Code varchar(16)," &
+        " @Emp_Status char(1)," &
+        " @PayTyp_Code varchar(4)," &
+        " @TemGrp_Code varchar(6)," &
+        " @EmpSta_Code char(1)," &
+        " @Emp_Title char(4)," &
+        " @Emp_LastName nvarchar(30)," &
+        " @Emp_FirstName nvarchar(30)," &
+        " @Emp_FullName nvarchar(60)," &
+        " @Emp_Sex char(1)," &
+        " @Emp_BirthDate smalldatetime," &
+        " @MarSta_Code char(1)," &
+        " @Emp_Address1 nvarchar(30)," &
+        " @Emp_Address2 nvarchar(30)," &
+        " @Emp_Address3 nvarchar(30)," &
+        " @Emp_PostCode varchar(30)," &
+        " @Emp_Telephone1 varchar(20)," &
+        " @Emp_Telephone2 varchar(20)," &
+        " @Emp_Email varchar(50)," &
+        " @Emp_SocialInsNumber varchar(20)," &
+        " @ComSin_EmpSocialInsNo varchar(20)," &
+        " @Emp_IdentificationCard varchar(10)," &
+        " @Emp_TaxID varchar(10)," &
+        " @Emp_PassportNumber varchar(10)," &
+        " @Emp_AlienNumber varchar(10)," &
+        " @TicTyp_Code char(1)," &
+        " @EmpAn1_Code varchar(12)," &
+        " @EmpAn2_Code varchar(12)," &
+        " @EmpAn3_Code varchar(12)," &
+        " @EmpAn4_Code varchar(12)," &
+        " @EmpAn5_Code varchar(12)," &
+        " @Uni_Code varchar(12)," &
+        " @Cou_Code char(2)," &
+        " @EmpPos_Code varchar(12)," &
+        " @Sic_Code varchar(4)," &
+        " @EmpCmm_Code varchar(4)," &
+        " @PayUni_Code varchar(4)," &
+        " @Emp_PeriodUnits Decimal(18,2)," &
+        " @Emp_AnnualUnits Decimal(18,2)," &
+        " @Cur_Code char(3)," &
+        " @PmtMth_Code varchar(4)," &
+        " @Bnk_Code varchar(12)," &
+        " @Emp_BankAccount varchar(30)," &
+        " @Bnk_CodeCo varchar(12)," &
+        " @Emp_BankAccountCo varchar(30)," &
+        " @Emp_StartDate smalldatetime," &
+        " @Emp_TerminateDate varchar(10)," &
+        " @Emp_OtherIncome1 decimal(8,2)," &
+        " @Emp_OtherIncome2 decimal(8,2)," &
+        " @Emp_OtherIncome3 decimal(8,2)," &
+        " @Emp_PreviousEarnings decimal(8,2)," &
+        " @Emp_PrevSIDeduct decimal(8,2)," &
+        " @Emp_PrevSIContribute decimal(8,2)," &
+        " @Emp_PrevITDeduct decimal(8,2)," &
+        " @Emp_PrevPFDeduct decimal(8,2)," &
+        " @ProFnd_Code varchar(4)," &
+        " @MedFnd_Code varchar(4)," &
+        " @SocInc_Code varchar(4)," &
+        " @Ind_Code varchar(4)," &
+        " @Une_Code varchar(4)," &
+        " @SocCoh_Code varchar(4)," &
+        " @Emp_CreationDate smalldatetime," &
+        " @Emp_CreatedBy int," &
+        " @Emp_AmendDate smalldatetime," &
+        " @Emp_AmendBy int," &
+        " @IntTem_Code varchar(6)," &
+        " @Emp_GLAnal1 varchar(12)," &
+        " @Emp_GLAnal2 varchar(12)," &
+        " @Emp_GLAnal3 varchar(12)," &
+        " @Emp_GLAnal4 varchar(12)," &
+        " @IntTem_PFCode varchar(6)," &
+        " @IntTem_MFCode varchar(6)," &
+        " @Emp_PensionNo varchar(7)," &
+        " @Emp_DrivingLicense varchar(20)," &
+        " @Emp_HasSI int," &
+        " @Emp_Pensiontype int," &
+        " @Emp_MyPayslipReport varchar(50)," &
+        " @Emp_IBAN varchar(40)," &
+        " @Emp_PreviousLifeIns decimal(18,2)," &
+        " @Emp_PreviousDis decimal(18,2)," &
+        " @Emp_PreviousST decimal(18,2)," &
+        " @Emp_OtherIncome4 decimal(18,2)," &
+        " @SecPay_Code varchar(4)," &
+        " @ComRat_Code varchar(4)," &
+        " @PerBon_Code varchar(4)," &
+        " @DutHou_Code varchar(4)," &
+        " @FliHou_Code varchar(4)," &
+        " @Emp_PassFullName varchar(100)," &
+        " @Emp_TravelDocs varchar(100)," &
+        " @Emp_FirstEmployment varchar(1)," &
+        " @OveLay_Code varchar(4)," &
+        " @Emp_Password varchar(20)," &
+        " @Emp_Splitemployement char(1), " &
+        " @Emp_NewEmployee char(1), " &
+        " @Emp_Force50Percent char(1), " &
+        " @Emp_Notes nvarchar(200), " &
+        " @Emp_BankBenName nvarchar(80), " &
+        " @Emp_AgreedSalary decimal(18,2), " &
+        " @Emp_BonusOnSalary decimal(18,2), " &
+        " @Emp_TaxForSplit decimal(18,2), " &
+        " @Emp_PrevMF decimal(18,2), " &
+        " @Emp_PrevPenF decimal(18,2), " &
+        " @Emp_50PerOff char(1), " &
+        " @Ges_Code varchar(4), " &
+        " @Emp_PrevGesiD decimal(18,2)," &
+        " @Emp_PrevGesiC decimal(18,2), " &
+        " @Emp_LWBPen varchar(1), " &
+        " @Emp_GESYFromSplit decimal(18,2), " &
+        " @Emp_AnalGen1 varchar(20), " &
+        " @Emp_Nameday varchar(10), " &
+        " @Emp_IsDirector varchar(1), " &
+        " @Emp_Rehire varchar(16), " &
+        " @Emp_CNP varchar(16), " &
+        " @Emp_TACode varchar(16), " &
+        " @Emp_HRCode varchar(16), " &
+        " @Emp_TermReason varchar(2), " &
+        " @Emp_HireReason varchar(2), " &
+        " @Emp_Email2 Varchar(70), " &
+        " @Emp_Maternity Varchar(1), " &
+        " @Emp_FEControlAmount Decimal(18,2)," &
+         "@Emp_PrevUnion Decimal(18,2), " &
+         "@Emp_ElegibleFor25 Char(1) " &
+        " " &
+        " AS" &
+        " DECLARE @Result as Int" &
+        "   Set @Result = 0" &
+        "   SELECT @Result = Count(*)" &
+        "   FROM PrMsEmployees" &
+        "   WHERE Emp_Code = @Emp_Code" &
+        "   IF(@Result IS NULL) OR (@Result=0)" &
+        " BEGIN" &
+        " INSERT INTO PrMsEmployees" &
+        " (Emp_Code,                                           " &
+        " Emp_Status,                                         " &
+        " PayTyp_Code,                                        " &
+        " TemGrp_Code,                                        " &
+        " EmpSta_Code,                                        " &
+        " Emp_Title,                                          " &
+        " Emp_LastName,                                       " &
+        " Emp_FirstName,                                      " &
+        " Emp_FullName,                                       " &
+        " Emp_Sex,                                            " &
+        " Emp_BirthDate,                                      " &
+        " MarSta_Code,                                        " &
+        " Emp_Address1,                                       " &
+        " Emp_Address2,                                       " &
+        " Emp_Address3,                                       " &
+        " Emp_PostCode,                                       " &
+        " Emp_Telephone1,                                     " &
+        " Emp_Telephone2,                                     " &
+        " Emp_Email,                                          " &
+        " Emp_SocialInsNumber,                                " &
+        " ComSin_EmpSocialInsNo,                              " &
+        " Emp_IdentificationCard,                             " &
+        " Emp_TaxID,                                          " &
+        " Emp_PassportNumber,                                 " &
+        " Emp_AlienNumber,                                    " &
+        " TicTyp_Code,                                        " &
+        " EmpAn1_Code,                                        " &
+        " EmpAn2_Code,                                        " &
+        " EmpAn3_Code,                                        " &
+        " EmpAn4_Code,                                        " &
+        " EmpAn5_Code,                                        " &
+        " Uni_Code,                                           " &
+        " Cou_Code,                                           " &
+        " EmpPos_Code,                                        " &
+        " Sic_Code,                                           " &
+        " EmpCmm_Code,                                        " &
+        " PayUni_Code,                                        " &
+        " Emp_PeriodUnits,                                    " &
+        " Emp_AnnualUnits,                                    " &
+        " Cur_Code,                                           " &
+        " PmtMth_Code,                                        " &
+        " Bnk_Code,                                           " &
+        " Emp_BankAccount,                                    " &
+        " Bnk_CodeCo,                                         " &
+        " Emp_BankAccountCo,                                  " &
+        " Emp_StartDate,                                      " &
+        " Emp_TerminateDate,                                  " &
+        " Emp_OtherIncome1,                                   " &
+        " Emp_OtherIncome2,                                   " &
+        " Emp_OtherIncome3,                                   " &
+        " Emp_PreviousEarnings,                               " &
+        " Emp_PrevSIDeduct,                                   " &
+        " Emp_PrevSIContribute,                               " &
+        " Emp_PrevITDeduct,                                   " &
+        " Emp_PrevPFDeduct, " &
+        " ProFnd_Code," &
+        " MedFnd_Code," &
+        " SocInc_Code," &
+        " Ind_Code," &
+        " Une_Code," &
+        " SocCoh_Code," &
+        " Emp_CreationDate,                                   " &
+        " Emp_CreatedBy,                                      " &
+        " Emp_AmendDate,                                      " &
+        " Emp_AmendBy ,                                        " &
+        " IntTem_Code," &
+        " Emp_GLAnal1," &
+        " Emp_GLAnal2," &
+        " Emp_GLAnal3," &
+        " Emp_GLAnal4," &
+        " IntTem_PFCode," &
+        " IntTem_MFCode," &
+        " Emp_PensionNo," &
+        " Emp_DrivingLicense," &
+        " Emp_HasSI," &
+        " Emp_Pensiontype," &
+        " Emp_MyPayslipReport," &
+        " Emp_IBAN," &
+        " Emp_PreviousLifeIns," &
+        " Emp_PreviousDis," &
+        " Emp_PreviousST," &
+        " Emp_OtherIncome4," &
+        " SecPay_Code," &
+        " ComRat_Code," &
+        " PerBon_Code," &
+        " DutHou_Code," &
+        " FliHou_Code," &
+        " Emp_PassFullName," &
+        " Emp_TravelDocs," &
+        " Emp_FirstEmployment," &
+        " OveLay_Code, " &
+        " Emp_Password, " &
+        " Emp_Splitemployement, " &
+        " Emp_NewEmployee, " &
+        " Emp_Force50Percent, " &
+        " Emp_Notes, " &
+        " Emp_BankBenName, " &
+        " Emp_AgreedSalary, " &
+        " Emp_BonusOnsalary, " &
+        " Emp_TaxForSplit, " &
+        " Emp_PrevMF, " &
+        " Emp_PrevPenF, " &
+        " Emp_50PerOff, " &
+        " Ges_Code, " &
+        " Emp_PrevGesiD, " &
+        " Emp_PrevGesiC, " &
+        " Emp_LWBPen, " &
+        " Emp_GESYFromSplit, " &
+        " Emp_AnalGen1, " &
+        " Emp_NameDay, " &
+        " Emp_IsDirector, " &
+        " Emp_Rehire, " &
+        " Emp_CNP,  " &
+        " Emp_TACode,  " &
+        " Emp_HRCode,  " &
+        " Emp_TermReason,  " &
+        " Emp_HireReason,  " &
+        " Emp_Email2,  " &
+        " Emp_Maternity, " &
+        " Emp_FEControlAmount, " &
+        " Emp_PrevUnion, " &
+        " Emp_ElegibleFor25 " &
+        " " &
+        " )" &
+        " VALUES (" &
+        " @Emp_Code,                                           " &
+        " @Emp_Status,                                         " &
+        " @PayTyp_Code,                                        " &
+        " @TemGrp_Code,                                        " &
+        " @EmpSta_Code,                                        " &
+        " @Emp_Title,                                          " &
+        " @Emp_LastName,                                       " &
+        " @Emp_FirstName,                                      " &
+        " @Emp_FullName,                                       " &
+        " @Emp_Sex,                                            " &
+        " @Emp_BirthDate,                                      " &
+        " @MarSta_Code,                                        " &
+        " @Emp_Address1,                                       " &
+        " @Emp_Address2,                                       " &
+        " @Emp_Address3,                                       " &
+        " @Emp_PostCode,                                       " &
+        " @Emp_Telephone1,                                     " &
+        " @Emp_Telephone2,                                     " &
+        " @Emp_Email,                                          " &
+        " @Emp_SocialInsNumber,                                " &
+        " @ComSin_EmpSocialInsNo,                              " &
+        " @Emp_IdentificationCard,                             " &
+        " @Emp_TaxID,                                          " &
+        " @Emp_PassportNumber,                                 " &
+        " @Emp_AlienNumber,                                    " &
+        " @TicTyp_Code,                                        " &
+        " @EmpAn1_Code,                                        " &
+        " @EmpAn2_Code,                                        " &
+        " @EmpAn3_Code,                                        " &
+        " @EmpAn4_Code,                                        " &
+        " @EmpAn5_Code,                                        " &
+        " @Uni_Code,                                           " &
+        " @Cou_Code,                                           " &
+        " @EmpPos_Code,                                        " &
+        " @Sic_Code,                                           " &
+        " @EmpCmm_Code,                                        " &
+        " @PayUni_Code,                                        " &
+        " @Emp_PeriodUnits,                                    " &
+        " @Emp_AnnualUnits,                                    " &
+        " @Cur_Code,                                           " &
+        " @PmtMth_Code,                                        " &
+        " @Bnk_Code,                                           " &
+        " @Emp_BankAccount,                                    " &
+        " @Bnk_CodeCo,                                         " &
+        " @Emp_BankAccountCo,                                  " &
+        " @Emp_StartDate,                                      " &
+        " @Emp_TerminateDate,                                  " &
+        " @Emp_OtherIncome1,                                   " &
+        " @Emp_OtherIncome2,                                   " &
+        " @Emp_OtherIncome3,                                   " &
+        " @Emp_PreviousEarnings,                               " &
+        " @Emp_PrevSIDeduct,                                   " &
+        " @Emp_PrevSIContribute,                               " &
+        " @Emp_PrevITDeduct,                                   " &
+        " @Emp_PrevPFDeduct,                                   " &
+        " @ProFnd_Code," &
+        " @MedFnd_Code," &
+        " @SocInc_Code," &
+        " @Ind_Code," &
+        " @Une_Code," &
+        " @SocCoh_Code," &
+        " @Emp_CreationDate,                                   " &
+        " @Emp_CreatedBy,                                      " &
+        " @Emp_AmendDate,                                      " &
+        " @Emp_AmendBy,                                         " &
+        " @IntTem_Code," &
+        " @Emp_GLAnal1," &
+        " @Emp_GLAnal2," &
+        " @Emp_GLAnal3," &
+        " @Emp_GLAnal4," &
+        " @IntTem_PFCode," &
+        " @IntTem_MFCode," &
+        " @Emp_PensionNo," &
+        " @Emp_DrivingLicense," &
+        " @Emp_HasSI," &
+        " @Emp_Pensiontype," &
+        " @Emp_MyPayslipReport," &
+        " @Emp_IBAN," &
+        " @Emp_PreviousLifeIns," &
+        " @Emp_PreviousDis," &
+        " @Emp_PreviousST," &
+        " @Emp_OtherIncome4," &
+        " @SecPay_Code," &
+        " @ComRat_Code," &
+        " @PerBon_Code," &
+        " @DutHou_Code," &
+        " @FliHou_Code," &
+        " @Emp_PassFullName," &
+        " @Emp_TravelDocs," &
+        " @Emp_FirstEmployment," &
+        " @OveLay_Code, " &
+        " @Emp_Password, " &
+        " @Emp_Splitemployement, " &
+        " @Emp_NewEmployee, " &
+        " @Emp_Force50Percent, " &
+        " @Emp_Notes, " &
+        " @Emp_BankBenName, " &
+        " @Emp_AgreedSalary, " &
+        " @Emp_BonusOnSalary, " &
+        " @Emp_TaxForSplit, " &
+        " @Emp_PrevMF, " &
+        " @Emp_PrevPenF, " &
+        " @Emp_50PerOff, " &
+        " @Ges_Code, " &
+        " @Emp_PrevGesiD, " &
+        " @Emp_PrevGesiC," &
+        " @Emp_LWBPen, " &
+        " @Emp_GESYFromSplit, " &
+        " @Emp_AnalGen1," &
+        " @Emp_Nameday, " &
+        " @Emp_IsDirector, " &
+        " @Emp_Rehire, " &
+        " @Emp_CNP,  " &
+        " @Emp_TACode,  " &
+        " @Emp_HRCode,  " &
+        " @Emp_TermReason,  " &
+        " @Emp_HireReason,  " &
+        " @Emp_Email2,  " &
+        " @Emp_Maternity, " &
+        " @Emp_FEControlAmount, " &
+        " @Emp_PrevUnion, " &
+        " @Emp_ElegibleFor25 " &
+        " )" &
+        " END" &
+        " ELSE" &
+        "   BEGIN" &
+        "     UPDATE PrMsEmployees" &
+        "     SET " &
+        "     Emp_Code=@Emp_Code,                                   " &
+        "     Emp_Status=@Emp_Status,                               " &
+        "    PayTyp_Code=@PayTyp_Code,                             " &
+        "    TemGrp_Code=@TemGrp_Code,                             " &
+        "    EmpSta_Code=@EmpSta_Code,                             " &
+        "    Emp_Title=@Emp_Title,                                 " &
+        "    Emp_LastName=@Emp_LastName,                           " &
+        "    Emp_FirstName=@Emp_FirstName,                         " &
+        "    Emp_FullName=@Emp_FullName,                           " &
+        "    Emp_Sex=@Emp_Sex,                                     " &
+        "    Emp_BirthDate=@Emp_BirthDate,                         " &
+        "    MarSta_Code=@MarSta_Code,                             " &
+        "    Emp_Address1=@Emp_Address1,                           " &
+        "    Emp_Address2=@Emp_Address2,                           " &
+        "    Emp_Address3=@Emp_Address3,                           " &
+        "    Emp_PostCode=@Emp_PostCode,                           " &
+        "    Emp_Telephone1=@Emp_Telephone1,                       " &
+        "    Emp_Telephone2=@Emp_Telephone2,                       " &
+        "    Emp_Email=@Emp_Email,                                 " &
+        "    Emp_SocialInsNumber=@Emp_SocialInsNumber,             " &
+        "    ComSin_EmpSocialInsNo=@ComSin_EmpSocialInsNo,         " &
+        "    Emp_IdentificationCard=@Emp_IdentificationCard,       " &
+        "   Emp_TaxID=@Emp_TaxID,                                 " &
+        "   Emp_PassportNumber=@Emp_PassportNumber,               " &
+        "   Emp_AlienNumber=@Emp_AlienNumber,                     " &
+        "  TicTyp_Code=@TicTyp_Code,                             " &
+        "  EmpAn1_Code=@EmpAn1_Code,                             " &
+        "  EmpAn2_Code=@EmpAn2_Code,                             " &
+        "  EmpAn3_Code=@EmpAn3_Code,                             " &
+        " EmpAn4_Code=@EmpAn4_Code,                             " &
+        " EmpAn5_Code=@EmpAn5_Code,                             " &
+        " Uni_Code=@Uni_Code,                                   " &
+        " Cou_Code=@Cou_Code,                                   " &
+        " EmpPos_Code=@EmpPos_Code,                             " &
+        " Sic_Code=@Sic_Code,                                   " &
+        " EmpCmm_Code=@EmpCmm_Code,                             " &
+        " PayUni_Code=@PayUni_Code,                             " &
+        " Emp_PeriodUnits=@Emp_PeriodUnits,                     " &
+        " Emp_AnnualUnits=@Emp_AnnualUnits,                     " &
+        " Cur_Code=@Cur_Code,                                   " &
+        " PmtMth_Code=@PmtMth_Code,                             " &
+        " Bnk_Code=@Bnk_Code,                                   " &
+        " Emp_BankAccount=@Emp_BankAccount,                     " &
+        " Bnk_CodeCo=@Bnk_CodeCo,                               " &
+        " Emp_BankAccountCo=@Emp_BankAccountCo,                 " &
+        " Emp_StartDate=@Emp_StartDate,                         " &
+        " Emp_TerminateDate=@Emp_TerminateDate,                 " &
+        " Emp_OtherIncome1=@Emp_OtherIncome1,                   " &
+        " Emp_OtherIncome2=@Emp_OtherIncome2,                   " &
+        " Emp_OtherIncome3=@Emp_OtherIncome3,                   " &
+        " Emp_PreviousEarnings=@Emp_PreviousEarnings,           " &
+        " Emp_PrevSIDeduct=@Emp_PrevSIDeduct,                   " &
+        " Emp_PrevSIContribute=@Emp_PrevSIContribute,           " &
+        " Emp_PrevITDeduct=@Emp_PrevITDeduct,                   " &
+        " Emp_PrevPFDeduct=@Emp_PrevPFDeduct,                   " &
+        " ProFnd_Code=@ProFnd_Code," &
+        " MedFnd_Code=@MedFnd_Code," &
+        " SocInc_Code=@SocInc_Code," &
+        " Ind_Code=@Ind_Code," &
+        " Une_Code=@Une_Code," &
+        " SocCoh_Code=@SocCoh_Code," &
+        " Emp_CreationDate=@Emp_CreationDate,                   " &
+        " Emp_CreatedBy=@Emp_CreatedBy,                         " &
+        " Emp_AmendDate=@Emp_AmendDate,                         " &
+        " Emp_AmendBy=@Emp_AmendBy,                              " &
+        " IntTem_Code=@IntTem_Code," &
+        " Emp_GLAnal1=@Emp_GLAnal1," &
+        " Emp_GLAnal2=@Emp_GLAnal2," &
+        " Emp_GLAnal3=@Emp_GLAnal3," &
+        " Emp_GLAnal4=@Emp_GLAnal4," &
+        " IntTem_PFCode=@IntTem_PFCode," &
+        " IntTem_MFCode=@IntTem_MFCode," &
+        " Emp_PensionNo=@Emp_PensionNo," &
+        " Emp_DrivingLicense=@Emp_DrivingLicense," &
+        " Emp_HasSI=@Emp_HasSI," &
+        " Emp_Pensiontype=@Emp_Pensiontype," &
+        " Emp_MyPayslipReport=@Emp_MyPayslipReport," &
+        " Emp_IBAN=@Emp_IBAN," &
+        " Emp_PreviousLifeIns=@Emp_PreviousLifeIns," &
+        " Emp_PreviousDis=@Emp_PreviousDis," &
+        " Emp_PreviousST=@Emp_PreviousST," &
+        " Emp_OtherIncome4=@Emp_OtherIncome4," &
+        " SecPay_Code=@SecPay_Code," &
+        " ComRat_Code=@ComRat_Code," &
+        " PerBon_Code=@PerBon_Code," &
+        " DutHou_Code=@DutHou_Code," &
+        " FliHou_Code=@FliHou_Code," &
+        " Emp_PassFullName=@Emp_PassFullName," &
+        " Emp_TravelDocs=@Emp_TravelDocs," &
+        " Emp_FirstEmployment =@Emp_FirstEmployment," &
+        " OveLay_Code = @OveLay_Code, " &
+        " Emp_Password = @Emp_Password, " &
+        " Emp_Splitemployement = @Emp_Splitemployement, " &
+        " Emp_NewEmployee = @Emp_NewEmployee, " &
+        " Emp_Force50Percent = @Emp_Force50Percent, " &
+        " Emp_Notes = @Emp_Notes, " &
+        " Emp_BankBenName = @Emp_BankBenName, " &
+        " Emp_AgreedSalary = @Emp_AgreedSalary, " &
+        " Emp_BonusOnSalary = @Emp_BonusOnSalary, " &
+        " Emp_TaxForSplit = @Emp_TaxForSplit, " &
+        " Emp_PrevMF = @Emp_PrevMF, " &
+        " Emp_PrevPenF = @Emp_PrevPenF, " &
+        " Emp_50PerOff = @Emp_50PerOff, " &
+        " Ges_Code = @Ges_Code, " &
+        " Emp_PrevGesiD = @Emp_PrevGesiD, " &
+        " Emp_PrevGesiC = @Emp_PrevGesiC, " &
+        " Emp_LWBPen = @Emp_LWBPen, " &
+        " Emp_GESYFromSplit= @Emp_GESYFromSplit, " &
+        " Emp_AnalGen1 = @Emp_AnalGen1," &
+        " Emp_Nameday = @Emp_NameDay, " &
+        " Emp_Isdirector = @Emp_Isdirector, " &
+        " Emp_Rehire = @Emp_Rehire, " &
+        " Emp_CNP = @Emp_CNP,  " &
+        " Emp_TACode = @Emp_TACode,  " &
+        " Emp_HRCode = @Emp_HRCode,  " &
+        " Emp_TermReason = @Emp_TermReason,  " &
+        " Emp_HireReason = @Emp_HireReason,  " &
+        " Emp_Email2 = @Emp_Email2,  " &
+        " Emp_Maternity = @Emp_Maternity, " &
+        " Emp_FEControlAmount = @Emp_FEControlAmount, " &
+        " Emp_PrevUnion =  @Emp_PrevUnion, " &
+        " Emp_ElegibleFor25 = @Emp_ElegibleFor25 " &
+        " WHERE Emp_Code = @Emp_Code" &
+        " END "
+
+        i = ExecuteNonQuery(Str)
+        If i >= 0 Then
+            MsgBox("SP PrMsEmployees was updated", MsgBoxStyle.Information)
+        Else
+            MsgBox("Unable to Update SP PrMsEmployees", MsgBoxStyle.Critical)
+        End If
+
+
+        Return True
+    End Function
+    Protected Function Upgrade_2026_08()
+        Dim Par As New cPrSsParameters("Payslip", "CompanyNameOnEmail")
+        If Par.Id = 0 Then
+            Par.Id = 0
+            Par.Section = "Payslip"
+            Par.Item = "CompanyNameOnEmail"
+            Par.Value1 = "1"
+            Par.Type1 = "T"
+            Par.System1 = "Y"
+            Par.Description = "Company Name On Email"
+            If Not Par.Save() Then
+                MsgBox("Error")
+            Else
+                MsgBox("Added , set to TRUE")
+            End If
+        End If
     End Function
 End Class
 

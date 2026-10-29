@@ -185,7 +185,7 @@ Public Class frmPrSsPermitions
     Private Sub TSBSave_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TSBSave.Click
         SaveMe(True)
     End Sub
-    Private Function SaveMe(ByVal showmsg As Boolean)
+    Public Function SaveMe(ByVal showmsg As Boolean)
         Dim Exx As New System.Exception
         If ValidateGrid() Then
             Try

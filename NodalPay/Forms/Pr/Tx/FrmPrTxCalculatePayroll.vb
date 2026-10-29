@@ -5064,6 +5064,7 @@ Public Class FrmPrTxCalculatePayroll
 
         Dim NotionalIncome_ToDate As Double = 0
         Dim NotionalIncomeTAX_ToDate As Double = 0
+        Dim SIPension_ToDate As Double = 0
 
         Dim S_Period_SI_PF_MF_LI As Double = 0
         Dim S_Discounts As Double = 0
@@ -5092,11 +5093,13 @@ Public Class FrmPrTxCalculatePayroll
 
         ' Dim ToDate_SI As Double = 0
 
-
+        Dim EarningsAsAdditionFor25Perc As Double = 0
 
         GLB_NEWTax_EarningsFromPreviousEmployment = 0
         If Emp.StartDate.Year = Me.GLBCurrentPeriod.DateFrom.Year Then
             'Previous_SI_PF_MF = Emp.Emp_PrevSIDeduct + Emp.Emp_PrevPFDeduct
+
+            EarningsAsAdditionFor25Perc = Emp.PreviousEarnings
             GLB_NEWTax_EarningsFromPreviousEmployment = Emp.PreviousEarnings
             Previous_SI = Emp.Emp_PrevSIDeduct
             Previous_PF = Emp.Emp_PrevPFDeduct
@@ -5278,6 +5281,7 @@ Public Class FrmPrTxCalculatePayroll
             Discounts_Todate = Discounts_Todate + FE_Todate
             NotionalIncome_ToDate = DbNullToDouble(ds.Tables(0).Rows(0).Item(5))
             NotionalIncomeTAX_ToDate = DbNullToDouble(ds.Tables(0).Rows(0).Item(6))
+            SIPension_ToDate = DbNullToDouble(ds.Tables(0).Rows(0).Item(7))
         End If
 
 
@@ -5419,20 +5423,52 @@ Public Class FrmPrTxCalculatePayroll
             'If (FE >= Global1.PARAM_FiftyPercAplicableAmount Or Emp.Force50Percent = "1") And Emp.f50PercOff = "0" Then
             ' Dim FEforCalc As Double
             ' FEforCalc = FE - Emp.OtherIncome2
-            If (FE >= Emp.FEControlAmount Or Emp.Force50Percent = "1") And Emp.f50PercOff = "0" Then
+            If (FE >= Emp.FEControlAmount Or Emp.Force50Percent = "1") And Emp.f50PercOff = "0" And Emp.ElegibleFor25 = "0" Then
                 FE = FE / 2
                 GLBPercentageOfFE = 50
             Else
-                GLBPercentageOfFE = 20
-                FE = FE * 20 / 100
-                If FE >= 8550 Then
-                    FE = 8550
-                    If Global1.PARAM_Warningon20PercLimit Then
-                        If Not OnlyRecuring Then
-                            MsgBox("Employee with Code " & Emp.Code & " Has reached the 20% Discount Limit", MsgBoxStyle.Information)
+                '******* OLD CODE before changes for 25%
+                'GLBPercentageOfFE = 20
+                'FE = FE * 20 / 100
+                'If FE >= 8550 Then
+                ' FE = 8550
+                ' If Global1.PARAM_Warningon20PercLimit Then
+                ' If Not OnlyRecuring Then
+                ' MsgBox("Employee with Code " & Emp.Code & " Has reached the 20% Discount Limit", MsgBoxStyle.Information)
+                ' End If
+                ' End If
+                ' End If
+                '******* END OF OLD CODE before changes for 25%
+                '****** NEW CODE for 25%
+                If Emp.ElegibleFor25 Then
+                    GLBPercentageOfFE = 25
+                    If FE + EarningsAsAdditionFor25Perc > 30000 Then
+                        FE = FE * 25 / 100
+                        If FE >= 25000 Then
+                            FE = 25000
+                            If Global1.PARAM_Warningon20PercLimit Then
+                                If Not OnlyRecuring Then
+                                    MsgBox("Employee with Code " & Emp.Code & " Has reached the 25% Discount Limit", MsgBoxStyle.Information)
+                                End If
+                            End If
+                        End If
+                    Else
+                        MsgBox("Employee with Code " & Emp.Code & " Total Income not greater than  30.000, so not is NOT eligible for the 25% Discount", MsgBoxStyle.Information)
+                    End If
+                Else
+                    GLBPercentageOfFE = 20
+                    FE = FE * 20 / 100
+                    If FE >= 8550 Then
+                        FE = 8550
+                        If Global1.PARAM_Warningon20PercLimit Then
+                            If Not OnlyRecuring Then
+                                MsgBox("Employee with Code " & Emp.Code & " Has reached the 20% Discount Limit", MsgBoxStyle.Information)
+                            End If
                         End If
                     End If
                 End If
+                '***** END of New Code for 25% 
+
             End If
             'Dim FD As Double
             'If RemPeriods = 0 Then
@@ -5663,7 +5699,7 @@ Public Class FrmPrTxCalculatePayroll
 
 
         GLB_NEWTax_RentsAndIncomeFromOtherSources = Emp.OtherIncome2
-        GLB_NEWTax_SocialInsurancePension = PensionByTheendOftheYear + Emp.OtherIncome3
+        GLB_NEWTax_SocialInsurancePension = PensionByTheendOftheYear + Emp.OtherIncome3 + SIPension_ToDate
         GLB_NEWTax_Total = S_TaxableEarningToDate
         GLB_NEWTax_TotalSPLIT = Me.txt_Split_Total.Text
         GLB_NEWTax_TotalEarningsFromME = S_TaxableEarningToDate - Me.txt_Split_Total.Text - GLB_NEWTax_RentsAndIncomeFromOtherSources - GLB_NEWTax_EarningsFromPreviousEmployment
@@ -6073,6 +6109,17 @@ Public Class FrmPrTxCalculatePayroll
             Dim NewTax As Double = 0
 
             NewTax = CDbl(Me.txt_REC_TempPAYE.Text) + TaxDifference
+
+            'Check if Recuring and Period Taxes are negative
+            Dim TempRecTax As Double = Me.txt_REC_TempPAYE.Text
+            Dim TempPerTax As Double = Me.txt_PER_TempPAYE.Text
+            If TempRecTax < 0 And TempPerTax < 0 Then
+                NewTax = 0
+            End If
+
+
+
+
             Me.txtNewPeriodTax.Text = Format(NewTax, "0.00")
             Dim NewPaid As Double = S_ITValueToDate
             Me.txtNewPaid.Text = Format(S_ITValueToDate, "0.00")
@@ -11559,7 +11606,7 @@ Public Class FrmPrTxCalculatePayroll
                         End If
                     End If
 
-                    '  Utils.WriteSchemaWithXmlTextWriter(ds, "C:\Users\Administrator\Documents\Visual Studio 2005\Projects\NodalPay - 2019\NodalPay\XML\Payslip")
+                    ' Utils.WriteSchemaWithXmlTextWriter(Ds, "C:\Users\Admin\Documents\Visual Studio 2015\Projects\NodalPay - 2019\NodalPay\XML\Payslip")
                     Me.Cursor = Cursors.Default
                     If Not Global1.PARAM_GLBAllMonthsPayslip Then
                         If CheckDataSet(Ds) Then
@@ -11629,8 +11676,6 @@ Public Class FrmPrTxCalculatePayroll
                                     If Not PrintTimeSheets Then
                                         ExportFileTS = ""
                                     End If
-
-
 
                                     If Gmail Then
                                         GEmailFile(ExportFile, GLBEmployee, CompanyDescription, StrYear, ExportFileTS, GLBWording, Useemail2)
@@ -12710,7 +12755,13 @@ Public Class FrmPrTxCalculatePayroll
         If EmployeeEmail <> "" Then
             Dim EmailSubject As String
             Dim Msg As String
-            EmailSubject = CompanyDescription & " - Payslip For " & GLBCurrentPeriod.DescriptionL
+
+            If Global1.param_CompanyNameOnEmailSubject Then
+                EmailSubject = CompanyDescription & " - Payslip For " & GLBCurrentPeriod.DescriptionL
+            Else
+                EmailSubject = "Payslip For " & GLBCurrentPeriod.DescriptionL
+            End If
+
             Msg = "Dear " & GLBEmployee.FullName & " Find attached the Payslip For " & GLBCurrentPeriod.DescriptionL
             If GLBWording <> "" Then
                 Msg = Msg & Chr(10) & Chr(10) & GLBWording
@@ -12778,49 +12829,53 @@ Public Class FrmPrTxCalculatePayroll
         If EmployeeEmail <> "" Then
             Dim EmailSubject As String
             Dim Msg As String
-            EmailSubject = CompanyDescription & " - Payslip For " & GLBCurrentPeriod.DescriptionL
-            Msg = "Dear " & GLBEmployee.FullName & " ,Please find attached your Payslip For " & GLBCurrentPeriod.DescriptionL & " " & stryear & " Payroll."
-            If GLBWording <> "" Then
-                Msg = Msg & Chr(10) & Chr(10) & GLBWording
+            If Global1.param_CompanyNameOnEmailSubject Then
+                EmailSubject = CompanyDescription & " - Payslip For " & GLBCurrentPeriod.DescriptionL
+            Else
+                EmailSubject = "Payslip For " & GLBCurrentPeriod.DescriptionL
             End If
-            Dim SmtpServer As New System.Net.Mail.SmtpClient()
-            SmtpServer.Credentials = New Net.NetworkCredential(Global1.GmailAccount, Global1.GmailPassword)
-            SmtpServer.Port = 587
-            SmtpServer.Host = "smtp.gmail.com"
-            SmtpServer.EnableSsl = True
-
-
-            Dim mail As New System.Net.Mail.MailMessage()
-
-            Try
-                mail.From = New System.Net.Mail.MailAddress(Global1.GmailAccount, "", System.Text.Encoding.UTF8)
-                mail.To.Add(EmployeeEmail)
-
-                If Param_PayslipCC <> "" Then
-                    mail.CC.Add(Global1.Param_PayslipCC)
+            Msg = "Dear " & GLBEmployee.FullName & " ,Please find attached your Payslip For " & GLBCurrentPeriod.DescriptionL & " " & stryear & " Payroll."
+                If GLBWording <> "" Then
+                    Msg = Msg & Chr(10) & Chr(10) & GLBWording
                 End If
+                Dim SmtpServer As New System.Net.Mail.SmtpClient()
+                SmtpServer.Credentials = New Net.NetworkCredential(Global1.GmailAccount, Global1.GmailPassword)
+                SmtpServer.Port = 587
+                SmtpServer.Host = "smtp.gmail.com"
+                SmtpServer.EnableSsl = True
 
-                mail.Subject = EmailSubject
-                mail.Body = Msg
 
-                mail.Attachments.Add(New System.Net.Mail.Attachment(ExportFile))
-                If ExportFile2 <> "" Then
-                    mail.Attachments.Add(New System.Net.Mail.Attachment(ExportFile2))
-                End If
+                Dim mail As New System.Net.Mail.MailMessage()
 
-                ' ServicePointManager.SecurityProtocol = Tls12
+                Try
+                    mail.From = New System.Net.Mail.MailAddress(Global1.GmailAccount, "", System.Text.Encoding.UTF8)
+                    mail.To.Add(EmployeeEmail)
 
-                SmtpServer.Send(mail)
-                mail.Dispose()
-                GC.Collect()
-            Catch ex As Exception
-                mail.Dispose()
-                GC.Collect()
-                MsgBox(ex.ToString())
-            End Try
+                    If Param_PayslipCC <> "" Then
+                        mail.CC.Add(Global1.Param_PayslipCC)
+                    End If
 
-        Else
-            MsgBox("Please Define Email Address For Employee " & GLBEmployee.Code & " - " & GLBEmployee.FullName, MsgBoxStyle.Exclamation)
+                    mail.Subject = EmailSubject
+                    mail.Body = Msg
+
+                    mail.Attachments.Add(New System.Net.Mail.Attachment(ExportFile))
+                    If ExportFile2 <> "" Then
+                        mail.Attachments.Add(New System.Net.Mail.Attachment(ExportFile2))
+                    End If
+
+                    ' ServicePointManager.SecurityProtocol = Tls12
+
+                    SmtpServer.Send(mail)
+                    mail.Dispose()
+                    GC.Collect()
+                Catch ex As Exception
+                    mail.Dispose()
+                    GC.Collect()
+                    MsgBox(ex.ToString())
+                End Try
+
+            Else
+                MsgBox("Please Define Email Address For Employee " & GLBEmployee.Code & " - " & GLBEmployee.FullName, MsgBoxStyle.Exclamation)
         End If
 
     End Sub
@@ -12838,20 +12893,24 @@ Public Class FrmPrTxCalculatePayroll
             If EmployeeEmail <> "" Then
                 Dim EmailSubject As String
                 Dim Msg As String
-                EmailSubject = CompanyDescription & " - Payslip For " & GLBCurrentPeriod.DescriptionL
+                If Global1.param_CompanyNameOnEmailSubject Then
+                    EmailSubject = CompanyDescription & " - Payslip For " & GLBCurrentPeriod.DescriptionL
+                Else
+                    EmailSubject = "Payslip For " & GLBCurrentPeriod.DescriptionL
+                End If
                 Msg = "Dear " & GLBEmployee.FullName & " ,Please find attached the Payslip For " & GLBCurrentPeriod.DescriptionL & Chr(13) & Chr(13)
-                If GLBWording <> "" Then
-                    Msg = Msg & Chr(10) & Chr(10) & GLBWording
-                End If
-                Dim mailClient As New System.Net.Mail.SmtpClient("smtp.office365.com")
+                    If GLBWording <> "" Then
+                        Msg = Msg & Chr(10) & Chr(10) & GLBWording
+                    End If
+                    Dim mailClient As New System.Net.Mail.SmtpClient("smtp.office365.com")
 
 
 
 
-                mailClient.Port = 587
-                mailClient.EnableSsl = True
-                mailClient.DeliveryMethod = Net.Mail.SmtpDeliveryMethod.Network
-                mailClient.UseDefaultCredentials = False
+                    mailClient.Port = 587
+                    mailClient.EnableSsl = True
+                    mailClient.DeliveryMethod = Net.Mail.SmtpDeliveryMethod.Network
+                    mailClient.UseDefaultCredentials = False
 
 
 
@@ -12859,38 +12918,38 @@ Public Class FrmPrTxCalculatePayroll
 
 
 
-                System.Net.ServicePointManager.SecurityProtocol = DirectCast(3072, System.Net.SecurityProtocolType)
-                'mailClient.Port = Global1.PARAM_SMTPPort
-                'mailClient.EnableSsl = Global1.PARAM_SMTPSSLEnabled
+                    System.Net.ServicePointManager.SecurityProtocol = DirectCast(3072, System.Net.SecurityProtocolType)
+                    'mailClient.Port = Global1.PARAM_SMTPPort
+                    'mailClient.EnableSsl = Global1.PARAM_SMTPSSLEnabled
 
 
 
 
-                'Dim cred As New System.Net.NetworkCredential("payroll@cobalt.aero", "cobalt123.")
-                Dim cred As New System.Net.NetworkCredential(Global1.GmailAccount, Global1.GmailPassword, "fasouriwaterpark.com")
+                    'Dim cred As New System.Net.NetworkCredential("payroll@cobalt.aero", "cobalt123.")
+                    Dim cred As New System.Net.NetworkCredential(Global1.GmailAccount, Global1.GmailPassword, "fasouriwaterpark.com")
 
-                mailClient.Credentials = cred
+                    mailClient.Credentials = cred
 
-                Dim message As New System.Net.Mail.MailMessage()
-
-
-                'This DOES work  
-                message.From = New System.Net.Mail.MailAddress(Global1.GmailAccount, "Payroll")
-
-                message.[To].Add(EmployeeEmail)
-                message.Subject = EmailSubject
-                message.Body = Msg
-                message.Attachments.Add(New System.Net.Mail.Attachment(ExportFile))
-                If ExportFile2 <> "" Then
-                    message.Attachments.Add(New System.Net.Mail.Attachment(ExportFile2))
-                End If
-
-                ' System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls  ' Or SecurityProtocolType.Tls11 Or SecurityProtocolType.Tls12
+                    Dim message As New System.Net.Mail.MailMessage()
 
 
-                mailClient.Send(message)
-            Else
-                MsgBox("Please Define Email Address For Employee " & GLBEmployee.Code & " - " & GLBEmployee.FullName, MsgBoxStyle.Exclamation)
+                    'This DOES work  
+                    message.From = New System.Net.Mail.MailAddress(Global1.GmailAccount, "Payroll")
+
+                    message.[To].Add(EmployeeEmail)
+                    message.Subject = EmailSubject
+                    message.Body = Msg
+                    message.Attachments.Add(New System.Net.Mail.Attachment(ExportFile))
+                    If ExportFile2 <> "" Then
+                        message.Attachments.Add(New System.Net.Mail.Attachment(ExportFile2))
+                    End If
+
+                    ' System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls  ' Or SecurityProtocolType.Tls11 Or SecurityProtocolType.Tls12
+
+
+                    mailClient.Send(message)
+                Else
+                    MsgBox("Please Define Email Address For Employee " & GLBEmployee.Code & " - " & GLBEmployee.FullName, MsgBoxStyle.Exclamation)
             End If
 
         Catch ex As Exception
@@ -12910,7 +12969,13 @@ Public Class FrmPrTxCalculatePayroll
         If EmployeeEmail <> "" Then
             Dim EmailSubject As String
             Dim Msg As String
-            EmailSubject = CompanyDescription & " - Payslip For " & GLBCurrentPeriod.DescriptionL
+
+            If Global1.param_CompanyNameOnEmailSubject Then
+                EmailSubject = CompanyDescription & " - Payslip For " & GLBCurrentPeriod.DescriptionL
+            Else
+                EmailSubject = "Payslip For " & GLBCurrentPeriod.DescriptionL
+            End If
+
             Msg = "Dear " & GLBEmployee.FullName & " ,Please find attached your Payslip For " & GLBCurrentPeriod.DescriptionL & " " & stryear & " Payroll."
             If GLBWording <> "" Then
                 Msg = Msg & Chr(10) & Chr(10) & GLBWording

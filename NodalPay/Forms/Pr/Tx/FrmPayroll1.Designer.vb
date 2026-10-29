@@ -215,6 +215,60 @@ Partial Class FrmPayroll1
         Me.TSBDeleteSelected = New System.Windows.Forms.ToolStripMenuItem()
         Me.TSBDeleteALL = New System.Windows.Forms.ToolStripMenuItem()
         Me.DeleteALLLinesNOWarningsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSplitButton2 = New System.Windows.Forms.ToolStripSplitButton()
+        Me.mnuPayrollAnalysis = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuSIReports = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuIRReports = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator15 = New System.Windows.Forms.ToolStripSeparator()
+        Me.EmployeesEDCReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.ComboStatus = New System.Windows.Forms.ComboBox()
+        Me.PanelLoading = New System.Windows.Forms.Panel()
+        Me.Panel1 = New System.Windows.Forms.Panel()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.ComboAnal = New System.Windows.Forms.ComboBox()
+        Me.ComboSelectAnal = New System.Windows.Forms.ComboBox()
+        Me.Label9 = New System.Windows.Forms.Label()
+        Me.CBBank = New System.Windows.Forms.CheckBox()
+        Me.CBCheque = New System.Windows.Forms.CheckBox()
+        Me.CBCash = New System.Windows.Forms.CheckBox()
+        Me.LblCount = New System.Windows.Forms.Label()
+        Me.RadioCode = New System.Windows.Forms.RadioButton()
+        Me.RadioName = New System.Windows.Forms.RadioButton()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.txtNonTaxable = New System.Windows.Forms.TextBox()
+        Me.txtTaxablePeriods = New System.Windows.Forms.TextBox()
+        Me.txtTotalPeriods = New System.Windows.Forms.TextBox()
+        Me.lblNonTaPeriods = New System.Windows.Forms.Label()
+        Me.lblTaxabPeriods = New System.Windows.Forms.Label()
+        Me.lblTotalPeriods = New System.Windows.Forms.Label()
+        Me.btnGoToEmployeeCard = New System.Windows.Forms.Button()
+        Me.btncalcSelectedLine = New System.Windows.Forms.Button()
+        Me.btnPrepareSelected = New System.Windows.Forms.Button()
+        Me.btnDeleteLine = New System.Windows.Forms.Button()
+        Me.CBSelectGrid = New System.Windows.Forms.CheckBox()
+        Me.btnUndoCalculation = New System.Windows.Forms.Button()
+        Me.btnSCP = New System.Windows.Forms.Button()
+        Me.LabelStatus = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.CBOnlyLeavers = New System.Windows.Forms.CheckBox()
+        Me.txtGenanal1 = New System.Windows.Forms.TextBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.ComboNoOfRows = New System.Windows.Forms.ComboBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.RadioAnalysis = New System.Windows.Forms.RadioButton()
+        Me.CBReloadsalary = New System.Windows.Forms.CheckBox()
+        Me.BtnGoToemployeeSalary = New System.Windows.Forms.Button()
+        Me.btnShowTotals = New System.Windows.Forms.Button()
+        Me.RadioTA = New System.Windows.Forms.RadioButton()
+        Me.CBEwallet = New System.Windows.Forms.CheckBox()
+        Me.CBUseEmail2 = New System.Windows.Forms.CheckBox()
+        Me.btnTemplateSearch = New System.Windows.Forms.Button()
+        Me.CBReloadDates = New System.Windows.Forms.CheckBox()
+        Me.BtnNext1 = New System.Windows.Forms.Button()
+        Me.BtnPrevius1 = New System.Windows.Forms.Button()
         Me.ToolStripDropDownButton3 = New System.Windows.Forms.ToolStripDropDownButton()
         Me.CALCToPREPToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.POSTToCALCToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -294,62 +348,9 @@ Partial Class FrmPayroll1
         Me.ImportCCFile1TextToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportFileTemplate2ExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ImportFileTemplate3ExcelToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSplitButton2 = New System.Windows.Forms.ToolStripSplitButton()
-        Me.mnuPayrollAnalysis = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuSIReports = New System.Windows.Forms.ToolStripMenuItem()
-        Me.mnuIRReports = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator15 = New System.Windows.Forms.ToolStripSeparator()
-        Me.EmployeesEDCReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.btnMyReminders = New System.Windows.Forms.ToolStripSplitButton()
         Me.BtnOpenExportFiles = New System.Windows.Forms.ToolStripButton()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.ComboStatus = New System.Windows.Forms.ComboBox()
-        Me.PanelLoading = New System.Windows.Forms.Panel()
-        Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.ComboAnal = New System.Windows.Forms.ComboBox()
-        Me.ComboSelectAnal = New System.Windows.Forms.ComboBox()
-        Me.Label9 = New System.Windows.Forms.Label()
-        Me.CBBank = New System.Windows.Forms.CheckBox()
-        Me.CBCheque = New System.Windows.Forms.CheckBox()
-        Me.CBCash = New System.Windows.Forms.CheckBox()
-        Me.LblCount = New System.Windows.Forms.Label()
-        Me.RadioCode = New System.Windows.Forms.RadioButton()
-        Me.RadioName = New System.Windows.Forms.RadioButton()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.txtNonTaxable = New System.Windows.Forms.TextBox()
-        Me.txtTaxablePeriods = New System.Windows.Forms.TextBox()
-        Me.txtTotalPeriods = New System.Windows.Forms.TextBox()
-        Me.lblNonTaPeriods = New System.Windows.Forms.Label()
-        Me.lblTaxabPeriods = New System.Windows.Forms.Label()
-        Me.lblTotalPeriods = New System.Windows.Forms.Label()
-        Me.btnGoToEmployeeCard = New System.Windows.Forms.Button()
-        Me.btncalcSelectedLine = New System.Windows.Forms.Button()
-        Me.btnPrepareSelected = New System.Windows.Forms.Button()
-        Me.btnDeleteLine = New System.Windows.Forms.Button()
-        Me.CBSelectGrid = New System.Windows.Forms.CheckBox()
-        Me.btnUndoCalculation = New System.Windows.Forms.Button()
-        Me.btnSCP = New System.Windows.Forms.Button()
-        Me.LabelStatus = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.CBOnlyLeavers = New System.Windows.Forms.CheckBox()
-        Me.txtGenanal1 = New System.Windows.Forms.TextBox()
-        Me.Label10 = New System.Windows.Forms.Label()
-        Me.ComboNoOfRows = New System.Windows.Forms.ComboBox()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.RadioAnalysis = New System.Windows.Forms.RadioButton()
-        Me.CBReloadsalary = New System.Windows.Forms.CheckBox()
-        Me.BtnGoToemployeeSalary = New System.Windows.Forms.Button()
-        Me.btnShowTotals = New System.Windows.Forms.Button()
-        Me.RadioTA = New System.Windows.Forms.RadioButton()
-        Me.CBEwallet = New System.Windows.Forms.CheckBox()
-        Me.CBUseEmail2 = New System.Windows.Forms.CheckBox()
-        Me.btnTemplateSearch = New System.Windows.Forms.Button()
-        Me.CBReloadDates = New System.Windows.Forms.CheckBox()
-        Me.BtnNext1 = New System.Windows.Forms.Button()
-        Me.BtnPrevius1 = New System.Windows.Forms.Button()
+        Me.EmployeePaymentsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.DG1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.ToolStrip1.SuspendLayout()
         Me.PanelLoading.SuspendLayout()
@@ -1589,506 +1590,6 @@ Partial Class FrmPayroll1
         Me.DeleteALLLinesNOWarningsToolStripMenuItem.Size = New System.Drawing.Size(242, 22)
         Me.DeleteALLLinesNOWarningsToolStripMenuItem.Text = "Delete ALL Lines - NO Warnings"
         '
-        'ToolStripDropDownButton3
-        '
-        Me.ToolStripDropDownButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.ToolStripDropDownButton3.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CALCToPREPToolStripMenuItem1, Me.POSTToCALCToolStripMenuItem1})
-        Me.ToolStripDropDownButton3.Image = CType(resources.GetObject("ToolStripDropDownButton3.Image"), System.Drawing.Image)
-        Me.ToolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripDropDownButton3.Name = "ToolStripDropDownButton3"
-        Me.ToolStripDropDownButton3.Size = New System.Drawing.Size(138, 22)
-        Me.ToolStripDropDownButton3.Text = "Reverse Status Actions"
-        '
-        'CALCToPREPToolStripMenuItem1
-        '
-        Me.CALCToPREPToolStripMenuItem1.Name = "CALCToPREPToolStripMenuItem1"
-        Me.CALCToPREPToolStripMenuItem1.Size = New System.Drawing.Size(159, 22)
-        Me.CALCToPREPToolStripMenuItem1.Text = "'CALC' to 'PREP"
-        '
-        'POSTToCALCToolStripMenuItem1
-        '
-        Me.POSTToCALCToolStripMenuItem1.Name = "POSTToCALCToolStripMenuItem1"
-        Me.POSTToCALCToolStripMenuItem1.Size = New System.Drawing.Size(159, 22)
-        Me.POSTToCALCToolStripMenuItem1.Text = "'POST to 'CALC'"
-        '
-        'TSBAnnualLeave
-        '
-        Me.TSBAnnualLeave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.TSBAnnualLeave.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBCurrentBalanceReport, Me.TSBEndOfYear, Me.ToolStripSeparator2, Me.LeaveTransacToolStripMenuItem, Me.ToolStripSeparator14, Me.CurrentMonthLeaveToolStripMenuItem})
-        Me.TSBAnnualLeave.Image = CType(resources.GetObject("TSBAnnualLeave.Image"), System.Drawing.Image)
-        Me.TSBAnnualLeave.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TSBAnnualLeave.Name = "TSBAnnualLeave"
-        Me.TSBAnnualLeave.Size = New System.Drawing.Size(117, 22)
-        Me.TSBAnnualLeave.Text = "Leave Transaction"
-        '
-        'TSBCurrentBalanceReport
-        '
-        Me.TSBCurrentBalanceReport.Name = "TSBCurrentBalanceReport"
-        Me.TSBCurrentBalanceReport.Size = New System.Drawing.Size(196, 22)
-        Me.TSBCurrentBalanceReport.Text = "Current Balance Report"
-        '
-        'TSBEndOfYear
-        '
-        Me.TSBEndOfYear.Name = "TSBEndOfYear"
-        Me.TSBEndOfYear.Size = New System.Drawing.Size(196, 22)
-        Me.TSBEndOfYear.Text = "End Of Year Process"
-        '
-        'ToolStripSeparator2
-        '
-        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
-        Me.ToolStripSeparator2.Size = New System.Drawing.Size(193, 6)
-        '
-        'LeaveTransacToolStripMenuItem
-        '
-        Me.LeaveTransacToolStripMenuItem.Name = "LeaveTransacToolStripMenuItem"
-        Me.LeaveTransacToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
-        Me.LeaveTransacToolStripMenuItem.Text = "Leave Transactions"
-        '
-        'ToolStripSeparator14
-        '
-        Me.ToolStripSeparator14.Name = "ToolStripSeparator14"
-        Me.ToolStripSeparator14.Size = New System.Drawing.Size(193, 6)
-        '
-        'CurrentMonthLeaveToolStripMenuItem
-        '
-        Me.CurrentMonthLeaveToolStripMenuItem.Name = "CurrentMonthLeaveToolStripMenuItem"
-        Me.CurrentMonthLeaveToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
-        Me.CurrentMonthLeaveToolStripMenuItem.Text = "Current Month Leave"
-        '
-        'TSInterface
-        '
-        Me.TSInterface.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.TSInterface.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuSendTransactionsToNavisionToolStripMenuItem, Me.MnuHistoryToolStripMenuItem, Me.ToolStripSeparator4, Me.MnuCreateBankFile, Me.ToolStripSeparator3, Me.MnuNavisionTimesheets, Me.MnuNavisionEmployeeCostInterface})
-        Me.TSInterface.Image = CType(resources.GetObject("TSInterface.Image"), System.Drawing.Image)
-        Me.TSInterface.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TSInterface.Name = "TSInterface"
-        Me.TSInterface.Size = New System.Drawing.Size(66, 22)
-        Me.TSInterface.Text = "Interface"
-        '
-        'MnuSendTransactionsToNavisionToolStripMenuItem
-        '
-        Me.MnuSendTransactionsToNavisionToolStripMenuItem.Name = "MnuSendTransactionsToNavisionToolStripMenuItem"
-        Me.MnuSendTransactionsToNavisionToolStripMenuItem.Size = New System.Drawing.Size(438, 22)
-        Me.MnuSendTransactionsToNavisionToolStripMenuItem.Text = "Send Transactions To Accounting (Navision / Nodal / SAP / NetSuite)"
-        '
-        'MnuHistoryToolStripMenuItem
-        '
-        Me.MnuHistoryToolStripMenuItem.Name = "MnuHistoryToolStripMenuItem"
-        Me.MnuHistoryToolStripMenuItem.Size = New System.Drawing.Size(438, 22)
-        Me.MnuHistoryToolStripMenuItem.Text = "History "
-        '
-        'ToolStripSeparator4
-        '
-        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
-        Me.ToolStripSeparator4.Size = New System.Drawing.Size(435, 6)
-        '
-        'MnuCreateBankFile
-        '
-        Me.MnuCreateBankFile.Name = "MnuCreateBankFile"
-        Me.MnuCreateBankFile.Size = New System.Drawing.Size(438, 22)
-        Me.MnuCreateBankFile.Text = "Create Bank File"
-        '
-        'ToolStripSeparator3
-        '
-        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
-        Me.ToolStripSeparator3.Size = New System.Drawing.Size(435, 6)
-        '
-        'MnuNavisionTimesheets
-        '
-        Me.MnuNavisionTimesheets.Name = "MnuNavisionTimesheets"
-        Me.MnuNavisionTimesheets.Size = New System.Drawing.Size(438, 22)
-        Me.MnuNavisionTimesheets.Text = "Navision Timesheets Interface"
-        '
-        'MnuNavisionEmployeeCostInterface
-        '
-        Me.MnuNavisionEmployeeCostInterface.Name = "MnuNavisionEmployeeCostInterface"
-        Me.MnuNavisionEmployeeCostInterface.Size = New System.Drawing.Size(438, 22)
-        Me.MnuNavisionEmployeeCostInterface.Text = "Navision Employee Cost Interface"
-        '
-        'mnuPrintPayslips
-        '
-        Me.mnuPrintPayslips.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.mnuPrintPayslips.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuPayslipOnScreen, Me.MnuPayslipToPrinter, Me.ToolStripSeparator10, Me.TSBEmailPayslipToEmployee, Me.GemailToEmployeepdfToolStripMenuItem, Me.ToEmployee365, Me.EmailToEmployeepdfUsingSMTPToolStripMenuItem, Me.EmailToEmployeepdfSheduledToolStripMenuItem, Me.ToolStripSeparator11, Me.TsbPrintWithCheques, Me.UpdateChequeNumbersToolStripMenuItem, Me.ToolStripSeparator12, Me.ExportInpdfToolStripMenuItem, Me.ToolStripSeparatorYTD, Me.mnuYTDInExcel, Me.mnuExportYearlyPayslipInExcelTotals, Me.mnuYTDInPDF, Me.mnuYTDInPDFandEMAIL, Me.ToolStripSeparator17, Me.mnuUploadToExelsys, Me.ToolStripSeparator9, Me.LabelsPrintingToolStripMenuItem, Me.TestOutlookToolStripMenuItem})
-        Me.mnuPrintPayslips.Image = CType(resources.GetObject("mnuPrintPayslips.Image"), System.Drawing.Image)
-        Me.mnuPrintPayslips.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.mnuPrintPayslips.Name = "mnuPrintPayslips"
-        Me.mnuPrintPayslips.Size = New System.Drawing.Size(105, 22)
-        Me.mnuPrintPayslips.Text = "Payslip Printing"
-        '
-        'MnuPayslipOnScreen
-        '
-        Me.MnuPayslipOnScreen.Name = "MnuPayslipOnScreen"
-        Me.MnuPayslipOnScreen.Size = New System.Drawing.Size(347, 22)
-        Me.MnuPayslipOnScreen.Text = "Show On Screen"
-        '
-        'MnuPayslipToPrinter
-        '
-        Me.MnuPayslipToPrinter.Name = "MnuPayslipToPrinter"
-        Me.MnuPayslipToPrinter.Size = New System.Drawing.Size(347, 22)
-        Me.MnuPayslipToPrinter.Text = "Send To Printer"
-        '
-        'ToolStripSeparator10
-        '
-        Me.ToolStripSeparator10.Name = "ToolStripSeparator10"
-        Me.ToolStripSeparator10.Size = New System.Drawing.Size(344, 6)
-        '
-        'TSBEmailPayslipToEmployee
-        '
-        Me.TSBEmailPayslipToEmployee.Name = "TSBEmailPayslipToEmployee"
-        Me.TSBEmailPayslipToEmployee.Size = New System.Drawing.Size(347, 22)
-        Me.TSBEmailPayslipToEmployee.Text = "Email To Employee (.pdf)"
-        '
-        'GemailToEmployeepdfToolStripMenuItem
-        '
-        Me.GemailToEmployeepdfToolStripMenuItem.Name = "GemailToEmployeepdfToolStripMenuItem"
-        Me.GemailToEmployeepdfToolStripMenuItem.Size = New System.Drawing.Size(347, 22)
-        Me.GemailToEmployeepdfToolStripMenuItem.Text = "Gmail To Employee (.pdf)"
-        '
-        'ToEmployee365
-        '
-        Me.ToEmployee365.Name = "ToEmployee365"
-        Me.ToEmployee365.Size = New System.Drawing.Size(347, 22)
-        Me.ToEmployee365.Text = "365 To Employee (.pdf)"
-        '
-        'EmailToEmployeepdfUsingSMTPToolStripMenuItem
-        '
-        Me.EmailToEmployeepdfUsingSMTPToolStripMenuItem.Name = "EmailToEmployeepdfUsingSMTPToolStripMenuItem"
-        Me.EmailToEmployeepdfUsingSMTPToolStripMenuItem.Size = New System.Drawing.Size(347, 22)
-        Me.EmailToEmployeepdfUsingSMTPToolStripMenuItem.Text = "Email to Employee (.pdf) Using SMTP"
-        '
-        'EmailToEmployeepdfSheduledToolStripMenuItem
-        '
-        Me.EmailToEmployeepdfSheduledToolStripMenuItem.Name = "EmailToEmployeepdfSheduledToolStripMenuItem"
-        Me.EmailToEmployeepdfSheduledToolStripMenuItem.Size = New System.Drawing.Size(347, 22)
-        Me.EmailToEmployeepdfSheduledToolStripMenuItem.Text = "Email To Employee (.pdf Sheduled)"
-        '
-        'ToolStripSeparator11
-        '
-        Me.ToolStripSeparator11.Name = "ToolStripSeparator11"
-        Me.ToolStripSeparator11.Size = New System.Drawing.Size(344, 6)
-        '
-        'TsbPrintWithCheques
-        '
-        Me.TsbPrintWithCheques.Name = "TsbPrintWithCheques"
-        Me.TsbPrintWithCheques.Size = New System.Drawing.Size(347, 22)
-        Me.TsbPrintWithCheques.Text = "Print With Cheques"
-        '
-        'UpdateChequeNumbersToolStripMenuItem
-        '
-        Me.UpdateChequeNumbersToolStripMenuItem.Name = "UpdateChequeNumbersToolStripMenuItem"
-        Me.UpdateChequeNumbersToolStripMenuItem.Size = New System.Drawing.Size(347, 22)
-        Me.UpdateChequeNumbersToolStripMenuItem.Text = "Update Cheque Numbers"
-        '
-        'ToolStripSeparator12
-        '
-        Me.ToolStripSeparator12.Name = "ToolStripSeparator12"
-        Me.ToolStripSeparator12.Size = New System.Drawing.Size(344, 6)
-        '
-        'ExportInpdfToolStripMenuItem
-        '
-        Me.ExportInpdfToolStripMenuItem.Name = "ExportInpdfToolStripMenuItem"
-        Me.ExportInpdfToolStripMenuItem.Size = New System.Drawing.Size(347, 22)
-        Me.ExportInpdfToolStripMenuItem.Text = "Export in .pdf"
-        '
-        'ToolStripSeparatorYTD
-        '
-        Me.ToolStripSeparatorYTD.Name = "ToolStripSeparatorYTD"
-        Me.ToolStripSeparatorYTD.Size = New System.Drawing.Size(344, 6)
-        '
-        'mnuYTDInExcel
-        '
-        Me.mnuYTDInExcel.Name = "mnuYTDInExcel"
-        Me.mnuYTDInExcel.Size = New System.Drawing.Size(347, 22)
-        Me.mnuYTDInExcel.Text = "Export Yearly Payslip in Excel"
-        '
-        'mnuExportYearlyPayslipInExcelTotals
-        '
-        Me.mnuExportYearlyPayslipInExcelTotals.Name = "mnuExportYearlyPayslipInExcelTotals"
-        Me.mnuExportYearlyPayslipInExcelTotals.Size = New System.Drawing.Size(347, 22)
-        Me.mnuExportYearlyPayslipInExcelTotals.Text = "Export Yearly Payslip in Excel - Totals"
-        '
-        'mnuYTDInPDF
-        '
-        Me.mnuYTDInPDF.Name = "mnuYTDInPDF"
-        Me.mnuYTDInPDF.Size = New System.Drawing.Size(347, 22)
-        Me.mnuYTDInPDF.Text = "Export Yearly Payslip in .pdf"
-        '
-        'mnuYTDInPDFandEMAIL
-        '
-        Me.mnuYTDInPDFandEMAIL.Name = "mnuYTDInPDFandEMAIL"
-        Me.mnuYTDInPDFandEMAIL.Size = New System.Drawing.Size(347, 22)
-        Me.mnuYTDInPDFandEMAIL.Text = "Export Yearly Payslip in .pdf AND Email to Employee"
-        '
-        'ToolStripSeparator17
-        '
-        Me.ToolStripSeparator17.Name = "ToolStripSeparator17"
-        Me.ToolStripSeparator17.Size = New System.Drawing.Size(344, 6)
-        '
-        'mnuUploadToExelsys
-        '
-        Me.mnuUploadToExelsys.Name = "mnuUploadToExelsys"
-        Me.mnuUploadToExelsys.Size = New System.Drawing.Size(347, 22)
-        Me.mnuUploadToExelsys.Text = "Export in .pdf and Upload to Exelsys"
-        '
-        'ToolStripSeparator9
-        '
-        Me.ToolStripSeparator9.Name = "ToolStripSeparator9"
-        Me.ToolStripSeparator9.Size = New System.Drawing.Size(344, 6)
-        '
-        'LabelsPrintingToolStripMenuItem
-        '
-        Me.LabelsPrintingToolStripMenuItem.Name = "LabelsPrintingToolStripMenuItem"
-        Me.LabelsPrintingToolStripMenuItem.Size = New System.Drawing.Size(347, 22)
-        Me.LabelsPrintingToolStripMenuItem.Text = "Labels Printing"
-        '
-        'TestOutlookToolStripMenuItem
-        '
-        Me.TestOutlookToolStripMenuItem.Name = "TestOutlookToolStripMenuItem"
-        Me.TestOutlookToolStripMenuItem.Size = New System.Drawing.Size(347, 22)
-        Me.TestOutlookToolStripMenuItem.Text = "Test Outlook"
-        '
-        'TSUploadTAFile
-        '
-        Me.TSUploadTAFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.TSUploadTAFile.Image = CType(resources.GetObject("TSUploadTAFile.Image"), System.Drawing.Image)
-        Me.TSUploadTAFile.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TSUploadTAFile.Name = "TSUploadTAFile"
-        Me.TSUploadTAFile.Size = New System.Drawing.Size(85, 22)
-        Me.TSUploadTAFile.Text = "Upload TA file"
-        Me.TSUploadTAFile.Visible = False
-        '
-        'TSLoadExcelTemplate
-        '
-        Me.TSLoadExcelTemplate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.TSLoadExcelTemplate.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportFullToolStripMenuItem, Me.ImportOnlyBonusToolStripMenuItem, Me.ToolStripSeparator5, Me.mnuSelectEDCtoImport, Me.ImportTimeSheetsToolStripMenuItem, Me.ToolStripSeparator16, Me.ImportFull2ToolStripMenuItem})
-        Me.TSLoadExcelTemplate.Image = CType(resources.GetObject("TSLoadExcelTemplate.Image"), System.Drawing.Image)
-        Me.TSLoadExcelTemplate.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TSLoadExcelTemplate.Name = "TSLoadExcelTemplate"
-        Me.TSLoadExcelTemplate.Size = New System.Drawing.Size(101, 22)
-        Me.TSLoadExcelTemplate.Text = "Excel Template"
-        '
-        'ImportFullToolStripMenuItem
-        '
-        Me.ImportFullToolStripMenuItem.Name = "ImportFullToolStripMenuItem"
-        Me.ImportFullToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
-        Me.ImportFullToolStripMenuItem.Text = "Import Full"
-        '
-        'ImportOnlyBonusToolStripMenuItem
-        '
-        Me.ImportOnlyBonusToolStripMenuItem.Name = "ImportOnlyBonusToolStripMenuItem"
-        Me.ImportOnlyBonusToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
-        Me.ImportOnlyBonusToolStripMenuItem.Text = "Import only Bonus"
-        '
-        'ToolStripSeparator5
-        '
-        Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
-        Me.ToolStripSeparator5.Size = New System.Drawing.Size(180, 6)
-        '
-        'mnuSelectEDCtoImport
-        '
-        Me.mnuSelectEDCtoImport.Name = "mnuSelectEDCtoImport"
-        Me.mnuSelectEDCtoImport.Size = New System.Drawing.Size(183, 22)
-        Me.mnuSelectEDCtoImport.Text = "Select EDC to Import"
-        '
-        'ImportTimeSheetsToolStripMenuItem
-        '
-        Me.ImportTimeSheetsToolStripMenuItem.Name = "ImportTimeSheetsToolStripMenuItem"
-        Me.ImportTimeSheetsToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
-        Me.ImportTimeSheetsToolStripMenuItem.Text = "Import Time Sheets"
-        '
-        'ToolStripSeparator16
-        '
-        Me.ToolStripSeparator16.Name = "ToolStripSeparator16"
-        Me.ToolStripSeparator16.Size = New System.Drawing.Size(180, 6)
-        '
-        'ImportFull2ToolStripMenuItem
-        '
-        Me.ImportFull2ToolStripMenuItem.Name = "ImportFull2ToolStripMenuItem"
-        Me.ImportFull2ToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
-        Me.ImportFull2ToolStripMenuItem.Text = "Import Full 2"
-        '
-        'mnuIOCFile
-        '
-        Me.mnuIOCFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.mnuIOCFile.Image = CType(resources.GetObject("mnuIOCFile.Image"), System.Drawing.Image)
-        Me.mnuIOCFile.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.mnuIOCFile.Name = "mnuIOCFile"
-        Me.mnuIOCFile.Size = New System.Drawing.Size(91, 22)
-        Me.mnuIOCFile.Text = "Import IOC File"
-        '
-        'AdminMenu
-        '
-        Me.AdminMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.AdminMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FixAnalysis1ToolStripMenuItem, Me.FixAnalysis2ToolStripMenuItem, Me.FixAnalysis3ToolStripMenuItem, Me.FixAnalysis4ToolStripMenuItem, Me.FixAnalysis5ToolStripMenuItem, Me.FixUnionToolStripMenuItem, Me.FixYTDNetToolStripMenuItem, Me.ChangeEDCCodeToolStripMenuItem, Me.FixToolStripMenuItem, Me.TransferEDCCodeValuesFromEDCToEDCToolStripMenuItem, Me.FixPFToolStripMenuItem})
-        Me.AdminMenu.Image = CType(resources.GetObject("AdminMenu.Image"), System.Drawing.Image)
-        Me.AdminMenu.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.AdminMenu.Name = "AdminMenu"
-        Me.AdminMenu.Size = New System.Drawing.Size(59, 22)
-        Me.AdminMenu.Text = "Admin"
-        '
-        'FixAnalysis1ToolStripMenuItem
-        '
-        Me.FixAnalysis1ToolStripMenuItem.Name = "FixAnalysis1ToolStripMenuItem"
-        Me.FixAnalysis1ToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
-        Me.FixAnalysis1ToolStripMenuItem.Text = "Fix Analysis 1"
-        '
-        'FixAnalysis2ToolStripMenuItem
-        '
-        Me.FixAnalysis2ToolStripMenuItem.Name = "FixAnalysis2ToolStripMenuItem"
-        Me.FixAnalysis2ToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
-        Me.FixAnalysis2ToolStripMenuItem.Text = "Fix Analysis 2"
-        '
-        'FixAnalysis3ToolStripMenuItem
-        '
-        Me.FixAnalysis3ToolStripMenuItem.Name = "FixAnalysis3ToolStripMenuItem"
-        Me.FixAnalysis3ToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
-        Me.FixAnalysis3ToolStripMenuItem.Text = "Fix Analysis 3"
-        '
-        'FixAnalysis4ToolStripMenuItem
-        '
-        Me.FixAnalysis4ToolStripMenuItem.Name = "FixAnalysis4ToolStripMenuItem"
-        Me.FixAnalysis4ToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
-        Me.FixAnalysis4ToolStripMenuItem.Text = "Fix Analysis 4"
-        '
-        'FixAnalysis5ToolStripMenuItem
-        '
-        Me.FixAnalysis5ToolStripMenuItem.Name = "FixAnalysis5ToolStripMenuItem"
-        Me.FixAnalysis5ToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
-        Me.FixAnalysis5ToolStripMenuItem.Text = "Fix Analysis 5"
-        '
-        'FixUnionToolStripMenuItem
-        '
-        Me.FixUnionToolStripMenuItem.Name = "FixUnionToolStripMenuItem"
-        Me.FixUnionToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
-        Me.FixUnionToolStripMenuItem.Text = "Fix Union"
-        '
-        'FixYTDNetToolStripMenuItem
-        '
-        Me.FixYTDNetToolStripMenuItem.Name = "FixYTDNetToolStripMenuItem"
-        Me.FixYTDNetToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
-        Me.FixYTDNetToolStripMenuItem.Text = "Fix YTD Net"
-        '
-        'ChangeEDCCodeToolStripMenuItem
-        '
-        Me.ChangeEDCCodeToolStripMenuItem.Name = "ChangeEDCCodeToolStripMenuItem"
-        Me.ChangeEDCCodeToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
-        Me.ChangeEDCCodeToolStripMenuItem.Text = "Change EDC Code"
-        '
-        'FixToolStripMenuItem
-        '
-        Me.FixToolStripMenuItem.Name = "FixToolStripMenuItem"
-        Me.FixToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
-        Me.FixToolStripMenuItem.Text = "Fix Position"
-        '
-        'TransferEDCCodeValuesFromEDCToEDCToolStripMenuItem
-        '
-        Me.TransferEDCCodeValuesFromEDCToEDCToolStripMenuItem.Name = "TransferEDCCodeValuesFromEDCToEDCToolStripMenuItem"
-        Me.TransferEDCCodeValuesFromEDCToEDCToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
-        Me.TransferEDCCodeValuesFromEDCToEDCToolStripMenuItem.Text = "Transfer EDC Code Values From EDC to EDC"
-        '
-        'FixPFToolStripMenuItem
-        '
-        Me.FixPFToolStripMenuItem.Name = "FixPFToolStripMenuItem"
-        Me.FixPFToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
-        Me.FixPFToolStripMenuItem.Text = "Fix PF"
-        '
-        'ToolStripSplitButton1
-        '
-        Me.ToolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.ToolStripSplitButton1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrepareToolStripMenuItem, Me.ImportToolStripMenuItem, Me.ToolStripSeparator7, Me.SelectEDCToImportToolStripMenuItem})
-        Me.ToolStripSplitButton1.Image = CType(resources.GetObject("ToolStripSplitButton1.Image"), System.Drawing.Image)
-        Me.ToolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.ToolStripSplitButton1.Name = "ToolStripSplitButton1"
-        Me.ToolStripSplitButton1.Size = New System.Drawing.Size(51, 22)
-        Me.ToolStripSplitButton1.Text = "AIMS"
-        '
-        'PrepareToolStripMenuItem
-        '
-        Me.PrepareToolStripMenuItem.Name = "PrepareToolStripMenuItem"
-        Me.PrepareToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
-        Me.PrepareToolStripMenuItem.Text = "Load Form Excel to Table"
-        '
-        'ImportToolStripMenuItem
-        '
-        Me.ImportToolStripMenuItem.Name = "ImportToolStripMenuItem"
-        Me.ImportToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
-        Me.ImportToolStripMenuItem.Text = "Import"
-        '
-        'ToolStripSeparator7
-        '
-        Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
-        Me.ToolStripSeparator7.Size = New System.Drawing.Size(202, 6)
-        '
-        'SelectEDCToImportToolStripMenuItem
-        '
-        Me.SelectEDCToImportToolStripMenuItem.Name = "SelectEDCToImportToolStripMenuItem"
-        Me.SelectEDCToImportToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
-        Me.SelectEDCToImportToolStripMenuItem.Text = "Select EDC to Import"
-        '
-        'TSImportEDCValuesFromExcel
-        '
-        Me.TSImportEDCValuesFromExcel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.TSImportEDCValuesFromExcel.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBSelectEDCtoImportExcel, Me.TSBImportOvertimeFileExcel, Me.ImportOvertimeFile2ExcelToolStripMenuItem, Me.ToolStripSeparator13, Me.ImportValuesFromToolStripMenuItem, Me.ImportCCFile1ExcelToolStripMenuItem, Me.ImportCCFile1TextToolStripMenuItem, Me.ImportFileTemplate2ExcelToolStripMenuItem, Me.ImportFileTemplate3ExcelToolStripMenuItem})
-        Me.TSImportEDCValuesFromExcel.Image = CType(resources.GetObject("TSImportEDCValuesFromExcel.Image"), System.Drawing.Image)
-        Me.TSImportEDCValuesFromExcel.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.TSImportEDCValuesFromExcel.Name = "TSImportEDCValuesFromExcel"
-        Me.TSImportEDCValuesFromExcel.Size = New System.Drawing.Size(183, 22)
-        Me.TSImportEDCValuesFromExcel.Text = "Imports EDC Values from Excel"
-        Me.TSImportEDCValuesFromExcel.Visible = False
-        '
-        'TSBSelectEDCtoImportExcel
-        '
-        Me.TSBSelectEDCtoImportExcel.Name = "TSBSelectEDCtoImportExcel"
-        Me.TSBSelectEDCtoImportExcel.Size = New System.Drawing.Size(229, 22)
-        Me.TSBSelectEDCtoImportExcel.Text = "Select EDC to Import (Excel)"
-        '
-        'TSBImportOvertimeFileExcel
-        '
-        Me.TSBImportOvertimeFileExcel.Name = "TSBImportOvertimeFileExcel"
-        Me.TSBImportOvertimeFileExcel.Size = New System.Drawing.Size(229, 22)
-        Me.TSBImportOvertimeFileExcel.Text = "Import Overtime File 1 (Excel)"
-        '
-        'ImportOvertimeFile2ExcelToolStripMenuItem
-        '
-        Me.ImportOvertimeFile2ExcelToolStripMenuItem.Name = "ImportOvertimeFile2ExcelToolStripMenuItem"
-        Me.ImportOvertimeFile2ExcelToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
-        Me.ImportOvertimeFile2ExcelToolStripMenuItem.Text = "Import Overtime File 2 (Excel)"
-        '
-        'ToolStripSeparator13
-        '
-        Me.ToolStripSeparator13.Name = "ToolStripSeparator13"
-        Me.ToolStripSeparator13.Size = New System.Drawing.Size(226, 6)
-        '
-        'ImportValuesFromToolStripMenuItem
-        '
-        Me.ImportValuesFromToolStripMenuItem.Name = "ImportValuesFromToolStripMenuItem"
-        Me.ImportValuesFromToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
-        Me.ImportValuesFromToolStripMenuItem.Text = "Import KELIO - 1 (Excel)"
-        '
-        'ImportCCFile1ExcelToolStripMenuItem
-        '
-        Me.ImportCCFile1ExcelToolStripMenuItem.Name = "ImportCCFile1ExcelToolStripMenuItem"
-        Me.ImportCCFile1ExcelToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
-        Me.ImportCCFile1ExcelToolStripMenuItem.Text = "Import CC File - 1 (Excel)"
-        '
-        'ImportCCFile1TextToolStripMenuItem
-        '
-        Me.ImportCCFile1TextToolStripMenuItem.Name = "ImportCCFile1TextToolStripMenuItem"
-        Me.ImportCCFile1TextToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
-        Me.ImportCCFile1TextToolStripMenuItem.Text = "Import CC File - 1 (Text)"
-        '
-        'ImportFileTemplate2ExcelToolStripMenuItem
-        '
-        Me.ImportFileTemplate2ExcelToolStripMenuItem.Name = "ImportFileTemplate2ExcelToolStripMenuItem"
-        Me.ImportFileTemplate2ExcelToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
-        Me.ImportFileTemplate2ExcelToolStripMenuItem.Text = "Import File Template 2 (Excel)"
-        '
-        'ImportFileTemplate3ExcelToolStripMenuItem
-        '
-        Me.ImportFileTemplate3ExcelToolStripMenuItem.Name = "ImportFileTemplate3ExcelToolStripMenuItem"
-        Me.ImportFileTemplate3ExcelToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
-        Me.ImportFileTemplate3ExcelToolStripMenuItem.Text = "Import File Template 3 (Excel)"
-        '
         'ToolStripSplitButton2
         '
         Me.ToolStripSplitButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
@@ -2126,24 +1627,6 @@ Partial Class FrmPayroll1
         Me.EmployeesEDCReportToolStripMenuItem.Name = "EmployeesEDCReportToolStripMenuItem"
         Me.EmployeesEDCReportToolStripMenuItem.Size = New System.Drawing.Size(194, 22)
         Me.EmployeesEDCReportToolStripMenuItem.Text = "Employees EDC Report"
-        '
-        'btnMyReminders
-        '
-        Me.btnMyReminders.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.btnMyReminders.Image = CType(resources.GetObject("btnMyReminders.Image"), System.Drawing.Image)
-        Me.btnMyReminders.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.btnMyReminders.Name = "btnMyReminders"
-        Me.btnMyReminders.Size = New System.Drawing.Size(99, 22)
-        Me.btnMyReminders.Text = "My Reminders"
-        '
-        'BtnOpenExportFiles
-        '
-        Me.BtnOpenExportFiles.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.BtnOpenExportFiles.Image = CType(resources.GetObject("BtnOpenExportFiles.Image"), System.Drawing.Image)
-        Me.BtnOpenExportFiles.ImageTransparentColor = System.Drawing.Color.Magenta
-        Me.BtnOpenExportFiles.Name = "BtnOpenExportFiles"
-        Me.BtnOpenExportFiles.Size = New System.Drawing.Size(102, 22)
-        Me.BtnOpenExportFiles.Text = "Open Export Files"
         '
         'Label5
         '
@@ -2600,6 +2083,530 @@ Partial Class FrmPayroll1
         Me.BtnPrevius1.Tag = "Works Only when From To Employee are empty"
         Me.BtnPrevius1.UseVisualStyleBackColor = True
         '
+        'ToolStripDropDownButton3
+        '
+        Me.ToolStripDropDownButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripDropDownButton3.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CALCToPREPToolStripMenuItem1, Me.POSTToCALCToolStripMenuItem1})
+        Me.ToolStripDropDownButton3.Image = CType(resources.GetObject("ToolStripDropDownButton3.Image"), System.Drawing.Image)
+        Me.ToolStripDropDownButton3.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripDropDownButton3.Name = "ToolStripDropDownButton3"
+        Me.ToolStripDropDownButton3.Size = New System.Drawing.Size(138, 22)
+        Me.ToolStripDropDownButton3.Text = "Reverse Status Actions"
+        '
+        'CALCToPREPToolStripMenuItem1
+        '
+        Me.CALCToPREPToolStripMenuItem1.Name = "CALCToPREPToolStripMenuItem1"
+        Me.CALCToPREPToolStripMenuItem1.Size = New System.Drawing.Size(159, 22)
+        Me.CALCToPREPToolStripMenuItem1.Text = "'CALC' to 'PREP"
+        '
+        'POSTToCALCToolStripMenuItem1
+        '
+        Me.POSTToCALCToolStripMenuItem1.Name = "POSTToCALCToolStripMenuItem1"
+        Me.POSTToCALCToolStripMenuItem1.Size = New System.Drawing.Size(159, 22)
+        Me.POSTToCALCToolStripMenuItem1.Text = "'POST to 'CALC'"
+        '
+        'TSBAnnualLeave
+        '
+        Me.TSBAnnualLeave.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.TSBAnnualLeave.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBCurrentBalanceReport, Me.TSBEndOfYear, Me.ToolStripSeparator2, Me.LeaveTransacToolStripMenuItem, Me.ToolStripSeparator14, Me.CurrentMonthLeaveToolStripMenuItem})
+        Me.TSBAnnualLeave.Image = CType(resources.GetObject("TSBAnnualLeave.Image"), System.Drawing.Image)
+        Me.TSBAnnualLeave.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSBAnnualLeave.Name = "TSBAnnualLeave"
+        Me.TSBAnnualLeave.Size = New System.Drawing.Size(117, 22)
+        Me.TSBAnnualLeave.Text = "Leave Transaction"
+        '
+        'TSBCurrentBalanceReport
+        '
+        Me.TSBCurrentBalanceReport.Name = "TSBCurrentBalanceReport"
+        Me.TSBCurrentBalanceReport.Size = New System.Drawing.Size(196, 22)
+        Me.TSBCurrentBalanceReport.Text = "Current Balance Report"
+        '
+        'TSBEndOfYear
+        '
+        Me.TSBEndOfYear.Name = "TSBEndOfYear"
+        Me.TSBEndOfYear.Size = New System.Drawing.Size(196, 22)
+        Me.TSBEndOfYear.Text = "End Of Year Process"
+        '
+        'ToolStripSeparator2
+        '
+        Me.ToolStripSeparator2.Name = "ToolStripSeparator2"
+        Me.ToolStripSeparator2.Size = New System.Drawing.Size(193, 6)
+        '
+        'LeaveTransacToolStripMenuItem
+        '
+        Me.LeaveTransacToolStripMenuItem.Name = "LeaveTransacToolStripMenuItem"
+        Me.LeaveTransacToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
+        Me.LeaveTransacToolStripMenuItem.Text = "Leave Transactions"
+        '
+        'ToolStripSeparator14
+        '
+        Me.ToolStripSeparator14.Name = "ToolStripSeparator14"
+        Me.ToolStripSeparator14.Size = New System.Drawing.Size(193, 6)
+        '
+        'CurrentMonthLeaveToolStripMenuItem
+        '
+        Me.CurrentMonthLeaveToolStripMenuItem.Name = "CurrentMonthLeaveToolStripMenuItem"
+        Me.CurrentMonthLeaveToolStripMenuItem.Size = New System.Drawing.Size(196, 22)
+        Me.CurrentMonthLeaveToolStripMenuItem.Text = "Current Month Leave"
+        '
+        'TSInterface
+        '
+        Me.TSInterface.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.TSInterface.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuSendTransactionsToNavisionToolStripMenuItem, Me.MnuHistoryToolStripMenuItem, Me.ToolStripSeparator4, Me.MnuCreateBankFile, Me.ToolStripSeparator3, Me.MnuNavisionTimesheets, Me.MnuNavisionEmployeeCostInterface})
+        Me.TSInterface.Image = CType(resources.GetObject("TSInterface.Image"), System.Drawing.Image)
+        Me.TSInterface.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSInterface.Name = "TSInterface"
+        Me.TSInterface.Size = New System.Drawing.Size(66, 22)
+        Me.TSInterface.Text = "Interface"
+        '
+        'MnuSendTransactionsToNavisionToolStripMenuItem
+        '
+        Me.MnuSendTransactionsToNavisionToolStripMenuItem.Name = "MnuSendTransactionsToNavisionToolStripMenuItem"
+        Me.MnuSendTransactionsToNavisionToolStripMenuItem.Size = New System.Drawing.Size(438, 22)
+        Me.MnuSendTransactionsToNavisionToolStripMenuItem.Text = "Send Transactions To Accounting (Navision / Nodal / SAP / NetSuite)"
+        '
+        'MnuHistoryToolStripMenuItem
+        '
+        Me.MnuHistoryToolStripMenuItem.Name = "MnuHistoryToolStripMenuItem"
+        Me.MnuHistoryToolStripMenuItem.Size = New System.Drawing.Size(438, 22)
+        Me.MnuHistoryToolStripMenuItem.Text = "History "
+        '
+        'ToolStripSeparator4
+        '
+        Me.ToolStripSeparator4.Name = "ToolStripSeparator4"
+        Me.ToolStripSeparator4.Size = New System.Drawing.Size(435, 6)
+        '
+        'MnuCreateBankFile
+        '
+        Me.MnuCreateBankFile.Name = "MnuCreateBankFile"
+        Me.MnuCreateBankFile.Size = New System.Drawing.Size(438, 22)
+        Me.MnuCreateBankFile.Text = "Create Bank File"
+        '
+        'ToolStripSeparator3
+        '
+        Me.ToolStripSeparator3.Name = "ToolStripSeparator3"
+        Me.ToolStripSeparator3.Size = New System.Drawing.Size(435, 6)
+        '
+        'MnuNavisionTimesheets
+        '
+        Me.MnuNavisionTimesheets.Name = "MnuNavisionTimesheets"
+        Me.MnuNavisionTimesheets.Size = New System.Drawing.Size(438, 22)
+        Me.MnuNavisionTimesheets.Text = "Navision Timesheets Interface"
+        '
+        'MnuNavisionEmployeeCostInterface
+        '
+        Me.MnuNavisionEmployeeCostInterface.Name = "MnuNavisionEmployeeCostInterface"
+        Me.MnuNavisionEmployeeCostInterface.Size = New System.Drawing.Size(438, 22)
+        Me.MnuNavisionEmployeeCostInterface.Text = "Navision Employee Cost Interface"
+        '
+        'mnuPrintPayslips
+        '
+        Me.mnuPrintPayslips.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.mnuPrintPayslips.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuPayslipOnScreen, Me.MnuPayslipToPrinter, Me.ToolStripSeparator10, Me.TSBEmailPayslipToEmployee, Me.GemailToEmployeepdfToolStripMenuItem, Me.ToEmployee365, Me.EmailToEmployeepdfUsingSMTPToolStripMenuItem, Me.EmailToEmployeepdfSheduledToolStripMenuItem, Me.ToolStripSeparator11, Me.TsbPrintWithCheques, Me.UpdateChequeNumbersToolStripMenuItem, Me.ToolStripSeparator12, Me.ExportInpdfToolStripMenuItem, Me.ToolStripSeparatorYTD, Me.mnuYTDInExcel, Me.mnuExportYearlyPayslipInExcelTotals, Me.mnuYTDInPDF, Me.mnuYTDInPDFandEMAIL, Me.ToolStripSeparator17, Me.mnuUploadToExelsys, Me.ToolStripSeparator9, Me.LabelsPrintingToolStripMenuItem, Me.TestOutlookToolStripMenuItem})
+        Me.mnuPrintPayslips.Image = CType(resources.GetObject("mnuPrintPayslips.Image"), System.Drawing.Image)
+        Me.mnuPrintPayslips.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.mnuPrintPayslips.Name = "mnuPrintPayslips"
+        Me.mnuPrintPayslips.Size = New System.Drawing.Size(105, 22)
+        Me.mnuPrintPayslips.Text = "Payslip Printing"
+        '
+        'MnuPayslipOnScreen
+        '
+        Me.MnuPayslipOnScreen.Name = "MnuPayslipOnScreen"
+        Me.MnuPayslipOnScreen.Size = New System.Drawing.Size(347, 22)
+        Me.MnuPayslipOnScreen.Text = "Show On Screen"
+        '
+        'MnuPayslipToPrinter
+        '
+        Me.MnuPayslipToPrinter.Name = "MnuPayslipToPrinter"
+        Me.MnuPayslipToPrinter.Size = New System.Drawing.Size(347, 22)
+        Me.MnuPayslipToPrinter.Text = "Send To Printer"
+        '
+        'ToolStripSeparator10
+        '
+        Me.ToolStripSeparator10.Name = "ToolStripSeparator10"
+        Me.ToolStripSeparator10.Size = New System.Drawing.Size(344, 6)
+        '
+        'TSBEmailPayslipToEmployee
+        '
+        Me.TSBEmailPayslipToEmployee.Name = "TSBEmailPayslipToEmployee"
+        Me.TSBEmailPayslipToEmployee.Size = New System.Drawing.Size(347, 22)
+        Me.TSBEmailPayslipToEmployee.Text = "Email To Employee (.pdf)"
+        '
+        'GemailToEmployeepdfToolStripMenuItem
+        '
+        Me.GemailToEmployeepdfToolStripMenuItem.Name = "GemailToEmployeepdfToolStripMenuItem"
+        Me.GemailToEmployeepdfToolStripMenuItem.Size = New System.Drawing.Size(347, 22)
+        Me.GemailToEmployeepdfToolStripMenuItem.Text = "Gmail To Employee (.pdf)"
+        '
+        'ToEmployee365
+        '
+        Me.ToEmployee365.Name = "ToEmployee365"
+        Me.ToEmployee365.Size = New System.Drawing.Size(347, 22)
+        Me.ToEmployee365.Text = "365 To Employee (.pdf)"
+        '
+        'EmailToEmployeepdfUsingSMTPToolStripMenuItem
+        '
+        Me.EmailToEmployeepdfUsingSMTPToolStripMenuItem.Name = "EmailToEmployeepdfUsingSMTPToolStripMenuItem"
+        Me.EmailToEmployeepdfUsingSMTPToolStripMenuItem.Size = New System.Drawing.Size(347, 22)
+        Me.EmailToEmployeepdfUsingSMTPToolStripMenuItem.Text = "Email to Employee (.pdf) Using SMTP"
+        '
+        'EmailToEmployeepdfSheduledToolStripMenuItem
+        '
+        Me.EmailToEmployeepdfSheduledToolStripMenuItem.Name = "EmailToEmployeepdfSheduledToolStripMenuItem"
+        Me.EmailToEmployeepdfSheduledToolStripMenuItem.Size = New System.Drawing.Size(347, 22)
+        Me.EmailToEmployeepdfSheduledToolStripMenuItem.Text = "Email To Employee (.pdf Sheduled)"
+        '
+        'ToolStripSeparator11
+        '
+        Me.ToolStripSeparator11.Name = "ToolStripSeparator11"
+        Me.ToolStripSeparator11.Size = New System.Drawing.Size(344, 6)
+        '
+        'TsbPrintWithCheques
+        '
+        Me.TsbPrintWithCheques.Name = "TsbPrintWithCheques"
+        Me.TsbPrintWithCheques.Size = New System.Drawing.Size(347, 22)
+        Me.TsbPrintWithCheques.Text = "Print With Cheques"
+        '
+        'UpdateChequeNumbersToolStripMenuItem
+        '
+        Me.UpdateChequeNumbersToolStripMenuItem.Name = "UpdateChequeNumbersToolStripMenuItem"
+        Me.UpdateChequeNumbersToolStripMenuItem.Size = New System.Drawing.Size(347, 22)
+        Me.UpdateChequeNumbersToolStripMenuItem.Text = "Update Cheque Numbers"
+        '
+        'ToolStripSeparator12
+        '
+        Me.ToolStripSeparator12.Name = "ToolStripSeparator12"
+        Me.ToolStripSeparator12.Size = New System.Drawing.Size(344, 6)
+        '
+        'ExportInpdfToolStripMenuItem
+        '
+        Me.ExportInpdfToolStripMenuItem.Name = "ExportInpdfToolStripMenuItem"
+        Me.ExportInpdfToolStripMenuItem.Size = New System.Drawing.Size(347, 22)
+        Me.ExportInpdfToolStripMenuItem.Text = "Export in .pdf"
+        '
+        'ToolStripSeparatorYTD
+        '
+        Me.ToolStripSeparatorYTD.Name = "ToolStripSeparatorYTD"
+        Me.ToolStripSeparatorYTD.Size = New System.Drawing.Size(344, 6)
+        '
+        'mnuYTDInExcel
+        '
+        Me.mnuYTDInExcel.Name = "mnuYTDInExcel"
+        Me.mnuYTDInExcel.Size = New System.Drawing.Size(347, 22)
+        Me.mnuYTDInExcel.Text = "Export Yearly Payslip in Excel"
+        '
+        'mnuExportYearlyPayslipInExcelTotals
+        '
+        Me.mnuExportYearlyPayslipInExcelTotals.Name = "mnuExportYearlyPayslipInExcelTotals"
+        Me.mnuExportYearlyPayslipInExcelTotals.Size = New System.Drawing.Size(347, 22)
+        Me.mnuExportYearlyPayslipInExcelTotals.Text = "Export Yearly Payslip in Excel - Totals"
+        '
+        'mnuYTDInPDF
+        '
+        Me.mnuYTDInPDF.Name = "mnuYTDInPDF"
+        Me.mnuYTDInPDF.Size = New System.Drawing.Size(347, 22)
+        Me.mnuYTDInPDF.Text = "Export Yearly Payslip in .pdf"
+        '
+        'mnuYTDInPDFandEMAIL
+        '
+        Me.mnuYTDInPDFandEMAIL.Name = "mnuYTDInPDFandEMAIL"
+        Me.mnuYTDInPDFandEMAIL.Size = New System.Drawing.Size(347, 22)
+        Me.mnuYTDInPDFandEMAIL.Text = "Export Yearly Payslip in .pdf AND Email to Employee"
+        '
+        'ToolStripSeparator17
+        '
+        Me.ToolStripSeparator17.Name = "ToolStripSeparator17"
+        Me.ToolStripSeparator17.Size = New System.Drawing.Size(344, 6)
+        '
+        'mnuUploadToExelsys
+        '
+        Me.mnuUploadToExelsys.Name = "mnuUploadToExelsys"
+        Me.mnuUploadToExelsys.Size = New System.Drawing.Size(347, 22)
+        Me.mnuUploadToExelsys.Text = "Export in .pdf and Upload to Exelsys"
+        '
+        'ToolStripSeparator9
+        '
+        Me.ToolStripSeparator9.Name = "ToolStripSeparator9"
+        Me.ToolStripSeparator9.Size = New System.Drawing.Size(344, 6)
+        '
+        'LabelsPrintingToolStripMenuItem
+        '
+        Me.LabelsPrintingToolStripMenuItem.Name = "LabelsPrintingToolStripMenuItem"
+        Me.LabelsPrintingToolStripMenuItem.Size = New System.Drawing.Size(347, 22)
+        Me.LabelsPrintingToolStripMenuItem.Text = "Labels Printing"
+        '
+        'TestOutlookToolStripMenuItem
+        '
+        Me.TestOutlookToolStripMenuItem.Name = "TestOutlookToolStripMenuItem"
+        Me.TestOutlookToolStripMenuItem.Size = New System.Drawing.Size(347, 22)
+        Me.TestOutlookToolStripMenuItem.Text = "Test Outlook"
+        '
+        'TSUploadTAFile
+        '
+        Me.TSUploadTAFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.TSUploadTAFile.Image = CType(resources.GetObject("TSUploadTAFile.Image"), System.Drawing.Image)
+        Me.TSUploadTAFile.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSUploadTAFile.Name = "TSUploadTAFile"
+        Me.TSUploadTAFile.Size = New System.Drawing.Size(85, 22)
+        Me.TSUploadTAFile.Text = "Upload TA file"
+        Me.TSUploadTAFile.Visible = False
+        '
+        'TSLoadExcelTemplate
+        '
+        Me.TSLoadExcelTemplate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.TSLoadExcelTemplate.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ImportFullToolStripMenuItem, Me.ImportOnlyBonusToolStripMenuItem, Me.ToolStripSeparator5, Me.mnuSelectEDCtoImport, Me.ImportTimeSheetsToolStripMenuItem, Me.ToolStripSeparator16, Me.ImportFull2ToolStripMenuItem})
+        Me.TSLoadExcelTemplate.Image = CType(resources.GetObject("TSLoadExcelTemplate.Image"), System.Drawing.Image)
+        Me.TSLoadExcelTemplate.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSLoadExcelTemplate.Name = "TSLoadExcelTemplate"
+        Me.TSLoadExcelTemplate.Size = New System.Drawing.Size(101, 22)
+        Me.TSLoadExcelTemplate.Text = "Excel Template"
+        '
+        'ImportFullToolStripMenuItem
+        '
+        Me.ImportFullToolStripMenuItem.Name = "ImportFullToolStripMenuItem"
+        Me.ImportFullToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
+        Me.ImportFullToolStripMenuItem.Text = "Import Full"
+        '
+        'ImportOnlyBonusToolStripMenuItem
+        '
+        Me.ImportOnlyBonusToolStripMenuItem.Name = "ImportOnlyBonusToolStripMenuItem"
+        Me.ImportOnlyBonusToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
+        Me.ImportOnlyBonusToolStripMenuItem.Text = "Import only Bonus"
+        '
+        'ToolStripSeparator5
+        '
+        Me.ToolStripSeparator5.Name = "ToolStripSeparator5"
+        Me.ToolStripSeparator5.Size = New System.Drawing.Size(180, 6)
+        '
+        'mnuSelectEDCtoImport
+        '
+        Me.mnuSelectEDCtoImport.Name = "mnuSelectEDCtoImport"
+        Me.mnuSelectEDCtoImport.Size = New System.Drawing.Size(183, 22)
+        Me.mnuSelectEDCtoImport.Text = "Select EDC to Import"
+        '
+        'ImportTimeSheetsToolStripMenuItem
+        '
+        Me.ImportTimeSheetsToolStripMenuItem.Name = "ImportTimeSheetsToolStripMenuItem"
+        Me.ImportTimeSheetsToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
+        Me.ImportTimeSheetsToolStripMenuItem.Text = "Import Time Sheets"
+        '
+        'ToolStripSeparator16
+        '
+        Me.ToolStripSeparator16.Name = "ToolStripSeparator16"
+        Me.ToolStripSeparator16.Size = New System.Drawing.Size(180, 6)
+        '
+        'ImportFull2ToolStripMenuItem
+        '
+        Me.ImportFull2ToolStripMenuItem.Name = "ImportFull2ToolStripMenuItem"
+        Me.ImportFull2ToolStripMenuItem.Size = New System.Drawing.Size(183, 22)
+        Me.ImportFull2ToolStripMenuItem.Text = "Import Full 2"
+        '
+        'mnuIOCFile
+        '
+        Me.mnuIOCFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.mnuIOCFile.Image = CType(resources.GetObject("mnuIOCFile.Image"), System.Drawing.Image)
+        Me.mnuIOCFile.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.mnuIOCFile.Name = "mnuIOCFile"
+        Me.mnuIOCFile.Size = New System.Drawing.Size(91, 22)
+        Me.mnuIOCFile.Text = "Import IOC File"
+        '
+        'AdminMenu
+        '
+        Me.AdminMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.AdminMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FixAnalysis1ToolStripMenuItem, Me.FixAnalysis2ToolStripMenuItem, Me.FixAnalysis3ToolStripMenuItem, Me.FixAnalysis4ToolStripMenuItem, Me.FixAnalysis5ToolStripMenuItem, Me.FixUnionToolStripMenuItem, Me.FixYTDNetToolStripMenuItem, Me.ChangeEDCCodeToolStripMenuItem, Me.FixToolStripMenuItem, Me.TransferEDCCodeValuesFromEDCToEDCToolStripMenuItem, Me.FixPFToolStripMenuItem, Me.EmployeePaymentsToolStripMenuItem})
+        Me.AdminMenu.Image = CType(resources.GetObject("AdminMenu.Image"), System.Drawing.Image)
+        Me.AdminMenu.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.AdminMenu.Name = "AdminMenu"
+        Me.AdminMenu.Size = New System.Drawing.Size(59, 22)
+        Me.AdminMenu.Text = "Admin"
+        '
+        'FixAnalysis1ToolStripMenuItem
+        '
+        Me.FixAnalysis1ToolStripMenuItem.Name = "FixAnalysis1ToolStripMenuItem"
+        Me.FixAnalysis1ToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
+        Me.FixAnalysis1ToolStripMenuItem.Text = "Fix Analysis 1"
+        '
+        'FixAnalysis2ToolStripMenuItem
+        '
+        Me.FixAnalysis2ToolStripMenuItem.Name = "FixAnalysis2ToolStripMenuItem"
+        Me.FixAnalysis2ToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
+        Me.FixAnalysis2ToolStripMenuItem.Text = "Fix Analysis 2"
+        '
+        'FixAnalysis3ToolStripMenuItem
+        '
+        Me.FixAnalysis3ToolStripMenuItem.Name = "FixAnalysis3ToolStripMenuItem"
+        Me.FixAnalysis3ToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
+        Me.FixAnalysis3ToolStripMenuItem.Text = "Fix Analysis 3"
+        '
+        'FixAnalysis4ToolStripMenuItem
+        '
+        Me.FixAnalysis4ToolStripMenuItem.Name = "FixAnalysis4ToolStripMenuItem"
+        Me.FixAnalysis4ToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
+        Me.FixAnalysis4ToolStripMenuItem.Text = "Fix Analysis 4"
+        '
+        'FixAnalysis5ToolStripMenuItem
+        '
+        Me.FixAnalysis5ToolStripMenuItem.Name = "FixAnalysis5ToolStripMenuItem"
+        Me.FixAnalysis5ToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
+        Me.FixAnalysis5ToolStripMenuItem.Text = "Fix Analysis 5"
+        '
+        'FixUnionToolStripMenuItem
+        '
+        Me.FixUnionToolStripMenuItem.Name = "FixUnionToolStripMenuItem"
+        Me.FixUnionToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
+        Me.FixUnionToolStripMenuItem.Text = "Fix Union"
+        '
+        'FixYTDNetToolStripMenuItem
+        '
+        Me.FixYTDNetToolStripMenuItem.Name = "FixYTDNetToolStripMenuItem"
+        Me.FixYTDNetToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
+        Me.FixYTDNetToolStripMenuItem.Text = "Fix YTD Net"
+        '
+        'ChangeEDCCodeToolStripMenuItem
+        '
+        Me.ChangeEDCCodeToolStripMenuItem.Name = "ChangeEDCCodeToolStripMenuItem"
+        Me.ChangeEDCCodeToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
+        Me.ChangeEDCCodeToolStripMenuItem.Text = "Change EDC Code"
+        '
+        'FixToolStripMenuItem
+        '
+        Me.FixToolStripMenuItem.Name = "FixToolStripMenuItem"
+        Me.FixToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
+        Me.FixToolStripMenuItem.Text = "Fix Position"
+        '
+        'TransferEDCCodeValuesFromEDCToEDCToolStripMenuItem
+        '
+        Me.TransferEDCCodeValuesFromEDCToEDCToolStripMenuItem.Name = "TransferEDCCodeValuesFromEDCToEDCToolStripMenuItem"
+        Me.TransferEDCCodeValuesFromEDCToEDCToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
+        Me.TransferEDCCodeValuesFromEDCToEDCToolStripMenuItem.Text = "Transfer EDC Code Values From EDC to EDC"
+        '
+        'FixPFToolStripMenuItem
+        '
+        Me.FixPFToolStripMenuItem.Name = "FixPFToolStripMenuItem"
+        Me.FixPFToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
+        Me.FixPFToolStripMenuItem.Text = "Fix PF"
+        '
+        'ToolStripSplitButton1
+        '
+        Me.ToolStripSplitButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.ToolStripSplitButton1.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PrepareToolStripMenuItem, Me.ImportToolStripMenuItem, Me.ToolStripSeparator7, Me.SelectEDCToImportToolStripMenuItem})
+        Me.ToolStripSplitButton1.Image = CType(resources.GetObject("ToolStripSplitButton1.Image"), System.Drawing.Image)
+        Me.ToolStripSplitButton1.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.ToolStripSplitButton1.Name = "ToolStripSplitButton1"
+        Me.ToolStripSplitButton1.Size = New System.Drawing.Size(51, 22)
+        Me.ToolStripSplitButton1.Text = "AIMS"
+        '
+        'PrepareToolStripMenuItem
+        '
+        Me.PrepareToolStripMenuItem.Name = "PrepareToolStripMenuItem"
+        Me.PrepareToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.PrepareToolStripMenuItem.Text = "Load Form Excel to Table"
+        '
+        'ImportToolStripMenuItem
+        '
+        Me.ImportToolStripMenuItem.Name = "ImportToolStripMenuItem"
+        Me.ImportToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.ImportToolStripMenuItem.Text = "Import"
+        '
+        'ToolStripSeparator7
+        '
+        Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
+        Me.ToolStripSeparator7.Size = New System.Drawing.Size(202, 6)
+        '
+        'SelectEDCToImportToolStripMenuItem
+        '
+        Me.SelectEDCToImportToolStripMenuItem.Name = "SelectEDCToImportToolStripMenuItem"
+        Me.SelectEDCToImportToolStripMenuItem.Size = New System.Drawing.Size(205, 22)
+        Me.SelectEDCToImportToolStripMenuItem.Text = "Select EDC to Import"
+        '
+        'TSImportEDCValuesFromExcel
+        '
+        Me.TSImportEDCValuesFromExcel.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.TSImportEDCValuesFromExcel.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBSelectEDCtoImportExcel, Me.TSBImportOvertimeFileExcel, Me.ImportOvertimeFile2ExcelToolStripMenuItem, Me.ToolStripSeparator13, Me.ImportValuesFromToolStripMenuItem, Me.ImportCCFile1ExcelToolStripMenuItem, Me.ImportCCFile1TextToolStripMenuItem, Me.ImportFileTemplate2ExcelToolStripMenuItem, Me.ImportFileTemplate3ExcelToolStripMenuItem})
+        Me.TSImportEDCValuesFromExcel.Image = CType(resources.GetObject("TSImportEDCValuesFromExcel.Image"), System.Drawing.Image)
+        Me.TSImportEDCValuesFromExcel.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.TSImportEDCValuesFromExcel.Name = "TSImportEDCValuesFromExcel"
+        Me.TSImportEDCValuesFromExcel.Size = New System.Drawing.Size(183, 22)
+        Me.TSImportEDCValuesFromExcel.Text = "Imports EDC Values from Excel"
+        Me.TSImportEDCValuesFromExcel.Visible = False
+        '
+        'TSBSelectEDCtoImportExcel
+        '
+        Me.TSBSelectEDCtoImportExcel.Name = "TSBSelectEDCtoImportExcel"
+        Me.TSBSelectEDCtoImportExcel.Size = New System.Drawing.Size(229, 22)
+        Me.TSBSelectEDCtoImportExcel.Text = "Select EDC to Import (Excel)"
+        '
+        'TSBImportOvertimeFileExcel
+        '
+        Me.TSBImportOvertimeFileExcel.Name = "TSBImportOvertimeFileExcel"
+        Me.TSBImportOvertimeFileExcel.Size = New System.Drawing.Size(229, 22)
+        Me.TSBImportOvertimeFileExcel.Text = "Import Overtime File 1 (Excel)"
+        '
+        'ImportOvertimeFile2ExcelToolStripMenuItem
+        '
+        Me.ImportOvertimeFile2ExcelToolStripMenuItem.Name = "ImportOvertimeFile2ExcelToolStripMenuItem"
+        Me.ImportOvertimeFile2ExcelToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
+        Me.ImportOvertimeFile2ExcelToolStripMenuItem.Text = "Import Overtime File 2 (Excel)"
+        '
+        'ToolStripSeparator13
+        '
+        Me.ToolStripSeparator13.Name = "ToolStripSeparator13"
+        Me.ToolStripSeparator13.Size = New System.Drawing.Size(226, 6)
+        '
+        'ImportValuesFromToolStripMenuItem
+        '
+        Me.ImportValuesFromToolStripMenuItem.Name = "ImportValuesFromToolStripMenuItem"
+        Me.ImportValuesFromToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
+        Me.ImportValuesFromToolStripMenuItem.Text = "Import KELIO - 1 (Excel)"
+        '
+        'ImportCCFile1ExcelToolStripMenuItem
+        '
+        Me.ImportCCFile1ExcelToolStripMenuItem.Name = "ImportCCFile1ExcelToolStripMenuItem"
+        Me.ImportCCFile1ExcelToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
+        Me.ImportCCFile1ExcelToolStripMenuItem.Text = "Import CC File - 1 (Excel)"
+        '
+        'ImportCCFile1TextToolStripMenuItem
+        '
+        Me.ImportCCFile1TextToolStripMenuItem.Name = "ImportCCFile1TextToolStripMenuItem"
+        Me.ImportCCFile1TextToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
+        Me.ImportCCFile1TextToolStripMenuItem.Text = "Import CC File - 1 (Text)"
+        '
+        'ImportFileTemplate2ExcelToolStripMenuItem
+        '
+        Me.ImportFileTemplate2ExcelToolStripMenuItem.Name = "ImportFileTemplate2ExcelToolStripMenuItem"
+        Me.ImportFileTemplate2ExcelToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
+        Me.ImportFileTemplate2ExcelToolStripMenuItem.Text = "Import File Template 2 (Excel)"
+        '
+        'ImportFileTemplate3ExcelToolStripMenuItem
+        '
+        Me.ImportFileTemplate3ExcelToolStripMenuItem.Name = "ImportFileTemplate3ExcelToolStripMenuItem"
+        Me.ImportFileTemplate3ExcelToolStripMenuItem.Size = New System.Drawing.Size(229, 22)
+        Me.ImportFileTemplate3ExcelToolStripMenuItem.Text = "Import File Template 3 (Excel)"
+        '
+        'btnMyReminders
+        '
+        Me.btnMyReminders.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.btnMyReminders.Image = CType(resources.GetObject("btnMyReminders.Image"), System.Drawing.Image)
+        Me.btnMyReminders.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnMyReminders.Name = "btnMyReminders"
+        Me.btnMyReminders.Size = New System.Drawing.Size(99, 19)
+        Me.btnMyReminders.Text = "My Reminders"
+        '
+        'BtnOpenExportFiles
+        '
+        Me.BtnOpenExportFiles.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.BtnOpenExportFiles.Image = CType(resources.GetObject("BtnOpenExportFiles.Image"), System.Drawing.Image)
+        Me.BtnOpenExportFiles.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.BtnOpenExportFiles.Name = "BtnOpenExportFiles"
+        Me.BtnOpenExportFiles.Size = New System.Drawing.Size(102, 19)
+        Me.BtnOpenExportFiles.Text = "Open Export Files"
+        '
+        'EmployeePaymentsToolStripMenuItem
+        '
+        Me.EmployeePaymentsToolStripMenuItem.Name = "EmployeePaymentsToolStripMenuItem"
+        Me.EmployeePaymentsToolStripMenuItem.Size = New System.Drawing.Size(303, 22)
+        Me.EmployeePaymentsToolStripMenuItem.Text = "Employee Payments"
+        '
         'FrmPayroll1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2947,4 +2954,5 @@ Partial Class FrmPayroll1
     Friend WithEvents CBReloadDates As CheckBox
     Friend WithEvents FixPFToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ImportFileTemplate3ExcelToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EmployeePaymentsToolStripMenuItem As ToolStripMenuItem
 End Class

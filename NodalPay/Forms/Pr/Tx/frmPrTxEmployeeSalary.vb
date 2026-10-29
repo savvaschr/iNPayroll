@@ -277,63 +277,75 @@ Public Class frmPrTxEmployeeSalary
         End If
 
         If ValidateMe() Then
-            Dim Update As Boolean = False
-            'Dim CS As Integer
-            Dim DsSal As DataSet
-            DsSal = Global1.Business.GetDalaryDiference(EmpCode, DatePay.Value)
-            Dim PreviusSalary As Double
-            Dim Diff As Double = 0
-            If CheckDataSet(DsSal) Then
-                PreviusSalary = DbNullToDouble(DsSal.Tables(0).Rows(0).Item(0))
-                Diff = RoundMe3(CDbl(Me.txtSalaryValue.Text) - PreviusSalary, 2)
+
+            If NullToInt(Me.txtId.Text) = 0 Then
+                Dim Sal As New cPrTxEmployeeSalary(EmpCode, DatePay.Value)
+                If Sal.Id <> 0 Then
+
+                    MsgBox("There is already a Salary Value of " & Sal.SalaryValue & "  with this effective date ! Please amend the existing value, No changes are saved !!!")
+                    Exit Sub
+                End If
             End If
 
-            Try
 
-                With tPrTxEmployeeSalary
-                    .Id = NullToInt(Me.txtId.Text)
-                    .Emp_Code = EmpCode
-                    .Date1 = Now
-                    .SalaryValue = CDbl(Me.txtSalaryValue.Text)
-                    .Basic = CDbl(Me.txtBasic.Text)
-                    .EffPayDate = DatePay.Value
-                    .Cola = CDbl(Me.txtCola.Text)
-                    .EffArrearsDate = DateArrears.Value
-                    .Usr_Id = CType(Me.cmbUsr.SelectedItem, cAaSsUsers).Id
-                    .myRate = Me.txtUnitRate.Text
-                    .myRateSalary = Me.txtSalary2ForRate.Text
-                    If Me.CBIsCOLA.CheckState = CheckState.Checked Then
-                        .IsCola = "Y"
-                    Else
-                        .IsCola = "N"
-                    End If
-                    .EmpSal_Dif = Diff
 
-                    If .Save() Then
-                        If Not SupressMsg Then
-                            Me.lblSSStatus.Text = "Changes are successfully Saved"
+            Dim Update As Boolean = False
+                'Dim CS As Integer
+                Dim DsSal As DataSet
+                DsSal = Global1.Business.GetDalaryDiference(EmpCode, DatePay.Value)
+                Dim PreviusSalary As Double
+                Dim Diff As Double = 0
+                If CheckDataSet(DsSal) Then
+                    PreviusSalary = DbNullToDouble(DsSal.Tables(0).Rows(0).Item(0))
+                    Diff = RoundMe3(CDbl(Me.txtSalaryValue.Text) - PreviusSalary, 2)
+                End If
+
+                Try
+
+                    With tPrTxEmployeeSalary
+                        .Id = NullToInt(Me.txtId.Text)
+                        .Emp_Code = EmpCode
+                        .Date1 = Now
+                        .SalaryValue = CDbl(Me.txtSalaryValue.Text)
+                        .Basic = CDbl(Me.txtBasic.Text)
+                        .EffPayDate = DatePay.Value
+                        .Cola = CDbl(Me.txtCola.Text)
+                        .EffArrearsDate = DateArrears.Value
+                        .Usr_Id = CType(Me.cmbUsr.SelectedItem, cAaSsUsers).Id
+                        .myRate = Me.txtUnitRate.Text
+                        .myRateSalary = Me.txtSalary2ForRate.Text
+                        If Me.CBIsCOLA.CheckState = CheckState.Checked Then
+                            .IsCola = "Y"
+                        Else
+                            .IsCola = "N"
                         End If
+                        .EmpSal_Dif = Diff
 
-                        FillDG1()
-                        'If DG1.Rows.Count - 1 > 0 Then
-                        '    CS = Me.DG1.SelectedRows(0).Index
-                        'End If
-                        'If DG1.Rows.Count - 1 > CS Then
-                        '    DG1.CurrentCell = DG1.Rows(CS + 1).Cells(1)
-                        'Else
-                        '    DG1.CurrentCell = DG1.Rows(CS).Cells(1)
-                        'End If
-                        FindWhereToSelect(.Id)
-                        PKInputReadOnly(True)
-                    Else
-                        MsgBox("Unable to save Changes", MsgBoxStyle.Critical)
-                    End If
-                End With
-            Catch ex As Exception
-                Utils.ShowException(ex)
-                MsgBox("Unable to save Changes", MsgBoxStyle.Critical)
-            End Try
-        End If
+                        If .Save() Then
+                            If Not SupressMsg Then
+                                Me.lblSSStatus.Text = "Changes are successfully Saved"
+                            End If
+
+                            FillDG1()
+                            'If DG1.Rows.Count - 1 > 0 Then
+                            '    CS = Me.DG1.SelectedRows(0).Index
+                            'End If
+                            'If DG1.Rows.Count - 1 > CS Then
+                            '    DG1.CurrentCell = DG1.Rows(CS + 1).Cells(1)
+                            'Else
+                            '    DG1.CurrentCell = DG1.Rows(CS).Cells(1)
+                            'End If
+                            FindWhereToSelect(.Id)
+                            PKInputReadOnly(True)
+                        Else
+                            MsgBox("Unable to save Changes", MsgBoxStyle.Critical)
+                        End If
+                    End With
+                Catch ex As Exception
+                    Utils.ShowException(ex)
+                    MsgBox("Unable to save Changes", MsgBoxStyle.Critical)
+                End Try
+            End If
     End Sub
     '
     Private Sub LoadDataSetToExcel()

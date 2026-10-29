@@ -36,6 +36,8 @@ Partial Class FrmCompanyUsers
         Me.TSBDelete = New System.Windows.Forms.ToolStripButton()
         Me.btnUserPermitions = New System.Windows.Forms.ToolStripButton()
         Me.btnAddUserToAllCompanies = New System.Windows.Forms.ToolStripButton()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.btnSaveWithPermissions = New System.Windows.Forms.ToolStripButton()
         CType(Me.DG1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TS1.SuspendLayout()
         Me.SuspendLayout()
@@ -117,7 +119,7 @@ Partial Class FrmCompanyUsers
         '
         'TS1
         '
-        Me.TS1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBSave, Me.TSBDelete, Me.btnUserPermitions, Me.btnAddUserToAllCompanies})
+        Me.TS1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.TSBSave, Me.TSBDelete, Me.btnUserPermitions, Me.btnAddUserToAllCompanies, Me.ToolStripSeparator1, Me.btnSaveWithPermissions})
         Me.TS1.Location = New System.Drawing.Point(0, 0)
         Me.TS1.Name = "TS1"
         Me.TS1.Size = New System.Drawing.Size(851, 25)
@@ -158,8 +160,22 @@ Partial Class FrmCompanyUsers
         Me.btnAddUserToAllCompanies.Image = CType(resources.GetObject("btnAddUserToAllCompanies.Image"), System.Drawing.Image)
         Me.btnAddUserToAllCompanies.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.btnAddUserToAllCompanies.Name = "btnAddUserToAllCompanies"
-        Me.btnAddUserToAllCompanies.Size = New System.Drawing.Size(154, 22)
+        Me.btnAddUserToAllCompanies.Size = New System.Drawing.Size(155, 22)
         Me.btnAddUserToAllCompanies.Text = "Add User To All Companies"
+        '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(6, 25)
+        '
+        'btnSaveWithPermissions
+        '
+        Me.btnSaveWithPermissions.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.btnSaveWithPermissions.Image = CType(resources.GetObject("btnSaveWithPermissions.Image"), System.Drawing.Image)
+        Me.btnSaveWithPermissions.ImageTransparentColor = System.Drawing.Color.Magenta
+        Me.btnSaveWithPermissions.Name = "btnSaveWithPermissions"
+        Me.btnSaveWithPermissions.Size = New System.Drawing.Size(129, 22)
+        Me.btnSaveWithPermissions.Text = "Save With Permissions"
         '
         'FrmCompanyUsers
         '
@@ -195,4 +211,6 @@ Partial Class FrmCompanyUsers
     Friend WithEvents dgcErnTyp_Code As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents btnUserPermitions As System.Windows.Forms.ToolStripButton
     Friend WithEvents btnAddUserToAllCompanies As ToolStripButton
+    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents btnSaveWithPermissions As ToolStripButton
 End Class

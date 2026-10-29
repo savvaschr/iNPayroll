@@ -437,6 +437,19 @@ Public Class FrmMain
             End If
         End If
 
+        Ds = Global1.Business.GetParameter("Payslip", "CompanyNameOnEmail")
+        If CheckDataSet(Ds) Then
+            Dim Par As New cPrSsParameters(Ds.Tables(0).Rows(0))
+            If Par.Value1 = 1 Then
+                PARAM_CompanyNameOnEmailSubject = True
+            Else
+                PARAM_CompanyNameOnEmailSubject = False
+            End If
+        Else
+            PARAM_CompanyNameOnEmailSubject = True
+        End If
+
+
 
 
         ReadDiscountLabels()

@@ -30,6 +30,7 @@
             CType(Me.Owner, FrmPayroll1).ET3_D12 = Me.txtOtherDeductions.Text
             CType(Me.Owner, FrmPayroll1).ET3_D23 = Me.txtTravelAdjustment.Text
             CType(Me.Owner, FrmPayroll1).ET3_D24 = Me.txtSportsDeduction.Text
+            CType(Me.Owner, FrmPayroll1).ET3_D25 = Me.txtSportsDeductionRelatives.Text
 
 
             CType(Me.Owner, FrmPayroll1).ET3_File = Me.txtToFile.Text

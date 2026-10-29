@@ -63,6 +63,8 @@ Partial Class FrmImportExcelTemplate3
         Me.Label19 = New System.Windows.Forms.Label()
         Me.txtBIKforAssets = New System.Windows.Forms.TextBox()
         Me.OpenFile = New System.Windows.Forms.OpenFileDialog()
+        Me.Label20 = New System.Windows.Forms.Label()
+        Me.txtSportsDeductionRelatives = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'Label13
@@ -271,7 +273,7 @@ Partial Class FrmImportExcelTemplate3
         '
         'btnProceed
         '
-        Me.btnProceed.Location = New System.Drawing.Point(168, 459)
+        Me.btnProceed.Location = New System.Drawing.Point(168, 481)
         Me.btnProceed.Name = "btnProceed"
         Me.btnProceed.Size = New System.Drawing.Size(75, 23)
         Me.btnProceed.TabIndex = 89
@@ -280,7 +282,7 @@ Partial Class FrmImportExcelTemplate3
         '
         'btnOpen
         '
-        Me.btnOpen.Location = New System.Drawing.Point(738, 430)
+        Me.btnOpen.Location = New System.Drawing.Point(738, 452)
         Me.btnOpen.Name = "btnOpen"
         Me.btnOpen.Size = New System.Drawing.Size(33, 23)
         Me.btnOpen.TabIndex = 88
@@ -290,7 +292,7 @@ Partial Class FrmImportExcelTemplate3
         'txtToFile
         '
         Me.txtToFile.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
-        Me.txtToFile.Location = New System.Drawing.Point(169, 433)
+        Me.txtToFile.Location = New System.Drawing.Point(169, 455)
         Me.txtToFile.Name = "txtToFile"
         Me.txtToFile.Size = New System.Drawing.Size(563, 20)
         Me.txtToFile.TabIndex = 86
@@ -298,7 +300,7 @@ Partial Class FrmImportExcelTemplate3
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(13, 436)
+        Me.Label5.Location = New System.Drawing.Point(13, 458)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(109, 13)
         Me.Label5.TabIndex = 87
@@ -406,12 +408,31 @@ Partial Class FrmImportExcelTemplate3
         Me.txtBIKforAssets.TabIndex = 121
         Me.txtBIKforAssets.Text = "14"
         '
+        'Label20
+        '
+        Me.Label20.AutoSize = True
+        Me.Label20.Location = New System.Drawing.Point(13, 423)
+        Me.Label20.Name = "Label20"
+        Me.Label20.Size = New System.Drawing.Size(139, 13)
+        Me.Label20.TabIndex = 124
+        Me.Label20.Text = "Sports Ded. Relatives (D25)"
+        '
+        'txtSportsDeductionRelatives
+        '
+        Me.txtSportsDeductionRelatives.Location = New System.Drawing.Point(172, 421)
+        Me.txtSportsDeductionRelatives.Name = "txtSportsDeductionRelatives"
+        Me.txtSportsDeductionRelatives.Size = New System.Drawing.Size(121, 20)
+        Me.txtSportsDeductionRelatives.TabIndex = 123
+        Me.txtSportsDeductionRelatives.Text = "19"
+        '
         'FrmImportExcelTemplate3
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        Me.ClientSize = New System.Drawing.Size(942, 497)
+        Me.ClientSize = New System.Drawing.Size(942, 528)
+        Me.Controls.Add(Me.Label20)
+        Me.Controls.Add(Me.txtSportsDeductionRelatives)
         Me.Controls.Add(Me.Label19)
         Me.Controls.Add(Me.txtBIKforAssets)
         Me.Controls.Add(Me.Label18)
@@ -500,4 +521,6 @@ Partial Class FrmImportExcelTemplate3
     Friend WithEvents Label19 As Label
     Friend WithEvents txtBIKforAssets As TextBox
     Friend WithEvents OpenFile As OpenFileDialog
+    Friend WithEvents Label20 As Label
+    Friend WithEvents txtSportsDeductionRelatives As TextBox
 End Class

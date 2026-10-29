@@ -359,7 +359,7 @@ Public Class FrmNewCompany
         Me.txtTempDescS.Text = Me.txtDescL.Text
         Me.txtDescS.Text = Me.txtDescL.Text
         Me.txtNewInterfaceGroupDesc.Text = Me.txtDescL.Text
-        'Me.txtPeriodDesc.Text = "2014 " & Me.txtDescL.Text
+        Me.txtPeriodDesc.Text = Me.txtDescL.Text
         'Me.txtPeriodGroup.Text = "2014" & Me.txtCode.Text
 
 

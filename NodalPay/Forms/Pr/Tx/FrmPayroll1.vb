@@ -329,6 +329,7 @@ Public Class FrmPayroll1
     Public ET3_D12 As Integer = 0
     Public ET3_D23 As Integer = 0
     Public ET3_D24 As Integer = 0
+    Public ET3_D25 As Integer = 0
 
     Public ET3_File As String
     Public ET3_Proceed As Boolean = False
@@ -15375,6 +15376,7 @@ Public Class FrmPayroll1
                         End If
                     End If
 
+
                 End If
 
 
@@ -20808,6 +20810,7 @@ Public Class FrmPayroll1
                     Dim vD12 As Double = 0
                     Dim vD23 As Double = 0
                     Dim vD24 As Double = 0
+                    Dim vD25 As Double = 0
 
 
                     Dim sMonthlyUnits As String
@@ -20828,6 +20831,7 @@ Public Class FrmPayroll1
                     Dim sD12 As String
                     Dim sD23 As String
                     Dim sD24 As String
+                    Dim sD25 As String
 
 
 
@@ -20851,6 +20855,7 @@ Public Class FrmPayroll1
                     Dim D12Index As Integer = -1
                     Dim D23Index As Integer = -1
                     Dim D24Index As Integer = -1
+                    Dim D25Index As Integer = -1
 
 
 
@@ -20872,6 +20877,7 @@ Public Class FrmPayroll1
                     Dim codeD12 As String = "D12"
                     Dim codeD23 As String = "D23"
                     Dim codeD24 As String = "D24"
+                    Dim codeD25 As String = "D25"
 
 
                     Do While StopInput = False
@@ -20998,7 +21004,12 @@ Public Class FrmPayroll1
                             vD24 = 0
                         End If
 
-
+                        sD25 = NothingToEmpty(xlWorkSheet.Cells(Counter, Me.ET3_D25).value)
+                        If IsNumeric(sD25) Then
+                            vD25 = CDbl(sD25)
+                        Else
+                            vD25 = 0
+                        End If
 
                         Dim k As Integer
                         Dim j As Integer = 0
@@ -21070,6 +21081,9 @@ Public Class FrmPayroll1
                                             If MyDs.Tables(0).Rows(k).Item(Me.Column_D1 + C1) = codeD24 Then
                                                 D24Index = Me.Column_DV1 + C1
                                             End If
+                                            If MyDs.Tables(0).Rows(k).Item(Me.Column_D1 + C1) = codeD25 Then
+                                                D25Index = Me.Column_DV1 + C1
+                                            End If
                                             C1 = C1 + 2
                                         Next
                                     End If
@@ -21121,6 +21135,9 @@ Public Class FrmPayroll1
                                     If D24Index <> -1 Then
                                         MyDs.Tables(0).Rows(k).Item(D24Index) = vD24
                                     End If
+                                    If D25Index <> -1 Then
+                                        MyDs.Tables(0).Rows(k).Item(D25Index) = vD25
+                                    End If
 
                                 End If
                             End If
@@ -21156,10 +21173,12 @@ Public Class FrmPayroll1
 
     End Sub
 
-
-
-
-
-
-
+    Private Sub EmployeePaymentsToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EmployeePaymentsToolStripMenuItem.Click
+        If CheckDataSet(MyDs) Then
+            Dim F As New FrmPrTxPaymentTool
+            F.MyDs = MyDs
+            F.Per = Me.GLBCurrentPeriod
+            F.ShowDialog()
+        End If
+    End Sub
 End Class

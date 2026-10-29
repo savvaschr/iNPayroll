@@ -130,7 +130,8 @@ Public Class cPrMsEmployeesDbTier
                 " Emp_Email2, " &
                 " Emp_Maternity, " &
                 " Emp_FEControlAmount, " &
-                " Emp_PrevUnion " &
+                " Emp_PrevUnion, " &
+                " Emp_Elegiblefor25 " &
             "  FROM PrMsEmployees" &
             "  WHERE Emp_Code = '" & tCode & "'"
         Return MyBase.GetData(Str)
@@ -516,6 +517,9 @@ Public Class cPrMsEmployeesDbTier
 
             SpParams.Add(.PreviousUnion)                               '(116)
             SpNames.Add("Emp_PrevUnion")                             '(116)
+
+            SpParams.Add(.ElegibleFor25)                               '(117)
+            SpNames.Add("Emp_Elegiblefor25")                             '(117)
 
 
         End With

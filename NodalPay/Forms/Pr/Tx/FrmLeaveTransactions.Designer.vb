@@ -22,29 +22,29 @@ Partial Class FrmLeaveTransactions
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.TSBSave = New System.Windows.Forms.ToolStripButton
-        Me.txtCurrentPeriod = New System.Windows.Forms.TextBox
-        Me.LblCurrentPeriod = New System.Windows.Forms.Label
-        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip
-        Me.DG1 = New System.Windows.Forms.DataGridView
-        Me.EmpCode = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.EmpName = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.LeaveUnits = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.DateFrom = New System.Windows.Forms.DateTimePicker
-        Me.DateTo = New System.Windows.Forms.DateTimePicker
-        Me.ComboType = New System.Windows.Forms.ComboBox
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.Label3 = New System.Windows.Forms.Label
-        Me.txtUnits = New System.Windows.Forms.TextBox
-        Me.Label4 = New System.Windows.Forms.Label
-        Me.Button1 = New System.Windows.Forms.Button
-        Me.Button2 = New System.Windows.Forms.Button
-        Me.Button3 = New System.Windows.Forms.Button
-        Me.Label5 = New System.Windows.Forms.Label
-        Me.ComboAction = New System.Windows.Forms.ComboBox
-        Me.Button4 = New System.Windows.Forms.Button
-        Me.Button5 = New System.Windows.Forms.Button
+        Me.TSBSave = New System.Windows.Forms.ToolStripButton()
+        Me.txtCurrentPeriod = New System.Windows.Forms.TextBox()
+        Me.LblCurrentPeriod = New System.Windows.Forms.Label()
+        Me.ToolStrip1 = New System.Windows.Forms.ToolStrip()
+        Me.DG1 = New System.Windows.Forms.DataGridView()
+        Me.EmpCode = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.EmpName = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.LeaveUnits = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateFrom = New System.Windows.Forms.DateTimePicker()
+        Me.DateTo = New System.Windows.Forms.DateTimePicker()
+        Me.ComboType = New System.Windows.Forms.ComboBox()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.txtUnits = New System.Windows.Forms.TextBox()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.ComboAction = New System.Windows.Forms.ComboBox()
+        Me.Button4 = New System.Windows.Forms.Button()
+        Me.Button5 = New System.Windows.Forms.Button()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.DG1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -88,6 +88,7 @@ Partial Class FrmLeaveTransactions
         '
         Me.DG1.AllowUserToAddRows = False
         Me.DG1.AllowUserToDeleteRows = False
+        Me.DG1.BackgroundColor = System.Drawing.SystemColors.Window
         Me.DG1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DG1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.EmpCode, Me.EmpName, Me.LeaveUnits})
         Me.DG1.Location = New System.Drawing.Point(12, 234)
@@ -252,6 +253,7 @@ Partial Class FrmLeaveTransactions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.ClientSize = New System.Drawing.Size(851, 741)
         Me.Controls.Add(Me.Button5)
         Me.Controls.Add(Me.Button4)

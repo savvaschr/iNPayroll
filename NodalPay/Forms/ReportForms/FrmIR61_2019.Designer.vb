@@ -51,6 +51,9 @@ Partial Class FrmIR61_2019
         Me.ToolStripDropDownButton1 = New System.Windows.Forms.ToolStripDropDownButton()
         Me.CreateMonthlyFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CreateMonthlyFileWithExcelReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
+        Me.CreateAnnualFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CreateAnnualFileWithExcelReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.txtGesyCon = New System.Windows.Forms.TextBox()
         Me.txtGesyDed = New System.Windows.Forms.TextBox()
@@ -62,9 +65,7 @@ Partial Class FrmIR61_2019
         Me.txtVATRegNo = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.btnFindTaxable = New System.Windows.Forms.Button()
-        Me.CreateAnnualFileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ToolStripSeparator1 = New System.Windows.Forms.ToolStripSeparator()
-        Me.CreateAnnualFileWithExcelReportToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.CBPensionersFile = New System.Windows.Forms.CheckBox()
         Me.ToolStrip1.SuspendLayout()
         Me.PanelLoading.SuspendLayout()
         Me.SuspendLayout()
@@ -311,6 +312,23 @@ Partial Class FrmIR61_2019
         Me.CreateMonthlyFileWithExcelReportToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
         Me.CreateMonthlyFileWithExcelReportToolStripMenuItem.Text = "Create Monthly File With Excel Report"
         '
+        'ToolStripSeparator1
+        '
+        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
+        Me.ToolStripSeparator1.Size = New System.Drawing.Size(269, 6)
+        '
+        'CreateAnnualFileToolStripMenuItem
+        '
+        Me.CreateAnnualFileToolStripMenuItem.Name = "CreateAnnualFileToolStripMenuItem"
+        Me.CreateAnnualFileToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.CreateAnnualFileToolStripMenuItem.Text = "Create Annual File"
+        '
+        'CreateAnnualFileWithExcelReportToolStripMenuItem
+        '
+        Me.CreateAnnualFileWithExcelReportToolStripMenuItem.Name = "CreateAnnualFileWithExcelReportToolStripMenuItem"
+        Me.CreateAnnualFileWithExcelReportToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
+        Me.CreateAnnualFileWithExcelReportToolStripMenuItem.Text = "Create Annual File With Excel Report"
+        '
         'Label14
         '
         Me.Label14.AutoSize = True
@@ -412,22 +430,15 @@ Partial Class FrmIR61_2019
         Me.btnFindTaxable.Text = "Calculate Taxable Income"
         Me.btnFindTaxable.UseVisualStyleBackColor = True
         '
-        'CreateAnnualFileToolStripMenuItem
+        'CBPensionersFile
         '
-        Me.CreateAnnualFileToolStripMenuItem.Name = "CreateAnnualFileToolStripMenuItem"
-        Me.CreateAnnualFileToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
-        Me.CreateAnnualFileToolStripMenuItem.Text = "Create Annual File"
-        '
-        'ToolStripSeparator1
-        '
-        Me.ToolStripSeparator1.Name = "ToolStripSeparator1"
-        Me.ToolStripSeparator1.Size = New System.Drawing.Size(269, 6)
-        '
-        'CreateAnnualFileWithExcelReportToolStripMenuItem
-        '
-        Me.CreateAnnualFileWithExcelReportToolStripMenuItem.Name = "CreateAnnualFileWithExcelReportToolStripMenuItem"
-        Me.CreateAnnualFileWithExcelReportToolStripMenuItem.Size = New System.Drawing.Size(272, 22)
-        Me.CreateAnnualFileWithExcelReportToolStripMenuItem.Text = "Create Annual File With Excel Report"
+        Me.CBPensionersFile.AutoSize = True
+        Me.CBPensionersFile.Location = New System.Drawing.Point(506, 429)
+        Me.CBPensionersFile.Name = "CBPensionersFile"
+        Me.CBPensionersFile.Size = New System.Drawing.Size(97, 17)
+        Me.CBPensionersFile.TabIndex = 155
+        Me.CBPensionersFile.Text = "Pensioners File"
+        Me.CBPensionersFile.UseVisualStyleBackColor = True
         '
         'FrmIR61_2019
         '
@@ -435,6 +446,7 @@ Partial Class FrmIR61_2019
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.ClientSize = New System.Drawing.Size(615, 566)
+        Me.Controls.Add(Me.CBPensionersFile)
         Me.Controls.Add(Me.PanelLoading)
         Me.Controls.Add(Me.btnFindTaxable)
         Me.Controls.Add(Me.txtVATRegNo)
@@ -520,4 +532,5 @@ Partial Class FrmIR61_2019
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents CreateAnnualFileToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents CreateAnnualFileWithExcelReportToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CBPensionersFile As CheckBox
 End Class

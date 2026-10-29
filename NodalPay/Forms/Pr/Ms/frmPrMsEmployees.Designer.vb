@@ -432,6 +432,8 @@ Private Sub InitializeComponent()
         Me.txtPrevGesiD = New System.Windows.Forms.TextBox()
         Me.Label59 = New System.Windows.Forms.Label()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
+        Me.CBEligibleFor25 = New System.Windows.Forms.CheckBox()
+        Me.Label76 = New System.Windows.Forms.Label()
         Me.CBControlAmount100 = New System.Windows.Forms.CheckBox()
         Me.CBControlAmount55 = New System.Windows.Forms.CheckBox()
         Me.Label74 = New System.Windows.Forms.Label()
@@ -470,6 +472,18 @@ Private Sub InitializeComponent()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
+        Me.BtnSearch = New System.Windows.Forms.Button()
+        Me.ErrMedFund = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.ErrProvFund = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.ErrSocialInsurance = New System.Windows.Forms.ErrorProvider(Me.components)
+        Me.lblTemplate = New System.Windows.Forms.Label()
+        Me.LblHeaderStatus = New System.Windows.Forms.Label()
+        Me.btnCreateEmployees = New System.Windows.Forms.Button()
+        Me.btnFindNextAvailable = New System.Windows.Forms.Button()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.BtnNext = New System.Windows.Forms.Button()
+        Me.BtnPrevius = New System.Windows.Forms.Button()
+        Me.CBSearchOnlyActive = New System.Windows.Forms.CheckBox()
         Me.C_Emp15 = New NodalPay.C_Emp()
         Me.D_Emp15 = New NodalPay.D_Emp()
         Me.E_Emp15 = New NodalPay.E_Emp()
@@ -515,18 +529,6 @@ Private Sub InitializeComponent()
         Me.C_Emp1 = New NodalPay.C_Emp()
         Me.D_Emp1 = New NodalPay.D_Emp()
         Me.E_Emp1 = New NodalPay.E_Emp()
-        Me.BtnSearch = New System.Windows.Forms.Button()
-        Me.ErrMedFund = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.ErrProvFund = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.ErrSocialInsurance = New System.Windows.Forms.ErrorProvider(Me.components)
-        Me.lblTemplate = New System.Windows.Forms.Label()
-        Me.LblHeaderStatus = New System.Windows.Forms.Label()
-        Me.btnCreateEmployees = New System.Windows.Forms.Button()
-        Me.btnFindNextAvailable = New System.Windows.Forms.Button()
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
-        Me.BtnNext = New System.Windows.Forms.Button()
-        Me.BtnPrevius = New System.Windows.Forms.Button()
-        Me.CBSearchOnlyActive = New System.Windows.Forms.CheckBox()
         Label72 = New System.Windows.Forms.Label()
         Me.sspStatus.SuspendLayout()
         Me.TSC1.TopToolStripPanel.SuspendLayout()
@@ -4149,6 +4151,8 @@ Private Sub InitializeComponent()
         '
         'GroupBox4
         '
+        Me.GroupBox4.Controls.Add(Me.CBEligibleFor25)
+        Me.GroupBox4.Controls.Add(Me.Label76)
         Me.GroupBox4.Controls.Add(Me.CBControlAmount100)
         Me.GroupBox4.Controls.Add(Me.CBControlAmount55)
         Me.GroupBox4.Controls.Add(Me.Label74)
@@ -4161,10 +4165,28 @@ Private Sub InitializeComponent()
         Me.GroupBox4.Controls.Add(Me.Label42)
         Me.GroupBox4.Location = New System.Drawing.Point(331, 16)
         Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(267, 198)
+        Me.GroupBox4.Size = New System.Drawing.Size(267, 248)
         Me.GroupBox4.TabIndex = 100
         Me.GroupBox4.TabStop = False
         Me.GroupBox4.Text = "First Employment Cases"
+        '
+        'CBEligibleFor25
+        '
+        Me.CBEligibleFor25.AutoSize = True
+        Me.CBEligibleFor25.Location = New System.Drawing.Point(9, 134)
+        Me.CBEligibleFor25.Name = "CBEligibleFor25"
+        Me.CBEligibleFor25.Size = New System.Drawing.Size(15, 14)
+        Me.CBEligibleFor25.TabIndex = 105
+        Me.CBEligibleFor25.UseVisualStyleBackColor = True
+        '
+        'Label76
+        '
+        Me.Label76.AutoSize = True
+        Me.Label76.Location = New System.Drawing.Point(30, 135)
+        Me.Label76.Name = "Label76"
+        Me.Label76.Size = New System.Drawing.Size(146, 13)
+        Me.Label76.TabIndex = 104
+        Me.Label76.Text = "Empoloyee is Eligible for 25% "
         '
         'CBControlAmount100
         '
@@ -4210,7 +4232,7 @@ Private Sub InitializeComponent()
         'Label45
         '
         Me.Label45.AutoSize = True
-        Me.Label45.Location = New System.Drawing.Point(30, 150)
+        Me.Label45.Location = New System.Drawing.Point(30, 185)
         Me.Label45.Name = "Label45"
         Me.Label45.Size = New System.Drawing.Size(103, 13)
         Me.Label45.TabIndex = 82
@@ -4219,7 +4241,7 @@ Private Sub InitializeComponent()
         'CBLimitTo20
         '
         Me.CBLimitTo20.AutoSize = True
-        Me.CBLimitTo20.Location = New System.Drawing.Point(9, 175)
+        Me.CBLimitTo20.Location = New System.Drawing.Point(9, 210)
         Me.CBLimitTo20.Name = "CBLimitTo20"
         Me.CBLimitTo20.Size = New System.Drawing.Size(15, 14)
         Me.CBLimitTo20.TabIndex = 99
@@ -4228,7 +4250,7 @@ Private Sub InitializeComponent()
         'CBForce50Percent
         '
         Me.CBForce50Percent.AutoSize = True
-        Me.CBForce50Percent.Location = New System.Drawing.Point(9, 149)
+        Me.CBForce50Percent.Location = New System.Drawing.Point(9, 184)
         Me.CBForce50Percent.Name = "CBForce50Percent"
         Me.CBForce50Percent.Size = New System.Drawing.Size(15, 14)
         Me.CBForce50Percent.TabIndex = 83
@@ -4237,7 +4259,7 @@ Private Sub InitializeComponent()
         'Label56
         '
         Me.Label56.AutoSize = True
-        Me.Label56.Location = New System.Drawing.Point(30, 176)
+        Me.Label56.Location = New System.Drawing.Point(30, 211)
         Me.Label56.Name = "Label56"
         Me.Label56.Size = New System.Drawing.Size(66, 13)
         Me.Label56.TabIndex = 98
@@ -4563,6 +4585,102 @@ Private Sub InitializeComponent()
         Me.Label1.Size = New System.Drawing.Size(56, 13)
         Me.Label1.TabIndex = 45
         Me.Label1.Text = "Earnings"
+        '
+        'BtnSearch
+        '
+        Me.BtnSearch.Location = New System.Drawing.Point(239, 30)
+        Me.BtnSearch.Name = "BtnSearch"
+        Me.BtnSearch.Size = New System.Drawing.Size(25, 20)
+        Me.BtnSearch.TabIndex = 62
+        Me.BtnSearch.Text = "..."
+        Me.BtnSearch.UseVisualStyleBackColor = True
+        '
+        'ErrMedFund
+        '
+        Me.ErrMedFund.ContainerControl = Me
+        '
+        'ErrProvFund
+        '
+        Me.ErrProvFund.ContainerControl = Me
+        '
+        'ErrSocialInsurance
+        '
+        Me.ErrSocialInsurance.ContainerControl = Me
+        '
+        'lblTemplate
+        '
+        Me.lblTemplate.AutoSize = True
+        Me.lblTemplate.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        Me.lblTemplate.ForeColor = System.Drawing.Color.DodgerBlue
+        Me.lblTemplate.Location = New System.Drawing.Point(620, 80)
+        Me.lblTemplate.Name = "lblTemplate"
+        Me.lblTemplate.Size = New System.Drawing.Size(92, 13)
+        Me.lblTemplate.TabIndex = 66
+        Me.lblTemplate.Text = "Template Code"
+        '
+        'LblHeaderStatus
+        '
+        Me.LblHeaderStatus.AutoSize = True
+        Me.LblHeaderStatus.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        Me.LblHeaderStatus.ForeColor = System.Drawing.Color.DodgerBlue
+        Me.LblHeaderStatus.Location = New System.Drawing.Point(671, 54)
+        Me.LblHeaderStatus.Name = "LblHeaderStatus"
+        Me.LblHeaderStatus.Size = New System.Drawing.Size(43, 13)
+        Me.LblHeaderStatus.TabIndex = 67
+        Me.LblHeaderStatus.Text = "Status"
+        '
+        'btnCreateEmployees
+        '
+        Me.btnCreateEmployees.Location = New System.Drawing.Point(871, 32)
+        Me.btnCreateEmployees.Name = "btnCreateEmployees"
+        Me.btnCreateEmployees.Size = New System.Drawing.Size(100, 26)
+        Me.btnCreateEmployees.TabIndex = 68
+        Me.btnCreateEmployees.Text = "Create Employees"
+        Me.btnCreateEmployees.UseVisualStyleBackColor = True
+        Me.btnCreateEmployees.Visible = False
+        '
+        'btnFindNextAvailable
+        '
+        Me.btnFindNextAvailable.Location = New System.Drawing.Point(96, 30)
+        Me.btnFindNextAvailable.Name = "btnFindNextAvailable"
+        Me.btnFindNextAvailable.Size = New System.Drawing.Size(21, 20)
+        Me.btnFindNextAvailable.TabIndex = 69
+        Me.btnFindNextAvailable.Text = "N"
+        Me.btnFindNextAvailable.UseVisualStyleBackColor = True
+        '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        '
+        'BtnNext
+        '
+        Me.BtnNext.Image = CType(resources.GetObject("BtnNext.Image"), System.Drawing.Image)
+        Me.BtnNext.Location = New System.Drawing.Point(484, 49)
+        Me.BtnNext.Name = "BtnNext"
+        Me.BtnNext.Size = New System.Drawing.Size(75, 23)
+        Me.BtnNext.TabIndex = 63
+        Me.BtnNext.UseVisualStyleBackColor = True
+        '
+        'BtnPrevius
+        '
+        Me.BtnPrevius.Image = CType(resources.GetObject("BtnPrevius.Image"), System.Drawing.Image)
+        Me.BtnPrevius.Location = New System.Drawing.Point(409, 49)
+        Me.BtnPrevius.Name = "BtnPrevius"
+        Me.BtnPrevius.Size = New System.Drawing.Size(75, 23)
+        Me.BtnPrevius.TabIndex = 64
+        Me.BtnPrevius.UseVisualStyleBackColor = True
+        '
+        'CBSearchOnlyActive
+        '
+        Me.CBSearchOnlyActive.AutoSize = True
+        Me.CBSearchOnlyActive.BackColor = System.Drawing.Color.Transparent
+        Me.CBSearchOnlyActive.ForeColor = System.Drawing.Color.Black
+        Me.CBSearchOnlyActive.Location = New System.Drawing.Point(565, 53)
+        Me.CBSearchOnlyActive.Name = "CBSearchOnlyActive"
+        Me.CBSearchOnlyActive.Size = New System.Drawing.Size(80, 17)
+        Me.CBSearchOnlyActive.TabIndex = 78
+        Me.CBSearchOnlyActive.Text = "Only Active"
+        Me.CBSearchOnlyActive.UseVisualStyleBackColor = False
         '
         'C_Emp15
         '
@@ -4923,102 +5041,6 @@ Private Sub InitializeComponent()
         Me.E_Emp1.Name = "E_Emp1"
         Me.E_Emp1.Size = New System.Drawing.Size(274, 27)
         Me.E_Emp1.TabIndex = 0
-        '
-        'BtnSearch
-        '
-        Me.BtnSearch.Location = New System.Drawing.Point(239, 30)
-        Me.BtnSearch.Name = "BtnSearch"
-        Me.BtnSearch.Size = New System.Drawing.Size(25, 20)
-        Me.BtnSearch.TabIndex = 62
-        Me.BtnSearch.Text = "..."
-        Me.BtnSearch.UseVisualStyleBackColor = True
-        '
-        'ErrMedFund
-        '
-        Me.ErrMedFund.ContainerControl = Me
-        '
-        'ErrProvFund
-        '
-        Me.ErrProvFund.ContainerControl = Me
-        '
-        'ErrSocialInsurance
-        '
-        Me.ErrSocialInsurance.ContainerControl = Me
-        '
-        'lblTemplate
-        '
-        Me.lblTemplate.AutoSize = True
-        Me.lblTemplate.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
-        Me.lblTemplate.ForeColor = System.Drawing.Color.DodgerBlue
-        Me.lblTemplate.Location = New System.Drawing.Point(620, 80)
-        Me.lblTemplate.Name = "lblTemplate"
-        Me.lblTemplate.Size = New System.Drawing.Size(92, 13)
-        Me.lblTemplate.TabIndex = 66
-        Me.lblTemplate.Text = "Template Code"
-        '
-        'LblHeaderStatus
-        '
-        Me.LblHeaderStatus.AutoSize = True
-        Me.LblHeaderStatus.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
-        Me.LblHeaderStatus.ForeColor = System.Drawing.Color.DodgerBlue
-        Me.LblHeaderStatus.Location = New System.Drawing.Point(671, 54)
-        Me.LblHeaderStatus.Name = "LblHeaderStatus"
-        Me.LblHeaderStatus.Size = New System.Drawing.Size(43, 13)
-        Me.LblHeaderStatus.TabIndex = 67
-        Me.LblHeaderStatus.Text = "Status"
-        '
-        'btnCreateEmployees
-        '
-        Me.btnCreateEmployees.Location = New System.Drawing.Point(871, 32)
-        Me.btnCreateEmployees.Name = "btnCreateEmployees"
-        Me.btnCreateEmployees.Size = New System.Drawing.Size(100, 26)
-        Me.btnCreateEmployees.TabIndex = 68
-        Me.btnCreateEmployees.Text = "Create Employees"
-        Me.btnCreateEmployees.UseVisualStyleBackColor = True
-        Me.btnCreateEmployees.Visible = False
-        '
-        'btnFindNextAvailable
-        '
-        Me.btnFindNextAvailable.Location = New System.Drawing.Point(96, 30)
-        Me.btnFindNextAvailable.Name = "btnFindNextAvailable"
-        Me.btnFindNextAvailable.Size = New System.Drawing.Size(21, 20)
-        Me.btnFindNextAvailable.TabIndex = 69
-        Me.btnFindNextAvailable.Text = "N"
-        Me.btnFindNextAvailable.UseVisualStyleBackColor = True
-        '
-        'OpenFileDialog1
-        '
-        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        '
-        'BtnNext
-        '
-        Me.BtnNext.Image = CType(resources.GetObject("BtnNext.Image"), System.Drawing.Image)
-        Me.BtnNext.Location = New System.Drawing.Point(484, 49)
-        Me.BtnNext.Name = "BtnNext"
-        Me.BtnNext.Size = New System.Drawing.Size(75, 23)
-        Me.BtnNext.TabIndex = 63
-        Me.BtnNext.UseVisualStyleBackColor = True
-        '
-        'BtnPrevius
-        '
-        Me.BtnPrevius.Image = CType(resources.GetObject("BtnPrevius.Image"), System.Drawing.Image)
-        Me.BtnPrevius.Location = New System.Drawing.Point(409, 49)
-        Me.BtnPrevius.Name = "BtnPrevius"
-        Me.BtnPrevius.Size = New System.Drawing.Size(75, 23)
-        Me.BtnPrevius.TabIndex = 64
-        Me.BtnPrevius.UseVisualStyleBackColor = True
-        '
-        'CBSearchOnlyActive
-        '
-        Me.CBSearchOnlyActive.AutoSize = True
-        Me.CBSearchOnlyActive.BackColor = System.Drawing.Color.Transparent
-        Me.CBSearchOnlyActive.ForeColor = System.Drawing.Color.Black
-        Me.CBSearchOnlyActive.Location = New System.Drawing.Point(565, 53)
-        Me.CBSearchOnlyActive.Name = "CBSearchOnlyActive"
-        Me.CBSearchOnlyActive.Size = New System.Drawing.Size(80, 17)
-        Me.CBSearchOnlyActive.TabIndex = 78
-        Me.CBSearchOnlyActive.Text = "Only Active"
-        Me.CBSearchOnlyActive.UseVisualStyleBackColor = False
         '
         'frmPrMsEmployees
         '
@@ -5658,4 +5680,6 @@ Private Sub InitializeComponent()
     Friend WithEvents Button36 As Button
     Friend WithEvents ToolStripSeparator14 As ToolStripSeparator
     Friend WithEvents LoadPFValuesFromExcelToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents CBEligibleFor25 As CheckBox
+    Friend WithEvents Label76 As Label
 End Class

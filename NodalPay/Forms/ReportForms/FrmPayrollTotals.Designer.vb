@@ -72,6 +72,7 @@ Partial Class FrmPayrollTotalsX
         Me.PensionFund4ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PensionFund5ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CustomPensionFund6ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.mnuPensionfund7 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator7 = New System.Windows.Forms.ToolStripSeparator()
         Me.mnuAnnualLeave = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator8 = New System.Windows.Forms.ToolStripSeparator()
@@ -91,6 +92,7 @@ Partial Class FrmPayrollTotalsX
         Me.YTDReportSendToPrinterToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator6 = New System.Windows.Forms.ToolStripSeparator()
         Me.ShowAsPayslipToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ShowAsPayslipVersion2ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripSeparator15 = New System.Windows.Forms.ToolStripSeparator()
         Me.SplitAcrossCompaniesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TSBPFReport = New System.Windows.Forms.ToolStripButton()
@@ -172,7 +174,7 @@ Partial Class FrmPayrollTotalsX
         Me.CBShowAddress = New System.Windows.Forms.CheckBox()
         Me.CBShowAllYears = New System.Windows.Forms.CheckBox()
         Me.btnPeriodGroupSearch = New System.Windows.Forms.Button()
-        Me.mnuPensionfund7 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.tsmShowAsPayslip2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStrip1.SuspendLayout()
         CType(Me.DG1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -244,7 +246,7 @@ Partial Class FrmPayrollTotalsX
         'ToolStripDropDownButton2
         '
         Me.ToolStripDropDownButton2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.ToolStripDropDownButton2.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReportToolStripMenuItem, Me.ToolStripSeparator12, Me.SentToScreenToolStripMenuItem, Me.SentToPrinterToolStripMenuItem, Me.ToolStripSeparator9, Me.TestToolStripMenuItem, Me.AnalysisToolStripMenuItem, Me.EmployeeAnalysis3SummarizedTotals, Me.GeneralAnalysisSummarizedTotalsToolStripMenuItem, Me.EmployeeAbalysis2AndEmployeeAnalysis3SummarizedTotals, Me.EmployeeAnalysisGeneralAnalysisSuToolStripMenuItem, Me.ToolStripSeparator13, Me.PrepareReportForSelectedAnalysisToolStripMenuItem, Me.ToolStripSeparator1, Me.mnuTemplatePayslip, Me.mnuSelectEDCToPrint, Me.SelectTestToolStripMenuItem, Me.ToolStripSeparator2, Me.mnuDiferrencesReport, Me.ToolStripSeparator3, Me.mnuSplitAcrossCompaniesToolStripMenuItem, Me.ToolStripSeparator4, Me.OvertimeReportToolStripMenuItem, Me.OvertimeReport2ToolStripMenuItem, Me.ToolStripSeparator5, Me.ProvidentFundToolStripMenuItem, Me.ProvidentFuncReport2ToolStripMenuItem, Me.ProvidentFundReport2TotalsToolStripMenuItem, Me.PensionFundToolStripMenuItem, Me.PensionFund2ToolStripMenuItem, Me.PensionFund3ToolStripMenuItem, Me.PensionFund4ToolStripMenuItem, Me.PensionFund5ToolStripMenuItem, Me.CustomPensionFund6ToolStripMenuItem, Me.mnuPensionfund7, Me.ToolStripSeparator7, Me.mnuAnnualLeave, Me.ToolStripSeparator8, Me.UnitsReportToolStripMenuItem, Me.ToolStripSeparator10, Me.EDCTotalsToolStripMenuItem, Me.EDCTotalsAndCostToolStripMenuItem, Me.ToolStripSeparator11, Me.EmployeeIBANSToolStripMenuItem, Me.CovidTestToolStripMenuItem})
+        Me.ToolStripDropDownButton2.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ReportToolStripMenuItem, Me.ToolStripSeparator12, Me.SentToScreenToolStripMenuItem, Me.SentToPrinterToolStripMenuItem, Me.ToolStripSeparator9, Me.TestToolStripMenuItem, Me.AnalysisToolStripMenuItem, Me.EmployeeAnalysis3SummarizedTotals, Me.GeneralAnalysisSummarizedTotalsToolStripMenuItem, Me.EmployeeAbalysis2AndEmployeeAnalysis3SummarizedTotals, Me.EmployeeAnalysisGeneralAnalysisSuToolStripMenuItem, Me.ToolStripSeparator13, Me.PrepareReportForSelectedAnalysisToolStripMenuItem, Me.ToolStripSeparator1, Me.mnuTemplatePayslip, Me.tsmShowAsPayslip2, Me.mnuSelectEDCToPrint, Me.SelectTestToolStripMenuItem, Me.ToolStripSeparator2, Me.mnuDiferrencesReport, Me.ToolStripSeparator3, Me.mnuSplitAcrossCompaniesToolStripMenuItem, Me.ToolStripSeparator4, Me.OvertimeReportToolStripMenuItem, Me.OvertimeReport2ToolStripMenuItem, Me.ToolStripSeparator5, Me.ProvidentFundToolStripMenuItem, Me.ProvidentFuncReport2ToolStripMenuItem, Me.ProvidentFundReport2TotalsToolStripMenuItem, Me.PensionFundToolStripMenuItem, Me.PensionFund2ToolStripMenuItem, Me.PensionFund3ToolStripMenuItem, Me.PensionFund4ToolStripMenuItem, Me.PensionFund5ToolStripMenuItem, Me.CustomPensionFund6ToolStripMenuItem, Me.mnuPensionfund7, Me.ToolStripSeparator7, Me.mnuAnnualLeave, Me.ToolStripSeparator8, Me.UnitsReportToolStripMenuItem, Me.ToolStripSeparator10, Me.EDCTotalsToolStripMenuItem, Me.EDCTotalsAndCostToolStripMenuItem, Me.ToolStripSeparator11, Me.EmployeeIBANSToolStripMenuItem, Me.CovidTestToolStripMenuItem})
         Me.ToolStripDropDownButton2.Image = CType(resources.GetObject("ToolStripDropDownButton2.Image"), System.Drawing.Image)
         Me.ToolStripDropDownButton2.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.ToolStripDropDownButton2.Name = "ToolStripDropDownButton2"
@@ -490,6 +492,12 @@ Partial Class FrmPayrollTotalsX
         Me.CustomPensionFund6ToolStripMenuItem.Size = New System.Drawing.Size(425, 22)
         Me.CustomPensionFund6ToolStripMenuItem.Text = "Custom - Pension Fund 6"
         '
+        'mnuPensionfund7
+        '
+        Me.mnuPensionfund7.Name = "mnuPensionfund7"
+        Me.mnuPensionfund7.Size = New System.Drawing.Size(425, 22)
+        Me.mnuPensionfund7.Text = "Custom - Pension Fund 7"
+        '
         'ToolStripSeparator7
         '
         Me.ToolStripSeparator7.Name = "ToolStripSeparator7"
@@ -549,7 +557,7 @@ Partial Class FrmPayrollTotalsX
         'YTDReportMenu
         '
         Me.YTDReportMenu.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
-        Me.YTDReportMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YTDReportToolStripMenuItem, Me.PrepareYTDONLYActiveEmployeesToolStripMenuItem, Me.PrepareYTDONLYEmployeesWithTermintationDateToolStripMenuItem, Me.ToolStripSeparator14, Me.YTDReportShowOnScreenToolStripMenuItem, Me.YTDReportSendToPrinterToolStripMenuItem, Me.ToolStripSeparator6, Me.ShowAsPayslipToolStripMenuItem, Me.ToolStripSeparator15, Me.SplitAcrossCompaniesToolStripMenuItem})
+        Me.YTDReportMenu.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.YTDReportToolStripMenuItem, Me.PrepareYTDONLYActiveEmployeesToolStripMenuItem, Me.PrepareYTDONLYEmployeesWithTermintationDateToolStripMenuItem, Me.ToolStripSeparator14, Me.YTDReportShowOnScreenToolStripMenuItem, Me.YTDReportSendToPrinterToolStripMenuItem, Me.ToolStripSeparator6, Me.ShowAsPayslipToolStripMenuItem, Me.ShowAsPayslipVersion2ToolStripMenuItem, Me.ToolStripSeparator15, Me.SplitAcrossCompaniesToolStripMenuItem})
         Me.YTDReportMenu.Image = CType(resources.GetObject("YTDReportMenu.Image"), System.Drawing.Image)
         Me.YTDReportMenu.ImageTransparentColor = System.Drawing.Color.Magenta
         Me.YTDReportMenu.Name = "YTDReportMenu"
@@ -601,6 +609,12 @@ Partial Class FrmPayrollTotalsX
         Me.ShowAsPayslipToolStripMenuItem.Name = "ShowAsPayslipToolStripMenuItem"
         Me.ShowAsPayslipToolStripMenuItem.Size = New System.Drawing.Size(352, 22)
         Me.ShowAsPayslipToolStripMenuItem.Text = "Show As Payslip"
+        '
+        'ShowAsPayslipVersion2ToolStripMenuItem
+        '
+        Me.ShowAsPayslipVersion2ToolStripMenuItem.Name = "ShowAsPayslipVersion2ToolStripMenuItem"
+        Me.ShowAsPayslipVersion2ToolStripMenuItem.Size = New System.Drawing.Size(352, 22)
+        Me.ShowAsPayslipVersion2ToolStripMenuItem.Text = "Show As Payslip Version 2"
         '
         'ToolStripSeparator15
         '
@@ -1249,11 +1263,11 @@ Partial Class FrmPayrollTotalsX
         Me.btnPeriodGroupSearch.Text = "..."
         Me.btnPeriodGroupSearch.UseVisualStyleBackColor = True
         '
-        'mnuPensionfund7
+        'tsmShowAsPayslip2
         '
-        Me.mnuPensionfund7.Name = "mnuPensionfund7"
-        Me.mnuPensionfund7.Size = New System.Drawing.Size(425, 22)
-        Me.mnuPensionfund7.Text = "Custom - Pension Fund 7"
+        Me.tsmShowAsPayslip2.Name = "tsmShowAsPayslip2"
+        Me.tsmShowAsPayslip2.Size = New System.Drawing.Size(425, 22)
+        Me.tsmShowAsPayslip2.Text = "Show as Payslip Version 2"
         '
         'FrmPayrollTotalsX
         '
@@ -1471,4 +1485,6 @@ Partial Class FrmPayrollTotalsX
     Friend WithEvents ToolStripSeparator17 As ToolStripSeparator
     Friend WithEvents ExcelToolStripMenuItem1 As ToolStripMenuItem
     Friend WithEvents mnuPensionfund7 As ToolStripMenuItem
+    Friend WithEvents ShowAsPayslipVersion2ToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents tsmShowAsPayslip2 As ToolStripMenuItem
 End Class

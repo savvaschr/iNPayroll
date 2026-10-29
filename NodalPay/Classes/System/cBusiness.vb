@@ -777,6 +777,10 @@ Public Class cBusiness
         Return MyBase.REPORT_IR61_PerEmployee(PerGrp, SIPeriod, ALLYear)
 
     End Function
+    Public Shadows Function REPORT_IR61_PerEmployee_Annual(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods, ALLYear As Boolean) As DataSet
+        Return MyBase.REPORT_IR61_PerEmployee_ANNUAL(PerGrp, SIPeriod, ALLYear)
+
+    End Function
     Public Shadows Function REPORT_IR61_GetTaxableIncome(ByVal PerGrp As cPrMsPeriodGroups, ByVal SIPeriod As cPrSsSocialInsPeriods) As DataSet
         Return MyBase.REPORT_IR61_GetTaxableIncome(PerGrp, SIPeriod)
 
@@ -2065,6 +2069,9 @@ Public Class cBusiness
     Public Shadows Function GetNextAvailableCode(ByVal Prefix As String, ByVal TemplateGroup As String) As String
         Return MyBase.GetNextAvailableCode(Prefix, TemplateGroup)
     End Function
+    Public Shadows Function GetNextAvailableCode2(ByVal Prefix As String, ByVal TemplateGroup As String) As String
+        Return MyBase.GetNextAvailableCode2(Prefix, TemplateGroup)
+    End Function
     Public Shadows Function CheckForLicence(ByVal EncryptedSerialNo As String) As DataSet
         Return MyBase.CheckForLicence(EncryptedSerialNo)
     End Function
@@ -2122,6 +2129,14 @@ Public Class cBusiness
         Return MyBase.RemoveOtherIncome1
 
     End Function
+    Public Shadows Function GetAllEmployeesPayments(TempGroupCode As String, PeriodGroupCode As String, PeriodCode As String) As DataSet
+        Return MyBase.GetAllEmployeePayments(TempGroupCode, PeriodGroupCode, PeriodCode)
+    End Function
+    Public Shadows Function DeleteEmployeesPayments(TempGroupCode As String, PeriodGroupCode As String, PeriodCode As String) As Boolean
+        Return MyBase.DeleteEmployeePayments(TempGroupCode, PeriodGroupCode, PeriodCode)
+
+    End Function
+
 
 #Region "Locii"
     Public Shadows Function LociiExport_PrAnBanks() As DataSet
@@ -2262,6 +2277,12 @@ Public Class cBusiness
     End Function
     Public Function Upgrade_2026_06() As Boolean
         Return MyBase.Upgrade_2026_06
+    End Function
+    Public Function Upgrade_2026_07() As Boolean
+        Return MyBase.upgrade_2026_07
+    End Function
+    Public Function Upgrade_2026_08() As Boolean
+        Return MyBase.Upgrade_2026_08
     End Function
 
 

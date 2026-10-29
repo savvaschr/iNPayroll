@@ -76,6 +76,31 @@ Public Class FrmShowArchivePayroll
                 Global1.PARAM_AddBIKOnEarnings = True
             End If
         End If
+        If Parameters.OverTime_Rate1 = 0 Then
+            Dim DsOver As New DataSet
+            DsOver = Global1.Business.GetParameter("Overtime", "Overtime1")
+            If CheckDataSet(DsOver) Then
+                Dim Par As New cPrSsParameters(DsOver.Tables(0).Rows(0))
+                Parameters.OverTime_Rate1 = Par.Value1
+            Else
+                Parameters.OverTime_Rate1 = 1.5
+            End If
+            DsOver = Global1.Business.GetParameter("Overtime", "Overtime2")
+            If CheckDataSet(DsOver) Then
+                Dim Par As New cPrSsParameters(DsOver.Tables(0).Rows(0))
+                Parameters.OverTime_Rate2 = Par.Value1
+            Else
+                Parameters.OverTime_Rate2 = 2.0
+            End If
+
+            DsOver = Global1.Business.GetParameter("Overtime", "Overtime3")
+            If CheckDataSet(DsOver) Then
+                Dim Par As New cPrSsParameters(DsOver.Tables(0).Rows(0))
+                Parameters.OverTime_Rate3 = Par.Value1
+            Else
+                Parameters.OverTime_Rate3 = 2.0
+            End If
+        End If
 
 
 
